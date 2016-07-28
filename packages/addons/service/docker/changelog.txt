@@ -1,0 +1,15 @@
+7.0.104
+- Update to docker 1.11.2
+
+7.0.103
+- Allow using kodi notifications based on Docker events API
+
+7.0.102
+- Update to docker 1.11.1
+
+7.0.101
+- Update to golang 1.6.2
+- Update to docker 1.11.0
+
+7.0.100
+- Initial release

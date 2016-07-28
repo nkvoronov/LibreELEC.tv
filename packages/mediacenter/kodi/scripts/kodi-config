@@ -1,0 +1,75 @@
+#!/bin/sh
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
+#
+#  OpenELEC is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  OpenELEC is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
+################################################################################
+
+
+# hack: make addon-bins executable
+# done in kodi on addon install. but just in case..
+chmod +x /storage/.kodi/addons/*/bin/*
+
+# Nasty hack to work around OE to LE migration - Addons*.db needs to forget all about OE addons
+ADDONSDB=$(ls -1 /storage/.kodi/userdata/Database/Addons20.db 2>/dev/null)
+if [ -n "${ADDONSDB}" ]; then
+  OEREPO="'repository.openelec.tv'"
+
+  if [ -n "$(sqlite3 $ADDONSDB "SELECT id FROM repo WHERE addonID IN (${OEREPO})")" ]; then
+
+    [ -f ${ADDONSDB}.OE2LE_Backup ] || cp ${ADDONSDB} ${ADDONSDB}.OE2LE_Backup
+
+    sqlite3 $ADDONSDB "DELETE FROM addon WHERE id IN (SELECT idAddon FROM addonlinkrepo a JOIN repo b ON (a.idRepo = b.id) WHERE b.addonID in (${OEREPO}))"
+    sqlite3 $ADDONSDB "DELETE FROM addonextra WHERE id IN (SELECT idAddon FROM addonlinkrepo a JOIN repo b ON (a.idRepo = b.id) WHERE b.addonID in (${OEREPO}))"
+    sqlite3 $ADDONSDB "DELETE FROM dependencies WHERE id IN (SELECT idAddon FROM addonlinkrepo a JOIN repo b ON (a.idRepo = b.id) WHERE b.addonID in (${OEREPO}))"
+    sqlite3 $ADDONSDB "DELETE FROM addonlinkrepo WHERE idRepo in (SELECT id FROM repo WHERE addonID IN (${OEREPO}))"
+    sqlite3 $ADDONSDB "DELETE FROM repo WHERE addonID IN (${OEREPO})"
+  fi
+fi
+
+# hack: update RSSnews.xml in userdata
+if [ -f /storage/.kodi/userdata/RssFeeds.xml ]; then
+  sed -e "s,http://libreelec.tv/news?format=feed&type=rss,http://feeds.libreelec.tv/news,g" \
+      -i /storage/.kodi/userdata/RssFeeds.xml
+fi
+
+# setup Kodi sources
+if [ ! -f $HOME/.kodi/userdata/sources.xml ]; then
+  if [ -f /usr/share/kodi/config/sources.xml ]; then
+    cp /usr/share/kodi/config/sources.xml $HOME/.kodi/userdata
+  fi
+fi
+
+# common setup guisettings
+if [ ! -f $HOME/.kodi/userdata/guisettings.xml ] ; then
+  if [ -f /usr/share/kodi/config/guisettings.xml ]; then
+    cp /usr/share/kodi/config/guisettings.xml $HOME/.kodi/userdata
+  fi
+fi
+
+# cleanup *.fi cache files from .kodi/temp as old version
+# of these files can cause random problems/crashes, particularly
+# after an upgrade
+if [ -d $HOME/.kodi/temp ]; then
+  rm -f $HOME/.kodi/temp/*.fi
+fi
+
+if [ -e /run/lirc/lircd.irtrans ]; then
+  KODI_ARGS="--lircdev /run/lirc/lircd.irtrans"
+else
+  KODI_ARGS="--lircdev /run/lirc/lircd"
+fi
+
+echo "KODI_ARGS=\"$KODI_ARGS\"" > /run/libreelec/kodi.conf

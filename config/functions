@@ -1,0 +1,477 @@
+setup_toolchain() {
+  if [ "$1" = target ]; then
+    export DESTIMAGE="target"
+
+    unset CPP
+
+    export CC=$TARGET_CC
+    export CXX=$TARGET_CXX
+    export LD=$TARGET_LD
+    export AS=$TARGET_AS
+    export AR=$TARGET_AR
+    export NM=$TARGET_NM
+    export RANLIB=$TARGET_RANLIB
+    export OBJCOPY=$TARGET_OBJCOPY
+    export OBJDUMP=$TARGET_OBJDUMP
+    export STRIP=$TARGET_STRIP
+    export CPPFLAGS="$TARGET_CPPFLAGS"
+    export CFLAGS="$TARGET_CFLAGS"
+    export CXXFLAGS="$TARGET_CXXFLAGS"
+    export LDFLAGS="$TARGET_LDFLAGS"
+    export PKG_CONFIG_PATH="$TARGET_PKG_CONFIG_PATH"
+    export PKG_CONFIG_LIBDIR="$TARGET_PKG_CONFIG_LIBDIR"
+    export PKG_CONFIG_SYSROOT_DIR="$TARGET_PKG_CONFIG_SYSROOT_DIR"
+
+  # set python defaults
+    export _python_sysroot="$SYSROOT_PREFIX"
+    export _python_prefix=/usr
+    export _python_exec_prefix=/usr
+
+  # set CMAKE configfile for target
+    export CMAKE_CONF=$ROOT/$TOOLCHAIN/etc/cmake-$TARGET_NAME.conf
+
+  elif [ "$1" = host ]; then
+    export DESTIMAGE="host"
+
+    unset CPP
+
+    export AWK=$HOST_AWK
+    export CC=$HOST_CC
+    export CXX=$HOST_CXX
+    export LD=$HOST_LD
+    export AS=$HOST_AS
+    export AR=$HOST_AR
+    export NM=$HOST_NM
+    export RANLIB=$HOST_RANLIB
+    export OBJCOPY=$HOST_OBJCOPY
+    export STRIP=$HOST_STRIP
+    export CPPFLAGS="$HOST_CPPFLAGS"
+    export CFLAGS="$HOST_CFLAGS"
+    export CXXFLAGS="$HOST_CXXFLAGS"
+    export LDFLAGS="$HOST_LDFLAGS"
+    export PKG_CONFIG_PATH="$HOST_PKG_CONFIG_PATH"
+    export PKG_CONFIG_LIBDIR="$HOST_PKG_CONFIG_LIBDIR"
+    export PKG_CONFIG_SYSROOT_DIR="$HOST_PKG_CONFIG_SYSROOT_DIR"
+
+  # set CMAKE configfile for host
+    export CMAKE_CONF=$ROOT/$TOOLCHAIN/etc/cmake-$HOST_NAME.conf
+
+  fi
+}
+
+kernel_path() {
+  if [ -e $HOME/.libreelec/projects/$PROJECT/packages/linux/package.mk ]; then
+    . $HOME/.libreelec/projects/$PROJECT/packages/linux/package.mk
+  elif [ -e $HOME/.libreelec/packages/linux/package.mk ]; then
+    . $HOME/.libreelec/packages/linux/package.mk
+  elif [ -e $ROOT/projects/$PROJECT/packages/linux/package.mk ]; then
+    . $ROOT/projects/$PROJECT/packages/linux/package.mk
+  else
+    . $ROOT/packages/linux/package.mk
+  fi
+
+  echo $ROOT/$BUILD/${PKG_NAME}-${PKG_VERSION}
+}
+
+kernel_version() {
+  if [ -e $HOME/.libreelec/projects/$PROJECT/packages/linux/package.mk ]; then
+    . $HOME/.libreelec/projects/$PROJECT/packages/linux/package.mk
+  elif [ -e $HOME/.libreelec/packages/linux/package.mk ]; then
+    . $HOME/.libreelec/packages/linux/package.mk
+  elif [ -e $ROOT/projects/$PROJECT/packages/linux/package.mk ]; then
+    . $ROOT/projects/$PROJECT/packages/linux/package.mk
+  else
+    . $ROOT/packages/linux/package.mk
+  fi
+
+  echo ${PKG_VERSION}
+}
+
+# get kernel module dir
+get_module_dir() {
+  basename $(ls -d $(get_build_dir linux)/.install_pkg/lib/modules/*)
+}
+
+# get package's build dir
+get_build_dir() {
+  if [ ! -z $1 ] ; then
+    local _PKG_DIR=$(find $HOME/.libreelec/projects/$PROJECT/packages -name $1 2>/dev/null)
+    if [ -d "$_PKG_DIR" -a -f $_PKG_DIR/package.mk ] ; then
+      . $_PKG_DIR/package.mk
+    else
+      local _PKG_DIR=$(find $HOME/.libreelec/packages -name $1 2>/dev/null)
+      if [ -d "$_PKG_DIR" -a -f $_PKG_DIR/package.mk ] ; then
+        . $_PKG_DIR/package.mk
+      else
+        local _PKG_DIR=$(find $ROOT/projects/$PROJECT/packages -name $1 2>/dev/null)
+        if [ -d "$_PKG_DIR" -a -f $_PKG_DIR/package.mk ] ; then
+          . $_PKG_DIR/package.mk
+        else
+          local _PKG_DIR=$(find $ROOT/packages -name $1 2>/dev/null)
+          if [ -d "$_PKG_DIR" -a -f $_PKG_DIR/package.mk ] ; then
+            . $_PKG_DIR/package.mk
+          fi
+        fi
+      fi
+    fi
+
+    echo $ROOT/$BUILD/${PKG_NAME}-${PKG_VERSION}
+  fi
+}
+
+tolower(){
+  echo "$@" | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+}
+
+require_eglibc() {
+  if [ "$TARGET_LIBC" != eglibc ]; then
+    echo "$1 requires eglibc, aborting."
+    exit 1
+  fi
+}
+
+require_cxx() {
+  if [ "$TOOLCHAIN_CXX" != yes ]; then
+    echo "$1 requires C++ toolchain support, aborting."
+    exit 1
+  fi
+}
+
+add_user() {
+  # Usage: add_user "username" "password" "userid" "groupid" "description" "home" "shell"
+  mkdir -p ${INSTALL}/etc
+  touch ${INSTALL}/etc/passwd
+  if [ -z "`grep "$1:" ${INSTALL}/etc/passwd`" ]; then
+    echo "$1:x:$3:$4:$5:$6:$7" >> ${INSTALL}/etc/passwd
+  fi
+
+  touch ${INSTALL}/etc/shadow
+  PASSWORD="$2"
+  if [ "$PASSWORD" = "x" ]; then
+    PASSWORD="*"
+  fi
+  if [ -z "`grep "$1:" ${INSTALL}/etc/shadow`" ]; then
+    echo "$1:$PASSWORD:::::::" >> ${INSTALL}/etc/shadow
+  fi
+}
+
+add_group() {
+  # Usage: add_group "groupname" "groupid" ("members")
+  mkdir -p ${INSTALL}/etc
+  touch ${INSTALL}/etc/group
+  if [ -z "`grep "$1:" ${INSTALL}/etc/group`" ]; then
+    echo "$1:x:$2:$3" >> ${INSTALL}/etc/group
+  fi
+}
+
+do_autoreconf() {
+  export ACLOCAL_DIR=$SYSROOT_PREFIX/usr/share/aclocal
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/autoconf" ]; then
+    export AUTOCONF=$ROOT/$TOOLCHAIN/bin/autoconf
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/automake" ]; then
+    export AUTOMAKE=$ROOT/$TOOLCHAIN/bin/automake
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/autopoint" ]; then
+    export AUTOPOINT=$ROOT/$TOOLCHAIN/bin/autopoint
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/libtoolize" ]; then
+    export LIBTOOLIZE=$ROOT/$TOOLCHAIN/bin/libtoolize
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/intltoolize" ]; then
+    export INTLTOOLIZE=$ROOT/$TOOLCHAIN/bin/intltoolize
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/aclocal" ]; then
+    export ACLOCAL="$ROOT/$TOOLCHAIN/bin/aclocal -I $ACLOCAL_DIR"
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/autoheader" ]; then
+    export AUTOHEADER=$ROOT/$TOOLCHAIN/bin/autoheader
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/libtool" ]; then
+    export LIBTOOL=$ROOT/$TOOLCHAIN/bin/libtool
+  fi
+
+  if [ -e "$ROOT/$TOOLCHAIN/bin/autoreconf" -a -e "$INTLTOOLIZE" ]; then
+    mkdir -p $ACLOCAL_DIR
+    export AUTORECONF="$ROOT/$TOOLCHAIN/bin/autoreconf --verbose --force --install -I $ACLOCAL_DIR"
+    $AUTORECONF $@
+  fi
+}
+
+strip_lto() {
+  # strip out LTO optimization from *FLAGS
+  if [ -n "$GCC_OPTIM_LTO" ] ; then
+    CFLAGS=`echo $CFLAGS | sed -e "s|$GCC_OPTIM_LTO||g"`
+    CXXFLAGS=`echo $CXXFLAGS | sed -e "s|$GCC_OPTIM_LTO||g"`
+  fi
+  if [ -n "$LD_OPTIM_LTO" ] ; then
+    LDFLAGS=`echo $LDFLAGS | sed -e "s|$LD_OPTIM_LTO||g"`
+  fi
+}
+
+strip_gold() {
+  # strip out usage from GOLD linker
+  LDFLAGS=`echo $LDFLAGS | sed -e "s|-fuse-ld=gold||g"`
+}
+
+fix_module_depends() {
+  # modify .modinfo section in kernel module to depends on other required modules
+  local MODULE="$1"
+  local DEPENDS="$2"
+  local OLD_DEPENDS=""
+  cp ${MODULE} ${MODULE}_orig
+  $OBJDUMP -s -j .modinfo ${MODULE}_orig | awk 'BEGIN{v=0;} /Contents/ {v=1; next;} {if (v==1) print $0;}' >new.modinfo1
+  cat new.modinfo1 | cut -c7-41 | awk '{printf($0);}' | sed 's/ //g;s/../\\\x&/g;' >new.modinfo2
+  /bin/echo -ne `cat new.modinfo2` | tr '\000' '\n' >new.modinfo3
+  cat new.modinfo3 | awk '/^depends=/ {next;} {print $0;}' | tr '\n' '\000' >new.modinfo
+  OLD_DEPENDS=$(awk '{FS="="} /depends=/ {print $2}' new.modinfo3)
+  [ -n "$OLD_DEPENDS" ] && DEPENDS="$OLD_DEPENDS,$DEPENDS"
+  /bin/echo -ne "depends=$DEPENDS\0" >>new.modinfo
+  $OBJCOPY --remove-section=.modinfo --add-section=.modinfo=new.modinfo --set-section-flags .modinfo=contents,alloc,load,readonly,data ${MODULE}_orig ${MODULE}
+  rm new.modinfo*
+}
+
+# Usage: enable_service <unit> [target]
+enable_service () {
+  local unit="$1"
+  local unit_dir="/usr/lib/systemd/system"
+  local target="$2"
+  local target_dir=$INSTALL
+
+  [ -f "$target_dir/$unit_dir/$unit" ] || exit 1
+  if [ -z "$target" ] ; then
+    for target in `grep '^WantedBy' $target_dir/$unit_dir/$unit | cut -f2 -d=` ; do
+      if [ -n "$target" ]; then
+        mkdir -p ${target_dir}/$unit_dir/${target}.wants
+        ln -sf ../${unit} ${target_dir}/$unit_dir/${target}.wants/
+      fi
+    done
+  fi
+}
+
+check_path() {
+dashes="==========================="
+  if [ "${PWD##/usr}" != "${PWD}" ]; then
+    check_pathmessage="$check_pathmessage\n $dashes$dashes$dashes"
+    check_pathmessage="$check_pathmessage\n ERROR: You try to build inside /usr"
+    check_pathmessage="$check_pathmessage\n $dashes$dashes$dashes"
+    check_pathmessage="$check_pathmessage\n This is not supported with our buildsystem."
+    check_pathmessage="$check_pathmessage\n Please use another dir (for example your \$HOME) to build $DISTRONAME"
+
+    echo -e $check_pathmessage
+    exit 1
+  fi
+}
+
+check_config() {
+dashes="==========================="
+  if [ ! -d $PROJECT_DIR/$PROJECT -a ! -d $HOME/.libreelec/projects/$PROJECT ]; then
+    check_project="$check_project\n $dashes$dashes$dashes"
+    check_project="$check_project\n ERROR: Project not found, use a valid project or create a new config"
+    check_project="$check_project\n $dashes$dashes$dashes"
+    check_project="$check_project\n\n Valid projects:"
+
+    for projects in $PROJECT_DIR/* $HOME/.libreelec/projects/*; do
+      check_project="$check_project\n - $(basename $projects)"
+    done
+    echo -e $check_project
+    exit 1
+  fi
+
+  if [ ! -f $PROJECT_DIR/$PROJECT/linux/linux.$TARGET_ARCH.conf -a ! -f $HOME/.libreelec/projects/$PROJECT/linux/linux.$TARGET_ARCH.conf ] &&
+     ! ls $PROJECT_DIR/$PROJECT/linux/*/linux.$TARGET_ARCH.conf &>/dev/null; then
+    check_arch="$check_arch\n $dashes$dashes$dashes"
+    check_arch="$check_arch\n ERROR: Architecture not found, use a valid Architecture"
+    check_arch="$check_arch\n for your project or create a new config"
+    check_arch="$check_arch\n $dashes$dashes$dashes"
+    check_arch="$check_arch\n\n Valid Architectures for your project: $PROJECT"
+
+    for arch in $PROJECT_DIR/$PROJECT/linux/*.conf $HOME/.libreelec/projects/$PROJECT/linux/*.conf $PROJECT_DIR/$PROJECT/linux/*/linux.$TARGET_ARCH.conf; do
+      check_arch="$check_arch\n - $(basename $arch | cut -f2 -d".")"
+    done
+    echo -e $check_arch
+    exit 1
+  fi
+}
+
+show_config() {
+  # load graphic configuration
+    get_graphicdrivers
+
+  dashes="==========================="
+  config_message="$config_message\n $dashes$dashes$dashes"
+  config_message="$config_message\n Configuration for $DISTRONAME ($([ "$OFFICIAL" = "yes" ] && echo "official" || echo "community"))"
+  config_message="$config_message\n $dashes$dashes$dashes"
+
+  # Build options
+
+  config_message="$config_message\n\n Buildoptions:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - CPU (ARCH):\t\t\t\t $TARGET_CPU ($TARGET_ARCH)"
+  config_message="$config_message\n - FLOAT:\t\t\t\t $TARGET_FLOAT"
+  config_message="$config_message\n - FPU:\t\t\t\t\t $TARGET_FPU"
+  config_message="$config_message\n - SIMD support:\t\t\t $SIMD_SUPPORT"
+  config_message="$config_message\n - Optimizations:\t\t\t $OPTIMIZATIONS"
+  config_message="$config_message\n - LTO (Link Time Optimization) support: $LTO_SUPPORT"
+  config_message="$config_message\n - GOLD (Google Linker) Support:\t $GOLD_SUPPORT"
+  config_message="$config_message\n - LLVM support:\t\t\t $LLVM_SUPPORT"
+
+  # config_message="$config_message\n - CFLAGS:\t $TARGET_CFLAGS"
+  # config_message="$config_message\n - LDFLAGS:\t $TARGET_LDFLAGS"
+
+  # Graphic configuration
+
+  config_message="$config_message\n\n Graphic configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  if [ "$DISPLAYSERVER" = "x11" ] ; then
+    config_message="$config_message\n - Xorg Graphic Drivers:\t\t $GRAPHIC_DRIVERS"
+    config_message="$config_message\n - XORG Composite support:\t\t $COMPOSITE_SUPPORT"
+    config_message="$config_message\n - WindowManager:\t\t\t $WINDOWMANAGER"
+  fi
+  config_message="$config_message\n - OpenGL (GLX) support (provider):\t $OPENGL_SUPPORT ($OPENGL)"
+  config_message="$config_message\n - OpenGLES support (provider):\t\t $OPENGLES_SUPPORT ($OPENGLES)"
+  config_message="$config_message\n - uvesafb support:\t\t\t $UVESAFB_SUPPORT"
+
+  # Hardware decoder support
+
+  config_message="$config_message\n\n Hardware decoder configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - Kodi Player driver:\t\t\t $KODIPLAYER_DRIVER"
+  config_message="$config_message\n - VAAPI Support:\t\t\t $VAAPI_SUPPORT"
+  config_message="$config_message\n - VDPAU Support:\t\t\t $VDPAU_SUPPORT"
+
+  # Input device configuration
+
+  config_message="$config_message\n\n Input device configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - Remote support:\t\t\t $REMOTE_SUPPORT"
+  config_message="$config_message\n - ATV Remote support:\t\t\t $ATVCLIENT_SUPPORT"
+  config_message="$config_message\n - CEC Adapter support:\t\t\t $CEC_SUPPORT"
+  config_message="$config_message\n - IRTrans support:\t\t\t $IRSERVER_SUPPORT"
+  config_message="$config_message\n - Kodi Joystick support:\t\t $JOYSTICK_SUPPORT"
+
+  # Misc. hardware configuration
+
+  config_message="$config_message\n\n Misc. hardware configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - ALSA support:\t\t\t $ALSA_SUPPORT"
+  config_message="$config_message\n - Pulseaudio support:\t\t\t $PULSEAUDIO_SUPPORT"
+  config_message="$config_message\n - Bluetooth support:\t\t\t $BLUETOOTH_SUPPORT"
+  config_message="$config_message\n - LCD drivers:\t\t\t\t $LCD_DRIVER"
+
+  for config_driver in $ADDITIONAL_DRIVERS; do
+    config_message="$config_message\n - Include driver:\t\t\t $config_driver"
+  done
+
+  for config_firmware in $FIRMWARE; do
+    config_message="$config_message\n - Include firmware:\t\t\t $config_firmware"
+  done
+
+  for config_modules in $INITRAMFS_MODULES; do
+    config_message="$config_message\n - Initramfs modules:\t\t\t $config_modules"
+  done
+
+  # Network service configuration
+
+  config_message="$config_message\n\n Network service configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - Avahi (Zeroconf) support:\t\t $AVAHI_DAEMON"
+  config_message="$config_message\n - NFS mounting support:\t\t $NFS_SUPPORT"
+  config_message="$config_message\n - SAMBA mounting support:\t\t $SAMBA_SUPPORT"
+  config_message="$config_message\n - SAMBA server support:\t\t $SAMBA_SERVER"
+  config_message="$config_message\n - SFTP server support:\t\t\t $SFTP_SERVER"
+  config_message="$config_message\n - OpenVPN support:\t\t\t $OPENVPN_SUPPORT"
+
+  # OS configuration
+
+  config_message="$config_message\n\n OS configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - OEM Support:\t\t\t\t $OEM_SUPPORT"
+  config_message="$config_message\n - Default ROOT Password:\t\t $ROOT_PASSWORD"
+  config_message="$config_message\n - Bootloader:\t\t\t\t $BOOTLOADER"
+  if [ "$BOOTLOADER" = "u-boot" ]; then
+    config_message="$config_message\n   - U-Boot configuration:\t\t $UBOOT_CONFIG"
+    config_message="$config_message\n   - U-Boot config file:\t\t $UBOOT_CONFIGFILE"
+  fi
+  config_message="$config_message\n - UDevil support:\t\t\t $UDEVIL"
+  config_message="$config_message\n - Installer support:\t\t\t $INSTALLER_SUPPORT"
+
+  # Misc. Filesystems
+
+  config_message="$config_message\n\n Misc. Filesystems:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - Swap Support:\t\t\t $SWAP_SUPPORT"
+  if [ "$SWAP_SUPPORT" = "yes" ]; then
+    config_message="$config_message\n   - Swapfile default size:\t\t $SWAPFILESIZE"
+  fi
+  config_message="$config_message\n - exFAT Support (via Fuse):\t\t $EXFAT"
+  config_message="$config_message\n - NTFS Support (via Fuse):\t\t $NTFS3G"
+  config_message="$config_message\n - Install HFS Tools:\t\t\t $HFSTOOLS"
+
+  # Kodi configuration
+
+  config_message="$config_message\n\n Kodi configuration:"
+  config_message="$config_message\n $dashes$dashes"
+
+  config_message="$config_message\n - Kodi version:\t\t\t $MEDIACENTER"
+  config_message="$config_message\n - Kodi nonfree support:\t\t $KODI_NONFREE_SUPPORT"
+  config_message="$config_message\n - Kodi Blu-Ray support:\t\t $KODI_BLURAY_SUPPORT"
+  if [ "$KODI_BLURAY_SUPPORT" = "yes" ] ; then
+    config_message="$config_message\n   - Bluray BD+ support:\t\t $BLURAY_BDPLUS_SUPPORT"
+    config_message="$config_message\n   - Bluray AACS support:\t\t $BLURAY_AACS_SUPPORT"
+  fi
+  config_message="$config_message\n - Kodi DVDCSS support:\t\t\t $KODI_DVDCSS_SUPPORT"
+  config_message="$config_message\n - Kodi Airplay support:\t\t $KODI_AIRPLAY_SUPPORT"
+  config_message="$config_message\n - Kodi Airtunes support:\t\t $KODI_AIRTUNES_SUPPORT"
+  config_message="$config_message\n - Kodi NFS support:\t\t\t $KODI_NFS_SUPPORT"
+  config_message="$config_message\n - Kodi MySQL support:\t\t\t $KODI_MYSQL_SUPPORT"
+  config_message="$config_message\n - Kodi Optical Drive support:\t\t $KODI_OPTICAL_SUPPORT"
+  config_message="$config_message\n - Kodi SAMBA client support:\t\t $KODI_SAMBA_SUPPORT"
+  config_message="$config_message\n - Kodi SSH client support:\t\t $KODI_SSHLIB_SUPPORT"
+  config_message="$config_message\n - Kodi UPNP support:\t\t\t $KODI_UPNP_SUPPORT"
+  config_message="$config_message\n - Kodi Webserver support:\t\t $KODI_WEBSERVER_SUPPORT"
+
+
+  for config_skin in $SKINS; do
+    config_message="$config_message\n - Include Skin:\t\t\t $config_skin"
+  done
+
+  config_message="$config_message\n - Default Skin:\t\t\t $SKIN_DEFAULT"
+  config_message="$config_message\n - Include extra fonts:\t\t\t $KODI_EXTRA_FONTS"
+
+  config_message="$config_message\n"
+  config_message="$config_message\n $dashes$dashes$dashes"
+  config_message="$config_message\n End Configuration for $DISTRONAME"
+  config_message="$config_message\n $dashes$dashes$dashes"
+  config_message="$config_message\n\n\n"
+
+  echo -e "$config_message"
+}
+
+# strip
+debug_strip() {
+  if [ ! "$DEBUG" = yes ]; then
+    $STRIP `find $* -type f -executable 2>/dev/null` 2>/dev/null || :
+  fi
+}
+
+# Use distribution functions if any
+if [ -f "distributions/$DISTRO/config/functions" ]; then
+  . distributions/$DISTRO/config/functions
+fi
