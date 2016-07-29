@@ -1,0 +1,801 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	2014-09-29 17:57:07.000000000 +0300
++++ b/po/ru_RU.po	2015-04-05 00:07:15.535636690 +0300
+@@ -1,12 +1,12 @@
+ # VDR plugin language source file.
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: vdr-tvguide 1.0.0\n"
++"Project-Id-Version: vdr-tvguide 1.2.2\n"
+ "Report-Msgid-Bugs-To: <see README>\n"
+-"POT-Creation-Date: 2014-05-10 17:24+0200\n"
++"POT-Creation-Date: 2014-05-20 13:04+0300\n"
+ "PO-Revision-Date: 2013-09-25 17:49+0400\n"
+ "Last-Translator: AmiD, ilya\n"
+-"Language-Team: Russia-Cherepovets(wm.amid@gmail.com)\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
+ "Language: ru\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+@@ -22,10 +22,10 @@
+ msgstr "мин"
+ 
+ msgid "Reruns of "
+-msgstr ""
++msgstr "Возврат"
+ 
+ msgid "No reruns found"
+-msgstr ""
++msgstr "повторы не найдены"
+ 
+ msgid "No EPG Information available"
+ msgstr "Нет доступной EPG информации"
+@@ -46,13 +46,13 @@
+ msgstr "Подробный EPG"
+ 
+ msgid "Close detailed EPG"
+-msgstr ""
++msgstr "Закрыть детальное EPG"
+ 
+ msgid "Favorites"
+-msgstr ""
++msgstr "Избранное"
+ 
+ msgid "images"
+-msgstr ""
++msgstr "изображения"
+ 
+ msgid "root video folder"
+ msgstr "Главная видео директория"
+@@ -79,28 +79,28 @@
+ msgstr "от"
+ 
+ msgid "Timers for"
+-msgstr ""
++msgstr "Таймеры для"
+ 
+ msgid "Rec"
+-msgstr ""
++msgstr "Rec"
+ 
+ msgid "No Timers active"
+-msgstr ""
++msgstr "Нет активных таймеров"
+ 
+ msgid "inactive"
+-msgstr ""
++msgstr "неактивный"
+ 
+ msgid "active timers"
+-msgstr ""
++msgstr "активные таймеры"
+ 
+ msgid "recordings done"
+-msgstr ""
++msgstr "завершенные записи"
+ 
+ msgid "What's on now"
+-msgstr ""
++msgstr "Сейчас"
+ 
+ msgid "What's on next"
+-msgstr ""
++msgstr "Далее"
+ 
+ msgid "Instant Record"
+ msgstr "Записать"
+@@ -112,13 +112,13 @@
+ msgstr "Редактировать таймер"
+ 
+ msgid "Timer Timeline"
+-msgstr ""
++msgstr "Таймер линия времени"
+ 
+ msgid "Create Search Timer"
+ msgstr "Создать поисковый таймер"
+ 
+ msgid "Search Timers"
+-msgstr ""
++msgstr "Поиск таймеров"
+ 
+ msgid "Create Series Timer"
+ msgstr "Создать циклический таймер"
+@@ -193,25 +193,25 @@
+ msgstr "Закрыть"
+ 
+ msgid "reruns for"
+-msgstr ""
++msgstr "повторы для"
+ 
+ msgid "rerun for"
+-msgstr ""
++msgstr "повтор для"
+ 
+ msgid "found"
+-msgstr ""
++msgstr "найдено"
+ 
+ msgid "Ignore reruns"
+-msgstr ""
++msgstr "Игнорировать повторы"
+ 
+ msgid "No reruns found for Event"
+-msgstr ""
++msgstr "Повторы не найдены для Event"
+ 
+ msgid "Timer for"
+-msgstr ""
++msgstr "Таймер для"
+ 
+ msgid "replaced by rerun"
+-msgstr ""
++msgstr "заменены повторных"
+ 
+ msgid "Timer Active"
+ msgstr "Таймер активен"
+@@ -232,10 +232,10 @@
+ msgstr "Время до"
+ 
+ msgid "Timer File"
+-msgstr ""
++msgstr "Таймер файл"
+ 
+ msgid "New Folder"
+-msgstr ""
++msgstr "Новая папка"
+ 
+ msgid "Save"
+ msgstr "Сохранить"
+@@ -289,22 +289,22 @@
+ msgstr "Использовать шаблоны"
+ 
+ msgid "EPGSearch Search Timers"
+-msgstr ""
++msgstr "EPGSearch поиск таймеров"
+ 
+ msgid "No Search Timers Configured"
+-msgstr ""
++msgstr "Поиск Таймеров не задан"
+ 
+ msgid "Configure Search Timer Options"
+-msgstr ""
++msgstr "Настройте Опции поиска таймера"
+ 
+ msgid "Save Search Timer"
+-msgstr ""
++msgstr "Сохранить поиск Таймер"
+ 
+ msgid "Search String"
+-msgstr ""
++msgstr "Строка поиска"
+ 
+ msgid "Active"
+-msgstr ""
++msgstr "Активный"
+ 
+ msgid "Search Mode"
+ msgstr "Режим поиска"
+@@ -325,34 +325,34 @@
+ msgstr "Время"
+ 
+ msgid "Display advanced Options"
+-msgstr ""
++msgstr "Показать дополнительные опции"
+ 
+ msgid "Limit Days of the Week"
+-msgstr ""
++msgstr "Лимит дней недели"
+ 
+ msgid "Time margin for start in minutes"
+-msgstr ""
++msgstr "Интервал в начале записи в минутах"
+ 
+ msgid "Time margin for stop in minutes"
+-msgstr ""
++msgstr "Интервал в конце записи в минутах"
+ 
+ msgid "Series Recording"
+-msgstr ""
++msgstr "Запись серии"
+ 
+ msgid "Folder"
+-msgstr ""
++msgstr "Папка"
+ 
+ msgid "Use VPS"
+-msgstr ""
++msgstr "Использовать VPS"
+ 
+ msgid "Avoid Repeats"
+-msgstr ""
++msgstr "Избегать повторы"
+ 
+ msgid "Use in Favorites"
+-msgstr ""
++msgstr "Использовать в Избранное"
+ 
+ msgid "Hide advanced Options"
+-msgstr ""
++msgstr "Скрыть дополнительные опции"
+ 
+ msgid "Display Results for Search Timer"
+ msgstr "Тест"
+@@ -370,28 +370,28 @@
+ msgstr "До"
+ 
+ msgid "Select Days"
+-msgstr ""
++msgstr "Выбранные дни"
+ 
+ msgid "Number of allowed repeats"
+-msgstr ""
++msgstr "Количество разрешенных повторов"
+ 
+ msgid "Compare Title"
+-msgstr ""
++msgstr "Сравнить заголовки"
+ 
+ msgid "Compare Subtitle"
+-msgstr ""
++msgstr "Сравнить субтитры"
+ 
+ msgid "Compare Description"
+-msgstr ""
++msgstr "Сравнить описания"
+ 
+ msgid "Really delete Search Timer"
+-msgstr ""
++msgstr "Вы действительно хотите удалить таймер поиска"
+ 
+ msgid "Delete only Search Timer"
+-msgstr ""
++msgstr "Удалить только таймер поиска"
+ 
+ msgid "Delete Search Timer and created Timers"
+-msgstr ""
++msgstr "Удалить таймер поиска и созданные таймеры"
+ 
+ msgid "Search Timer sucessfully created."
+ msgstr "Поисковый таймер создан"
+@@ -415,10 +415,10 @@
+ msgstr "Использовать другие шаблоны"
+ 
+ msgid "search results for Favorite"
+-msgstr ""
++msgstr "поиск результатов для Избранного"
+ 
+ msgid "search result for Favorite"
+-msgstr ""
++msgstr "поиск результата для Избранного"
+ 
+ msgid "search results for Search Timer"
+ msgstr "Совпадений найдено"
+@@ -487,7 +487,7 @@
+ msgstr "Изменить"
+ 
+ msgid "Search String has to have at least three letters"
+-msgstr ""
++msgstr "Строка поиска должна иметь по крайней мере три буквы"
+ 
+ msgid "Found"
+ msgstr "Найдено"
+@@ -505,7 +505,7 @@
+ msgstr "Не найдено записей:"
+ 
+ msgid "No Favorites available"
+-msgstr ""
++msgstr "Избранные не доступно"
+ 
+ msgid "whole term must appear"
+ msgstr "фраза"
+@@ -532,10 +532,10 @@
+ msgstr "Шрифты и размер шрифтов"
+ 
+ msgid "Recording Menus and Favorites"
+-msgstr ""
++msgstr "Меню записи и Избранные"
+ 
+ msgid "Image Loading and Caching"
+-msgstr ""
++msgstr "Загрузка изображений и кэширование"
+ 
+ msgid "x channels back / forward"
+ msgstr "x Каналов Назад/Вперед"
+@@ -550,13 +550,13 @@
+ msgstr "Синяя: Подробный EPG, OK: Переключить канал"
+ 
+ msgid "Blue: Favorites / Switch, Ok: Detailed EPG"
+-msgstr ""
++msgstr "Синий: Избранные / Переключить, OK: Подробный EPG"
+ 
+ msgid "Timely Jump"
+-msgstr ""
++msgstr "Перейти"
+ 
+ msgid "Jump to specific channel"
+-msgstr ""
++msgstr "Перейти к конкретному каналу"
+ 
+ msgid "never"
+ msgstr "никогда"
+@@ -568,13 +568,13 @@
+ msgstr "всегда"
+ 
+ msgid "Show Main Menu Entry"
+-msgstr "Показывать пункт в главном меню"
++msgstr "Показывать в главном меню"
+ 
+ msgid "Replace VDR Schedules Menu"
+ msgstr "Заменять телегид VDR"
+ 
+ msgid "Use appropriate nOpacity Theme"
+-msgstr ""
++msgstr "Исп. соотв. nOpacity стиль"
+ 
+ msgid "Theme"
+ msgstr "Тема"
+@@ -586,34 +586,34 @@
+ msgstr "Закруглять углы"
+ 
+ msgid "Channel Jump Mode (Keys Green / Yellow)"
+-msgstr "Режим прокрутки каналов (Зеленая/Желтая кнопки)"
++msgstr "Пр. каналов (Зеленая/Желтая)"
+ 
+ msgid "Keys Blue and OK"
+ msgstr "Синяя кнопка и OK"
+ 
+ msgid "Close TVGuide after channel switch"
+-msgstr "Закрывать TVGuide при переключении канала"
++msgstr "Закр. TVGuide при перекл. к-ла"
+ 
+ msgid "Functionality of numeric Keys"
+-msgstr ""
++msgstr "Функц. цифровых клавиш"
+ 
+ msgid "Hide last Channel Group"
+-msgstr "Скрывать последнюю группу каналов"
++msgstr "Скрывать послед. грп. каналов"
+ 
+ msgid "Big Step (Keys 1 / 3) in hours"
+-msgstr "Прыжок (Кнопки 1 / 3) в часах"
++msgstr "Прыжок (Кнопки 1/3) в часах"
+ 
+ msgid "Huge Step (Keys 4 / 6) in hours"
+-msgstr "Большой прыжок (Кнопки 4 / 6) в часах"
++msgstr "Б. прыжок (Кнопки 4/6) в часах"
+ 
+ msgid "Time Format (12h/24h)"
+-msgstr "Формат времени (12h/24h)"
++msgstr "Формат времени (12ч/24ч)"
+ 
+ msgid "EPG Window Text Scrolling Speed"
+-msgstr ""
++msgstr "EPG окно скорость прокр. текста"
+ 
+ msgid "Display Reruns in detailed EPG View"
+-msgstr "Показывать повторы в подробном EPG"
++msgstr "Пок. повторы в дет. EPG"
+ 
+ msgid "Number of reruns to display"
+ msgstr "Кол-во"
+@@ -625,61 +625,61 @@
+ msgstr "Режим отображения"
+ 
+ msgid "Height of Channel Header (Perc. of osd height)"
+-msgstr "Высота заголовка канала (% от высоты OSD)"
++msgstr "Высота заг. канала (% от высоты OSD)"
+ 
+ msgid "Width of Timeline (Perc. of osd width)"
+ msgstr "Ширина таймлинии (% от ширины OSD)"
+ 
+ msgid "Number of Channels to display"
+-msgstr "Кол-во отображаемых каналов"
++msgstr "Кол-во отобр. каналов"
+ 
+ msgid "Width of Channel Header (Perc. of osd width)"
+-msgstr "Ширина заголовка канала (% от ширины OSD)"
++msgstr "Заг. к-ла (% от ширины OSD)"
+ 
+ msgid "Height of Timeline (Perc. of osd height)"
+-msgstr "Высота таймлинии (% от высоты OSD)"
++msgstr "Таймлиния (% от высоты OSD)"
+ 
+ msgid "Display time in EPG Grids"
+ msgstr "Показывать время в сетке EPG"
+ 
+ msgid "Height of Headers (Status Header and EPG View, Perc. of osd height)"
+-msgstr ""
++msgstr "Высота заг. (% от высоты OSD)"
+ 
+ msgid "Height of Footer (Perc. of osd height)"
+-msgstr ""
++msgstr "Высота н. п. (% от высоты OSD)"
+ 
+ msgid "Display status header"
+ msgstr "Показывать верхнюю панель"
+ 
+ msgid "Scale video to upper right corner"
+-msgstr "Показывать видео в правом верхнем углу"
++msgstr "Пок. видео в пр. вр. углу"
+ 
+ msgid "Rounded corners around video frame"
+ msgstr "Скруглять углы видео рамки"
+ 
+ msgid "Display Channel Names in Header"
+-msgstr "Показывать наименования каналов в верхней панели"
++msgstr "Пок. назв. каналов в вр. панели"
+ 
+ msgid "Display channel groups"
+ msgstr "Показывать группы каналов"
+ 
+ msgid "Height of channel groups (Perc. of osd height)"
+-msgstr "Высота группы каналов (% от высоты OSD)"
++msgstr "Высота гр. каналов (% от высоты OSD)"
+ 
+ msgid "Width of channel groups (Perc. of osd width)"
+-msgstr "Ширина группы каналов (% от ширины OSD)"
++msgstr "Ширина гр. каналов (% от ширины OSD)"
+ 
+ msgid "Display current time baseline"
+-msgstr ""
++msgstr "Пок. указатель тек. времени"
+ 
+ msgid "Show Channel Logos"
+-msgstr "Показывать логотипы каналов"
++msgstr "Показывать лого каналов"
+ 
+ msgid "Logo Path used"
+ msgstr "Путь к папке с логотипами"
+ 
+ msgid "Logo Extension"
+-msgstr "Расширения файлов с логотипами"
++msgstr "Расширения файлов с лого"
+ 
+ msgid "Logo width ratio"
+ msgstr "Ширина логотипов"
+@@ -688,7 +688,7 @@
+ msgstr "Высота логотипов"
+ 
+ msgid "Text Border in Detailed View (pixel)"
+-msgstr ""
++msgstr "Граница т-та в дет. виде (пик.)"
+ 
+ msgid "Show EPG Images"
+ msgstr "Показывать картинки EPG"
+@@ -715,241 +715,232 @@
+ msgstr "Шрифт"
+ 
+ msgid "Status Header Font Size"
+-msgstr "Размер шрифта в верхней панели"
++msgstr "Шрифт в верхней панели"
+ 
+ msgid "Status Header Large Font Size"
+-msgstr "Размер крупного шрифта в верхней панели"
++msgstr "Кр. шрифт в верхней панели"
+ 
+ msgid "Detail EPG View Font Size"
+-msgstr "Размер шрифта подробный EPG"
++msgstr "Шрифт детальный EPG"
+ 
+ msgid "Detail EPG View Header Font Size"
+-msgstr "Размер шрифта верхней панели меню подробный EPG"
++msgstr "Шрифт в. панели меню дет. EPG"
+ 
+ msgid "Message Font Size"
+-msgstr "Размер шрифта сообщений"
++msgstr "Шрифт сообщений"
+ 
+ msgid "Message Large Font Size"
+-msgstr "Размер крупного шрифта сообщений"
++msgstr "Кр. шрифт сообщений"
+ 
+ msgid "Button Font Size"
+-msgstr "Размер шрифта кнопок"
++msgstr "Шрифт кнопок"
+ 
+ msgid "Channel Header Font Size"
+-msgstr "Размер шрифта названий каналов"
++msgstr "Шрифт названий каналов"
+ 
+ msgid "Channel Groups Font Size"
+-msgstr "Размер шрифта групп каналов"
++msgstr "Шрифт групп каналов"
+ 
+ msgid "Grid Font Size"
+-msgstr "Размер шрифта сетки"
++msgstr "Шрифт сетки"
+ 
+ msgid "Grid Font Small Size"
+-msgstr "Размер маленького шрифта сетки"
++msgstr "Маленький шрифт сетки"
+ 
+ msgid "Timeline Weekday Font Size"
+-msgstr "Размер шрифта таймлинии"
++msgstr "Шрифт таймлинии"
+ 
+ msgid "Timeline Date Font Size"
+-msgstr "Размер шрифта даты таймлинии"
++msgstr "Шрифт даты таймлинии"
+ 
+ msgid "Timeline Time Font Size"
+-msgstr "Размер шрифта времени таймлинии"
++msgstr "Шрифт времени таймлинии"
+ 
+ msgid "Search & Recording Menu Font Size"
+-msgstr "Размер шрифта меню Поиск & Запись"
++msgstr "Шрифт меню Поиск-Запись"
+ 
+ msgid "Search & Recording Menu Small Font Size"
+-msgstr "Размер маленького шрифта меню Поиск & Запись"
++msgstr "Мал. шрифт меню Поиск-Запись"
+ 
+ msgid "Search & Recording Menu Header Font Size"
+-msgstr ""
++msgstr "Шрифт заг. меню Поиск-Запись"
+ 
+ msgid "Always use root video folder"
+-msgstr ""
++msgstr "Всегда использувать корень папку видео"
+ 
+ msgid "Select from folder list"
+-msgstr ""
++msgstr "Выберите из списка папок"
+ 
+ msgid "Use fixed folder"
+-msgstr ""
++msgstr "Использовать фиксированную папку"
+ 
+ msgid "Folder for instant Recordings"
+-msgstr ""
++msgstr "Папка для мгновенной записи"
+ 
+ msgid "Use Remotetimers"
+-msgstr "RemoteTimers benutzen"
++msgstr "Используйте Remotetimers"
+ 
+ msgid "Use \"What's on now\" in favorites"
+-msgstr ""
++msgstr "Исп. \"Сейчас\" в избранном"
+ 
+ msgid "Use \"What's on next\" in favorites"
+-msgstr ""
++msgstr "Исп. \"Следующей\" в избранном"
+ 
+ msgid "Use user defined time 1 in favorites"
+-msgstr ""
++msgstr "Польз. время 1 в избранном"
+ 
+ msgid "Description"
+-msgstr ""
++msgstr "Описание"
+ 
+ msgid "Time"
+-msgstr ""
++msgstr "Время"
+ 
+ msgid "Use user defined time 2 in favorites"
+-msgstr ""
++msgstr "Польз. время 2 в избранном"
+ 
+ msgid "Use user defined time 3 in favorites"
+-msgstr ""
++msgstr "Польз. время 3 в избранном"
+ 
+ msgid "Use user defined time 4 in favorites"
+-msgstr ""
++msgstr "Польз. время 4 в избранном"
+ 
+ msgid "Limit channels in favorites"
+-msgstr ""
++msgstr "Лимит каналов в избранном"
+ 
+ msgid "Create Log Messages for image loading"
+-msgstr ""
++msgstr "Создать лог. для заг. изобр."
+ 
+ msgid "Limit Logo Cache"
+-msgstr ""
++msgstr "Лимит кеша логотипов"
+ 
+ msgid "Maximal number of logos to cache"
+-msgstr ""
++msgstr "Макс. к-во лого в кэше"
+ 
+ msgid "Number of  logos to cache at start"
+-msgstr ""
++msgstr "К-во лого для кэш. при запуске"
+ 
+ msgid "Cache Sizes"
+-msgstr ""
++msgstr "Размер кеша"
+ 
+ msgid "OSD Element Cache"
+-msgstr ""
++msgstr "Кеш элементов OSD"
+ 
+ msgid "Logo cache"
+-msgstr ""
++msgstr "Кеш логотипов"
+ 
+ msgid "EPG Grid Cache"
+-msgstr ""
++msgstr "Кеш сетки EPG"
+ 
+ msgid "Channel Groups Cache"
+-msgstr ""
++msgstr "Кеш групп каналов"
+ 
+ msgid "Recording Menus Icon Cache"
+-msgstr ""
++msgstr "Кеш иконок меню записи"
++
++msgid "A fancy 2d EPG Viewer"
++msgstr "Табличный EPG Просмотр"
++
++msgid "Tvguide"
++msgstr "ТВ программа"
+ 
+ msgid "No Cast available"
+-msgstr ""
++msgstr "роли не доступны"
+ 
+ msgid "Cast"
+-msgstr ""
++msgstr "роль"
+ 
+ msgid "EPG Info"
+-msgstr ""
++msgstr "EPG инфо"
+ 
+ msgid "Reruns"
+-msgstr ""
++msgstr "Повторный показ"
+ 
+ msgid "Recording Information"
+-msgstr ""
++msgstr "Инфо о записи"
+ 
+ msgid "Image Galery"
+-msgstr ""
++msgstr "Галерея картинок"
+ 
+ msgid "TheTVDB Info"
+-msgstr ""
++msgstr "TheTVDB инфо"
+ 
+ msgid "TheTVDB Information"
+-msgstr ""
++msgstr "TheTVDB Информация"
+ 
+ msgid "Episode"
+-msgstr ""
++msgstr "Эпизод"
+ 
+ msgid "Season"
+-msgstr ""
++msgstr "Сезон"
+ 
+ msgid "Episode Overview"
+-msgstr ""
++msgstr "Обзор эпизода"
+ 
+ msgid "First aired"
+-msgstr ""
++msgstr "Первый эфир"
+ 
+ msgid "Guest Stars"
+-msgstr ""
++msgstr "Приглашенные звезды"
+ 
+ msgid "TheMovieDB Rating"
+-msgstr ""
++msgstr "TheMovieDB рейтинг"
+ 
+ msgid "Series Overview"
+-msgstr ""
++msgstr "Обзор серии"
+ 
+ msgid "Genre"
+-msgstr ""
++msgstr "Жанр"
+ 
+ msgid "Network"
+-msgstr ""
++msgstr "Сеть"
+ 
+ msgid "Status"
+-msgstr ""
++msgstr "Статус"
+ 
+ msgid "TheMovieDB Information"
+-msgstr ""
++msgstr "TheMovieDB информация"
+ 
+ msgid "Original Title"
+-msgstr ""
++msgstr "Оригинальный заголовок"
+ 
+ msgid "Tagline"
+-msgstr ""
++msgstr "Слоган"
+ 
+ msgid "Overview"
+-msgstr ""
++msgstr "Обзор"
+ 
+ msgid "yes"
+-msgstr ""
++msgstr "да"
+ 
+ msgid "no"
+-msgstr ""
++msgstr "нет"
+ 
+ msgid "Adult"
+-msgstr ""
++msgstr "для взрослых"
+ 
+ msgid "Collection"
+-msgstr ""
++msgstr "Коллекция"
+ 
+ msgid "Budget"
+-msgstr ""
++msgstr "Бюджет"
+ 
+ msgid "Revenue"
+-msgstr ""
++msgstr "Доход"
+ 
+ msgid "Homepage"
+-msgstr ""
++msgstr "Домашняя страница"
+ 
+ msgid "Release Date"
+-msgstr ""
++msgstr "Дата Выпуска"
+ 
+ msgid "Runtime"
+-msgstr ""
++msgstr "Продолжительность"
+ 
+ msgid "minutes"
+-msgstr ""
++msgstr "минут"
+ 
+ msgid "TheMovieDB Popularity"
+-msgstr ""
++msgstr "TheMovieDB популярность"
+ 
+ msgid "TheMovieDB Vote Average"
+-msgstr ""
+-
+-#~ msgid "RERUNS OF THIS SHOW"
+-#~ msgstr "ПОВТОРЫ ЭТОЙ ПЕРЕДАЧИ"
+-
+-#~ msgid "Actors"
+-#~ msgstr "Актеры"
+-
+-#~ msgid "Use folders for instant records"
+-#~ msgstr "Использовать директории для быстрой записи"
+-
+-#~ msgid "Height of status header (Perc. of osd height)"
+-#~ msgstr "Высота верхней панели (% от высоты OSD)"
+-
+-#~ msgid "Configure Search Timer Options for Search String"
+-#~ msgstr "Настроить параметры таймера"
++msgstr "TheMovieDB голосов"
+diff -Naur a/tvguide.c b/tvguide.c
+--- a/tvguide.c	2014-09-29 17:57:07.000000000 +0300
++++ b/tvguide.c	2015-04-04 23:52:46.219656567 +0300
+@@ -27,8 +27,8 @@
+ #endif
+ 
+ static const char *VERSION        = "1.2.2";
+-static const char *DESCRIPTION    = "A fancy 2d EPG Viewer";
+-static const char *MAINMENUENTRY  = "Tvguide";
++static const char *DESCRIPTION    = tr("A fancy 2d EPG Viewer");
++static const char *MAINMENUENTRY  = tr("Tvguide");
+ 
+ class cPluginTvguide : public cPlugin {
+ public:

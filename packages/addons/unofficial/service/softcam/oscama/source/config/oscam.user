@@ -1,0 +1,49 @@
+# oscam.user generated automatically by Streamboard OSCAM 1.20-unstable_svn SVN r9892
+# Read more: http://www.streamboard.tv/svn/oscam/trunk/Distribution/doc/txt/oscam.user.txt
+
+[account]
+user                          = monitor
+pwd                           = monitor
+monlevel                      = 4
+group                         = 5
+
+[account]
+user                          = dvb
+pwd                           = dvb
+description                   = Dvbapi user
+monlevel                      = 4
+au                            = voliatv,xtratv,biss
+group                         = 1
+ident                         = 0B00:000000;0B0F:000000;2600:000000
+
+[account]
+user                          = cbiss
+pwd                           = cbiss
+description                   = BISS constants
+caid                          = 2600
+monlevel                      = 4
+au                            = biss
+group                         = 2
+ident                         = 2600:000000
+
+[account]
+user                          = xtra
+pwd                           = xtra
+description                   = Xtra TV
+caid                          = 0B0F
+monlevel                      = 4
+suppresscmd08                 = 1
+au                            = xtratv
+group                         = 3
+ident                         = 0B0F:000000
+
+[account]
+user                          = volia
+pwd                           = volia
+description                   = Volia Digital TV
+caid                          = 0B00
+monlevel                      = 4
+au                            = voliatv
+group                         = 4
+ident                         = 0B00:000000
+

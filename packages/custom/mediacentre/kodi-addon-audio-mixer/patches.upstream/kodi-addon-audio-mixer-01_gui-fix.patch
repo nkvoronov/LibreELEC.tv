@@ -1,0 +1,68 @@
+diff -Naur a/addon.xml b/addon.xml
+--- a/addon.xml	2016-04-16 21:15:07.000000000 +0300
++++ b/addon.xml	2016-05-02 20:38:12.000000000 +0300
+@@ -1,10 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <addon id="script.xbmc.audio.mixer"
+        name="Kodi Audio Mixer"
+-       version="4.0.0"
+-       provider-name="Team Kodi">
++       version="4.0.3"
++       provider-name="Team Kodi, YLLOW_DRAGON">
+   <requires>
+-    <import addon="xbmc.python" version="2.25.0"/>
++    <import addon="xbmc.python" version="2.14.0"/>
+   </requires>
+   <extension point="xbmc.python.script"
+              library="default.py" />
+@@ -12,6 +12,8 @@
+     <platform>osx linux</platform>
+     <summary lang="en">Kodi Audio Mixer</summary>
+     <description lang="en">Kodi Audio Mixer</description>
++    <summary lang="ru">Kodi Аудио Микшер</summary>
++    <description lang="ru">Kodi Аудио Микшер</description>
+     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+     <forum></forum>
+     <website></website>
+diff -Naur a/resources/language/Russian/strings.po b/resources/language/Russian/strings.po
+--- a/resources/language/Russian/strings.po	1970-01-01 03:00:00.000000000 +0300
++++ b/resources/language/Russian/strings.po	2016-05-01 03:54:26.000000000 +0300
+@@ -0,0 +1,26 @@
++# Kodi Media Center language file
++# Addon Name: Kodi Audio Mixer
++# Addon id: script.xbmc.audio.mixer
++# Addon Provider: Team-Kodi
++
++msgid ""
++msgstr ""
++"Project-Id-Version: XBMC Addons\n"
++"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
++"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
++"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
++"Last-Translator: Kodi Translation Team\n"
++"Language-Team: Russian (http://www.transifex.com/projects/p/xbmc-addons/language/ru/)\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++"Language: ru\n"
++"Plural-Forms: nplurals=2; plural=(n != 1);\n"
++
++msgctxt "#30001"
++msgid "Audio Mixer"
++msgstr "Аудио Микшер"
++
++msgctxt "#30010"
++msgid "Mute"
++msgstr "Выкл."
+diff -Naur a/resources/lib/gui.py b/resources/lib/gui.py
+--- a/resources/lib/gui.py	2016-04-16 21:15:07.000000000 +0300
++++ b/resources/lib/gui.py	2016-05-02 20:42:04.000000000 +0300
+@@ -160,7 +160,7 @@
+         if ( self.controlId >= 1000 ):
+           self.slider_onfocus(0)
+           
+-      if ( action.getButtonCode() in CANCEL_DIALOG ):
++      if ( action in CANCEL_DIALOG ):
+         self.log("Exit")
+         self.exit_script()
+ 

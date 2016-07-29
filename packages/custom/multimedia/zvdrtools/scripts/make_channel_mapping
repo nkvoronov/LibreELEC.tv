@@ -1,0 +1,17 @@
+#!/bin/sh
+
+EPGUPD="zvdrtools"
+EPGSOURCES="/storage/.config/epgs"
+EPGSOURCES_CONF="$EPGSOURCES/config/$EPGUPD"
+EPGSOURCES_RES="$EPGSOURCES/resources/$EPGUPD"
+PYTHON_FILE="$EPGSOURCES_RES/make_channel_mapping.py"
+XMLTV_FILE="/storage/epgsources/xmltv.xml"
+CHANNELS_FILE="$EPGSOURCES_CONF/channels.ini.new"
+
+#check run vdr
+if [ "$(pidof vdr.bin)" ]; then
+    echo "Running make_channel_mapping"
+    $PYTHON_FILE -x $XMLTV_FILE -o $CHANNELS_FILE
+else
+    echo "Run VDR"
+fi

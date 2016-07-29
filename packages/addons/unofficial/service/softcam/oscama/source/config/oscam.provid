@@ -1,0 +1,10 @@
+# oscam.provid
+# provider table
+# Translated from caid and provid ---> provider and station name. More information ca be added (e.g. position of the satellite, language, etc) for monitoring and webinterface.
+#
+# Format:
+# <caid>:<provid>|<provider>|<satellite>|<language>
+#
+# Example:
+# 0100:012345|MyPay-TV|Astra 19E|German
+#

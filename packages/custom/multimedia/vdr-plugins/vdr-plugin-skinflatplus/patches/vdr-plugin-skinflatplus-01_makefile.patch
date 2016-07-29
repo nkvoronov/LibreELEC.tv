@@ -1,0 +1,48 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2014-12-03 22:04:27.000000000 +0200
++++ b/Makefile	2014-12-05 04:34:32.701964595 +0200
+@@ -35,25 +35,18 @@
+ ### The directory environment:
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
+-LIBDIR = $(call PKGCFG,libdir)
+-LOCDIR = $(call PKGCFG,locdir)
+-PLGCFG  = $(call PKGCFG,plgcfg)
+-VDRCONFDIR = $(call PKGCFG,configdir)
+-PLGRESDIR = $(call PKGCFG,resdir)/plugins/$(PLUGIN)
+ TMPDIR ?= /tmp
+-SKINFLATPLUS_WIDGETDIR ?= $(LIBDIR)/$(PLUGIN)/widgets
++SKINFLATPLUS_WIDGETDIR = /storage/.config/vdr/plugins/skinflatplus/widgets
+ 
+ ### The compiler options:
+-export CFLAGS   = $(call PKGCFG,cflags)
+-export CXXFLAGS = $(call PKGCFG,cxxflags)
++include $(VDRDIR)/Make.global
+ 
+ ### Allow user defined options to overwrite defaults:
+ 
+ -include $(PLGCFG)
+ 
+ ### The version number of VDR's plugin API:
+-APIVERSION = $(call PKGCFG,apiversion)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### The name of the distribution archive:
+ 
+@@ -65,6 +58,7 @@
+ SOFILE = libvdr-$(PLUGIN).so
+ 
+ ### Includes and Defines and Dependencies (add further entries here):
++INCLUDES += -I$(VDRDIR)/include
+ 
+ INCLUDES += $(shell pkg-config --cflags Magick++ freetype2 fontconfig)
+ 
+@@ -126,6 +120,7 @@
+ 
+ $(SOFILE): $(OBJS)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@
++	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ 
+ install-lib: $(SOFILE)
+ 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)

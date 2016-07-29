@@ -1,0 +1,294 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2014-07-27 17:18:20.446737790 +0300
+@@ -0,0 +1,290 @@
++# This file is distributed under the same license as the xmltv2vdr package.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2012-09-01 13:18+0200\n"
++"PO-Revision-Date: 2010-12-23 23:59+0100\n"
++"Last-Translator: Jochen Dolze <vdr@dolze.de>\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: ru\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "options"
++msgstr "Опции"
++
++msgid "add season/episode on all timers"
++msgstr "добавить сезон / эпизод на всех таймеров"
++
++msgid " add shorttext/title from list"
++msgstr " добавить описание / название из списка"
++
++msgid "automatic wakeup"
++msgstr "автоматическое пробуждение"
++
++msgid "delete pics after (days)"
++msgstr "удалить картинки после (дней)"
++
++msgid "never"
++msgstr "никогда"
++
++msgid "text mapping"
++msgstr "мапинг текста"
++
++msgid "order of epg data"
++msgstr "порядок EPG данных"
++
++msgid "epg sources"
++msgstr "Источники EPG"
++
++msgid "no epgsources installed"
++msgstr "epgsources не установлены"
++
++msgid "disabled"
++msgstr "запрещено"
++
++msgid "epg source channels"
++msgstr "Источник EPG каналов"
++
++msgid "mapped"
++msgstr "отображается"
++
++msgid "Button$Up"
++msgstr "Вверх"
++
++msgid "Button$Down"
++msgstr "Вниз"
++
++msgid "Button$Log"
++msgstr "Log"
++
++msgid "Button$Edit"
++msgstr "Редактировать"
++
++msgid "texts"
++msgstr "тексты"
++
++msgid "country and date"
++msgstr "Страна и дата"
++
++msgid "original title"
++msgstr "Оригинальный заголовок"
++
++msgid "category"
++msgstr "Категория"
++
++msgid "credits"
++msgstr "Определения"
++
++msgid "video informations"
++msgstr "Видео информация"
++
++msgid "audio informations"
++msgstr "Аудио информация"
++
++msgid "review"
++msgstr "Обзор"
++
++msgid "starrating"
++msgstr "Звездочный рейтинг"
++
++msgid "season and episode"
++msgstr "Сезон и епизод"
++
++msgid "order"
++msgstr "порядок"
++
++msgid "long text"
++msgstr ""
++
++msgid "video"
++msgstr ""
++
++msgid "audio"
++msgstr ""
++
++msgid "rating"
++msgstr ""
++
++msgid "overview"
++msgstr ""
++
++msgid "next execution"
++msgstr "следующее применение"
++
++msgid "active"
++msgstr "активный"
++
++msgid "log"
++msgstr "Лог"
++
++msgid "Button$Errors"
++msgstr "Ошибки"
++
++msgid "Button$Info"
++msgstr "Инфо"
++
++msgid "Button$Debug"
++msgstr "Отладка"
++
++msgid "update options"
++msgstr "обновить опции"
++
++msgid "update on"
++msgstr "обновить вкл."
++
++msgid "update at"
++msgstr "обновить на"
++
++msgid "days in advance"
++msgstr "дней до"
++
++msgid "pin"
++msgstr "Pin"
++
++msgid "download pics"
++msgstr "скачать картинки"
++
++msgid "channels provided"
++msgstr "провайдер каналов"
++
++msgid "selected"
++msgstr "выбран"
++
++msgid "Button$Reset"
++msgstr "Сброс"
++
++msgid "Button$Copy"
++msgstr "Копировать"
++
++msgid "epg source channel options"
++msgstr "источники EPG канала опции"
++
++msgid "type of processing"
++msgstr "тип обработки"
++
++msgid "merge"
++msgstr "слияние"
++
++msgid "create"
++msgstr "Создать"
++
++msgid "title"
++msgstr "заголовок"
++
++msgid "short text"
++msgstr "кортокое описание"
++
++msgid "dvb content id"
++msgstr "dvb содержание id"
++
++msgid " actors"
++msgstr " актеры"
++
++msgid " director"
++msgstr " директор"
++
++msgid " other crew"
++msgstr ""
++
++msgid " output"
++msgstr " вывод"
++
++msgid "multiline"
++msgstr ""
++
++msgid "singleline"
++msgstr ""
++
++msgid " rating in description"
++msgstr " рейтинг в описании"
++
++msgid "epg source channel mappings"
++msgstr "источник EPG для отображения канала"
++
++msgid "none"
++msgstr "Нет"
++
++msgid "Button$Unmap"
++msgstr "Не мапить"
++
++msgid "Button$Map"
++msgstr "Мапить"
++
++msgid "Copy to all mapped channels?"
++msgstr "Копировать во все отображенных каналов?"
++
++msgid "Reset all channel settings?"
++msgstr "Сбросить все настройки каналов?"
++
++msgid "Button$Choose"
++msgstr "Выбрать"
++
++msgid "country"
++msgstr ""
++
++msgid "year"
++msgstr ""
++
++msgid "originaltitle"
++msgstr ""
++
++msgid "actor"
++msgstr ""
++
++msgid "adapter"
++msgstr ""
++
++msgid "commentator"
++msgstr ""
++
++msgid "composer"
++msgstr ""
++
++msgid "director"
++msgstr ""
++
++msgid "editor"
++msgstr ""
++
++msgid "guest"
++msgstr ""
++
++msgid "presenter"
++msgstr ""
++
++msgid "producer"
++msgstr ""
++
++msgid "writer"
++msgstr ""
++
++msgid "blacknwhite"
++msgstr ""
++
++msgid "dolby"
++msgstr ""
++
++msgid "dolbydigital"
++msgstr ""
++
++msgid "bilingual"
++msgstr ""
++
++msgid "season"
++msgstr ""
++
++msgid "episode"
++msgstr ""
++
++msgid "episodeoverall"
++msgstr ""
++
++msgid "xmltv2vdr plugin still working"
++msgstr "xmltv2vdr плагин еще работает"
++
++msgid "Imports xmltv epg into vdr"
++msgstr "Импорт XMLTV EPG в VDR"

@@ -1,0 +1,29 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2014-07-24 21:01:45.000000000 +0300
++++ b/Makefile	2014-07-25 01:10:16.407963974 +0300
+@@ -33,22 +33,15 @@
+ 
+ ### The directory environment:
+ 
+-VDRDIR = ../../..
+-LIBDIR = ../../lib
+-TMPDIR = /tmp
++TMPDIR ?= /tmp
+ 
+ ### Make sure that necessary options are included (VDR >= 1.7.13):
+ 
+--include $(VDRDIR)/Make.global
+-
+-### Allow user defined options to overwrite defaults:
+-
+--include $(VDRDIR)/Make.config
++include $(VDRDIR)/Make.global
+ 
+ ### The version number of VDR's plugin API (taken from VDR's "config.h"):
+ 
+-APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' \
+-                         $(VDRDIR)/config.h)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### The name of the distribution archive:
+ 

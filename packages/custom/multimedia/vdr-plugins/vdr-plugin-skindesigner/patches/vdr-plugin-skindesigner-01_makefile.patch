@@ -1,0 +1,85 @@
+diff -Naur a/libskindesignerapi/Makefile b/libskindesignerapi/Makefile
+--- a/libskindesignerapi/Makefile	2016-02-04 00:00:13.000000000 +0200
++++ b/libskindesignerapi/Makefile	2016-02-04 17:29:07.913769811 +0200
+@@ -9,7 +9,7 @@
+ SONAME = $(LIBNAME).so.$(MAJOR)
+ TARGET_LIB = $(SONAME).$(MINOR)
+ 
+-PREFIX ?= /usr/local
++PREFIX ?= /usr
+ INCDIR ?= $(PREFIX)/include
+ LIBDIR ?= $(PREFIX)/lib
+ PCDIR  ?= $(PREFIX)/lib/pkgconfig
+@@ -18,12 +18,12 @@
+ ### The name of the distribution archive:
+ ARCHIVE = $(LIBNAME)-$(VERSION)
+ 
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --silence-errors --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --silence-errors --variable=$(1) vdr || pkg-config --variable=$(1) ../../../../vdr.pc))
+-CXXFLAGS = $(call PKGCFG,cxxflags)
++#PKGCFG = $(if $(VDRDIR),$(shell pkg-config --silence-errors --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --silence-errors --variable=$(1) vdr || pkg-config --variable=$(1) ../../../../vdr.pc))
++#CXXFLAGS = $(call PKGCFG,cxxflags)
+ LDFLAGS = -shared -Wl,-soname,$(SONAME)
+ 
+ DEFINES += -DLIBAPIVERSION=$(MAJOR) -DLIBVERSION=\"$(VERSION)\"
+-INCLUDES +=
++INCLUDES += -I$(VDRDIR)/include
+  
+ SRCS = $(wildcard *.c)
+ OBJS = $(SRCS:.c=.o)
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2016-02-04 00:00:13.000000000 +0200
++++ b/Makefile	2016-02-04 17:27:42.133773511 +0200
+@@ -15,25 +15,15 @@
+ ### The directory environment:
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --silence-errors --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --silence-errors --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
+-LIBDIR = $(call PKGCFG,libdir)
+-LOCDIR = $(call PKGCFG,locdir)
+-PLGCFG  = $(call PKGCFG,plgcfg)
+-VDRCONFDIR = $(call PKGCFG,configdir)
+-PLGRESDIR = $(call PKGCFG,resdir)/plugins/$(PLUGIN)
++
+ TMPDIR ?= /tmp
+ SKINDESIGNER_SCRIPTDIR ?= $(LIBDIR)/$(PLUGIN)/scripts
+ 
+ ### The compiler options:
+-export CFLAGS   = $(call PKGCFG,cflags)
+-export CXXFLAGS = $(call PKGCFG,cxxflags)
+-CXXFLAGS += -std=c++11
+-### Allow user defined options to overwrite defaults:
+-
+--include $(PLGCFG)
++include $(VDRDIR)/Make.global
+ 
+ ### The version number of VDR's plugin API:
+-APIVERSION = $(call PKGCFG,apiversion)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### The name of the distribution archive:
+ ARCHIVE = $(PLUGIN)-$(VERSION)
+@@ -48,6 +38,7 @@
+ DEFINES += -DSCRIPTFOLDER='"$(SKINDESIGNER_SCRIPTDIR)"'
+ DEFINES += -D__STL_CONFIG_H
+ 
++INCLUDES += -I$(VDRDIR)/include
+ INCLUDES += $(shell pkg-config --cflags freetype2 fontconfig)
+ INCLUDES += $(shell pkg-config --cflags librsvg-2.0 cairo-png) -ljpeg
+ 
+@@ -112,7 +103,7 @@
+ 
+ ### The main target:
+ 
+-all: subprojects $(SOFILE) i18n
++all: $(SOFILE) i18n
+ 
+ ### subprojects:
+ 
+@@ -178,6 +169,7 @@
+ 
+ $(SOFILE): $(OBJS)
+ 	$(CXX) $(CXXFLAGS) -std=c++11  $(LDFLAGS) -shared $(OBJS) $(LIBS) $(SUB_LIBS) -o $@
++	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ 
+ install-lib: $(SOFILE)
+ 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)

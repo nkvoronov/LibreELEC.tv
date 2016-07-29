@@ -1,0 +1,1428 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2014-10-21 21:02:05.000000000 +0300
+@@ -0,0 +1,1408 @@
++# SOME DESCRIPTIVE TITLE.
++# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
++# This file is distributed under the same license as the PACKAGE package.
++# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr-softhddevice 0.6.1rc1\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2014-10-16 20:16+0300\n"
++"PO-Revision-Date: blabla\n"
++"Last-Translator: blabla\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: ru\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++#, c-format
++msgid "audio: %dHz sample-rate unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "audio: %d channels unsupported\n"
++msgstr ""
++
++msgid "audio: out of ring buffers\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: avail underrun error? '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: snd_pcm_avail_update(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: broken driver %d state '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: snd_pcm_start(): %s\n"
++msgstr ""
++
++msgid "audio/alsa: bytes lost -> out of sync\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: writei underrun error? '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: snd_pcm_writei failed: %s\n"
++msgstr ""
++
++msgid "audio/alsa: not all frames written\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_drop(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_prepare(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: wait underrun error? '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: snd_pcm_wait(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: using %sdevice '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: playback open '%s' error: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: can't set block mode: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_hw_params_any: no configurations available: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: supports pause: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: can't open mixer '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: set params error: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_sw_params_current failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_sw_params_get_boundary failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_sw_params_set_silence_size failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio: snd_pcm_sw_params failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: start delay %ums\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: snd_pcm_pause(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/alsa: snd_pcm_prepare(): %s\n"
++msgstr ""
++
++msgid "audio/alsa: still paused\n"
++msgstr ""
++
++#, c-format
++msgid "snd_pcm_pause(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "snd_pcm_drop(): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_GETOSPACE): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: write error: %s\n"
++msgstr ""
++
++msgid "audio/oss: error not all bytes written\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_HALT_OUTPUT): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: error poll %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: using %sdevice '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: can't open dsp device '%s': %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(MIXER_WRITE): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: can't open mixer device '%s': %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SOUND_MIXER_READ_DEVMASK): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: channel '%s' not supported\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: channel '%s' not found\n"
++msgstr ""
++
++msgid "audio/oss: should not happen\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_GETODELAY): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_SETFMT): %s\n"
++msgstr ""
++
++msgid "audio/oss: device doesn't support 16 bit sample format.\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_CHANNELS): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: device doesn't support %d channels.\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_SPEED): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: device doesn't support %dHz sample rate.\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: ioctl(SNDCTL_DSP_POLICY): %s\n"
++msgstr ""
++
++#, c-format
++msgid "audio/oss: delay %ums\n"
++msgstr ""
++
++#, c-format
++msgid "audio: can't set channels %d sample-rate %dHz\n"
++msgstr ""
++
++msgid "audio: can't cancel play thread\n"
++msgstr ""
++
++#, c-format
++msgid "audio: can't place %d samples in ring buffer\n"
++msgstr ""
++
++msgid "audio: flush out of ring buffers\n"
++msgstr ""
++
++#, c-format
++msgid "audio: '%s' output module used\n"
++msgstr ""
++
++#, c-format
++msgid "audio: '%s' output module isn't supported\n"
++msgstr ""
++
++#, c-format
++msgid "audio: %6dHz supports %d %d %d %d %d %d %d %d channels\n"
++msgstr ""
++
++msgid "codec: buggy libav, use ffmpeg\n"
++msgstr ""
++
++msgid "codec: can't allocate vodeo decoder\n"
++msgstr ""
++
++msgid "codec: missing close\n"
++msgstr ""
++
++#, c-format
++msgid "codec: codec ID %#06x not found\n"
++msgstr ""
++
++msgid "codec: can't allocate video codec context\n"
++msgstr ""
++
++msgid "codec: can't open video codec!\n"
++msgstr ""
++
++msgid "codec: can't allocate decoder frame\n"
++msgstr ""
++
++msgid "codec: can't allocate audio decoder\n"
++msgstr ""
++
++msgid "codec: can't allocate audio decoder frame buffer\n"
++msgstr ""
++
++msgid "codec: can't allocate audio codec context\n"
++msgstr ""
++
++msgid "codec: can't open audio codec\n"
++msgstr ""
++
++msgid "codec/audio: decoded data smaller than encoded\n"
++msgstr ""
++
++msgid "codec/audio: resample setup error\n"
++msgstr ""
++
++msgid "codec/audio: overwrite resample\n"
++msgstr ""
++
++msgid "codec/audio: AvResample setup error\n"
++msgstr ""
++
++msgid "codec: latm\n"
++msgstr ""
++
++msgid "codec: error audio data\n"
++msgstr ""
++
++msgid "codec: error more than one frame data\n"
++msgstr ""
++
++msgid "codec/audio: can't setup resample\n"
++msgstr ""
++
++msgid "codec/audio: can't open resample\n"
++msgstr ""
++
++msgid "codec/audio: latm\n"
++msgstr ""
++
++msgid "codec/audio: bad audio frame\n"
++msgstr ""
++
++msgid "codec/audio: error more than one frame data\n"
++msgstr ""
++
++msgid "codec/audio: no frame\n"
++msgstr ""
++
++msgid "pesdemux: out of memory\n"
++msgstr ""
++
++msgid "pesdemux: mpeg1 pes packet unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "softhddev: LPCM %d bits per sample aren't supported\n"
++msgstr ""
++
++#, c-format
++msgid "softhddev: LPCM %d sample-rate is unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "softhddev: LPCM %d channels are unsupported\n"
++msgstr ""
++
++msgid "tsdemux: transport stream out of sync\n"
++msgstr ""
++
++msgid "[softhddev] invalid PES audio packet\n"
++msgstr ""
++
++msgid "[softhddev] empty audio packet\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] invalid audio packet %d bytes\n"
++msgstr ""
++
++msgid "[softhddev] audio buffer too small\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] invalid LPCM audio packet %d bytes\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] LPCM %d bits per sample aren't supported\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] LPCM %d sample-rate is unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] LPCM %d channels are unsupported\n"
++msgstr ""
++
++msgid "[softhddev] out of memory\n"
++msgstr ""
++
++#, c-format
++msgid "video: packet buffer too small for %d\n"
++msgstr ""
++
++msgid "video: no empty slot in packet ringbuffer\n"
++msgstr ""
++
++msgid "[softhddev] too short PES video packet\n"
++msgstr ""
++
++msgid "[softhddev] invalid PES video packet\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] %d invalid PES video packet(s)\n"
++msgstr ""
++
++msgid "[softhddev] empty video packet\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] invalid video packet %d/%d bytes\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] empty video packet %d bytes\n"
++msgstr ""
++
++#, c-format
++msgid "softhddev: %s called without hw decoder\n"
++msgstr ""
++
++msgid "[softhddev] invalid still video packet\n"
++msgstr ""
++
++msgid "[softhddev] no codec known for still picture\n"
++msgstr ""
++
++#, c-format
++msgid "Bad formated geometry please use: [=][<width>{xX}<height>][{+-}<xoffset>{+-}<yoffset>]\n"
++msgstr ""
++
++#, c-format
++msgid "Workaround '%s' unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "We need no long options\n"
++msgstr ""
++
++#, c-format
++msgid "Missing argument for option '%c'\n"
++msgstr ""
++
++#, c-format
++msgid "Unknown option '%c'\n"
++msgstr ""
++
++#, c-format
++msgid "Unhandled argument '%s'\n"
++msgstr ""
++
++msgid "x-setup: No X server configured!\n"
++msgstr ""
++
++msgid "x-setup: too many arguments for xserver\n"
++msgstr ""
++
++#, c-format
++msgid "x-setup: Failed to start X server '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "[softhddev] ready%s\n"
++msgstr ""
++
++msgid "A software and GPU emulated HD device"
++msgstr "Программное обеспечение для эмуляции GPU HD устройство"
++
++msgid "SoftHdDevice"
++msgstr "Програмное Hd устройство"
++
++msgid "[softhddev]: dirty area too big\n"
++msgstr ""
++
++msgid "show"
++msgstr "+"
++
++msgid "hide"
++msgstr "-"
++
++msgid "General"
++msgstr "Общие"
++
++msgid "Make primary device"
++msgstr "Сделать основным устройством"
++
++msgid "Hide main menu entry"
++msgstr "Скрыть пункт в главном меню"
++
++msgid "Osd size"
++msgstr "размер OSD"
++
++msgid "Osd width"
++msgstr "ширина OSD"
++
++msgid "Osd height"
++msgstr "высота OSD"
++
++msgid "Suspend"
++msgstr "Приостанавливать"
++
++msgid "Detach from main menu entry"
++msgstr "Отсоеденить пункт от главного меню"
++
++msgid "Suspend closes video+audio"
++msgstr "Приостановить закрытое видео+аудио"
++
++msgid "Suspend stops x11"
++msgstr "Приостанавливать остановленный X11"
++
++msgid "Video"
++msgstr "Видео"
++
++msgid "Video background color (RGB)"
++msgstr "Цвет фона видео (RGB)"
++
++msgid "Video background color (Alpha)"
++msgstr "Цвет фона видео (Alpha)"
++
++msgid "Use studio levels (vdpau only)"
++msgstr "Исп. студийные уровни (только vdpau)"
++
++msgid "60hz display mode"
++msgstr "60Гц режим монитора"
++
++msgid "Soft start a/v sync"
++msgstr "Програмный старт  A/V Sync"
++
++msgid "Black during channel switch"
++msgstr "Черный фон во время перекл. канала"
++
++msgid "Clear decoder on channel switch"
++msgstr "Очищать декодер во время перекл. канала"
++
++msgid "Brightness (-1000..1000) (vdpau)"
++msgstr "Яркость (-1000..1000) (vdpau)"
++
++msgid "min"
++msgstr "мин."
++
++msgid "max"
++msgstr "макс."
++
++msgid "Contrast (0..10000) (vdpau)"
++msgstr "Контраст (0..10000) (vdpau)"
++
++msgid "Saturation (0..10000) (vdpau)"
++msgstr "Насыщенность (0..10000) (vdpau)"
++
++msgid "Hue (-3141..3141) (vdpau)"
++msgstr "Оттенок (-3141..3141) (vdpau)"
++
++msgid "Scaling"
++msgstr "Масштабировать"
++
++msgid "Deinterlace"
++msgstr "Деинтерлейсинг"
++
++msgid "SkipChromaDeinterlace (vdpau)"
++msgstr "SkipChromaDeinterlace (vdpau)"
++
++msgid "Inverse Telecine (vdpau)"
++msgstr "Обратный пересчет кадров (vdpau)"
++
++msgid "Denoise (0..1000) (vdpau)"
++msgstr "Уровень шума (0..1000) (vdpau)"
++
++msgid "off"
++msgstr "выкл."
++
++msgid "Sharpen (-1000..1000) (vdpau)"
++msgstr "Резкость (-1000..1000) (vdpau)"
++
++msgid "blur max"
++msgstr "размытие макс."
++
++msgid "sharpen max"
++msgstr "резкость макс."
++
++msgid "Cut top and bottom (pixel)"
++msgstr "Вырезать сверху и снизу (пиксель)"
++
++msgid "Cut left and right (pixel)"
++msgstr "Вырезать слева и справа (пиксель)"
++
++msgid "Auto-crop"
++msgstr "Автообрезка"
++
++msgid "Autocrop interval (frames)"
++msgstr "Автообрезка интервал (кадры)"
++
++msgid "Autocrop delay (n * interval)"
++msgstr "Автообрезка задержки (n * интервал)"
++
++msgid "Autocrop tolerance (pixel)"
++msgstr "Автообрезка допуск (пиксель)"
++
++msgid "Audio"
++msgstr "Аудио"
++
++msgid "Audio/Video delay (ms)"
++msgstr "Аудио/Видео задержка (мс)"
++
++msgid "Audio drift correction"
++msgstr "Аудио коррекция дрейфа"
++
++msgid "Pass-through default"
++msgstr "Сквозной по умолчанию"
++
++msgid "  PCM pass-through"
++msgstr "  PCM сквозной"
++
++msgid "  AC-3 pass-through"
++msgstr "  AC-3 сквозной"
++
++msgid "  E-AC-3 pass-through"
++msgstr "  E-AC-3 сквозной"
++
++msgid "Enable (E-)AC-3 (decoder) downmix"
++msgstr "Включить (E-) AC-3 (декодер) понижающего микширования"
++
++msgid "Volume control"
++msgstr "Контроль громкости"
++
++msgid "Hardware"
++msgstr "Аппарат."
++
++msgid "Software"
++msgstr "Програм."
++
++msgid "Enable normalize volume"
++msgstr "Включить нормализацию громкости"
++
++msgid "  Max normalize factor (/1000)"
++msgstr "  Макс. фактор нормализации (/1000)"
++
++msgid "Enable volume compression"
++msgstr "Включить сжатие громкости"
++
++msgid "  Max compression factor (/1000)"
++msgstr "  Макс. фактор сжатия (/1000)"
++
++msgid "Reduce stereo volume (/1000)"
++msgstr "Уменьшите объем стерео (/1000)"
++
++msgid "Audio buffer size (ms)"
++msgstr "Размер аудио буффера (мс)"
++
++msgid "Enable automatic AES"
++msgstr "Включить автоматический AES"
++
++msgid "Picture-In-Picture"
++msgstr "Картинка в картинке (PIP)"
++
++msgid "Pip X (%)"
++msgstr "PIP X (%)"
++
++msgid "Pip Y (%)"
++msgstr "PIP Y (%)"
++
++msgid "Pip Width (%)"
++msgstr "PIP ширина (%)"
++
++msgid "Pip Height (%)"
++msgstr "PIP высота (%)"
++
++msgid "Video X (%)"
++msgstr "Видео X (%)"
++
++msgid "Video Y (%)"
++msgstr "Видео Y (%)"
++
++msgid "Video Width (%)"
++msgstr "Видео ширина (%)"
++
++msgid "Video Height (%)"
++msgstr "Видео высота (%)"
++
++msgid "Alternative Pip X (%)"
++msgstr "Альтернативный PIP X (%)"
++
++msgid "Alternative Pip Y (%)"
++msgstr "Альтернативный Pip Y (%)"
++
++msgid "Alternative Pip Width (%)"
++msgstr "Альтернативная PIP ширина (%)"
++
++msgid "Alternative Pip Height (%)"
++msgstr "Альтернативная PIP высота (%)"
++
++msgid "Alternative Video X (%)"
++msgstr "Альтернативный видео X (%)"
++
++msgid "Alternative Video Y (%)"
++msgstr "Альтернативный видео Y (%)"
++
++msgid "Alternative Video Width (%)"
++msgstr "Альтернативная видио ширина (%)"
++
++msgid "Alternative Video Height (%)"
++msgstr "Альтернативная видео высота (%)"
++
++#, c-format
++msgid "[softhddev]pip: invalid PES packet %d\n"
++msgstr ""
++
++msgid "[softhddev]pip: pes buffer too small\n"
++msgstr ""
++
++msgid "[softhddev]tsdemux: transport stream out of sync\n"
++msgstr ""
++
++msgid "Channel not available!"
++msgstr "Канал не доступен!"
++
++msgid "Detach SoftHdDevice"
++msgstr "Отсоеденить SoftHdDevice"
++
++msgid "Suspend SoftHdDevice"
++msgstr "Приостановить SoftHdDevice"
++
++msgid "PIP toggle on/off: off"
++msgstr "PIP вкл./выкл.: выкл."
++
++msgid "PIP toggle on/off: on"
++msgstr "PIP вкл./выкл.: вкл."
++
++msgid "PIP zapmode (not working)"
++msgstr "PIP zapmode (не работает)"
++
++msgid "PIP channel +"
++msgstr "PIP канал +"
++
++msgid "PIP channel -"
++msgstr "PIP канал -"
++
++msgid "PIP on/swap channels: swap"
++msgstr "PIP вкл./переключить кналы: переключить"
++
++msgid "PIP on/swap channels: on"
++msgstr "PIP вкл./переключить кналы: вкл."
++
++msgid "PIP swap position: normal"
++msgstr "PIP переключить позицию: нормальная"
++
++msgid "PIP swap position: alternative"
++msgstr "PIP переключить позицию: алтернативная"
++
++msgid "PIP close"
++msgstr "PIP закрыть"
++
++#, c-format
++msgid " Frames missed(%d) duped(%d) dropped(%d) total(%d)"
++msgstr " Кадров пропущено (%d) обмануто (%d) сброшено (%d) всего (%d)"
++
++msgid "pass-through disabled"
++msgstr ""
++
++msgid "pass-through enabled"
++msgstr ""
++
++#, c-format
++msgid "audio delay changed to %d"
++msgstr ""
++
++msgid "auto-crop disabled and freezed"
++msgstr ""
++
++msgid "auto-crop enabled"
++msgstr ""
++
++#, c-format
++msgid "[softhddev]: hot key %d is not supported\n"
++msgstr ""
++
++msgid "video/glx: can't make glx context current\n"
++msgstr ""
++
++msgid "video/glx: no v-sync\n"
++msgstr ""
++
++msgid "video/glx: no GLX support\n"
++msgstr ""
++
++#, c-format
++msgid "video/glx: glx version %d.%d\n"
++msgstr ""
++
++msgid "video/glx: can't get a RGB visual\n"
++msgstr ""
++
++msgid "video/glx: no valid visual found\n"
++msgstr ""
++
++msgid "video/glx: need atleast 8-bits per RGB\n"
++msgstr ""
++
++msgid "video/glx: can't create glx context\n"
++msgstr ""
++
++msgid "video/glx: can't disable v-sync\n"
++msgstr ""
++
++msgid "video/glx: v-sync disabled\n"
++msgstr ""
++
++msgid "video/glx: can't enable v-sync\n"
++msgstr ""
++
++msgid "video/glx: v-sync enabled\n"
++msgstr ""
++
++msgid "video/vaapi: no osd subpicture yet\n"
++msgstr ""
++
++msgid "video/vaapi: can't associate subpicture\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't deassociate %d surfaces\n"
++msgstr ""
++
++msgid "video/vaapi: surface needed not set\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't create %d surfaces\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't destroy %d surfaces\n"
++msgstr ""
++
++msgid "video/vaapi: vaQuerySurface failed\n"
++msgstr ""
++
++msgid "video/vaapi: out of surfaces\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: release surface %#010x, which is not in use\n"
++msgstr ""
++
++msgid "video/vaapi: out of decoders\n"
++msgstr ""
++
++msgid "video/vaapi: out of memory\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: invalid surface in ringbuffer\n"
++msgstr ""
++
++msgid "video/vaapi: vaSyncSurface failed\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy image!\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy context!\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy config!\n"
++msgstr ""
++
++msgid "video/vaapi: can't deassociate black surfaces\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy a surface\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy glx surface!\n"
++msgstr ""
++
++msgid "codec: vaQueryConfigProfiles failed"
++msgstr ""
++
++msgid "codec: vaQueryConfigEntrypoints failed"
++msgstr ""
++
++msgid "codec: unsupported: slow path\n"
++msgstr ""
++
++msgid "codec: can't create config"
++msgstr ""
++
++msgid "video/vaapi: can't create surfaces\n"
++msgstr ""
++
++msgid "codec: can't create context"
++msgstr ""
++
++msgid "video/vaapi: vaDeriveImage failed\n"
++msgstr ""
++
++msgid "video/vaapi: vaPutSurface failed\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy surfaces\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: Can't connect VA-API to X11 server on '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: Can't inititialize VA-API on '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: libva %d.%d (%s) initialized\n"
++msgstr ""
++
++msgid "video/vaapi: use vdpau bug workaround\n"
++msgstr ""
++
++msgid "video/vaapi: Can't get background-color attribute\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: background-color is %s\n"
++msgstr ""
++
++msgid "supported"
++msgstr ""
++
++msgid "unsupported"
++msgstr ""
++
++msgid "video/glx: glx error\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: unsupported pixel format %d\n"
++msgstr ""
++
++msgid "video/vaapi: vaQueryImageFormats failed\n"
++msgstr ""
++
++msgid "video/vaapi: can't create image!\n"
++msgstr ""
++
++msgid "video/glx: can't create glx surfaces\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't create config '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't create context '%s'\n"
++msgstr ""
++
++msgid "codec: can't get attributes"
++msgstr ""
++
++msgid "codec: YUV 420 supported\n"
++msgstr ""
++
++msgid "codec: YUV 422 supported\n"
++msgstr ""
++
++msgid "codec: YUV 444 supported\n"
++msgstr ""
++
++msgid "codec: YUV 420 not supported\n"
++msgstr ""
++
++#, c-format
++msgid "codec: can't create config '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "codec: can't create context '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: vaPutSurface failed %d\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: gpu hung %dms %d\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: surface %#010x not ready: still displayed %d\n"
++msgstr ""
++
++msgid "video/glx: vaCopySurfaceGLX failed\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't get auto-crop image %d\n"
++msgstr ""
++
++msgid "video/vaapi: can't map auto-crop image!\n"
++msgstr ""
++
++msgid "video/vaapi: can't unmap auto-crop image!\n"
++msgstr ""
++
++#, c-format
++msgid "video: output buffer full, dropping frame (%d/%d)\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't create a surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't associate subpicture: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't create image: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't map the image: %s\n"
++msgstr ""
++
++msgid "video/vaapi: can't unmap the image!\n"
++msgstr ""
++
++msgid "video/vaapi: can't put image!\n"
++msgstr ""
++
++msgid "video/vaapi: can't unmap image buffer\n"
++msgstr ""
++
++msgid "video/vaapi: can't get source image\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: vaDeriveImage failed %d\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't put image: %d!\n"
++msgstr ""
++
++msgid "video/vaapi: stream <-> surface size mismatch\n"
++msgstr ""
++
++msgid "video/vaapi: can't map the image!\n"
++msgstr ""
++
++#, c-format
++msgid "video/vaapi: can't put image err:%d!\n"
++msgstr ""
++
++#, c-format
++msgid "video: display buffer empty, duping frame (%d/%d) %d\n"
++msgstr ""
++
++#, c-format
++msgid "video: decoder buffer empty, duping frame (%d/%d) %d v-buf\n"
++msgstr ""
++
++msgid "video/vaapi: FIXME: SetBackground not supported\n"
++msgstr ""
++
++msgid "video/vaapi: can't map osd image buffer\n"
++msgstr ""
++
++msgid "video/vaapi: can't unmap osd image buffer\n"
++msgstr ""
++
++msgid "video/vaapi: can't get subpicture formats"
++msgstr ""
++
++msgid "video/vaapi: can't find a supported subpicture format"
++msgstr ""
++
++msgid "video/vaapi: supports unscaled osd\n"
++msgstr ""
++
++msgid "video/vaapi: can't create osd image\n"
++msgstr ""
++
++msgid "video/vaapi: can't create subpicture\n"
++msgstr ""
++
++msgid "video/vaapi: can't destroy subpicture\n"
++msgstr ""
++
++msgid "video/vdpau: surface needed not set\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create video surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't destroy video surface: %s\n"
++msgstr ""
++
++msgid "video/vdpau: out of surfaces\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: release surface %#08x, which is not in use\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't set mixer feature enables: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't generate CSC matrix: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't set mixer attribute values: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create video mixer: %s\n"
++msgstr ""
++
++msgid "video/vdpau: out of decoders\n"
++msgstr ""
++
++msgid "video/vdpau: out of memory\n"
++msgstr ""
++
++msgid "video/vdpau: need 1 future, 1 current, 1 back and 1 work surface\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't destroy video decoder: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't destroy video mixer: %s\n"
++msgstr ""
++
++msgid "video/vdpau: decoder not in decoder list.\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: Can't get function address of '%s': %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create presentation queue target: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create presentation queue: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create output surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create grab render output surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't destroy output surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't destroy grab render output surface: %s\n"
++msgstr ""
++
++msgid "video/vdpau preemption device not our device\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: Can't create vdp device on display '%s'\n"
++msgstr ""
++
++msgid "video/vdpau: Can't get function address of 'GetErrorString'\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: VDPAU API version: %u\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: VDPAU information: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't register preemption callback: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't query feature '%s': %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: highest supported high quality scaling %d\n"
++msgstr ""
++
++msgid "video/vdpau: high quality scaling unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: feature deinterlace temporal %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: feature deinterlace temporal spatial %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: attribute skip chroma deinterlace %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't query video surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 4:2:0 chroma format with %dx%d supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 4:2:2 chroma format with %dx%d supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 4:4:4 chroma format with %dx%d supported\n"
++msgstr ""
++
++msgid "video/vdpau: doesn't support yuvy video surface\n"
++msgstr ""
++
++msgid "video/vdpau: doesn't support yv12 video surface\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't query output surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 8bit BGRA format with %dx%d supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 8bit RGBA format with %dx%d supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 10bit RGBA format with %dx%d supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: 8bit BRGA format with %dx%d supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't get video surface parameters: %s\n"
++msgstr ""
++
++msgid "video/vdpau: video surface chroma type mismatch\n"
++msgstr ""
++
++msgid "video/vdpau: video surface size mismatch\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create decoder: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't query decoder capabilities: %s\n"
++msgstr ""
++
++msgid "video/vdpau: no valid vdpau pixfmt found\n"
++msgstr ""
++
++msgid "video/vdpau: no valid profile found\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: unsupported chroma type %d\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't get video surface bits: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't get output surface parameters: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't render output surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: unsupported rgba format %d\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't get video surface bits native: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: output buffer full, dropping frame (%d/%d)\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: pixel format %d not supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't put video surface bits: %s\n"
++msgstr ""
++
++msgid "video: get hwaccel context, not supported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't render bitmap surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: %d surface deinterlace unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't render mixer: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't block queue: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: missed frame (%d/%d)\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't queue display: %s\n"
++msgstr ""
++
++msgid "video/vdpau: osd too big: unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: bitmap surface put bits failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: output surface put bits failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't create bitmap surface: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: can't destroy bitmap surface: %s\n"
++msgstr ""
++
++msgid "video: fatal i/o error\n"
++msgstr ""
++
++#, c-format
++msgid "video/event: No symbol for %d\n"
++msgstr ""
++
++msgid "video: can't lock thread\n"
++msgstr ""
++
++msgid "video: can't unlock thread\n"
++msgstr ""
++
++msgid "video: can't queue cancel video display thread\n"
++msgstr ""
++
++msgid "video: can't cancel video display thread\n"
++msgstr ""
++
++#, c-format
++msgid "video: repeated pict %d found, but not handled\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: decoder rendering failed: %s\n"
++msgstr ""
++
++#, c-format
++msgid "video/vdpau: %s: decoder render too slow %ums\n"
++msgstr ""
++
++msgid "video/vdpau: draw render state, without vdpau enabled\n"
++msgstr ""
++
++msgid "video: out of memory\n"
++msgstr ""
++
++msgid "softhddev: grab unsupported\n"
++msgstr ""
++
++#, c-format
++msgid "video: Can't connect to X11 server on '%s'\n"
++msgstr ""
++
++#, c-format
++msgid "video: Can't initialize X11 thread support on '%s'\n"
++msgstr ""
++
++msgid "video: Can't convert XLIB display to XCB connection\n"
++msgstr ""
++
++#, c-format
++msgid "video: '%s' output module isn't supported\n"
++msgstr ""
++
++msgid "video: error closing display\n"
++msgstr ""
+diff -Naur a/softhddevice.cpp b/softhddevice.cpp
+--- a/softhddevice.cpp	2014-10-16 20:41:22.000000000 +0300
++++ b/softhddevice.cpp	2014-10-21 22:21:26.656055561 +0300
+@@ -53,9 +53,9 @@
+     /// Makefile extracts the version number for generating the file name
+     /// for the distribution archive.
+ static const char *const VERSION = "0.6.1rc1"
+-#ifdef GIT_REV
+-    "-GIT" GIT_REV
+-#endif
++//#ifdef GIT_REV
++    //"-GIT" GIT_REV
++//#endif
+     ;
+ 
+     /// vdr-plugin description.

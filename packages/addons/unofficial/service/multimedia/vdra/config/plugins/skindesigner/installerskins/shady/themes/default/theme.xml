@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE globals SYSTEM "../../../../dtd/globals.dtd">
+
+<globals>
+    <colors>
+        <color name="clrRed">FFFF0000</color>
+        <color name="clrGreen">FF5FE200</color>
+        <color name="clrYellow">FFE2DA00</color>
+        <color name="clrBlue">FF007FE2</color>
+        <color name="clrBlack">FF000000</color>
+        <color name="clrTransBlack">C0000000</color>
+        <color name="clrSemiTransBlack">D0000000</color>
+        <color name="clrBlueLight">FF1E8BD7</color>
+        <color name="clrTransBlueLight">C01E8BD7</color>
+        <color name="clrTransWhite">C0FFFFFF</color>
+        <color name="clrWhite">FFFFFFFF</color>
+        <color name="clrDarkGray">FF808080</color>
+        <color name="clrLightGray">FFEBEBEB</color>
+        <color name="clrTransparent">00000000</color>
+        <color name="clrHigh">C8009CD7</color>
+        <color name="clrActive">C8009CD7</color>
+        <color name="clrMenuBGTVG">E1000000</color>
+        <color name="clrBackGroundGray">FF131313</color>
+        <color name="clrTransRed">99FF0000</color>
+        <color name="clrRecMenuHide">F0000000</color>
+        <color name="clrRecMenuBorderTop">FF4D4D4D</color>               
+        <color name="clrRecMenuBorderBottom">FF171717</color>
+        <color name="clrRecMenuConflTop">FF373938</color>
+    </colors>
+    <!--
+    these variables can be used everywhere in the templates
+    variabls of type int can also be used as conditions, just
+    set such a variable to 1 for true and 0 for false
+    -->
+    <variables>
+    </variables>
+    <!--
+    The three Fonts FontOSD, FontFix and FontSml configured in VDR
+    can be used in all template "font" attributes with this tokens:
+    {vdrOsd}
+    {vdrFix}
+    {vdrSml} 
+    If you like to use further fonts, just define them below.
+    Syntax:
+    <font name="tokenname">fontname</font>
+    These fonts can then also be used in all templates in the "font" 
+    attribute.
+    if an invalid font is used in a template, vdrOsd is used as default.
+    -->
+    <fonts>
+    </fonts>
+</globals>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE menuplugin SYSTEM "../../../dtd/displaymenuplugin.dtd">
+
+<menuplugin x="0" y="0" width="100%" height="100%" fadetime="0" scaletvx="0%" scaletvy="12%" scaletvwidth="54%" scaletvheight="54%">
+
+	<background>
+		<area x="0" y="0" width="100%" height="100%" layer="1">
+			<drawimage condition="not{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientPNG" />
+			<drawimage condition="{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientPNGBright" />
+			<drawrectangle  x="0%" y="12%" width="54%" height="54%" color="{clrTransparent}" />
+		</area>
+		<area x="0" y="0" width="100%" height="100%" layer="2">
+			<drawimage  x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="shadowsWeather" />
+		</area>
+		<area x="0" y="0" width="100%" height="11%" layer="3">
+			<drawimage  x="0" width="{areawidth}*0.972" height="{areaheight}*0.972" imagetype="skinpart" path="gradientHeader" /> 
+		</area>     
+	</background>
+
+	<header>
+		<area x="3%" y="2%" width="58%" height="7%" layer="4">
+			<drawtext x="0" valign="center" font="{light}" fontsize="80%" color="{clrLightGray}" text="{title}" />
+		</area>
+	</header>
+
+	<menuitems x="0" y="14%" orientation="vertical" width="100%" height="86%" align="center" numlistelements="16">
+		<listelement>
+			<!-- Background -->
+			<area x="57%" width="38%" layer="3">
+				<drawimage condition="not{current}" imagetype="skinpart" path="buttonRecMenuTVG" x="0" y="0" width="{areawidth}" height="{areaheight}"/>
+				<drawimage condition="{current}++eq({coloredButtons}, 0)" imagetype="skinpart" path="buttonRecMenuActiveTVG" x="0" y="0" width="{areawidth}" height="{areaheight}"/>
+				<drawimage condition="{current}++eq({coloredButtons}, 1)" imagetype="skinpart" path="buttonRecMenuActiveTVG_Color" x="0" y="0" width="{areawidth}" height="{areaheight}"/>
+				<drawimage condition="{current}++eq({coloredButtons}, 2)" imagetype="skinpart" path="buttonRecMenuActiveTVG_Gradient" x="0" y="0" width="{areawidth}" height="{areaheight}"/>
+			</area>   
+			<area x="60%" width="33%" layer="3">
+				<drawtext x="0" valign="center" font="{light}" fontsize="70%" color="{clrLightGray}" text="{menuitemtext}" />
+			</area>
+		</listelement>
+		<currentelement delay="100" fadetime="500" >
+
+			 <area condition="{iscurrent}" x="0" y="70%" width="100%" height="27%" layer="3">
+				<drawimage x="0" width="100%" height="100%" imagetype="skinpart" path="shadowsWeatherCurrent" />
+			</area>
+			
+			<area x="0" y="22%" width="94%" height="66%" layer="3">
+				<drawtext condition="{iscurrent}" x="62%" y="2%" font="{light}" fontsize="6%" color="{clrLightGray}" text="{city}" />
+				<drawtext condition="{iscurrent}" x="62%" y="8%" font="{light}" fontsize="4%" color="{clrLightGray}" text="{timestamp}" />
+				<drawtext condition="{iscurrent}" x="62%" y="46%" font="{light}" fontsize="6%" color="{clrLightGray}" text="{summary}" />
+				<drawtext condition="{ishourly}||{isdaily}" x="0" y="62%" align="center" font="{light}" fontsize="6%" color="{clrLightGray}" text="{summary}" />
+				<drawtext condition="{iscurrent}" name="temperature" x="62%" y="40%" font="{light}" fontsize="6%" color="{clrLightGray}" text="{temperature}°C" />
+				<drawimage condition="{iscurrent}" name="weathericon" imagetype="icon" path="{icon}" y="5%" align="right" width="{areaheight}*0.4" height="{areaheight}*0.4"/>
+				<drawimage condition="{ishourly}||{isdaily}" name="weathericon" imagetype="icon" path="{icon}" x="71%" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+			</area>
+
+			<area condition="{iscurrent}" x="0" y="18%" width="94%" height="78%" layer="3">
+				<drawtext x="2%" y="74%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(visibility)}: {visibility}km" />
+				<drawtext x="2%" y="79%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(ozone)}: {ozone}DU" />
+				<drawtext x="2%" y="84%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(pressure)}: {pressure}HPa" />
+
+				<drawtext x="31%" y="74%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(cloudcover)}: {cloudcover} %" />
+				<drawtext x="31%" y="79%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(humidity)}: {humidity}%" />
+				<drawtext x="31%" y="84%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(windbearing)}: {windbearingstring} ({windbearing} °)" />
+				<drawtext x="31%" y="89%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(windspeed)}: {windspeed}km/h"/>
+
+				<drawtext x="60%" y="74%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(apparenttemp)}: {apparenttemperature}°C" />
+				<drawtext x="60%" y="79%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(precipitationprobability)}: {precipitationprobability} %" />
+				<drawtext x="60%" y="84%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(precipitationintensity)}: {precipitationintensity}l/qm" />
+				<drawtext condition="isset{precipitationtype}" x="60%" y="89%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(precipitationtype)}: {precipitationtype}" />
+				<drawtext condition="empty{precipitationtype}" x="60%" y="89%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(precipitationtype)}: Kein Niederschlag" />
+			</area>
+
+ 			<area condition="{ishourly}||{isdaily}" x="0" y="71%" width="100%" height="26%" layer="3">
+				<drawimage x="0" width="100%" height="100%" imagetype="skinpart" path="shadowsWeatherDaily" />
+			</area>
+			<area condition="{ishourly}" x="0" y="73%" width="97%" height="24%" layer="4">
+				<loop name="hourly" x="0" y="0" orientation="horizontal" columnwidth="{areawidth}/56" rowheight="{areaheight}" overflow="cut">
+					<drawtext condition="eq({hourly[num]}, 1)" x="2%" y="4%" font="{light}" fontsize="16%"  color="{clrLightGray}" text="{hourly[timestamp]}" />
+					<drawtext condition="eq({hourly[num]}, 8) || eq({hourly[num]}, 16) || eq({hourly[num]}, 24) || eq({hourly[num]}, 32) || eq({hourly[num]}, 40) || eq({hourly[num]}, 48)" x="4%" y="5%" font="{light}" fontsize="16%"  color="{clrLightGray}" text="{hourly[timestamp]}" />
+					<drawimage condition="eq({hourly[num]}, 1)" imagetype="icon" path="{hourly[icon]}" x="8%" y="6%" width="{columnwidth}*3.3" height="{columnwidth}*3.3"/>
+					<drawimage condition="eq({hourly[num]}, 8) || eq({hourly[num]}, 16) || eq({hourly[num]}, 24) || eq({hourly[num]}, 32) || eq({hourly[num]}, 40) || eq({hourly[num]}, 48)" imagetype="icon" path="{hourly[icon]}" x="10%" y="6%" width="{columnwidth}*3.3" height="{columnwidth}*3.3"/>
+					<drawtext condition="eq({hourly[num]}, 1)" x="3%" y="{rowheight}*0.3" font="{light}" fontsize="16%" color="{clrLightGray}" text="{hourly[temperature]}°C" />
+					<drawtext condition="eq({hourly[num]}, 8) || eq({hourly[num]}, 16) || eq({hourly[num]}, 24) || eq({hourly[num]}, 32) || eq({hourly[num]}, 40) || eq({hourly[num]}, 48)" x="5%" y="{rowheight}*0.3" font="{light}" fontsize="16%" color="{clrLightGray}" text="{hourly[temperature]}°C" />
+					<drawtext condition="eq({hourly[num]}, 1)" x="2%" y="{columnwidth}*2.1 + {rowheight}*0.35" width="{columnwidth}*7.5"  font="{light}" fontsize="14%" color="{clrLightGray}" text="{hourly[summary]}" />
+					<drawtext condition="eq({hourly[num]}, 8) || eq({hourly[num]}, 16) || eq({hourly[num]}, 24) || eq({hourly[num]}, 32) || eq({hourly[num]}, 40) || eq({hourly[num]}, 48)" x="4%"  y="{columnwidth}*2.1 + {rowheight}*0.35" width="{columnwidth}*7.5" font="{light}" fontsize="14%" color="{clrLightGray}" text="{hourly[summary]}" />
+				</loop>
+			</area>
+
+			<area condition="{isdaily}" x="0" y="73%" width="97%" height="24%" layer="4">
+				<loop name="daily" x="0" y="0" orientation="horizontal" columnwidth="{areawidth}/7" rowheight="{areaheight}" overflow="cut">
+					<drawtext x="2%" y="5%" font="{light}" fontsize="16%"  color="{clrLightGray}" text="{daily[dayname]} {daily[day]}" />
+					<drawimage imagetype="icon" path="{daily[icon]}" x="9%" y="6%" width="{columnwidth}*0.35" height="{columnwidth}*0.35"/>
+					<drawtext  x="2%" y="{rowheight}*0.3" font="{light}" fontsize="13%" color="{clrLightGray}" text="{daily[temperaturemin]}°C - {daily[temperaturemax]}°C" />
+					<drawtextbox x="2%" y="{columnwidth}*0.2625 + {rowheight}*0.25" width="{columnwidth}*0.8" maxlines="2" font="{light}" fontsize="14%" color="{clrLightGray}" text="{daily[summary]}" />
+				</loop>
+			</area>
+		</currentelement>
+	</menuitems>
+	<colorbuttons>
+		<area x="0" y="0" layer="0">
+		</area>
+	</colorbuttons>
+</menuplugin>

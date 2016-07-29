@@ -1,0 +1,322 @@
+diff -Naur a/source/mupen64plus-audio-sdl/projects/unix/Makefile b/source/mupen64plus-audio-sdl/projects/unix/Makefile
+--- a/source/mupen64plus-audio-sdl/projects/unix/Makefile	2015-04-27 01:42:52.000000000 +0300
++++ b/source/mupen64plus-audio-sdl/projects/unix/Makefile	2015-06-21 23:15:22.648254803 +0300
+@@ -138,21 +138,21 @@
+ endif
+ 
+ # test for presence of SDL
+-ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
+-  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
+-  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
+-    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-      $(error No SDL development libraries found!)
+-    else
+-      $(warning Using SDL 1.2 libraries)
+-    endif
+-  endif
+-  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
+-  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
+-endif
+-CFLAGS += $(SDL_CFLAGS)
+-LDLIBS += $(SDL_LDLIBS)
++#ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
++#  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
++#  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
++#    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#      $(error No SDL development libraries found!)
++#    else
++#      $(warning Using SDL 1.2 libraries)
++#    endif
++#  endif
++#  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
++#  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
++#endif
++#CFLAGS += $(SDL_CFLAGS)
++#LDLIBS += $(SDL_LDLIBS)
+ 
+ # test for essential build dependencies
+ ifeq ($(origin PKG_CONFIG), undefined)
+@@ -264,7 +264,7 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
++#CC        = $(CROSS_COMPILE)gcc
+ RM       ?= rm -f
+ INSTALL  ?= install
+ MKDIR ?= mkdir -p
+diff -Naur a/source/mupen64plus-core/projects/unix/Makefile b/source/mupen64plus-core/projects/unix/Makefile
+--- a/source/mupen64plus-core/projects/unix/Makefile	2015-04-27 01:42:49.000000000 +0300
++++ b/source/mupen64plus-core/projects/unix/Makefile	2015-06-21 23:14:47.548255605 +0300
+@@ -248,21 +248,21 @@
+ LDLIBS += $(LIBPNG_LDLIBS)
+ 
+ # test for presence of SDL
+-ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
+-  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
+-  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
+-    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-      $(error No SDL development libraries found!)
+-    else
+-      $(warning Using SDL 1.2 libraries)
+-    endif
+-  endif
+-  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
+-  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
+-endif
+-CFLAGS += $(SDL_CFLAGS)
+-LDLIBS += $(SDL_LDLIBS)
++#ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
++#  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
++#  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
++#    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#      $(error No SDL development libraries found!)
++#    else
++#      $(warning Using SDL 1.2 libraries)
++#    endif
++#  endif
++#  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
++#  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
++#endif
++#CFLAGS += $(SDL_CFLAGS)
++#LDLIBS += $(SDL_LDLIBS)
+ 
+ ifeq ($(VC), 1)
+   CFLAGS += -DUSE_GLES -I/opt/vc/include -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/vmcs_host/linux
+@@ -324,8 +324,8 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
+-CXX       = $(CROSS_COMPILE)g++
++#CC        = $(CROSS_COMPILE)gcc
++#CXX       = $(CROSS_COMPILE)g++
+ AS        = nasm
+ RM       ?= rm -f
+ INSTALL  ?= install
+diff -Naur a/source/mupen64plus-input-sdl/projects/unix/Makefile b/source/mupen64plus-input-sdl/projects/unix/Makefile
+--- a/source/mupen64plus-input-sdl/projects/unix/Makefile	2015-04-27 01:42:53.000000000 +0300
++++ b/source/mupen64plus-input-sdl/projects/unix/Makefile	2015-06-21 23:16:27.720253315 +0300
+@@ -137,21 +137,21 @@
+ endif
+ 
+ # test for presence of SDL
+-ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
+-  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
+-  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
+-    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-      $(error No SDL development libraries found!)
+-    else
+-      $(warning Using SDL 1.2 libraries)
+-    endif
+-  endif
+-  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
+-  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
+-endif
+-CFLAGS += $(SDL_CFLAGS)
+-LDLIBS += $(SDL_LDLIBS)
++#ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
++#  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
++#  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
++#    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#      $(error No SDL development libraries found!)
++#    else
++#      $(warning Using SDL 1.2 libraries)
++#    endif
++#  endif
++#  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
++#  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
++#endif
++#CFLAGS += $(SDL_CFLAGS)
++#LDLIBS += $(SDL_LDLIBS)
+ 
+ # set mupen64plus core API header path
+ ifneq ("$(APIDIR)","")
+@@ -184,8 +184,8 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
+-CXX       = $(CROSS_COMPILE)g++
++#CC        = $(CROSS_COMPILE)gcc
++#CXX       = $(CROSS_COMPILE)g++
+ RM       ?= rm -f
+ INSTALL  ?= install
+ MKDIR ?= mkdir -p
+diff -Naur a/source/mupen64plus-rsp-hle/projects/unix/Makefile b/source/mupen64plus-rsp-hle/projects/unix/Makefile
+--- a/source/mupen64plus-rsp-hle/projects/unix/Makefile	2015-04-27 01:42:54.000000000 +0300
++++ b/source/mupen64plus-rsp-hle/projects/unix/Makefile	2015-06-21 22:14:46.664337940 +0300
+@@ -199,7 +199,7 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
++#CC        = $(CROSS_COMPILE)gcc
+ RM       ?= rm -f
+ INSTALL  ?= install
+ MKDIR ?= mkdir -p
+diff -Naur a/source/mupen64plus-ui-console/projects/unix/Makefile b/source/mupen64plus-ui-console/projects/unix/Makefile
+--- a/source/mupen64plus-ui-console/projects/unix/Makefile	2015-04-27 01:42:51.000000000 +0300
++++ b/source/mupen64plus-ui-console/projects/unix/Makefile	2015-06-21 23:18:20.464250737 +0300
+@@ -107,21 +107,21 @@
+ endif
+ 
+ # test for presence of SDL
+-ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
+-  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
+-  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
+-    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-      $(error No SDL development libraries found!)
+-    else
+-      $(warning Using SDL 1.2 libraries)
+-    endif
+-  endif
+-  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
+-  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
+-endif
+-CFLAGS += $(SDL_CFLAGS)
+-LDLIBS += $(SDL_LDLIBS)
++#ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
++#  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
++#  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
++#    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#      $(error No SDL development libraries found!)
++#    else
++#      $(warning Using SDL 1.2 libraries)
++#    endif
++#  endif
++#  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
++#  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
++#endif
++#CFLAGS += $(SDL_CFLAGS)
++#LDLIBS += $(SDL_LDLIBS)
+ 
+ ifeq ($(OS), MINGW)
+   LDLIBS += -mconsole
+@@ -171,8 +171,8 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
+-CXX       = $(CROSS_COMPILE)g++
++#CC        = $(CROSS_COMPILE)gcc
++#CXX       = $(CROSS_COMPILE)g++
+ RM       ?= rm -f
+ INSTALL  ?= install
+ MKDIR ?= mkdir -p
+diff -Naur a/source/mupen64plus-video-glide64mk2/projects/unix/Makefile b/source/mupen64plus-video-glide64mk2/projects/unix/Makefile
+--- a/source/mupen64plus-video-glide64mk2/projects/unix/Makefile	2015-04-27 01:42:57.000000000 +0300
++++ b/source/mupen64plus-video-glide64mk2/projects/unix/Makefile	2015-06-21 23:19:11.556249569 +0300
+@@ -234,24 +234,24 @@
+ LDLIBS += $(GL_LDLIBS)
+ 
+ # test for presence of SDL
+-ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
+-  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
+-  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
+-    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-      $(error No SDL development libraries found!)
+-    else
+-      $(warning Using SDL 1.2 libraries)
+-    endif
+-  endif
+-  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
+-  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
+-  ifeq ($(OS),OSX)
+-    SDL_LDLIBS += -Wl,-framework,Cocoa
+-  endif
+-endif
+-CFLAGS += $(SDL_CFLAGS)
+-LDLIBS += $(SDL_LDLIBS)
++#ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
++#  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
++#  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
++#    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#      $(error No SDL development libraries found!)
++#    else
++#      $(warning Using SDL 1.2 libraries)
++#    endif
++#  endif
++#  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
++#  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
++#  ifeq ($(OS),OSX)
++#    SDL_LDLIBS += -Wl,-framework,Cocoa
++#  endif
++#endif
++#CFLAGS += $(SDL_CFLAGS)
++#LDLIBS += $(SDL_LDLIBS)
+ 
+ ifneq ($(OS), MINGW)
+   CPPFLAGS += -D__unix__
+@@ -289,8 +289,8 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
+-CXX       = $(CROSS_COMPILE)g++
++#CC        = $(CROSS_COMPILE)gcc
++#CXX       = $(CROSS_COMPILE)g++
+ RM       ?= rm -f
+ INSTALL  ?= install
+ MKDIR ?= mkdir -p
+diff -Naur a/source/mupen64plus-video-rice/projects/unix/Makefile b/source/mupen64plus-video-rice/projects/unix/Makefile
+--- a/source/mupen64plus-video-rice/projects/unix/Makefile	2015-04-27 01:42:56.000000000 +0300
++++ b/source/mupen64plus-video-rice/projects/unix/Makefile	2015-06-21 23:19:54.676248583 +0300
+@@ -219,21 +219,21 @@
+ LDLIBS += $(GL_LDLIBS)
+ 
+ # test for presence of SDL
+-ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
+-  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
+-  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
+-    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
+-      $(error No SDL development libraries found!)
+-    else
+-      $(warning Using SDL 1.2 libraries)
+-    endif
+-  endif
+-  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
+-  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
+-endif
+-CFLAGS += $(SDL_CFLAGS)
+-LDLIBS += $(SDL_LDLIBS)
++#ifeq ($(origin SDL_CFLAGS) $(origin SDL_LDLIBS), undefined undefined)
++#  SDL_CONFIG = $(CROSS_COMPILE)sdl2-config
++#  ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#    SDL_CONFIG = $(CROSS_COMPILE)sdl-config
++#    ifeq ($(shell which $(SDL_CONFIG) 2>/dev/null),)
++#      $(error No SDL development libraries found!)
++#    else
++#      $(warning Using SDL 1.2 libraries)
++#    endif
++#  endif
++#  SDL_CFLAGS  += $(shell $(SDL_CONFIG) --cflags)
++#  SDL_LDLIBS += $(shell $(SDL_CONFIG) --libs)
++#endif
++#CFLAGS += $(SDL_CFLAGS)
++#LDLIBS += $(SDL_LDLIBS)
+ 
+ # set mupen64plus core API header path
+ ifneq ("$(APIDIR)","")
+@@ -267,8 +267,8 @@
+ endif
+ 
+ # set base program pointers and flags
+-CC        = $(CROSS_COMPILE)gcc
+-CXX       = $(CROSS_COMPILE)g++
++#CC        = $(CROSS_COMPILE)gcc
++#CXX       = $(CROSS_COMPILE)g++
+ RM       ?= rm -f
+ INSTALL  ?= install
+ MKDIR ?= mkdir -p

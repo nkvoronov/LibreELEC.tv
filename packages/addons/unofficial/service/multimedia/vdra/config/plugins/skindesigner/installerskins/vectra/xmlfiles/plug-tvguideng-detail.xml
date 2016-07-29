@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE displayplugin SYSTEM "../../../dtd/displayplugin.dtd">
+
+<displayplugin x="0" y="0" width="100%" height="100%" fadetime="{menufadetime}" scaletvx="{areawidth}*0.01" scaletvy="{areaheight}*0.6975" scaletvwidth="{areawidth}*0.2275" scaletvheight="{areaheight}*0.2275">
+
+    <viewelement name="background">
+	<area x="0" y="0" width="100%" height="100%" layer="1">
+            <!-- top bar -->
+            <drawrectangle x="0" y="0" width="{areawidth}" height="10%" color="{clrBackground}" />
+            <!-- menu bar -->
+            <drawrectangle x="0" y="10%" width="99%" height="81%" color="{clrBackground}" />
+            <drawrectangle x="{areawidth}*0.99 - 2" y="12%" width="2" height="76%" color="{clrBorder}" />
+            <!-- bottom bar -->
+            <drawrectangle x="0" y="90%" width="{areawidth}" height="10%" color="{clrBackground}" />
+            <!-- upper corner -->
+            <drawellipse x="99%" y="{areaheight}/10" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-2" color="{clrBorder}" />
+            <drawellipse x="{areawidth}*0.99 - 2" y="{areaheight}/10 - 2" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-2" color="{clrBackground}" />
+            <!-- lower corner -->
+            <drawellipse x="99%" y="{areaheight}*90/100 - {areawidth}*2/100" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-3" color="{clrBorder}" />
+            <drawellipse x="{areawidth}*0.99 - 2" y="{areaheight}*90/100 - {areawidth}*2/100 + 2" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-3" color="{clrBackground}" />
+            <!-- main frame -->
+            <drawrectangle x="{posx(mainframe)}" y="{posy(mainframe)}" width="{width(mainframe)} + 2" height="{height(mainframe)} + 2" color="{clrBorder}" />
+            <drawrectangle name="mainframe" x="{areawidth}*0.0125" y="{areaheight}*0.06 - 2" width="{areawidth}*0.9875 - {areawidth}*0.0125 - {areawidth}*0.0075" height="{areaheight}*0.64 - {areawidth}*0.0125 + 2" color="{clrBlack}" />
+            <drawellipse x="{posx(mainframe)}" y="{posy(mainframe)}" width="15" height="15" quadrant="-2" color="{clrBackground}" />
+            <drawellipse x="{posx(mainframe)} + {width(mainframe)} - 13" y="{posy(mainframe)}" width="13" height="15" quadrant="-1" color="{clrBorder}" />
+            <drawellipse x="{posx(mainframe)} + {width(mainframe)} - 13" y="{posy(mainframe)}" width="15" height="15" quadrant="-1" color="{clrBackground}" />
+            <drawellipse x="{posx(mainframe)}" y="{posy(mainframe)} + {height(mainframe)} - 13" width="15" height="13" quadrant="-3" color="{clrBorder}" />
+            <drawellipse x="{posx(mainframe)}" y="{posy(mainframe)} + {height(mainframe)} - 13" width="15" height="15" quadrant="-3" color="{clrBackground}" />
+            <drawellipse x="{posx(mainframe)} + {width(mainframe)} - 15" y="{posy(mainframe)} + {height(mainframe)} - 15" width="15" height="15" quadrant="-4" color="{clrBorder}" />
+            <drawellipse x="{posx(mainframe)} + {width(mainframe)} - 13" y="{posy(mainframe)} + {height(mainframe)} - 13" width="15" height="15" quadrant="-4" color="{clrBackground}" />
+            <!-- clock -->
+            <drawimage imagetype="skinpart" path="menuclockback" x="{areawidth}*0.98 - {areaheight}*0.1" y="70%" width="{areaheight}*0.1" height="10%"/>
+	    <drawellipse x="{areawidth}*0.98 - {areaheight}*0.1" y="70%" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-2" color="{clrBackground}" />
+	    <drawellipse x="{areawidth}*0.98 - {areaheight}*0.05 + 1" y="70%" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-1" color="{clrBackground}" />
+	    <drawellipse x="{areawidth}*0.98 - {areaheight}*0.05 + 1" y="75%" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-4" color="{clrBackground}" />
+	    <drawellipse x="{areawidth}*0.98 - {areaheight}*0.1" y="75%" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-3" color="{clrBackground}" />
+	    <!-- tv frame -->
+	    <drawrectangle x="{posx(tv_window)}" y="{posy(tv_window)}" width="{width(tv_window)} + 2" height="{height(tv_window)} + 2" color="{clrBorder}" />
+	    <drawrectangle name="tv_window" x="{areawidth}*0.0125" y="{areaheight}*0.7" width="{areawidth}*0.225 - 2" height="{areaheight}*0.225" color="{clrTransparent}" />
+            <drawellipse x="{posx(tv_window)}" y="{posy(tv_window)}" width="15" height="15" quadrant="-2" color="{clrBackground}" />
+            <drawellipse x="{posx(tv_window)} + {width(tv_window)} - 13" y="{posy(tv_window)}" width="13" height="15" quadrant="-1" color="{clrBorder}" />
+            <drawellipse x="{posx(tv_window)} + {width(tv_window)} - 13" y="{posy(tv_window)}" width="15" height="15" quadrant="-1" color="{clrBackground}" />
+            <drawellipse x="{posx(tv_window)}" y="{posy(tv_window)} + {height(tv_window)} - 13" width="15" height="13" quadrant="-3" color="{clrBorder}" />
+            <drawellipse x="{posx(tv_window)}" y="{posy(tv_window)} + {height(tv_window)} - 13" width="15" height="15" quadrant="-3" color="{clrBackground}" />
+	    <drawellipse x="{posx(tv_window)} + {width(tv_window)} - 15" y="{posy(tv_window)} + {height(tv_window)} - 15" width="15" height="15" quadrant="-4" color="{clrBorder}" />
+	    <drawellipse x="{posx(tv_window)} + {width(tv_window)} - 13" y="{posy(tv_window)} + {height(tv_window)} - 13" width="15" height="15" quadrant="-4" color="{clrBackground}" />
+	</area>
+	    <!-- info frame -->
+	<area x="{areawidth}*0.2625 + {areaheight}*0.225 + {areawidth}*0.025" y="{areaheight}*0.70" width="{areawidth}*0.5025" height="{areaheight}*0.225" layer="1">
+            <drawrectangle x="0" y="0" width="100%" height="100%" color="{clrBorder}" />
+            <drawimage imagetype="skinpart" path="tvguide_info_bg" x="0" y="0" width="{areawidth} - 2" height="{areaheight} - 2" />
+            <drawellipse x="0" y="0" width="15" height="15" quadrant="-2" color="{clrBackground}" />
+            <drawellipse x="{areawidth} - 15" y="0" width="13" height="15" quadrant="-1" color="{clrBorder}" />
+            <drawellipse x="{areawidth} - 15" y="0" width="15" height="15" quadrant="-1" color="{clrBackground}" />
+            <drawellipse x="{areawidth} - 17" y="{areaheight} - 17" width="15" height="15" quadrant="-4" color="{clrBorder}" />
+            <drawellipse x="{areawidth} - 15" y="{areaheight} - 15" width="15" height="15" quadrant="-4" color="{clrBackground}" />
+            <drawellipse x="0" y="{areaheight} - 15" width="15" height="13" quadrant="-3" color="{clrBorder}" />
+            <drawellipse x="0" y="{areaheight} - 15" width="15" height="15" quadrant="-3" color="{clrBackground}" />
+	</area>
+    </viewelement>
+
+    <!-- Available Variables scrollbar:
+    {height}                  height of scrollbar in tenth of a percent of total height
+    {offset}                  offset in tenth of a percent of total height
+    -->
+    <scrollbar>
+        <area x="{areawidth}*0.9925" y="13%" width="{areawidth}*0.0075" height="74%" layer="1">
+            <drawrectangle x="0" y="{areawidth}/2" width="{areawidth}" height="{areaheight} - {areawidth}" color="{clrBorder}" />
+            <drawrectangle x="1" y="{areawidth}/2" width="{areawidth} - 2" height="{areaheight} - {areawidth}" color="{clrBlack}" />
+            <drawrectangle x="1" y="{areaheight} * {offset} / 1000" width="{areawidth} - 2" height="{areaheight} * {height} / 1000" color="{clrProgressbar}" />
+	</area>
+        <area x="{areawidth}*0.9925" y="13%" width="{areawidth}*0.0075" height="74%" layer="2">
+	    <drawimage imagetype="skinpart" path="verticalbartop" x="1" y="{areaheight} * {offset} / 1000" width="{areawidth} - 2" height="{areaheight} * {height} / 1000" />
+	    <drawellipse x="1" y="{areaheight} * {offset} / 1000" width="{areawidth}/2" height="{areawidth}/2" quadrant="-2" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="{areaheight} * {offset} / 1000" width="{areawidth}/2" height="{areawidth}/2" quadrant="-1" color="{clrBlack}" />
+	    <drawellipse x="1" y="{areaheight}*{offset}/1000 + {areaheight}*{height}/1000 - {areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-3" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="{areaheight}*{offset}/1000 + {areaheight}*{height}/1000 - {areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-4" color="{clrBlack}" />
+	    <drawellipse x="1" y="1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-2" color="{clrBorder}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-1" color="{clrBorder}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="{areaheight}-{areawidth}/2 - 1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-4" color="{clrBorder}" />
+	    <drawellipse x="1" y="{areaheight}-{areawidth}/2 - 1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-3" color="{clrBorder}" />
+	    <drawellipse x="0" y="0" width="{areawidth}/2" height="{areawidth}/2" quadrant="-2" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2" y="0" width="{areawidth}/2" height="{areawidth}/2" quadrant="-1" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2" y="{areaheight}-{areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-4" color="{clrBlack}" />
+	    <drawellipse x="0" y="{areaheight}-{areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-3" color="{clrBlack}" />
+        </area>
+    </scrollbar>
+
+    <!-- Available Variables Footer:
+    {red1}                    true if red button is button 1
+    {red2}                    true if red button is button 2
+    {red3}                    true if red button is button 3
+    {red4}                    true if red button is button 4
+    {green1}                  true if green button is button 1
+    {green2}                  true if green button is button 2
+    {green3}                  true if green button is button 3
+    {green4}                  true if green button is button 4
+    {yellow1}                 true if yellow button is button 1
+    {yellow2}                 true if yellow button is button 2
+    {yellow3}                 true if yellow button is button 3
+    {yellow4}                 true if yellow button is button 4
+    {blue1}                   true if blue button is button 1
+    {blue2}                   true if blue button is button 2
+    {blue3}                   true if blue button is button 3
+    {blue4}                   true if blue button is button 4
+    {red}                     label of red button
+    {green}                   label of green button
+    {yellow}                  label of yellow button
+    {blue}                    label of blue button
+    -->
+    <viewelement name="footer">
+        <area condition="{red1}" x="0" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{red}" imagetype="skinpart" path="buttonred" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{red}" />
+        </area>
+        <area condition="{green1}" x="0" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{green}" imagetype="skinpart" path="buttongreen" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{green}" />
+        </area>
+        <area condition="{yellow1}" x="0" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{yellow}" imagetype="skinpart" path="buttonyellow" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{yellow}" />
+        </area>
+        <area condition="{blue1}" x="0" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{blue}" imagetype="skinpart" path="buttonblue" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{blue}" />
+        </area>
+
+        <area condition="{red2}" x="25%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{red}" imagetype="skinpart" path="buttonred" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{red}" />
+        </area>
+        <area condition="{green2}" x="25%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{green}" imagetype="skinpart" path="buttongreen" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{green}" />
+        </area>
+        <area condition="{yellow2}" x="25%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{yellow}" imagetype="skinpart" path="buttonyellow" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{yellow}" />
+        </area>
+        <area condition="{blue2}" x="25%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{blue}" imagetype="skinpart" path="buttonblue" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{blue}" />
+        </area>
+        
+        <area condition="{red3}" x="50%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{red}" imagetype="skinpart" path="buttonred" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{red}" />
+        </area>
+        <area condition="{green3}" x="50%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{green}" imagetype="skinpart" path="buttongreen" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{green}" />
+        </area>
+        <area condition="{yellow3}" x="50%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{yellow}" imagetype="skinpart" path="buttonyellow" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{yellow}" />
+        </area>
+        <area condition="{blue3}" x="50%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{blue}" imagetype="skinpart" path="buttonblue" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{blue}" />
+        </area>
+        
+        <area condition="{red4}" x="75%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{red}" imagetype="skinpart" path="buttonred" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{red}" />
+        </area>
+        <area condition="{green4}" x="75%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{green}" imagetype="skinpart" path="buttongreen" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{green}" />
+        </area>
+        <area condition="{yellow4}" x="75%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{yellow}" imagetype="skinpart" path="buttonyellow" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{yellow}" />
+        </area>
+        <area condition="{blue4}" x="75%" y="90%" width="25%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="buttoninactive" align="center" y="60%" width="90%" height="20%"/>
+            <drawimage condition="isset{blue}" imagetype="skinpart" path="buttonblue" align="center" y="60%" width="90%" height="20%"/>
+            <drawtext align="center" y="30%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{blue}" />
+        </area>
+    </viewelement>
+
+    <!-- Available Variables time:
+    {time}                   timestring in hh:mm
+    {sec}                    current seconds
+    {min}                    current minutes
+    {hour}                   current hours
+    {hmins}                  current "hourminutes" to display an hour hand
+    -->
+    <viewelement name="time">
+        <area x="{areawidth}*0.98 - {areaheight}*0.10" y="70%" width="{areaheight}*0.10" height="{areaheight}*0.10" layer="2">
+            <drawimage imagetype="skinpart" path="watchhands/s_{sec}" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="{areawidth}*0.98 - {areaheight}*0.10" y="70%" width="{areaheight}*0.10" height="{areaheight}*0.10" layer="3">
+            <drawimage imagetype="skinpart" path="watchhands/m_{min}" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="{areawidth}*0.98 - {areaheight}*0.10" y="70%" width="{areaheight}*0.10" height="{areaheight}*0.10" layer="4">
+            <drawimage imagetype="skinpart" path="watchhands/h_{hmins}" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="{areawidth}*0.98 - {areaheight}*0.11" y="82%" width="{areaheight}*0.12" height="8%" layer="3">
+            <drawtext align="center" valign="top" font="{regular}" fontsize="30%" color="{clrWhite}" text="{dayname}" />
+            <drawtext align="center" valign="center" font="{regular}" fontsize="35%" color="{clrWhite}" text="{dayleadingzero}.{month}.{year}" />
+            <drawtext align="center" valign="bottom" font="{regular}" fontsize="35%" color="{clrWhite}" text="{time}" />
+        </area>
+    </viewelement>
+
+
+    <!-- Available Variables in detailheader elements:
+    {title}                   title of event
+    {shorttext}               shorttext of event
+    {start}                   event start time in hh::mm
+    {stop}                    event stop time
+    {day}                     Day of event as three letter abrivation
+    {date}                    date of current event in dd.mm.yy
+    {daynumeric}              day as number
+    {month}                   month as number
+    {year}                    year as number
+    {running}                 true if event is currently running
+    {elapsed}                 elapsed time of event, if not running 0
+    {duration}                duration of event
+    {durationhours}           duration, full hours
+    {durationminutes}         duration, rest of minutes
+    {vps}                     vps description string
+    {channelname}             Channelname of event
+    {channelnumber}           Channelnumber of event
+    {channellogoexists}       true if a channel logo exists 
+    {channelid}               ChannelID as path to display channel logo
+    {ismovie}                 true if event is scraped as a movie
+    {isseries}                true if event is scraped as a series
+    {posteravailable}         true if a poster is available
+    {posterwidth}             width of scraped poster
+    {posterheight}            height of scraped poster
+    {posterpath}              absolute path of scraped poster
+    {banneravailable}         true if a banner is available
+    {bannerwidth}             width of banner
+    {bannerheight}            height of banner
+    {bannerpath}              path of banner
+    {epgpicavailable}         true if a epg picture is available
+    {epgpicpath}              path of epg picture
+    -->
+    <viewelement name="header">
+	<area x="{areawidth}*0.2625" y="{areaheight}*0.70" width="{areaheight}*0.225" height="{areaheight}*0.225" layer="1">
+            <drawimage name="logo" imagetype="channellogo" path="{channelid}" align="center" width="100%" height="80%" valign="center" />
+	</area>
+	<area x="{areawidth}*0.2625 + {areaheight}*0.225 + {areawidth}*0.025 + 20" y="{areaheight}*0.70 + 20" width="{areawidth}*0.5025 - 42" height="{areaheight}*0.225 - 42" layer="1">
+<!--
+            <drawtext name="channumber" x="0" y="0" font="{regular}" fontsize="35%" color="{clrWhite}" text="{channelnumber}" />
+-->
+            <drawtext name="titel" x="{width(channumber)} + 20" y="0" font="{regular}" fontsize="35%" color="{clrWhite}" text="{title}" />
+	    <drawimage condition="not{running}" imagetype="skinpart" path="tvguide_grid_line_horizontal" align="center" y="{posy(titel)} + {height(titel)} + 5" width="100%" height="3" />
+            <drawtext name="shorttext" x="0" y="{areaheight}*0.38 + 10" font="{regular}" fontsize="25%" color="{clrWhite}" text="{shorttext}" />
+            <drawtext condition="not{running}" name="datetime" x="0" y="{posy(shorttext)} + {height(shorttext)} + 5" font="{regular}" fontsize="25%" color="{clrWhite}" text="{day} {date}     {start} - {stop}     ({duration}min)" />
+            <drawtext condition="{running}" name="datetime" x="0" y="{posy(shorttext)} + {height(shorttext)} + 5" font="{regular}" fontsize="25%" color="{clrWhite}" text="{day} {date}     {start} - {stop}     ({elapsed}min / {duration}min)" />
+        </area>
+	<!-- timebar -->
+        <area condition="{running}" x="{areawidth}*0.2625 + {areaheight}*0.225 + {areawidth}*0.025 + 20" y="{areaheight}*0.785" width="{areawidth}*0.5025 - 42" height="{areaheight}*0.01" layer="1">
+            <drawrectangle x="0" y="0" width="{areawidth}" height="{areaheight}" color="{clrBorder}" />
+            <drawrectangle x="{areawidth} * {elapsed} / {duration}" y="1" width="{areawidth} - {areawidth} * {elapsed} / {duration}" height="{areaheight} - 2" color="{clrBlack}" />
+            <drawrectangle x="0" y="1" width="{areawidth} * {elapsed} / {duration}" height="{areaheight} - 2" color="{clrProgressbar}" />
+	    <drawellipse x="{areawidth} - {areaheight}/2" y="0" width="{areaheight}/2" height="{areaheight}/2" quadrant="-1" color="{clrTransparent}" />
+	    <drawellipse x="{areawidth} - {areaheight}/2" y="{areaheight}/2" width="{areaheight}/2" height="{areaheight}/2" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area condition="{running}" x="{areawidth}*0.2625 + {areaheight}*0.225 + {areawidth}*0.025 + 20" y="{areaheight}*0.785" width="{areawidth}*0.5025 - 42" height="{areaheight}*0.01" layer="2">
+	    <drawimage name="timebar" imagetype="skinpart" path="horizontalbartop" x="1" y="1" width="{areawidth} * {elapsed} / {duration} - 2" height="{areaheight} - 2" />
+	    <drawellipse x="{width(timebar)} - {areaheight}/2 + 2" y="1" width="{areaheight}/2" height="{areaheight}/2" quadrant="-1" color="{clrBlack}" />
+	    <drawellipse x="{width(timebar)} - {areaheight}/2 + 2" y="{areaheight}/2 - 1" width="{areaheight}/2" height="{areaheight}/2" quadrant="-4" color="{clrBlack}" />
+	    <drawellipse x="1" y="1" width="{areaheight}/2" height="{areaheight}/2" quadrant="-2" color="{clrBorder}" />
+	    <drawellipse x="1" y="{areaheight}/2 - 1" width="{areaheight}/2" height="{areaheight}/2" quadrant="-3" color="{clrBorder}" />
+	    <drawellipse x="0" y="0" width="{areaheight}/2" height="{areaheight}/2" quadrant="-2" color="{clrBlack}" />
+	    <drawellipse x="0" y="{areaheight}/2" width="{areaheight}/2" height="{areaheight}/2" quadrant="-3" color="{clrBlack}" />
+	    <drawellipse x="{areawidth} - {areaheight}/2 - 1" y="1" width="{areaheight}/2" height="{areaheight}/2" quadrant="-1" color="{clrBorder}" />
+	    <drawellipse x="{areawidth} - {areaheight}/2 - 1" y="{areaheight}/2 - 1" width="{areaheight}/2" height="{areaheight}/2" quadrant="-4" color="{clrBorder}" />
+	    <drawellipse x="{areawidth} - {areaheight}/2" y="0" width="{areaheight}/2" height="{areaheight}/2" quadrant="-1" color="{clrTransparent}" />
+	    <drawellipse x="{areawidth} - {areaheight}/2" y="{areaheight}/2" width="{areaheight}/2" height="{areaheight}/2" quadrant="-4" color="{clrTransparent}" />
+        </area>
+    </viewelement>
+
+    <!-- Available Variables in tab elements:
+    {title}                   title of event
+    {shorttext}               shorttext of event
+    {description}             description of event
+    {start}                   event start time in hh::mm
+    {stop}                    event stop time
+    {day}                     Day of event as three letter abrivation
+    {date}                    date of current event in dd.mm.yy
+    {daynumeric}              day as number
+    {month}                   month as number
+    {year}                    year as number
+    {running}                 true if event is currently running
+    {elapsed}                 elapsed time of event, if not running 0
+    {duration}                duration of event
+    {durationhours}           duration, full hours
+    {durationminutes}         duration, rest of minutes
+    {vps}                     vps description string
+    {channellogoexists}       true if a channel logo exists 
+    {channelid}               ChannelID as path to display channel logo
+    {hasreruns}               true if reruns of this event are found
+    {reruns[]}                array with reruns
+    {reruns[title]}           title of rerun
+    {reruns[shorttext]}       shorttext of rerun
+    {reruns[date]}            date of rerun in dd:mm
+    {reruns[day]}             short dayname of rerun
+    {reruns[start]}           start time of rerun in hh:mm
+    {reruns[stop]}            stop time of rerun in hh:mm
+    {reruns[channelname]}     name of channel on which rerun occurs
+    {reruns[channelnumber]}   number of channel on which rerun occurs
+    {reruns[channelid]}       id of channel on which rerun occurs to display channel logo
+    {reruns[channellogoexists]} true if channel logo exists
+    {epgpic1avaialble}        true if first epg picture is available
+    {epgpic2avaialble}        true if first epg picture is available
+    {epgpic3avaialble}        true if first epg picture is available
+    {epgpic1path}             path of first epg picture
+    {epgpic2path}             path of second epg picture
+    {epgpic3path}             path of third epg picture
+    
+    {ismovie}                 true if event is scraped as a movie
+    Available variables for movies:
+    {movietitle}              movie title from themoviedb
+    {movieoriginalTitle}      movie original title from themoviedb
+    {movietagline}            movie tagline from themoviedb
+    {movieoverview}           movie overview from themoviedb
+    {movieadult}              true if movie is rated as adult
+    {moviebudget}             movie budget from themoviedb in $
+    {movierevenue}            movie revenue from themoviedb in $
+    {moviegenres}             movie genres from themoviedb
+    {moviehomepage}           movie homepage from themoviedb
+    {moviereleasedate}        movie release date from themoviedb
+    {movieruntime}            movie runtime from themoviedb
+    {moviepopularity}         movie popularity from themoviedb
+    {movievoteaverage}        movie vote average from themoviedb
+    {posterwidth}             width of scraped poster
+    {posterheight}            height of scraped poster
+    {posterpath}              absolute path of scraped poster
+    {fanartwidth}             width of scraped fanart
+    {fanartheight}            height of scraped fanart
+    {fanartpath}              absolute path of scraped fanart
+    {movieiscollection}       true if movie is part of a collection
+    {moviecollectionName}     name of movie collection
+    {collectionposterwidth}   width of scraped collection poster
+    {collectionposterheight}  height of scraped collection poster
+    {collectionposterpath}    absolute path of scraped collection poster
+    {collectionfanartwidth}   width of scraped collection fanart
+    {collectionfanartheight}  height of scraped collection fanart
+    {collectionfanartpath}    absolute path of scraped collection fanart
+    {actors[]}                array with movie actors
+    {actors[name]}            real name of actor
+    {actors[role]}            actor role
+    {actors[thumb]}           absolute path of scraped actor thumb
+    {actors[thumbwidth]}      width of scraped actor thumb
+    {actors[thumbheight]}     height of scraped actor thumb
+
+    {isseries}                true if event is scraped as a series
+    Available variables for series:
+    {seriesname}              name of series
+    {seriesoverview}          series overview
+    {seriesfirstaired}        first aired date 
+    {seriesnetwork}           network which produces series
+    {seriesgenre}             series genre
+    {seriesrating}            series thetvdb rating
+    {seriesstatus}            status of series (running / finished)
+    {episodetitle}            title of episode
+    {episodenumber}           number of episode
+    {episodeseason}           season of episode
+    {episodefirstaired}       first aired date of episode
+    {episodegueststars}       guest stars of episode
+    {episodeoverview}         episode overview
+    {episoderating}           user rating for episode
+    {episodeimagewidth}       episode image width
+    {episodeimageheight}      episode image height
+    {episodeimagepath}        episode image path
+    {seasonposterwidth}       episode season poster width
+    {seasonposterheight}      episode season poster height
+    {seasonposterpath}        episode season poster path
+    {seriesposter1width}      width of 1st poster
+    {seriesposter1height}     height of 1st poster
+    {seriesposter1path}       path of 1st poster
+    {seriesposter2width}      width of 2nd poster
+    {seriesposter2height}     height of 2nd poster
+    {seriesposter2path}       path of 2nd poster
+    {seriesposter3width}      width of 3rd poster
+    {seriesposter3height}     height of 3rd poster
+    {seriesposter3path}       path of 3rd poster
+    {seriesfanart1width}      width of 1st fanart
+    {seriesfanart1height}     height of 1st fanart
+    {seriesfanart1path}       path of 1st fanart
+    {seriesfanart2width}      width of 2nd fanart
+    {seriesfanart2height}     height of 2nd fanart
+    {seriesfanart2path}       path of 2nd fanart
+    {seriesfanart3width}      width of 3rd fanart
+    {seriesfanart3height}     height of 3rd fanart
+    {seriesfanart3path}       path of 3rd fanart
+    {seriesbanner1width}      width of 1st banner
+    {seriesbanner1height}     height of 1st banner
+    {seriesbanner1path}       path of 1st banner
+    {seriesbanner2width}      width of 2nd banner
+    {seriesbanner2height}     height of 2nd banner
+    {seriesbanner2path}       path of 2nd banner
+    {seriesbanner3width}      width of 3rd banner
+    {seriesbanner3height}     height of 3rd banner
+    {seriesbanner3path}       path of 3rd fanart
+    {actors[]}                array with movie actors
+    {actors[name]}            real name of actor
+    {actors[role]}            actor role
+    {actors[thumb]}           absolute path of scraped actor thumb
+    {actors[thumbwidth]}      width of scraped actor thumb
+    {actors[thumbheight]}     height of scraped actor thumb
+    -->
+
+    <!-- a tab is one scrolling area, just position and draw as inside a normal area -->
+    <!-- just define as many tabs as needed -->
+
+    <!-- TAB EPGINFO -->
+    <tab name="EPG Info" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawtextbox condition="not{isseries}++not{ismovie}" x="0" y="10" width="96%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{description}" />
+        <drawimage condition="{isseries}" name="seriesposter" imagetype="image" path="{seriesposter1path}" x="{areawidth}*0.76" y="10" width="{areawidth}*0.24" height="{areawidth} * 0.24 * {seriesposter1height} / {seriesposter1width}"/>
+        <drawimage condition="{ismovie}" name="movieposter" imagetype="image" path="{posterpath}" x="{areawidth}*0.76" y="10" width="{areawidth}*0.24" height="{areawidth} * 0.24 * {posterheight} / {posterwidth}" />
+        <drawtextbox condition="{isseries}" x="0" y="10" width="96%" float="topright" floatwidth="{width(seriesposter)} + 10" floatheight="{height(seriesposter)} + 20" font="{regular}" fontsize="6%" color="{clrWhite}" text="{description}" />
+        <drawtextbox condition="{ismovie}" x="0" y="10" width="96%" float="topright" floatwidth="{width(movieposter)} + 10" floatheight="{height(movieposter)} + 20" font="{regular}" fontsize="6%" color="{clrWhite}" text="{description}" />
+    </tab>
+    <!-- TAB RERUNS -->
+    <tab condition="{hasreruns}" name="{tr(reruns)}" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawtext align="center" y="0" name="title" font="{regular}" fontsize="10%" color="{clrWhite}" text="{tr(rerunsof)} '{title}'" />
+        <loop name="reruns" x="0" y="{height(title)} + 10" width="{areawidth}" orientation="vertical">
+            <drawimage name="logo" condition="{reruns[channellogoexists]}" imagetype="channellogo" path="{reruns[channelid]}" x="0" width="8%" height="8%" />
+            <drawtext name="channelname" condition="not{reruns[channellogoexists]}" x="-5" font="{regular}" fontsize="10%" color="{clrWhite}" text="{reruns[channelname]}" />
+            <drawtext condition="{reruns[channellogoexists]}" x="{width(logo)}+20" y="-5" width="{areawidth} - {width(logo)} - 20" font="{regular}" fontsize="8%" color="{clrWhite}" text="{reruns[day]} {reruns[date]} {reruns[start]} - {reruns[stop]}: {reruns[title]}  {reruns[shorttext]}" />
+            <drawtext condition="not{reruns[channellogoexists]}" x="{width(channelname)}+20" y="-5" width="{areawidth} - {width(logo)} - 20" font="{regular}" fontsize="8%" color="{clrWhite}" text="{reruns[day]} {reruns[date]} {reruns[start]} - {reruns[stop]}: {reruns[title]}  {reruns[shorttext]}" />
+        </loop>
+    </tab>
+    <!-- TAB ACTORS -->
+    <tab condition="{isseries}||{ismovie}" name="{tr(actors)}" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawtext align="center" name="title" y="0" font="{regular}" fontsize="15%" color="{clrWhite}" text="{tr(actors)}" />
+        <loop name="actors" x="0" y="{height(title)} + 10" width="{areawidth}" orientation="horizontal" columnwidth="{areawidth}/5" rowheight="{areawidth}/5*1.8" overflow="linewrap">
+            <drawimage name="thumb" imagetype="image" path="{actors[thumb]}" x="20" y="0" width="{columnwidth}-40" height="{columnwidth} * {actors[thumbheight]} / {actors[thumbwidth]} - 40 * {actors[thumbheight]} / {actors[thumbwidth]}"/>
+            <drawtext align="center" y="{height(thumb)} + 10" width="{columnwidth}" name="actorname" font="{regular}" fontsize="7%" color="{clrWhite}" text="{actors[name]}" />
+            <drawtext align="center" y="{height(thumb)} + 10 + {height(actorname)}" width="{columnwidth}" font="{regular}" fontsize="7%" color="{clrWhite}" text="{actors[role]}" />
+        </loop>
+    </tab>
+    <!-- TAB TVDBINFO -->
+    <tab condition="{isseries}" name="TvDBInfo" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="banner" imagetype="image" path="{seriesbanner1path}" align="center" y="10" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner1height} / {seriesbanner1width}"/>
+        <drawimage name="episodeimage" imagetype="image" path="{episodeimagepath}" x="{areawidth}*0.7" y="{height(banner)} + 20" width="{areawidth}*0.3" height="{areawidth} * 0.3 * {episodeimageheight} / {episodeimagewidth}"/>
+        <drawimage name="seasonposter" imagetype="image" path="{seasonposterpath}" x="{areawidth}*0.7" y="{height(banner)} + {height(episodeimage)} + 30" width="{areawidth}*0.3" height="{areawidth} * 0.3 * {seasonposterheight} / {seasonposterwidth}"/>
+        <drawtextbox x="0" y="{height(banner)} + 20" width="96%" float="topright" floatwidth="{width(seasonposter)} + 10" floatheight="{height(episodeimage)} + {height(seasonposter)} + 30" font="{regular}" fontsize="6%" color="{clrWhite}" text="{tr(episode)}: {episodetitle} ({tr(season)} {episodeseason}, {tr(episode)} {episodenumber}) &#10;&#10;{episodeoverview}|&#10;&#10;{tr(gueststars)}: {episodegueststars}||&#10;&#10;{tr(seriesfirstaired)}: {seriesfirstaired}||&#10;{tr(episodefirstaired)}: {episodefirstaired}||&#10;{tr(network)}: {seriesnetwork}||&#10;{tr(genre)}: {seriesgenre}||&#10;{tr(status)}: {seriesstatus}||&#10;{tr(rating)}: {seriesrating}||&#10;{tr(episoderating)}: {episoderating}&#10;|{seriesoverview}&#10;" />
+    </tab>
+    <!-- TAB SERIESGALERY -->
+    <tab condition="{isseries}" name="{tr(seriesgalery)}" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="banner1" imagetype="image" path="{seriesbanner1path}" align="center" y="10" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner1height} / {seriesbanner1width}"/>
+        <drawimage name="fanart1" imagetype="image" path="{seriesfanart1path}" align="center" y="{posy(banner1)} + {height(banner1)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesfanart1height} / {seriesfanart1width}"/>
+        <drawimage name="banner2" imagetype="image" path="{seriesbanner2path}" align="center" y="{posy(fanart1)} + {height(fanart1)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner2height} / {seriesbanner2width}"/>
+        <drawimage name="fanart2" imagetype="image" path="{seriesfanart2path}" align="center" y="{posy(banner2)} + {height(banner2)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesfanart2height} / {seriesfanart2width}"/>
+        <drawimage name="banner3" imagetype="image" path="{seriesbanner3path}" align="center" y="{posy(fanart2)} + {height(fanart2)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner3height} / {seriesbanner3width}"/>
+        <drawimage name="fanart3" imagetype="image" path="{seriesfanart3path}" align="center" y="{posy(banner3)} + {height(banner3)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesfanart3height} / {seriesfanart3width}"/>
+        <drawimage name="poster1" imagetype="image" path="{seriesposter1path}" align="center" y="{posy(fanart3)} + {height(fanart3)} + 20" width="{areawidth}*0.5" height="{areawidth} * 0.5 * {seriesposter1height} / {seriesposter1width}"/>
+        <drawimage name="poster2" imagetype="image" path="{seriesposter2path}" align="center" y="{posy(poster1)} + {height(poster1)} + 20" width="{areawidth}*0.5" height="{areawidth} * 0.5 * {seriesposter2height} / {seriesposter2width}"/>
+        <drawimage name="poster3" imagetype="image" path="{seriesposter3path}" align="center" y="{posy(poster2)} + {height(poster2)} + 20" width="{areawidth}*0.5" height="{areawidth} * 0.5 * {seriesposter3height} / {seriesposter3width}"/>
+    </tab>
+    <!-- TAB MOVIEDBINFO -->
+    <tab condition="{ismovie}" name="MovieDBInfo" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="poster" imagetype="image" path="{posterpath}" x="70%" y="10" width="{areawidth}*0.3" height="{areawidth} * 0.3 * {posterheight} / {posterwidth}"/>
+        <drawtextbox x="0" y="10" width="96%" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 20" font="{regular}" fontsize="8%" color="{clrWhite}" text="{tr(originaltitle)}: {movieoriginalTitle}&#10;&#10;|{tr(genre)}: {moviegenres}&#10;&#10;||{movietagline}&#10;&#10;|{movieoverview}&#10;&#10;|{tr(budget)}: {moviebudget}&#10;||{tr(revenue)}: {movierevenue}&#10;&#10;||{tr(adult)}: {movieadult}&#10;||{tr(releasedate)}: {moviereleasedate}&#10;||{tr(runtime)}: {movieruntime} min&#10;||&#10;{tr(popularity)}: {moviepopularity}&#10;||&#10;{tr(voteaverage)}: {movievoteaverage}&#10;||&#10;{tr(homepage)}: {moviehomepage}|&#10;" />
+    </tab>
+    <!-- TAB MOVIEGALERY -->
+    <tab condition="{ismovie}" name="{tr(moviegalery)}" x="{areawidth}*0.0125+15" y="6%" width="{areawidth}*0.9675 - 30" height="{areaheight}*0.64 - {areawidth}*0.0125" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="fanart" imagetype="image" path="{fanartpath}" align="center" y="10" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {fanartheight} / {fanartwidth}"/>
+        <drawimage name="poster" imagetype="image" path="{posterpath}" align="center" y="{height(fanart)} + 30" width="{areawidth}*0.6" height="{areawidth} * 0.6 * {posterheight} / {posterwidth}"/>
+        <drawimage condition="{movieiscollection}" name="collectionfanart" imagetype="image" path="{collectionfanartpath}" align="center" y="{posy(poster)} + {height(poster)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {collectionfanartheight} / {collectionfanartwidth}"/>
+        <drawimage condition="{movieiscollection}" name="collectionposter" imagetype="image" path="{collectionposterpath}" align="center" y="{posy(collectionfanart)} + {height(collectionfanart)} + 20" width="{areawidth}*0.6" height="{areawidth} * 0.6 * {collectionposterheight} / {collectionposterwidth}"/>
+    </tab>
+
+    <!-- Available Variables tablabels:
+    {currenttab}            name of currently active tab
+    {prevtab}               name of prev tab
+    {nexttab}               name of next tab
+    {tabs[]}                array with available tab labels
+    {tabs[title]}           title of tab
+    {tabs[current]}         true if tab is displayed currently
+    -->
+    <tablabels>
+        <area x="0" y="0" width="100%" height="4%" layer="2">
+            <drawimage imagetype="skinpart" path="tvguide_grid_line_horizontal" align="center" y="{areaheight} - 3" width="100%" height="3" />
+            <loop name="tabs" x="0" y="0" orientation="horizontal">
+                <drawrectangle condition="{tabs[current]}" x="{areawidth}*0.0125" y="1" width="{width(label)}" height="{areaheight} - 5" color="{clrBorder}" />
+                <drawrectangle condition="not{tabs[current]}" x="{areawidth}*0.0125" y="1" width="{width(label)}" height="{areaheight} - 5" color="{clrBorder}" />
+                <drawrectangle condition="not{tabs[current]}" x="{areawidth}*0.0125 + 2" y="2" width="{width(label)} - 4" height="{areaheight} - 5  - 4" color="{clrBackground}" />
+                <drawtext name="label" x="{areawidth}*0.0125" valign="center" font="{regular}" fontsize="95%" color="{clrWhite}" text="  {tabs[title]}  " />
+            </loop>
+        </area>
+    </tablabels>
+
+</displayplugin>

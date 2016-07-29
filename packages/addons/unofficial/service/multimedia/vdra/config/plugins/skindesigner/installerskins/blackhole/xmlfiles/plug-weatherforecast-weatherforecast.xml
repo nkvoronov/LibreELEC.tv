@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE menuplugin SYSTEM "../../../dtd/displaymenuplugin.dtd">
+
+<menuplugin x="0" y="0" width="100%" height="100%" fadetime="0" scaletvx="55%" scaletvy="10%" scaletvwidth="40%" scaletvheight="40%" >
+    
+    <menuitems x="1%" y="10%" orientation="vertical" width="98%" height="80%" align="center" numlistelements="8">
+        <!-- Available Variables:
+        {current}
+        {menuitemtext}                      "Current Weather", "Next 48 hours" or "Next 7 days"
+        {iscurrent}                         true if item is "Current Weather"
+        {ishourly}                          true if item is "Next 48 hours"
+        {isdaily}                           true if item is "Next 7 days"
+        {city}                              configured city to display weather for
+        {latitude}                          latitude
+        {longitude}                         longitude
+        
+        If {iscurrent} is true, the following tokens are set:
+        {timestamp}                         timestamp in hh:mm dd.mm of current forecast
+        {temperature}                       current temperature in °C
+        {apparenttemperature}               apparent (felt) temperature in °C
+        {summary}                           short summary of current weather
+        {icon}                              path to use in <drawimage> to display appropriate weather icon
+        {precipitationintensity}            precipitation intensity in l/qm    
+        {precipitationprobability}          precipitation probability in %
+        {precipitationtype}                 precipitation type (snow, ...)
+        {humidity}                          humidity in %
+        {windspeed}                         wind speed in km/h
+        {windbearing}                       wind bearing in degrees
+        {windbearingstring}                 wind bearing as human readable string (e.g NE, NNE, ...)
+        {visibility}                        visibility in km
+        {cloudcover}                        cloud cover in %
+        {pressure}                          pressure in HPa
+        {ozone}                             Ozone in DU (Dobson Unit)
+
+        If {ishourly} is true, the following tokens are set:
+        {summary}                           short summary of weather
+        {icon}                              path to use in <drawimage> to display appropriate weather icon
+
+        {hourly[]}                          array with up to 48 hourly forecasts
+        {hourly[num]}                       number of forecast, starting at 1
+        {hourly[timestamp]}                 timestamp in hh:mm
+        {hourly[temperature]}               temperature in °C
+        {hourly[apparenttemperature]}       apparent (felt) temperature in °C
+        {hourly[summary]}                   short summary
+        {hourly[icon]}                      path to use in <drawimage> to display appropriate weather icon
+        {hourly[precipitationintensity]}    precipitation intensity in l/qm    
+        {hourly[precipitationprobability]}  precipitation probability in %
+        {hourly[precipitationtype]}         precipitation type (snow, ...)
+        {hourly[humidity]}                  humidity in %
+        {hourly[windspeed]}                 wind speed in km/h
+        {hourly[windbearing]}               wind bearing in degrees
+        {hourly[windbearingstring]}         wind bearing as human readable string (e.g NE, NNE, ...)
+        {hourly[visibility]}                visibility in km
+        {hourly[cloudcover]}                cloud cover in %
+        {hourly[pressure]}                  pressure in HPa
+        {hourly[ozone]}                     Ozone in DU (Dobson Unit)
+
+        If {isdaily} is true, the following tokens are set:
+        {summary}                           short summary of weather
+        {icon}                              path to use in <drawimage> to display appropriate weather icon
+
+        {daily[day]}                        day of forecast in dd.mm
+        {daily[dayname]}                    three letter abbrivated day name
+        {daily[temperaturemin]}             minimum temperature at this day in °C
+        {daily[temperaturemintime]}         time of minimum temperature
+        {daily[temperaturemax]}             maximum temperature at this day in °C
+        {daily[temperaturemaxtime]}         time of maximum temperature
+        {daily[summary]}                    short summary
+        {daily[icon]}                       path to use in <drawimage> to display appropriate weather icon
+        {daily[precipitationintensity]}     precipitation intensity in l/qm    
+        {daily[precipitationprobability]}   precipitation probability in %
+        {daily[precipitationtype]}          precipitation type (snow, ...)
+        {daily[humidity]}                   humidity in %
+        {daily[windspeed]}                  wind speed in km/h
+        {daily[windbearing]}                wind bearing in degrees
+        {daily[windbearingstring]}          wind bearing as human readable string (e.g NE, NNE, ...)
+        {daily[visibility]}                 visibility in km
+        {daily[cloudcover]}                 cloud cover in %
+        {daily[pressure]}                   pressure in HPa
+        {daily[ozone]}                      Ozone in DU (Dobson Unit)
+        -->
+        <listelement>
+            <!-- Background -->
+            <area x="0" width="51%" layer="2">
+                <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="0" width="100%" height="100%"/>
+                <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="0" width="100%" height="100%"/>
+            </area>   
+            <area x="0" width="51%" layer="3">
+                <drawtext x="10" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{menuitemtext}" />
+            </area>
+        </listelement>
+        <!-- additional element which is drawn for current element -->
+        <!-- All Tokens from listelement are available -->
+        <currentelement delay="100" fadetime="0">
+            <area x="0" y="52%" width="100%" height="48%" layer="2">
+                <drawimage imagetype="skinpart" path="displaymenucurrentback" x="0" y="0" width="100%" height="100%"/>
+            </area>
+           <area condition="{iscurrent}" x="1%" y="53%" width="98%" height="46%" layer="3">
+                <drawtext x="0" y="0" font="{semibold}" fontsize="20%" color="{clrWhite}" text="{city} {timestamp}" />
+                <drawtext x="0" y="20%" font="{semibold}" fontsize="15%" color="{clrWhite}" text="{summary}" />
+                <drawimage name="weathericon" imagetype="icon" path="{icon}" align="right" y="0" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+                <drawtext name="temperature" x="{areawidth} - {width(weathericon)} - {width(temperature)} - 15" y="0" font="{regular}" fontsize="40%" color="{clrWhite}" text="{temperature}°C" />
+                <drawtext x="0" y="40%" font="{regular}" fontsize="15%" color="{clrWhite}" text="{tr(apparenttemp)}: {apparenttemperature} °C" />
+                <drawtext x="0" y="55%" font="{regular}" fontsize="15%" color="{clrWhite}" text="{tr(precipitationprobability)}: {precipitationprobability} %, {tr(precipitationintensity)}: {precipitationintensity} l/qm" />
+                <drawtext x="0" y="70%" font="{regular}" fontsize="15%" color="{clrWhite}" text="{tr(humidity)}: {humidity} %, {tr(cloudcover)}: {cloudcover} %" />
+                <drawtext x="0" y="85%" font="{regular}" fontsize="15%" color="{clrWhite}" text="{tr(windspeed)}: {windspeed} km/h, {tr(windbearing)}: {windbearingstring} ({windbearing} °)" />
+            </area>
+            <area condition="{ishourly}" x="1%" y="53%" width="98%" height="46%" layer="3">
+                <loop name="hourly" x="0" y="0" orientation="horizontal" columnwidth="{areawidth}/8" rowheight="{areaheight}" overflow="cut">
+                    <drawtext align="center" y="0" font="{semibold}" fontsize="15%"  color="{clrWhite}" text="{hourly[timestamp]}" />
+                    <drawimage imagetype="icon" path="{hourly[icon]}" align="center" y="15%" width="{columnwidth}*0.8" height="{columnwidth}*0.8"/>
+                    <drawtext align="center" y="{columnwidth}*0.8 + {rowheight}*0.15" font="{regular}" fontsize="15%" color="{clrWhite}" text="{hourly[temperature]}°C" />
+                    <drawtextbox x="0" y="{columnwidth}*0.8 + {rowheight}*0.3" width="{columnwidth}" maxlines="2" align="center" font="{regular}" fontsize="10%" color="{clrWhite}" text="{hourly[summary]}" />
+                    <drawimage imagetype="skinpart" path="line_vertical" x="{columnwidth}" y="0" width="2" height="{rowheight}"/>
+                </loop>
+            </area>
+            <area condition="{isdaily}" x="1%" y="53%" width="98%" height="46%" layer="3">
+                <loop name="daily" x="0" y="0" orientation="horizontal" columnwidth="{areawidth}/7" rowheight="{areaheight}" overflow="cut">
+                    <drawtext align="center" y="0" font="{semibold}" fontsize="14%"  color="{clrWhite}" text="{daily[dayname]}" />
+                    <drawtext align="center" y="10%" font="{semibold}" fontsize="14%"  color="{clrWhite}" text="{daily[day]}" />
+                    <drawimage imagetype="icon" path="{daily[icon]}" align="center" y="25%" width="{columnwidth}*0.6" height="{columnwidth}*0.6"/>
+                    <drawtext align="center" y="{rowheight}*0.65" font="{regular}" fontsize="13%" color="{clrWhite}" text="{daily[temperaturemin]}°C - {daily[temperaturemax]}°C" />
+                    <drawtextbox x="{columnwidth}*0.02" y="{rowheight}*0.80" width="{columnwidth}*0.96" maxlines="2" align="center" font="{regular}" fontsize="8%" color="{clrWhite}" text="{daily[summary]}" />
+                    <drawimage imagetype="skinpart" path="line_vertical" x="{columnwidth}" y="0" width="2" height="{rowheight}"/>
+                </loop>
+            </area>
+        </currentelement>
+    </menuitems>
+</menuplugin>

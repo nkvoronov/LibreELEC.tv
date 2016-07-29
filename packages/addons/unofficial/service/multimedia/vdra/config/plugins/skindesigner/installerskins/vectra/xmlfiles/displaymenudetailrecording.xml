@@ -1,0 +1,239 @@
+<menudetailedrecording x="0" y="0" width="100%" height="100%" fadetime="0">
+    <background>
+        <area x="0" y="0" width="100%" height="100%" layer="1">
+            <fill color="{clrTransBlack}" />
+            <drawrectangle x="0" y="0" width="100%" height="10%" color="{clrBackground}" />
+        </area>
+        <area x="0" y="0" width="100%" height="10%" layer="2">
+            <drawimage imagetype="skinpart" path="headertop" x="0" y="0" width="100%" height="100%"/>
+	    <drawimage cache="true" imagetype="skinpart" path="menuclockback" x="{areawidth}*0.99 - {areaheight}" y="0" width="{areaheight}" height="100%"/>
+        </area>
+    </background>
+
+    <scrollbar>
+        <area x="98%" y="25%" width="1%" height="60%" layer="2">
+            <fill color="{clrBorder}" />
+            <drawrectangle x="1" y="2" width="{areawidth} - 2" height="{areaheight} - 4" color="{clrTransparent}" />
+            <drawrectangle x="2" y="4 + {areaheight} * {offset} / 1000" width="{areawidth} - 4" height="{areaheight} * {height} / 1000 - 8" color="{clrProgressbar}" />
+        </area>
+        <area x="98%" y="25%" width="1%" height="60%" layer="3">
+             <drawimage cache="true" imagetype="skinpart" path="verticalbartop" x="2" y="4 + {areaheight} * {offset} / 1000" width="{areawidth} - 4" height="{areaheight} * {height} / 1000 - 8"/>
+        </area>
+     </scrollbar>
+    <!-- Available Variables in detailheader elements:
+    {name}                    name of recording
+    {shorttext}               shorttext of recording
+    {date}                    date of recording in dd.mm.yy
+    {time}                    time of current event in hh:mm
+    {duration}                real duration of recording in minutes
+    {durationevent}           duration of according event in minutes
+    {ismovie}                 true if event is scraped as a movie
+    {isseries}                true if event is scraped as a series
+    {posteravailable}         true if a poster is available
+    {posterwidth}             width of scraped poster
+    {posterheight}            height of scraped poster
+    {posterpath}              absolute path of scraped poster
+    {banneravailable}         true if a banner is available
+    {bannerwidth}             width of banner
+    {bannerheight}            height of banner
+    {bannerpath}              path of banner
+    {recimgavailable}         true if a recording image is available in the recording path
+    {recimgpath}              path of rec image
+    -->
+    <detailheader>
+        <area x="1%" y="10%" width="98%" height="15%" layer="2">
+            <fill color="{clrTransBlack}" />
+        </area>
+        <area x="1%" y="10%" width="98%" height="15%" layer="3">
+            <drawimage condition="{isseries}++{banneravailable}++not{recimgavailable}" imagetype="image" path="{bannerpath}" x="{areawidth} - {areawidth}/3 - 10" valign="center" width="{areawidth}/3" height="{areawidth}/3 * {bannerheight} / {bannerwidth}"/>
+            <drawimage condition="{ismovie}++{posteravailable}++not{recimgavailable}" imagetype="image" path="{posterpath}" x="{areawidth} - {areaheight}*8/10" valign="center" width="{areaheight}*8 / 10 * {posterheight} / {posterwidth}" height="{areaheight}*8 / 10"/>
+            <drawimage condition="{recimgavailable}" imagetype="image" path="{recimgpath}" x="{areawidth} - {areaheight}*8/10 * 174 / 130" valign="center" width="{areaheight}*8/10 * 174 / 130" height="{areaheight}*8 / 10"/>
+            <drawtext name="title" x="20" valign="center" font="{regular}" fontsize="35%" color="{clrWhite}" text="{name}" />
+            <drawtext name="datetime" x="20" y="{posy(title)} - {height(datetime)}" font="{regular}" fontsize="25%" color="{clrWhite}" text="{date} {time} ({duration} mins)" />
+            <drawtext name="shorttext" x="20" y="{posy(title)} + {height(title)}" font="{regular}" fontsize="25%" color="{clrWhite}" text="{shorttext}" />
+        </area>
+    </detailheader>
+    <!-- Available Variables in tab elements:
+    {name}                    title of recording
+    {shorttext}               shorttext of recording
+    {description}             description of recording
+    {date}                    date of recording in dd.mm.yy
+    {time}                    time of recording in hh:mm
+    {duration}                real duration of recording in minutes
+    {durationevent}           duration of according event in minutes
+
+    {recordingsize}           size of recording (automatically in GB / MB)
+    {recordingsizecutted}     size of cutted recording (automatically in GB / MB)
+    {recordinglength}         length of recording (in hh::mm:ss)
+    {recordinglengthcutted}   length of cutted recording (in hh::mm:ss)
+    {recordingbitrate}        bitrate of recording (in MBit/s)
+    {recordingformat}         format of recording (TS / PS)
+    {searchtimer}             name of accordign searchtimer (if available)
+    
+    {recimg1avaialble}        true if first recording image is available
+    {recimg2avaialble}        true if first recording image is available
+    {recimg3avaialble}        true if first recording image is available
+    {recimg1path}             path of first recording image
+    {recimg2path}             path of second recording image
+    {recimg3path}             path of third recording image
+
+    {ismovie}                 true if event is scraped as a movie
+    Available variables for movies:
+    {movietitle}              movie title from themoviedb
+    {movieoriginalTitle}      movie original title from themoviedb
+    {movietagline}            movie tagline from themoviedb
+    {movieoverview}           movie overview from themoviedb
+    {movieadult}              true if movie is rated as adult
+    {moviebudget}             movie budget from themoviedb in $
+    {movierevenue}            movie revenue from themoviedb in $
+    {moviegenres}             movie genres from themoviedb
+    {moviehomepage}           movie homepage from themoviedb
+    {moviereleasedate}        movie release date from themoviedb
+    {movieruntime}            movie runtime from themoviedb
+    {moviepopularity}         movie popularity from themoviedb
+    {movievoteaverage}        movie vote average from themoviedb
+    {posterwidth}             width of scraped poster
+    {posterheight}            height of scraped poster
+    {posterpath}              absolute path of scraped poster
+    {fanartwidth}             width of scraped fanart
+    {fanartheight}            height of scraped fanart
+    {fanartpath}              absolute path of scraped fanart
+    {movieiscollection}       true if movie is part of a collection
+    {moviecollectionName}     name of movie collection
+    {collectionposterwidth}   width of scraped collection poster
+    {collectionposterheight}  height of scraped collection poster
+    {collectionposterpath}    absolute path of scraped collection poster
+    {collectionfanartwidth}   width of scraped collection fanart
+    {collectionfanartheight}  height of scraped collection fanart
+    {collectionfanartpath}    absolute path of scraped collection fanart
+    {actors[]}                array with movie actors
+    {actors[name]}            real name of actor
+    {actors[role]}            actor role
+    {actors[thumb]}           absolute path of scraped actor thumb
+    {actors[thumbwidth]}      width of scraped actor thumb
+    {actors[thumbheight]}     height of scraped actor thumb
+
+    {isseries}                true if event is scraped as a series
+    Available variables for series:
+    {seriesname}              name of series
+    {seriesoverview}          series overview
+    {seriesfirstaired}        first aired date 
+    {seriesnetwork}           network which produces series
+    {seriesgenre}             series genre
+    {seriesrating}            series thetvdb rating
+    {seriesstatus}            status of series (running / finished)
+    {episodetitle}            title of episode
+    {episodenumber}           number of episode
+    {episodeseason}           season of episode
+    {episodefirstaired}       first aired date of episode
+    {episodegueststars}       guest stars of episode
+    {episodeoverview}         episode overview
+    {episoderating}           user rating for episode
+    {episodeimagewidth}       episode image width
+    {episodeimageheight}      episode image height
+    {episodeimagepath}        episode image path
+    {seasonposterwidth}       episode season poster width
+    {seasonposterheight}      episode season poster height
+    {seasonposterpath}        episode season poster path
+    {seriesposter1width}      width of 1st poster
+    {seriesposter1height}     height of 1st poster
+    {seriesposter1path}       path of 1st poster
+    {seriesposter2width}      width of 2nd poster
+    {seriesposter2height}     height of 2nd poster
+    {seriesposter2path}       path of 2nd poster
+    {seriesposter3width}      width of 3rd poster
+    {seriesposter3height}     height of 3rd poster
+    {seriesposter3path}       path of 3rd poster
+    {seriesfanart1width}      width of 1st fanart
+    {seriesfanart1height}     height of 1st fanart
+    {seriesfanart1path}       path of 1st fanart
+    {seriesfanart2width}      width of 2nd fanart
+    {seriesfanart2height}     height of 2nd fanart
+    {seriesfanart2path}       path of 2nd fanart
+    {seriesfanart3width}      width of 3rd fanart
+    {seriesfanart3height}     height of 3rd fanart
+    {seriesfanart3path}       path of 3rd fanart
+    {seriesbanner1width}      width of 1st banner
+    {seriesbanner1height}     height of 1st banner
+    {seriesbanner1path}       path of 1st banner
+    {seriesbanner2width}      width of 2nd banner
+    {seriesbanner2height}     height of 2nd banner
+    {seriesbanner2path}       path of 2nd banner
+    {seriesbanner3width}      width of 3rd banner
+    {seriesbanner3height}     height of 3rd banner
+    {seriesbanner3path}       path of 3rd fanart
+    {actors[]}                array with movie actors
+    {actors[name]}            real name of actor
+    {actors[role]}            actor role
+    {actors[thumb]}           absolute path of scraped actor thumb
+    {actors[thumbwidth]}      width of scraped actor thumb
+    {actors[thumbheight]}     height of scraped actor thumb
+    -->
+
+    <!-- a tab is one scrolling area, just position and draw as inside a normal area -->
+    <!-- just define as many tabs as needed -->
+    <tab name="Info" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawtextbox condition="not{isseries}++not{ismovie}" x="0" y="0" width="96%" font="{regular}" fontsize="8%" color="{clrWhite}" text="{description}" />
+        <drawimage condition="{isseries}" name="postertop" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*0.7" y="5" width="{areawidth}/3*0.9" height="{areawidth}/2.88*0.9 * {seriesposter1height} / {seriesposter1width}" />
+        <drawimage condition="{ismovie}" name="postertop" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*0.7" y="5" width="{areawidth}/3*0.9" height="{areawidth}/2.88*0.9 * {posterheight} / {posterwidth}" />
+        <drawimage condition="{isseries}" name="seriesposter" imagetype="image" path="{seriesposter1path}" x="{posx(postertop)} + {width(postertop)}*0.03" y="{posy(postertop)} + {height(postertop)}*0.085" height="{height(postertop)}*0.9" width="{width(postertop)}*0.94" />
+        <drawimage condition="{ismovie}" name="movieposter" imagetype="image" path="{posterpath}" x="{posx(postertop)} + {width(postertop)}*0.03" y="{posy(postertop)} + {height(postertop)}*0.085" height="{height(postertop)}*0.9" width="{width(postertop)}*0.94" />
+        <drawtextbox condition="{isseries}||{ismovie}" x="0" y="0" width="96%" float="topright" floatwidth="{width(postertop)} + 10" floatheight="{height(postertop)} + 20" font="{regular}" fontsize="6%" color="{clrWhite}" text="{description}" />
+    </tab>
+    <tab name="{tr(recinfo)}" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawtext align="center" y="0" name="title" font="{regular}" fontsize="10%" color="{clrWhite}" text="{tr(recinfo)}" />
+        <drawtextbox x="0" y="{height(title)} + 20" width="96%" font="{regular}" fontsize="8%" color="{clrWhite}" text="{tr(recsize)}: {recordingsize}&#10;{tr(recsizecutted)}: {recordingsizecutted}&#10;{tr(reclength)}: {recordinglength}&#10;{tr(reclengthcutted)}: {recordinglengthcutted}&#10;{tr(bitrate)}: {recordingbitrate}&#10;{tr(format)}: {recordingformat}&#10;{tr(searchtimer)}: {searchtimer}&#10;" />
+    </tab>
+    <tab condition="{isseries}||{ismovie}" name="{tr(actors)}" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawtext align="center" name="title" y="0" font="{regular}" fontsize="10%" color="{clrWhite}" text="{tr(actors)}" />
+        <loop name="actors" x="0" y="{height(title)} + 10" width="{areawidth}" orientation="horizontal" columnwidth="{areawidth}/5" rowheight="{areawidth}/5*1.8" overflow="linewrap">
+            <drawimage name="thumb" imagetype="image" path="{actors[thumb]}" x="20" y="0" width="{columnwidth}-40" height="{columnwidth} * {actors[thumbheight]} / {actors[thumbwidth]} - 40 * {actors[thumbheight]} / {actors[thumbwidth]}"/>
+            <drawtext align="center" y="{height(thumb)} + 10" width="{columnwidth}" name="actorname" font="{regular}" fontsize="7%" color="{clrWhite}" text="{actors[name]}" />
+            <drawtext align="center" y="{height(thumb)} + 10 + {height(actorname)}" width="{columnwidth}" font="{regular}" fontsize="7%" color="{clrWhite}" text="{actors[role]}" />
+        </loop>
+    </tab>
+    <tab condition="{isseries}" name="TvDBInfo" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="banner" imagetype="image" path="{seriesbanner1path}" align="center" y="10" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner1height} / {seriesbanner1width}"/>
+        <drawimage name="episodeimage" imagetype="image" path="{episodeimagepath}" x="{areawidth}*0.7" y="{height(banner)} + 20" width="{areawidth}*0.3" height="{areawidth} * 0.3 * {episodeimageheight} / {episodeimagewidth}"/>
+        <drawimage name="seasonposter" imagetype="image" path="{seasonposterpath}" x="{areawidth}*0.7" y="{height(banner)} + {height(episodeimage)} + 30" width="{areawidth}*0.3" height="{areawidth} * 0.3 * {seasonposterheight} / {seasonposterwidth}"/>
+        <drawtextbox x="0" y="{height(banner)} + 20" width="96%" float="topright" floatwidth="{width(seasonposter)} + 10" floatheight="{height(episodeimage)} + {height(seasonposter)} + 30" font="{regular}" fontsize="6%" color="{clrWhite}" text="{tr(episode)}: {episodetitle} ({tr(season)} {episodeseason}, {tr(episode)} {episodenumber}) &#10;&#10;{episodeoverview}|&#10;&#10;{tr(gueststars)}: {episodegueststars}||&#10;&#10;{tr(seriesfirstaired)}: {seriesfirstaired}||&#10;{tr(episodefirstaired)}: {episodefirstaired}||&#10;{tr(network)}: {seriesnetwork}||&#10;{tr(genre)}: {seriesgenre}||&#10;{tr(status)}: {seriesstatus}||&#10;{tr(rating)}: {seriesrating}||&#10;{tr(episoderating)}: {episoderating}&#10;|{seriesoverview}&#10;" />
+    </tab>
+    <tab condition="{isseries}" name="{tr(seriesgalery)}" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="banner1" imagetype="image" path="{seriesbanner1path}" align="center" y="10" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner1height} / {seriesbanner1width}"/>
+        <drawimage name="fanart1" imagetype="image" path="{seriesfanart1path}" align="center" y="{posy(banner1)} + {height(banner1)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesfanart1height} / {seriesfanart1width}"/>
+        <drawimage name="banner2" imagetype="image" path="{seriesbanner2path}" align="center" y="{posy(fanart1)} + {height(fanart1)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner2height} / {seriesbanner2width}"/>
+        <drawimage name="fanart2" imagetype="image" path="{seriesfanart2path}" align="center" y="{posy(banner2)} + {height(banner2)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesfanart2height} / {seriesfanart2width}"/>
+        <drawimage name="banner3" imagetype="image" path="{seriesbanner3path}" align="center" y="{posy(fanart2)} + {height(fanart2)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesbanner3height} / {seriesbanner3width}"/>
+        <drawimage name="fanart3" imagetype="image" path="{seriesfanart3path}" align="center" y="{posy(banner3)} + {height(banner3)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {seriesfanart3height} / {seriesfanart3width}"/>
+        <drawimage name="poster1" imagetype="image" path="{seriesposter1path}" align="center" y="{posy(fanart3)} + {height(fanart3)} + 20" width="{areawidth}*0.5" height="{areawidth} * 0.5 * {seriesposter1height} / {seriesposter1width}"/>
+        <drawimage name="poster2" imagetype="image" path="{seriesposter2path}" align="center" y="{posy(poster1)} + {height(poster1)} + 20" width="{areawidth}*0.5" height="{areawidth} * 0.5 * {seriesposter2height} / {seriesposter2width}"/>
+        <drawimage name="poster3" imagetype="image" path="{seriesposter3path}" align="center" y="{posy(poster2)} + {height(poster2)} + 20" width="{areawidth}*0.5" height="{areawidth} * 0.5 * {seriesposter3height} / {seriesposter3width}"/>
+    </tab>
+    <tab condition="{ismovie}" name="MovieDBInfo" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="poster" imagetype="image" path="{posterpath}" x="70%" y="10" width="{areawidth}*0.3" height="{areawidth} * 0.3 * {posterheight} / {posterwidth}"/>
+        <drawtextbox x="0" y="10" width="96%" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 20" font="{regular}" fontsize="6%" color="{clrWhite}" text="{tr(originaltitle)}: {movieoriginalTitle}&#10;&#10;|{tr(genre)}: {moviegenres}&#10;&#10;||{movietagline}&#10;&#10;|{movieoverview}&#10;&#10;|{tr(budget)}: {moviebudget}$&#10;||{tr(revenue)}: {movierevenue}$&#10;&#10;||{tr(adult)}: {movieadult}&#10;||{tr(releasedate)}: {moviereleasedate}&#10;||{tr(runtime)}: {movieruntime} min&#10;||&#10;{tr(popularity)}: {moviepopularity}&#10;||&#10;{tr(voteaverage)}: {movievoteaverage}&#10;||&#10;{tr(homepage)}: {moviehomepage}|&#10;" />
+    </tab>
+    <tab condition="{ismovie}" name="{tr(moviegalery)}" x="2%" y="25%" width="94%" height="60%" layer="2" scrollheight="{areaheight}/4">
+        <drawimage name="fanart" imagetype="image" path="{fanartpath}" align="center" y="10" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {fanartheight} / {fanartwidth}"/>
+        <drawimage name="poster" imagetype="image" path="{posterpath}" align="center" y="{height(fanart)} + 30" width="{areawidth}*0.6" height="{areawidth} * 0.6 * {posterheight} / {posterwidth}"/>
+        <drawimage condition="{movieiscollection}" name="collectionfanart" imagetype="image" path="{collectionfanartpath}" align="center" y="{posy(poster)} + {height(poster)} + 20" width="{areawidth}*0.9" height="{areawidth} * 0.9 * {collectionfanartheight} / {collectionfanartwidth}"/>
+        <drawimage condition="{movieiscollection}" name="collectionposter" imagetype="image" path="{collectionposterpath}" align="center" y="{posy(collectionfanart)} + {height(collectionfanart)} + 20" width="{areawidth}*0.6" height="{areawidth} * 0.6 * {collectionposterheight} / {collectionposterwidth}"/>
+    </tab>
+
+    <!-- Available Variables tablabels:
+    {tabs[]}                array with available tab labels
+    {tabs[title]}           title of tab
+    {tabs[current]}         true if tab is displayed currently
+    -->
+    <tablabels>
+        <area x="1%" y="85%" width="98%" height="5%" layer="3">
+            <loop name="tabs" x="0" y="0" orientation="horizontal">
+                <drawrectangle condition="{tabs[current]}" x="0" y="0" width="{width(label)}" height="100%" color="{clrBorder}" />
+                <drawrectangle condition="not{tabs[current]}" x="0" y="0" width="{width(label)}" height="100%" color="{clrBorder}" />
+                <drawrectangle condition="not{tabs[current]}" x="2" y="2" width="{width(label)} - 4" height="{areaheight}-4" color="{clrTransparent}" />
+                <drawtext name="label" x="0" valign="center" font="{regular}" fontsize="95%" color="{clrWhite}" text="  {tabs[title]}  " />
+            </loop>
+        </area>
+    </tablabels>
+
+</menudetailedrecording>

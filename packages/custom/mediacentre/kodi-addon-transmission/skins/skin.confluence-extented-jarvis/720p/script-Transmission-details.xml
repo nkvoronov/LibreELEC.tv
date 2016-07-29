@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<window>
+	<defaultcontrol>111</defaultcontrol>
+	<allowoverlay>yes</allowoverlay>
+	<animation effect="fade" time="250">WindowOpen</animation>
+	<animation effect="fade" time="250">WindowClose</animation>
+	<coordinates>
+		<system>1</system>
+		<left>160</left>
+		<top>45</top>
+	</coordinates>
+	<controls>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>960</width>
+			<height>610</height>
+			<texture border="40">DialogBack.png</texture>
+		</control>
+		<control type="button" id="111">
+			<description>Close Window button</description>
+			<left>860</left>
+			<top>15</top>
+			<width>64</width>
+			<height>32</height>
+                        <ondown>220</ondown>
+			<label>-</label>
+			<font>-</font>
+			<onclick>PreviousMenu</onclick>
+			<texturefocus>DialogCloseButton-focus.png</texturefocus>
+			<texturenofocus>DialogCloseButton.png</texturenofocus>
+			<visible>system.getbool(input.enablemouse)</visible>
+		</control>
+		<control type="image">
+			<description>Dialog Header image</description>
+			<left>80</left>
+			<top>15</top>
+			<width>800</width>
+			<height>50</height>
+			<texture>dialogheader.png</texture>
+		</control>
+		<control type="label">
+			<description>textarea</description>
+			<left>80</left>
+			<top>22</top>
+			<width>800</width>
+			<height>30</height>
+			<visible>true</visible>
+			<label>$ADDON[script.transmission 32112]</label>
+			<font>font13_title</font>
+			<align>center</align>
+			<aligny>center</aligny>
+			<textcolor>selected</textcolor>
+			<shadowcolor>black</shadowcolor>
+		</control>
+		<control type="group">
+			<left>20</left>
+			<top>70</top>
+			<control type="label">
+				<left>0</left>
+				<top>0</top>
+				<width>140</width>
+				<height>20</height>
+				<label>$ADDON[script.transmission 32110]:</label>
+			</control>
+			<control type="label" id="1">
+				<left>140</left>
+				<top>0</top>
+				<width>800</width>
+				<height>20</height>
+				<label></label>
+			</control>
+			<control type="label">
+				<left>0</left>
+				<top>20</top>
+				<width>140</width>
+				<height>30</height>
+				<label>$ADDON[script.transmission 32111]:</label>
+			</control>
+			<control type="label" id="2">
+				<left>140</left>
+				<top>20</top>
+				<width>800</width>
+				<height>30</height>
+				<label></label>
+			</control>
+			<control type="progress" id="219">
+				<description>Torrent progress</description>
+				<left>20</left>
+				<top>70</top>
+				<width>830</width>
+				<height>30</height>
+				<visible>true</visible>
+			</control>
+			<control type="label" id="11">
+				<left>855</left>
+				<top>69</top>
+				<width>70</width>
+				<height>30</height>
+				<label></label>
+			</control>
+		</control>
+		<control type="list" id="220">
+			<description>File list</description>
+			<left>20</left>
+			<top>185</top>
+			<width>920</width>
+			<height>395</height>
+                        <onup>111</onup>
+			<viewtype label="File List">list</viewtype>
+			<orientation>vertical</orientation>
+			<visible>true</visible>
+			<itemlayout width="560" height="30">
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>920</width>
+					<height>30</height>
+					<texture border="5">button-nofocus.png</texture>
+				</control>
+				<control type="label">
+					<left>10</left>
+					<top>0</top>
+					<width>800</width>
+					<height>30</height>
+					<info>ListItem.label</info>
+				</control>
+				<control type="label">
+					<left>830</left>
+					<top>0</top>
+					<width>100</width>
+					<height>30</height>
+					<info>ListItem.Property(Progress)</info>
+				</control>
+			</itemlayout>
+			<focusedlayout width="560" height="30">
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>920</width>
+					<height>30</height>
+					<visible>Control.HasFocus(220)</visible>
+					<texture border="5">button-focus2.png</texture>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>920</width>
+					<height>30</height>
+					<visible>!Control.HasFocus(220)</visible>
+					<texture border="5">button-nofocus.png</texture>
+				</control>
+				<control type="label">
+					<left>10</left>
+					<top>0</top>
+					<width>800</width>
+					<height>30</height>
+					<info>ListItem.label</info>
+				</control>
+				<control type="label">
+					<left>830</left>
+					<top>0</top>
+					<width>100</width>
+					<height>30</height>
+					<info>ListItem.Property(Progress)</info>
+				</control>
+			</focusedlayout>
+		</control>
+	</controls>
+</window>

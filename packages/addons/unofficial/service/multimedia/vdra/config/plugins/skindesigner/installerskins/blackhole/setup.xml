@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE setup SYSTEM "../../dtd/setup.dtd">
+
+<setup>
+    <menu>
+        <parameter type="bool" name="showdevices" displaytext="{tr(showdevices)}">0</parameter>
+        <parameter type="bool" name="showposter" displaytext="{tr(showpostertext)}">1</parameter>
+        <parameter type="bool" name="showmainmenuicons" displaytext="{tr(showmainmenuicons)}">1</parameter>
+        <parameter type="int" name="fadetime" min="0" max="1000" displaytext="{tr(fadetext)}">300</parameter>
+        <parameter type="int" name="shifttimechannel" min="0" max="1000" displaytext="{tr(shiftchanneltext)}">0</parameter>
+        <parameter type="int" name="shifttimevolume" min="0" max="1000" displaytext="{tr(shiftvolumetext)}">0</parameter>
+        <parameter type="int" name="shifttimereplay" min="0" max="1000" displaytext="{tr(shiftreplaytext)}">0</parameter>
+        <parameter type="int" name="shifttimemessage" min="0" max="1000" displaytext="{tr(shiftmessagetext)}">0</parameter>
+        <parameter type="int" name="shifttimemenu" min="0" max="1000" displaytext="{tr(shiftmenutext)}">0</parameter>
+        <parameter type="int" name="nummenuitemsmain" min="6" max="30" displaytext="{tr(nummenuitemsmain)}">10</parameter>
+        <parameter type="int" name="nummenuitems" min="6" max="30" displaytext="{tr(nummenuitems)}">10</parameter>
+        <parameter type="int" name="nummenuitemsdefault" min="6" max="30" displaytext="{tr(nummenuitemsdefault)}">16</parameter>
+        <parameter type="bool" name="showsubtitle" displaytext="{tr(showsubtitle)}">1</parameter>
+    </menu>
+
+    <translations>
+        <token name="tr(showdevices)">
+            <trans lang="en_EN">Show DVB device info when switching channel</trans>
+            <trans lang="de_DE">DVB Karten Info beim Umschalten anzeigen</trans>
+            <trans lang="fi_FI">Näytä DVB-tiedot kanavanvaihdossa</trans>
+        </token>
+        <token name="tr(showpostertext)">
+            <trans lang="en_EN">Show Poster when switching channel</trans>
+            <trans lang="de_DE">Poster beim Umschalten anzeigen</trans>
+            <trans lang="fi_FI">Näytä posterit kanavanvaihdossa</trans>
+        </token>
+        <token name="tr(showmainmenuicons)">
+            <trans lang="en_EN">Show Icons in Main Menu</trans>
+            <trans lang="de_DE">Icons im Hauptmenü anzeigen</trans>
+            <trans lang="fi_FI">Näytä ikonit päävalikossa</trans>
+        </token>
+        <token name="tr(fadetext)">
+            <trans lang="en_EN">Fade time [ms]</trans>
+            <trans lang="de_DE">Einblendzeit [ms]</trans>
+            <trans lang="fi_FI">Häivytyksen kesto [ms]</trans>
+        </token>
+        <token name="tr(shiftchanneltext)">
+            <trans lang="en_EN">Shift time for Channel Display [ms]</trans>
+            <trans lang="de_DE">Einfahrzeit für Channel Display [ms]</trans>
+        </token>
+        <token name="tr(shiftvolumetext)">
+            <trans lang="en_EN">Shift time for Volume Display [ms]</trans>
+            <trans lang="de_DE">Einfahrzeit für Volume Display [ms]</trans>
+        </token>
+        <token name="tr(shiftreplaytext)">
+            <trans lang="en_EN">Shift time for Replay Display [ms]</trans>
+            <trans lang="de_DE">Einfahrzeit für Replay Display [ms]</trans>
+        </token>
+        <token name="tr(shiftmessagetext)">
+            <trans lang="en_EN">Shift time for Message Display [ms]</trans>
+            <trans lang="de_DE">Einfahrzeit für Message Display [ms]</trans>
+        </token>
+        <token name="tr(shiftmenutext)">
+            <trans lang="en_EN">Shift time for Clock in Menu [ms]</trans>
+            <trans lang="de_DE">Einfahrzeit für Uhr im Menü [ms]</trans>
+        </token>
+        <token name="tr(nummenuitemsmain)">
+            <trans lang="en_EN">Items in main menu</trans>
+            <trans lang="de_DE">Elemente im Hauptmenü</trans>
+            <trans lang="fi_FI">Valinnat päävalikossa</trans>
+        </token>
+        <token name="tr(nummenuitems)">
+            <trans lang="en_EN">Items in schedules, timers, ... menus</trans>
+            <trans lang="de_DE">Elemente in Programm, Timer, ... Menüs</trans>
+            <trans lang="fi_FI">Valinnat alivalikoissa</trans>
+        </token>
+        <token name="tr(nummenuitemsdefault)">
+            <trans lang="en_EN">Items in default list menu</trans>
+            <trans lang="de_DE">Elemente im Standard ListenMenü</trans>
+            <trans lang="fi_FI">Valinnat valikkolistoissa</trans>
+        </token>
+        <token name="tr(showsubtitle)">
+            <trans lang="en_EN">Show shorttexts in schedules menus</trans>
+            <trans lang="de_DE">Kurztexte im Programm Menü anzeigen</trans>
+            <trans lang="fi_FI">Näytä lyhyet kuvaukset ohjelmaoppaassa</trans>
+        </token>
+    </translations>
+</setup>

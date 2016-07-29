@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="280"
+   height="420"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Neues Dokument 1">
+  <defs
+     id="defs4">
+    <radialGradient
+       id="radialGradient-1"
+       r="722.62571"
+       fy="388.73516"
+       fx="3496.9578"
+       cy="388.73516"
+       cx="3496.9578"
+       gradientTransform="scale(0.78082978,1.2806889)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop3011"
+         offset="0%"
+         stop-color="#F9BE03" />
+      <stop
+         id="stop3013"
+         offset="100%"
+         stop-color="#CC7C19" />
+    </radialGradient>
+    <radialGradient
+       id="radialGradient-1-2"
+       r="722.62573"
+       fy="388.73517"
+       fx="3496.9578"
+       cy="388.73517"
+       cx="3496.9578"
+       gradientTransform="scale(0.78082978,1.2806889)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop3011-5"
+         offset="0%"
+         stop-color="#F9BE03" />
+      <stop
+         id="stop3013-8"
+         offset="100%"
+         stop-color="#CC7C19" />
+    </radialGradient>
+    <radialGradient
+       r="722.62573"
+       fy="388.73517"
+       fx="3496.9578"
+       cy="388.73517"
+       cx="3496.9578"
+       gradientTransform="matrix(0.14560777,0,0,0.23882061,2068.5676,-690.71428)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient3058"
+       xlink:href="#radialGradient-1-2"
+       inkscape:collect="always" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="-13.217746"
+     inkscape:cy="194.86305"
+     inkscape:document-units="px"
+     inkscape:current-layer="g3017"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="2564"
+     inkscape:window-height="1592"
+     inkscape:window-x="0"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-214.28569,-336.64789)">
+    <g
+       sketch:type="MSPage"
+       id="Page-1"
+       transform="translate(-2179.0664,1142.8264)"
+       style="fill:none;stroke:none">
+      <g
+         sketch:type="MSArtboardGroup"
+         id="plex-logo-light">
+        <g
+           id="g3017"
+           sketch:type="MSLayerGroup">
+          <path
+             sketch:type="MSShapeGroup"
+             id="chevron-4"
+             d="m 2476.2091,-690.71428 54.0789,0 59.6729,93.28575 -59.6729,93.28575 -54.0789,0 59.6729,-93.28575 -59.6729,-93.28575"
+             inkscape:connector-curvature="0"
+             style="fill:url(#radialGradient3058);fill-opacity:1;stroke:none" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

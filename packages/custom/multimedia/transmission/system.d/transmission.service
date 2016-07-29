@@ -1,0 +1,15 @@
+[Unit]
+Description=transmission
+ConditionPathExists=|/storage/.cache/services/transmission.conf
+After=multi-user.target
+
+[Service]
+EnvironmentFile=-/storage/.cache/services/transmission.conf
+ExecStart=/bin/sh -c 'exec /usr/bin/transmission.start'
+TimeoutStopSec=1
+Restart=always
+RestartSec=2
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target

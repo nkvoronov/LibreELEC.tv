@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+This is the config file for the Menuorg plug-in.
+
+See /usr/share/doc/vdr-plugin-menurg for examples and a full 
+description of the config file format.
+
+-->
+<menus>
+    <system name="Schedule" />
+    <system name="Channels" />
+    <system name="Timers" />
+    <system name="Recordings" />
+    <system name="Setup" />
+    <system name="Commands" />
+</menus>

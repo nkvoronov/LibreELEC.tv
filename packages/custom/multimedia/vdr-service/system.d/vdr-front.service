@@ -1,0 +1,17 @@
+[Unit]
+Description=vdr-front
+ConditionPathExists=|/storage/.cache/services/vdr-front.run
+After=multi-user.target
+
+[Service]
+EnvironmentFile=-/storage/.cache/services/vdr-front.run
+ExecStart=/bin/sh -c 'exec /usr/bin/vdr-front.start'
+KillMode=process
+TimeoutStopSec=10
+Restart=always
+RestartSec=2
+StartLimitInterval=0
+LimitNOFILE=16384
+
+[Install]
+WantedBy=multi-user.target

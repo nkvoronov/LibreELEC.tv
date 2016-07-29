@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE displayvolume SYSTEM "../../../dtd/displayvolume.dtd">
+
+<displayvolume x="79%" y="{areaheight} - {areawidth}*0.26" width="20%" height="{areawidth}*0.25" fadetime="{fadetime}" shifttime="{shifttimevolume}" shifttype="right" shiftmode="slowed">
+
+    <background>
+        <area x="0" y="0" width="100%" height="100%" layer="2">
+            <drawimage imagetype="skinpart" path="displayvolumeback" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="0" y="0" width="100%" height="100%" layer="3">
+            <drawimage imagetype="skinpart" path="tacho_percent_back" x="{areawidth}*0.059" y="{areawidth}*0.059" width="{areawidth}*0.882" height="{areawidth}*0.882"/>
+        </area>
+    </background>
+
+    <!-- Available Variables volume:
+    {volume}                            current volume, range from 0 to 255
+    {volpercent}                        current volume in %
+    {maxvolume}                         maximal volume
+    {mute}                              true if volume is muted
+    -->
+    <volume>
+        <area x="0" y="80%" width="100%" height="20%" layer="4">
+            <drawtext align="center" valign="center" color="{clrWhite}" font="{semibold}" fontsize="80%" text="{volume} / {maxvolume}" />
+        </area>
+        <area x="0" y="0" width="100%" height="100%" layer="5">
+            <drawimage imagetype="skinpart" path="tachohands/perc_{volpercent}" x="{areawidth}*0.059" y="{areawidth}*0.059" width="{areawidth}*0.882" height="{areawidth}*0.882"/>
+        </area>
+        <area x="0" y="80%" width="20%" height="20%" layer="5">
+            <drawimage condition="gt({volpercent}, 74)" imagetype="icon" path="ico_volume_full" align="center" valign="center" width="90%" height="90%"/>
+            <drawimage condition="gt({volpercent}, 34) ++ lt({volpercent}, 75)" imagetype="icon" path="ico_volume_medium" align="center" valign="center" width="90%" height="90%"/>
+            <drawimage condition="gt({volpercent}, 0) ++ lt({volpercent}, 35)" imagetype="icon" path="ico_volume_low" align="center" valign="center" width="90%" height="90%"/>
+            <drawimage condition="eq({volpercent}, 0)" imagetype="icon" path="ico_volume_mute" align="center" valign="center" width="90%" height="90%"/>
+        </area>
+    </volume>
+
+</displayvolume>

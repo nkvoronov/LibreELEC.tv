@@ -1,0 +1,2 @@
+#!/bin/sh
+openssl req -new -x509 -keyout live-key.pem -out live.pem -days 9999 -nodes -batch -config openssl.cnf

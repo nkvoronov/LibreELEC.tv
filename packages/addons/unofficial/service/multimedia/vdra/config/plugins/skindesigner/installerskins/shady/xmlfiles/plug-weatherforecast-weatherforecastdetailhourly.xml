@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE menuplugin SYSTEM "../../../dtd/displaymenuplugin.dtd">
+<menuplugin x="0" y="0" width="100%" height="100%" fadetime="0" scaletvx="0%" scaletvy="0" scaletvwidth="0" scaletvheight="0" >
+	<background>
+		<area x="0" y="0" width="100%" height="100%" layer="1">
+			<drawimage condition="not{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientPNG" />
+			<drawimage condition="{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientPNGBright" />                    
+		</area>
+		<area x="0" y="0" width="100%" height="100%" layer="2">
+			<drawimage  x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="shadowsMenuDefault" />           
+		</area>
+		<area x="0" y="0" width="100%" height="11%" layer="3">
+			<drawimage  x="0" width="{areawidth}*0.972" height="{areaheight}*0.972" imagetype="skinpart" path="gradientHeader" />     
+		</area>
+	</background>
+
+	<scrollbar>
+		<area condition="lt({height},1000)" x="95%" y="15%" width="5%" height="73%" layer="3">
+			 <drawimage   x="0" y="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="shadowScrollSub" />
+			 <drawimage x="15%" y="{areaheight} * {offset} / 1000" width="{areawidth}*0.1" height="{areaheight} * {height} / 1000" imagetype="skinpart" path="scrollBar" />
+		</area>
+	</scrollbar>
+
+		<colorbuttons>
+		<area  x="43%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />         
+		</area>
+		<area x="56%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />
+		</area>
+		<area x="69%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />
+		</area>
+		<area x="82%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />
+		</area>
+	</colorbuttons>
+
+	<detailheader>
+		<area x="59%" y="10%" width="36%" height="78%" layer="3">
+			<drawimage imagetype="icon" path="{icon}" x="0" y="6%" align="center" width="{areaheight}*0.6" height="{areaheight}*0.6"/>
+			<drawtextbox name="summary" x="0" y="75%" width="{areawidth}*0.9" align="center" height="50%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{summary}" />
+		</area>
+	</detailheader>
+
+	<tab name="hourly" x="2%" y="14%" width="54%" height="72%" layer="4" scrollheight="{areaheight}/5">
+		<loop name="hourly" x="0" y="{rowheight}-4" orientation="vertical" columnwidth="{areawidth}" rowheight="{areaheight}/5">
+			<drawimage  imagetype="skinpart" path="weatherDivider" width="{areawidth}" height="{rowheight}*0.02"/>
+		</loop>			
+		<loop name="hourly" x="0" y="0" orientation="vertical" columnwidth="{areawidth}" rowheight="{areaheight}/5">
+			<drawtext x="1%" y="{rowheight}*0.03" font="{light}" fontsize="{rowheight}*0.28" color="{clrLightGray}" text="{hourly[timestamp]}" />
+			<drawtext x="{rowheight}*0.8" y="1%" font="{light}" fontsize="{rowheight}*0.25" color="{clrLightGray}" text="{hourly[summary]}" />
+			<drawimage imagetype="icon" path="{hourly[icon]}" x="0" y="7%" width="{rowheight}*0.6" height="{rowheight}*0.6"/>
+			<drawtext x="{rowheight}*0.8" y="{rowheight}*0.34" width="{columnwidth}" font="{light}" fontsize="{rowheight}*0.25" color="{clrLightGray}" text="{tr(precipitationprobability)} {hourly[precipitationprobability]}%, {hourly[precipitationintensity]} l/qm" />
+			<drawtext x="{rowheight}*0.8" y="{rowheight}*0.64" width="{columnwidth}" font="{light}" fontsize="{rowheight}*0.25" color="{clrLightGray}" text="{tr(windspeed)} {hourly[windspeed]} km/h {tr(from)} {hourly[windbearingstring]}" />
+			<drawtext name="temp" x="0.62*{columnwidth} + 0.17*{columnwidth} - {width(temp)}/2" font="{light}" y="{rowheight}*0.34" fontsize="{rowheight}*0.3" color="{clrLightGray}" text="{hourly[temperature]}°C" />
+			<drawtext name="felt" x="0.68*{columnwidth} + 0.17*{columnwidth} - {width(temp)}/2" font="{light}" y="{rowheight}*0.64" fontsize="{rowheight}*0.25" color="{clrLightGray}" text="{tr(felt)} {hourly[apparenttemperature]}°C" />            
+		</loop>
+	</tab>
+	<colorbuttons>
+		<area x="0" y="0" layer="0">
+		</area>
+	</colorbuttons>
+</menuplugin>

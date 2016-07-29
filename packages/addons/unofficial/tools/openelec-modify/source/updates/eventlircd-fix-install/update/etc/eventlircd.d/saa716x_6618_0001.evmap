@@ -1,0 +1,53 @@
+# Remote 6618:0001 saa716x
+
+KEY_EXIT          = KEY_EXIT          # App Exit
+KEY_POWER         = KEY_POWER         # Power
+KEY_MUTE          = KEY_MUTE          # Mute
+
+KEY_NUMERIC_1     = KEY_NUMERIC_1     # 1
+KEY_NUMERIC_2     = KEY_NUMERIC_2     # 2
+KEY_NUMERIC_3     = KEY_NUMERIC_3     # 3
+KEY_NUMERIC_4     = KEY_NUMERIC_4     # 4
+KEY_NUMERIC_5     = KEY_NUMERIC_5     # 5
+KEY_NUMERIC_6     = KEY_NUMERIC_6     # 6
+KEY_NUMERIC_7     = KEY_NUMERIC_7     # 7
+KEY_NUMERIC_8     = KEY_NUMERIC_8     # 8
+KEY_NUMERIC_9     = KEY_NUMERIC_9     # 9
+KEY_NUMERIC_0     = KEY_NUMERIC_0     # 0
+KEY_NUMERIC_STAR  = KEY_NUMERIC_STAR  # *
+KEY_NUMERIC_POUND = KEY_NUMERIC_POUND # #
+
+KEY_BREAK         = KEY_BREAK         # Back
+KEY_DELETE        = KEY_DELETE        # Clear
+
+KEY_OK            = KEY_OK            # OK
+
+KEY_UP            = KEY_UP            # Up Arrow
+KEY_DOWN          = KEY_DOWN          # Down Arrow
+KEY_LEFT          = KEY_LEFT          # Left Arrow
+KEY_RIGHT         = KEY_RIGHT         # Right Arrow
+
+KEY_CHANNELUP     = KEY_CHANNELUP     # CHL +
+KEY_CHANNELDOWN   = KEY_CHANNELDOWN   # CHL -
+KEY_VOLUMEUP      = KEY_VOLUMEUP      # VOL +
+KEY_VOLUMEDOWN    = KEY_VOLUMEDOWN    # VOL -
+
+KEY_TV            = KEY_TV            # TV
+KEY_ZOOM          = KEY_ZOOM          # Zoom
+KEY_FAVORITES     = KEY_FAVORITES     # FAV
+KEY_MODE          = KEY_MODE          # MODE
+
+KEY_MENU          = KEY_MENU          # MENU
+KEY_EPG           = KEY_EPG           # EPG
+KEY_SUBTITLE      = KEY_SUBTITLE      # SUB
+KEY_SCREEN        = KEY_SCREEN        # SNAP
+
+KEY_RECORD        = KEY_RECORD        # Records
+KEY_PLAY          = KEY_PLAY          # Play
+KEY_PAUSE         = KEY_PAUSE         # Pause
+KEY_STOP          = KEY_STOP          # Stop
+
+KEY_REWIND        = KEY_REWIND        # Rew
+KEY_FASTFORWARD   = KEY_FASTFORWARD   # Fwd
+KEY_PREVIOUS      = KEY_PREVIOUS      # Replay
+KEY_NEXT          = KEY_NEXT          # Skip

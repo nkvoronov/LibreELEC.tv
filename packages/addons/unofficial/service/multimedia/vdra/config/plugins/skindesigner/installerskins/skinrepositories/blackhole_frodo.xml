@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<skinrepo>
+    <name>blackholefrodo</name>
+    <type>git</type>
+    <url>https://github.com/FrodoVDR/blackholefrodo.git</url>
+    <author>Frodo</author>
+    <minimumskindesignerversion>0.6.2</minimumskindesignerversion>
+    <screenshots>
+        <screenshot>
+            <description>Main Menu</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=37513&amp;h=5b10aaaa10a6cbfa38406a9b0adc8d583d2a1216</url>
+        </screenshot>
+        <screenshot>
+            <description>Display Channel</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=37512&amp;h=71d73685a2ed65f15bf4e6832ec8fedddedc10c1</url>
+        </screenshot>
+        <screenshot>
+            <description>Schedules What's on now</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=37499&amp;h=29ce2d7dada437bfd3094ad2284d9f7f134a340a</url>
+        </screenshot>
+    </screenshots>
+    <specialfonts>
+        <font>Source Sans Pro</font>
+        <font>DS-Digital</font>
+    </specialfonts>
+    <supportedplugins>
+        <plugin>TVGuideNG</plugin>
+        <plugin>Weatherforecast</plugin>
+        <plugin>Plex</plugin>
+    </supportedplugins>
+</skinrepo>

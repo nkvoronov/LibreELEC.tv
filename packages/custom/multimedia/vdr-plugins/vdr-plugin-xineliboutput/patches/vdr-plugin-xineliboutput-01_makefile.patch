@@ -1,0 +1,85 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2014-07-25 00:06:26.000000000 +0300
++++ b/Makefile	2014-07-26 00:40:18.324512655 +0300
+@@ -63,11 +63,6 @@
+ ###
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell PKG_CONFIG_PATH="$$PKG_CONFIG_PATH:../../.." pkg-config --variable=$(1) vdr))
+-LIBDIR = $(call PKGCFG,libdir)
+-LOCDIR = $(call PKGCFG,locdir)
+-PLGCFG = $(call PKGCFG,plgcfg)
+-VIDEODIR = $(call PKGCFG,videodir)
+ 
+ TMPDIR  ?= /tmp
+ BINDIR  ?= /usr/bin
+@@ -78,14 +73,14 @@
+ ### Allow user defined options to overwrite defaults:
+ ###
+ 
+--include Make.config
++include $(VDRDIR)/Make.global
+ 
+ 
+ ###
+ ### check for VDR
+ ###
+ 
+-APIVERSION = $(call PKGCFG,apiversion)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ VDR_TREE = no
+ ifeq ($(strip $(APIVERSION)),)
+@@ -94,9 +89,6 @@
+     $(warning ********************************************************)
+     CONFIGURE_OPTS += --disable-vdr
+ else
+-    export CFLAGS   = $(call PKGCFG,cflags)
+-    export CXXFLAGS = $(call PKGCFG,cxxflags)
+-
+     ifeq ($(VDRDIR),)
+         $(warning Building outside VDR source tree)
+     else
+@@ -105,9 +97,6 @@
+     endif
+ endif
+ 
+-### Allow user defined options to overwrite defaults:
+--include $(PLGCFG)
+-
+ ###
+ ### run configure script
+ ###
+@@ -170,6 +159,8 @@
+ ### Includes and Defines (add further entries here):
+ ###
+ 
++INCLUDES += -I$(VDRDIR)/include
++
+ ifeq ($(ARCH_APPLE_DARWIN), yes)
+     INCLUDES  += -I/sw/include
+     LIBDIRS   += -L/sw/lib
+@@ -336,6 +327,7 @@
+ 
+ $(VDRPLUGIN): $(OBJS) $(OBJS_MPG)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS_SO) $(LDFLAGS) -shared $(OBJS) $(OBJS_MPG) $(LIBS) $(LIBS_VDR) -o $@
++#	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ ifeq ($(VDR_TREE), yes)
+ 	$(INSTALL) $@ $(LIBDIR)/
+ endif
+@@ -354,6 +346,7 @@
+ 
+ $(VDRPLUGIN_SXFE): $(OBJS_SXFE_SO)
+ 	$(CC) $(CFLAGS) $(LDFLAGS_SO) $(LDFLAGS) $(OBJS_SXFE_SO) $(LIBS_X11) $(LIBS_XINE) $(LIBS_JPEG) -o $@
++#	@cp --remove-destination $@ $(LIBDIR)/$@
+ ifeq ($(VDR_TREE), yes)
+ 	$(INSTALL) $@ $(LIBDIR)/
+ endif
+@@ -366,6 +359,7 @@
+ 
+ $(VDRPLUGIN_FBFE): $(OBJS_FBFE_SO)
+ 	$(CC) $(CFLAGS) $(LDFLAGS_SO) $(LDFLAGS) $(OBJS_FBFE_SO) $(LIBS_XINE) $(LIBS_JPEG) -o $@
++#	@cp --remove-destination $@ $(LIBDIR)/$@
+ ifeq ($(VDR_TREE), yes)
+ 	$(INSTALL) $@ $(LIBDIR)/
+ endif

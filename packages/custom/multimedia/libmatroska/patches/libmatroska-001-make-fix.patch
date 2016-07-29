@@ -1,0 +1,33 @@
+diff -Naur a/make/linux/Makefile b/make/linux/Makefile
+--- a/make/linux/Makefile	2013-09-17 20:15:34.000000000 +0300
++++ b/make/linux/Makefile	2015-10-12 18:13:28.477373845 +0300
+@@ -11,20 +11,20 @@
+ 
+ # Paths
+ # BeOS wants the libs and headers in /boot/home/config
+-ifeq (BeOS,$(shell uname -s))
+-prefix=/boot/home/config
+-else
+-prefix=/usr/local
+-endif
++#ifeq (BeOS,$(shell uname -s))
++#prefix=/boot/home/config
++#else
++#prefix=/usr/local
++#endif
+ libdir=$(prefix)/lib
+ includedir=$(prefix)/include/matroska
+ 
+ # Programs
+-CROSS =
+-CXX = $(CROSS)g++
++#CROSS =
++#CXX = $(CROSS)g++
+ LD = $(CXX)
+-AR = $(CROSS)ar
+-RANLIB = $(CROSS)ranlib
++#AR = $(CROSS)ar
++#RANLIB = $(CROSS)ranlib
+ INSTALL = install
+ INSTALL_OPTS = -m 644
+ INSTALL_OPTS_LIB = -m 644

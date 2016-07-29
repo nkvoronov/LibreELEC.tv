@@ -1,0 +1,48 @@
+{
+	"channel_rename": 0,
+	"channel_renumber": 0,
+	"channel_reicon": 0,
+	"epgdb_periodicsave": 0,
+	"cron": "0 */4 * * *",
+	"ota_cron": "5 */4 * * *",
+	"ota_timeout": 600,
+	"ota_initial": 1,
+	"modules": {
+		"/usr/bin/tv_grab_file": {
+			"enabled": true
+		},
+		"xmltv": {
+			"enabled": true
+		},
+		"pyepg": {
+			"enabled": true
+		},
+		"opentv-skyit": {
+			"enabled": true
+		},
+		"opentv-skyuk": {
+			"enabled": true
+		},
+		"opentv-skynz": {
+			"enabled": true
+		},
+		"opentv-ausat": {
+			"enabled": true
+		},
+		"Bulsatcom_39E": {
+			"enabled": true
+		},
+		"viasat_baltic": {
+			"enabled": true
+		},
+		"uk_freeview": {
+			"enabled": true
+		},
+		"uk_freesat": {
+			"enabled": true
+		},
+		"eit": {
+			"enabled": true
+		}
+	}
+}

@@ -1,0 +1,60 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2015-11-25 13:20:32.302062824 +0200
+@@ -0,0 +1,56 @@
++# VDR language source file.
++# Copyright (C) 2008 Klaus Schmidinger <kls@tvdr.de>
++# This file is distributed under the same license as the VDR package.
++# Klaus Schmidinger <kls@tvdr.de>, 2000-2008
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: VDR 1.7.18\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2011-12-07 16:35+0100\n"
++"PO-Revision-Date: 2010-01-16 16:46+0100\n"
++"Last-Translator: gnapheus\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: ru\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "Favorite Channels"
++msgstr "Избранные каналы"
++
++msgid "Button$Remove"
++msgstr "Удалить"
++
++msgid "Button$Add"
++msgstr "Добавить"
++
++msgid "Button$Up"
++msgstr "Вверх"
++
++msgid "Button$Down"
++msgstr "Вниз"
++
++msgid "Favorite Channels Menu"
++msgstr "Избранные каналы"
++
++msgid "Favorites"
++msgstr "Избранное"
++
++msgid "as entered"
++msgstr "как добавлялись"
++
++msgid "none"
++msgstr "нет"
++
++msgid "name"
++msgstr "названию"
++
++msgid "Hide main menu entry"
++msgstr "Скрыть пункт в главном меню"
++
++msgid "Close on switch"
++msgstr "Закрыть при переключении"
++
++msgid "Sort by"
++msgstr "Сортировать по"

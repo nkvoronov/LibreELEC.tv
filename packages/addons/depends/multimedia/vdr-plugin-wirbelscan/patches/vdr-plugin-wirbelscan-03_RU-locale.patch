@@ -1,0 +1,360 @@
+diff -Naur a/po/ca_ES.po b/po/ca_ES.po
+--- a/po/ca_ES.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/ca_ES.po	2015-03-24 17:09:59.618336350 +0200
+@@ -116,3 +116,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/cs_CZ.po b/po/cs_CZ.po
+--- a/po/cs_CZ.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/cs_CZ.po	2015-03-24 17:10:26.226335742 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/da_DK.po b/po/da_DK.po
+--- a/po/da_DK.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/da_DK.po	2015-03-24 17:10:54.610335093 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/de_DE.po b/po/de_DE.po
+--- a/po/de_DE.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/de_DE.po	2015-03-24 17:11:09.154334760 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "KANN NICHT SCANNEN - Timer sind gesetzt!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/el_GR.po b/po/el_GR.po
+--- a/po/el_GR.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/el_GR.po	2015-03-24 17:11:23.194334439 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/es_ES.po b/po/es_ES.po
+--- a/po/es_ES.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/es_ES.po	2015-03-24 17:11:38.818334082 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/et_EE.po b/po/et_EE.po
+--- a/po/et_EE.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/et_EE.po	2015-03-24 17:11:54.786333717 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/fi_FI.po b/po/fi_FI.po
+--- a/po/fi_FI.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/fi_FI.po	2015-03-24 17:12:08.010333414 +0200
+@@ -117,3 +117,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/fr_FR.po b/po/fr_FR.po
+--- a/po/fr_FR.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/fr_FR.po	2015-03-24 17:12:22.238333089 +0200
+@@ -117,3 +117,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/hr_HR.po b/po/hr_HR.po
+--- a/po/hr_HR.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/hr_HR.po	2015-03-24 17:12:37.006332751 +0200
+@@ -115,3 +115,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/hu_HU.po b/po/hu_HU.po
+--- a/po/hu_HU.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/hu_HU.po	2015-03-24 17:12:50.830332435 +0200
+@@ -115,3 +115,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/it_IT.po b/po/it_IT.po
+--- a/po/it_IT.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/it_IT.po	2015-03-24 17:13:04.110332131 +0200
+@@ -119,3 +119,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "SCANSIONE FALLITA - Timer in programmazione!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/nl_NL.po b/po/nl_NL.po
+--- a/po/nl_NL.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/nl_NL.po	2015-03-24 17:13:16.730331843 +0200
+@@ -116,3 +116,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/nn_NO.po b/po/nn_NO.po
+--- a/po/nn_NO.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/nn_NO.po	2015-03-24 17:13:45.054331195 +0200
+@@ -115,3 +115,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/pl_PL.po b/po/pl_PL.po
+--- a/po/pl_PL.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/pl_PL.po	2015-03-24 17:14:03.654330770 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/pt_PT.po b/po/pt_PT.po
+--- a/po/pt_PT.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/pt_PT.po	2015-03-24 17:14:17.474330454 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/ro_RO.po b/po/ro_RO.po
+--- a/po/ro_RO.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/ro_RO.po	2015-03-24 17:14:31.542330132 +0200
+@@ -115,3 +115,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/ru_RU.po	2015-03-24 17:16:57.474326796 +0200
+@@ -11,106 +11,111 @@
+ "PO-Revision-Date: 2007-09-10 19:45+0100\n"
+ "Last-Translator: wk <handygewinnspiel@gmx.de>\n"
+ "Language-Team:  <vdr@linuxtv.org>\n"
+-"Language: \n"
++"Language: ru\n"
+ "MIME-Version: 1.0\n"
+-"Content-Type: text/plain; charset=ISO-8859-5\n"
++"Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Plural-Forms: nplurals=2; plural=(n != 1);\n"
++"X-Generator: KBabel 1.11.4\n"
+ 
+ msgid "AUTO"
+-msgstr "AUTO"
++msgstr "АВТО"
+ 
+ msgid "ALL (slow)"
+-msgstr "ALL (slow)"
++msgstr "ВСЕ (медл.)"
+ 
+ msgid "Off"
+-msgstr "Off"
++msgstr "Выкл."
+ 
+ msgid "AUTO/OFF"
+-msgstr ""
++msgstr "АВТО/ВЫКЛ."
+ 
+ msgid "AUTO/ON"
+-msgstr ""
++msgstr "АВТО/ВКЛ."
+ 
+ msgid "Setup"
+-msgstr "Setup"
++msgstr "Установка"
+ 
+ msgid "General"
+-msgstr ""
++msgstr "Общее"
+ 
+ msgid "Source Type"
+-msgstr "Source Type"
++msgstr "Тип источника"
+ 
+ msgid "verbosity"
+ msgstr "verbosity"
+ 
+ msgid "logfile"
+-msgstr "logfile"
++msgstr "лог файл"
+ 
+ msgid "Channels"
+-msgstr ""
++msgstr "Каналы"
+ 
+ msgid "TV channels"
+-msgstr ""
++msgstr "ТВ каналы"
+ 
+ msgid "Radio channels"
+-msgstr ""
++msgstr "Радио каналы"
+ 
+ msgid "FTA channels"
+-msgstr ""
++msgstr "FTA каналы"
+ 
+ msgid "Scrambled channels"
+-msgstr ""
++msgstr "Кодированные каналы"
+ 
+ msgid "HD channels"
+-msgstr ""
++msgstr "HD каналы"
+ 
+ msgid "Cable and Terrestrial"
+-msgstr ""
++msgstr "Кабельное и эфирное"
+ 
+ msgid "Country"
+-msgstr "Country"
++msgstr "Страна"
+ 
+ msgid "Cable Inversion"
+-msgstr ""
++msgstr "Кабель - инверсия"
+ 
+ msgid "Cable Symbolrate"
+-msgstr ""
++msgstr "Кабель - символьная скорость"
+ 
+ msgid "Cable modulation"
+-msgstr ""
++msgstr "Кабель - модуляция"
+ 
+ msgid "Terr  Inversion"
+-msgstr ""
++msgstr "Эфирное - инверсия"
+ 
+ msgid "ATSC  Type"
+-msgstr ""
++msgstr "ATSC тип"
+ 
+ msgid "Satellite"
+-msgstr "Satellite"
++msgstr "Спутники"
+ 
+ msgid "DVB-S2"
+ msgstr ""
+ 
+ msgid "Stop"
+-msgstr "Stop"
++msgstr "Стоп"
+ 
+ msgid "Start"
+-msgstr "Start"
++msgstr "Старт"
+ 
+ msgid "Settings"
+-msgstr "Settings"
++msgstr "Настройки"
+ 
+ msgid "Status"
+-msgstr "Status"
++msgstr "Статус"
+ 
+ msgid "Log Messages"
+-msgstr ""
++msgstr "Сообщения Лога"
+ 
+ msgid "CANNOT SCAN - No device!"
+-msgstr "CANNOT SCAN - No device!"
++msgstr "ОШИБКА СКАНИРОВАНИЯ - нет устройства!"
+ 
+ msgid "CANNOT SCAN - Timers active!"
+-msgstr "CANNOT SCAN - Timers active!"
++msgstr "ОШИБКА СКАНИРОВАНИЯ - таймеры активны!"
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+-msgstr "CANNOT SCAN - Timers on Schedule!"
++msgstr "ОШИБКА СКАНИРОВАНИЯ - таймеры в расписание!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr "Cканирование каналов для VDR"
+diff -Naur a/po/sl_SI.po b/po/sl_SI.po
+--- a/po/sl_SI.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/sl_SI.po	2015-03-24 17:14:50.242329705 +0200
+@@ -115,3 +115,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/sv_SE.po b/po/sv_SE.po
+--- a/po/sv_SE.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/sv_SE.po	2015-03-24 17:15:04.670329375 +0200
+@@ -115,3 +115,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/po/tr_TR.po b/po/tr_TR.po
+--- a/po/tr_TR.po	2015-01-12 22:13:42.000000000 +0200
++++ b/po/tr_TR.po	2015-03-24 17:15:18.674329055 +0200
+@@ -114,3 +114,6 @@
+ 
+ msgid "CANNOT SCAN - Timers on Schedule!"
+ msgstr "CANNOT SCAN - Timers on Schedule!"
++
++msgid "DVB and pvrinput channel scan for VDR"
++msgstr ""
+diff -Naur a/wirbelscan.c b/wirbelscan.c
+--- a/wirbelscan.c	2015-01-11 10:27:17.000000000 +0200
++++ b/wirbelscan.c	2015-03-24 17:18:31.346324649 +0200
+@@ -16,7 +16,7 @@
+ #include "satellites.h"
+ 
+ static const char *VERSION        = "0.0.9";
+-static const char *DESCRIPTION    = "DVB and pvrinput channel scan for VDR";
++static const char *DESCRIPTION    = trNOOP("DVB and pvrinput channel scan for VDR");
+ static const char *MAINMENUENTRY  = NULL; /* main menu -> use wirbelscancontrol plugin */
+ 
+ const char * extVer  = VERSION;

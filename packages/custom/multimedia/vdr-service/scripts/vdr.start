@@ -1,0 +1,221 @@
+#!/bin/sh
+
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
+#
+#  This Program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This Program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.tv; see the file COPYING.  If not, write to
+#  the Free Software Foundation, 51 Franklin Street, Suite 500, Boston, MA 02110, USA.
+#  http://www.gnu.org/copyleft/gpl.html
+################################################################################
+
+. /etc/profile
+
+vdr_init() {
+
+    LOG_VDR="/var/log/vdr.log"
+    VDR_HOME="$HOME/.config/vdr"
+    VDR_PLUGIN_DIR="/usr/lib/vdr"
+    VDR_CACHE_DIR="$HOME/.cache/vdr"
+
+    if [ ! -f "$VDR_CACHE_DIR" ]; then
+        mkdir -p $VDR_CACHE_DIR
+    fi
+
+    mkdir -p $VDR_HOME
+    mkdir -p "$VDR_VIDEO_DIR"
+
+    VDR_FRONT="none"
+
+    VDR_ARG="-g /tmp"
+
+}
+
+fix_config() {
+
+    if [ -f "$VDR_HOME/setup.conf" ]; then
+        sed -i -e '/^$/d' $VDR_HOME/setup.conf
+        sed -i -e '/^AlwaysSortFoldersFirst.*$/d' $VDR_HOME/setup.conf
+        sed -i -e '/^SetSystemTime.*$/d' $VDR_HOME/setup.conf
+        sed -i -e '/^epgsearch.SVDRPPort.*$/d' $VDR_HOME/setup.conf
+    fi
+    cat >>$VDR_HOME/setup.conf << MYDATA
+AlwaysSortFoldersFirst = 1
+SetSystemTime = 0
+epgsearch.SVDRPPort = 6419
+MYDATA
+
+}
+
+init_vdr_plugins() {
+
+    if [ "$VDR_DEBUG" == "true" ]; then
+        VDR_ARG="$VDR_ARG --log=3"
+    else
+        VDR_ARG="$VDR_ARG --log=1"
+    fi
+
+    LIRC_PATH="/run/lirc/lircd"
+
+    if [ "$VDR_FRONT" != "none" ]; then
+        VDR_ARG="$VDR_ARG -s /usr/bin/vdrpoweroff --vfat --watchdog=60 --lirc=$LIRC_PATH"
+    else
+        VDR_ARG="$VDR_ARG --no-kbd"
+    fi
+
+    SVDRP_PORT=0
+
+    # epgsearch needs svdrp
+    if [ "$VDR_ENABLE_EPGSEARCH" == "true" ]; then
+        SVDRP_PORT=6419
+    fi
+
+    VDR_ARG="$VDR_ARG --port=$SVDRP_PORT"
+    VDR_ARG="$VDR_ARG --config=$VDR_HOME"
+    VDR_ARG="$VDR_ARG --resdir=$VDR_HOME"
+    VDR_ARG="$VDR_ARG --cachedir=$VDR_CACHE_DIR"
+    VDR_ARG="$VDR_ARG --lib=$VDR_PLUGIN_DIR"
+    VDR_ARG="$VDR_ARG --video=\"$VDR_VIDEO_DIR\""
+
+    if [ "$VDR_ENABLE_EXTERNAL_RECCMD" == "true" ]; then
+        if [ ! -z "$VDR_EXTERNAL_RECCMD_PATH" -a -x "$VDR_EXTERNAL_RECCMD_PATH" ] ; then
+            VDR_ARG="$VDR_ARG -r \"$VDR_EXTERNAL_RECCMD_PATH\""
+        fi
+    fi
+
+    if [ "$VDR_ENABLE_CHARSET_OVERRIDE" == "true" ]; then
+        if [ ! -z "$VDR_CHARSET_OVERRIDE_STR" ] ; then
+            VDR_CHARSET_OVERRIDE="$VDR_CHARSET_OVERRIDE_STR"
+        fi
+    fi
+
+    # keep softcam first
+    if [ "$VDR_ENABLE_SOFTCAM" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P 'dvbapi $VDR_DVBAPI_OPTION'"
+    fi
+
+    if [ "$VDR_ENABLE_WIRBELSCAN" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
+    fi
+
+    if [ "$VDR_ENABLE_IPTV" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P 'iptv -d $VDR_IPTV_NUM_DEVICES'"
+    fi
+
+    if [ "$VDR_ENABLE_STREAMDEV_SERVER" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P streamdev-server"
+    fi
+
+    if [ "$VDR_ENABLE_STREAMDEV_CLIENT" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P streamdev-client"
+    fi
+
+    if [ "$VDR_ENABLE_LIVE" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P 'live -i $VDR_LIVE_IP -p $VDR_LIVE_PORT'"
+    fi
+
+    if [ "$VDR_ENABLE_EEPG" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P eepg"
+    fi
+
+    if [ "$VDR_ENABLE_EPGFIXER" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P epgfixer"
+    fi
+
+    if [ "$VDR_ENABLE_EPGSEARCH" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P epgsearch -P epgsearchonly -P quickepgsearch -P conflictcheckonly"
+    fi
+
+    if [ "$VDR_ENABLE_DUMMYDEVICE" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P dummydevice"
+    fi
+
+    if [ "$VDR_ENABLE_SATIP" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P satip"
+    fi
+
+    if [ "$VDR_ENABLE_XMLTV2VDR" == "true" ]; then
+        VDR_ARG="$VDR_ARG -P 'xmltv2vdr --epgfile=$VDR_CACHE_DIR/epg.db'"
+        # xmltv2vdr needs /var/run/vdr
+        grep -q " /var/run/vdr " /proc/mounts || ( mkdir -p /var/run/vdr && mount -t tmpfs -o size=10% tmpfs /var/run/vdr )
+        #handle epgsources
+        mkdir -p /var/lib/epgsources
+        mkdir -p $HOME/epgsources
+        for source in `find $VDR_HOME/epgsources -type f`; do
+            if [ ! -e $HOME/epgsources/`basename $source` ]; then
+                cp $source $HOME/epgsources/
+            fi
+        done
+        for source in `find $HOME/epgsources -type f`; do
+            cp $source /var/lib/epgsources
+        done
+    fi
+
+    if [ "$VDR_ENABLE_RESTFULAPI" == "true" ]; then
+        VDR_RESTFULAPI_ARGS="--ip $VDR_RESTFULAPI_IP --port $VDR_RESTFULAPI_PORT"
+        VDR_RESTFULAPI_EPGIMAGES="$VDR_HOME/plugins/restfulapi/epgimages"
+        mkdir -p $VDR_RESTFULAPI_EPGIMAGES
+        VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --epgimages=\"$VDR_RESTFULAPI_EPGIMAGES\""
+        VDR_RESTFULAPI_CHANNELLOGOS="$VDR_HOME/plugins/restfulapi/channellogos"
+        mkdir -p $VDR_RESTFULAPI_CHANNELLOGOS
+        VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --channellogos=\"$VDR_RESTFULAPI_CHANNELLOGOS\""
+        VDR_RESTFULAPI_WEBAPP="$VDR_HOME/plugins/restfulapi/webapp"
+        mkdir -p $VDR_RESTFULAPI_WEBAPP
+        VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --webapp=\"$VDR_RESTFULAPI_WEBAPP\""
+        VDR_ARG="$VDR_ARG -P 'restfulapi $VDR_RESTFULAPI_ARGS'"
+    fi
+
+    # vnsi/xvdr last
+    VDR_ARG="$VDR_ARG -P $PVR_PLUGIN"
+}
+
+if [ -f /storage/.cache/services/vdr.conf ]; then
+
+    . /storage/.cache/services/vdr.conf
+
+    if [ -f /storage/.cache/services/dvb.conf ]; then
+       . /storage/.cache/services/dvb.conf
+    fi
+
+    echo  "Starting vdr service ..."
+
+    vdr_init
+
+    init_vdr_plugins
+
+    # start userspace DVB driver/addon
+    for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
+        driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
+        logger -t VDR "### Loading userspace DVB driver: $driver_dvb_name ###"
+        # use ". " because of variable export
+        . $driver_dvb
+    done
+
+    # (wait for) at least 1 adapter (xbmc allows to set 0)
+    [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
+    [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+
+    if [ "$DVB_WAIT_FOR_FEINIT" == "true" ]; then
+        while [ true ]; do
+            if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ]; then
+                break
+            fi
+            sleep 1
+        done
+    fi
+
+    fix_config
+
+    eval LANG=en_US.UTF-8 VDR_CHARSET_OVERRIDE="$VDR_CHARSET_OVERRIDE" exec vdr.bin $VDR_ARG &>$LOG_VDR
+fi

@@ -17,13 +17,12 @@
 ################################################################################
 
 PKG_NAME="lcdproc"
-PKG_VERSION="0.5.7-cvs20140217"
+PKG_VERSION="0.5.7"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"
-# PKG_URL="$SOURCEFORGE_SRC/lcdproc/lcdproc/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain libusb libhid libftdi1"
 PKG_PRIORITY="optional"
 PKG_SECTION="system"
@@ -36,16 +35,6 @@ PKG_AUTORECONF="yes"
 if [ "$IRSERVER_SUPPORT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET irserver"
 fi
-
-IFS=$','
-for i in $LCD_DRIVER; do
-  case $i in
-    glcd) PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET serdisplib"
-      ;;
-    *)
-  esac
-done
-unset IFS
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-libusb --enable-drivers=$LCD_DRIVER,!curses,!svga --enable-seamless-hbars"
 
@@ -69,11 +58,16 @@ post_makeinstall_target() {
       -e "s|^#Hello=\"   LCDproc!\"|Hello=\"$DISTRONAME\"|" \
       -e "s|^#GoodBye=\"Thanks for using\"|GoodBye=\"Thanks for using\"|" \
       -e "s|^#GoodBye=\"   LCDproc!\"|GoodBye=\"$DISTRONAME\"|" \
-      -e "s|^#normal_font=.*$|normal_font=/usr/share/fonts/liberation/LiberationMono-Bold.ttf|" \
       -i $INSTALL/etc/LCDd.conf
 
-    mkdir -p $INSTALL/usr/lib/libreelec
-      cp $PKG_DIR/scripts/lcd-wrapper $INSTALL/usr/lib/libreelec
+  mkdir -p $INSTALL/usr/lib/openelec
+    cp $PKG_DIR/scripts/lcd-wrapper $INSTALL/usr/lib/openelec
+
+  mkdir -p $INSTALL/etc
+    cp $PKG_DIR/config/LCDd.conf $INSTALL/etc
+
+  mkdir -p $INSTALL/usr/share/lcdproc/fonts
+    cp -PR $PKG_DIR/fonts/*.fnt $INSTALL/usr/share/lcdproc/fonts
 
 }
 

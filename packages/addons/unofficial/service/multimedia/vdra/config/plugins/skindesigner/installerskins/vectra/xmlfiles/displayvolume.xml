@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE displayvolume SYSTEM "../../../dtd/displayvolume.dtd">
+
+<displayvolume x="20%" y="75%" width="60%" height="10%" fadetime="{displayvolumefadetime}">
+
+    <background>
+    </background>
+
+    <!-- Available Variables volume:
+    {volume}                            current volume, range from 0 to 255
+    {volpercent}                     current volume in %
+    {maxvolume}                         maximal volume
+    {mute}                              true if volume is muted
+    -->
+    <volume>
+        <!-- Background -->
+        <area x="0" y="0" width="100%" height="100%" layer="1" transparency="20">
+            <drawimage imagetype="skinpart" path="displayvolume" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <!-- Header -->
+        <area x="0" y="8%" width="100%" height="40%" layer="2">
+            <drawtext condition="not{mute}" x="4%" valign="center" align="center" font="{regular}" fontsize="100%" color="{clrWhite}" text="{tr(volume)}: {volpercent}%" />
+            <drawtext condition="{mute}" x="4%" valign="center" align="center" font="{regular}" fontsize="100%" color="{clrWhite}" text="{tr(volume)}: 0%" />
+<!--            <drawimage condition="not{mute}" imagetype="icon" path="ico_volume" x="{areawidth} - 2*{areaheight}" y="5" width="{areaheight}" height="{areaheight}"/>
+-->
+            <drawimage condition="{mute}" imagetype="icon" path="ico_mute" x="{areawidth} - 2*{areaheight}" y="5" width="{areaheight}" height="{areaheight}"/>
+        </area>
+        <!-- Volumebar Background -->
+        <area x="4%" y="70%" width="92%" height="15%" layer="2">
+            <drawellipse x="0" y="0" width="{areaheight}" height="{areaheight}" color="{clrBlack}" quadrant="0" />
+            <drawellipse condition="not{mute}" x="1" y="1" width="{areaheight}-2" height="{areaheight}-2" color="{clrProgressbar}" quadrant="0" />
+            <drawellipse condition="{mute}" x="1" y="1" width="{areaheight}-2" height="{areaheight}-2" color="{clrGray}" quadrant="0" />
+            <drawellipse x="{areawidth}-{areaheight}" y="0" width="{areaheight}" height="{areaheight}" color="{clrBlack}" quadrant="0" />
+            <drawrectangle x="{areaheight}/2" y="0" width="{areawidth} - {areaheight}" height="{areaheight}" color="{clrBlack}" />
+        </area>
+        <!-- Volumebar -->
+        <area x="{areawidth}*0.04+{areaheight}*0.15/2-1" y="70%" width="{areawidth}*0.92-{areaheight}*0.15/2" height="15%" layer="3">
+            <drawrectangle condition="not{mute}" x="0" y="1" width="{volume}/{maxvolume}*{areawidth} - {volume}/{maxvolume}*{areaheight}/2" height="{areaheight}-2" color="{clrProgressbar}" />
+            <drawrectangle condition="{mute}" x="0" y="1" width="{volume}/{maxvolume}*{areawidth} - {volume}/{maxvolume}*{areaheight}/2" height="{areaheight}-2" color="{clrGray}" />
+            <drawellipse condition="not{mute}" x="{volume}/{maxvolume}*{areawidth} - {volume}/{maxvolume}*{areaheight}/2" y="1" width="{areaheight}/2 - 2" height="{areaheight}-2" color="{clrProgressbar}" quadrant="5" />
+            <drawellipse condition="{mute}" x="{volume}/{maxvolume}*{areawidth} - {volume}/{maxvolume}*{areaheight}/2" y="1" width="{areaheight}/2 - 2" height="{areaheight}-2" color="{clrGray}" quadrant="5" />
+        </area>        
+<!--
+        <area condition="not{mute}" x="{areawidth}*0.04+{areaheight}*0.15/2" y="70%" width="{areawidth}*0.92-{areaheight}*0.15/2" height="15%" layer="4">
+            <drawimage cache="true" imagetype="skinpart" path="progressbarback2" x="1" y="1" width="{volume}/{maxvolume}*{areawidth} - {volume}/{maxvolume}*{areaheight}/2" height="{areaheight}-2" />
+        </area>
+-->
+        <area condition="not{mute}" x="{areawidth}*0.04+{areaheight}*0.15/2" y="70%" width="{areawidth}*0.92-{areaheight}*0.15/2" height="15%" layer="5">
+            <drawimage cache="true" imagetype="skinpart" path="progressbarback" x="1" y="1" width="{volume}/{maxvolume}*{areawidth} - {volume}/{maxvolume}*{areaheight}/2" height="{areaheight}-2" />
+        </area>
+     </volume>
+
+</displayvolume>

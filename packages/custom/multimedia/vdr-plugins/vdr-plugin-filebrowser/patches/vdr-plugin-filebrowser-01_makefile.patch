@@ -1,0 +1,33 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2010-09-15 22:47:00.000000000 +0300
++++ b/Makefile	2014-04-12 15:53:18.289015349 +0300
+@@ -20,10 +20,7 @@
+ 
+ ### The directory environment:
+ 
+-DVBDIR = ../../../../DVB
+-VDRDIR = ../../..
+-LIBDIR = ../../lib
+-TMPDIR = /tmp
++TMPDIR ?= /tmp
+ 
+ ### Add Debug macro
+ 
+@@ -37,7 +34,7 @@
+ 
+ ### Allow user defined options to overwrite defaults:
+ 
+--include $(VDRDIR)/Make.config
++include $(VDRDIR)/Make.global
+ 
+ ### The version number of VDR (taken from VDR's "config.h"):
+ 
+@@ -64,7 +61,7 @@
+ 
+ libvdr-$(PLUGIN).so: $(OBJS)
+ 	$(CXX) $(CXXFLAGS) -shared $(OBJS) -o $@
+-	@cp $@ $(LIBDIR)/$@.$(APIVERSION)
++	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ 
+ dist: clean
+ 	@$(MAKE) clean -C developers/filebrowserdemo > /dev/null

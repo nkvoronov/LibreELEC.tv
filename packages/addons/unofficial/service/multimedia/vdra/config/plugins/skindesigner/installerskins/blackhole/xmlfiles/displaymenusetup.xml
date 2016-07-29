@@ -1,0 +1,51 @@
+<menusetup x="0" y="0" width="100%" height="100%" fadetime="0" scaletvx="55%" scaletvy="10%" scaletvwidth="40%" scaletvheight="40%" >
+
+   <scrollbar>
+        <area x="52%" y="10%" width="2%" height="80%" layer="2">
+            <drawimage imagetype="skinpart" path="scrollbarback" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="52%" y="10%" width="2%" height="80%" layer="3">
+            <drawimage imagetype="skinpart" path="scrollbar" x="0" y="{areaheight} * {offset} / 1000" width="100%" height="{areaheight} * {height} / 1000"/>
+        </area>
+    </scrollbar>
+
+    <menuitems x="1%" y="10%" orientation="vertical" width="98%" height="80%" align="center" numlistelements="{nummenuitemsmain}">
+        <!-- Available Variables setup menu listelement:
+        {nummenuitem}             number of item in list, starts with 1
+        {label}                   label of menu item
+        {number}                  number of menu item (or empty string if not set)
+        {icon}                    path of appropriate icon
+        {current}                 true if item is currently selected 
+        {separator}               true if item is a list separator 
+        -->
+        <listelement>
+            <area x="0" width="51%" layer="2">
+                <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="0" width="100%" height="100%"/>
+                <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="0" width="100%" height="100%"/>
+            </area>
+           <area x="0" width="51%" layer="3">
+                <drawtext condition="not{current}" x="1%" width="98%" valign="center" font="{regular}" fontsize="80%" color="{clrGray}" text="{number} {label} " />
+                <drawtext condition="{current}" x="1%" width="98%" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{number} {label} " />
+            </area>
+        </listelement>
+        <!-- additional element which is drawn for current element -->
+        <!-- Available Variables main menu currentelement:
+        {menuitemx}         x position of according menu item
+        {menuitemy}         y position of according menu item
+        {menuitemwidth}     width of according menu item
+        {menuitemheight}    height of according menu item
+        {label}                   label of menu item
+        {number}                  number of menu item (or empty string if not set)
+        {icon}                    path of appropriate icon
+        -->
+        <currentelement delay="50" fadetime="0">
+            <area x="55%" y="52%" width="45%" height="48%" layer="2">
+                <drawimage imagetype="skinpart" path="displaymenucurrentback" x="0" y="0" width="100%" height="100%"/>
+            </area>
+            <area x="55%" y="52%" width="45%" height="48%" layer="3">
+                <drawimage imagetype="menuicon" path="{icon}" align="center" valign="center" width="{areaheight}*0.9" height="{areaheight}*0.9"/>
+            </area>
+        </currentelement>
+    </menuitems>
+    
+</menusetup>

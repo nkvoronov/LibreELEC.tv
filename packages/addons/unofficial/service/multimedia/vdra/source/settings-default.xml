@@ -1,0 +1,72 @@
+<settings>
+    <setting id="VDR_TYPE" value="service" />
+    <setting id="VDR_VIDEO_DIR" value="/storage/videos" />
+    <setting id="VDR_ENABLE_CHARSET_OVERRIDE" value="true" />
+    <setting id="VDR_CHARSET_OVERRIDE_STR" value="ru_RU.UTF-8" />
+    <setting id="VDR_ENABLE_EXTERNAL_RECCMD" value="false" />
+    <setting id="VDR_EXTERNAL_RECCMD_PATH" value="" />
+    <setting id="VDR_DEBUG" value="false" />
+    <setting id="VDR_PVR_PLUGIN" values="xvdr" />
+    <setting id="VDR_ENABLE_IPTV" value="false" />
+    <setting id="VDR_IPTV_NUM_DEVICES" value="1" />
+    <setting id="VDR_ENABLE_STREAMDEV_CLIENT" value="true" />
+    <setting id="VDR_ENABLE_STREAMDEV_SERVER" value="true" />
+    <setting id="VDR_ENABLE_LIVE" value="true" />
+    <setting id="VDR_LIVE_IP" value="0.0.0.0"/>
+    <setting id="VDR_LIVE_PORT" value="8008"/>
+    <setting id="VDR_ENABLE_EEPG" value="false" />
+    <setting id="VDR_ENABLE_EPGSEARCH" value="true" />
+    <setting id="VDR_ENABLE_XMLTV2VDR" value="false" />
+    <setting id="VDR_ENABLE_DUMMYDEVICE" value="false" />
+    <setting id="VDR_ENABLE_SATIP" value="false" />
+    <setting id="VDR_ENABLE_EPGFIXER" value="false" />
+    <setting id="VDR_ENABLE_RESTFULAPI" value="false" />
+    <setting id="VDR_RESTFULAPI_IP" value="0.0.0.0"/>
+    <setting id="VDR_RESTFULAPI_PORT" value="8002"/>
+    <setting id="VDR_ENABLE_WIRBELSCAN" value="true" />
+    <setting id="VDR_ENABLE_SOFTCAM" value="true" />
+    <setting id="VDR_SOFTCAM_OPTION" value="" />
+    <setting id="VDR_ENABLE_IPTV_F" value="false" />
+    <setting id="VDR_IPTV_NUM_DEVICES_F" value="1" />
+    <setting id="VDR_ENABLE_STREAMDEV_CLIENT_F" value="true" />
+    <setting id="VDR_ENABLE_STREAMDEV_SERVER_F" value="true" />
+    <setting id="VDR_ENABLE_LIVE_F" value="true" />
+    <setting id="VDR_LIVE_IP_F" value="0.0.0.0"/>
+    <setting id="VDR_LIVE_PORT_F" value="8008"/>
+    <setting id="VDR_ENABLE_EEPG_F" value="false" />
+    <setting id="VDR_ENABLE_EPGSEARCH_F" value="true" />
+    <setting id="VDR_ENABLE_XMLTV2VDR_F" value="false" />
+    <setting id="VDR_ENABLE_DUMMYDEVICE_F" value="false" />
+    <setting id="VDR_ENABLE_SATIP_F" value="false" />
+    <setting id="VDR_ENABLE_EPGFIXER_F" value="false" />
+    <setting id="VDR_ENABLE_RESTFULAPI_F" value="false" />
+    <setting id="VDR_RESTFULAPI_IP_F" value="0.0.0.0"/>
+    <setting id="VDR_RESTFULAPI_PORT_F" value="8002"/>
+    <setting id="VDR_ENABLE_WIRBELSCAN_F" value="true" />
+    <setting id="VDR_ENABLE_SOFTCAM_F" value="true" />
+    <setting id="VDR_SOFTCAM_OPTION_F" value="" />
+    <setting id="VDR_ENABLE_FAVORITES" value="true" />
+    <setting id="VDR_ENABLE_FEMON" value="false" />
+    <setting id="VDR_ENABLE_SYSTEMINFO" value="false" />
+    <setting id="VDR_ENABLE_SLEEPTIMER" value="false" />
+    <setting id="VDR_ENABLE_FILEBROWSER" value="false" />
+    <setting id="VDR_ENABLE_LCDPROC" value="false" />
+    <setting id="VDR_ENABLE_TEXT2SKIN" value="false" />
+    <setting id="VDR_ENABLE_SKINNOPACITY" value="false" />
+    <setting id="VDR_ENABLE_SKINFLAT" value="false" />
+    <setting id="VDR_ENABLE_SKINFLATPLUS" value="false" />
+    <setting id="VDR_ENABLE_SKINDESIGNER" value="false" />
+    <setting id="VDR_ENABLE_MENUORG" value="false" />
+    <setting id="VDR_ENABLE_TVGUIDE" value="false" />
+    <setting id="VDR_ENABLE_TVSCRAPER" value="false" />
+    <setting id="VDR_ENABLE_WEATHERFORECAST" value="false" />
+    <setting id="VDR_FRONT" value="soft" />" />
+    <setting id="VDR_OUTPUT_VIDEO" value="auto"/>
+    <setting id="VDR_SOUND_SOFT" value="hw:0,0" />
+    <setting id="VDR_SOUND_XINE" value="auto" />
+    <setting id="VDR_SOFT_PARAM" value="" />
+    <setting id="VDR_XINE_PARAM" value="" />
+    <setting id="DVB_WAIT_FOR_FEINIT" value="false" />
+    <setting id="DVB_NUM_ADAPTERS" value="1" />
+    <setting id="DVB_REMOVE_MODULES" value="" />
+</settings>

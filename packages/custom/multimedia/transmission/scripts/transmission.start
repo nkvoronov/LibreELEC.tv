@@ -1,0 +1,73 @@
+#!/bin/sh
+
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
+#
+#  This Program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This Program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.tv; see the file COPYING.  If not, write to
+#  the Free Software Foundation, 51 Franklin Street, Suite 500, Boston, MA 02110, USA.
+#  http://www.gnu.org/copyleft/gpl.html
+################################################################################
+
+# can be called from openelec addon.
+# ensure that environment is sane
+. /etc/profile
+
+LOG_TRANSMISSION="/var/log/transmission.log"
+TRANSMISSION_HOME="$HOME/.config/transmission"
+
+if [ -f /storage/.cache/services/transmission.conf ]; then
+
+    . /storage/.cache/services/transmission.conf
+
+    echo "Starting Transmission daemon ..."
+
+    export TRANSMISSION_WEB_HOME="/usr/share/transmission/web"
+
+    TRANSMISSION_DL_DIR1="${TRANSMISSION_DL_DIR%?}"
+
+    mkdir -p "$TRANSMISSION_DL_DIR"
+    mkdir -p "$TRANSMISSION_DL_DIR/incoming"
+    mkdir -p "$TRANSMISSION_DL_DIR/watch"
+
+    if [ -z "$TRANSMISSION_IP" ]; then
+        TRANSMISSION_IP="*.*.*.*"
+    fi
+
+    TRANSMISSION_ARG="$TRANSMISSION_ARG -w \"$TRANSMISSION_DL_DIR\""
+    TRANSMISSION_ARG="$TRANSMISSION_ARG --incomplete-dir \"$TRANSMISSION_DL_DIR/incoming\""
+    TRANSMISSION_ARG="$TRANSMISSION_ARG --watch-dir \"$TRANSMISSION_DL_DIR/watch\""
+    TRANSMISSION_ARG="$TRANSMISSION_ARG -e $LOG_TRANSMISSION"
+    TRANSMISSION_ARG="$TRANSMISSION_ARG -g /storage/.cache/transmission"
+
+    if [ ! "$TRANSMISSION_LIMIT_GLOBAL" = "" ]; then
+        TRANSMISSION_ARG="$TRANSMISSION_ARG -L $TRANSMISSION_LIMIT_GLOBAL"
+    fi
+
+    if [ ! "$TRANSMISSION_LIMIT_TORRENT" = "" ]; then
+        TRANSMISSION_ARG="$TRANSMISSION_ARG -l $TRANSMISSION_LIMIT_TORRENT"
+    fi
+
+    TRANSMISSION_ARG="$TRANSMISSION_ARG -a '$TRANSMISSION_IP'"
+
+    if [ "$TRANSMISSION_SECURE" = "true" ]; then
+        TRANSMISSION_ARG="$TRANSMISSION_ARG -t"
+        TRANSMISSION_ARG="$TRANSMISSION_ARG -u $TRANSMISSION_USERNAME"
+        TRANSMISSION_ARG="$TRANSMISSION_ARG -v $TRANSMISSION_PASSWORD"
+    else
+        TRANSMISSION_ARG="$TRANSMISSION_ARG -T"
+    fi
+
+    eval EVENT_NOEPOLL=1 exec transmission-daemon -f $TRANSMISSION_ARG &>$LOG_TRANSMISSION
+fi

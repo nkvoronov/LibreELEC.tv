@@ -1,0 +1,52 @@
+diff -Naur a/po/de_DE.po b/po/de_DE.po
+--- a/po/de_DE.po	2015-07-12 20:46:56.000000000 +0300
++++ b/po/de_DE.po	2015-07-12 20:51:59.569541262 +0300
+@@ -21,3 +21,6 @@
+ 
+ msgid "FTA"
+ msgstr "freie"
++
++msgid "Offers a RESTful-API to retrieve data from VDR"
++msgstr ""
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2015-07-12 20:53:32.449545364 +0300
+@@ -0,0 +1,26 @@
++# vdr-restfulapi plugin language source file
++# Copyright (C) 2013
++# This file is distributed under the same license as the vdr-restfulapi package.
++# Lars Hanisch <dvb@flensrocker.de>, 2013.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr-restfulapi 0.1.0\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2013-02-09 11:11+0100\n"
++"PO-Revision-Date: 2013-02-09 11:11+0100\n"
++"Last-Translator: Lars Hanisch <dvb@flensrocker.de>\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: Russian\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "All"
++msgstr "Все"
++
++msgid "FTA"
++msgstr "FTA"
++
++msgid "Offers a RESTful-API to retrieve data from VDR"
++msgstr "RESTful-API для получения данных из VDR"
+diff -Naur a/restfulapi.cpp b/restfulapi.cpp
+--- a/restfulapi.cpp	2015-07-12 20:46:56.000000000 +0300
++++ b/restfulapi.cpp	2015-07-12 20:50:32.769537429 +0300
+@@ -12,7 +12,7 @@
+ #include "statusmonitor.h"
+ 
+ static const char *VERSION        = "0.2.6.1";
+-static const char *DESCRIPTION    = "Offers a RESTful-API to retrieve data from VDR";
++static const char *DESCRIPTION    = tr("Offers a RESTful-API to retrieve data from VDR");
+ static const char *MAINMENUENTRY  = NULL;//"Restfulapi";
+ 
+ class cPluginRestfulapi : public cPlugin {

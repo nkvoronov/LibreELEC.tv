@@ -1,0 +1,51 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2014-10-17 23:30:56.000000000 +0300
++++ b/Makefile	2014-10-18 09:42:06.613760695 +0300
+@@ -11,21 +11,15 @@
+ ### The directory environment:
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
+-LIBDIR = $(call PKGCFG,libdir)
+-LOCDIR = $(call PKGCFG,locdir)
+-PLGCFG = $(call PKGCFG,plgcfg)
+-#
+ TMPDIR ?= /tmp
+ 
+ ### The compiler options:
+ 
+-export CFLAGS   = $(call PKGCFG,cflags)
+-export CXXFLAGS = $(call PKGCFG,cxxflags)
++include $(VDRDIR)/Make.global
+ 
+ ### The version number of VDR's plugin API:
+ 
+-APIVERSION = $(call PKGCFG,apiversion)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### Allow user defined options to overwrite defaults:
+ 
+@@ -42,11 +36,15 @@
+ 
+ ### Includes and Defines (add further entries here):
+ 
++INCLUDES += -I$(VDRDIR)/include
++
+ INCLUDES += `pkg-config libxml++-2.6 --cflags`
+ INCLUDES += `pkg-config glibmm-2.4 --cflags`
++INCLUDES += `pkg-config glib-2.0 --cflags`
+ 
+ LIBS +=  `pkg-config libxml++-2.6 --libs`
+ LIBS +=  `pkg-config glibmm-2.4 --libs`
++LIBS +=  `pkg-config glib-2.0 --libs`
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
+ 
+@@ -106,6 +104,7 @@
+ 
+ $(SOFILE): $(OBJS)
+ 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@
++	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ 
+ install-lib: $(SOFILE)
+ 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)

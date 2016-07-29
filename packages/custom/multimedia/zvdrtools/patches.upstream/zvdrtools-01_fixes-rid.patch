@@ -1,0 +1,13 @@
+diff -Naur a/zvdrtools/vdrtools.py b/zvdrtools/vdrtools.py
+--- a/zvdrtools/vdrtools.py	2015-01-14 03:08:55.000000000 +0200
++++ b/zvdrtools/vdrtools.py	2015-02-28 07:53:31.000000000 +0200
+@@ -86,7 +86,8 @@
+                                                          'tid': channel_tid,
+                                                          'sid': channel_data.sid}
+     if channel_data.rid != 0:
+-        channel_id = "%s-%d" % channel_data.rid
++        channel_id = "%(channelid)s-%(rid)d" % {'channelid': channel_id,
++				'rid': channel_data.rid}
+     logger.debug('Channel ID=%s', channel_id)
+     return channel_id
+ 

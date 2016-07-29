@@ -1,0 +1,50 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2016-02-04 00:00:18.000000000 +0200
++++ b/Makefile	2016-02-04 17:21:20.305789982 +0200
+@@ -16,26 +16,17 @@
+ ### The directory environment:
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
+-LIBDIR = $(call PKGCFG,libdir)
+-LOCDIR = $(call PKGCFG,locdir)
+-PLGCFG = $(call PKGCFG,plgcfg)
+-#
++
+ TMPDIR ?= /tmp
+ 
+ ### The compiler options:
+ 
+-export CFLAGS   = $(call PKGCFG,cflags)
+-export CXXFLAGS = $(call PKGCFG,cxxflags)
++include $(VDRDIR)/Make.global
+ CXXFLAGS += -std=c++11
+ 
+ ### The version number of VDR's plugin API:
+ 
+-APIVERSION = $(call PKGCFG,apiversion)
+-
+-### Allow user defined options to overwrite defaults:
+-
+--include $(PLGCFG)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### The name of the distribution archive:
+ 
+@@ -48,7 +39,7 @@
+ 
+ ### Includes and Defines (add further entries here):
+ 
+-INCLUDES +=
++INCLUDES += -I$(VDRDIR)/include
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
+ 
+@@ -137,6 +128,7 @@
+ 
+ $(SOFILE): $(OBJS)
+ 	$(CXX) $(CXXFLAGS) -std=c++11 $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@
++	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ 
+ install-lib: $(SOFILE)
+ 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)

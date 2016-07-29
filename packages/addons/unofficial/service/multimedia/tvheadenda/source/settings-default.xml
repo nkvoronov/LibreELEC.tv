@@ -1,0 +1,13 @@
+<settings>
+    <setting id="TVHEADEND_BACKUP" value="false" />
+    <setting id="TVHEADEND_ADAPTERS" value="" />
+    <setting id="TVHEADEND_PRELOAD_CAPMT_CA" value="false" />
+    <setting id="TVHEADEND_DEBUG" value="false" />	
+    <setting id="XMLTV_TYPE" value="NONE" />
+    <setting id="XMLTV_LOCATION_FILE" value="" />
+    <setting id="XMLTV_LOCATION_WEB" value="http://" />
+    <setting id="XMLTV_LOCATION_SCRIPT" value="" />
+    <setting id="DVB_WAIT_FOR_FEINIT" value="false" />
+    <setting id="DVB_NUM_ADAPTERS" value="1" />
+    <setting id="DVB_REMOVE_MODULES" value="" />		
+</settings>

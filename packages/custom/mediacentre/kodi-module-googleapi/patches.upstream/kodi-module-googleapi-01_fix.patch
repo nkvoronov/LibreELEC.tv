@@ -1,0 +1,271 @@
+diff -Naur a/lib/apiclient/channel.py b/lib/apiclient/channel.py
+--- a/lib/apiclient/channel.py	2015-11-07 23:26:56.000000000 +0200
++++ b/lib/apiclient/channel.py	2015-11-08 01:19:43.903771139 +0200
+@@ -60,7 +60,7 @@
+ import datetime
+ import uuid
+ 
+-from googleapiclient import errors
++from apiclient import errors
+ from oauth2client import util
+ import six
+ 
+diff -Naur a/lib/apiclient/discovery_cache/__init__.py b/lib/apiclient/discovery_cache/__init__.py
+--- a/lib/apiclient/discovery_cache/__init__.py	2015-11-07 23:26:56.000000000 +0200
++++ b/lib/apiclient/discovery_cache/__init__.py	2015-11-08 01:17:11.075774634 +0200
+@@ -26,7 +26,7 @@
+   """Detects an appropriate cache module and returns it.
+ 
+   Returns:
+-    googleapiclient.discovery_cache.base.Cache, a cache object which
++    apiclient.discovery_cache.base.Cache, a cache object which
+     is auto detected, or None if no cache object is available.
+   """
+   try:
+diff -Naur a/lib/apiclient/discovery.py b/lib/apiclient/discovery.py
+--- a/lib/apiclient/discovery.py	2015-11-07 23:26:56.000000000 +0200
++++ b/lib/apiclient/discovery.py	2015-11-08 01:15:54.551776383 +0200
+@@ -53,21 +53,21 @@
+ import uritemplate
+ 
+ # Local imports
+-from googleapiclient import mimeparse
+-from googleapiclient.errors import HttpError
+-from googleapiclient.errors import InvalidJsonError
+-from googleapiclient.errors import MediaUploadSizeError
+-from googleapiclient.errors import UnacceptableMimeTypeError
+-from googleapiclient.errors import UnknownApiNameOrVersion
+-from googleapiclient.errors import UnknownFileType
+-from googleapiclient.http import BatchHttpRequest
+-from googleapiclient.http import HttpRequest
+-from googleapiclient.http import MediaFileUpload
+-from googleapiclient.http import MediaUpload
+-from googleapiclient.model import JsonModel
+-from googleapiclient.model import MediaModel
+-from googleapiclient.model import RawModel
+-from googleapiclient.schema import Schemas
++from apiclient import mimeparse
++from apiclient.errors import HttpError
++from apiclient.errors import InvalidJsonError
++from apiclient.errors import MediaUploadSizeError
++from apiclient.errors import UnacceptableMimeTypeError
++from apiclient.errors import UnknownApiNameOrVersion
++from apiclient.errors import UnknownFileType
++from apiclient.http import BatchHttpRequest
++from apiclient.http import HttpRequest
++from apiclient.http import MediaFileUpload
++from apiclient.http import MediaUpload
++from apiclient.model import JsonModel
++from apiclient.model import MediaModel
++from apiclient.model import RawModel
++from apiclient.schema import Schemas
+ from oauth2client.client import GoogleCredentials
+ from oauth2client.util import _add_query_parameter
+ from oauth2client.util import positional
+@@ -176,13 +176,13 @@
+       document for that service.
+     developerKey: string, key obtained from
+       https://code.google.com/apis/console.
+-    model: googleapiclient.Model, converts to and from the wire format.
+-    requestBuilder: googleapiclient.http.HttpRequest, encapsulator for an HTTP
++    model: apiclient.Model, converts to and from the wire format.
++    requestBuilder: apiclient.http.HttpRequest, encapsulator for an HTTP
+       request.
+     credentials: oauth2client.Credentials, credentials to be used for
+       authentication.
+     cache_discovery: Boolean, whether or not to cache the discovery doc.
+-    cache: googleapiclient.discovery_cache.base.CacheBase, an optional
++    cache: apiclient.discovery_cache.base.CacheBase, an optional
+       cache object for the discovery documents.
+ 
+   Returns:
+@@ -221,7 +221,7 @@
+     http: httplib2.Http, An instance of httplib2.Http or something that acts
+       like it through which HTTP requests will be made.
+     cache_discovery: Boolean, whether or not to cache the discovery doc.
+-    cache: googleapiclient.discovery_cache.base.Cache, an optional cache
++    cache: apiclient.discovery_cache.base.Cache, an optional cache
+       object for the discovery documents.
+ 
+   Returns:
+@@ -940,9 +940,9 @@
+       http: httplib2.Http, Object to make http requests with.
+       baseUrl: string, base URL for the API. All requests are relative to this
+           URI.
+-      model: googleapiclient.Model, converts to and from the wire format.
++      model: apiclient.Model, converts to and from the wire format.
+       requestBuilder: class or callable that instantiates an
+-          googleapiclient.HttpRequest object.
++          apiclient.HttpRequest object.
+       developerKey: string, key obtained from
+           https://code.google.com/apis/console
+       resourceDesc: object, section of deserialized discovery document that
+diff -Naur a/lib/apiclient/http.py b/lib/apiclient/http.py
+--- a/lib/apiclient/http.py	2015-11-07 23:26:56.000000000 +0200
++++ b/lib/apiclient/http.py	2015-11-08 01:21:52.367768202 +0200
+@@ -45,14 +45,14 @@
+ from email.mime.nonmultipart import MIMENonMultipart
+ from email.parser import FeedParser
+ 
+-from googleapiclient import mimeparse
+-from googleapiclient.errors import BatchError
+-from googleapiclient.errors import HttpError
+-from googleapiclient.errors import InvalidChunkSizeError
+-from googleapiclient.errors import ResumableUploadError
+-from googleapiclient.errors import UnexpectedBodyError
+-from googleapiclient.errors import UnexpectedMethodError
+-from googleapiclient.model import JsonModel
++from apiclient import mimeparse
++from apiclient.errors import BatchError
++from apiclient.errors import HttpError
++from apiclient.errors import InvalidChunkSizeError
++from apiclient.errors import ResumableUploadError
++from apiclient.errors import UnexpectedBodyError
++from apiclient.errors import UnexpectedMethodError
++from apiclient.model import JsonModel
+ from oauth2client import util
+ 
+ 
+@@ -501,7 +501,7 @@
+     Args:
+       fd: io.Base or file object, The stream in which to write the downloaded
+         bytes.
+-      request: googleapiclient.http.HttpRequest, the media request to perform in
++      request: apiclient.http.HttpRequest, the media request to perform in
+         chunks.
+       chunksize: int, File will be downloaded in chunks of this many bytes.
+     """
+@@ -533,7 +533,7 @@
+          downloaded.
+ 
+     Raises:
+-      googleapiclient.errors.HttpError if the response was not a 2xx.
++      apiclient.errors.HttpError if the response was not a 2xx.
+       httplib2.HttpLib2Error if a transport error has occured.
+     """
+     headers = {
+@@ -682,7 +682,7 @@
+       by the postproc.
+ 
+     Raises:
+-      googleapiclient.errors.HttpError if the response was not a 2xx.
++      apiclient.errors.HttpError if the response was not a 2xx.
+       httplib2.HttpLib2Error if a transport error has occured.
+     """
+     if http is None:
+@@ -777,7 +777,7 @@
+          The body will be None until the resumable media is fully uploaded.
+ 
+     Raises:
+-      googleapiclient.errors.HttpError if the response was not a 2xx.
++      apiclient.errors.HttpError if the response was not a 2xx.
+       httplib2.HttpLib2Error if a transport error has occured.
+     """
+     if http is None:
+@@ -888,7 +888,7 @@
+          The body will be None until the resumable media is fully uploaded.
+ 
+     Raises:
+-      googleapiclient.errors.HttpError if the response was not a 2xx or a 308.
++      apiclient.errors.HttpError if the response was not a 2xx or a 308.
+     """
+     if resp.status in [200, 201]:
+       self._in_error_state = False
+@@ -939,7 +939,7 @@
+   """Batches multiple HttpRequest objects into a single HTTP request.
+ 
+   Example:
+-    from googleapiclient.http import BatchHttpRequest
++    from apiclient.http import BatchHttpRequest
+ 
+     def list_animals(request_id, response, exception):
+       \"\"\"Do something with the animals list response.\"\"\"
+@@ -976,7 +976,7 @@
+       callback: callable, A callback to be called for each response, of the
+         form callback(id, response, exception). The first parameter is the
+         request id, and the second is the deserialized response object. The
+-        third is an googleapiclient.errors.HttpError exception object if an HTTP error
++        third is an apiclient.errors.HttpError exception object if an HTTP error
+         occurred while processing the request, or None if no error occurred.
+       batch_uri: string, URI to send batch requests to.
+     """
+@@ -1177,7 +1177,7 @@
+       callback: callable, A callback to be called for this response, of the
+         form callback(id, response, exception). The first parameter is the
+         request id, and the second is the deserialized response object. The
+-        third is an googleapiclient.errors.HttpError exception object if an HTTP error
++        third is an apiclient.errors.HttpError exception object if an HTTP error
+         occurred while processing the request, or None if no errors occurred.
+       request_id: string, A unique id for the request. The id will be passed to
+         the callback with the response.
+@@ -1210,7 +1210,7 @@
+ 
+     Raises:
+       httplib2.HttpLib2Error if a transport error has occured.
+-      googleapiclient.errors.BatchError if the response is the wrong format.
++      apiclient.errors.BatchError if the response is the wrong format.
+     """
+     message = MIMEMultipart('mixed')
+     # Message should not write out it's own headers.
+@@ -1283,7 +1283,7 @@
+ 
+     Raises:
+       httplib2.HttpLib2Error if a transport error has occured.
+-      googleapiclient.errors.BatchError if the response is the wrong format.
++      apiclient.errors.BatchError if the response is the wrong format.
+     """
+     # If we have no requests return
+     if len(self._order) == 0:
+@@ -1392,7 +1392,7 @@
+           'plus.activities.get': (None, response),
+         }
+       )
+-      googleapiclient.discovery.build("plus", "v1", requestBuilder=requestBuilder)
++      apiclient.discovery.build("plus", "v1", requestBuilder=requestBuilder)
+ 
+     Methods that you do not supply a response for will return a
+     200 OK with an empty string as the response content or raise an excpetion
+diff -Naur a/lib/apiclient/model.py b/lib/apiclient/model.py
+--- a/lib/apiclient/model.py	2015-11-07 23:26:56.000000000 +0200
++++ b/lib/apiclient/model.py	2015-11-08 01:18:58.771772171 +0200
+@@ -29,8 +29,8 @@
+ 
+ from six.moves.urllib.parse import urlencode
+ 
+-from googleapiclient import __version__
+-from googleapiclient.errors import HttpError
++from apiclient import __version__
++from apiclient.errors import HttpError
+ 
+ 
+ dump_request_response = False
+@@ -78,7 +78,7 @@
+       The body de-serialized as a Python object.
+ 
+     Raises:
+-      googleapiclient.errors.HttpError if a non 2xx response is received.
++      apiclient.errors.HttpError if a non 2xx response is received.
+     """
+     _abstract()
+ 
+@@ -194,7 +194,7 @@
+       The body de-serialized as a Python object.
+ 
+     Raises:
+-      googleapiclient.errors.HttpError if a non 2xx response is received.
++      apiclient.errors.HttpError if a non 2xx response is received.
+     """
+     self._log_response(resp, content)
+     # Error handling is TBD, for example, do we retry
+diff -Naur a/lib/apiclient/sample_tools.py b/lib/apiclient/sample_tools.py
+--- a/lib/apiclient/sample_tools.py	2015-11-07 23:26:56.000000000 +0200
++++ b/lib/apiclient/sample_tools.py	2015-11-08 01:16:34.127775479 +0200
+@@ -26,7 +26,7 @@
+ import httplib2
+ import os
+ 
+-from googleapiclient import discovery
++from apiclient import discovery
+ from oauth2client import client
+ from oauth2client import file
+ from oauth2client import tools

@@ -1,0 +1,467 @@
+<menumain x="0" y="0" width="100%" height="100%" fadetime="{menufadetime}" scaletvx="{areawidth}*60/100-10" scaletvy="34%" scaletvwidth="40%" scaletvheight="50%" >
+<!--
+    <scrollbar>
+        <area condition="not{vectrasetup}" x="{areawidth}*0.30" y="16%" width="{areawidth}*0.0075" height="68%" layer="2">
+            <fill color="{clrBorder}" />
+            <drawrectangle x="2" y="2" width="{areawidth} - 4" height="{areaheight} - 4" color="{clrTransparent}" />
+            <drawrectangle x="4" y="4 + {areaheight} * {offset} / 1000" width="{areawidth} - 8" height="{areaheight} * {height} / 1000 - 8" color="{clrProgressbar}" />
+        </area>
+        <area condition="not{vectrasetup}" x="{areawidth}*0.30" y="16%" width="{areawidth}*0.0075" height="68%" layer="3">
+             <drawimage cache="true" imagetype="skinpart" path="verticalbartop" x="4" y="4 + {areaheight} * {offset} / 1000" width="{areawidth} - 8" height="{areaheight} * {height} / 1000 - 8"/>
+        </area>
+     </scrollbar>
+-->
+
+    <header>
+        <area x="1%" y="0" width="64%" height="10%" layer="3">
+            <drawimage imagetype="icon" path="ico_vdrlogo" x="0" valign="center" width="{areaheight} * 0.5 * 160 / 70" height="{areaheight}*0.5"/>
+            <drawtext condition="{vectrasetup}" x="{areaheight} * 0.9 * 160 / 70 - 70" valign="center" font="{regular}" fontsize="45%" color="{clrWhite}" text="{systemTyp} {vdrversion}" />
+            <drawtext condition="not{vectrasetup}" x="{areaheight} * 0.9 * 160 / 70 - 70" valign="center" font="{regular}" fontsize="45%" color="{clrWhite}" text="{vdrversion}" />
+        </area>
+    </header>
+
+    <timers detached="true" delay="{widgetdelay}" fadetime="{widgetfadetime}">
+        <area condition="gt({numtimers}, 0)++lt({numtimers}, 7)" x="{areawidth}*0.319" y="13%" width="{areawidth}*0.11 * {numtimers}" height="{areaheight}*0.02 - 2" layer="2">
+	    <drawimage name="numTimersIcon" x="{areawidth}/2 - {width(numTimersText)}/2 - 5 - {width(numTimersIcon)}/2" y="3" imagetype="icon" path="ico_activetimer" width="{areaheight}-2" height="{areaheight}-2" />
+            <drawtext name="numTimersText" x="{posx(numTimersIcon)}+{width(numTimersIcon)} +10" valign="center" font="{regular}" fontsize="120%" color="{clrWhite}" text="{numtimers} {tr(active)} {tr(timer)}" />
+	</area>
+        <area condition="gt({numtimers}, 6)" x="{areawidth}*0.319" y="13%" width="{areawidth}*0.11 * 6" height="{areaheight}*0.02 - 2" layer="2">
+	    <drawimage name="numTimersIcon" x="{areawidth}/2 - {width(numTimersText)}/2 - 5 - {width(numTimersIcon)}/2" y="3" imagetype="icon" path="ico_activetimer" width="{areaheight}-2" height="{areaheight}-2" />
+            <drawtext name="numTimersText" x="{posx(numTimersIcon)}+{width(numTimersIcon)} +10" valign="center" font="{regular}" fontsize="120%" color="{clrWhite}" text="{numtimers} {tr(active)} {tr(timer)}" />
+	</area>
+        <area background="true" condition="gt({numtimers}, 0)" x="{areawidth}*0.299" y="13%" width="2%" height="17%" layer="2">
+	    <drawtextvertical x="0" y="0" align="left" valign="center" font="{regular}" fontsize="{areawidth}/1.75" color="{clrGray}" text="{tr(timer)}" />
+	</area>
+        <area x="{areawidth}*0.319" y="13%" width="66%" height="17%" layer="1">
+	    <!-- Timer 1 -->
+            <drawrectangle condition="gt({numtimers}, 0)" name="timerback" y="0" x="0" height="{areaheight}" width="{areawidth} / 6+2" color="{clrBackground}" />
+            <drawellipse condition="eq({numtimers}, 1)" x="{areawidth}/6 - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse condition="eq({numtimers}, 1)" x="{areawidth}/6 - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+            <drawrectangle condition="eq({numtimers}, 1)" x="5" y="13%" height="2" width="{areawidth} / 6 -10" color="{clrTransparent}" />
+	    <!-- Timer 2 -->
+            <drawrectangle condition="gt({numtimers}, 1)" y="0" x="{areawidth} / 6 - 2" height="{areaheight}" width="{areawidth} / 6 + 2" color="{clrBackground}" />
+            <drawellipse condition="eq({numtimers}, 2)" x="{areawidth}/6*2 - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse condition="eq({numtimers}, 2)" x="{areawidth}/6*2 - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+            <drawrectangle condition="eq({numtimers}, 2)" x="5" y="13%" height="2" width="{areawidth} / 6*2 -10" color="{clrTransparent}" />
+            <drawrectangle condition="gt({numtimers}, 1)" x="{areawidth} / 6 -1" y="13%" height="{areaheight}*0.87 -2" width="2" color="{clrTransparent}" />
+	    <!-- Timer 3 -->
+            <drawrectangle condition="gt({numtimers}, 2)" y="0" x="{areawidth} / 6 * 2 - 2" height="{areaheight}" width="{areawidth} / 6 + 2" color="{clrBackground}" />
+            <drawellipse condition="eq({numtimers}, 3)" x="{areawidth}/6*3 - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse condition="eq({numtimers}, 3)" x="{areawidth}/6*3 - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+            <drawrectangle condition="eq({numtimers}, 3)" x="5" y="13%" height="2" width="{areawidth} / 6*3 -10" color="{clrTransparent}" />
+            <drawrectangle condition="gt({numtimers}, 2)" x="{areawidth} / 6*2 -1" y="13%" height="{areaheight}*0.87 -2" width="2" color="{clrTransparent}" />
+	    <!-- Timer 4 -->
+            <drawrectangle condition="gt({numtimers}, 3)" y="0" x="{areawidth} * 3 / 6 - 2" height="{areaheight}" width="{areawidth} / 6 + 2" color="{clrBackground}" />
+            <drawellipse condition="eq({numtimers}, 4)" x="{areawidth}/6*4 - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse condition="eq({numtimers}, 4)" x="{areawidth}/6*4 - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+            <drawrectangle condition="eq({numtimers}, 4)" x="5" y="13%" height="2" width="{areawidth} / 6*4 -10" color="{clrTransparent}" />
+            <drawrectangle condition="gt({numtimers}, 3)" x="{areawidth} / 6*3 -1" y="13%" height="{areaheight}*0.87 -2" width="2" color="{clrTransparent}" />
+	    <!-- Timer 5 -->
+            <drawrectangle condition="gt({numtimers}, 4)" y="0" x="{areawidth} * 4 / 6 - 2" height="{areaheight}" width="{areawidth} / 6 + 2" color="{clrBackground}" />
+            <drawellipse condition="eq({numtimers}, 5)" x="{areawidth}/6*5 - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse condition="eq({numtimers}, 5)" x="{areawidth}/6*5 - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+            <drawrectangle condition="eq({numtimers}, 5)" x="5" y="13%" height="2" width="{areawidth} / 6*5 -10" color="{clrTransparent}" />
+            <drawrectangle condition="gt({numtimers}, 4)" x="{areawidth} / 6*4 -1" y="13%" height="{areaheight}*0.87 -2" width="2" color="{clrTransparent}" />
+	    <!-- Timer 6 -->
+            <drawrectangle condition="gt({numtimers}, 5)" y="0" x="{areawidth} * 5 / 6 - 2" height="{areaheight}" width="{areawidth} / 6 + 2" color="{clrBackground}" />
+            <drawellipse condition="gt({numtimers}, 5)" x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse condition="gt({numtimers}, 5)" x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+            <drawrectangle condition="gt({numtimers}, 5)" x="5" y="13%" height="2" width="{areawidth} -10" color="{clrTransparent}" />
+            <drawrectangle condition="gt({numtimers}, 5)" x="{areawidth} / 6*5-1" y="13%" height="{areaheight}*0.87 -2" width="2" color="{clrTransparent}" />
+	    <!-- Anfangsrundung -->
+            <drawellipse condition="gt({numtimers}, 0)" x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse condition="gt({numtimers}, 0)" x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+        </area>
+        <area x="{areawidth}*0.319" y="15%" width="66%" height="15%" layer="2">
+            <loop name="timers" x="0" y="0" orientation="horizontal" rowheight="100%" columnwidth="{areawidth} / 6" overflow="cut">
+                <drawimage cache="true" name="logo" imagetype="channellogo" path="{timers[channelid]}" height="45%" width="{columnwidth}*0.75" align="center" y="10%" />
+	        <drawellipse condition="{showmainmenutimertype}" x="0" y="{areaheight}*0.01" width="{columnwidth}*0.10" height="{columnwidth}*0.10" quadrant="4" color="{clrBlack}" />
+	        <drawtext condition="{showmainmenutimertype}++{timers[isremotetimer]}" x="{columnwidth}*0.008" y="{columnwidth}*0.003" font="{regular}" fontsize="{columnwidth}*0.10" color="{clrGray}" text="S" />
+	        <drawtext condition="{showmainmenutimertype}++not{timers[isremotetimer]}" x="{columnwidth}*0.008" y="{columnwidth}*0.003" font="{regular}" fontsize="{columnwidth}*0.10" color="{clrGray}" text="L" />
+	        <drawimage condition="{timers[recording]}++not{mainmenurecblink}" x="{columnwidth}*0.38" y="85%" imagetype="icon" path="ico_timer_recording" width="15%" height="15%" />
+	        <drawimage condition="{timers[recording]}++{mainmenurecblink}" x="{columnwidth}*0.38" y="85%" imagetype="icon" path="ico_timer_recording" animtype="blink" animfreq="500" width="15%" height="15%" />
+                <drawtextbox x="5" y="58%" width="{columnwidth}-10" align="center" maxlines="2" font="{regular}" fontsize="15%" color="{clrWhite}" text="{timers[title]}" />
+                <drawtext align="center" y="{areaheight}*0.85-2" font="{regular}" fontsize="15%" color="{clrGray}" text="{timers[datetime]}" />
+            </loop>
+        </area>
+	<!-- VDR Platzhalter -->
+        <area condition="lt({numtimers}, 6)++gt({numtimers}, 0)" x="{areawidth}*0.339 + {areawidth}*0.11*{numtimers}" y="13%" width="{areawidth}*0.66 - {areawidth}*0.11*{numtimers}" height="17%" layer="1">
+            <fill color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area condition="lt({numtimers}, 6)++gt({numtimers}, 0)" x="{areawidth}*0.339 + {areawidth}*0.11*{numtimers}" y="13%" width="{areawidth}*0.66 - {areawidth}*0.11*{numtimers}" height="17%" layer="1">
+            <drawimage imagetype="icon" path="ico_vdrlogo" x="10%" y="10%" valign="center" align="center" width="{areawidth} * 0.8" height="{areaheight} * 0.8" />
+	</area>
+	<!-- VDR Platzhalter (0 timer)-->
+        <area condition="eq({numtimers}, 0)" x="{areawidth}*0.319 + {areawidth}*0.11*{numtimers}" y="13%" width="{areawidth}*0.66 - {areawidth}*0.11*{numtimers}" height="17%" layer="1">
+            <fill color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area condition="eq({numtimers}, 0)" x="{areawidth}*0.319 + {areawidth}*0.11*{numtimers}" y="13%" width="{areawidth}*0.66 - {areawidth}*0.11*{numtimers}" height="17%" layer="1">
+            <drawimage imagetype="icon" path="ico_vdrlogo" x="10%" y="10%" valign="center" align="center" width="{areawidth} * 0.8" height="{areaheight} * 0.8" />
+	</area>
+    </timers>
+
+    <header> <!-- Videofenster -->
+        <area x="{areawidth}*57/100-15" y="{areaheight}*34/100-15" width="{areawidth}*43/100+15" height="{areaheight}*50/100+30" layer="1">
+            <drawrectangle x="0" y="20" width="2" height="{areaheight}-39" color="{clrBorder}" />
+            <drawrectangle x="20" y="0" height="2" width="{areawidth}-20" color="{clrBorder}" />
+            <drawrectangle x="20" y="{areaheight}-2" height="2" width="{areawidth}-20" color="{clrBorder}" />
+            <drawellipse x="0" y="0" width="20" height="20" quadrant="2" color="{clrBorder}" />
+            <drawellipse x="2" y="2" width="18" height="18" quadrant="2" color="{clrBlack}" />
+            <drawellipse x="0" y="{areaheight}-20" width="20" height="20" quadrant="3" color="{clrBorder}" />
+            <drawellipse x="2" y="{areaheight}-20" width="18" height="18" quadrant="3" color="{clrBlack}" />
+        </area>
+    </header>
+
+    <!-- disc widget -->
+    <discusage detached="true" delay="{widgetdelay}*2" fadetime="{widgetfadetime}">
+        <area background="true" x="{areawidth}*0.319" y="32%" width="22%" height="17%" layer="1">
+            <fill condition="lt({freepercent}, 6)" color="{clrTransRed}" />
+            <fill condition="gt({freepercent}, 5)" color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+        </area>
+        <area x="{areawidth}*0.299" y="31%" width="2%" height="17%" layer="2">
+	    <drawtextvertical x="0" y="0" align="left" valign="center" font="{regular}" fontsize="{areawidth}/1.75" color="{clrGray}" text="{tr(diskusage)}" />
+	</area>
+        <area background="true" x="{areawidth}*0.319" y="32%" width="22%" height="15%" layer="3">
+            <drawimage name="ico_discusage" imagetype="icon" path="ico_discusage" valign="center" x="{areawidth}/8*2.5 - {width(ico_discusage)}/2" width="{areawidth}*45/100/2" height="{areawidth}*45/100/2"/>
+	</area>
+        <area x="{areawidth}*0.419" y="29%" width="11%" height="21%" layer="3">
+            <drawtext align="center" y="30%" font="{regular}" fontsize="17%" color="{clrTransWhite}" text="{usedpercent}%" />
+            <drawtext name="diskusage" align="center" y="50%" font="{regular}" fontsize="17%" color="{clrWhite}" text="{freetime}h {tr(free)}" />
+            <drawtext align="center" y="{posy(diskusage)}+{height(diskusage)}" font="{regular}" fontsize="12%" color="{clrGray}" text="({freegb}GB)" />
+	</area>
+	<area x="{areawidth}*0.319 + {areaheight}*0.02" y="46%" width="{areawidth}*0.22 - {areaheight}*0.02*2" height="1%" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="0" width="{areawidth}" height="{areaheight}" />
+            <drawrectangle name="leftbar" x="0" y="0" width="{usedpercent}/100*{areawidth} - 5*{usedpercent}/100" height="{areaheight}" color="{clrBlack}" />
+            <drawrectangle name="rightbar" x="{width(leftbar)} + 5" y="0" width="{areawidth} - {width(leftbar)} - 5" height="{areaheight}" color="{clrBlack}" />
+        </area>        
+    </discusage>
+
+    <!-- last recordings widget -->
+    <lastrecordings detached="true" delay="{widgetdelay}*3" fadetime="{widgetfadetime}">
+	<!-- obere Position -->
+        <area condition="{showmainmenurecordings}++not{showmainmenuupsinfo}" background="true" x="{areawidth}*0.319" y="51%" width="{areawidth}*0.22" height="17%" layer="1">
+            <fill color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area condition="{showmainmenurecordings}++not{showmainmenuupsinfo}" background="true" x="{areawidth}*0.299" y="50%" width="2%" height="18%" layer="2">
+	    <drawtextvertical x="0" y="0" align="left" valign="center" font="{regular}" fontsize="{areawidth}/1.75" color="{clrGray}" text="{tr(recordings)}" />
+	</area>
+        <area condition="{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="52%" width="{areawidth}*0.22 - {areaheight}*0.04" height="15%" layer="2">
+            <loop name="recordings" x="0" y="0" orientation="vertical" rowheight="{areaheight}/3" columnwidth="{areawidth}" overflow="cut">
+	        <drawimage x="0" y="{rowheight}*0.025" imagetype="skinpart" path="tvguide_grid_line_vertical" width="3" height="{rowheight}*0.95" />
+	        <drawimage condition="{recordings[hasposter]}" name="recposter" x="{areawidth} - {rowheight}*0.95/4*2.5" y="{rowheight}*0.025" imagetype="image" path="{recordings[posterpath]}" width="{rowheight}*0.95/4*2.5" height="{rowheight}*0.95" />
+                <drawtext condition="{recordings[hasposter]}" x="5" y="{rowheight}*0.125" width="{areawidth}*0.89" font="{regular}" fontsize="{rowheight}*0.375" color="{clrGray}" text="{recordings[date]}    {recordings[time]}    ({recordings[duration]}min)" />
+                <drawtext condition="{recordings[hasposter]}" x="5" y="{rowheight}*0.40" width="{areawidth}*0.89" font="{regular}" fontsize="{rowheight}*0.475" color="{clrWhite}" text="{recordings[name]}" />
+                <drawtext condition="not{recordings[hasposter]}" x="5" y="{rowheight}*0.125" width="100%" font="{regular}" fontsize="{rowheight}*0.375" color="{clrWhite}" text="{recordings[date]}    {recordings[time]}    ({recordings[duration]}min)" />
+                <drawtext condition="not{recordings[hasposter]}" x="5" y="{rowheight}*0.50" width="100%" font="{regular}" fontsize="{rowheight}*0.475" color="{clrWhite}" text="{recordings[name]}" />
+            </loop>
+        </area>
+    </lastrecordings>
+
+    <!-- ups info widget -->
+    <customtokens condition="{showmainmenuupsinfo}" detached="true" delay="{widgetdelay}*3" fadetime="{widgetfadetime}">
+        <area background="true" x="{areawidth}*0.319" y="51%" width="{areawidth}*0.22" height="17%" layer="1">
+            <fill color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area background="true" x="{areawidth}*0.299" y="50%" width="2%" height="18%" layer="2">
+	    <drawtextvertical x="0" y="0" align="left" valign="center" font="{regular}" fontsize="{areawidth}/1.75" color="{clrGray}" text="{tr(upsinfo)}" />
+	</area>
+        <area condition="isset{ctUpsSTATUS}" x="{areawidth}*0.319 + {areaheight}*0.02" y="53%" width="{areawidth}*0.22 - {areaheight}*0.04" height="3%" layer="2">
+	    <drawtext name="upsname" x="{areawidth}/4 - {width(upsname)}/2" y="0" width="50%" font="{regular}" fontsize="70%" color="{clrWhite}" text="Name : {ctUpsUPSNAME}" />
+	    <drawtext name="upsstatus" x="{areawidth}/4*3 - {width(upsstatus)}/2" y="0" width="50%" font="{regular}" fontsize="70%" color="{clrWhite}" text="STATUS : {ctUpsSTATUS}" />
+        </area>
+        <area condition="empty{ctUpsSTATUS}" x="{areawidth}*0.319 + {areaheight}*0.02" y="53%" width="{areawidth}*0.22 - {areaheight}*0.04" height="3%" layer="2">
+	    <drawtext name="upsstatus" x="{areawidth}/2 - {width(upsstatus)}/2" y="0" width="50%" font="{regular}" fontsize="70%" color="{clrWhite}" text="STATUS : OFFLINE" />
+        </area>
+	<!-- LOADPCT -->
+	<area condition="{ctUpsLOADPCT}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.22/2-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="70%" color="{clrWhite}" text="{tr(systemload)}" />
+            <drawtext align="right" y="{areaheight}*0.45" font="{regular}" fontsize="60%" color="{clrGray}" text="{ctUpsLOADPCT}%" />
+	</area>
+	<area condition="{ctUpsLOADPCT}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.19/2.39 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctUpsLOADPCT}/100*{areawidth} - 5*{ctUpsLOADPCT}/100" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+	</area>
+	<!-- TIMELEFT -->
+	<area condition="{ctUpsTIMELEFT}" x="{areawidth}*0.319+5 + {areawidth}*0.22/2" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.22/2-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="70%" color="{clrWhite}" text="{tr(timeleft)}" />
+            <drawtext align="right" y="{areaheight}*0.45" font="{regular}" fontsize="60%" color="{clrGray}" text="{ctUpsTIMELEFT}min" />
+        </area>
+	<area condition="{ctUpsTIMELEFT}" x="{areawidth}*0.319 + {areaheight}*0.02 + {areawidth}*0.22/2" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.19/2.39 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf_mirror" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctUpsTIMELEFT}/10*{areawidth} - 5*{ctUpsTIMELEFT}/10" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- BCHARGE -->
+	<area condition="{ctUpsBCHARGE}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.22/2-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="70%" color="{clrWhite}" text="{tr(batteryload)}" />
+            <drawtext align="right" y="{areaheight}*0.45" font="{regular}" fontsize="60%" color="{clrGray}" text="{ctUpsBCHARGE}%" />
+        </area>
+	<area condition="{ctUpsBCHARGE}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.19/2.39 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf_mirror" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctUpsBCHARGE}/100*{areawidth} - {ctUpsBCHARGE}/100*5" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- BATTV -->
+	<area condition="{ctUpsBATTV}" x="{areawidth}*0.319+5 + {areawidth}*0.22/2" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.22/2-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="70%" color="{clrWhite}" text="{tr(batterycurrent)}" />
+            <drawtext align="right" y="{areaheight}*0.45" font="{regular}" fontsize="60%" color="{clrGray}" text="{ctUpsBATTV}V" />
+        </area>
+	<area condition="{ctUpsBATTV}" x="{areawidth}*0.319 + {areaheight}*0.02 + {areawidth}*0.22/2" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.19/2.39 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf_mirror" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctUpsBATTV}/27*{areawidth} - {ctUpsBATTV}/27*5" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- LINEV -->
+	<area condition="{ctUpsLINEV}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.22/2-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="70%" color="{clrWhite}" text="{tr(output)}" />
+            <drawtext align="right" y="{areaheight}*0.45" font="{regular}" fontsize="60%" color="{clrGray}" text="{ctUpsLINEV}V" />
+        </area>
+	<area condition="{ctUpsLINEV}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.19/2.39 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf_mirror" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctUpsLINEV}/250*{areawidth} - {ctUpsLINEV}/250*5" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- ITEMP -->
+	<area condition="{ctUpsITEMP}" x="{areawidth}*0.319+5 + {areawidth}*0.22/2" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.22/2-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="70%" color="{clrWhite}" text="{tr(temperature)}" />
+            <drawtext align="right" y="{areaheight}*0.45" font="{regular}" fontsize="60%" color="{clrGray}" text="{ctUpsITEMP}°C" />
+        </area>
+	<area condition="{ctUpsITEMP}" x="{areawidth}*0.319 + {areaheight}*0.02 + {areawidth}*0.22/2" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.19/2.39 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctUpsITEMP}/80*{areawidth} - {ctUpsITEMP}/80*5" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+    </customtokens>
+
+    <!-- system widget -->
+    <temperatures condition="{showmainmenusysinfo}" detached="true" delay="{widgetdelay}*3" fadetime="{widgetfadetime}">
+	<!-- obere Position -->
+        <area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" background="true" x="{areawidth}*0.319" y="51%" width="{areawidth}*0.22" height="17%" layer="1">
+            <fill color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" background="true" x="{areawidth}*0.299" y="51%" width="2%" height="17%" layer="2">
+	    <drawtextvertical x="0" y="0" align="left" valign="center" font="{regular}" fontsize="{areawidth}/1.75" color="{clrGray}" text="{tr(system)}" />
+	</area>
+	<!-- cpu temp -->
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(cputemp)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{cputemp}°C" />
+        </area>
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{cputemp}/80*{areawidth} - 5*{cputemp}/80" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- gpu temp -->
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(gputemp)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{gputemp}°C" />
+        </area>
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{gputemp}/80*{areawidth} - 5*{gputemp}/80" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- untere Position -->
+        <area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" background="true" x="{areawidth}*0.319" y="70%" width="{areawidth}*0.22" height="17%" layer="1">
+            <fill color="{clrBackground}" />
+            <drawellipse x="0" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-2" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="0" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-1" color="{clrTransparent}" />
+            <drawellipse x="0" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-3" color="{clrTransparent}" />
+            <drawellipse x="{areawidth} - {areaheight}*0.13" y="{areaheight}*0.87" width="{areaheight}*0.13" height="{areaheight}*0.13" quadrant="-4" color="{clrTransparent}" />
+	</area>
+        <area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" background="true" x="{areawidth}*0.299" y="70%" width="2%" height="17%" layer="2">
+	    <drawtextvertical x="0" y="0" align="left" valign="center" font="{regular}" fontsize="{areawidth}/1.75" color="{clrGray}" text="{tr(system)}" />
+	</area>
+	<!-- cpu temp -->
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(cputemp)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{cputemp}°C" />
+        </area>
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*3" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{cputemp}/80*{areawidth} - 5*{cputemp}/80" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- gpu temp -->
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(gputemp)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{gputemp}°C" />
+        </area>
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*4" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{gputemp}/80*{areawidth} - 5*{gputemp}/80" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+    </temperatures>
+
+    <systemload condition="{showmainmenusysinfo}" detached="true" delay="3500" fadetime="{widgetfadetime}">
+	<!-- obere Position -->
+	<!--load -->
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(systemload)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{load}" />
+        </area>
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{loadhand}/2500*{areawidth} - 5*{loadhand}/2500" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- untere Position -->
+	<!--load -->
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.70 + {areaheight}*0.17/6/2" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(systemload)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{load}" />
+        </area>
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.70 + {areaheight}*0.17/6/2" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{loadhand}/2500*{areawidth} - 5*{loadhand}/2500" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+    </systemload>
+    <systemmemory condition="{showmainmenusysinfo}" detached="true" delay="3500" fadetime="{widgetfadetime}">
+	<!-- obere Position -->
+	<!-- mem -->
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(memusage)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{usedmempercent}%" />
+        </area>
+	<area condition="not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{usedmem}/{totalmem}*{areawidth} - 5*{usedmem}/{totalmem}" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- swap -->
+	<area condition="{vectrasetup}++not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(swapusage)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{usedswappercent}%" />
+        </area>
+	<area condition="{vectrasetup}++not{showmainmenurecordings}++not{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.51 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{usedswap}/{totalswap}*{areawidth} - 5*{usedswap}/{totalswap}" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- obere Position -->
+	<!-- mem -->
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(memusage)}" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{usedmempercent}%" />
+        </area>
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{usedmem}/{totalmem}*{areawidth} - 5*{usedmem}/{totalmem}" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+	<!-- swap -->
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319+5" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.22-10" height="{areaheight}*0.17/6" layer="2" >
+            <drawtext condition="{vectrasetup}" align="center" y="0" font="{regular}" fontsize="80%" color="{clrWhite}" text="{tr(swapusage)}" />
+            <drawtext condition="{vectrasetup}" align="right" y="{areaheight}*0.15" font="{regular}" fontsize="80%" color="{clrGray}" text="{usedswappercent}%" />
+        </area>
+	<area condition="{showmainmenurecordings}||{showmainmenuupsinfo}" x="{areawidth}*0.319 + {areaheight}*0.02" y="{areaheight}*0.70 + {areaheight}*0.17/6/2 + {areaheight}*0.17/6*2" width="{areawidth}*0.19 - {areaheight}*0.02" height="{areaheight}*0.17/6" layer="2" >
+            <drawimage condition="{vectrasetup}" imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle condition="{vectrasetup}" name="leftbar" x="0" y="68%" width="{usedswap}/{totalswap}*{areawidth} - 5*{usedswap}/{totalswap}" height="25%" color="{clrBlack}" />
+            <drawrectangle condition="{vectrasetup}" x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+    </systemmemory>
+<!--
+    <customtokens detached="true" delay="1500" fadetime="{widgetfadetime}">
+-->
+	<!-- 1w test temp -->
+<!--
+	<area condition="{showmainmenusysinfo}++{vectrasetup}" x="{areawidth}*0.319+5" y="83%" width="{areawidth}*0.22-10" height="4%" layer="2" >
+            <drawtext align="center" y="10" font="{regular}" fontsize="50%" color="{clrWhite}" text="1w test Temperatur:" />
+            <drawtext align="right" y="{areaheight}*0.15" font="{regular}" fontsize="60%" color="{clrGray}" text="{ct1wOutside}°C" />
+        </area>
+-->
+<!--
+	<area condition="{showmainmenusysinfo}++{showmainmenusysinfovalue}" x="{areawidth}*0.319 + {areaheight}*0.02" y="83%" width="{areawidth}*0.19 - {areaheight}*0.02" height="4%" layer="2" >
+            <drawimage imagetype="skinpart" path="farbverlauf" x="0" y="68%" width="{areawidth}" height="25%" />
+            <drawrectangle name="leftbar" x="0" y="68%" width="{ctOutside}/100*{areawidth} - 5*{ctOutside}/100" height="25%" color="{clrBlack}" />
+            <drawrectangle x="{width(leftbar)} + 5" y="68%" width="{areawidth} - {width(leftbar)} - 5" height="25%" color="{clrBlack}" />
+        </area>
+-->
+<!--
+    </customtokens>
+-->
+
+    <currentweather detached="true">
+        <area condition="{showmenuweather}" x="40%" y="1%" width="20%" height="8%" layer="3">
+            <drawimage name="weathericon" imagetype="icon" path="{icon}" x="{areawidth}/2 + {width(temperature)}/2 - {width(weathericon)}/2 + 10" valign="center" width="{areaheight}*1" height="{areaheight}*1"/>
+            <drawtext name="temperature" x="{areawidth}/2 - {width(temperature)}/2 - {width(weathericon)}/2 - 10" valign="center" font="{digital}" fontsize="60%" color="{clrWhite}" text="{temperature} 'C" />
+        </area>
+    </currentweather>
+
+<!--
+    <devices>
+    </devices>
+-->
+
+    <!-- Available Variables devices:
+    {numdevices}                number of available devices
+    {devices[]}                 array with available devices
+    {devices[num]}              number of current device
+    {devices[type]}             type of device (DVB-S, DVB-C, ...)
+    {devices[istuned]}          true if device is currently tuned to a transponder
+    {devices[livetv]}           true if device is currently playing livetv
+    {devices[recording]}        true if device is currently recording
+    {devices[hascam]}           true if device has a CAM
+    {devices[cam]}              number of CAM
+    {devices[signalstrength]}   signalstrength of devcie
+    {devices[signalquality]}    signalstrength of devcie
+    {devices[channelnumber]}    number of the currently tuned channel
+    {devices[channelname]}      name of the currently tuned channel
+    {devices[channellogoexists]} true if a channel logo exists
+    {devices[channelid]}        ID of the currently tuned channel
+    {devices[source]}           source of the currently tuned channel
+    -->
+
+    <menuitems x="{areawidth}*0.005" y="15%" orientation="vertical" width="28%" height="75%" align="center" numlistelements="8">
+        <listelement>
+            <area x="0" width="100%" layer="2">
+                <drawimage cache="true" condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="10%" width="{areawidth}" height="{areaheight}*0.8"/>
+                <drawimage cache="true" condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="10%" width="{areawidth}" height="{areaheight}*0.8"/>
+            </area>
+            <area condition="{showmainmenuicons}" x="0" width="100%" layer="3">
+                <drawimage cache="true" imagetype="menuicon" path="{icon}" x="10" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75"/>
+            </area>
+            <areascroll condition="not{showmainmenuicons}" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="2%" width="98%" layer="3">
+                <drawtext condition="not{current}" name="menutext" x="2%" valign="center" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{number} {label}" />
+                <drawtext condition="{current}" name="menutext" x="0" valign="center" font="{regular}" fontsize="80%" color="{clrFontMenuItemSelected}" text="{number}" />
+                <drawtext condition="{current}" name="menutext" x="15%" valign="center" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{label}" />
+            </areascroll>
+            <areascroll condition="{showmainmenuicons}" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="23%" width="77%" layer="3">
+                <drawtext condition="not{current}" name="menutext" x="2%" valign="center" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{number} {label}" />
+                <drawtext condition="{current}" name="menutext" x="0" valign="center" font="{regular}" fontsize="80%" color="{clrFontMenuItemSelected}" text="{number}" />
+                <drawtext condition="{current}" name="menutext" x="15%" valign="center" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{label}" />
+            </areascroll>
+        </listelement>
+	<currentelement fadetime="0" delay="50">
+        </currentelement>
+    </menuitems>
+
+</menumain>

@@ -1,0 +1,173 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2015-11-26 16:34:52.000000000 +0200
+@@ -0,0 +1,169 @@
++# Copyright (C) 2014
++# This file is distributed under the same license as the PACKAGE package.
++# FIRST AUTHOR <louis.braun@gmx.de>, 2014.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr-skindesigner 0.0.1\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2015-11-04 09:24+0200\n"
++"PO-Revision-Date: 2014-09-27 11:02+0200\n"
++"Last-Translator: Louis Braun <louis.braun@gmx.de>\n"
++"Language-Team: \n"
++"Language: ru_RU \n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=utf-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "Skin successfully installed"
++msgstr "Скин успешно установлен"
++
++msgid "Skin NOT successfully installed"
++msgstr "Скин не установлен"
++
++msgid "Timeout"
++msgstr "Тайм-аут"
++
++msgid "Installing Skin"
++msgstr "Установка Скина"
++
++msgid "sec"
++msgstr "сек"
++
++msgid "Skin successfully updated"
++msgstr "Скин успешно обновлен"
++
++msgid "Skin already up to date"
++msgstr "Скин не требует обновления"
++
++msgid "Updating Skin from Git"
++msgstr "Обновление скина из Git"
++
++msgid "after one another"
++msgstr "друг за другом"
++
++msgid "at one go"
++msgstr "за один раз"
++
++msgid "Downloading Skin Screenshots..."
++msgstr "Скачать скриншоты скина ..."
++
++msgid "Install Skin"
++msgstr "Установить скин"
++
++msgid "Update"
++msgstr "Обновить"
++
++msgid "Delete Skin"
++msgstr "Удалить скин"
++
++msgid "Skin Designer"
++msgstr "Дизайнер скина"
++
++msgid "version"
++msgstr "версия"
++
++msgid "or higher"
++msgstr "или выше"
++
++msgid "needed"
++msgstr "необходимо"
++
++msgid "No Git Repsoitory available"
++msgstr "Git репозиторий не доступен"
++
++msgid "Skin is running and can't be deleted"
++msgstr "Скин работает и не может быть удален"
++
++msgid "Really delete skin"
++msgstr "Действительно удалить скин"
++
++msgid "Skin deleted"
++msgstr "Скин удален"
++
++msgid "Plugin Setup"
++msgstr "Установка плагина"
++
++msgid "Menu Item display method"
++msgstr "Метод отображения пункта меню"
++
++msgid "Frames per Second (fading and shifting)"
++msgstr "Кадров в секунду (затухание и сдвиг)"
++
++msgid "Reruns"
++msgstr "Повторы"
++
++msgid "Maximum number of reruns to display"
++msgstr "Максимальный номер повтора"
++
++msgid "Minimum timely distance of rerun (in hours)"
++msgstr "Минимальный интервал повторов (в часах)"
++
++msgid "Limit Channel Numbers"
++msgstr "Лимит номеров каналов"
++
++msgid "no limit"
++msgstr "без лимитов"
++
++msgid "Image Loading"
++msgstr "Изображений загружено"
++
++msgid "Debug Image Loading"
++msgstr "Отладка загрузки изображений"
++
++msgid "Limit Channel Logo Cache"
++msgstr "Лимит логотипов каналов в кеше"
++
++msgid "Number to cache initially (per size)"
++msgstr "К-во в кеше изначально (размер)"
++
++msgid "Number to cache in maximum"
++msgstr "Кешировать максимальное к-во"
++
++msgid "Cache Statistics"
++msgstr "Статистика кеша"
++
++msgid "cached"
++msgstr "закшировано"
++
++msgid "icons"
++msgstr "иконки"
++
++msgid "size"
++msgstr "размер"
++
++msgid "byte"
++msgstr "байт"
++
++msgid "logos"
++msgstr "логотипы"
++
++msgid "skinparts"
++msgstr "части скина"
++
++msgid "Skin Setup"
++msgstr "Настройки скина"
++
++msgid "Skin"
++msgstr "Скин"
++
++msgid "has no setup"
++msgstr "не имеет настройки"
++
++msgid "Install new skins"
++msgstr "Установить новый скин"
++
++msgid "Preview Skin"
++msgstr "Предпросмотр скина"
++
++msgid "Help"
++msgstr "Помощь"
++
++msgid "Author"
++msgstr "Автор"
++
++msgid "Used Fonts"
++msgstr "Использует шрифты"
++
++msgid "Supported Plugins"
++msgstr "Поддерживает плагины"

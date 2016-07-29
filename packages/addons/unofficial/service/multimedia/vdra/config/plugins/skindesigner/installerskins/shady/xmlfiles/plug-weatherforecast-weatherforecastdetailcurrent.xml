@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE menuplugin SYSTEM "../../../dtd/displaymenuplugin.dtd">
+
+<menuplugin x="0" y="0" width="100%" height="100%" fadetime="0" scaletvx="0%" scaletvy="0" scaletvwidth="0" scaletvheight="0" >
+	<background>
+        <area x="0" y="0" width="100%" height="100%" layer="1">
+            <drawimage condition="not{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientPNG" />
+            <drawimage condition="{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientPNGBright" />                    
+        </area>
+        <area x="0" y="0" width="100%" height="100%" layer="2">
+            <drawimage  x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="shadowsWeatherCurrentMain" />           
+        </area>
+        <area x="0" y="0" width="100%" height="11%" layer="3">
+            <drawimage  x="0" width="{areawidth}*0.972" height="{areaheight}*0.972" imagetype="skinpart" path="gradientHeader" />     
+        </area>
+    </background>
+	
+    <scrollbar>
+		<area condition="lt({height},1000)" x="95%" y="15%" width="5%" height="73%" layer="3">
+			 <drawimage   x="0" y="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="shadowScrollSub" />
+			 <drawimage x="15%" y="{areaheight} * {offset} / 1000" width="{areawidth}*0.1" height="{areaheight} * {height} / 1000" imagetype="skinpart" path="scrollBar" />
+		</area>
+    </scrollbar>
+    
+        <colorbuttons>
+        <area  x="43%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />         
+        </area>
+        <area x="56%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />
+        </area>
+        <area x="69%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />
+        </area>
+        <area x="82%" y="92%" width="13%" height="5%" layer="3">
+			<drawimage x="0" y="93%" width="{areawidth}" height="{areaheight}/9" imagetype="skinpart" path="buttonBlancMain" />
+		</area>
+    </colorbuttons>
+
+    <!-- Available Variables in detailheader and tab:
+    {menuheader}                        "Current Weather"
+    {city}                              configured city to display weather for
+    {latitude}                          latitude
+    {longitude}                         longitude
+    {timestamp}                         timestamp in hh:mm dd.mm of current forecast
+    {temperature}                       current temperature in °C
+    {apparenttemperature}               apparent (felt) temperature in °C
+    {temperaturemin}                    minimum temperature the day in °C
+    {temperaturemax}                    maximum temperature the day in °C
+    {summary}                           short summary of current weather
+    {icon}                              path to use in <drawimage> to display appropriate weather icon
+    {precipitationintensity}            precipitation intensity in l/qm    
+    {precipitationprobability}          precipitation probability in %
+    {precipitationtype}                 precipitation type (snow, ...)
+    {humidity}                          humidity in %
+    {windspeed}                         wind speed in km/h
+    {windbearing}                       wind bearing in degrees
+    {windbearingstring}                 wind bearing as human readable string (e.g NE, NNE, ...)
+    {visibility}                        visibility in km
+    {cloudcover}                        cloud cover in %
+    {pressure}                          pressure in HPa
+    {ozone}                             Ozone in DU (Dobson Unit)
+    -->
+    <detailheader>
+        <area x="55%" y="16%" width="41%" height="78%" layer="3">
+            <drawimage imagetype="icon" path="{icon}" x="0" y="6%" width="{areaheight}*0.7" height="{areaheight}*0.7"/>
+            <drawtext x="70%" y="75%"  font="{light}" fontsize="9%" color="{clrLightGray}" text="{temperature}°C" />
+        </area>
+    </detailheader>
+
+    <tab name="current" x="2%" y="14%" width="48%" height="78%" layer="3" scrollheight="{areaheight}/4">
+        <drawtext x="0" y="0" font="{light}" fontsize="6%" color="{clrLightGray}" text="{tr(conditions)} {tr(for)} {city}" />
+        <drawtext x="0" y="7%" font="{light}" fontsize="6%" color="{clrLightGray}" text="Lat: {latitude}, Lon: {longitude}" />
+        <drawtext x="0" y="14%" font="{light}" fontsize="6%" color="{clrLightGray}" text="{summary}" />
+        
+        <drawtext x="0" y="27%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(temp)}: {temperature}°C" />
+        <drawtext x="0" y="32%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(apparenttemp)}: {apparenttemperature}°C" />
+        <drawtext x="0" y="37%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(todaymin)}: {mintemperature}°C" />
+        <drawtext x="0" y="42%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(todaymax)}: {maxtemperature}°C" />
+        
+        <drawtext x="0" y="51%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(precipitationprobability)}: {precipitationprobability} %" />
+        <drawtext x="0" y="56%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(precipitationintensity)}: {precipitationintensity} l/qm" />        
+        <drawtext x="0" y="61%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(humidity)}: {humidity} %" />
+
+        <!--<drawtext x="0" y="70%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(visibility)}: {visibility} km" />-->
+        <drawtext x="0" y="71%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(cloudcover)}: {cloudcover} %" />
+        <drawtext x="0" y="76%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(pressure)}: {pressure} HPa" />
+        <drawtext x="0" y="81%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(ozone)}: {ozone} DU" />
+        <drawtext x="0" y="86%" font="{light}" fontsize="5%" color="{clrLightGray}" text="{tr(windspeed)}: {windspeed} km/h aus {windbearingstring}" />
+    </tab>
+	<colorbuttons>
+		<area x="0" y="0" layer="0">
+		</area>
+    </colorbuttons>
+</menuplugin>

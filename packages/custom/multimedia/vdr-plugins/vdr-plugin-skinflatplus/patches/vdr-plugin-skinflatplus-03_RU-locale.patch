@@ -1,0 +1,932 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2015-04-04 16:02:21.984301920 +0300
+@@ -0,0 +1,916 @@
++# VDR plugin language source file.
++# Copyright (C) 2008 Martin Schirrmacher <vdr.skinflat@schirrmacher.eu>
++# This file is distributed under the same license as the skinflat package.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr-skinflat 0.5.1\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2014-10-21 20:56+0300\n"
++"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
++"Last-Translator: unf\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: ru_RU\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "Disk"
++msgstr "Диск"
++
++msgid "free"
++msgstr "свободно"
++
++msgid "occupied"
++msgstr "занято"
++
++msgid "clock"
++msgstr "часы"
++
++msgid "Genre"
++msgstr "Жанр"
++
++msgid "FSK"
++msgstr "FSK"
++
++msgid "Video"
++msgstr "Видео"
++
++msgid "Audio"
++msgstr "Аудио"
++
++msgid "Subtitle"
++msgstr "Субтитры"
++
++msgid "timer not enabled"
++msgstr "таймер не включен"
++
++msgid "no recording info"
++msgstr "нет информации о записи"
++
++msgid "name: "
++msgstr "название: "
++
++msgid "first aired: "
++msgstr "первый эфир: "
++
++msgid "network: "
++msgstr "сеть: "
++
++msgid "genre: "
++msgstr "жанр: "
++
++msgid "rating: "
++msgstr "рейтинг: "
++
++msgid "status: "
++msgstr "статус: "
++
++msgid "season number: "
++msgstr "номер сезона: "
++
++msgid "episode number: "
++msgstr "номер эпизода: "
++
++msgid "title: "
++msgstr "название: "
++
++msgid "original title: "
++msgstr "оригинальное название: "
++
++msgid "collection name: "
++msgstr "название коллекции: "
++
++msgid "release date: "
++msgstr "дата выпуска: "
++
++msgid "popularity: "
++msgstr "популярность: "
++
++msgid "vote average: "
++msgstr "средняя оценка: "
++
++msgid "Description"
++msgstr "Описание"
++
++msgid "Movie information"
++msgstr "Информация о фильме"
++
++msgid "Series information"
++msgstr "Информация о серии"
++
++msgid "Actors"
++msgstr "Актеры"
++
++msgid "Reruns"
++msgstr "Повторы"
++
++msgid "Video information"
++msgstr "Видео информация"
++
++msgid "Length"
++msgstr "Длина"
++
++msgid "cutted"
++msgstr "вырезанные"
++
++msgid "Size"
++msgstr "Размер"
++
++msgid "format"
++msgstr "формат"
++
++msgid "bit rate"
++msgstr "бит райт"
++
++msgid "additional information"
++msgstr "дополнительная информация"
++
++msgid "channel"
++msgstr "канал"
++
++msgid "search pattern"
++msgstr "поисковый шаблон"
++
++msgid "Recording information"
++msgstr "Информация о записи"
++
++msgid "DVB Devices"
++msgstr "DVB устройство"
++
++msgid "LiveTV"
++msgstr "LiveTV"
++
++msgid "Unknown"
++msgstr "Неизвестно"
++
++msgid "recording"
++msgstr "запись"
++
++msgid "not used"
++msgstr "не используется"
++
++msgid "Timer"
++msgstr "Таймер"
++
++msgid "no active/recording timer"
++msgstr "нет активных/записывающих таймеров"
++
++msgid "Last Recordings"
++msgstr "Последняя запись"
++
++msgid "Timer Conflicts"
++msgstr "Конфликты таймера"
++
++msgid "no timer conflicts"
++msgstr "нет конфликтов таймера"
++
++msgid "timer conflicts"
++msgstr "таймер конфликты"
++
++msgid "System Information"
++msgstr "Информация о системе"
++
++msgid "no information available please check the script"
++msgstr "нет информации пожалуйста, проверьте скрипт"
++
++msgid "System Version"
++msgstr "Версия системы"
++
++msgid "Kernel Version"
++msgstr "Версия ядра"
++
++msgid "Uptime"
++msgstr ""
++
++msgid "Load"
++msgstr ""
++
++msgid "Processes"
++msgstr "Процессы"
++
++msgid "Memory Usage"
++msgstr "Память"
++
++msgid "Swap Usage"
++msgstr "Swap"
++
++msgid "Root Usage"
++msgstr "Root"
++
++msgid "Video Usage"
++msgstr "Video"
++
++msgid "VDR CPU Usage"
++msgstr "VDR CPU"
++
++msgid "VDR MEM Usage"
++msgstr "VDR MEM"
++
++msgid "Temp CPU"
++msgstr "CPU"
++
++msgid "Temp GPU"
++msgstr "GPU"
++
++msgid "Temp PC-Case"
++msgstr "PC-Case"
++
++msgid "Temp MB"
++msgstr "MB"
++
++msgid "Updates"
++msgstr "Обновления"
++
++msgid "Security Updates"
++msgstr "Обновления безопасности"
++
++msgid "System Updates"
++msgstr "Системные обновления"
++
++msgid "Updatestatus not available please check the widget"
++msgstr "Статус обновления не доступен, пожалуйста, проверьте виджет"
++
++msgid "Temperatures"
++msgstr "Температуры"
++
++msgid "Temperatures not available please check the widget"
++msgstr "Температура не доступны, пожалуйста, проверьте виджет"
++
++msgid "CPU"
++msgstr ""
++
++msgid "PC-Case"
++msgstr ""
++
++msgid "MB"
++msgstr ""
++
++msgid "GPU"
++msgstr ""
++
++msgid "no title available"
++msgstr "нет заголовка"
++
++msgid "no output available"
++msgstr "нет вывода"
++
++msgid "Weather"
++msgstr "Погода"
++
++msgid "Audio Tracks"
++msgstr "Аудио трек"
++
++msgid "Volume"
++msgstr "Громкость"
++
++msgid "none"
++msgstr "нет"
++
++msgid "rect"
++msgstr "прямоугольник"
++
++msgid "round"
++msgstr "скругленный"
++
++msgid "invert round"
++msgstr "инв. скругленный"
++
++msgid "rect + alpha blend"
++msgstr "прямоугольник + alpha blend"
++
++msgid "round + alpha blend"
++msgstr "скругленный + alpha blend"
++
++msgid "invert round + alpha blend"
++msgstr "инв. скругленный + alpha blend"
++
++msgid "small line + big line"
++msgstr "тонкая линия + большая линия"
++
++msgid "big line"
++msgstr "большая линия"
++
++msgid "big line + outline"
++msgstr "большая линия + контур"
++
++msgid "small line + big line + dot"
++msgstr "тонкая линия + большая линия + точки"
++
++msgid "big line + dot"
++msgstr "большая линия + точки"
++
++msgid "big line + outline + dot"
++msgstr "большая линия + контур + точки"
++
++msgid "small line + dot"
++msgstr "тонкая линия + точки"
++
++msgid "outline + dot"
++msgstr "контур + точки"
++
++msgid "small line + big line + alpha blend"
++msgstr "тонкая линия + большая линия + alpha blend"
++
++msgid "big line + alpha blend"
++msgstr "большая линия + alpha blend"
++
++msgid "do not show"
++msgstr "не показывать"
++
++msgid "timer & recording menu"
++msgstr "таймер и меню записи"
++
++msgid "always on the menu"
++msgstr "всегда в меню"
++
++msgid "always show"
++msgstr "показывать всегда"
++
++msgid "VDR default"
++msgstr "VDR default"
++
++msgid "flatPlus long"
++msgstr "длинный"
++
++msgid "flatPlus long + EPG"
++msgstr "длинный + EPG"
++
++msgid "flatPlus short"
++msgstr "короткий"
++
++msgid "flatPlus short + EPG"
++msgstr "короткий + EPG"
++
++msgid "flatPlus short + Info"
++msgstr "короткий + Инфо"
++
++msgid "vertical"
++msgstr "вертикально"
++
++msgid "hoizontal"
++msgstr "горизонтально"
++
++msgid "carriage return"
++msgstr "возврат каретки"
++
++msgid "left-right-left"
++msgstr "влево-вправо-влево"
++
++msgid "left line + rect bar"
++msgstr "левая линия + заполн. прямоугольник"
++
++msgid "left line + round bar"
++msgstr "левая линия + скругленный заполн. прямоугольник"
++
++msgid "middle line + rect bar"
++msgstr "средняя линия + заполн. прямоугольник"
++
++msgid "middle line + round bar"
++msgstr "средняя линия + скругленный заполн. прямоугольник"
++
++msgid "outline + rect bar"
++msgstr "контур + заполн. прямоугольник"
++
++msgid "outline + round bar"
++msgstr "контур + скругленный заполн. прямоугольник"
++
++msgid "rect bar"
++msgstr "заполн. прямоугольник"
++
++msgid "round bar"
++msgstr "скругленный заполн. прямоугольник"
++
++msgid "past / remaining"
++msgstr "прошло/осталось"
++
++msgid "past"
++msgstr "прошло"
++
++msgid "remaining"
++msgstr "осталось"
++
++msgid "short"
++msgstr "короткий"
++
++msgid "long"
++msgstr "длинный"
++
++msgid "General settings"
++msgstr "Общие настройки"
++
++msgid "Channelinfo settings"
++msgstr "Настройки инфо канала"
++
++msgid "Menu settings"
++msgstr "Настройки меню"
++
++msgid "Replay settings"
++msgstr "Настройка повтора"
++
++msgid "Volume settings"
++msgstr "Настройки громкости"
++
++msgid "Tracks settings"
++msgstr "Настройки треков"
++
++msgid "TVScraper / scraper2vdr settings"
++msgstr "Настройки tvscraper/scraper2vdr"
++
++msgid "TVScraper / scraper2vdr not installed"
++msgstr "tvscraper/scraper2vdr не установлен"
++
++msgid "Main menu widgets settings"
++msgstr "Настройки виджетов"
++
++msgid "configfile"
++msgstr "Конфиг. файл"
++
++msgid "loaded"
++msgstr "загруженно"
++
++msgid "saved settings in file:"
++msgstr "сохранить настройки в файл:"
++
++msgid "no decorfiles found, check install"
++msgstr "декор файл не найдены, проверте установку"
++
++msgid "Decorfile"
++msgstr "Декор файл"
++
++msgid "no config-files found, check install"
++msgstr "конфигурационный файл не найдены, проверте установку"
++
++msgid "Press ok to load config file"
++msgstr "Нажмите ОК, загрузить конф. файл"
++
++msgid "Save current settings"
++msgstr "Сохранить текущие настройки"
++
++msgid "press ok to save current settings"
++msgstr "нажмите OK, чтобы сохранить текущие настройки"
++
++msgid "Show empty color-buttons"
++msgstr "Показать пустые цветовые кнопки"
++
++msgid "Show TopBar menu icons"
++msgstr "Иконки меню в верхней панели"
++
++msgid "Diskusage show"
++msgstr "Показывать использование диска"
++
++msgid "Diskusage short display"
++msgstr "Использование диска коротко"
++
++msgid "Diskusage free/occupied"
++msgstr "Исп. диска свободно/занято"
++
++msgid "OSD vertical margin"
++msgstr "OSD вертикальный отступ"
++
++msgid "OSD horizontal margin"
++msgstr "OSD горизонтальный отступ"
++
++msgid "TopBar font size"
++msgstr "Верхняя панель размер шрифта"
++
++msgid "TopBar show recording"
++msgstr "Верхняя панель показывать запись"
++
++msgid "TopBar show conflicts"
++msgstr "Верхняя панель показывать конф."
++
++msgid "TopBar hide clock text"
++msgstr "Верхняя панель скрыть текст часов"
++
++msgid "TopBar clock font scale"
++msgstr "Верхняя панель часы масшт. шрифта"
++
++msgid "Conflicts min value for red"
++msgstr "Конфликты мин. зн. для красного"
++
++msgid "Message bottom offset"
++msgstr "Сообщения отступ снизу"
++
++msgid "Message color position"
++msgstr "Сообщения позици цвета"
++
++msgid "Use Textscroller?"
++msgstr "Использовать скролер текста"
++
++msgid "Scroller step (in pixel)"
++msgstr "Шаг скроллера (в пикселях)"
++
++msgid "Scroller delay (in ms)"
++msgstr "Задержка скроллера (в мс)"
++
++msgid "Scroller type"
++msgstr "Тип скроллера"
++
++msgid "TopBar border by decor-file?"
++msgstr "Верхняя пн. бордер из декор файла"
++
++msgid "TopBar border type"
++msgstr "Верхняя панель тип бордера"
++
++msgid "TopBar border size"
++msgstr "Верхняя панель размер бордера"
++
++msgid "Message border by decor-file?"
++msgstr "Сообщения бордер из декор файла"
++
++msgid "Message border type"
++msgstr "Сообщения тип бордера"
++
++msgid "Message border size"
++msgstr "Сообщения размер бордера"
++
++msgid "Button border by decor-file?"
++msgstr "Кнопки бордер из декор файла"
++
++msgid "Button border type"
++msgstr "Кнопки тип бордера"
++
++msgid "Button border size"
++msgstr "Кнопки размер бордера"
++
++msgid "Imagecache entries"
++msgstr "Кеш изображений количество"
++
++msgid "Show Channelinfo icons"
++msgstr "Показывать иконки инфо канала"
++
++msgid "Show signal quality"
++msgstr "Показывать качество сигнала"
++
++msgid "Show weather widget"
++msgstr "Показывать виджет погоды"
++
++msgid "Weather widget font size"
++msgstr "Размер шрифта виджета погоды"
++
++msgid "Colors for signal quality"
++msgstr "Цвет для качества сигнала"
++
++msgid "Show resolution & aspect"
++msgstr "Показывать разрешение и аспект"
++
++msgid "Show format (hd/sd)"
++msgstr "Показывать формат (hd/sd)"
++
++msgid "Show video/audio bitrate"
++msgstr "Показывать видео/аудио битрейт"
++
++msgid "Simple aspect & format"
++msgstr "Простой аспект и формат"
++
++msgid "program past/remaining time format"
++msgstr "Просм./ост. формат времени"
++
++msgid "Channelinfo border by decor-file?"
++msgstr "Инфо канала из декор файла"
++
++msgid "Channelinfo border type"
++msgstr "Инфо канала тип бордера"
++
++msgid "Channelinfo border size"
++msgstr "Инфо канала размер бордера"
++
++msgid "Channelinfo EPG border by decor-file?"
++msgstr "EPG инфо канала из декор файла"
++
++msgid "Channelinfo EPG border type"
++msgstr "EPG инфо канала тип бордера"
++
++msgid "Channelinfo EPG border size"
++msgstr "EPG инфо канала  размер бордера"
++
++msgid "Channelinfo progress by decor-file?"
++msgstr "Прогресс инфо канала из дек. файла"
++
++msgid "Channelinfo progress type"
++msgstr "Прогресс инфо канала тип"
++
++msgid "Channelinfo progress size"
++msgstr "Прогресс инфо канала размер"
++
++msgid "Signalquality progress by decor-file?"
++msgstr "Прогресс к-во сигн. из декор файла"
++
++msgid "Signalquality progress type"
++msgstr "Прогресс качество сигнала тип"
++
++msgid "Signalquality progress size"
++msgstr "Прогресс качество сигнала размер"
++
++msgid "Menuitem padding"
++msgstr "Отступ элемента меню"
++
++msgid "Show mainmenu item icons"
++msgstr "Показывать иконки в главном меню"
++
++msgid "Menu content fullsize background"
++msgstr "Контент меню полный размер фона"
++
++msgid "Show additional recording info"
++msgstr "Показывать доп. инфо. о записи"
++
++msgid "Show additional EPG info"
++msgstr "Показывать доп. EPG инфо"
++
++msgid "Show reruns in EPG info"
++msgstr "Показывать повторы в EPG инфо"
++
++msgid "Main menuitem scale"
++msgstr "Масштаб элемента меню"
++
++msgid "Menu draw background over the entire height"
++msgstr "Фон меню отрисов. по всей высоте"
++
++msgid "Recording menu show recording count in title"
++msgstr "Мн. записи - к-во записей в заг."
++
++msgid "Timer menu show timer count in title"
++msgstr "Мн. таймера - к-во таймеров в заг."
++
++msgid "Channel menu show channel count in title"
++msgstr "Мн. каналов - к-во каналов в заг."
++
++msgid "Menu channel view"
++msgstr "Вид меню каналов"
++
++msgid "Menu timer view"
++msgstr "Вид меню таймеров"
++
++msgid "Menu event view"
++msgstr "Вид мею событий"
++
++msgid "Menu recording view"
++msgstr "Вид меню записи"
++
++msgid "Scrollbar by decor-file?"
++msgstr "Скроллбар из декор файла"
++
++msgid "Scrollbar type"
++msgstr "Скроллбар тип"
++
++msgid "Scrollbar size"
++msgstr "Скроллбар размер"
++
++msgid "Menuitem border by decor-file?"
++msgstr "Элемент меню из декор файла"
++
++msgid "Menuitem border type"
++msgstr "Элемент меню тип"
++
++msgid "Menuitem border size"
++msgstr "Элемент меню размер"
++
++msgid "Menucont. border by decor-file?"
++msgstr "Меню контент бордер из декор файла"
++
++msgid "Menucont. border type"
++msgstr "Меню контент тип бордера"
++
++msgid "Menucont. border size"
++msgstr "Меню контент размер бордера"
++
++msgid "Menucont. head border by decor-file?"
++msgstr "Загол. мн. конт. бордер из дек. файла"
++
++msgid "Menucont. head border type"
++msgstr "Загол. меню конт. тип бордера"
++
++msgid "Menucont. head border size"
++msgstr "Загол. меню конт. размер бордера"
++
++msgid "Menuitem progress by decor-file?"
++msgstr "Прогресс эл. меню из декор файла"
++
++msgid "Menuitem progress type"
++msgstr "Прогресс элемента меню тип"
++
++msgid "Menuitem progress size"
++msgstr "Прогресс элемента меню размер"
++
++msgid "Dimm on pause?"
++msgstr "Dimm на паузу"
++
++msgid "Dimm on pause delay"
++msgstr "Dimm задержка паузы"
++
++msgid "Dimm on pause opaque"
++msgstr "Dimm на паузу прозрачность"
++
++msgid "Replay border by decor-file?"
++msgstr "Повтор бордер из декор файла"
++
++msgid "Time seconds font scale"
++msgstr "Время секунд масштаб шрифта"
++
++msgid "Replay border type"
++msgstr "Повтор тип бордера"
++
++msgid "Replay border size"
++msgstr "Повтор размер бордера"
++
++msgid "Replay progress by decor-file?"
++msgstr "Прогресс повтра из декор файла"
++
++msgid "Replay progress size"
++msgstr "Прогресс повтра размер"
++
++msgid "Volume border by decor-file?"
++msgstr "Громкость бордер из декор файла"
++
++msgid "Volume border type"
++msgstr "Громкость тип бордера"
++
++msgid "Volume border size"
++msgstr "Громкость размер бордера"
++
++msgid "Volume progress by decor-file?"
++msgstr "Прогресс громкости из декор файла"
++
++msgid "Volume progress type"
++msgstr "Прогресс громкости тип"
++
++msgid "Volume progress size"
++msgstr "Прогресс громкости размер"
++
++msgid "Tracks border by decor-file?"
++msgstr "Треки бордер из декор файла"
++
++msgid "Tracks border type"
++msgstr "Треки тип бордера"
++
++msgid "Tracks border size"
++msgstr "Треки размер бордера"
++
++msgid "Channelinfo show poster?"
++msgstr "Инфо канала показывать постер"
++
++msgid "Channelinfo poster size"
++msgstr "Инфо канала размер постера"
++
++msgid "Replayinfo show poster?"
++msgstr "Инфо повтора показывать постер"
++
++msgid "Replayinfo poster size"
++msgstr "Инфо повтора размер постера"
++
++msgid "EPG info show poster?"
++msgstr "EPG инфо показывать постер"
++
++msgid "recording info show poster?"
++msgstr "Инфо о записи показыв. постер"
++
++msgid "EPG info show actors?"
++msgstr "EPG инфо показывать актеров"
++
++msgid "recording info show actors?"
++msgstr "Инфо о записи показыв. актеров"
++
++msgid "Enable main menu widgets"
++msgstr "Включить виджеты в главном меню"
++
++msgid "Main menu item scale"
++msgstr "Главное меню масштаб элемента"
++
++msgid "Widget weather"
++msgstr "Виджет погоды"
++
++msgid "Widget weather: enable"
++msgstr "Виджет погоды: включить"
++
++msgid "Widget weather: position"
++msgstr "Виджет погоды: позиция"
++
++msgid "Widget weather: show days"
++msgstr "Виджет погоды: показывать дни"
++
++msgid "Widget weather: type"
++msgstr "Виджет погоды: тип"
++
++msgid "Widget DVB devices"
++msgstr "Виджет DVB устройства"
++
++msgid "Widget DVB devices: enable"
++msgstr "Виджет DVB устр.: включить"
++
++msgid "Widget DVB devices: position"
++msgstr "Виджет DVB устр.: позиция"
++
++msgid "Widget DVB devices: don't show unknown"
++msgstr "Виджет DVB устр.: неизвестно"
++
++msgid "Widget DVB devices: don't show not used"
++msgstr "Виджет DVB устр.: не используется"
++
++msgid "Widget active timer"
++msgstr "Виджет активный таймер"
++
++msgid "Widget active timer: enable"
++msgstr "Виджет активный таймер: включить"
++
++msgid "Widget active timer: position"
++msgstr "Виджет активный таймер: позиция"
++
++msgid "Widget active timer: max show"
++msgstr "Виджет активный таймер: макс шоу"
++
++msgid "Widget active timer: hide if empty"
++msgstr "Виджет активный таймер: скрыть, если пусто"
++
++msgid "Widget timer"
++msgstr "Виджет таймера"
++
++msgid "Widget timer: enable"
++msgstr "Виджет таймера: включить"
++
++msgid "Widget timer: position"
++msgstr "Виджет таймера: позиция"
++
++msgid "Widget timer: show recording timer"
++msgstr "Виджет таймера: пок. рек. таймер"
++
++msgid "Widget timer: show active timer"
++msgstr "Виджет таймера: пок. акт. таймер"
++
++msgid "Widget timer: show remote recording timer"
++msgstr "Виджет таймера: пок. удл. рек. таймер"
++
++msgid "Widget timer: show remote active timer"
++msgstr "Виджет таймера: пок. удл. акт. таймер"
++
++msgid "Widget timer: max show"
++msgstr "Виджет таймера: макс пок."
++
++msgid "Widget timer: hide if empty"
++msgstr "Виджет таймера: скрыть, если пусто"
++
++msgid "Widget last recordings"
++msgstr "Виджет последние записи"
++
++msgid "Widget last recordings: enable"
++msgstr "Виджет последние записи: включить"
++
++msgid "Widget last recordings: position"
++msgstr "Виджет последние записи: позиция"
++
++msgid "Widget last recordings: max show"
++msgstr "Виджет последние записи: макс пок."
++
++msgid "Widget timer conflicts"
++msgstr "Виджет конфликты таймера"
++
++msgid "Widget timer conflicts: enable"
++msgstr "Виджет конф. таймера: включить"
++
++msgid "Widget timer conflicts: position"
++msgstr "Виджет конф. таймера: позиция"
++
++msgid "Widget timer conflicts: hide if empty"
++msgstr "Виджет конф. тм.: скрыть, если пусто"
++
++msgid "Widget system information"
++msgstr "Виджет информация о системе"
++
++msgid "Widget system information: enable"
++msgstr "Виджет инфо о системе: включить"
++
++msgid "Widget system information: position"
++msgstr "Виджет инфо о системе: позиция"
++
++msgid "Widget system updates"
++msgstr "Виджет системных обновлений"
++
++msgid "Widget system updates: enable"
++msgstr "Виджет сис. обновлений: включить"
++
++msgid "Widget system updates: position"
++msgstr "Виджет сис. обновлений: позиция"
++
++msgid "Widget system updates: hide if empty"
++msgstr "Виджет сист. обн.: скрыть, если пусто"
++
++msgid "Widget temperatures"
++msgstr "Виджет температуры"
++
++msgid "Widget temperatures: enable"
++msgstr "Виджет температуры: включить"
++
++msgid "Widget temperatures: position"
++msgstr "Виджет температуры: позиция"
++
++msgid "Widget custom commands"
++msgstr "Виджет пользовательских команд"
++
++msgid "Widget custom commands: enable"
++msgstr "Виджет пользов. команд: включить"
++
++msgid "Widget custom commands: position"
++msgstr "Виджет пользов. команд: позиция"
++
++msgid "'flatPlus' Skin"
++msgstr "скин flatPlus"
+diff -Naur a/skinflatplus.c b/skinflatplus.c
+--- a/skinflatplus.c	2015-02-24 05:01:33.000000000 +0200
++++ b/skinflatplus.c	2015-04-04 06:28:10.785895102 +0300
+@@ -17,7 +17,7 @@
+ #include "imageloader.h"
+ 
+ static const char *VERSION        = "0.5.1";
+-static const char *DESCRIPTION    = "skin flatplus";
++static const char *DESCRIPTION    = tr("'flatPlus' Skin");
+ 
+ class cPluginFlat : public cPlugin {
+     private:

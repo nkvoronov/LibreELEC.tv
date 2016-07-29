@@ -1,0 +1,18 @@
+#!/bin/sh
+
+CFG_DIR="$HOME/.config/mupen64plus"
+CORE_LIB="/usr/lib/libmupen64plus.so.2"
+
+mkdir -p $CFG_DIR
+mkdir -p $CFG_DIR/screenshots
+mkdir -p $CFG_DIR/savestates
+mkdir -p $CFG_DIR/rams
+
+if [ ! -f "$CFG_DIR/mupen64plus.cfg" ] 
+then
+  cp -P /usr/config/mupen64plus/* $CFG_DIR/ -r
+fi
+
+mupen64plus --configdir $CFG_DIR --corelib $CORE_LIB $@
+
+

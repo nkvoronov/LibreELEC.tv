@@ -1,0 +1,17 @@
+--- a/src/MenuItemDefinitionFactory.cpp
++++ b/src/MenuItemDefinitionFactory.cpp
+@@ -59,12 +59,12 @@
+ 
+ void MenuItemDefinitionFactory::ProcessSubMenuNode(SubMenuNode* node)
+ {
+-    _createdMenuItemDefinition = new OsdItemDefinition(node, new cOsdItem(node->Text().c_str(), osUser1), _isSelected);
++    _createdMenuItemDefinition = new OsdItemDefinition(node, new cOsdItem(node->Text().c_str(), osUser7), _isSelected);
+ }
+ 
+ void MenuItemDefinitionFactory::ProcessCommandMenuNode(CommandMenuNode* node)
+ {
+-    _createdMenuItemDefinition = new OsdItemDefinition(node, new cOsdItem(node->Text().c_str(), osUser2), _isSelected);
++    _createdMenuItemDefinition = new OsdItemDefinition(node, new cOsdItem(node->Text().c_str(), osUser8), _isSelected);
+ }
+ 
+ void MenuItemDefinitionFactory::ProcessSeparatorMenuNode(SeparatorMenuNode* node)
