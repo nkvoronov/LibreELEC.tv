@@ -16,14 +16,15 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="tbs-linux-drivers"
-PKG_VERSION="160630"
+PKG_NAME="tbs-linux-drivers-cc"
+PKG_VERSION="7995e07"
 PKG_REV="1"
 PKG_ARCH="i386 x86_64"
 PKG_LICENSE="GPL"
-PKG_SITE="http://www.tbsdtv.com/english/Download.html"
-PKG_URL="http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v${PKG_VERSION}.zip"
-PKG_SOURCE_DIR="$PKG_NAME"
+PKG_SITE="https://bitbucket.org/CrazyCat/linux-tbs-drivers"
+PKG_GIT_URL="https://bitbucket.org/CrazyCat/linux-tbs-drivers.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="yes"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"
@@ -34,9 +35,6 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 post_unpack() {
-  tar xjf $ROOT/$PKG_BUILD/linux-tbs-drivers.tar.bz2 -C $ROOT/$PKG_BUILD
-  chmod -R u+rwX $ROOT/$PKG_BUILD/linux-tbs-drivers/*
-
   for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
     cat $patch | patch -d \
     `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
@@ -44,7 +42,7 @@ post_unpack() {
 }
 
 make_target() {
-  cd $ROOT/$PKG_BUILD/linux-tbs-drivers
+  cd $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
   [ "$TARGET_ARCH" = "i386" ] && ./v4l/tbs-x86_r3.sh
   [ "$TARGET_ARCH" = "x86_64" ] && ./v4l/tbs-x86_64.sh
   LDFLAGS="" make DIR=$(kernel_path) prepare
@@ -53,7 +51,7 @@ make_target() {
 
 makeinstall_target() {
   mkdir -p $INSTALL/lib/modules/$(get_module_dir)/updates/tbs
-  find $ROOT/$PKG_BUILD/linux-tbs-drivers/ -name \*.ko -exec cp {} $INSTALL/lib/modules/$(get_module_dir)/updates/tbs \;
+  find $ROOT/$PKG_BUILD/v4l/ -name \*.ko -exec cp {} $INSTALL/lib/modules/$(get_module_dir)/updates/tbs \;
   mkdir -p $INSTALL/lib/firmware/
-  cp $ROOT/$PKG_BUILD/*.fw $INSTALL/lib/firmware/
+  cp $ROOT/$PKG_BUILD/v4l/firmware/*.fw $INSTALL/lib/firmware/
 }
