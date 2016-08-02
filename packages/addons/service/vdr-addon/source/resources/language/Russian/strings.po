@@ -1,0 +1,253 @@
+# Kodi Media Center language file
+# Addon Name: vdra
+# Addon id: service.multimedia.vdra
+# Addon Provider: YLLOW_DRAGON
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/xbmc-addons/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgctxt "#1000"
+msgid "General"
+msgstr "Общие"
+
+msgctxt "#1100"
+msgid "VDR configuration"
+msgstr "Конфигурация VDR"
+
+msgctxt "#1101"
+msgid "Type"
+msgstr "Тип"
+
+msgctxt "#1102"
+msgid "Video dir"
+msgstr "Видео папка"
+
+msgctxt "#1103"
+msgid "Enable charset override"
+msgstr "Разрешить замещение кодировки"
+
+msgctxt "#1104"
+msgid "- charset"
+msgstr "- кодировка"
+
+msgctxt "#1105"
+msgid "Enable external recdmd"
+msgstr "Разрешить внешнюю команду записи"
+
+msgctxt "#1106"
+msgid "- recdmd path"
+msgstr "- путь к команде записи"
+
+msgctxt "#1107"
+msgid "Debug"
+msgstr "Отладка"
+
+msgctxt "#2000"
+msgid "Plugins - service"
+msgstr "Плагины - сервис"
+
+msgctxt "#2100"
+msgid "Plugin configuration for service"
+msgstr "Конфигурация плагинов для сервиса"
+
+msgctxt "#2101"
+msgid "PVR plugin"
+msgstr "PVR плагин"
+
+msgctxt "#2102"
+msgid "Enable plugin: iptv"
+msgstr "Разрешить плагин: iptv"
+
+msgctxt "#2103"
+msgid "- number of devices"
+msgstr "- номер устройств"
+
+msgctxt "#2104"
+msgid "Enable plugin: streamdev-client"
+msgstr "Разрешить плагин: streamdev-client"
+
+msgctxt "#2105"
+msgid "Enable plugin: streamdev-server"
+msgstr "Разрешить плагин: streamdev-server"
+
+msgctxt "#2106"
+msgid "Enable plugin: live"
+msgstr "Разрешить плагин: live"
+
+msgctxt "#2107"
+msgid "- listen on ip"
+msgstr "- ip"
+
+msgctxt "#2108"
+msgid "- listen on port"
+msgstr "- порт"
+
+msgctxt "#2111"
+msgid "Enable plugin: epgsearch"
+msgstr "Разрешить плагин: epgsearch"
+
+msgctxt "#2112"
+msgid "Enable plugin: xmltv2vdr"
+msgstr "Разрешить плагин: xmltv2vdr"
+
+msgctxt "#2113"
+msgid "Enable plugin: extended EPG"
+msgstr "Разрешить плагин: extended EPG"
+
+msgctxt "#2114"
+msgid "Enable plugin: dummydevice"
+msgstr "Разрешить плагин: dummydevice"
+
+msgctxt "#2115"
+msgid "Enable plugin: satip"
+msgstr "Разрешить плагин: satip"
+
+msgctxt "#2116"
+msgid "Enable plugin: epgfixer"
+msgstr "Разрешить плагин: epgfixer"
+
+msgctxt "#2117"
+msgid "Enable plugin: restfulapi"
+msgstr "Разрешить плагин: restfulapi"
+
+msgctxt "#2118"
+msgid "- listen on ip"
+msgstr "- ip"
+
+msgctxt "#2119"
+msgid "- listen on port"
+msgstr "- порт"
+
+msgctxt "#2120"
+msgid "Enable plugin: wirbelscan"
+msgstr "Разрешить плагин: wirbelscan"
+
+msgctxt "#2122"
+msgid "Enable plugin: dvbapi"
+msgstr "Разрешить плагин: dvbapi"
+
+msgctxt "#2123"
+msgid "- option"
+msgstr "- параметры"
+
+msgctxt "#3000"
+msgid "DVB"
+msgstr "DVB"
+
+msgctxt "#3100"
+msgid "DVB configuration"
+msgstr "DVB конфигурация"
+
+msgctxt "#3101"
+msgid "Wait for frontend initialization"
+msgstr "Ожидать инициализацию адаптеров"
+
+msgctxt "#3102"
+msgid "Number of adapters to wait for"
+msgstr "Номера адаптеров"
+
+msgctxt "#3103"
+msgid "Unload DVB mudules before suspend"
+msgstr "Выгружать DVB модули перед засыпанием"
+
+msgctxt "#4000"
+msgid "Plugins - front"
+msgstr "Плагины - фронт"
+
+msgctxt "#4100"
+msgid "Plugin configuration for frontend"
+msgstr "Конфигурация плагинов для фронтенда"
+
+msgctxt "#4101"
+msgid "Enable plugin: favorites"
+msgstr "Разрешить плагин: favorites"
+
+msgctxt "#4103"
+msgid "Enable plugin: femon"
+msgstr "Разрешить плагин: femon"
+
+msgctxt "#4104"
+msgid "Enable plugin: systeminfo"
+msgstr "Разрешить плагин: systeminfo"
+
+msgctxt "#4105"
+msgid "Enable plugin: sleeptimer"
+msgstr "Разрешить плагин: sleeptimer"
+
+msgctxt "#4106"
+msgid "Enable plugin: filebrowser"
+msgstr "Разрешить плагин: filebrowser"
+
+msgctxt "#4107"
+msgid "Enable plugin: lcdproc"
+msgstr "Разрешить плагин: lcdproc"
+
+msgctxt "#4108"
+msgid "Enable plugin: text2skin"
+msgstr "Разрешить плагин: text2skin"
+
+msgctxt "#4109"
+msgid "Enable plugin: skinnopacity"
+msgstr "Разрешить плагин: skinnopacity"
+
+msgctxt "#4110"
+msgid "Enable plugin: skinflat"
+msgstr "Разрешить плагин: skinflat"
+
+msgctxt "#4111"
+msgid "Enable plugin: skinflatplus"
+msgstr "Разрешить плагин: skinflatplus"
+
+msgctxt "#4112"
+msgid "Enable plugin: skindesigner"
+msgstr "Разрешить плагин: skindesigner"
+
+msgctxt "#4113"
+msgid "Enable plugin: menuorg"
+msgstr "Разрешить плагин: menuorg"
+
+msgctxt "#4114"
+msgid "Enable plugin: tvguide"
+msgstr "Разрешить плагин: tvguide"
+
+msgctxt "#4115"
+msgid "Enable plugin: tvscraper"
+msgstr "Разрешить плагин: tvscraper"
+
+msgctxt "#4116"
+msgid "Enable plugin: weatherforecast"
+msgstr "Разрешить плагин: weatherforecast"
+
+msgctxt "#4117"
+msgid "Video output plugin"
+msgstr "Плагин вывода видео"
+
+msgctxt "#4118"
+msgid "- video driver"
+msgstr "- видео драйвер"
+
+msgctxt "#4119"
+msgid "- soft audio device"
+msgstr "- soft аудио устройство"
+
+msgctxt "#4120"
+msgid "- xine audio device"
+msgstr "- xine аудио устройство"
+
+msgctxt "#4121"
+msgid "- soft params"
+msgstr "- soft параметры"
+
+msgctxt "#4122"
+msgid "- xine params"
+msgstr "- xine параметры"

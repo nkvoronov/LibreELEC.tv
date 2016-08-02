@@ -1,0 +1,41 @@
+# VDR language source file.
+# Copyright (C) 2008 Klaus Schmidinger <kls@tvdr.de>
+# This file is distributed under the same license as the VDR package.
+# Klaus Schmidinger <kls@tvdr.de>, 2000-2008
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VDR 1.6.0\n"
+"Report-Msgid-Bugs-To: <>\n"
+"POT-Creation-Date: 2010-10-30 05:18+0200\n"
+"PO-Revision-Date: 2010-10-28 11:11+0100\n"
+"Last-Translator: Tomas Saxer <tsaxer@gmx.de>\n"
+"Language-Team: German\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Channels"
+msgstr "Kanäle"
+
+msgid "Timers"
+msgstr "Timer"
+
+msgid "Schedule"
+msgstr "Programm"
+
+msgid "Setup"
+msgstr "Einstellungen"
+
+msgid "Commands"
+msgstr "Befehle"
+
+msgid "Recordings"
+msgstr "Aufzeichnungen"
+
+msgid "Volume"
+msgstr "Lautstärke "
+
+msgid "Mute"
+msgstr "Stumm"

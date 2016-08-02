@@ -1,0 +1,47 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2015-02-14 17:46:53.000000000 +0200
++++ b/Makefile	2015-02-14 20:03:32.731751478 +0200
+@@ -15,24 +15,18 @@
+ 
+ ### The directory environment:
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
+-LIBDIR = $(call PKGCFG,libdir)
+-LOCDIR = $(call PKGCFG,locdir)
+-PLGCFG = $(call PKGCFG,plgcfg)
+-#
++
+ TMPDIR ?= /tmp
+ 
+ ### The compiler options:
+-export CFLAGS   = $(call PKGCFG,cflags)
+-export CXXFLAGS = $(call PKGCFG,cxxflags)
+ 
+ ECPPC ?= ecppc
+ 
+ ### The version number of VDR's plugin API:
+-APIVERSION = $(call PKGCFG,apiversion)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### Allow user defined options to overwrite defaults:
+--include $(PLGCFG)
++include $(VDRDIR)/Make.global
+ 
+ ### Determine tntnet and cxxtools versions:
+ TNTVERSION = $(shell tntnet-config --version | sed -e's/\.//g' | sed -e's/pre.*//g' | awk '/^..$$/ { print $$1."000"} /^...$$/ { print $$1."00"} /^....$$/ { print $$1."0" } /^.....$$/ { print $$1 }')
+@@ -63,6 +57,7 @@
+ SOFILE = libvdr-$(PLUGIN).so
+ 
+ ### Includes and Defines (add further entries here):
++INCLUDES += -I$(VDRDIR)/include
+ DEFINES	 += -D_GNU_SOURCE -DPLUGIN_NAME_I18N='"$(PLUGIN)"' -DTNTVERSION=$(TNTVERSION) -DCXXTOOLVER=$(CXXTOOLVER)
+ SUBDIRS	  = pages css javascript
+ VERSIONSUFFIX = gen_version_suffix.h
+@@ -129,6 +124,7 @@
+ 		do $(MAKE) -C $${SUBDIR} PLUGINFEATURES="$(PLUGINFEATURES)" all; \
+ 	done
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(PLUGINOBJS) -Wl,--whole-archive $(WEBLIBS) -Wl,--no-whole-archive $(LIBS) -o $@
++	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+ 
+ install-lib: $(SOFILE)
+ 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)

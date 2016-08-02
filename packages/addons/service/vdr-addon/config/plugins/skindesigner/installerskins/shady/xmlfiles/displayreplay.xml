@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE displayreplay SYSTEM "../../../dtd/displayreplay.dtd">
+
+	<displayreplay x="0" y="0" width="100%" height="100%" fadetime="{00_menuFadetime}" shifttime="{01_ShifttimeMessageDisplay}" shifttype="bottom" shiftmode="slowed">
+		<background>
+			<area x="0" y="75%" width="100%" height="25%" layer="1">
+				<drawimage condition="not{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientChannel"/>
+				<drawimage condition="{brightBackground}" x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientChannelBright"/>
+			</area>
+			<area x="0" y="75%" width="100%" height="25%" layer="2">
+				<drawimage x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="shadowsReplay"/>
+		</area>
+	</background>
+
+	<backgroundmodeonly>
+	</backgroundmodeonly>
+
+	<scrapercontent>
+		<area condition="{isbanner}" x="11" y="64%" width="{areaheight}*0.1*{mediawidth}/{mediaheight}" height="10%" layer="2">
+			<drawimage imagetype="image" path="{mediapath}" align="center" valign="center"  width="{areawidth}" height="{areaheight}"/>
+		</area>
+		<area condition="not{isbanner}" x="11" y="39%" width="{areaheight}*0.35*{mediawidth}/{mediaheight}" height="35%" layer="2">
+			<drawimage imagetype="image" path="{mediapath}" x="0" y="0" width="{areawidth}" height="{areaheight}"/>
+		</area>
+	</scrapercontent>
+
+	<rectitle>
+<!--single-line display-->
+		<area condition="not{twoLineDisplayReplay}" x="3%" y="77%" width="94%" height="8%" layer="3">
+			<drawtext condition="isset{recsubtitle}" x="{width(title)}+10" valign="center" align="center" width="{areawidth}-{width(title)}-10" font="{light}" fontsize="60%" color="{clrLightGray}" text="{rectitle} - {recsubtitle}" />
+			<drawtext condition="empty{recsubtitle}" x="{width(title)}+10" valign="center" align="center" width="{areawidth}-{width(title)}-10" font="{light}" fontsize="60%" color="{clrLightGray}" text="{rectitle}" />
+		</area>
+<!--two-line display-->
+		<area condition="{twoLineDisplayReplay}" x="3%" y="77%" width="94%" height="8%" layer="3">
+			<drawtext condition="isset{recsubtitle}" x="{width(title)}+10" y="7%" align="center" width="{areawidth}-{width(title)}-10" font="{light}" fontsize="50%" color="{clrLightGray}" text="{rectitle}" />
+			<drawtext condition="isset{recsubtitle}" x="{width(title)}+10" y="50%" align="center" width="{areawidth}-{width(title)}-10" font="{light}" fontsize="40%" color="{clrLightGray}" text="{recsubtitle}" />
+			<drawtext condition="empty{recsubtitle}" x="{width(title)}+10" valign="center" align="center" width="{areawidth}-{width(title)}-10" font="{light}" fontsize="60%" color="{clrLightGray}" text="{rectitle}" />
+		</area>
+
+		<area x="9%" y="92%" width="14%" height="7%" layer="3">
+			<drawtext  y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="40%" color="{clrLightGray}" text="{tr(recordedat)}: {recdate}"/>
+		</area>
+	</rectitle>
+
+	<progressbar>
+		<area condition="not{timeshift}" x="2%" y="87%" width="96%" height="3%" layer="3">
+			<drawimage x="0" y="0" width="{current}/{total}*{areawidth}" height="{areaheight}*0.98" imagetype="skinpart" path="replayProgress" />
+		</area>
+		<area condition="{timeshift}" x="2%" y="87%" width="96%" height="3%" layer="3">
+			<drawimage x="0" y="0" width="{total}/{timeshifttotal}*{areawidth}" height="{areaheight}*0.98" imagetype="skinpart" path="replayTimeshift" />
+			<drawimage x="0" y="0" width="{current}/{timeshifttotal}*{areawidth}" height="{areaheight}*0.98" imagetype="skinpart" path="replayProgress" />
+		</area>
+	</progressbar>
+
+	<cutmarks>
+		<area condition="not{timeshift}" x="2%" y="87%" width="96%" height="3%" layer="4">
+			<loop name="marks" x="0" y="0" orientation="absolute">
+				<!-- draw mark -->
+				<drawrectangle condition="not{marks[active]}" x="{marks[position]}/{marks[total]}*{areawidth}" y="0" width="1" height="100%" color="{clrBlack}" />
+				<!-- draw active mark -->
+				<drawrectangle condition="{marks[active]}" x="{marks[position]}/{marks[total]}*{areawidth}" y="0" width="2" height="100%" color="{clrGreen}" />
+				<!-- draw bar to next mark if mark is startmark-->
+				<drawrectangle condition="{marks[startmark]}" x="{marks[position]}/{marks[total]}*{areawidth}" y="37%" width="{marks[endposition]}/{marks[total]}*{areawidth} - {marks[position]}/{marks[total]}*{areawidth}" height="30%" color="{clrBlack}" />
+			</loop>
+		</area>
+
+		<area condition="{timeshift}" x="2%" y="87%" width="96%" height="3%" layer="4">
+			<loop name="marks" x="0" y="0" orientation="absolute">
+				<!-- draw mark -->
+				<drawrectangle condition="not{marks[active]}" x="{marks[position]}/{marks[timeshifttotal]}*{areawidth}" y="0" width="1" height="100%" color="{clrBlack}" />
+				<!-- draw active mark -->
+				<drawrectangle condition="{marks[active]}" x="{marks[position]}/{marks[timeshifttotal]}*{areawidth}" y="0" width="2" height="100%" color="{clrGreen}" />
+				<!-- draw bar to next mark if mark is startmark-->
+				<drawrectangle condition="{marks[startmark]}" x="{marks[position]}/{marks[timeshifttotal]}*{areawidth}" y="37%" width="{marks[endposition]}/{marks[timeshifttotal]}*{areawidth} - {marks[position]}/{marks[timeshifttotal]}*{areawidth}" height="30%" color="{clrBlack}" />
+			</loop>
+		</area>
+	</cutmarks>
+	
+		<currenttime>
+		<area x="3%" y="92%" width="6%" height="7%" layer="3">
+			<drawtext x="0" align="center" valign="center" font="{light}" fontsize="45%" color="{clrLightGray}" text="{reccurrent}" />
+		</area>
+	</currenttime>
+	
+		<datetime>
+		<area x="23%" y="92%" width="8%" height="7%" layer="3">
+			<drawtext x="0" y="0" width="{areawidth}" valign="center" align="left" font="{light}" fontsize="40%" color="{clrLightGray}" text="{dayleadingzero}.{month}.{year}"/>
+		</area>
+	</datetime>
+	<time>
+		<area x="30%" y="92%" width="3%" height="7%" layer="3">
+			<drawtext x="0" y="0" width="{areawidth}" valign="center" align="right" font="{light}" fontsize="40%" color="{clrLightGray}" text="{printf('%02d:%02d', hour, min)}"/>
+		</area>
+	</time>
+	
+	<controlicons>
+		<area x="34%" y="92%" width="8%" height="7%" layer="3">
+			<drawtext condition="not{rewind}++ not{rewind1x}++not{rewind2x}++ not{rewind3x}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="40%" color="{clrDarkGray}" text="REW"/>
+			<drawtext condition="{rewind}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="REW"/>
+			<drawtext condition="{rewind1x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="1x REW"/>
+			<drawtext condition="{rewind2x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="2x REW"/>
+			<drawtext condition="{rewind3x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="3x REW"/>
+		</area>
+		<area x="42%" y="92%" width="8%" height="7%" layer="3">
+			<drawtext condition="not{pause}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="40%" color="{clrDarkGray}" text="PAUSE"/>
+			<drawtext condition="{pause}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="PAUSE"/>
+		</area>
+		<area x="50%" y="92%" width="8%" height="7%" layer="3">
+			<drawtext condition="not{play}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="40%" color="{clrDarkGray}" text="PLAY"/>
+			<drawtext condition="{play}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="PLAY"/>
+		</area>
+		<area x="58%" y="92%" width="8%" height="7%" layer="3">
+			<drawtext condition="not{forward}++ not{forward1x}++not{forward2x}++ not{forward3x}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="40%" color="{clrDarkGray}" text="FWD"/>
+			<drawtext condition="{forward}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="FWD"/>
+			<drawtext condition="{forward1x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="1x FWD"/>
+			<drawtext condition="{forward2x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="2x FWD"/>
+			<drawtext condition="{forward3x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="40%" color="{clrHigh}" text="3x FWD"/>
+		</area>
+	</controlicons>
+	
+	<endtime>
+		<area x="66%" y="92%" width="12%" height="7%" layer="3">
+			<drawtext align="center" valign="center" font="{light}" fontsize="40%" color="{clrLightGray}" text="{tr(replayends)}:" />
+		</area>
+		<area x="78%" y="92%" width="11%" height="7%" layer="3">
+			<drawtext align="center" valign="center" font="{light}" fontsize="40%" color="{clrLightGray}" text="{recend}" />
+		</area>
+	</endtime>
+
+	<totaltime>
+		<area x="91%" y="92%" width="6%" height="7%" layer="5">
+			<drawtext align="center" valign="center" font="{light}" fontsize="45%" color="{clrLightGray}" text="{rectotal}" />
+		</area>
+		<area condition="{timeshift}" x="85%" y="86%" width="12%" height="5%" layer="4">
+			<drawtext align="right" valign="center" font="{light}" fontsize="60%" color="{clrWhite}" text="total: {timeshifttotal}h" />
+		</area>
+	</totaltime>
+
+    <controliconsmodeonly>
+		<area x="0" y="94%" width="100%" height="6%" layer="1">
+			<drawimage x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientReplayControl"/>
+		</area>
+		<area x="0" y="94%" width="100%" height="6%" layer="2">
+			<drawimage x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="replayControl"/>
+		</area>
+		<area x="17%" y="95%" width="8%" height="4%" layer="3">
+			<drawtext condition="not{rewind}++ not{rewind1x}++not{rewind2x}++ not{rewind3x}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="70%" color="{clrDarkGray}" text="REW"/>
+			<drawtext condition="{rewind}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="REW"/>
+			<drawtext condition="{rewind1x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="1x REW"/>
+			<drawtext condition="{rewind2x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="2x REW"/>
+			<drawtext condition="{rewind3x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="3x REW"/>
+		</area>
+		<area x="25%" y="95%" width="8%" height="4%" layer="3">
+			<drawtext condition="not{pause}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="70%" color="{clrDarkGray}" text="PAUSE"/>
+			<drawtext condition="{pause}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="PAUSE"/>
+		</area>
+		<area x="67%" y="95%" width="8%" height="4%" layer="3">
+			<drawtext condition="not{play}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="70%" color="{clrDarkGray}" text="PLAY"/>
+			<drawtext condition="{play}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="PLAY"/>
+		</area>
+		<area x="75%" y="95%" width="8%" height="4%" layer="3">
+			<drawtext condition="not{forward}++ not{forward1x}++not{forward2x}++ not{forward3x}" x="0" y="0" width="{areawidth}" valign="center" align="center" font="{light}" fontsize="70%" color="{clrDarkGray}" text="FWD"/>
+			<drawtext condition="{forward}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="FWD"/>
+			<drawtext condition="{forward1x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="1x FWD"/>
+			<drawtext condition="{forward2x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="2x FWD"/>
+			<drawtext condition="{forward3x}" x="0" y="0" width="{areawidth}"  valign="center" align="center" font="{light}" fontsize="70%" color="{clrHigh}" text="3x FWD"/>
+		</area>
+	</controliconsmodeonly>
+
+	<progressmodeonly>
+		<area x="33%" y="95%" width="7%" height="4%" layer="3">
+			<drawtext x="0" align="right" valign="center" font="{light}" fontsize="75%" color="{clrLightGray}" text="{timecurrent}" />
+		</area>
+		<area x="60%" y="95%" width="7%" height="4%" layer="3">
+			<drawtext x="0" valign="center" font="{light}" fontsize="75%" color="{clrLightGray}" text="{timetotal}" />
+		</area>
+
+		<area x="41%" y="96%" width="18%" height="3%" layer="2">
+			<drawimage x="0" y="20%" width="{areawidth}*{current}/{total}" height="{areaheight}*0.33" imagetype="skinpart" path="timeBar" />
+		</area>
+	</progressmodeonly>
+	
+	<jump>
+		<area x="35%" y="45%" width="30%" height="10%" layer="1">
+			<fill color="{clrTransBlack}" />
+		</area>
+		<area x="35%" y="45%" width="30%" height="10%" layer="2">
+			<drawtext align="center" valign="center" font="{light}" fontsize="80%" color="{clrWhite}" text="{jump}" />
+		</area>
+	</jump>
+
+	<onpause delay="60" fadetime="0">
+		<area x="0" y="0" width="100%" height="100%" layer="7">
+			<fill color="{clrSemiTransBlack}" />
+		</area>
+	</onpause>
+
+	<onpausemodeonly delay="20" fadetime="{onPauseFadetime}">
+		<area x="0" y="0" width="100%" height="100%" layer="7">
+			<fill color="{clrSemiTransBlack}" />
+		</area>
+	</onpausemodeonly>
+
+	<message>
+		<area x="0" y="65%" width="100%" height="10%" layer="3">
+			<drawimage x="0" width="{areawidth}" height="{areaheight}" imagetype="skinpart" path="gradientChannel"/>
+		</area>
+		<area x="0" y="65%" width="100%" height="10%" layer="4">
+			<drawimage condition="{status}" x="5%" y="20%" width="90%" height="60%" imagetype="skinpart" path="buttonMessageGreen" />
+			<drawimage condition="{info}" x="5%" y="20%" width="90%" height="60%" imagetype="skinpart" path="buttonMessageBlue" />
+			<drawimage condition="{warning}" x="5%" y="20%" width="90%" height="60%" imagetype="skinpart" path="buttonMessageYellow" />
+			<drawimage condition="{error}" x="5%" y="20%" width="90%" height="60%" imagetype="skinpart" path="buttonMessageRed" />
+		</area>
+		<area x="0" y="67%" width="100%" height="6%" layer="5">
+			<drawtext align="center" valign="center" width="{areawidth}*0.7" font="{light}" fontsize="65%" color="{clrWhite}" text="{text}" />
+		</area>
+	</message>
+</displayreplay>

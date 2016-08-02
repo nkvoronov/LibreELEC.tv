@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE displayaudiotracks SYSTEM "../../../dtd/displayaudiotracks.dtd">
+
+<displayaudiotracks x="25%" y="0" width="50%" height="100%" fadetime="{menufadetime}">
+    <!-- Available Variables background:
+    {numtracks}                     number of displayed tracks 
+    -->
+    <background>
+        <area x="0" y="{areaheight} - {numtracks} * {areaheight} / 10 - {areaheight} / 10" width="100%" height="{areaheight} / 10 + {areaheight} / 10 * {numtracks}" layer="1">
+            <fill color="{clrTransBlack}" />
+        </area>
+    </background>
+
+    <!-- Available Variables header:
+    {numtracks}                     number of displayed tracks 
+    {title}                         title of menu 
+    -->
+    <header>
+        <area x="0" y="{areaheight} - {numtracks} * {areaheight} / 10 - {areaheight} / 10" width="100%" height="{areaheight} / 10" layer="2">
+            <drawtext x="10" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{title}" />
+            <drawimage condition="{isstereo}" imagetype="icon" path="ico_stereo" x="{areawidth} - {areaheight}*0.9" valign="center" width="{areaheight}*0.9" height="{areaheight}*0.9"/>
+            <drawimage condition="{isac3}" imagetype="icon" path="ico_ac3" x="{areawidth} - {areaheight}*0.9" valign="center" width="{areaheight}*0.9" height="{areaheight}*0.9"/>
+        </area>
+    </header>
+
+     <!-- Available Variables header:
+    {numelements}                 number of displayed tracks 
+    -->
+    <menuitems x="0" y="{areaheight} - {numelements} * {areaheight} / 10" orientation="vertical" width="100%" height="{numelements} * {areaheight} / 10" align="top" numlistelements="{numelements}">
+        <!-- Available Variables auidotrack listelement:
+        {current}                 true if item is currently selected 
+        {title}                   title of auio track 
+        -->
+        <listelement>
+            <!-- Background -->
+            <area x="1%" width="98%" layer="2">
+                <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+                <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+            </area>
+            <area x="1%" width="98%" layer="3">
+                <drawtext x="10" valign="center" font="{regular}" fontsize="60%" color="{clrWhite}" text="{title}" />
+            </area>
+        </listelement>
+    </menuitems>
+
+</displayaudiotracks>

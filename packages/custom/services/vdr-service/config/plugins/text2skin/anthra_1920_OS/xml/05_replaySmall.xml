@@ -1,0 +1,30 @@
+<display id="replaySmall">
+	<window x1="0" x2="1920" y1="0" y2="1080" bpp="8"/>
+	
+		<image   x="586" y="942" path="images/recbarSmall.png"/>
+		<text condition="not({IsFastRewind})" x1="592" x2="713" y1="955" y2="977" align="center" color="DarkGrey" font="VDRSymbols Sans:Book@22">F.REW   </text>
+		<text condition="{IsFastRewind:0}" x1="592" x2="713" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.REW</text>
+		<text condition="{IsFastRewind:1}" x1="592" x2="713" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.REW 1x</text>
+		<text condition="{IsFastRewind:2}" x1="592" x2="713" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.REW 2x</text>
+		<text condition="{IsFastRewind:3}" x1="592" x2="713" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.REW 3x</text>
+		<text condition="not({IsSlowRewind})" x1="715" x2="836" y1="955" y2="977" align="center" color="DarkGrey" font="VDRSymbols Sans:Book@22">S.REW   </text>
+		<text condition="{IsSlowRewind:0}" x1="715" x2="836" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.REW</text>	
+		<text condition="{IsSlowRewind:1}" x1="715" x2="836" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.REW 1x</text>		
+		<text condition="{IsSlowRewind:2}" x1="715" x2="836" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.REW 2x</text>		
+		<text condition="{IsSlowRewind:3}" x1="715" x2="839" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.REW 3x</text>
+		<text condition="not({IsPausing})" x1="838" x2="958" y1="955" y2="977" align="center" color="DarkGrey" font="VDRSymbols Sans:Book@22">PAUSE</text>		
+		<text condition="{IsPausing}" x1="838" x2="958" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">PAUSE</text>
+		<text condition="not({IsPlaying})" x1="960" x2="1081" y1="955" y2="977" align="center" color="DarkGrey" font="VDRSymbols Sans:Book@22">PLAY</text>		
+		<text condition="{IsPlaying}" x1="960" x2="1081" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">PLAY</text>
+		<text condition="not({IsSlowForward})" x1="1083" x2="1203" y1="955" y2="977" align="center" color="DarkGrey" font="VDRSymbols Sans:Book@22">S.FWD   </text>		
+		<text condition="{IsSlowForward:0}" x1="1083" x2="1203" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.FWD</text>		
+		<text condition="{IsSlowForward:1}" x1="1083" x2="1203" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.FWD 1x</text>		
+		<text condition="{IsSlowForward:2}" x1="1083" x2="1203" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.FWD 2x</text>		
+		<text condition="{IsSlowForward:3}" x1="1083" x2="1203" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">S.FWD 3x</text>
+		<text condition="not({IsFastForward})" x1="1205" x2="1326" y1="955" y2="977" align="center" color="DarkGrey" font="VDRSymbols Sans:Book@22">F.FWD   </text>		
+		<text condition="{IsFastForward:0}" x1="1205" x2="1326" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.FWD</text>
+		<text condition="{IsFastForward:1}" x1="1205" x2="1326" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.FWD 1x</text>
+		<text condition="{IsFastForward:2}" x1="1205" x2="1326" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.FWD 2x</text>
+		<text condition="{IsFastForward:3}" x1="1205" x2="1326" y1="955" y2="977" align="center" color="TextSmallButton" font="VDRSymbols Sans:Book@22">F.FWD 3x</text>
+
+</display>

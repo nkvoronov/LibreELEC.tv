@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<skinrepo>
+    <name>tryouts</name>
+    <type>git</type>
+    <url>https://github.com/BooStars/tryouts</url>
+    <author>BooStar</author>
+    <minimumskindesignerversion>0.6.2</minimumskindesignerversion>
+    <screenshots>
+        <screenshot>
+            <description>Main Menu</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=37055&amp;h=c4f6715489e506408cca04f67a2263cd4db9ab7d</url>
+        </screenshot>
+        <screenshot>
+            <description>Display Channel</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=37056&amp;h=e7cd1c6d2bd8042b6c08629c8f5d4711e8196e5f</url>
+        </screenshot>
+        <screenshot>
+            <description>Schedules What's on now</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=37068&amp;h=5d649990035ac65c80e39c3bbdf29482425eba60</url>
+        </screenshot>
+    </screenshots>
+    <specialfonts>
+        <font>VDRSymbols Sans</font>
+    </specialfonts>
+    <supportedplugins>
+        <plugin>Weatherforecast</plugin>
+        <plugin>TVGuideNG</plugin>
+        <plugin>Plex</plugin>
+    </supportedplugins>
+</skinrepo>

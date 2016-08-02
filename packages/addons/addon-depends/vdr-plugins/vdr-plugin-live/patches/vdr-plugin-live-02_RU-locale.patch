@@ -1,0 +1,12 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	2015-03-11 23:31:25.000000000 +0200
++++ b/po/ru_RU.po	2015-03-24 16:17:50.350407901 +0200
+@@ -940,7 +940,7 @@
+ msgstr "Список"
+ 
+ msgid "Live Interactive VDR Environment"
+-msgstr ""
++msgstr "VDR Веб интерфейс"
+ 
+ msgid "No EPG information available"
+ msgstr "EPG информация недоступна"

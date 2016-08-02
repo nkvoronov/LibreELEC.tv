@@ -17,13 +17,15 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-restfulapi"
-PKG_VERSION="0.2.6.0"
+PKG_VERSION="62439ea"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/yavdr/vdr-plugin-restfulapi"
-PKG_URL="https://github.com/yavdr/${PKG_NAME}/releases/download/2.6.0/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain vdr cxxtools vdr-plugin-wirbelscan"
+PKG_SITE="https://github.com/yavdr/vdr-plugin-restfulapi.git"
+PKG_GIT_URL="https://github.com/yavdr/vdr-plugin-restfulapi.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="yes"
+PKG_DEPENDS_TARGET="toolchain vdr cxxtools vdr-plugin-wirbelscan ImageMagick"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="vdr-plugin-restfulapi: the restful API for the VDR/"
@@ -45,8 +47,7 @@ make_target() {
   make \
     LIBDIR="." \
     LOCDIR="./locale" \
-    all install-i18n \
-    USE_LIBMAGICKPLUSPLUS=0
+    all install-i18n
 }
 
 post_make_target() {

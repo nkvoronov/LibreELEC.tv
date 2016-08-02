@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE globals SYSTEM "../../dtd/globals.dtd">
+
+<globals>
+    <!--
+    define all your needed colors here
+    -->
+    <colors>
+    </colors>
+    <!--
+    these variables can be used everywhere in the templates
+    variabls of type int can also be used as conditions, just
+    set such a variable to 1 for true and 0 for false
+    -->
+    <variables>
+    </variables>
+    <!--
+    translations used in the skin
+    -->
+    <translations>
+        <token name="tr(noactivetimers)">
+            <trans lang="en_EN">no active timers</trans>
+            <trans lang="de_DE">keine aktiven Timer</trans>
+        </token>
+        <token name="tr(transponder)">
+            <trans lang="en_EN">Transponder</trans>
+            <trans lang="de_DE">Transponder</trans>
+        </token>
+        <token name="tr(schedule)">
+            <trans lang="en_EN">Schedule</trans>
+            <trans lang="de_DE">Programm</trans>
+        </token>
+        <token name="tr(since)">
+            <trans lang="en_EN">since</trans>
+            <trans lang="de_DE">Seit</trans>
+        </token>
+        <token name="tr(reruns)">
+            <trans lang="en_EN">Reruns</trans>
+            <trans lang="de_DE">Wiederholungen</trans>
+        </token>
+        <token name="tr(rerunsof)">
+            <trans lang="en_EN">Reruns of</trans>
+            <trans lang="de_DE">Wiederholungen von</trans>
+        </token>
+        <token name="tr(actors)">
+            <trans lang="en_EN">Actors</trans>
+            <trans lang="de_DE">Schauspieler</trans>
+        </token>
+        <token name="tr(episode)">
+            <trans lang="en_EN">Episode</trans>
+            <trans lang="de_DE">Folge</trans>
+        </token>
+        <token name="tr(season)">
+            <trans lang="en_EN">Season</trans>
+            <trans lang="de_DE">Staffel</trans>
+        </token>
+        <token name="tr(gueststars)">
+            <trans lang="en_EN">Guest Stars</trans>
+            <trans lang="de_DE">Gaststars</trans>
+        </token>
+        <token name="tr(seriesfirstaired)">
+            <trans lang="en_EN">Series First Aired</trans>
+            <trans lang="de_DE">Erstausstrahlung der Serie</trans>
+        </token>
+        <token name="tr(episodefirstaired)">
+            <trans lang="en_EN">Episode First Aired</trans>
+            <trans lang="de_DE">Erstausstrahlung der Episode</trans>
+        </token>
+        <token name="tr(network)">
+            <trans lang="en_EN">Network</trans>
+            <trans lang="de_DE">TV Station</trans>
+        </token>
+        <token name="tr(genre)">
+            <trans lang="en_EN">Genre</trans>
+            <trans lang="de_DE">Genre</trans>
+        </token>
+        <token name="tr(status)">
+            <trans lang="en_EN">Status</trans>
+            <trans lang="de_DE">Status</trans>
+        </token>
+        <token name="tr(rating)">
+            <trans lang="en_EN">Rating</trans>
+            <trans lang="de_DE">Bewertung</trans>
+        </token>
+        <token name="tr(episoderating)">
+            <trans lang="en_EN">Episode Rating</trans>
+            <trans lang="de_DE">Bewertung der Folge</trans>
+        </token>
+        <token name="tr(recinfo)">
+            <trans lang="en_EN">Recording Information</trans>
+            <trans lang="de_DE">Aufnahme Informationen</trans>
+        </token>
+        <token name="tr(seriesgalery)">
+            <trans lang="en_EN">Series Galery</trans>
+            <trans lang="de_DE">Serien Galerie</trans>
+        </token>
+        <token name="tr(moviegalery)">
+            <trans lang="en_EN">Movie Galery</trans>
+            <trans lang="de_DE">Spielfilm Galerie</trans>
+        </token>
+        <token name="tr(originaltitle)">
+            <trans lang="en_EN">Original Title</trans>
+            <trans lang="de_DE">Originaltitel</trans>
+        </token>
+        <token name="tr(budget)">
+            <trans lang="en_EN">Budget</trans>
+            <trans lang="de_DE">Budget</trans>
+        </token>
+        <token name="tr(revenue)">
+            <trans lang="en_EN">Revenue</trans>
+            <trans lang="de_DE">Einnahmen</trans>
+        </token>
+        <token name="tr(adult)">
+            <trans lang="en_EN">Adult</trans>
+            <trans lang="de_DE">Nur für Erwachsene</trans>
+        </token>
+        <token name="tr(releasedate)">
+            <trans lang="en_EN">Release Date</trans>
+            <trans lang="de_DE">Erscheinungsdatum</trans>
+        </token>
+        <token name="tr(runtime)">
+            <trans lang="en_EN">Runtime</trans>
+            <trans lang="de_DE">Laufzeit</trans>
+        </token>
+        <token name="tr(popularity)">
+            <trans lang="en_EN">Popularity</trans>
+            <trans lang="de_DE">Popularität</trans>
+        </token>
+        <token name="tr(voteaverage)">
+            <trans lang="en_EN">Vote Average</trans>
+            <trans lang="de_DE">Durchschnittliche Wertung</trans>
+        </token>
+        <token name="tr(homepage)">
+            <trans lang="en_EN">Homepage</trans>
+            <trans lang="de_DE">Homepage</trans>
+        </token>
+        <token name="tr(recsize)">
+            <trans lang="en_EN">Recording size</trans>
+            <trans lang="de_DE">Größe der Aufnahme</trans>
+        </token>
+        <token name="tr(recsizecutted)">
+            <trans lang="en_EN">Cutted Recording Size</trans>
+            <trans lang="de_DE">Größe der geschnittenen Aufnahme</trans>
+        </token>
+        <token name="tr(reclength)">
+            <trans lang="en_EN">Recording Length</trans>
+            <trans lang="de_DE">Länge der Aufnahme</trans>
+        </token>
+        <token name="tr(reclengthcutted)">
+            <trans lang="en_EN">Cutted Recording Length</trans>
+            <trans lang="de_DE">Länge der geschnittenen Aufnahme</trans>
+        </token>
+        <token name="tr(bitrate)">
+            <trans lang="en_EN">Bit Rate</trans>
+            <trans lang="de_DE">Bitrate</trans>
+        </token>
+        <token name="tr(format)">
+            <trans lang="en_EN">Format</trans>
+            <trans lang="de_DE">Format</trans>
+        </token>
+        <token name="tr(searchtimer)">
+            <trans lang="en_EN">Searchtimer</trans>
+            <trans lang="de_DE">Suchtimer</trans>
+        </token>
+        <token name="tr(volume)">
+            <trans lang="en_EN">Volume</trans>
+            <trans lang="de_DE">Lautstärke</trans>
+        </token>
+        <token name="tr(pause)">
+            <trans lang="en_EN">Pause</trans>
+            <trans lang="de_DE">Pause</trans>
+        </token>
+        <token name="tr(temp)">
+            <trans lang="en_EN">Temperature</trans>
+            <trans lang="de_DE">Temperatur</trans>
+        </token>
+        <token name="tr(apparenttemp)">
+            <trans lang="en_EN">Felt Temperature</trans>
+            <trans lang="de_DE">Gefühlte Temperatur</trans>
+        </token>
+        <token name="tr(todaymin)">
+            <trans lang="en_EN">minimum today</trans>
+            <trans lang="de_DE">heutiges Minimum</trans>
+        </token>
+        <token name="tr(todaymax)">
+            <trans lang="en_EN">maximum today</trans>
+            <trans lang="de_DE">heutiges Maximum</trans>
+        </token>
+        <token name="tr(precipitationprobability)">
+            <trans lang="en_EN">Precipitation Prob.</trans>
+            <trans lang="de_DE">Regenwahrsch.</trans>
+        </token>
+        <token name="tr(precipitationintensity)">
+            <trans lang="en_EN">Precipitation Intensity</trans>
+            <trans lang="de_DE">Regenmenge</trans>
+        </token>
+        <token name="tr(humidity)">
+            <trans lang="en_EN">Humidity</trans>
+            <trans lang="de_DE">Luftfeuchtigkeit</trans>
+        </token>
+        <token name="tr(apparenttemp)">
+            <trans lang="en_EN">Felt Temperature</trans>
+            <trans lang="de_DE">Gefühlte Temperatur</trans>
+        </token>
+        <token name="tr(windbearing)">
+            <trans lang="en_EN">Wind Bearing</trans>
+            <trans lang="de_DE">Windrichtung</trans>
+        </token>
+        <token name="tr(windspeed)">
+            <trans lang="en_EN">Wind Speed</trans>
+            <trans lang="de_DE">Windgeschwindigkeit</trans>
+        </token>
+        <token name="tr(cloudcover)">
+            <trans lang="en_EN">Cloud Cover</trans>
+            <trans lang="de_DE">Bewölkung</trans>
+        </token>
+        <token name="tr(pressure)">
+            <trans lang="en_EN">Pressure</trans>
+            <trans lang="de_DE">Luftdruck</trans>
+        </token>
+        <token name="tr(ozone)">
+            <trans lang="en_EN">Ozone</trans>
+            <trans lang="de_DE">Ozon</trans>
+        </token>
+        <token name="tr(visibility)">
+            <trans lang="en_EN">visibility</trans>
+            <trans lang="de_DE">Sicht</trans>
+        </token>
+        <token name="tr(conditions)">
+            <trans lang="en_EN">Weather Conditions</trans>
+            <trans lang="de_DE">Wetterlage</trans>
+        </token>
+        <token name="tr(from)">
+            <trans lang="en_EN">from</trans>
+            <trans lang="de_DE">aus</trans>
+        </token>
+        <token name="tr(felt)">
+            <trans lang="en_EN">felt</trans>
+            <trans lang="de_DE">gefühlt</trans>
+        </token>
+        <token name="tr(min)">
+            <trans lang="en_EN">min</trans>
+            <trans lang="de_DE">min</trans>
+        </token>
+        <token name="tr(max)">
+            <trans lang="en_EN">max</trans>
+            <trans lang="de_DE">max</trans>
+        </token>
+       <token name="tr(for)">
+            <trans lang="en_EN">for</trans>
+            <trans lang="de_DE">für</trans>
+        </token>
+    </translations>
+    <!--
+    The three Fonts FontOSD, FontFix and FontSml configured in VDR
+    can be used in all template "font" attributes with this tokens:
+    {vdrOsd}
+    {vdrFix}
+    {vdrSml} 
+    If you like to use further fonts, just define them below.
+    Syntax:
+    <font name="tokenname">fontname</font>
+    These fonts can then also be used in all templates in the "font" 
+    attribute.
+    if an invalid font is used in a template, vdrOsd is used as default.
+    -->
+    <fonts>
+    </fonts>
+</globals>

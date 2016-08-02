@@ -22,8 +22,7 @@ PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wirbel.htpc-forum.de/wirbelscan/index2.html"
-PKG_URL="http://wirbel.htpc-forum.de/wirbelscan/${PKG_NAME/-plugin/}-$PKG_VERSION.tgz"
-PKG_SOURCE_DIR="wirbelscan-${PKG_VERSION}"
+PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
@@ -42,8 +41,8 @@ pre_configure_target() {
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
   make VDRDIR=$VDR_DIR \
-    LIBDIR="." \
-    LOCALEDIR="./locale"
+  LIBDIR="." \
+  LOCALEDIR="./locale"
 }
 
 makeinstall_target() {

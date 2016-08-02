@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<skinrepo>
+    <name>bluestyle</name>
+    <type>git</type>
+    <url>https://github.com/mat130780/bluestyle.git</url>
+    <author>maz</author>
+    <minimumskindesignerversion>0.6.2</minimumskindesignerversion>
+    <screenshots>
+        <screenshot>
+            <description>Main Menu</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=38307&amp;h=817d399d6ef112b024eca8b1a6b9660c1df807a5</url>
+        </screenshot>
+        <screenshot>
+            <description>Display Channel</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=38663&amp;h=a90bd8541131fa5a3b61fc2f61531b36c27f5685</url>
+        </screenshot>
+        <screenshot>
+            <description>Schedules What's on now</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=38662&amp;h=b20bda5caf77de916e1965d73801e8a70df937f6</url>
+        </screenshot>
+        <screenshot>
+            <description>Detailed EPG</description>
+            <url>http://www.vdr-portal.de/index.php?page=Attachment&amp;attachmentID=38309&amp;h=40b1c607d516c0e1bfb4df7a8f8ba456c430933b</url>
+        </screenshot>
+    </screenshots>
+    <specialfonts>
+        <font>Source Sans Pro</font>
+        <font>DS-Digital</font>
+    </specialfonts>
+    <supportedplugins>
+        <plugin>TVGuideNG</plugin>
+        <plugin>Weatherforecast</plugin>
+    </supportedplugins>
+</skinrepo>

@@ -1,0 +1,584 @@
+<menuschedules x="0" y="0" width="100%" height="100%" fadetime="{menufadetime}" scaletvx="{areawidth}*0.03 + {areawidth}*{schedulesmenusize}*0.01 +1000-1000*{schedulesmenustyle}" scaletvy="-{areaheight}*0.20 + {areaheight}*{schedulesmenusize}*0.01 +1000-1000*{schedulesmenustyle}" scaletvwidth="{areawidth}*0.95 - {areawidth}*{schedulesmenusize}*0.01 +1000-1000*{schedulesmenustyle}" scaletvheight="{areaheight}*1.1 - {areaheight}*{schedulesmenusize}*0.01+1000-1000*{schedulesmenustyle}" >
+    <!-- Available Variables header:
+    {title}                         title of current menu
+    {vdrversion}                    running VDR Version
+    {channelnumber}                 Number of Channel of current event
+    {channelname}                   Name of current Channel of current event
+    {channellogoexists}             true if a channel logo exists 
+    {channelid}                     ChannelID as path to display channel logo
+    {whatson}                       true if menu "What's on" is displayed
+    {whatsonnow}                    true if menu "What's on now" is displayed
+    {whatsonnext}                   true if menu "What's on next" is displayed
+    -->
+    <background>
+<!-- Style 1 -->
+        <area condition="eq({schedulesmenustyle}, 1)" x="0" y="0" width="100%" height="100%" layer="1">
+            <!-- clock -->
+            <drawimage cache="true" imagetype="skinpart" path="menuclockback" x="{areawidth}*0.99 - {areaheight}*0.1" y="0" width="{areaheight}*0.1" height="10%"/>
+            <!-- top bar -->
+            <drawrectangle x="0" y="0" width="{areawidth}*0.99 - {areaheight}*0.1" height="10%" color="{clrBackground}" />
+            <drawellipse x="{areawidth}*0.99 - {areaheight}*0.1" y="0" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-2" color="{clrBackground}" />
+            <drawellipse x="{areawidth}*0.99 - {areaheight}*0.1" y="5%" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-3" color="{clrBackground}" />
+            <drawrectangle x="30%" y="{areaheight}*0.1 - 2" width="{areawidth}*0.69 - {areaheight}*0.05" height="2" color="{clrBorder}" />
+            <!-- menu bar -->
+            <drawrectangle x="0" y="10%" width="-{areawidth}*0.01 + {areawidth}*{schedulesmenusize}*0.01" height="81%" color="{clrBackground}" />
+            <drawrectangle x="-{areawidth}*0.01 + {areawidth}*{schedulesmenusize}*0.01 - 2" y="12%" width="2" height="76%" color="{clrBorder}" />
+            <!-- bottom bar -->
+            <drawrectangle x="0" y="90%" width="{areawidth}" height="10%" color="{clrBackground}" />
+            <drawrectangle x="{areawidth}*{schedulesmenusize}*0.01" y="{areaheight}*0.9 - 1" width="{areawidth} - {areawidth}*{schedulesmenusize}*0.01" height="2" color="{clrBorder}" />
+            <!-- upper corner -->
+            <drawellipse x="-{areawidth}*0.01 + {areawidth}*{schedulesmenusize}*0.01" y="{areaheight}/10" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-2" color="{clrBorder}" />
+            <drawellipse x="-{areawidth}*0.01 + {areawidth}*{schedulesmenusize}*0.01 - 2" y="{areaheight}/10 - 2" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-2" color="{clrBackground}" />
+            <!-- lower corner -->
+            <drawellipse x="-{areawidth}*0.01 + {areawidth}*{schedulesmenusize}*0.01" y="{areaheight}*90/100 - {areawidth}*2/100" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-3" color="{clrBorder}" />
+            <drawellipse x="-{areawidth}*0.01 + {areawidth}*{schedulesmenusize}*0.01 - 2" y="{areaheight}*90/100 - {areawidth}*2/100 + 2" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-3" color="{clrBackground}" />
+        </area>
+        <area condition="eq({schedulesmenustyle}, 1)" x="0" y="0" width="100%" height="10%" layer="2">
+            <drawimage cache="true" imagetype="skinpart" path="headertop" x="0" y="0" width="90%" height="100%"/>
+        </area>
+<!-- Style 2 -->
+        <area condition="eq({schedulesmenustyle}, 2)" x="0" y="0" width="100%" height="100%" layer="1">
+            <!-- clock -->
+            <drawimage cache="true" imagetype="skinpart" path="menuclockback" x="{areawidth}*0.99 - {areaheight}*0.1" y="0" width="{areaheight}*0.1" height="10%"/>
+            <!-- top bar -->
+            <drawrectangle x="0" y="0" width="{areawidth}*0.99 - {areaheight}*0.1" height="10%" color="{clrBackground}" />
+            <drawellipse x="{areawidth}*0.99 - {areaheight}*0.1" y="0" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-2" color="{clrBackground}" />
+            <drawellipse x="{areawidth}*0.99 - {areaheight}*0.1" y="5%" width="{areaheight}*0.05" height="{areaheight}*0.05" quadrant="-3" color="{clrBackground}" />
+            <drawrectangle x="30%" y="{areaheight}*0.1 - 2" width="{areawidth}*0.69 - {areaheight}*0.05" height="2" color="{clrBorder}" />
+            <!-- menu bar -->
+            <drawrectangle x="0" y="10%" width="99%" height="81%" color="{clrBackground}" />
+            <drawrectangle x="{areawidth}*0.99 - 2" y="12%" width="2" height="76%" color="{clrBorder}" />
+            <!-- bottom bar -->
+            <drawrectangle x="0" y="90%" width="{areawidth}" height="10%" color="{clrBackground}" />
+            <!-- upper corner -->
+            <drawellipse x="99%" y="{areaheight}/10" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-2" color="{clrBorder}" />
+            <drawellipse x="{areawidth}*0.99 - 2" y="{areaheight}/10 - 2" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-2" color="{clrBackground}" />
+            <!-- lower corner -->
+            <drawellipse x="99%" y="{areaheight}*90/100 - {areawidth}*2/100" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-3" color="{clrBorder}" />
+            <drawellipse x="{areawidth}*0.99 - 2" y="{areaheight}*90/100 - {areawidth}*2/100 + 2" width="{areawidth}*2/100" height="{areawidth}*2/100" quadrant="-3" color="{clrBackground}" />
+        </area>
+        <area condition="eq({schedulesmenustyle}, 2)" x="0" y="0" width="100%" height="10%" layer="2">
+            <drawimage cache="true" imagetype="skinpart" path="headertop" x="0" y="0" width="90%" height="100%"/>
+        </area>
+    </background>
+ 
+   <header>
+<!-- Style 1 -->
+        <area condition="eq({schedulesmenustyle}, 1)" x="1%" y="0" width="64%" height="10%" layer="2">
+            <drawtext condition="{whatsonnow}||{whatsonnext}||{whatsonfavorites}" x="5" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{title}" />
+            <drawimage name="logo" condition="{whatson}" imagetype="channellogo" path="{channelid}" x="0" width="15%" height="60%" align="left" valign="center" />
+            <drawtext condition="{whatson}" x="{width(logo)}+20" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{channelnumber} - {channelname}" />
+        </area>
+<!-- Style 2 -->
+        <area condition="eq({schedulesmenustyle}, 2)" x="1%" y="0" width="64%" height="10%" layer="2">
+            <drawtext condition="{whatsonnow}||{whatsonnext}||{whatsonfavorites}" x="5" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{title}" />
+            <drawimage name="logo" condition="{whatson}" imagetype="channellogo" path="{channelid}" x="0" width="15%" height="60%" align="left" valign="center" />
+            <drawtext condition="{whatson}" x="{width(logo)}+20" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{channelnumber} - {channelname}" />
+        </area>
+    </header>
+
+    <scrollbar>
+<!-- Style 1 -->
+        <area condition="eq({schedulesmenustyle}, 1)" x="{areawidth}*0.005 + {areawidth}*{schedulesmenusize}*0.01" y="16%" width="{areawidth}*0.0075" height="68%" layer="2">
+            <fill color="{clrBorder}" />
+            <drawrectangle x="2" y="2" width="{areawidth} - 4" height="{areaheight} - 4" color="{clrTransparent}" />
+            <drawrectangle x="4" y="4 + {areaheight} * {offset} / 1000" width="{areawidth} - 8" height="{areaheight} * {height} / 1000 - 8" color="{clrProgressbar}" />
+        </area>
+        <area condition="eq({schedulesmenustyle}, 1)" x="{areawidth}*0.005 + {areawidth}*{schedulesmenusize}*0.01" y="16%" width="{areawidth}*0.0075" height="68%" layer="3">
+            <drawimage imagetype="skinpart" path="verticalbartop" x="4" y="5 + {areaheight} * {offset} / 1000" width="{areawidth} - 8" height="{areaheight} * {height} / 1000 - 10" />
+        </area>
+<!-- Style 2 -->
+        <area condition="eq({schedulesmenustyle}, 2)" x="{areawidth}*0.9925" y="16%" width="{areawidth}*0.0075" height="68%" layer="2">
+            <fill color="{clrBorder}" />
+            <drawrectangle x="2" y="2" width="{areawidth} - 4" height="{areaheight} - 4" color="{clrTransparent}" />
+            <drawrectangle x="4" y="4 + {areaheight} * {offset} / 1000" width="{areawidth} - 8" height="{areaheight} * {height} / 1000 - 8" color="{clrProgressbar}" />
+        </area>
+        <area condition="eq({schedulesmenustyle}, 2)" x="{areawidth}*0.9925" y="16%" width="{areawidth}*0.0075" height="68%" layer="3">
+            <drawimage imagetype="skinpart" path="verticalbartop" x="4" y="5 + {areaheight} * {offset} / 1000" width="{areawidth} - 8" height="{areaheight} * {height} / 1000 - 10" />
+        </area>
+    </scrollbar>
+
+    <menuitems x="{areawidth}*0.005" y="10%" orientation="vertical" width="99%" height="80%" align="center" numlistelements="{schedulesmenuitems}">
+        <!-- Available Variables schedules menu listelement:
+        {title}                   title of event
+        {shorttext}               shorttext of event
+        {start}                   event start time in hh::mm
+        {stop}                    event stop time
+        {day}                     day of current event
+        {date}                    date of current event in dd.mm.yy
+        {running}                 true if event is currently running
+        {elapsed}                 elapsed time of event, if not running 0
+        {duration}                duration of event
+        {current}                 true if item is currently selected 
+        {separator}               true if item is a list separator 
+        {channelname}             Channel Name (for what's on now and next)
+        {channelid}               ChannelID as path to display channel logo (for what's on now and next)
+        {whatson}                 true if menu "What's on" is displayed
+        {whatsonnow}              true if menu "What's on now" is displayed
+        {whatsonnext}             true if menu "What's on next" is displayed
+        {timerpartitial}          true if partitial timer is set for the event
+        {timerfull}               true if full timer is set for the event
+        {hasVPS}                  true if event has VPS information
+        -->
+        <listelement>
+<!-- Style 1 -->
+            <area condition="eq({schedulesmenustyle}, 1)" x="0" width="-{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" layer="2">
+                <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+                <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+            </area>
+            <area condition="eq({schedulesmenustyle}, 1)" x="0" width="-{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" layer="7">
+                <drawimage imagetype="skinpart" path="menubuttontop" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+            </area>
+            <area condition="not{separator}++{whatson}++not{current}++eq({schedulesmenustyle}, 1)" x="1%" width="-{areawidth}*0.03 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatson}++not{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="1%" width="-{areawidth}*0.04 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="not{separator}++{whatson}++{current}++eq({schedulesmenustyle}, 1)" x="1%" width="-{areawidth}*0.03 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatson}++{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="1%" width="-{areawidth}*0.04 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="not{separator}++{whatsonnow}++eq({schedulesmenustyle}, 1)" x="{areaheight}/{schedulesmenuitems}/4" width="{areawidth}*0.035" layer="3">
+                <drawimage name="logo" imagetype="channellogo" path="{channelid}" x="0" width="100%" height="74%" valign="center" />
+            </area>
+            <area condition="not{separator}++{whatsonnow}++not{current}++eq({schedulesmenustyle}, 1)" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonnow}++not{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="not{separator}++{whatsonnow}++{current}++eq({schedulesmenustyle}, 1)" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonnow}++{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="{separator}++eq({schedulesmenustyle}, 1)" x="0" width="-{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawimage name="sep" imagetype="icon" path="ico_daydelimiter" x="10" valign="center" width="{areaheight}-10" height="{areaheight}-10"/>
+                <drawtext x="{width(sep)} + 20" valign="center" font="{regular}" fontsize="60%" color="{clrFontInactive}" text="{title}" />
+            </area>
+            <area condition="not{separator}++{whatsonnext}++eq({schedulesmenustyle}, 1)" x="{areaheight}/{schedulesmenuitems}/4" width="{areawidth}*0.035" layer="3">
+                <drawimage name="logo" imagetype="channellogo" path="{channelid}" x="0" width="100%" height="74%" valign="center" />
+            </area>
+            <area condition="not{separator}++{whatsonnext}++not{current}++eq({schedulesmenustyle}, 1)" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonnext}++not{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="not{separator}++{whatsonnext}++{current}++eq({schedulesmenustyle}, 1)" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonnext}++{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="not{separator}++{whatsonfavorites}++eq({schedulesmenustyle}, 1)" x="{areaheight}/{schedulesmenuitems}/4" width="{areawidth}*0.035" layer="3">
+                <drawimage name="logo" imagetype="channellogo" path="{channelid}" x="0" width="100%" height="74%" valign="center" />
+            </area>
+            <area condition="not{separator}++{whatsonfavorites}++not{current}++eq({schedulesmenustyle}, 1)" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonfavorites}++not{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="not{separator}++{whatsonfavorites}++{current}++eq({schedulesmenustyle}, 1)" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext x="0" y="5%" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*5/10 - 10" y="10" width="{areaheight}*5/10" height="{areaheight}*5/10" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*3/10 - 10" y="10" width="{areaheight}*3/10" height="{areaheight}*3/10" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonfavorites}++{current}++eq({schedulesmenustyle}, 1)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="5%" width="-{areawidth}*0.08 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawtext name="menutext" x="0" y="40%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{title}" />
+            </areascroll>
+            <area condition="{separator}++eq({schedulesmenustyle}, 1)" x="0" width="-{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" layer="3">
+                <drawimage name="sep" imagetype="icon" path="ico_daydelimiter" x="10" valign="center" width="{areaheight}-10" height="{areaheight}-10"/>
+                <drawtext x="{width(sep)} + 20" valign="center" font="{regular}" fontsize="60%" color="{clrFontInactive}" text="{title}" />
+            </area>            
+<!-- Style 2 -->
+            <!-- background and foreground-->
+            <area condition="eq({schedulesmenustyle}, 2)" x="0" width="98%" layer="2">
+                <drawimage condition="not{current}" imagetype="skinpart" path="menubuttondefault" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+                <drawimage condition="{current}" imagetype="skinpart" path="menubuttondefaultactive" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+            </area>
+            <area condition="eq({schedulesmenustyle}, 2)" x="0" width="98%" layer="4">
+                <drawimage imagetype="skinpart" path="menubuttontop" x="0" y="1%" width="{areawidth}" height="{areaheight}*0.98"/>
+            </area>
+
+            <!-- element whatson -->
+            <area condition="not{separator}++{whatson}++not{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="0" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+10" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+10" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+            <areascroll condition="not{separator}++{whatson}++eq({schedulesmenustyle}, 2)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="15%" width="80%" layer="3">
+                <drawtext name="menutext" x="0" valign="center" font="{regular}" fontsize="80%" color="{clrFontMenuItemSelected}" text="{title}" />
+                <drawtext condition="isset{shorttext}" x="{posx(menutext)}+{width(menutext)}" y="25%" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="     {shorttext}" />
+            </areascroll>
+            <!-- current element whatson -->
+            <area condition="not{separator}++{whatson}++{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="0" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+10" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+10" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+
+            <!-- element whatsonnow -->
+            <area condition="not{separator}++{whatsonnow}++eq({schedulesmenustyle}, 2)" x="{areaheight}/{schedulesmenuitems}/4" width="{areawidth}*0.035" layer="3">
+                <drawimage name="logo" imagetype="channellogo" path="{channelid}" x="0" width="100%" height="90%" valign="center" />
+            </area>
+            <area condition="not{separator}++{whatsonnow}++not{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="{areaheight}+10" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawrectangle name="timebar2" x="{posx(startstoptime)}+{width(startstoptime)} + {areaheight}" y="{areaheight}*0.5-10" width="{areaheight}*2" height="20" color="{clrFontMenuItem}" />
+                <drawrectangle x="{posx(timebar2)}+1" y="{posy(timebar2)}+1" width="{width(timebar2)}-2" height="{height(timebar2)}-2" color="{clrTransparent}" />
+                <drawrectangle x="{posx(timebar2)}+1" y="{posy(timebar2)}+1" width="{areaheight}*2 * {elapsed}/{duration} - 2" height="{height(timebar2)}-2" color="{clrWhite}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonnow}++eq({schedulesmenustyle}, 2)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="{areaheight}/{schedulesmenuitems}*9" width="{areawidth}*0.95 - {areaheight}/{schedulesmenuitems}*9" layer="3">
+                <drawtext name="menutext" x="0" valign="center" font="{regular}" fontsize="80%" color="{clrFontMenuItemSelected}" text="{title}" />
+                <drawtext condition="isset{shorttext}" x="{posx(menutext)}+{width(menutext)}" y="25%" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="     {shorttext}" />
+            </areascroll>
+
+            <!-- current element whatsonnow -->
+            <area condition="not{separator}++{whatsonnow}++{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="{areaheight}+10" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawrectangle name="timebar2" x="{posx(startstoptime)}+{width(startstoptime)} + {areaheight}" y="{areaheight}*0.5-10" width="{areaheight}*2" height="20" color="{clrFontMenuItem}" />
+                <drawrectangle x="{posx(timebar2)}+1" y="{posy(timebar2)}+1" width="{width(timebar2)}-2" height="{height(timebar2)}-2" color="{clrTransparent}" />
+                <drawrectangle x="{posx(timebar2)}+1" y="{posy(timebar2)}+1" width="{areaheight}*2 * {elapsed}/{duration} - 2" height="{height(timebar2)}-2" color="{clrWhite}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+
+            <!-- element whatsonnext -->
+            <area condition="not{separator}++{whatsonnext}++eq({schedulesmenustyle}, 2)" x="{areaheight}/{schedulesmenuitems}/4" width="{areawidth}*0.035" layer="3">
+                <drawimage name="logo" imagetype="channellogo" path="{channelid}" x="0" width="100%" height="74%" valign="center" />
+            </area>
+            <area condition="not{separator}++{whatsonnext}++not{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="{areaheight}+10" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonnext}++eq({schedulesmenustyle}, 2)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="{areaheight}/{schedulesmenuitems}*6" width="{areawidth}*0.95 - {areaheight}/{schedulesmenuitems}*6" layer="3">
+                <drawtext name="menutext" x="0" valign="center" font="{regular}" fontsize="80%" color="{clrFontMenuItemSelected}" text="{title}" />
+                <drawtext condition="isset{shorttext}" x="{posx(menutext)}+{width(menutext)}" y="25%" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="     {shorttext}" />
+            </areascroll>
+            <!-- current element whatsonnext -->
+            <area condition="not{separator}++{whatsonnext}++{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="{areaheight}+10" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+
+            <!-- element whatsonfavorites -->
+            <area condition="not{separator}++{whatsonfavorites}++eq({schedulesmenustyle}, 2)" x="{areaheight}/{schedulesmenuitems}/4" width="{areawidth}*0.035" layer="3">
+                <drawimage name="logo" imagetype="channellogo" path="{channelid}" x="0" width="100%" height="74%" valign="center" />
+            </area>
+            <area condition="not{separator}++{whatsonfavorites}++not{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="{areaheight}+10" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+            <areascroll condition="not{separator}++{whatsonfavorites}++eq({schedulesmenustyle}, 2)" scrollelement="menutext" mode="forthandback" orientation="horizontal" delay="1000" scrollspeed="medium" x="{areaheight}/{schedulesmenuitems}*6" width="{areawidth}*0.95 - {areaheight}/{schedulesmenuitems}*6" layer="3">
+                <drawtext name="menutext" x="0" valign="center" font="{regular}" fontsize="80%" color="{clrFontMenuItemSelected}" text="{title}" />
+                <drawtext condition="isset{shorttext}" x="{posx(menutext)}+{width(menutext)}" y="25%" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="     {shorttext}" />
+            </areascroll>
+            <!-- current element whatsonfavorites -->
+            <area condition="not{separator}++{whatsonfavorites}++{current}++eq({schedulesmenustyle}, 2)" x="2%" width="95%" layer="3">
+                <drawtext x="{areaheight}+10" valign="center" name="startstoptime" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{start} - {stop}" />
+                <drawimage condition="{timerfull}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.75" height="{areaheight}*0.75" />
+                <drawimage condition="{timerpartitial}" imagetype="icon" path="ico_activetimer" x="{posx(startstoptime)}+{width(startstoptime)}+5" valign="center" width="{areaheight}*0.4" height="{areaheight}*0.4" />
+            </area>
+
+            <!-- day or channel separator -->
+            <area condition="{separator}++eq({schedulesmenustyle}, 2)" x="0" width="98%" layer="3">
+                <drawimage name="sep" imagetype="icon" path="ico_daydelimiter" x="10" valign="center" width="{areaheight}-10" height="{areaheight}-10"/>
+                <drawtext x="{width(sep)} + 20" valign="center" font="{regular}" fontsize="60%" color="{clrFontInactive}" text="{title}" />
+            </area>
+        </listelement>
+
+        <!-- Available Variables schedules menu currentelement:
+        {title}                   title of event
+        {shorttext}               shorttext of event
+        {description}             detailed description of event
+        {start}                   event start time in hh::mm
+        {stop}                    event stop time
+        {day}                     day of current event
+        {date}                    date of current event in dd.mm.yy
+        {running}                 true if event is currently running
+        {elapsed}                 elapsed time of event, if not running 0
+        {duration}                duration of event
+        {channelid}               ChannelID as path to display channel logo
+        {hasposter}               true if a scraped poster is available for this element
+        {posterwidth}             width of scraped poster
+        {posterheight}            height of scraped poster
+        {posterpath}              absolute path of scraped poster
+        {timerpartitial}          true if partitial timer is set for the event
+        {timerfull}               true if full timer is set for the event
+        {whatson}                 true if menu "What's on" is displayed
+        {whatsonnow}              true if menu "What's on now" is displayed
+        {whatsonnext}             true if menu "What's on next" is displayed
+        {schedule[]}              array with next 10 schedules, only for whatsonnow and whatsonnext
+        {schedule[title]}         title of event
+        {schedule[shorttext]}     shorttext of event
+        {schedule[start]}         start time of event in hh:mm
+        {schedule[stop]}          stop time of event in hh:mm
+        -->
+        <currentelement delay="{schedulesmenudelay}" fadetime="{schedulesmenufadetime}">
+<!-- Style 1 -->
+            <area condition="eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="96%" layer="2">
+                <fill color="{clrTransBlack}" />
+	    </area>
+            <area condition="{whatson}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="96%" layer="2">
+                <drawtext name="title" align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{title}" />
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="9%" font="{regular}" fontsize="{areaheight}*0.06 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="9%" font="{regular}" fontsize="{areaheight}*0.06 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{stop}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 5" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 6" width="{areawidth}/2 - 20" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="3 * {areawidth} / 4 - 16" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 6" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 5" width="{areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration}" height="9" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 10 + {areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration} - 4" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth} - {areawidth}/3" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3" height="{areawidth}/2.88 * {posterheight} / {posterwidth}" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)}" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 20" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)}" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+            </area>
+            <area condition="{whatson}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="96%" layer="3">
+                <drawimage condition="{running}" imagetype="skinpart" path="verticalbartop" x="{areawidth} / 4 + 5" y="{areaheight}*0.09 + {areaheight}*0.06 / 2 - {areaheight}*{schedulesmenusize}*0.0002/2 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 10 * {elapsed} / {duration}" height="9" />
+	    </area>
+
+            <area condition="{whatsonnow}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="76%" layer="2">
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.10 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{title}" />
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{stop}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 5" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 6" width="{areawidth}/2 - 20" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="3 * {areawidth} / 4 - 16" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 6" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 5" width="{areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration}" height="9" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 10 + {areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration} - 4" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="{areaheight}*0.05 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 10" font="{regular}" fontsize="{areaheight}/18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="{areaheight}/18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+		<drawrectangle x="1%" y="{areaheight}-2" width="98%" height="2" color="{clrBorder}" />
+            </area>
+            <area condition="{whatsonnow}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="96%" layer="3">
+                <drawimage condition="{running}" imagetype="skinpart" path="verticalbartop" x="{areawidth} / 4 + 5" y="{areaheight}*0.09 + {areaheight}*0.06 / 2 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 10 * {elapsed} / {duration}" height="9" />
+	    </area>
+            <areascroll condition="{whatsonnow}++eq({schedulesmenustyle}, 1)" mode="forthandback" orientation="vertical" delay="1000" scrollspeed="medium" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="79%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="19%" layer="2">
+                <drawtext x="10" y="2" font="{semibold}" fontsize="{areaheight}*0.20 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{tr(nextschedules)}:" />
+                <loop name="schedule" x="0" y="{areaheight}/4 + 7" orientation="vertical">
+                    <drawtext x="10" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{schedule[start]} {schedule[title]}" />
+                </loop>
+            </areascroll>
+
+            <area condition="{whatsonnext}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="76%" layer="2">
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.10 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{title}" />
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{stop}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 5" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 6" width="{areawidth}/2 - 20" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="3 * {areawidth} / 4 - 16" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 6" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 5" width="{areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration}" height="9" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 10 + {areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration} - 4" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="{areaheight}*0.05 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 10" font="{regular}" fontsize="{areaheight}/18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="{areaheight}/18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+		<drawrectangle x="1%" y="{areaheight}-2" width="98%" height="2" color="{clrBorder}" />
+            </area>
+            <area condition="{whatsonnext}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="96%" layer="3">
+                <drawimage condition="{running}" imagetype="skinpart" path="verticalbartop" x="{areawidth} / 4 + 5" y="{areaheight}*0.09 + {areaheight}*0.06 / 2 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 10 * {elapsed} / {duration}" height="9" />
+	    </area>
+            <areascroll condition="{whatsonnext}++eq({schedulesmenustyle}, 1)" mode="forthandback" orientation="vertical" delay="1000" scrollspeed="medium" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="79%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="19%" layer="2">
+                <drawtext x="10" y="2" font="{semibold}" fontsize="{areaheight}*0.20 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{tr(nextschedules)}:" />
+                <loop name="schedule" x="0" y="{areaheight}/4 + 7" orientation="vertical">
+                    <drawtext x="10" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{schedule[start]} {schedule[title]}" />
+                </loop>
+            </areascroll>
+
+            <area condition="{whatsonfavorites}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="76%" layer="2">
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.10 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{title}" />
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="{areaheight}*0.08 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{stop}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 5" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 6" width="{areawidth}/2 - 20" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="3 * {areawidth} / 4 - 16" y="{posy(start)} + {height(start)} / 2 - 6" width="11" height="11" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 6" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" x="{areawidth} / 4 + 10" y="{posy(start)} + {height(start)} / 2 - 5" width="{areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration}" height="9" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{areawidth} / 4 + 10 + {areawidth}/2 * {elapsed} / {duration} - 20 * {elapsed} / {duration} - 4" y="{posy(start)} + {height(start)} / 2 - 5" width="9" height="9" quadrant="0" color="{clrProgressbar}" />
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="{areaheight}*0.05 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 10" font="{regular}" fontsize="{areaheight}/18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="{areaheight}/18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{description}" />
+		<drawrectangle x="1%" y="{areaheight}-2" width="98%" height="2" color="{clrBorder}" />
+            </area>
+            <area condition="{whatsonfavorites}++eq({schedulesmenustyle}, 1)" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="2%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="96%" layer="3">
+                <drawimage condition="{running}" imagetype="skinpart" path="verticalbartop" x="{areawidth} / 4 + 5" y="{areaheight}*0.09 + {areaheight}*0.06 / 2 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 10 * {elapsed} / {duration}" height="9" />
+	    </area>
+            <areascroll condition="{whatsonfavorites}++eq({schedulesmenustyle}, 1)" mode="forthandback" orientation="vertical" delay="1000" scrollspeed="medium" x="{areawidth}*0.02 + {areawidth}*{schedulesmenusize}*0.01" y="79%" width="{areawidth}*0.97 - {areawidth}*{schedulesmenusize}*0.01" height="19%" layer="2">
+                <drawtext x="10" y="2" font="{semibold}" fontsize="{areaheight}*0.20 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{tr(nextschedules)}:" />
+                <loop name="schedule" x="0" y="{areaheight}/4 + 7" orientation="vertical">
+                    <drawtext x="10" font="{regular}" width="{areawidth}-20" fontsize="{areaheight}*0.18 - {areaheight}*{schedulesmenusize}*0.0002" color="{clrWhite}" text="{schedule[start]} {schedule[title]}" />
+                </loop>
+            </areascroll>
+<!-- Style 2 -->
+            <area condition="eq({schedulesmenustyle}, 2)" x="{areawidth}*0.52" y="2%" width="{areawidth}*0.45" height="96%" layer="5">
+		<drawrectangle x="5%" y="0" width="90%" height="100%" color="{clrProgressbar}" />
+		<drawrectangle x="0" y="5%" width="100%" height="90%" color="{clrProgressbar}" />
+		<drawellipse x="0" y="0" width="5%" height="5%" quadrant="2" color="{clrProgressbar}" />
+		<drawellipse x="95%" y="0" width="5%" height="5%" quadrant="1" color="{clrProgressbar}" />
+		<drawellipse x="0" y="95%" width="5%" height="5%" quadrant="3" color="{clrProgressbar}" />
+		<drawellipse x="95%" y="95%" width="5%" height="5%" quadrant="4" color="{clrProgressbar}" />
+		<drawrectangle x="5%" y="5" width="90%" height="{areaheight}-10" color="{clrTransBlackDark}" />
+		<drawrectangle x="5" y="5%" width="{areawidth}-10" height="90%" color="{clrTransBlackDark}" />
+		<drawellipse x="5" y="5" width="{areawidth}*0.05-5" height="{areaheight}*0.05-5" quadrant="2" color="{clrTransBlackDark}" />
+		<drawellipse x="95%" y="5" width="{areawidth}*0.05-5" height="{areaheight}*0.05-5" quadrant="1" color="{clrTransBlackDark}" />
+		<drawellipse x="5" y="95%" width="{areawidth}*0.05-5" height="{areaheight}*0.05-5" quadrant="3" color="{clrTransBlackDark}" />
+		<drawellipse x="95%" y="95%" width="{areawidth}*0.05-5" height="{areaheight}*0.05-5" quadrant="4" color="{clrTransBlackDark}" />
+	    </area>
+	    <!-- whatson -->
+            <area condition="{whatson}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="90%" layer="6">
+                <!-- title -->
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="8%" color="{clrWhite}" text="{title}" />
+                <!-- progress bar if event is running -->
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{stop}" />
+                <drawrectangle condition="{running}" name="timebar" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 - 30" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)}+{width(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" name="timebarnow" x="{posx(timebar)}" y="{posy(timebar)}" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="{height(timebar)}" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{posx(timebarnow)}+{width(timebarnow)} - {height(timebar)}/2" y="{posy(timebarnow)}" width="{height(timebarnow)}" height="{height(timebarnow)}" quadrant="0" color="{clrProgressbar}" />
+                <!-- start and stop if event is not running -->
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="5%" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <!-- scraper poster -->
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <!-- description -->
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 10" floatheight="{height(poster)} + 20" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+	    </area>
+            <area condition="{whatson}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="90%" layer="6">
+                <drawimage condition="{running}" imagetype="skinpart" path="horizontalbartop" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="11" />
+	    </area>
+
+	    <!-- whatsonnow -->
+            <area condition="{whatsonnow}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="75%" layer="6">
+                <!-- title -->
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="8%" color="{clrWhite}" text="{title}" />
+                <!-- progress bar if event is running -->
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{stop}" />
+                <drawrectangle condition="{running}" name="timebar" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 - 30" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)}+{width(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" name="timebarnow" x="{posx(timebar)}" y="{posy(timebar)}" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="{height(timebar)}" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{posx(timebarnow)}+{width(timebarnow)} - {height(timebar)}/2" y="{posy(timebarnow)}" width="{height(timebarnow)}" height="{height(timebarnow)}" quadrant="0" color="{clrProgressbar}" />
+                <!-- start and stop if event is not running -->
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="5%" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <!-- scraper poster -->
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <!-- description -->
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 20" floatheight="{height(poster)} + 10" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+		<drawrectangle x="1%" y="{areaheight}-2" width="98%" height="2" color="{clrBorder}" />
+	    </area>
+            <area condition="{whatsonnow}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="75%" layer="6">
+                <drawimage condition="{running}" imagetype="skinpart" path="horizontalbartop" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="11" />
+	    </area>
+            <areascroll condition="{whatsonnow}++eq({schedulesmenustyle}, 2)" mode="forthandback" orientation="vertical" delay="1000" scrollspeed="medium" x="{areawidth}*0.53" y="79%" width="{areawidth}*0.43" height="16%" layer="6">
+                <drawtext x="10" y="2" font="{semibold}" fontsize="20%" color="{clrWhite}" text="{tr(nextschedules)}:" />
+                <loop name="schedule" x="0" y="{areaheight}/4 + 7" orientation="vertical">
+                    <drawtext x="10" font="{regular}" width="{areawidth}-20" fontsize="18%" color="{clrWhite}" text="{schedule[start]} {schedule[title]}" />
+                </loop>
+            </areascroll>
+
+	    <!-- whatsonnext -->
+            <area condition="{whatsonnext}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="75%" layer="6">
+                <!-- title -->
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="8%" color="{clrWhite}" text="{title}" />
+                <!-- progress bar if event is running -->
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{stop}" />
+                <drawrectangle condition="{running}" name="timebar" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 - 30" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)}+{width(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" name="timebarnow" x="{posx(timebar)}" y="{posy(timebar)}" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="{height(timebar)}" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{posx(timebarnow)}+{width(timebarnow)} - {height(timebar)}/2" y="{posy(timebarnow)}" width="{height(timebarnow)}" height="{height(timebarnow)}" quadrant="0" color="{clrProgressbar}" />
+                <!-- start and stop if event is not running -->
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="5%" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <!-- scraper poster -->
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <!-- description -->
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 20" floatheight="{height(poster)} + 10" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+		<drawrectangle x="1%" y="{areaheight}-2" width="98%" height="2" color="{clrBorder}" />
+	    </area>
+            <area condition="{whatsonnext}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="75%" layer="6">
+                <drawimage condition="{running}" imagetype="skinpart" path="horizontalbartop" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="11" />
+	    </area>
+            <areascroll condition="{whatsonnext}++eq({schedulesmenustyle}, 2)" mode="forthandback" orientation="vertical" delay="1000" scrollspeed="medium" x="{areawidth}*0.53" y="79%" width="{areawidth}*0.43" height="16%" layer="6">
+                <drawtext x="10" y="2" font="{semibold}" fontsize="20%" color="{clrWhite}" text="{tr(nextschedules)}:" />
+                <loop name="schedule" x="0" y="{areaheight}/4 + 7" orientation="vertical">
+                    <drawtext x="10" font="{regular}" width="{areawidth}-20" fontsize="18%" color="{clrWhite}" text="{schedule[start]} {schedule[title]}" />
+                </loop>
+            </areascroll>
+
+	    <!-- whatsonfavorites -->
+            <area condition="{whatsonfavorites}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="75%" layer="6">
+                <!-- title -->
+                <drawtext align="center" y="0" font="{regular}" width="{areawidth}-20" fontsize="8%" color="{clrWhite}" text="{title}" />
+                <!-- progress bar if event is running -->
+                <drawtext condition="{running}" name="start" x="{areawidth}/4 - {width(start)}" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{start}" />
+                <drawtext condition="{running}" name="stop" x="{areawidth}*3/4" y="11%" font="{regular}" fontsize="6%" color="{clrWhite}" text="{stop}" />
+                <drawrectangle condition="{running}" name="timebar" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 - 30" height="11" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)}+{width(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrBackground}" />
+                <drawellipse condition="{running}" x="{posx(timebar)} - {height(timebar)}/2" y="{posy(timebar)}" width="{height(timebar)}" height="{height(timebar)}" quadrant="0" color="{clrProgressbar}" />
+                <drawrectangle condition="{running}" name="timebarnow" x="{posx(timebar)}" y="{posy(timebar)}" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="{height(timebar)}" color="{clrProgressbar}" />
+                <drawellipse condition="{running}" x="{posx(timebarnow)}+{width(timebarnow)} - {height(timebar)}/2" y="{posy(timebarnow)}" width="{height(timebarnow)}" height="{height(timebarnow)}" quadrant="0" color="{clrProgressbar}" />
+                <!-- start and stop if event is not running -->
+                <drawtext condition="not{running}" x="10" y="9%" font="{regular}" fontsize="5%" color="{clrWhite}" text="{start} - {stop} ({duration} min)" />
+                <!-- scraper poster -->
+                <drawimage condition="{showposter}++{hasposter}" name="poster" imagetype="skinpart" path="recback_movie_top" x="{areawidth}*2/3 + {areawidth}/3*0.25" y="{posy(start)} + {height(start)} + 10" width="{areawidth}/3 * 0.75" height="{areawidth}/2.88 * {posterheight} / {posterwidth} * 0.75" />
+                <drawimage condition="{showposter}++{hasposter}" name="poster_in" imagetype="image" path="{posterpath}" x="{posx(poster)} + {width(poster)}*0.03" y="{posy(poster)} + {height(poster)}*0.085" height="{height(poster)}*0.9" width="{width(poster)}*0.94" />
+                <!-- description -->
+                <drawtextbox condition="{showposter}++{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" float="topright" floatwidth="{width(poster)} + 20" floatheight="{height(poster)} + 10" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+                <drawtextbox condition="not{showposter}||not{hasposter}" x="10" y="{posy(poster)}" width="99%" height="{areaheight} - {posy(poster)} - 2" font="{regular}" fontsize="5%" color="{clrWhite}" text="{description}" />
+		<drawrectangle x="1%" y="{areaheight}-2" width="98%" height="2" color="{clrBorder}" />
+	    </area>
+            <area condition="{whatsonfavorites}++eq({schedulesmenustyle}, 2)" x="{areawidth}*0.53" y="4%" width="{areawidth}*0.43" height="75%" layer="6">
+                <drawimage condition="{running}" imagetype="skinpart" path="horizontalbartop" x="{areawidth} / 4 + 15" y="{areaheight}*0.14 - 6" width="{areawidth}/2 * {elapsed} / {duration} - 30 * {elapsed} / {duration}" height="11" />
+	    </area>
+            <areascroll condition="{whatsonfavorites}++eq({schedulesmenustyle}, 2)" mode="forthandback" orientation="vertical" delay="1000" scrollspeed="medium" x="{areawidth}*0.53" y="79%" width="{areawidth}*0.43" height="16%" layer="6">
+                <drawtext x="10" y="2" font="{semibold}" fontsize="20%" color="{clrWhite}" text="{tr(nextschedules)}:" />
+                <loop name="schedule" x="0" y="{areaheight}/4 + 7" orientation="vertical">
+                    <drawtext x="10" font="{regular}" width="{areawidth}-20" fontsize="18%" color="{clrWhite}" text="{schedule[start]} {schedule[title]}" />
+                </loop>
+            </areascroll>
+
+	</currentelement>
+    </menuitems>
+</menuschedules>

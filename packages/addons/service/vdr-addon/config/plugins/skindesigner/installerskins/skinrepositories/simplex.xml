@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<skinrepo>
+    <name>simplex</name>
+    <type>git</type>
+    <url>https://github.com/louisbraun/simplex.git</url>
+    <author>Louis</author>
+    <minimumskindesignerversion>0.6.3</minimumskindesignerversion>
+    <screenshots>
+        <screenshot>
+            <description>Main Menu</description>
+            <url>http://projects.vdr-developer.org/attachments/1935/simplex_mainmenu.jpg</url>
+        </screenshot>
+        <screenshot>
+            <description>Display Channel</description>
+            <url>http://projects.vdr-developer.org/attachments/1933/simplex_displaychannel.jpg</url>
+        </screenshot>
+        <screenshot>
+            <description>Schedules What's on</description>
+            <url>http://projects.vdr-developer.org/attachments/1932/simplex_whatson.jpg</url>
+        </screenshot>
+        <screenshot>
+            <description>TVGuideNG</description>
+            <url>http://projects.vdr-developer.org/attachments/1937/simplex_tvguide.jpg</url>
+        </screenshot>
+    </screenshots>
+    <specialfonts>
+        <font>Open Sans</font>
+    </specialfonts>
+    <supportedplugins>
+        <plugin>TVGuideNG</plugin>
+        <plugin>Weatherforecast</plugin>
+    </supportedplugins>
+</skinrepo>

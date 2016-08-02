@@ -22,8 +22,7 @@ PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wirbel.htpc-forum.de/wirbelscancontrol/index2.html"
-PKG_URL="http://wirbel.htpc-forum.de/wirbelscancontrol/${PKG_NAME/-plugin/}-$PKG_VERSION.tgz"
-PKG_SOURCE_DIR="wirbelscancontrol-${PKG_VERSION}"
+PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-wirbelscan"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
@@ -31,7 +30,6 @@ PKG_SHORTDESC="TV"
 PKG_LONGDESC="TV"
 
 PKG_IS_ADDON="no"
-
 PKG_AUTORECONF="no"
 
 pre_configure_target() {
@@ -48,8 +46,8 @@ pre_build_target() {
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
   make VDRDIR=$VDR_DIR \
-    LIBDIR="." \
-    LOCALEDIR="./locale"
+  LIBDIR="." \
+  LOCALEDIR="./locale"
 }
 
 makeinstall_target() {

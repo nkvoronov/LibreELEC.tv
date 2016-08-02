@@ -17,12 +17,14 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-dvbapi"
-PKG_VERSION="c76c24e"
+PKG_VERSION="897c50e"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/manio/vdr-plugin-dvbapi"
-PKG_URL="https://github.com/manio/vdr-plugin-dvbapi/archive/$PKG_VERSION.tar.gz"
+PKG_GIT_URL="https://github.com/manio/vdr-plugin-dvbapi.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="yes"
 PKG_DEPENDS_TARGET="toolchain vdr libdvbcsa"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
@@ -30,7 +32,6 @@ PKG_SHORTDESC="TV"
 PKG_LONGDESC="TV"
 
 PKG_IS_ADDON="no"
-
 PKG_AUTORECONF="no"
 
 pre_make_target() {

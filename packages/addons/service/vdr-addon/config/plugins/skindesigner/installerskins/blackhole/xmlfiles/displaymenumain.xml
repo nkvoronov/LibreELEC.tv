@@ -1,0 +1,222 @@
+<menumain x="0" y="0" width="100%" height="100%" fadetime="0" scaletvx="55%" scaletvy="10%" scaletvwidth="40%" scaletvheight="40%" >
+
+    <header>
+        <area x="0" y="0" width="83%" height="8%" layer="3">
+            <drawtext x="1%" width="100%" valign="center" font="{semibold}" fontsize="90%" color="{clrWhite}" text="{title} - {vdrversion}" />
+        </area>
+    </header>
+
+    <background>
+        <area x="0" y="0" width="100%" height="100%" layer="1">
+            <drawimage imagetype="skinpart" path="displaymenubacktv" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="0" y="0" width="83%" height="8%" layer="2">
+            <drawimage imagetype="skinpart" path="displaymenuheader" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="55%" y="51%" width="44%" height="19%" layer="2">
+            <drawimage imagetype="skinpart" path="tachos_back" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <!-- tacho disc usage -->
+        <area x="55%" y="51%" width="44%" height="19%" layer="3">
+            <drawimage imagetype="skinpart" path="tacho_percent_back" x="{areawidth}*0.025" y="5%" width="20%" height="{areawidth}*0.2"/>
+        </area>
+        <!-- tacho load -->
+        <area x="55%" y="51%" width="44%" height="19%" layer="3">
+            <drawimage imagetype="skinpart" path="tacho_load_back" x="{areawidth}*0.28" y="5%" width="20%" height="{areawidth}*0.20"/>
+        </area>
+        <!-- tacho cpu temp -->
+        <area x="55%" y="51%" width="44%" height="19%" layer="3">
+            <drawimage imagetype="skinpart" path="tacho_temp_back" x="{areawidth}*0.530" y="5%" width="20%" height="{areawidth}*0.20"/>
+        </area>
+        <!-- tacho gpu temp -->
+        <area x="55%" y="51%" width="44%" height="19%" layer="3">
+            <drawimage imagetype="skinpart" path="tacho_temp_back" x="{areawidth}*0.78" y="5%" width="20%" height="{areawidth}*0.20"/>
+        </area>
+        <area x="55%" y="71%" width="44%" height="19%" layer="2">
+            <drawimage imagetype="skinpart" path="tachos_back" x="0" y="0" width="100%" height="100%"/>
+        </area>
+    </background>
+
+    <scrollbar>
+        <area x="52%" y="10%" width="2%" height="80%" layer="2">
+            <drawimage imagetype="skinpart" path="scrollbarback" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area x="52%" y="10%" width="2%" height="80%" layer="3">
+            <drawimage imagetype="skinpart" path="scrollbar" x="0" y="{areaheight} * {offset} / 1000" width="100%" height="{areaheight} * {height} / 1000"/>
+        </area>
+    </scrollbar>
+
+    <currentweather detached="true" delay="100" fadetime="0">
+        <area x="40%" y="0" width="15%" height="8%" layer="3">
+            <drawimage name="weathericon" imagetype="icon" path="{icon}" align="right" valign="center" width="{areaheight}*0.8" height="{areaheight}*0.8"/>
+            <drawtext name="temperature" x="{areawidth} - {width(weathericon)} - {width(temperature)} - 10" valign="center" font="{light}" fontsize="80%" color="{clrWhite}" text="{temperature}°C" />
+        </area>
+    </currentweather>
+
+    <!-- Available Variables timers:
+    {numtimers}                  number of active timers (max. 15 timers will be displayed)
+    {numtimerconflicts}          number of current timer conflicts
+    {timer1exists}               true if timer 1 available
+    {timer2exists}               true if timer 2 available
+    ...
+    {timer15exists}              true if timer 15 available
+    {timers[]}                   array with active timers (local and remote if remotetimers plugin is in use)
+    {timers[title]}              title of timer
+    {timers[datetime]}           date and time of timer
+    {timers[recording]}          true if timer is recording currently
+    {timers[channelname]}        name of channel for which timer is created
+    {timers[channelnumber]}      number of channel
+    {timers[channelid]}          ChannelID of channel
+    {timers[channellogoexists]}  true if channel logo exists
+    -->
+    <timers>
+        <area condition="not{numtimers}" x="55%" y="71%" width="44%" height="19%" layer="2">
+            <drawtext align="center" valign="center" font="{semibold}" fontsize="40%" color="{clrWhite}" text="{tr(noactivetimers)}" />
+        </area>
+        <area condition="{numtimers}" x="55%" y="71%" width="44%" height="19%" layer="2">
+            <loop name="timers" x="0" y="0" orientation="horizontal" columnwidth="{areawidth}/4" rowheight="{areaheight}" overflow="cut">
+                <drawimage cache="true" name="logo" imagetype="channellogo" path="{timers[channelid]}" width="{columnwidth}-15" height="40%" align="center" y="10" />
+                <drawimage condition="{timers[recording]}" animtype="blink" animfreq="500" imagetype="icon" path="ico_rec_on" x="{columnwidth}*0.75" y="{columnwidth}*0.05" width="{columnwidth}*0.2" height="{columnwidth}*0.2"/>
+                <drawtextbox x="5" y="{height(logo)} + 10" width="{columnwidth}-10" align="center" maxlines="2" font="{regular}" fontsize="15%" color="{clrWhite}" text="{timers[title]}" />
+                <drawtext align="center" y="75%" font="{regular}" fontsize="20%" color="{clrWhite}" text="{timers[datetime]}" />
+            </loop>
+        </area>
+    </timers>
+
+    <!-- Available Variables discusage:
+    {freetime}                available disc capacity in hh:mm
+    {freepercent}             available disc capacity in percent
+    {usedpercent}             used disc capacity in percent
+    {freegb}                  available disc capacity in gigabytes
+    {discalert}               true if disc usage is > 95%
+    {vdrusagestring}          localized VDR internal usage string
+    -->
+    <discusage detached="true" delay="100" fadetime="0">
+        <area x="55%" y="51%" width="44%" height="19%" layer="5">
+            <drawimage imagetype="skinpart" path="tachohands/perc_{usedpercent}" x="{areawidth}*0.025" y="5%" width="20%" height="{areawidth}*0.20"/>
+        </area>
+        <area x="55%" y="51%" width="11%" height="19%" layer="4">
+            <drawtext align="center" y="85%" font="{regular}" fontsize="15%" color="{clrWhite}" text="Disc Usage: {usedpercent}%" />
+        </area>
+    </discusage>
+
+    <!-- Available Variables devices:
+    {numdevices}                number of available devices
+    {devices[]}                 array with available devices
+    {devices[num]}              number of current device
+    {devices[type]}             type of device (DVB-S, DVB-C, ...)
+    {devices[istuned]}          true if device is currently tuned to a transponder
+    {devices[livetv]}           true if device is currently playing livetv
+    {devices[recording]}        true if device is currently recording
+    {devices[hascam]}           true if device has a CAM
+    {devices[cam]}              number of CAM
+    {devices[signalstrength]}   signalstrength of devcie
+    {devices[signalquality]}    signalstrength of devcie
+    {devices[channelnumber]}    number of the currently tuned channel
+    {devices[channelname]}      name of the currently tuned channel
+    {devices[channellogoexists]} true if a channel logo exists 
+    {devices[channelid]}        ID of the currently tuned channel
+    {devices[source]}           source of the currently tuned channel
+    -->
+    <devices>
+    </devices>
+
+    <!-- Available Variables systemload:
+    {load}                      current system load
+    {loadhand}                  system load for tacho hand (between 0 and 2.5 in 0.025 steps multiplied by 1000, >2.5 is always 2525)
+    -->
+    <systemload detached="true" delay="100" fadetime="0">
+        <area x="55%" y="51%" width="44%" height="19%" layer="5">
+            <drawimage imagetype="skinpart" path="tachohands/load_{loadhand}" x="{areawidth}*0.28" y="5%" width="20%" height="{areawidth}*0.20"/>
+        </area>
+        <area x="66%" y="51%" width="11%" height="19%" layer="4">
+            <drawtext align="center" y="85%" font="{regular}" fontsize="15%" color="{clrWhite}" text="Load: {load}" />
+        </area>
+    </systemload>
+
+    <!-- Available Variables tempreatures:
+    {cputemp}                  current cpu temperature in °C
+    {gputemp}                  current gpu temperature in °C
+    -->
+    <temperatures detached="true" delay="100" fadetime="0">
+        <area x="55%" y="51%" width="44%" height="19%" layer="5">
+            <drawimage condition="gt({cputemp}, 80)" imagetype="skinpart" path="tachohands/temp_81"        x="{areawidth}*0.53" y="5%" width="20%" height="{areawidth}*0.2"/>
+            <drawimage condition="lt({cputemp}, 81)" imagetype="skinpart" path="tachohands/temp_{cputemp}" x="{areawidth}*0.53" y="5%" width="20%" height="{areawidth}*0.2"/>
+            <drawimage condition="gt({gputemp}, 80)" imagetype="skinpart" path="tachohands/temp_81"        x="{areawidth}*0.78" y="5%" width="20%" height="{areawidth}*0.2"/>
+            <drawimage condition="lt({gputemp}, 81)" imagetype="skinpart" path="tachohands/temp_{gputemp}" x="{areawidth}*0.78" y="5%" width="20%" height="{areawidth}*0.2"/>
+        </area>
+        <area x="77%" y="51%" width="11%" height="19%" layer="4">
+            <drawtext align="center" y="85%" font="{regular}" fontsize="15%" color="{clrWhite}" text="CPU Temp: {cputemp}°C" />
+        </area>
+        <area x="88%" y="51%" width="11%" height="19%" layer="4">
+            <drawtext align="center" y="85%" font="{regular}" fontsize="15%" color="{clrWhite}" text="GPU Temp: {gputemp}°C" />
+        </area>
+    </temperatures>
+
+    <!-- Available Variables currentschedule:
+    {title}                     Title of the current Schedule
+    {subtitle}                  Subtitle of the current Schedule
+    {start}                     Start of current Schedule in hh:mm
+    {stop}                      End of current Schedule in hh:mm 
+    {duration}                  Duration of current Schedule in min
+    {durationhours}             Duration, full hours
+    {minutes}                   Duration, rest of minutes
+    {elapsed}                   Elapsed time of current Schedule in min
+    {remaining}                 Remaining time of current Schedule in min
+    {hasPoster}                 true if poster is available
+    {posterpath}                Full Path of Poster to use in image path attribute
+    {posterwidth}               width of poster in pixel
+    {posterheight}              height of poster in pixel
+    {hasBanner}                 true if banner is available
+    {bannerpath}                Full Path of banner to use in image path attribute
+    {bannerwidth}               width of banner in pixel
+    {bannerheight}              height of banner in pixel
+    -->
+    <currentschedule>
+    </currentschedule>
+
+    <!-- Available Variables customtokens:
+    all custom tokens set by the svdrp command SCTK are available in this viewelement
+    For instance, use an appropriate script which runs periodically as cronjob and
+    sets these custom tokens with svdrpsend or dbus2vdr
+    --> 
+    <customtokens>
+    </customtokens>
+
+    <menuitems x="1%" y="10%" orientation="vertical" width="50%" height="80%" align="center" numlistelements="{nummenuitemsmain}">
+        <!-- Available Variables main menu listelement:
+        {nummenuitem}             number of item in list, starts with 1
+        {label}                   label of menu item
+        {number}                  number of menu item (or empty string if not set)
+        {icon}                    path of appropriate icon
+        {current}                 true if item is currently selected 
+        {separator}               true if item is a list separator 
+        -->
+        <listelement>
+            <area x="0" width="100%" layer="2">
+                <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="0" width="100%" height="100%"/>
+                <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="0" width="100%" height="100%"/>
+            </area>
+            <area condition="{showmainmenuicons}" x="1%" width="20%" layer="3">
+                <drawimage imagetype="menuicon" path="{icon}" x="1%" valign="center" width="{areaheight}*0.8" height="{areaheight}*0.8"/>
+            </area>
+            <area condition="not{showmainmenuicons}" x="0" width="100%" layer="3">
+                <drawtext condition="not{current}" x="1%" width="98%" valign="center" font="{regular}" fontsize="80%" color="{clrGray}" text="{number} {label} " />
+                <drawtext condition="{current}" x="1%" width="98%" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{number} {label} " />
+            </area>
+            <area condition="{showmainmenuicons}" x="0" width="100%" layer="3">
+                <drawtext condition="not{current}" x="{areaheight} + {areawidth}*0.02" width="{areawidth} - {areaheight}" valign="center" font="{regular}" fontsize="80%" color="{clrGray}" text="{number} {label} " />
+                <drawtext condition="{current}" x="{areaheight} + {areawidth}*0.02" width="{areawidth} - {areaheight}" valign="center" font="{regular}" fontsize="80%" color="{clrWhite}" text="{number} {label} " />
+            </area>
+        </listelement>
+        <!-- additional element which is drawn for current element -->
+        <!-- Available Variables main menu currentelement:
+        {label}                   label of menu item
+        {number}                  number of menu item (or empty string if not set)
+        {icon}                    path of appropriate icon
+        -->
+        <currentelement delay="50" fadetime="0">
+        </currentelement>
+    </menuitems>
+
+</menumain>

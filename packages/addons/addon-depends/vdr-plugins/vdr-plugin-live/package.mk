@@ -17,18 +17,19 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-live"
-PKG_VERSION="0.3.0"
+PKG_VERSION="869ac69"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://live.vdr-developer.org/en/index.php"
-PKG_URL="http://live.vdr-developer.org/downloads/${PKG_NAME/-plugin/}-${PKG_VERSION}.tar.gz"
-PKG_SOURCE_DIR="live-${PKG_VERSION}"
+PKG_GIT_URL="https://projects.vdr-developer.org/git/vdr-plugin-live.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="yes"
 PKG_DEPENDS_TARGET="toolchain vdr tntnet pcre:host pcre"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-live: the LIVE Interactive VDR Environment/"
-PKG_LONGDESC="vdr-live allows a comfortable operation of VDR and some of its plugins trough a web interface"
+PKG_SHORTDESC="vdr-plugin-live: the LIVE Interactive VDR Environment/"
+PKG_LONGDESC="vdr-plugin-live allows a comfortable operation of VDR and some of its plugins trough a web interface"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -36,7 +37,7 @@ PKG_AUTORECONF="no"
 pre_configure_target() {
   export CFLAGS="$CFLAGS -fPIC"
   export CXXFLAGS="$CXXFLAGS -fPIC"
-  export LDFLAGS="$LDFLAGS -fPIC -L$SYSROOT_PREFIX/usr/lib/iconv"
+  export LDFLAGS="$LDFLAGS -fPIC"
 }
 
 pre_make_target() {

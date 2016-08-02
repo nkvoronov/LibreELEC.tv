@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE 
+displayplugin SYSTEM "../../../dtd/displayplugin.dtd">
+
+<displayplugin x="0" y="0" width="100%" height="100%" fadetime="{menufadetime}" scaletvx="{areawidth}*0.0125" scaletvy="{areaheight}*0.70" scaletvwidth="{areawidth}*0.225" scaletvheight="{areaheight}*0.225">
+    <!-- Available Variables Background:
+    {menuwidth} menuwidth in percent of screenwidth
+    {menuheight} menuheight in percent of screenheight
+    {hasscrollbar}  true if menu needs a scrollbar
+    -->
+    <viewelement name="background">
+	<area x="{areawidth}/2 - {menuwidth}*{areawidth}/100/2 - 20" y="{areaheight}/2 - {menuheight}*{areaheight}/100/2 - 20" width="{menuwidth}*{areawidth}/100 + 40" height="{menuheight}*{areaheight}/100 + 40" layer="4">
+	    <fill color="{clrProgressbar}" />
+	    <drawimage imagetype="skinpart" path="tvguide_info_bg" x="5" y="5" width="{areawidth} - 10" height="{areaheight} - 10" />
+<!--
+	    <drawrectangle x="5" y="5" width="{areawidth} - 10" height="{areaheight} - 10" color="{clrTransBlackDark}" />
+-->
+	    <drawellipse x="5" y="5" width="30" height="30" quadrant="-2" color="{clrProgressbar}" />
+	    <drawellipse x="0" y="0" width="30" height="30" quadrant="-2" color="{clrTransparent}" />
+	    <drawellipse x="5" y="{areaheight} - 35" width="30" height="30" quadrant="-3" color="{clrProgressbar}" />
+	    <drawellipse x="0" y="{areaheight} - 30" width="30" height="30" quadrant="-3" color="{clrTransparent}" />
+
+	    <drawellipse x="{areawidth} - 35" y="5" width="30" height="30" quadrant="-1" color="{clrProgressbar}" />
+	    <drawellipse x="{areawidth} - 30" y="0" width="30" height="30" quadrant="-1" color="{clrTransparent}" />
+	    <drawellipse x="{areawidth} - 35" y="{areaheight} - 35" width="30" height="30" quadrant="-4" color="{clrProgressbar}" />
+	    <drawellipse x="{areawidth} - 30" y="{areaheight} - 30" width="30" height="30" quadrant="-4" color="{clrTransparent}" />
+	</area>
+    </viewelement>
+<!--
+    <viewelement name="background">
+	<area x="{areawidth} - {menuwidth}*{areawidth}/150 - {areawidth}*0.03" y="{areaheight}/2 - {menuheight}*{areaheight}/150/2 - {areaheight}*0.015" width="{menuwidth}*{areawidth}/150 + {areawidth}*0.03" height="{menuheight}*{areaheight}/150 + {areaheight}*0.03" layer="4">
+	    <fill color="{clrProgressbar}" />
+	    <drawrectangle x="5" y="5" width="{areawidth} - 5" height="{areaheight} - 10" color="{clrTransBlackDark}" />
+	    <drawellipse x="5" y="5" width="30" height="30" quadrant="-2" color="{clrProgressbar}" />
+	    <drawellipse x="0" y="0" width="30" height="30" quadrant="-2" color="" />
+	    <drawellipse x="5" y="{areaheight} - 35" width="30" height="30" quadrant="-3" color="{clrProgressbar}" />
+	    <drawellipse x="0" y="{areaheight} - 30" width="30" height="30" quadrant="-3" color="" />
+	</area>
+    </viewelement>
+-->
+
+    <!-- Available Variables Scrollbar:
+    {menuwidth}     menuwidth in percent of screenwidth
+    {posy}          y position of scrollbar start in percent of screenheight
+    {totalheight}   height of complete scrollbar in percent of screenheight
+    {height}        height in tenth of a percent of total height
+    {offset}        offset in tenth of a percent
+    -->
+    <viewelement name="scrollbar">
+	<area x="{areawidth} - {menuwidth}*{areawidth}/150 - {areawidth}*0.015" y="{areaheight}/2 - {menuheight}*{areaheight}/150/2" width="{areawidth}*0.01" height="{menuheight}*{areaheight}/150" layer="4">
+            <drawrectangle x="0" y="{areawidth}/2" width="{areawidth}" height="{areaheight} - {areawidth}" color="{clrBorder}" />
+            <drawrectangle x="1" y="{areawidth}/2" width="{areawidth} - 2" height="{areaheight} - {areawidth}" color="{clrBlack}" />
+            <drawrectangle x="1" y="{areaheight} * {offset} / 1000" width="{areawidth} - 2" height="{areaheight} * {height} / 1000" color="{clrProgressbar}" />
+	</area>
+	<area x="{areawidth} - {menuwidth}*{areawidth}/150 - {areawidth}*0.015" y="{areaheight}/2 - {menuheight}*{areaheight}/150/2" width="{areawidth}*0.01" height="{menuheight}*{areaheight}/150" layer="5">
+	    <drawimage imagetype="skinpart" path="verticalbartop" x="1" y="{areaheight} * {offset} / 1000" width="{areawidth} - 2" height="{areaheight} * {height} / 1000" />
+	    <drawellipse x="1" y="{areaheight} * {offset} / 1000" width="{areawidth}/2" height="{areawidth}/2" quadrant="-2" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="{areaheight} * {offset} / 1000" width="{areawidth}/2" height="{areawidth}/2" quadrant="-1" color="{clrBlack}" />
+	    <drawellipse x="1" y="{areaheight}*{offset}/1000 + {areaheight}*{height}/1000 - {areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-3" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="{areaheight}*{offset}/1000 + {areaheight}*{height}/1000 - {areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-4" color="{clrBlack}" />
+	    <drawellipse x="1" y="1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-2" color="{clrBorder}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-1" color="{clrBorder}" />
+	    <drawellipse x="{areawidth}/2 - 1" y="{areaheight}-{areawidth}/2 - 1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-4" color="{clrBorder}" />
+	    <drawellipse x="1" y="{areaheight}-{areawidth}/2 - 1" width="{areawidth}/2" height="{areawidth}/2" quadrant="-3" color="{clrBorder}" />
+	    <drawellipse x="0" y="0" width="{areawidth}/2" height="{areawidth}/2" quadrant="-2" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2" y="0" width="{areawidth}/2" height="{areawidth}/2" quadrant="-1" color="{clrBlack}" />
+	    <drawellipse x="{areawidth}/2" y="{areaheight}-{areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-4" color="{clrBlack}" />
+	    <drawellipse x="0" y="{areaheight}-{areawidth}/2" width="{areawidth}/2" height="{areawidth}/2" quadrant="-3" color="{clrBlack}" />
+        </area>
+<!--
+        <area x="0" y="0" width="100%" height="100%" layer="5">
+            <drawrectangle x="{areawidth}/2 + {menuwidth}*{areawidth}/100/2" y="{posy}*{areaheight}/100" width="2%" height="{totalheight}*{areaheight}/100" color="{clrScrollbar}" />
+            <drawrectangle x="{areawidth}/2 + {menuwidth}*{areawidth}/100/2 + 2" y="{posy}*{areaheight}/100 + 2" width="{areawidth}*0.02 - 4" height="{totalheight}*{areaheight}/100 - 4" color="{clrTransparent}" />
+        </area>
+        <area x="0" y="0" width="100%" height="100%" layer="6">
+             <drawrectangle x="{areawidth}/2 + {menuwidth}*{areawidth}/100/2 + 4" y="{posy}*{areaheight}/100 + {totalheight}*{areaheight}/100 * {offset} / 1000 + 4" width="{areawidth}*0.02 - 8" height="{totalheight}*{areaheight}/100 * {height} / 1000 - 8" color="{clrScrollbar}" />
+        </area>
+-->
+    </viewelement>
+
+<!--
+    <grid name="recmenu" x="{areawidth} - {menuwidth}*{areawidth}/150 - 100" y="{areaheight}/2 - {menuheight}*{areaheight}/150/2 - 100" width="{menuwidth}*{areawidth}/150 + 100" height="{menuheight}*{areaheight}/150 + 100">
+-->
+    <grid name="recmenu" x="0" y="0" width="{areawidth}" height="{areaheight}">
+        <!-- Background 
+        {current}       true if item is currently selected
+        -->
+        <area condition="not{info}++not{buttonyesno}++not{timerconflictheader}++not{timerconflict}++not{timelineheader}++not{timelinetimer}" layer="5">
+<!--
+	    <drawrectangle condition="not{current}" x="0" y="0" width="100%" height="100%" color="{clrRed}" />
+-->
+<!--
+            <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="0" width="100%" height="100%"/>
+-->
+            <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="0" width="100%" height="100%"/>
+        </area>
+        <area condition="{info}" layer="5">
+            <drawtext condition="eq({lines}, 1)" align="center" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{line1}" />
+
+            <drawtext condition="eq({lines}, 2)" align="center" y="5%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{line1}" />
+            <drawtext condition="eq({lines}, 2)" align="center" y="52%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{line2}" />
+
+            <drawtext condition="eq({lines}, 3)" align="center" y="0%" font="{regular}" fontsize="18%" color="{clrWhite}" text="{line1}" />
+            <drawtext condition="eq({lines}, 3)" align="center" y="33%" font="{regular}" fontsize="18%" color="{clrWhite}" text="{line2}" />
+            <drawtext condition="eq({lines}, 3)" align="center" y="66%" font="{regular}" fontsize="18%" color="{clrWhite}" text="{line3}" />
+
+            <drawtext condition="eq({lines}, 4)" align="center" y="0%" font="{regular}" fontsize="12%" color="{clrWhite}" text="{line1}" />
+            <drawtext condition="eq({lines}, 4)" align="center" y="25%" font="{regular}" fontsize="12%" color="{clrWhite}" text="{line2}" />
+            <drawtext condition="eq({lines}, 4)" align="center" y="50%" font="{regular}" fontsize="12%" color="{clrWhite}" text="{line3}" />
+            <drawtext condition="eq({lines}, 4)" align="center" y="75%" font="{regular}" fontsize="12%" color="{clrWhite}" text="{line4}" />
+        </area>
+        <!-- button
+        {button}        true
+        {buttontext}    text to display on button
+        -->
+        <area condition="{button}" layer="6">
+            <drawtext condition="not{current}" align="center" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{buttontext}" />
+            <drawtext condition="{current}" align="center" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{buttontext}" />
+        </area>
+
+        <!-- yes / no button
+        {buttonyesno}   true
+        {yes}           true if button is set to yes
+        {textyes}       text to display on yes button
+        {textno}        text to display on no button
+        -->
+        <area condition="{buttonyesno}" layer="5">
+            <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="2%" y="5%" width="46%" height="90%"/>
+            <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="52%" y="5%" width="46%" height="90%"/>
+            <drawimage condition="{current}++{yes}" imagetype="skinpart" path="menubuttonactive" x="2%" y="5%" width="46%" height="90%"/>
+            <drawimage condition="{current}++{yes}" imagetype="skinpart" path="menubutton" x="52%" y="5%" width="46%" height="90%"/>
+            <drawimage condition="{current}++not{yes}" imagetype="skinpart" path="menubutton" x="2%" y="5%" width="46%" height="90%"/>
+            <drawimage condition="{current}++not{yes}" imagetype="skinpart" path="menubuttonactive" x="52%" y="5%" width="46%" height="90%"/>
+        </area>
+        <area condition="{buttonyesno}" layer="6">
+            <drawtext condition="not{current}" name="yestext" x="{areawidth}/4 - {width(yestext)}/2" valign="center" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="{textyes}" />
+            <drawtext condition="not{current}" name="notext" x="3*{areawidth}/4 - {width(notext)}/2" valign="center" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="{textno}" />
+            <drawtext condition="{current}++{yes}" name="yestext" x="{areawidth}/4 - {width(yestext)}/2" valign="center" font="{regular}" fontsize="60%" color="{clrFontMenuItemSelected}" text="{textyes}" />
+            <drawtext condition="{current}++not{yes}" name="yestext" x="{areawidth}/4 - {width(yestext)}/2" valign="center" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="{textyes}" />
+            <drawtext condition="{current}++not{yes}" name="notext" x="3*{areawidth}/4 - {width(notext)}/2" valign="center" font="{regular}" fontsize="60%" color="{clrFontMenuItemSelected}" text="{textno}" />
+            <drawtext condition="{current}++{yes}" name="notext" x="3*{areawidth}/4 - {width(notext)}/2" valign="center" font="{regular}" fontsize="60%" color="{clrFontMenuItem}" text="{textno}" />
+        </area>
+        <!-- Int Selector
+        {intselector}   true
+        {text}          title of selector
+        {value}         current value of selector, integer
+        -->
+        <area condition="{intselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawtext condition="not{current}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{value} " />
+            <drawtext condition="{current}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{value} " />
+        </area>
+        <!-- Bool Selector 
+        {boolselector}  true
+        {text}          title of selector
+        {value}         current value of selector, true or false
+        -->
+        <area condition="{boolselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawimage condition="{value}" imagetype="icon" path="ico_timer_active" x="{areawidth} - {areaheight}*0.4" y="30%" width="{areaheight}*0.4" height="{areaheight}*0.4"/>
+            <drawimage condition="not{value}" imagetype="icon" path="ico_timer_inactive" x="{areawidth} - {areaheight}*0.4" y="30%" width="{areaheight}*0.4" height="{areaheight}*0.4"/>
+        </area>
+        <!-- String Selector 
+        {stringselector}  true
+        {text}          title of selector
+        {value}         current value of selector, string
+        -->
+        <area condition="{stringselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawimage imagetype="icon" path="ico_arrow_right" x="{areawidth} - {areaheight}*0.4" y="30%" width="{areaheight}*0.4" height="{areaheight}*0.4"/>
+            <drawtext condition="not{current}" name="value" x="{areawidth} - {width(value)} - {areaheight}" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{value}" />
+            <drawtext condition="{current}" name="value" x="{areawidth} - {width(value)} - {areaheight}" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{value}" />
+            <drawimage imagetype="icon" path="ico_arrow_left" x="{areawidth} - {width(value)} - 2*{areaheight}" y="30%" width="{areaheight}*0.4" height="{areaheight}*0.4"/>
+        </area>
+        <!-- Text Input 
+        {textinput}     true
+        {editmode}      true if currently in edit mode
+        {text}          title of selector
+        {value}         current value of selector, string
+        -->
+        <area condition="{textinput}" layer="6">
+            <drawtext condition="not{current}" x="1%" y="0%" font="{regular}" fontsize="30%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" y="0%" font="{regular}" fontsize="30%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawrectangle condition="not{editmode}" x="1%" y="35%" width="98%" height="30%" color="{clrTransBlack}"/>
+            <drawrectangle condition="{editmode}" x="1%" y="35%" width="98%" height="30%" color="{clrRed}"/>
+        </area>
+        <area condition="{textinput}" layer="7">
+            <drawtext align="right" y="35%" font="{regular}" fontsize="30%" color="{clrWhite}" text="{value}   " />
+        </area>
+        <!-- Time Selector 
+        {timeselector}  true
+        {text}          title of selector
+        {value}         current value of selector, hh:mm
+        -->
+        <area condition="{timeselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawtext condition="not{current}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{value} " />
+            <drawtext condition="{current}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{value} " />
+        </area>
+        <!-- Day Selector 
+        {dayselector}   true
+        {text}          title of selector
+        {value}         current value of selector, dd.mm
+        -->
+        <area condition="{dayselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawtext condition="not{current}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{value} " />
+            <drawtext condition="{current}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{value} " />
+        </area>
+        <!-- Channel Selector 
+        {channelselector}    true
+        {text}               title of selector
+        {channelnumber}      number of currently selected channel, 0 for "all channels"
+        {channelname}        name of channel or "all channels"
+        {channelid}          id of channel
+        {channellogoexisis}  true if channel logo exists
+        -->
+        <area condition="{channelselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawimage condition="{channellogoexisis}" imagetype="channellogo" path="{channelid}" x="{areawidth}-{areaheight}" valign="center" width="{areaheight}*0.9" height="{areaheight}*0.9" />
+            <drawtext name="channelnumberlogo" condition="{channellogoexisis}" x="{areawidth}-{areaheight}-{width(channelnumberlogo)}-10" valign="center" font="{regular}" fontsize="70%" color="{clrWhite}" text="{channelnumber}" />
+            <drawtext condition="not{channellogoexisis}++{channelnumber}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrWhite}" text="{channelnumber} {channelname} " />
+            <drawtext condition="not{channelnumber}" align="right" valign="center" font="{regular}" fontsize="70%" color="{clrWhite}" text="{channelname} " />
+        </area>
+        <!-- Weekday Selector 
+        {weekdayselector}    true
+        {text}               title of selector
+        {dayselected}        number of currently selected day (0 - 6)
+        {day0abbr} ... {day6abbr}  localized one character abbrevation for weekdays from Monday to Sunday
+        {day0set}  ... {day6set}   true if according weekday from Monday to Sunday is set
+        -->
+        <area condition="{weekdayselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            
+            <drawrectangle x="{areawidth} - {areaheight}*4" y="25%" width="{areaheight}*3.5" height="50%" color="{clrWhite}" />
+
+            <drawrectangle condition="not{day0set}" x="{areawidth} - {areaheight}*4.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day0set}" x="{areawidth} - {areaheight}*4.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+            
+            <drawrectangle condition="not{day1set}" x="{areawidth} - {areaheight}*3.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day1set}" x="{areawidth} - {areaheight}*3.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+
+            <drawrectangle condition="not{day2set}" x="{areawidth} - {areaheight}*3.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day2set}" x="{areawidth} - {areaheight}*3.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+
+            <drawrectangle condition="not{day3set}" x="{areawidth} - {areaheight}*2.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day3set}" x="{areawidth} - {areaheight}*2.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+
+            <drawrectangle condition="not{day4set}" x="{areawidth} - {areaheight}*2.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day4set}" x="{areawidth} - {areaheight}*2.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+
+            <drawrectangle condition="not{day5set}" x="{areawidth} - {areaheight}*1.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day5set}" x="{areawidth} - {areaheight}*1.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+
+            <drawrectangle condition="not{day6set}" x="{areawidth} - {areaheight}*1.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrGray}" />
+            <drawrectangle condition="{day6set}" x="{areawidth} - {areaheight}*1.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrBlack}" />
+        </area>
+        <area condition="{weekdayselector}" layer="7">
+            <drawrectangle condition="{current}++eq({dayselected}, 0)" x="{areawidth} - {areaheight}*4.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+            <drawrectangle condition="{current}++eq({dayselected}, 1)" x="{areawidth} - {areaheight}*3.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+            <drawrectangle condition="{current}++eq({dayselected}, 2)" x="{areawidth} - {areaheight}*3.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+            <drawrectangle condition="{current}++eq({dayselected}, 3)" x="{areawidth} - {areaheight}*2.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+            <drawrectangle condition="{current}++eq({dayselected}, 4)" x="{areawidth} - {areaheight}*2.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+            <drawrectangle condition="{current}++eq({dayselected}, 5)" x="{areawidth} - {areaheight}*1.5 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+            <drawrectangle condition="{current}++eq({dayselected}, 6)" x="{areawidth} - {areaheight}*1.0 + 2" y="{areaheight}*0.25+2" width="{areaheight}*0.5-4" height="{areaheight}*0.5-4" color="{clrTransRed}" />
+
+            <drawtext name="day0" x="{areawidth} - {areaheight}*4.0 + {areaheight}/4 - {width(day0)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day0abbr}" />
+            <drawtext name="day1" x="{areawidth} - {areaheight}*3.5 + {areaheight}/4 - {width(day1)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day1abbr}" />
+            <drawtext name="day2" x="{areawidth} - {areaheight}*3.0 + {areaheight}/4 - {width(day2)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day2abbr}" />
+            <drawtext name="day3" x="{areawidth} - {areaheight}*2.5 + {areaheight}/4 - {width(day3)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day3abbr}" />
+            <drawtext name="day4" x="{areawidth} - {areaheight}*2.0 + {areaheight}/4 - {width(day4)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day4abbr}" />
+            <drawtext name="day5" x="{areawidth} - {areaheight}*1.5 + {areaheight}/4 - {width(day5)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day5abbr}" />
+            <drawtext name="day6" x="{areawidth} - {areaheight}*1.0 + {areaheight}/4 - {width(day6)}/2" valign="center" font="{regular}" fontsize="50%" color="{clrWhite}" text="{day6abbr}" />
+        </area>
+        <!-- Directory Selector 
+        {directoryselector}  true
+        {text}               title of selector
+        {folder}             current folder of selector, string
+        -->
+        <area condition="{directoryselector}" layer="6">
+            <drawtext condition="not{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItem}" text="{text}" />
+            <drawtext condition="{current}" x="1%" valign="center" font="{regular}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{text}" />
+            <drawimage imagetype="icon" path="ico_arrow_right" x="{areawidth} - {areaheight}*0.8" y="10%" width="{areaheight}*0.8" height="{areaheight}*0.8"/>
+            <drawtext name="folder" x="{areawidth} - {width(folder)} - {areaheight}" valign="center" font="{regular}" fontsize="70%" color="{clrWhite}" text="{folder}" />
+            <drawimage imagetype="icon" path="ico_arrow_left" x="{areawidth} - {width(folder)} - 2*{areaheight}" y="10%" width="{areaheight}*0.8" height="{areaheight}*0.8"/>
+        </area>
+        <!-- Timerconflict Header 
+        {timerconflictheader}    true
+        {text}                   title of Timerconflict Header
+        {conflictstart}          start of conflict in hh:mm
+        {conflictstop}           end of conflict in hh:mm
+        {overlapstart}           start of overlap in hh:mm
+        {overlapstop}            end of overlap in hh:mm
+        {overlapstartpercent}    start of overlap in percent of total conflict time width
+        {overlapwidthpercent}    width of overlap in percent of total conflict time width
+        -->
+        <area condition="{timerconflictheader}" layer="5">
+            <drawtext name="title" x="{areawidth}*0.7*0.5 - {width(title)}/2" valign="center" font="{regular}" fontsize="70%" color="{clrWhite}" text="{text}" />
+            <drawrectangle x="70%" y="0" width="30%" height="100%" color="{clrWhite}"/>
+        </area>
+        <area condition="{timerconflictheader}" layer="6">
+            <drawtext x="{areawidth}*0.7" y="0" font="{regular}" fontsize="40%" color="{clrBlack}" text="{conflictstart}" />
+            <drawtext align="right" y="0" font="{regular}" fontsize="40%" color="{clrBlack}" text="{conflictstop}" />
+            <drawtext name="olstart" x="{areawidth}*0.7 + {overlapstartpercent}*{areawidth}*0.3/100 - 70" y="40%" font="{regular}" fontsize="50%" color="{clrRed}" text="{overlapstart}" />
+            <drawtext x="{areawidth}*0.7 + {overlapstartpercent}*{areawidth}*0.3/100 + {overlapwidthpercent}*{areawidth}*0.3/100 + 5" y="40%" font="{regular}" fontsize="50%" color="{clrRed}" text="{overlapstop}" />
+            <drawrectangle x="{areawidth}*0.7 + {overlapstartpercent}*{areawidth}*0.3/100" y="50%" width="{overlapwidthpercent}*{areawidth}*0.3/100" height="50%" color="{clrTransRed}"/>
+        </area>
+        <!-- Timerconflict 
+        {timerconflict}          true
+        {timertitle}             title of timer
+        {channelname}            name of channel
+        {channelid}              channel ID
+        {transponder}            transponder of channel
+        {starttime}              start of timer in hh:mm
+        {stoptime}               end of timer in hh:mm
+        {date}                   date of timer in dd.mm.yy
+        {weekday}                weekday of timer, 3 letter abrivation
+        {infoactive}             true if info icon is active
+        {deleteactive}           true if delete icon is active
+        {editactive}             true if edit icon is active
+        {searchactive}           true if search icon is active
+        {timerstartpercent}      start of timer in percent of total conflict time width
+        {timerwidthpercent}      end of timer in percent of total conflict time width
+        {overlapstartpercent}    start of overlap in percent of total conflict time width
+        {overlapwidthpercent}    width of overlap in percent of total conflict time width
+        -->
+        <area condition="{timerconflict}" layer="5">
+            <drawimage condition="not{current}" imagetype="skinpart" path="menubutton" x="0" y="0" width="70%" height="100%"/>
+            <drawimage condition="{current}" imagetype="skinpart" path="menubuttonactive" x="0" y="0" width="70%" height="100%"/>
+        </area>
+        <area condition="{timerconflict}" layer="6">
+            <drawimage condition="{current}++{infoactive}" imagetype="icon" path="ico_info_active" x="{areaheight}*0.05" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{infoactive}" imagetype="icon" path="ico_info_inactive" x="{areaheight}*0.05" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{current}++{deleteactive}" imagetype="icon" path="ico_delete_active" x="{areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{deleteactive}" imagetype="icon" path="ico_delete_inactive" x="{areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{current}++{editactive}" imagetype="icon" path="ico_edit_active" x="{areaheight}*1.15" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{editactive}" imagetype="icon" path="ico_edit_inactive" x="{areaheight}*1.15" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{current}++{searchactive}" imagetype="icon" path="ico_search_active" x="{areaheight}*1.7" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{searchactive}" imagetype="icon" path="ico_search_inactive" x="{areaheight}*1.7" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawtext x="{areaheight}*2.3" width="{areawidth}*0.7 - {areaheight}*2.4" y="0" font="{regular}" fontsize="30%" color="{clrWhite}" text="{timertitle}" />
+            <drawtext x="{areaheight}*2.3" y="40%" font="{regular}" fontsize="20%" color="{clrWhite}" text="{weekday} {date} {starttime} - {stoptime}" />
+            <drawtext x="{areaheight}*2.3" y="70%" font="{regular}" fontsize="20%" color="{clrWhite}" text="{channelname}, Transp. {transponder}" />
+            <drawrectangle x="70%" y="0" width="30%" height="100%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.7 + {timerstartpercent}*{areawidth}*0.3/100" y="30%" width="{timerwidthpercent}*{areawidth}*0.3/100" height="40%" color="{clrBlack}"/>
+        </area>
+        <area condition="{timerconflict}" layer="7">
+            <drawrectangle x="{areawidth}*0.7 + {overlapstartpercent}*{areawidth}*0.3/100" y="0" width="{overlapwidthpercent}*{areawidth}*0.3/100" height="100%" color="{clrTransRed}"/>
+        </area>
+        <!-- Event 
+        {event}              true
+        {title}              title of event
+        {shorttext}          shorttext of event
+        {starttime}          start of event in hh:mm
+        {stoptime}           end of event in hh:mm
+        {date}               date of event in dd.mm.yy
+        {weekday}            weekday of event, 3 letter abrivation
+        {channelnumber}      number of channel
+        {channelname}        name of channel
+        {channelid}          id of channel
+        {channellogoexisis}  true if channel logo exists
+        {hastimer}           true if event has a timer
+        -->
+        <area condition="{event}" layer="4">
+<!--
+	    <drawrectangle x="0" y="0" width="100%" height="100%" color="{clrTransBlackDark}" />
+-->
+	    <drawimage imagetype="skinpart" path="displayvolume" x="0" y="0" width="100%" height="100%" />
+	</area>
+        <area condition="{event}" layer="6">
+            <drawimage condition="{current}" imagetype="icon" path="ico_info_active" x="{areaheight}*0.05" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}" imagetype="icon" path="ico_info_inactive" x="{areaheight}*0.05" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{channellogoexisis}" imagetype="channellogo" path="{channelid}" x="{areaheight}*0.8" valign="center" width="{areaheight}*0.8" height="{areaheight}*0.8" />
+            <drawtext condition="not{current}" x="{areaheight}*2.2" y="2" font="{regular}" fontsize="40%" color="{clrFontMenuItem}" text="{weekday} {date} {starttime} - {stoptime} {channelname}" />
+            <drawtext condition="not{current}" x="{areaheight}*2.2" y="30%" width="{areawidth} - 3*{areaheight}" font="{regular}" fontsize="45%" color="{clrFontMenuItem}" text="{title}" />
+            <drawtext condition="not{current}" x="{areaheight}*2.2" y="69%" width="{areawidth} - 3*{areaheight}" font="{regular}" fontsize="30%" color="{clrFontMenuItem}" text="{shorttext}" />
+            <drawtext condition="{current}" x="{areaheight}*2.2" y="2" font="{regular}" fontsize="40%" color="{clrFontMenuItemSelected}" text="{weekday} {date} {starttime} - {stoptime} {channelname}" />
+            <drawtext condition="{current}" x="{areaheight}*2.2" y="30%" width="{areawidth} - 3*{areaheight}" font="{regular}" fontsize="45%" color="{clrFontMenuItemSelected}" text="{title}" />
+            <drawtext condition="{current}" x="{areaheight}*2.2" y="69%" width="{areawidth} - 3*{areaheight}" font="{regular}" fontsize="30%" color="{clrFontMenuItemSelected}" text="{shorttext}" />
+            <drawimage condition="{current}++not{hastimer}" imagetype="icon" path="ico_record_active" x="{areawidth} - {areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}++not{hastimer}" imagetype="icon" path="ico_record_inactive" x="{areawidth} - {areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{hastimer}" imagetype="icon" path="ico_activetimer" x="{areawidth} - {areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+        </area>
+        <!-- Recording 
+        {recording}              true
+        {recname}                title of recording
+        {recstarttime}           start of recording in hh:mm
+        {recdate}                date of recording in dd.mm.yy
+        {recduration}            duration of recording in min
+        {channelnumber}          number of channel
+        {channelname}            name of channel
+        {channelid}              id of channel
+        {channellogoexisis}      true if channel logo exists
+        -->
+        <area condition="{recording}" layer="6">
+            <drawtext condition="not{current}" x="1%" y="0" font="{regular}" width="98%" fontsize="40%" color="{clrFontMenuItem}" text="{recname}" />
+            <drawtext condition="not{current}" x="55%" y="0" font="{regular}" width="98%" fontsize="25%" color="{clrFontMenuItem}" text="{recdate} {recstarttime} - {recduration} min, {channelname}" />
+            <drawtext condition="{current}" x="1%" y="0" font="{regular}" width="98%" fontsize="40%" color="{clrFontMenuItemSelected}" text="{recname}" />
+            <drawtext condition="{current}" x="55%" y="0" font="{regular}" width="98%" fontsize="25%" color="{clrFontMenuItemSelected}" text="{recdate} {recstarttime} - {recduration} min, {channelname}" />
+        </area>
+        <!-- Searchtimer 
+        {searchtimer}            true
+        {timeractive}            true if searchtimer is active
+        {searchstring}           searchtimer search string
+        {activetimers}           number of active timers caused by this searchtimer
+        {recordingsdone}         number of recordings done by this searchtimer
+        {searchactive}           true if search icon is active
+        {editactive}             true if edit icon is active
+        {deleteactive}           true if delete icon is active
+        -->
+        <area condition="{searchtimer}" layer="6">
+            <drawimage condition="{current}++{searchactive}" imagetype="icon" path="ico_search_active" x="{areaheight}*0.05" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{searchactive}" imagetype="icon" path="ico_search_inactive" x="{areaheight}*0.05" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{current}++{editactive}" imagetype="icon" path="ico_edit_active" x="{areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{editactive}" imagetype="icon" path="ico_edit_inactive" x="{areaheight}*0.6" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="{current}++{deleteactive}" imagetype="icon" path="ico_delete_active" x="{areaheight}*1.15" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}||not{deleteactive}" imagetype="icon" path="ico_delete_inactive" x="{areaheight}*1.15" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawtext condition="not{current}" x="{areaheight}*1.8" width="{areawidth} - {areaheight}*2" y="5%" font="{regular}" fontsize="55%" color="{clrFontMenuItem}" text="{searchstring}" />
+            <drawtext condition="{current}" x="{areaheight}*1.8" width="{areawidth} - {areaheight}*2" y="5%" font="{regular}" fontsize="55%" color="{clrFontMenuItemSelected}" text="{searchstring}" />
+            <drawimage condition="{timeractive}" imagetype="icon" path="ico_timer_active" x="{areawidth} - {areaheight}*0.5" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{timeractive}" imagetype="icon" path="ico_timer_inactive" x="{areawidth}-{areaheight}*0.05*3" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+<!--
+            <drawtext condition="{timeractive}" align="right" y="5%" font="{regular}" fontsize="25%" color="{clrWhite}" text="active " />
+-->
+            <drawtext x="{areaheight}*1.8" y="55%" font="{regular}" fontsize="45%" color="{clrWhite}" text="{tr(Active)} {tr(timer)}: {activetimers}, {tr(recordings)}: {recordingsdone}" />
+        </area>
+        <!-- Timeline Header 
+        {timelineheader}            true
+        {date}                      date of current day in weekdayname dd.mm.yyyy
+        {timerset}                  true if timer info is set
+        {channelname}               name of channel of timer
+        {channelid}                 channel ID of channel of timer
+        {channellogoexisis}         true if channel logo exists
+        {channelnumber}             number of channel of timer
+        {channeltransponder}        transponder of channel of timer
+        {timerstart}                start of timer in hh:mm
+        {timerstop}                 end of timer in hh:mm
+        {eventtitle}                title of according event
+        {eventshorttext}            short text of according event
+        {eventstart}                start time of according event
+        {eventstop}                 end time of according event
+        -->
+        <area condition="{timelineheader}" layer="5">
+            <drawtext align="center" y="1%" font="{regular}" fontsize="25%" color="{clrWhite}" text="Timer {tr(for)} {date}" />
+            <drawrectangle x="{areawidth}*0.05" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.0875" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.125" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.1625" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.2" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.2375" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.275" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.3125" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.35" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.3875" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.425" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.4625" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.5" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.5375" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.575" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.6125" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.65" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.6875" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.725" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.7625" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.8" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.8375" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+            <drawrectangle x="{areawidth}*0.875" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrBlack}"/>
+            <drawrectangle x="{areawidth}*0.9125" y="80%" width="{areawidth}*0.0375" height="20%" color="{clrWhite}"/>
+        </area>
+        <area condition="{timelineheader}" layer="6">
+            <drawtext name="text0" x="{areawidth}*0.05 + {areawidth}*0.0375/2 - {width(text0)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="0"/>
+            <drawtext name="text1" x="{areawidth}*0.0875 + {areawidth}*0.0375/2 - {width(text1)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="1"/>
+            <drawtext name="text2" x="{areawidth}*0.125 + {areawidth}*0.0375/2 - {width(text2)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="2"/>
+            <drawtext name="text3" x="{areawidth}*0.1625 + {areawidth}*0.0375/2 - {width(text3)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="3"/>
+            <drawtext name="text4" x="{areawidth}*0.2 + {areawidth}*0.0375/2 - {width(text4)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="4"/>
+            <drawtext name="text5" x="{areawidth}*0.2375 + {areawidth}*0.0375/2 - {width(text5)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="5"/>
+            <drawtext name="text6" x="{areawidth}*0.275 + {areawidth}*0.0375/2 - {width(text6)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="6"/>
+            <drawtext name="text7" x="{areawidth}*0.3125 + {areawidth}*0.0375/2 - {width(text7)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="7"/>
+            <drawtext name="text8" x="{areawidth}*0.35 + {areawidth}*0.0375/2 - {width(text8)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="8"/>
+            <drawtext name="text9" x="{areawidth}*0.3875 + {areawidth}*0.0375/2 - {width(text9)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="9"/>
+            <drawtext name="text10" x="{areawidth}*0.425 + {areawidth}*0.0375/2 - {width(text10)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="10"/>
+            <drawtext name="text11" x="{areawidth}*0.4625 + {areawidth}*0.0375/2 - {width(text11)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="11"/>
+            <drawtext name="text12" x="{areawidth}*0.5 + {areawidth}*0.0375/2 - {width(text12)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="12"/>
+            <drawtext name="text13" x="{areawidth}*0.5375 + {areawidth}*0.0375/2 - {width(text13)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="13"/>
+            <drawtext name="text14" x="{areawidth}*0.575 + {areawidth}*0.0375/2 - {width(text14)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="14"/>
+            <drawtext name="text15" x="{areawidth}*0.6125 + {areawidth}*0.0375/2 - {width(text15)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="15"/>
+            <drawtext name="text16" x="{areawidth}*0.65 + {areawidth}*0.0375/2 - {width(text16)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="16"/>
+            <drawtext name="text17" x="{areawidth}*0.6875 + {areawidth}*0.0375/2 - {width(text17)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="17"/>
+            <drawtext name="text18" x="{areawidth}*0.725 + {areawidth}*0.0375/2 - {width(text18)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="18"/>
+            <drawtext name="text19" x="{areawidth}*0.7625 + {areawidth}*0.0375/2 - {width(text19)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="19"/>
+            <drawtext name="text20" x="{areawidth}*0.8 + {areawidth}*0.0375/2 - {width(text20)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="20"/>
+            <drawtext name="text21" x="{areawidth}*0.8375 + {areawidth}*0.0375/2 - {width(text21)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="21"/>
+            <drawtext name="text22" x="{areawidth}*0.875 + {areawidth}*0.0375/2 - {width(text22)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrWhite}" text="22"/>
+            <drawtext name="text23" x="{areawidth}*0.9125 + {areawidth}*0.0375/2 - {width(text23)}/2" y="80%" font="{regular}" fontsize="20%" color="{clrBlack}" text="23"/>
+        </area>
+        <area condition="{timelineheader}++{timerset}" layer="6">
+             <drawimage condition="{channellogoexisis}" imagetype="channellogo" path="{channelid}" x="1%" y="30%" width="{areaheight}*0.5" height="{areaheight}*0.5" />
+             <drawtext condition="not{channellogoexisis}" x="1%" width="{areaheight}*0.7" y="40%" font="{regular}" fontsize="10%" color="{clrWhite}" text="{channelname}"/>
+             <drawtext x="{areaheight}*0.8" y="36%" font="{regular}" fontsize="15%" color="{clrWhite}" text="{eventstart} - {eventstop} (Rec. {timerstart} - {timerstop}), Transp. {channeltransponder}"/>
+             <drawtext x="{areaheight}*0.8" y="57%" width="{areawidth}-{areaheight}" font="{regular}" fontsize="15%" color="{clrWhite}" text="{eventtitle} - {eventshorttext}"/>
+        </area>
+        <!-- Timeline Timer 
+        {timelinetimer}             true
+        {timerstart}                start of timer in tenth percent of complete 24h width
+        {timerwidth}                width of timer in tenth percent of complete 24h width
+        -->
+        <area condition="{timelinetimer}" layer="5">
+            <drawrectangle condition="{current}" x="5%" y="0" width="90%" height="100%" color="{clrBorder}"/>
+            <drawrectangle condition="not{current}" x="5%" y="0" width="90%" height="100%" color="{clrGray}"/>
+            <drawrectangle x="5%" y="{areaheight}-1" width="90%" height="1" color="{clrBlack}"/>
+        </area>
+        <area condition="{timelinetimer}" layer="6">
+            <drawrectangle x="{areawidth}*0.05 + {timerstart}*{areawidth}*0.9/1000" y="25%" width="{timerwidth}*{areawidth}*0.9/1000" height="50%" color="{clrBlack}"/>
+        </area>
+        <!-- Favorites 
+        {favorite}                  true
+        {favdesc}                   description of favorite
+        -->
+        <area condition="{favorite}" layer="6">
+            <drawimage condition="{current}" imagetype="icon" path="ico_search_active" x="{areaheight}*0.1" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawimage condition="not{current}" imagetype="icon" path="ico_search_inactive" x="{areaheight}*0.1" valign="center" width="{areaheight}*0.5" height="{areaheight}*0.5"/>
+            <drawtext condition="not{current}" x="{areaheight}" valign="center" font="{regular}" width="{areawidth} - {areaheight}" fontsize="70%" color="{clrFontMenuItem}" text="{favdesc}" />
+            <drawtext condition="{current}" x="{areaheight}" valign="center" font="{regular}" width="{areawidth} - {areaheight}" fontsize="70%" color="{clrFontMenuItemSelected}" text="{favdesc}" />
+        </area>
+    </grid>
+</displayplugin>

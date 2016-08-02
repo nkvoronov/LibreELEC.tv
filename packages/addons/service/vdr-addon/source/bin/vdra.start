@@ -1,0 +1,452 @@
+#!/bin/sh
+
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
+#
+#  OpenELEC is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  OpenELEC is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
+################################################################################
+
+. /etc/profile
+
+oe_setup_addon service.multimedia.vdra
+
+VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
+VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
+
+vdr_init() {
+
+    ADDON_CONFIG_DIR="$ADDON_HOME/config"
+    ADDON_PLUGIN_DIR="$ADDON_DIR/lib/vdr"
+    ADDON_LOCALE_DIR="$ADDON_DIR/locale"
+
+    chmod a+x $ADDON_DIR/bin/*
+    chmod a+x $ADDON_DIR/sleep.d/*
+
+    ADDON_CACHE_DIR="$ADDON_HOME/cache"
+    mkdir -p $ADDON_CACHE_DIR
+
+    if [ ! -d "$ADDON_CONFIG_DIR" ]; then
+        mkdir -p $ADDON_CONFIG_DIR
+        cp -PR $ADDON_DIR/config/* $ADDON_CONFIG_DIR
+        chmod a+x $ADDON_CONFIG_DIR/plugins/iptv/*
+        chmod a+x $ADDON_CONFIG_DIR/plugins/streamdev-server/*.sh
+        chmod a+x $ADDON_CONFIG_DIR/plugins/systeminfo/*.sh
+    fi
+
+    mkdir -p $VDR_VIDEO_DIR
+
+    VDR_ARG="-g /tmp"
+
+    RUN_FRONT="false"
+
+    if [ "$VDR_TYPE" != "frontend" ]; then
+        touch $VDR_RUN_FILE
+    else
+        rm -f $VDR_RUN_FILE
+    fi
+
+    if [ -f "$VDR_FRONT_RUN_FILE" ]; then
+        if [ "$VDR_TYPE" != "service" ]; then 
+             RUN_FRONT="true"
+        fi
+    fi
+
+}
+
+fix_config() {
+
+    if [ -f "$ADDON_CONFIG_DIR/setup.conf" ]; then
+        sed -i -e '/^$/d' $ADDON_CONFIG_DIR/setup.conf
+        sed -i -e '/^AlwaysSortFoldersFirst.*$/d' $ADDON_CONFIG_DIR/setup.conf
+        sed -i -e '/^SetSystemTime.*$/d' $ADDON_CONFIG_DIR/setup.conf
+        sed -i -e '/^epgsearch.SVDRPPort.*$/d' $ADDON_CONFIG_DIR/setup.conf
+        sed -i -e '/^Font.*$/d' $ADDON_CONFIG_DIR/setup.conf
+    fi
+    cat >>$ADDON_CONFIG_DIR/setup.conf << MYDATA
+AlwaysSortFoldersFirst = 1
+SetSystemTime = 0
+epgsearch.SVDRPPort = 6419
+MYDATA
+
+}
+
+stop_tv_backend() {
+
+    if systemctl is-active service.multimedia.tvheadenda.service &>/dev/null ; then
+        systemctl stop service.multimedia.tvheadenda.service
+    fi
+
+    if [ "$VDR_TYPE" == "frontend" ]; then
+        if systemctl is-active lcdd.service &>/dev/null ; then
+            systemctl restart lcdd.service
+        fi
+    fi
+}
+
+init_vdr_plugins() {
+
+    if [ "$VDR_DEBUG" == "true" ]; then
+        VDR_ARG="$VDR_ARG --log=3"
+    else
+        VDR_ARG="$VDR_ARG --log=1"
+    fi
+
+    VDR_ARG="$VDR_ARG --localedir=$ADDON_LOCALE_DIR"
+
+    SVDRP_PORT=0
+
+    # epgsearch needs svdrp
+    if [ "$VDR_ENABLE_EPGSEARCH" == "true" ]; then
+        SVDRP_PORT=6419
+    fi
+
+    VDR_ARG="$VDR_ARG --port=$SVDRP_PORT"
+    VDR_ARG="$VDR_ARG --config=$ADDON_CONFIG_DIR"
+    VDR_ARG="$VDR_ARG --resdir=$ADDON_CONFIG_DIR"
+    VDR_ARG="$VDR_ARG --cachedir=$ADDON_CACHE_DIR"
+    VDR_ARG="$VDR_ARG --lib=$ADDON_PLUGIN_DIR"
+    VDR_ARG="$VDR_ARG --video=\"$VDR_VIDEO_DIR\""
+
+    if [ "$VDR_ENABLE_EXTERNAL_RECCMD" == "true" ] ; then
+        if [ ! -z "$VDR_EXTERNAL_RECCMD_PATH" -a -x "$VDR_EXTERNAL_RECCMD_PATH" ]; then
+            VDR_ARG="$VDR_ARG -r \"$VDR_EXTERNAL_RECCMD_PATH\""
+        fi
+    fi
+
+    VDR_CHARSET_OVERRIDE="en_US.UTF-8"
+    if [ "$VDR_ENABLE_CHARSET_OVERRIDE" == "true" ]; then
+        if [ ! -z "$VDR_CHARSET_OVERRIDE_STR" ]; then
+            VDR_CHARSET_OVERRIDE="$VDR_CHARSET_OVERRIDE_STR"
+        fi
+    fi
+
+    if [ "$RUN_FRONT" == "false" ]; then
+
+        VDR_ARG="$VDR_ARG --no-kbd"
+
+	# keep softcam first
+	if [ "$VDR_ENABLE_SOFTCAM" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'dvbapi $VDR_DVBAPI_OPT'"
+	fi
+
+	if [ "$VDR_ENABLE_WIRBELSCAN" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
+	fi
+
+	if [ "$VDR_ENABLE_IPTV" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'iptv -d $VDR_IPTV_NUM_DEVICES'"
+	fi
+
+	if [ "$VDR_ENABLE_STREAMDEV_SERVER" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P streamdev-server"
+	fi
+
+	if [ "$VDR_ENABLE_STREAMDEV_CLIENT" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P streamdev-client"
+	fi
+
+	if [ "$VDR_ENABLE_LIVE" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'live -i $VDR_LIVE_IP -p $VDR_LIVE_PORT'"
+	fi
+
+	if [ "$VDR_ENABLE_EEPG" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P eepg"
+	fi
+
+	if [ "$VDR_ENABLE_EPGFIXER" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P epgfixer"
+	fi
+
+	if [ "$VDR_ENABLE_EPGSEARCH" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P epgsearch -P epgsearchonly -P quickepgsearch -P conflictcheckonly"
+	fi
+
+	if [ "$VDR_ENABLE_DUMMYDEVICE" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P dummydevice"
+	fi
+
+	if [ "$VDR_ENABLE_SATIP" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P satip"
+	fi
+
+	if [ "$VDR_ENABLE_XMLTV2VDR" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'xmltv2vdr --epgfile=$ADDON_CACHE_DIR/epg.db'"
+	    # xmltv2vdr needs /var/run/vdr
+	    grep -q " /var/run/vdr " /proc/mounts || ( mkdir -p /var/run/vdr && mount -t tmpfs -o size=10% tmpfs /var/run/vdr )
+	    #handle epgsources
+	    mkdir -p /var/lib/epgsources
+	    mkdir -p $ADDON_HOME/config/epgsources
+	    for source in `find $ADDON_DIR/config/epgsources -type f`; do
+		if [ ! -e $ADDON_HOME/config/epgsources/`basename $source` ] ; then
+    		    cp $source $ADDON_HOME/config/epgsources/
+		fi
+	    done
+	    for source in `find $ADDON_HOME/config/epgsources -type f`; do
+		cp $source /var/lib/epgsources
+	    done
+	fi
+
+	if [ "$VDR_ENABLE_RESTFULAPI" == "true" ]; then
+	    VDR_RESTFULAPI_ARGS="--ip $VDR_RESTFULAPI_IP --port $VDR_RESTFULAPI_PORT"
+	    VDR_RESTFULAPI_CHANNELLOGOS="$ADDON_CONFIG_DIR/plugins/restfulapi/logos"
+	    mkdir -p $VDR_RESTFULAPI_CHANNELLOGOS
+	    VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --channellogos=\"$VDR_RESTFULAPI_CHANNELLOGOS\""
+	    VDR_RESTFULAPI_WEBAPP="$ADDON_CONFIG_DIR/plugins/restfulapi/webapp"
+	    mkdir -p $VDR_RESTFULAPI_WEBAPP
+	    VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --webapp=\"$VDR_RESTFULAPI_WEBAPP\""
+	    VDR_ARG="$VDR_ARG -P 'restfulapi $VDR_RESTFULAPI_ARGS'"
+	fi
+
+	# vnsi/xvdr last
+	VDR_ARG="$VDR_ARG -P $VDR_PVR_PLUGIN"
+	
+    else
+
+        LIRC_PATH="/run/lirc/lircd"
+        VDR_ARG="$VDR_ARG -s $ADDON_DIR/bin/vdrpoweroff --vfat --watchdog=60 --lirc=$LIRC_PATH"
+
+	# keep softcam first
+	if [ "$VDR_ENABLE_SOFTCAM_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'dvbapi $VDR_DVBAPI_OPT_F'"
+	fi
+
+	if [ "$VDR_ENABLE_WIRBELSCAN_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
+	fi
+
+	if [ "$VDR_ENABLE_IPTV_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'iptv -d $VDR_IPTV_NUM_DEVICES_F'"
+	fi
+
+	if [ "$VDR_ENABLE_STREAMDEV_SERVER_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P streamdev-server"
+	fi
+
+	if [ "$VDR_ENABLE_STREAMDEV_CLIENT_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P streamdev-client"
+	fi
+
+	if [ "$VDR_ENABLE_LIVE_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'live -i $VDR_LIVE_IP_F -p $VDR_LIVE_PORT_F'"
+	fi
+
+	if [ "$VDR_ENABLE_EEPG_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P eepg"
+	fi
+
+	if [ "$VDR_ENABLE_EPGFIXER_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P epgfixer"
+	fi
+
+	if [ "$VDR_ENABLE_EPGSEARCH_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P epgsearch -P epgsearchonly -P quickepgsearch -P conflictcheckonly"
+	fi
+
+	if [ "$VDR_ENABLE_DUMMYDEVICE_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P dummydevice"
+	fi
+
+	if [ "$VDR_ENABLE_SATIP_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P satip"
+	fi
+
+	if [ "$VDR_ENABLE_XMLTV2VDR_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P 'xmltv2vdr --epgfile=$ADDON_CACHE_DIR/epg.db'"
+	    # xmltv2vdr needs /var/run/vdr
+	    grep -q " /var/run/vdr " /proc/mounts || ( mkdir -p /var/run/vdr && mount -t tmpfs -o size=10% tmpfs /var/run/vdr )
+	    #handle epgsources
+	    mkdir -p /var/lib/epgsources
+	    mkdir -p $ADDON_HOME/config/epgsources
+	    for source in `find $ADDON_DIR/config/epgsources -type f`; do
+		if [ ! -e $ADDON_HOME/config/epgsources/`basename $source` ] ; then
+    		    cp $source $ADDON_HOME/config/epgsources/
+		fi
+	    done
+	    for source in `find $ADDON_HOME/config/epgsources -type f`; do
+		cp $source /var/lib/epgsources
+	    done
+	fi
+
+	if [ "$VDR_ENABLE_RESTFULAPI_F" == "true" ]; then
+	    VDR_RESTFULAPI_ARGS="--ip $VDR_RESTFULAPI_IP_F --port $VDR_RESTFULAPI_PORT_F"
+	    VDR_RESTFULAPI_CHANNELLOGOS="$ADDON_CONFIG_DIR/plugins/restfulapi/logos"
+	    mkdir -p $VDR_RESTFULAPI_CHANNELLOGOS
+	    VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --channellogos=\"$VDR_RESTFULAPI_CHANNELLOGOS\""
+	    VDR_RESTFULAPI_WEBAPP="$ADDON_CONFIG_DIR/plugins/restfulapi/webapp"
+	    mkdir -p $VDR_RESTFULAPI_WEBAPP
+	    VDR_RESTFULAPI_ARGS="$VDR_RESTFULAPI_ARGS --webapp=\"$VDR_RESTFULAPI_WEBAPP\""
+	    VDR_ARG="$VDR_ARG -P 'restfulapi $VDR_RESTFULAPI_ARGS'"
+	fi
+    
+    fi
+
+}
+
+init_vdr_front_plugins() {
+
+    if [ "$VDR_ENABLE_FEMON" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P femon"
+    fi
+
+    if [ "$VDR_ENABLE_SYSTEMINFO" == "true" ]; then
+       VDR_SYSTEMINFO_SCRIPT="$ADDON_CONFIG_DIR/plugins/systeminfo/systeminfo.sh"
+       VDR_ARG="$VDR_ARG -P 'systeminfo -s $VDR_SYSTEMINFO_SCRIPT'"
+    fi
+
+    if [ "$VDR_ENABLE_SLEEPTIMER" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P sleeptimer"
+    fi
+
+    if [ "$VDR_ENABLE_FILEBROWSER" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P filebrowser"
+    fi
+
+    if [ "$VDR_ENABLE_LCDPROC" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P lcdproc"
+    fi
+
+    if [ "$VDR_ENABLE_TEXT2SKIN" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P text2skin"
+    fi
+
+    if [ "$VDR_ENABLE_SKINNOPACITY" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P skinnopacity"
+    fi
+
+    if [ "$VDR_ENABLE_SKINFLAT" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P skinflat"
+    fi
+
+    if [ "$VDR_ENABLE_SKINFLATPLUS" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P skinflatplus"
+    fi
+
+    if [ "$VDR_ENABLE_MENUORG" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P menuorg"
+    fi
+
+    if [ "$VDR_ENABLE_TVGUIDE" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P tvguide"
+    fi
+
+    if [ "$VDR_ENABLE_TVSCRAPER" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P tvscraper"
+    fi
+
+    if [ "$VDR_ENABLE_SKINDESIGNER" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P skindesigner"
+    fi
+
+    if [ "$VDR_ENABLE_WEATHERFORECAST" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P weatherforecast"
+    fi
+
+    if [ "$VDR_ENABLE_FAVORITES" == "true" ]; then
+       VDR_ARG="$VDR_ARG -P favorites"
+    fi
+
+}
+
+init_vdr_soft() {
+
+    init_vdr_front_plugins
+
+    if [ "$VDR_OUTPUT_VIDEO" == "auto" ]; then
+        VDR_ARG="$VDR_ARG -P 'softhddevice -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"    
+    elif [ "$VDR_OUTPUT_VIDEO" == "vdpau" ]; then
+        VDR_ARG="$VDR_ARG -P 'softhddevice -v vdpau -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"
+    else
+        VDR_ARG="$VDR_ARG -P 'softhddevice -v va-api -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"
+    fi
+}
+
+init_vdr_xine() {
+
+    if [ $(pidof vdr-sxfe) ]; then
+        killall -9 vdr-sxfe  > /dev/null 2>&1
+        while [ $(pidof vdr-sxfe) ]; do
+            sleep 1
+        done
+    fi
+
+    init_vdr_front_plugins
+
+    VDR_XINE_CONFIG="$ADDON_CONFIG_DIR/xine/config_xineliboutput"
+
+    if [ "$VDR_OUTPUT_VIDEO" == "auto" ]; then
+        VDR_ARG="$VDR_ARG -P 'xineliboutput -c --local=sxfe --video=auto --config=$VDR_XINE_CONFIG --audio=$VDR_SOUND_XINE $VDR_XINE_PARAM'" 
+    elif [ "$VDR_OUTPUT_VIDEO" == "vdpau" ]; then
+        VDR_ARG="$VDR_ARG -P 'xineliboutput -c --local=sxfe --video=vdpau --config=$VDR_XINE_CONFIG --audio=$VDR_SOUND_XINE $VDR_XINE_PARAM'"
+    else
+        VDR_ARG="$VDR_ARG -P 'xineliboutput -c --local=sxfe --video=vaapi --config=$VDR_XINE_CONFIG --audio=$VDR_SOUND_XINE $VDR_XINE_PARAM'"
+    fi
+}
+
+run_init() {
+
+    echo  "Starting VDR ..."
+
+    # start userspace DVB driver/addon
+    for driver_dvb in $(find /storage/.kodi/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
+	driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
+	logger -t VDR "### Loading userspace DVB driver: $driver_dvb_name ###"
+	# use ". " because of variable export
+	. $driver_dvb
+    done
+
+    # (wait for) at least 1 adapter (xbmc allows to set 0)
+    [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
+    [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+
+    if [ "$DVB_WAIT_FOR_FEINIT" == "true" ]; then
+	while [ true ] ; do
+	    if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ]; then
+    		break
+	    fi
+	    sleep 1
+	done
+    fi
+
+    init_vdr_plugins
+
+    fix_config
+
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ADDON_DIR/lib/tntnet:$ADDON_DIR/lib/tntdb
+}
+
+vdr_init
+
+if [ "$RUN_FRONT" == "true" ]; then
+
+    run_init
+
+    stop_tv_backend
+
+    if [ "$VDR_FRONT" == "soft" ]; then
+        init_vdr_soft
+    elif [ "$VDR_FRONT" == "xine" ]; then 
+        init_vdr_xine
+    else
+        exit
+    fi
+
+    eval DISPLAY=:0.0 LANG=$VDR_CHARSET_OVERRIDE exec vdr.bin $VDR_ARG &>$ADDON_LOG_FILE
+
+elif [ "$VDR_TYPE" != "frontend" ]; then
+
+    run_init   
+
+    eval LANG=$VDR_CHARSET_OVERRIDE exec vdr.bin $VDR_ARG &>$ADDON_LOG_FILE
+fi

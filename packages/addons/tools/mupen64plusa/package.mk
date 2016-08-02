@@ -18,7 +18,7 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="mupen64plusa"
+PKG_NAME="mupen64plus-addon"
 PKG_VERSION="2.5.0"
 PKG_REV="3"
 PKG_ARCH="any"

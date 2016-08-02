@@ -22,7 +22,9 @@ PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://winni.vdr-developer.org/epgsearch/"
-PKG_URL="https://projects.vdr-developer.org/git/vdr-plugin-epgsearch.git/snapshot/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_GIT_URL="https://projects.vdr-developer.org/git/vdr-plugin-epgsearch.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="yes"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
@@ -30,7 +32,6 @@ PKG_SHORTDESC="vdr-epgsearch"
 PKG_LONGDESC="vdr-epgsearch"
 
 PKG_IS_ADDON="no"
-
 PKG_AUTORECONF="no"
 
 make_target() {
@@ -49,7 +50,10 @@ post_make_target() {
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
 
+  cp --remove-destination $ROOT/$PKG_BUILD/libvdr-conflictcheckonly.so $ROOT/$PKG_BUILD/libvdr-conflictcheckonly.so.${VDR_APIVERSION}
   cp --remove-destination $ROOT/$PKG_BUILD/${LIB_NAME}.so $ROOT/$PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  cp --remove-destination $ROOT/$PKG_BUILD/libvdr-epgsearchonly.so $ROOT/$PKG_BUILD/libvdr-epgsearchonly.so.${VDR_APIVERSION}
+  cp --remove-destination $ROOT/$PKG_BUILD/libvdr-quickepgsearch.so $ROOT/$PKG_BUILD/libvdr-quickepgsearch.so.${VDR_APIVERSION}
   $STRIP libvdr-*.so*
 }
 
