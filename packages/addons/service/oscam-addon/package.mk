@@ -19,42 +19,41 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="oscam"
+PKG_NAME="oscam-addon"
 PKG_VERSION="11272"
 PKG_REV="94"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain pcsc-lite"
+PKG_URL=""
+PKG_DEPENDS_TARGET="toolchain oscam"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/multimedia"
-PKG_SHORTDESC="oscam: OSCam is Open Source Conditional Access Modul."
-PKG_LONGDESC="OSCam is Open Source Conditional Access Modul."
+PKG_SECTION="service.softcam"
+PKG_SHORTDESC="oscam (Version: $PKG_VERSION): OSCam is Open Source Conditional Access Modul."
+PKG_LONGDESC="oscam (Version: $PKG_VERSION): OSCam is Open Source Conditional Access Modul."
 PKG_DISCLAIMER="using oscam may be illegal in your country. if in doubt, do not install"
 
-PKG_IS_ADDON="no"
+PKG_IS_ADDON="yes"
+PKG_ADDON_TYPE="xbmc.service"
 PKG_AUTORECONF="no"
+PKG_ADDON_REPOVERSION="7.0"
 
-configure_target() {
-  cmake -DCMAKE_TOOLCHAIN_FILE=$CMAKE_CONF \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DLIBUSBDIR=$SYSROOT_PREFIX/usr \
-        -DWITH_SSL=0 \
-        -DHAVE_LIBCRYPTO=0 \
-        -DHAVE_DVBAPI=1 -DWITH_STAPI=0 \
-        -DWEBIF=1 \
-        -DWITH_DEBUG=0 \
-        -DOPTIONAL_INCLUDE_DIR=$SYSROOT_PREFIX/usr/include \
-        -DSTATIC_LIBUSB=1 \
-        -DCLOCKFIX=0 \
-        ..
+make_target() {
+  : # nothing to do here
 }
 
 makeinstall_target() {
-  : # nop
+  : # nothing to do here
 }
 
-makeinstall_target() {
-  : # nop
+addon() {
+  OSCAM_DIR=$(get_build_dir oscam)
+  PCSCLITE_DIR=$(get_build_dir pcsc-lite)
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $OSCAM_DIR/.$TARGET_NAME/oscam $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $OSCAM_DIR/.$TARGET_NAME/utils/list_smargo $ADDON_BUILD/$PKG_ADDON_ID/bin
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+    cp -P $PCSCLITE_DIR/.install_pkg/usr/lib/libpcsclite.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpcsclite.so.1
 }

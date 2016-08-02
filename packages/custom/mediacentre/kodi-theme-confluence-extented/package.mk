@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-theme-confluence-extented"
-PKG_VERSION="bb36346"
+PKG_VERSION="565041f"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -27,7 +27,7 @@ PKG_SITE="https://github.com/nkvoronov/skin.confluence-extented.git"
 PKG_GIT_URL="https://github.com/nkvoronov/skin.confluence-extented.git"
 PKG_GIT_BRANCH="jarvis"
 PKG_KEEP_CHECKOUT="yes"
-PKG_DEPENDS_TARGET="toolchain Python kodi kodi-addon-favourites kodi-addon-randomandlastitems kodi-addon-skinwidgets"
+PKG_DEPENDS_TARGET="toolchain Python kodi kodi-addon-favourites kodi-addon-randomandlastitems kodi-addon-skinwidgets kodi-addon-pvrfavourites"
 PKG_PRIORITY="optional"
 PKG_SECTION="custom/mediacentre"
 PKG_SHORTDESC="kodi-theme-Confluence-extented: KODI Mediacenter additional theme"
@@ -46,4 +46,8 @@ makeinstall_target() {
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis
     cp -PR $PKG_BUILD/skin.confluence-extented-jarvis/* $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis
+
+  rm -fR $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis/720p/service-OpenELEC-Settings-getPasskey.xml
+  rm -fR $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis/720p/service-OpenELEC-Settings-mainWindow.xml
+  rm -fR $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis/720p/service-OpenELEC-Settings-wizard.xml
 }

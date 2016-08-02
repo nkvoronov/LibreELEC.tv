@@ -105,8 +105,8 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  FFMPEG_TARGET := x86-linux-gcc
  endif
  
-+FFMPEG_HOST   := $(ARCH)-openelec-linux-gnu
-+FFMPEG_TARGET := $(ARCH)-openelec-linux-gnu
++FFMPEG_HOST   := $(ARCH)-libreelec-linux-gnu
++FFMPEG_TARGET := $(ARCH)-libreelec-linux-gnu
 +
  unexport CFLAGS
  unexport LDFLAGS

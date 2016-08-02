@@ -66,7 +66,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --python=$ROOT/$TOOLCHAIN/bin/python"
 
 post_unpack() {
-  sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER'~g'$PKG_VERSION'~openelec"/g' -i $PKG_BUILD/support/version
+  sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER'~g'$PKG_VERSION'~libreelec"/g' -i $PKG_BUILD/support/version
 }
 
 pre_configure_target() {

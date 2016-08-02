@@ -183,7 +183,7 @@
   TESTING="no"
 
 # OEM packages for OEM's (yes / no)
-  OEM_SUPPORT="no"
+  OEM_SUPPORT="yes"
 
 # build and install nano text editor (yes / no)
   NANO_EDITOR="yes"
@@ -234,28 +234,28 @@
 
 # TV Services
   TVHEADEND_SERVICE="yes"
-  VDR_SERVICE="yes"
+  VDR_SERVICE="no"
 
 # Tools
   ADD_ARCHIVERS_ENABLED="yes"
   DEV_TOOLS_ENABLED="yes"
   DVB_TOOLS_ENABLED="yes"
-  PHP_SUPPORT="yes"
+  PHP_SUPPORT="no"
 
 # Perl
   PERL_VERSION="5.18.2"
-  PERL_SUPPORT="yes"
+  PERL_SUPPORT="no"
 
 # EPG Updaters
-  EPGUpdaters_SUPPORT="yes"
+  EPGUpdaters_SUPPORT="no"
 
 # Lib Torrents
-  LIBTORRENTS_SUPPORT="yes"
+  LIBTORRENTS_SUPPORT="no"
 
 # Acestream Engine
-  ACESTREAM_SUPPORT="yes"
+  ACESTREAM_SUPPORT="no"
 
 # Other
-  GAME_EMULATORS="yes"
+  GAME_EMULATORS="no"
 
-  VLC_ENABLE="yes"
+  VLC_ENABLE="no"

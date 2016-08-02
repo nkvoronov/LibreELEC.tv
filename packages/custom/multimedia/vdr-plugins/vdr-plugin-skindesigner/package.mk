@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-skindesigner"
-PKG_VERSION="4f3c24d"
+PKG_VERSION="ead8056"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -57,9 +57,9 @@ make_target() {
     cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/*.h $SYSROOT_PREFIX/usr/include/libskindesignerapi
   mkdir -p $SYSROOT_PREFIX/usr/lib
     rm -f $SYSROOT_PREFIX/usr/lib/libskindesignerapi.*
-    cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/libskindesignerapi.so.0.1.1 $SYSROOT_PREFIX/usr/lib
-    ln -s libskindesignerapi.so.0.1.1 $SYSROOT_PREFIX/usr/lib/libskindesignerapi.so.0
-    ln -s libskindesignerapi.so.0.1.1 $SYSROOT_PREFIX/usr/lib/libskindesignerapi.so
+    cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib
+    ln -s libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib/libskindesignerapi.so.0
+    ln -s libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib/libskindesignerapi.so
   mkdir -p $SYSROOT_PREFIX/usr/lib/pkgconfig
     cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/libskindesignerapi.pc $SYSROOT_PREFIX/usr/lib/pkgconfig
 

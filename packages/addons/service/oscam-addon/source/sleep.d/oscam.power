@@ -1,6 +1,8 @@
+#!/bin/sh
+
 ################################################################################
 #      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -18,24 +20,23 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="libevent"
-PKG_VERSION="2.0.22-stable"
-PKG_REV="1"
-PKG_ARCH="any"
-PKG_LICENSE="BSD"
-PKG_SITE="http://libevent.org/"
-PKG_URL="https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain libressl zlib"
-PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
-PKG_SHORTDESC="libevent: A library for asynchronous event notification"
-PKG_LONGDESC="The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. It is meant to replace the asynchronous event loop found in event-driven network servers."
+. /etc/profile
 
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="yes"
+oe_setup_addon service.softcam.oscam-addon
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared --enable-static --enable-openssl"
+SERVICE="service.softcam.oscam-addon.service"
 
-post_makeinstall_target() {
-  rm -r $INSTALL
-}
+if [ "$OSCAM_RESTART_ON_RESUME" == "true" ] ; then
+  case "$1" in
+    pre)
+      if systemctl is-active "$SERVICE" &>/dev/null ; then
+        systemctl stop "$SERVICE"
+      fi
+      ;;
+    post)
+      if systemctl is-enabled "$SERVICE" &>/dev/null ; then
+        systemctl start "$SERVICE"
+      fi
+      ;;
+  esac
+fi

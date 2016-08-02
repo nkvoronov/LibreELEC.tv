@@ -1,0 +1,74 @@
+#!/bin/sh
+
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
+#      Copyright (C) 2011-2012 Gregor Fuis (gujs@openelec.tv)
+#
+#  This Program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This Program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.tv; see the file COPYING.  If not, write to the
+#  Free Software Foundation, 51 Franklin Street, Suite 500, Boston, MA 02110, USA.
+#  http://www.gnu.org/copyleft/gpl.html
+################################################################################
+
+. /etc/profile
+
+oe_setup_addon service.softcam.oscam-addon
+
+OSCAM_CONF="$ADDON_HOME/config"
+OSCAM_LOG="$ADDON_HOME/log"
+
+if [ ! -d "$OSCAM_CONF" ]; then
+  mkdir -p $OSCAM_CONF
+    cp -PR $ADDON_DIR/config/* $OSCAM_CONF
+fi
+
+mkdir -p $OSCAM_LOG
+mkdir -p $OSCAM_LOG/cw
+mkdir -p $OSCAM_LOG/emm
+
+if [ "$OSCAM_DEBUG" == "" ] ; then
+  DEBUG_LEVEL="1"
+fi
+
+OSCAM_ARG="-d $OSCAM_DEBUG -r 2 -u -c $OSCAM_CONF"
+
+chmod a+x $ADDON_DIR/bin/*
+chmod a+x $ADDON_DIR/sleep.d/*
+
+if [ "$OSCAM_WAIT_FOR_NET" == "true" ] ; then
+  cm-online $OSCAM_WAIT_FOR_NET_TIME
+fi
+
+# start userspace DVB driver/addon
+for driver_dvb in $(find /storage/.kodi/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
+  driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
+  logger -t OSCAM "### Loading userspace DVB driver: $driver_dvb_name ###"
+  # use ". " because of variable export
+  . $driver_dvb
+done
+
+# (wait for) at least 1 adapter (xbmc allows to set 0)
+[ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
+[ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+
+if [ "$DVB_WAIT_FOR_FEINIT" == "true" ] ; then
+  while [ true ] ; do
+    if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ] ; then
+      break
+    fi
+    sleep 1
+  done
+fi
+
+exec oscam $OSCAM_ARG > /dev/null 2>&1
