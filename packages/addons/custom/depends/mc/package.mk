@@ -62,19 +62,7 @@ pre_configure_target() {
   export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
 }
 
-post_install() {
-  mkdir -p $INSTALL/usr/share/mc/bin
-  ln -s /usr/libexec/mc/mc-wrapper.csh $INSTALL/usr/share/mc/bin/mc-wrapper.csh
-  ln -s /usr/libexec/mc/mc-wrapper.sh $INSTALL/usr/share/mc/bin/mc-wrapper.sh
-  ln -s /usr/libexec/mc/mc.csh $INSTALL/usr/share/mc/bin/mc.csh
-  ln -s /usr/libexec/mc/mc.sh $INSTALL/usr/share/mc/bin/mc.sh
-  mkdir -p $INSTALL/usr/share/locale
-  for fgmo in `ls $ROOT/$PKG_BUILD/.$TARGET_NAME/po/*.gmo`;do
-    fname=`basename $fgmo .gmo`
-    mkdir -p $INSTALL/usr/share/locale/$fname
-    mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-    cp -p $fgmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/mc.mo
-  done
+post_makeinstall_target() {
   mkdir -p $INSTALL/usr/share/mc
-    cp -P $PKG_DIR/config/mc.lib $INSTALL/usr/share/mc
+  cp -P $PKG_DIR/config/mc.lib $INSTALL/usr/share/mc
 }

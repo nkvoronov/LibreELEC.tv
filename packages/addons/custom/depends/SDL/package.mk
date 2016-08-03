@@ -212,9 +212,5 @@ pre_configure_target() {
 }
 
 post_makeinstall_target() {
-  #mkdir -p $ROOT/$TOOLCHAIN/bin
-    #cp $SYSROOT_PREFIX/usr/bin/sdl-config $ROOT/$TOOLCHAIN/bin
-    #$SED "s:\(['=\" ]\)/usr:\\1$SYSROOT_PREFIX/usr:g" $SYSROOT_PREFIX/usr/bin/sdl-config
-
   rm -rf $INSTALL/usr/bin
 }

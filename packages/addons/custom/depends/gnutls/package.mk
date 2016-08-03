@@ -18,33 +18,24 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="libebml"
-PKG_VERSION="1.3.0"
+PKG_NAME="gnutls"
+PKG_VERSION="3.4.5"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://dl.matroska.org/downloads/libebml"
-PKG_URL="http://dl.matroska.org/downloads/libebml/$PKG_NAME-$PKG_VERSION.tar.bz2"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_SITE="http://www.gnutls.org"
+PKG_URL="ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_DEPENDS_TARGET="toolchain nettle gmp libidn"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
-PKG_SHORTDESC="The libebml library allows one to read and write files using EBML (the Extensible Binary Meta Language), a binary pendant to XML. Using libebml makes it easier to extend a file format without breaking support in older parsers."
-PKG_LONGDESC="The libebml library allows one to read and write files using EBML (the Extensible Binary Meta Language), a binary pendant to XML. Using libebml makes it easier to extend a file format without breaking support in older parsers."
+PKG_SECTION="devel"
+PKG_SHORTDESC="GnuTLS is a portable library which implements the Transport Layer Security (TLS 1.0, 1.1, 1.2) and Secure Sockets Layer (SSL) 3.0 and Datagram Transport Layer Security (DTLS 1.0, 1.2) protocols."
+PKG_LONGDESC="GnuTLS is a portable library which implements the Transport Layer Security (TLS 1.0, 1.1, 1.2) and Secure Sockets Layer (SSL) 3.0 and Datagram Transport Layer Security (DTLS 1.0, 1.2) protocols."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_AUTORECONF="yes"
 
-make_target() {
-  make -C make/linux
-}
-
-makeinstall_target() {
-  make install -C make/linux prefix=$ROOT/$PKG_BUILD/.install_pkg/usr
-}
+PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared --with-included-libtasn1 --without-p11-kit"
 
 post_makeinstall_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/include/ebml
-    cp -PR $ROOT/$PKG_BUILD/ebml/* $SYSROOT_PREFIX/usr/include/ebml
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/make/linux/{*.a,*.so*} $SYSROOT_PREFIX/usr/lib
+  rm -rf $INSTALL/usr/bin
 }

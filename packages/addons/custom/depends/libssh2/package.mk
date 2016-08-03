@@ -18,24 +18,19 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="nettle"
-PKG_VERSION="3.1.1"
+PKG_NAME="libssh2"
+PKG_VERSION="1.4.3"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://www.lysator.liu.se/~nisse/nettle"
-PKG_URL="https://ftp.gnu.org/gnu/nettle/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_SITE="http://libssh2.org"
+PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_DEPENDS_TARGET="toolchain libgcrypt zlib"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
-PKG_SHORTDESC="The Nettle package contains the low-level cryptographic library that is designed to fit easily in many contexts."
-PKG_LONGDESC="The Nettle package contains the low-level cryptographic library that is designed to fit easily in many contexts."
-
+PKG_SECTION="network"
+PKG_SHORTDESC="libssh2 is a client-side C library implementing the SSH2 protocol. It supports regular terminal, SCP and SFTP sessions; port forwarding; password, key-based and keyboard-interactive authentication."
+PKG_LONGDESC="libssh2 is a client-side C library implementing the SSH2 protocol. It supports regular terminal, SCP and SFTP sessions; port forwarding; password, key-based and keyboard-interactive authentication."
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared --enable-mini-gmp"
-
-post_makeinstall_target() {
-  rm -rf $INSTALL/usr/bin
-}
+PKG_CONFIGURE_OPTS_TARGET="--disable-shared --enable-static --with-libgcrypt --disable-rpath"

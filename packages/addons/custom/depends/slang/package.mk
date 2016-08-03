@@ -25,7 +25,7 @@ PKG_SITE="http://www.jedsoft.org/slang/"
 PKG_URL="ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v2.2/$PKG_NAME-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
+PKG_SECTION="devel"
 PKG_SHORTDESC="slang: library for the S-Lang extension language"
 PKG_LONGDESC="S-Lang is an interpreted language and a programming library. The S-Lang language was designed so that it can be easily embedded into a program to provide the program with a powerful extension language. The S-Lang library, provided in this package, provides the S-Lang extension language. S-Lang's syntax resembles C, which makes it easy to recode S-Lang procedures in C if you need to." 
 

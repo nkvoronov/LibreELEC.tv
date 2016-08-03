@@ -18,19 +18,24 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="libssh2"
-PKG_VERSION="1.4.3"
+PKG_NAME="a52dec"
+PKG_VERSION="0.7.4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://libssh2.org"
+PKG_SITE="http://liba52.sourceforge.net"
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain libgcrypt zlib"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/network"
-PKG_SHORTDESC="libssh2 is a client-side C library implementing the SSH2 protocol. It supports regular terminal, SCP and SFTP sessions; port forwarding; password, key-based and keyboard-interactive authentication."
-PKG_LONGDESC="libssh2 is a client-side C library implementing the SSH2 protocol. It supports regular terminal, SCP and SFTP sessions; port forwarding; password, key-based and keyboard-interactive authentication."
+PKG_SECTION="multimedia"
+PKG_SHORTDESC="library for decoding ATSC A/52 streams liba52 is a free library for decoding ATSC A/52 streams. The A/52 standard is used in a variety of applications, including digital television and DVD. It is also known as AC-3."
+PKG_LONGDESC="library for decoding ATSC A/52 streams liba52 is a free library for decoding ATSC A/52 streams. The A/52 standard is used in a variety of applications, including digital television and DVD. It is also known as AC-3."
+
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared --enable-static --with-libgcrypt --disable-rpath"
+PKG_CONFIGURE_OPTS_TARGET="--disable-shared --enable-static"
+
+post_makeinstall_target() {
+  rm -rf $INSTALL/usr/bin
+}

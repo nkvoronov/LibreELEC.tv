@@ -237,9 +237,9 @@
   VDR_SERVICE="yes"
 
 # Tools
-  ADD_ARCHIVERS_ENABLED="no"
-  DEV_TOOLS_ENABLED="no"
+  SYS_TOOLS_ENABLED="yes"
   DVB_TOOLS_ENABLED="no"
+
   PHP_SUPPORT="no"
 
 # Perl

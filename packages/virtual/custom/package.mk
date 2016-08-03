@@ -90,16 +90,12 @@ if [ "$VDR_SERVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-service"
 fi
 
-if [ "$ADD_ARCHIVERS_ENABLED" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET unrar p7zip"
-fi
-
-if [ "$DEV_TOOLS_ENABLED" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mc htop evtest hddtemp lm_sensors"
+if [ "$SYS_TOOLS_ENABLED" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tools-system"
 fi
 
 if [ "$DVB_TOOLS_ENABLED" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET scan-s2 szap-s2"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tools-dvb"
 fi
 
 if [ "$PHP_SUPPORT" = yes ]; then
