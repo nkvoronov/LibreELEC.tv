@@ -2,7 +2,7 @@
 
 ################################################################################
 #      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 
 . /etc/profile
 
-oe_setup_addon service.multimedia.vdra
+oe_setup_addon service.vdr-addon
 
 VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
 VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
@@ -30,17 +30,17 @@ VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
 if [ "$VDR_TYPE" != "service" ]; then
 
     if [ -f $VDR_RUN_FILE ]; then
-        systemctl stop service.multimedia.vdra.service
+        systemctl stop service.vdr-addon.service
     fi
 
     touch $VDR_FRONT_RUN_FILE
 
-    systemctl start service.multimedia.vdra.service
+    systemctl start service.multimedia.vdr-addon.service
 
     systemctl stop kodi.service
 
     sleep 4
 
-    systemctl restart service.multimedia.vdra.service
+    systemctl restart service.vdr-addon.service
 
 fi

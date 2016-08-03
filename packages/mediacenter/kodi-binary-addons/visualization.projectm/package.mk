@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="visualization.projectm"
-PKG_VERSION="8ca7efb"
+PKG_VERSION="dcd7179"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/notspiff/visualization.projectm"
-PKG_URL="https://github.com/notspiff/visualization.projectm/archive/$PKG_VERSION.tar.gz"
+PKG_GIT_URL="https://github.com/notspiff/visualization.projectm"
+PKG_GIT_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libprojectM"
 PKG_PRIORITY="optional"
 PKG_SECTION=""

@@ -20,7 +20,7 @@
 
 . /etc/profile
 
-oe_setup_addon service.multimedia.vdra
+oe_setup_addon service.vdr-addon
 
 VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
 VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
@@ -84,8 +84,8 @@ MYDATA
 
 stop_tv_backend() {
 
-    if systemctl is-active service.multimedia.tvheadenda.service &>/dev/null ; then
-        systemctl stop service.multimedia.tvheadenda.service
+    if systemctl is-active service.tvheadend-addon.service &>/dev/null ; then
+        systemctl stop service.tvheadend-addon.service
     fi
 
     if [ "$VDR_TYPE" == "frontend" ]; then
@@ -364,7 +364,7 @@ init_vdr_soft() {
     init_vdr_front_plugins
 
     if [ "$VDR_OUTPUT_VIDEO" == "auto" ]; then
-        VDR_ARG="$VDR_ARG -P 'softhddevice -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"    
+        VDR_ARG="$VDR_ARG -P 'softhddevice -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"
     elif [ "$VDR_OUTPUT_VIDEO" == "vdpau" ]; then
         VDR_ARG="$VDR_ARG -P 'softhddevice -v vdpau -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"
     else

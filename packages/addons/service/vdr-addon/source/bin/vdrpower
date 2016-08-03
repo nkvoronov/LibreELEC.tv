@@ -2,7 +2,7 @@
 
 ################################################################################
 #      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 
 . /etc/profile
 
-oe_setup_addon service.multimedia.vdra
+oe_setup_addon service.vdr-addon
 
 VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
 VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
@@ -45,8 +45,8 @@ if [ -f "$VDR_FRONT_RUN_FILE" ]; then
         ;;
         -e) # exit to XBMC
 
-            if systemctl is-enabled service.multimedia.tvheadenda.service &>/dev/null ; then
-                systemctl start service.multimedia.tvheadenda.service
+            if systemctl is-enabled service.tvheadend-addon.service &>/dev/null ; then
+                systemctl start service.tvheadend-addon.service
             fi
 
             sleep 4
@@ -55,7 +55,7 @@ if [ -f "$VDR_FRONT_RUN_FILE" ]; then
 
             systemctl restart kodi.service
 
-            systemctl restart service.multimedia.vdra.service
+            systemctl restart service.vdr-addon.service
         ;;
     esac
 fi

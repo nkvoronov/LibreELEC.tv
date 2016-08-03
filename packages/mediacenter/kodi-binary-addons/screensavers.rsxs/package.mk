@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="screensavers.rsxs"
-PKG_VERSION="3241d29"
+PKG_VERSION="781f76f"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_URL="https://github.com/notspiff/screensavers.rsxs/archive/$PKG_VERSION.tar.gz"
+PKG_GIT_URL="https://github.com/notspiff/screensavers.rsxs"
+PKG_GIT_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libXt libXmu"
 PKG_PRIORITY="optional"
 PKG_SECTION=""

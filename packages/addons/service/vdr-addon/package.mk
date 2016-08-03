@@ -720,16 +720,16 @@ addon() {
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $JANSSON_DIR/.install_pkg/usr/lib/libjansson.so.4.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libjansson.so.4
       cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
-      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10000.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10200.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
       cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
       cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
+      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3400.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.3800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.3800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.3800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.3800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
       cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
 

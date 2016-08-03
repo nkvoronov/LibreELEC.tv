@@ -75,7 +75,7 @@ if [ "$LOCALES_SUPPORT" = yes ]; then
 fi
 
 if [ "$TRANSMISSION_SERVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET transmission"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET transmission-service"
 fi
 
 if [ "$OSCAM_SERVICE" = yes ]; then
