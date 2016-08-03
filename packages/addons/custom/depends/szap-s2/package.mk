@@ -35,8 +35,5 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/bin
-    cp $ROOT/$PKG_BUILD/szap-s2 $INSTALL/usr/bin
-    cp $ROOT/$PKG_BUILD/tzap-t2 $INSTALL/usr/bin
+  : # nop
 }
-

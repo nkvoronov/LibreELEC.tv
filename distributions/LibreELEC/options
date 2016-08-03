@@ -238,7 +238,7 @@
 
 # Tools
   SYS_TOOLS_ENABLED="yes"
-  DVB_TOOLS_ENABLED="no"
+  DVB_TOOLS_ENABLED="yes"
 
   PHP_SUPPORT="no"
 

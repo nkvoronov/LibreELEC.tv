@@ -35,13 +35,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/bin
-    cp -P $ROOT/$PKG_BUILD/scan-s2 $INSTALL/usr/bin
-
-  mkdir -p $INSTALL/usr/share/scan-s2
-    cp -pR $ROOT/$PKG_BUILD/atsc $INSTALL/usr/share/scan-s2
-    cp -pR $ROOT/$PKG_BUILD/dvb-c $INSTALL/usr/share/scan-s2
-    cp -pR $ROOT/$PKG_BUILD/dvb-s $INSTALL/usr/share/scan-s2
-    cp -pR $ROOT/$PKG_BUILD/dvb-t $INSTALL/usr/share/scan-s2
+  : # nop
 }
+
 
