@@ -45,7 +45,7 @@ makeinstall_target() {
 addon() {
   VLC_DIR=$(get_build_dir_usr vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
-  QT4=$(get_build_dir qt4)
+  QT4=$(get_build_dir qt)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
   LIB_NCURSESW=$(get_build_dir ncursesw6)

@@ -41,3 +41,16 @@ fi
 PKG_CONFIGURE_OPTS_TARGET="--enable-static \
                            --disable-shared \
                            $FIXED_POINT"
+
+pre_configure_target() {
+
+  export CFLAGS="$CFLAGS -fPIC -DPIC"
+  export CXXFLAGS="$CXXFLAGS -fPIC -DPIC"
+  export LDFLAGS="$LDFLAGS -fPIC -DPIC"
+
+# ffmpeg fails building with LTO support
+  strip_lto
+
+# ffmpeg fails running with GOLD support
+  strip_gold
+}

@@ -240,22 +240,23 @@
   SYS_TOOLS_ENABLED="yes"
   DVB_TOOLS_ENABLED="yes"
 
-  PHP_SUPPORT="no"
+# PHP
+  PHP_SUPPORT="yes"
 
 # Perl
   PERL_VERSION="5.18.2"
-  PERL_SUPPORT="no"
+  PERL_SUPPORT="yes"
 
 # EPG Updaters
-  EPGUpdaters_SUPPORT="no"
+  EPGUpdaters_SUPPORT="yes"
 
 # Lib Torrents
-  LIBTORRENTS_SUPPORT="no"
+  LIBTORRENTS_SUPPORT="yes"
 
 # Acestream Engine
-  ACESTREAM_SUPPORT="no"
+  ACESTREAM_SUPPORT="yes"
 
 # Other
-  GAME_EMULATORS="no"
+  GAME_EMULATORS="yes"
 
   VLC_ENABLE="no"

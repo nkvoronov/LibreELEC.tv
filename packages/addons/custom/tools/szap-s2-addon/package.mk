@@ -48,7 +48,7 @@ addon() {
   SZAPS2_DIR=$(get_build_dir szap-s2)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -PR $SZAPS2_DIR/.install_pkg/usr/bin/szap-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -PR $SZAPS2_DIR/.install_pkg/usr/bin/tzap-t2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -PR $SZAPS2_DIR/szap-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -PR $SZAPS2_DIR/tzap-t2 $ADDON_BUILD/$PKG_ADDON_ID/bin
 
 }

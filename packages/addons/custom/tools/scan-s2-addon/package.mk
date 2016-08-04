@@ -48,8 +48,10 @@ addon() {
   SCANS2_DIR=$(get_build_dir scan-s2)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -PR $SCANS2_DIR/.install_pkg/usr/bin/scan-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -PR $SCANS2_DIR/scan-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
-    cp -PR $SCANS2_DIR/.install_pkg/usr/share/scan-s2/* $ADDON_BUILD/$PKG_ADDON_ID/share
-
+    cp -PR $SCANS2_DIR/atsc $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -PR $SCANS2_DIR/dvb-c $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -PR $SCANS2_DIR/dvb-s $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -PR $SCANS2_DIR/dvb-t $ADDON_BUILD/$PKG_ADDON_ID/share
 }

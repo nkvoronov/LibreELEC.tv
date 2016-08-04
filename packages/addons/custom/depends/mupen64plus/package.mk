@@ -57,7 +57,6 @@ post_install() {
   mkdir -p $INSTALL/usr/lib
     cp -P $PKG_BUILD/test/libmupen64plus.so.* $INSTALL/usr/lib
     cp -P $PKG_BUILD/test/mupen64plus-*.so $INSTALL/usr/lib
-    cp -P $ROOT/$BUILD/SDL2-2.0.3/.x86_64-openelec-linux-gnu/build/.libs/libSDL2-2.0.so.* $INSTALL/usr/lib
 
   mkdir -p $INSTALL/usr/config/mupen64plus
     cp -P $PKG_DIR/config/* $INSTALL/usr/config/mupen64plus
