@@ -25,7 +25,7 @@ PKG_SITE="http://www.openelec.tv"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/multimedia"
+PKG_SECTION="service"
 PKG_SHORTDESC="vdr: A powerful DVB TV application"
 PKG_LONGDESC="This project describes how to build your own digital satellite receiver and video disk recorder. It is based mainly on the DVB-S digital satellite receiver card, which used to be available from Fujitsu Siemens and the driver software developed by the LinuxTV project."
 

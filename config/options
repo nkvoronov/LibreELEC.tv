@@ -43,6 +43,11 @@ LINUX_DEPENDS="$PROJECT_DIR/$PROJECT/linux/linux.$TARGET_ARCH.conf $ROOT/package
    . $DISTRO_DIR/$DISTRO/options
  fi
 
+# read distro custom options if available
+ if [ -f "$DISTRO_DIR/$DISTRO/options_custom" ]; then
+   . $DISTRO_DIR/$DISTRO/options_custom
+ fi
+
 # read project options if available
  if [ -f "$PROJECT_DIR/$PROJECT/options" ]; then
    . $PROJECT_DIR/$PROJECT/options

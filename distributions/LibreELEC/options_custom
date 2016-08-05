@@ -1,0 +1,53 @@
+### CUSTOM OPTIONS ###
+  DISTRO_CUSTOM_SRC="https://dl.dropboxusercontent.com/u/6711518/packages"
+
+# Locales
+  LOCALES_SUPPORT="yes"
+
+# Libxcb extention
+  LIBXCB_EXT="yes"
+
+# KODI addons
+  KODI_ADDON_LCD="yes"
+  KODI_ADDON_TRANSMISSION="yes"
+  KODI_ADDON_AUDIO_MIXER="yes"
+  KODI_ADDON_RSS_EDITOR="yes"
+  KODI_ADDON_VDRFRONT="yes"
+  KODI_THEME_CONFLUENCE_PLOOD="yes"
+  KODI_THEME_CONFLUENCE_EXTENTED="yes"
+  KODI_THEME_ESTUARY="yes"
+
+  OPENELEC_DEV_UPDATE="yes"
+
+# Services
+  TRANSMISSION_SERVICE="yes"
+  OSCAM_SERVICE="yes"
+
+# TV Services
+  TVHEADEND_SERVICE="yes"
+  VDR_SERVICE="yes"
+
+# Tools
+  SYS_TOOLS_ENABLED="yes"
+  DVB_TOOLS_ENABLED="yes"
+
+# PHP
+  PHP_SUPPORT="yes"
+
+# Perl
+  PERL_VERSION="5.18.2"
+  PERL_SUPPORT="yes"
+
+# EPG Updaters
+  EPGUpdaters_SUPPORT="yes"
+
+# Lib Torrents
+  LIBTORRENTS_SUPPORT="yes"
+
+# Acestream Engine
+  ACESTREAM_SUPPORT="yes"
+
+# Other
+  GAME_EMULATORS="yes"
+
+  VLC_ENABLE="yes"

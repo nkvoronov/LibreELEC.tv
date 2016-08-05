@@ -27,7 +27,7 @@ PKG_SITE=""
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/mediacentre"
+PKG_SECTION="mediacentre"
 PKG_SHORTDESC="run vdr front addon for KODI."
 PKG_LONGDESC="This addon allows vdr ftont KODI."
 

@@ -25,7 +25,7 @@ PKG_SITE="http://cpansearch.perl.org/"
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain perl Test-Inter"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
+PKG_SECTION="devel"
 PKG_SHORTDESC="Perl Date manipulation routines"
 PKG_LONGDESC="Perl Date manipulation routines"
 

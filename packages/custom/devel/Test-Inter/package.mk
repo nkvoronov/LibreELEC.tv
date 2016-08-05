@@ -25,7 +25,7 @@ PKG_SITE="http://cpansearch.perl.org/"
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain perl"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
+PKG_SECTION="devel"
 PKG_SHORTDESC="Test::Inter - framework for more readable interactive test scripts"
 PKG_LONGDESC="Test::Inter - framework for more readable interactive test scripts"
 

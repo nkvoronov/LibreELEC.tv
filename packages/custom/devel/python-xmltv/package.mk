@@ -27,7 +27,7 @@ PKG_SITE="https://bitbucket.org/jfunk/python-xmltv"
 PKG_URL="https://pypi.python.org/packages/source/p/python-xmltv/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain Python distutilscross:host"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/devel"
+PKG_SECTION="devel"
 PKG_SHORTDESC="A Python Module for Reading and Writing XMLTV Files"
 PKG_LONGDESC="A Python Module for Reading and Writing XMLTV Files"
 

@@ -27,7 +27,7 @@ PKG_SITE="https://github.com/XBMC-Addons/service.skin.widgets.git"
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/mediacentre"
+PKG_SECTION="mediacentre"
 PKG_SHORTDESC="service.skin.widgets"
 PKG_LONGDESC="service.skin.widgets"
 

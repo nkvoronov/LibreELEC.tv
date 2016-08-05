@@ -27,7 +27,7 @@ PKG_SITE=""
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/mediacentre"
+PKG_SECTION="mediacentre"
 PKG_SHORTDESC="HTML/XML parser for quick-turnaround applications like screen-scraping"
 PKG_LONGDESC="Beautiful Soup parses arbitrarily invalid SGML and provides a variety of methods and Pythonic idioms for iterating and searching the parse tree."
 

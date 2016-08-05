@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="tools-system"
-PKG_VERSION=""
+PKG_VERSION="1"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -25,7 +25,7 @@ PKG_SITE=""
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION="virtual"
+PKG_SECTION="tools"
 PKG_SHORTDESC="A bundle of system tools and programs"
 PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, jq, lm_sensors, lshw, mrxvt, mtpfs, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
 

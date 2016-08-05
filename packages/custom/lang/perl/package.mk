@@ -25,7 +25,7 @@ PKG_SITE="http://www.cpan.org/"
 PKG_URL="http://www.cpan.org/src/5.0/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION="custom/lang"
+PKG_SECTION="lang"
 PKG_SHORTDESC="Perl is a high-level programming language"
 PKG_LONGDESC="Perl is a high-level programming language"
 
