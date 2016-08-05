@@ -45,7 +45,7 @@ makeinstall_target() {
 addon() {
   VLC_DIR=$(get_build_dir_usr vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
-  QT4=$(get_build_dir qt)
+  QT4=$(get_build_dir qt4)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
   LIB_NCURSESW=$(get_build_dir ncursesw6)
@@ -54,12 +54,12 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
-    cp -P $QT4/bin/qtconfig $ADDON_BUILD/$PKG_ADDON_ID/bin
+    #cp -P $QT4/bin/qtconfig $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    cp -P $QT4/lib/libQtCore.so.4.8.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
-    cp -P $QT4/lib/libQtGui.so.4.8.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4
+    cp -P $QT4/lib/libQtCore.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
+    cp -P $QT4/lib/libQtGui.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
@@ -80,9 +80,9 @@ addon() {
     cp -PR $QT4/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins
     rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins/graphicssystems/*.prl
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
-    cp -P $QT4/translations/qt_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
-    cp -P $QT4/translations/qvfb_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
+  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
+    #cp -P $QT4/translations/qt_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
+    #cp -P $QT4/translations/qvfb_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/

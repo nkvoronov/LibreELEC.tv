@@ -41,6 +41,9 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix $QTDIR \
                            -docdir $QTDIR/share/doc/qt4 \
                            -translationdir $QTDIR/share/qt4/translations \
                            -xplatform qws/linux-libreelec-g++ \
+                           -make libs \
+                           -force-pkg-config \
+                           -release \
                            -confirm-license \
                            -opensource \
                            -fast \
@@ -57,20 +60,26 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix $QTDIR \
                            -no-script \
                            -no-scripttools \
                            -no-javascript-jit \
-                           -qt-zlib \
-                           -qt-libtiff \
-                           -qt-libpng \
-                           -qt-libjpeg \
-                           -qt-libmng \
+                           -no-neon \
+                           -system-zlib \
+                           -no-gif \
+                           -no-libtiff \
+                           -no-libpng \
+                           -no-libmng \
+                           -no-libjpeg \
+                           -no-openssl \
                            -no-rpath \
+                           -silent \
                            -optimized-qmake \
-                           -dbus-linked \
+                           -no-nis \
+                           -no-cups \
+                           -no-pch \
+                           -no-dbus \
                            -reduce-relocations \
+                           -reduce-exports \
                            -no-separate-debug-info \
-                           -verbose \
-                           -no-nas-sound \
-                           -no-openvg \
-                           -fontconfig \
+                           -no-fontconfig \
+                           -no-glib \
                            -nomake examples \
                            -nomake demos \
                            -embedded $TARGET_ARCH"
@@ -102,9 +111,7 @@ configure_target() {
     ./configure $PKG_CONFIGURE_OPTS_TARGET
 }
 
-
-post_install() {
-
+post_makeinstall_target() {
   for file in $QTDIR/lib/pkgconfig/Qt*.pc; do
     sed -i -r 's/prefix=\//qtdir=\//g' $file
     sed -i -r 's/exec_prefix=\$\{prefix\}/exec_prefix=\$\{qtdir\}/g' $file
@@ -117,9 +124,11 @@ post_install() {
   for file in $QTDIR/lib/libQt*.prl; do
     sed -r -e '/^QMAKE_PRL_BUILD_DIR/d'  -e 's/(QMAKE_PRL_LIBS =).*/\1/' -i $file
   done
+}
 
-  mkdir -p $INSTALL/usr/bin
-    cp -P $PKG_BUILD/bin/qtconfig $INSTALL/usr/bin
+post_install() {
+  #mkdir -p $INSTALL/usr/bin
+    #cp -P $PKG_BUILD/bin/qtconfig $INSTALL/usr/bin
 
   mkdir -p $INSTALL/usr/lib
     cp -P $PKG_BUILD/lib/libQt*.so* $INSTALL/usr/lib
@@ -133,7 +142,7 @@ post_install() {
     cp -PR $PKG_BUILD/plugins/* $INSTALL/usr/lib/qt4/plugins
     rm -f $INSTALL/usr/lib/qt4/plugins/graphicssystems/*.prl
 
-  mkdir -p $INSTALL/usr/share/qt4/translations
-    cp -P $PKG_BUILD/translations/qt_*.qm $INSTALL/usr/share/qt4/translations
-    cp -P $PKG_BUILD/translations/qvfb_*.qm $INSTALL/usr/share/qt4/translations
+  #mkdir -p $INSTALL/usr/share/qt4/translations
+    #cp -P $PKG_BUILD/translations/qt_*.ts $INSTALL/usr/share/qt4/translations
+    #cp -P $PKG_BUILD/translations/qvfb_*.ts $INSTALL/usr/share/qt4/translations
 }
