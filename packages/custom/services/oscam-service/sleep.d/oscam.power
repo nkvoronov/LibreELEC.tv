@@ -22,7 +22,7 @@
 
 . /etc/profile
 
-SERVICE="softcam.service"
+SERVICE="oscam.service"
 
 if [ "$RESTART_ON_RESUME" == "true" ] ; then
   case "$1" in

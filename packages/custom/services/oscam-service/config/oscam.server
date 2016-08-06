@@ -5,7 +5,7 @@
 label                         = biss
 description                   = Contant codes for BISS
 protocol                      = constcw
-device                        = /storage/.config/oscam/default/constant.cw
+device                        = /storage/.config/oscam/constant.cw
 caid                          = 2600
 ident                         = 2600:000000
 group                         = 1,2,5

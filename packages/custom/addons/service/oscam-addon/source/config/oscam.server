@@ -5,7 +5,7 @@
 label                         = biss
 description                   = Contant codes for BISS
 protocol                      = constcw
-device                        = /storage/.kodi/userdata/addon_data/service.softcam.oscama/config/constant.cw
+device                        = /storage/.kodi/userdata/addon_data/service.softcam.oscam-addon/config/constant.cw
 caid                          = 2600
 ident                         = 2600:000000
 group                         = 1,2,5

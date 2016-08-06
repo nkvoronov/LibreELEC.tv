@@ -41,9 +41,19 @@ else
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bkeymaps"
 fi
 
+post_unpack() {
+  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
+    cat $patch | patch -d \
+    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
+  done
+}
+
 post_makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libreelec
     cp $PKG_DIR/scripts/* $INSTALL/usr/lib/libreelec
+
+  mkdir -p $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/skins
+    cp -PR $PKG_DIR/skins/* $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/skins
 
 #  # bluetooth is optional
 #    if [ ! "$BLUETOOTH_SUPPORT" = yes ]; then

@@ -42,7 +42,7 @@
 
 if [ -f /storage/.cache/services/oscam.conf ]; then
     . /storage/.cache/services/oscam.conf
-	
+
     if [ -f /storage/.cache/services/dvb.conf ]; then
     . /storage/.cache/services/dvb.conf
     fi
@@ -51,18 +51,14 @@ if [ -f /storage/.cache/services/oscam.conf ]; then
         DEBUG_LEVEL="1"
     fi
 
-    if [ "$OSCAM_CONFIG" == "" ] ; then
-        OSCAM_CONFIG="default"
-    fi
-
     OSCAM_LOG="/var/log/oscam"
-    OSCAM_HOME="$HOME/.config/oscam/$OSCAM_CONFIG"
+    OSCAM_HOME="$HOME/.config/oscam"
 
     mkdir -p $OSCAM_HOME
     OSCAM_ARG="-d $OSCAM_DEBUG -r 2 -u -c $OSCAM_HOME"
-	
+
     echo "Starting OScam server ..."
-	
+
     # start userspace DVB driver/addon
     for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
         driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')

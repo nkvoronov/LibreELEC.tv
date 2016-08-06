@@ -1,0 +1,3998 @@
+diff -Naur a/language/English/strings.po b/language/English/strings.po
+--- a/language/English/strings.po	2016-02-28 15:45:01.000000000 +0200
++++ b/language/English/strings.po	2016-04-24 02:31:41.598771982 +0300
+@@ -837,3 +837,669 @@
+ msgctxt "#32391"
+ msgid "Enable LCD Driver Support"
+ msgstr ""
++
++##########################################################
++## Keyboard Options
++
++msgctxt "#32400"
++msgid "Keyboard Switches"
++msgstr ""
++
++msgctxt "#799"
++msgid "Configure keyboard switches"
++msgstr ""
++
++##########################################################
++## Transmission
++
++msgctxt "#33000"
++msgid "Transmission"
++msgstr ""
++
++msgctxt "#800"
++msgid "Configuration transmission: a fast, easy and free BitTorrent client"
++msgstr ""
++
++msgctxt "#33001"
++msgid "Transmission daemon"
++msgstr ""
++
++msgctxt "#33002"
++msgid "Enable Transmission"
++msgstr ""
++
++msgctxt "#801"
++msgid "Enabled Transmission autostart"
++msgstr ""
++
++msgctxt "#33003"
++msgid "Enable Transmission Secure"
++msgstr ""
++
++msgctxt "#802"
++msgid "Use authentification"
++msgstr ""
++
++msgctxt "#33004"
++msgid "User Name"
++msgstr ""
++
++msgctxt "#803"
++msgid "Username for authentification"
++msgstr ""
++
++msgctxt "#33005"
++msgid "Password"
++msgstr ""
++
++msgctxt "#804"
++msgid "Password for authentification"
++msgstr ""
++
++msgctxt "#33006"
++msgid "Enabled IPs"
++msgstr ""
++
++msgctxt "#805"
++msgid "Allowed IP addresses (comma-delimited)"
++msgstr ""
++
++msgctxt "#33007"
++msgid "Limit Global"
++msgstr ""
++
++msgctxt "#806"
++msgid "Overall peer limit"
++msgstr ""
++
++msgctxt "#33008"
++msgid "Limit Torrent"
++msgstr ""
++
++msgctxt "#807"
++msgid "Peer limit per torrent"
++msgstr ""
++
++msgctxt "#33009"
++msgid "Download Directory"
++msgstr ""
++
++msgctxt "#808"
++msgid "Select directory for download"
++msgstr ""
++
++msgctxt "#33010"
++msgid "Transmission is a cross-platform BitTorrent client"
++msgstr ""
++
++##########################################################
++## Tv server
++
++msgctxt "#34000"
++msgid "TV"
++msgstr ""
++
++msgctxt "#1000"
++msgid "Configuration TV: Tvheadend or VDR and Oscam"
++msgstr ""
++
++##########################################################
++
++msgctxt "#35000"
++msgid "TV Server"
++msgstr ""
++
++msgctxt "#35001"
++msgid "TV Server"
++msgstr ""
++
++msgctxt "#1001"
++msgid "Select TV Server"
++msgstr ""
++
++##########################################################
++## Tvheadend
++
++msgctxt "#36000"
++msgid "Tvheadend Configuration"
++msgstr ""
++
++msgctxt "#36001"
++msgid "Preload capmt_ca.so library"
++msgstr ""
++
++msgctxt "#1101"
++msgid "Preload capmt_ca.so library with Tvheadend"
++msgstr ""
++
++msgctxt "#36002"
++msgid "Enable Tvheadend backup"
++msgstr ""
++
++msgctxt "#1102"
++msgid "Enable Tvheadend backup on update"
++msgstr ""
++
++msgctxt "#36003"
++msgid "Enable Tvheadend debug"
++msgstr ""
++
++msgctxt "#1103"
++msgid "Enable Tvheadend debug"
++msgstr ""
++
++msgctxt "#36004"
++msgid "Аdapters"
++msgstr ""
++
++msgctxt "#1104"
++msgid "Used adapters"
++msgstr ""
++
++msgctxt "#36005"
++msgid "XMLTV source type"
++msgstr ""
++
++msgctxt "#1105"
++msgid "Select XMLTV type"
++msgstr ""
++
++msgctxt "#36006"
++msgid "XMLTV File location"
++msgstr ""
++
++msgctxt "#1106"
++msgid "Local location XMLTV file"
++msgstr ""
++
++msgctxt "#36007"
++msgid "XMLTV Web location"
++msgstr ""
++
++msgctxt "#1107"
++msgid "Web location XMLTV file"
++msgstr ""
++
++msgctxt "#36008"
++msgid "XMLTV Script location"
++msgstr ""
++
++msgctxt "#1108"
++msgid "Location XMLTV script"
++msgstr ""
++
++##########################################################
++## VDR
++
++msgctxt "#37000"
++msgid "VDR Configuration"
++msgstr ""
++
++msgctxt "#37001"
++msgid "Enable external record command"
++msgstr ""
++
++msgctxt "#1201"
++msgid "Enable external record command"
++msgstr ""
++
++msgctxt "#37002"
++msgid "External record command patch"
++msgstr ""
++
++msgctxt "#1202"
++msgid "External record command patch"
++msgstr ""
++
++msgctxt "#37003"
++msgid "Enable charset override"
++msgstr ""
++
++msgctxt "#1203"
++msgid "Enable charset override"
++msgstr ""
++
++msgctxt "#37004"
++msgid "Charset override"
++msgstr ""
++
++msgctxt "#1204"
++msgid "Charset override"
++msgstr ""
++
++msgctxt "#37005"
++msgid "VDR Video Dir"
++msgstr ""
++
++msgctxt "#1205"
++msgid "Select Video Dir"
++msgstr ""
++
++msgctxt "#37006"
++msgid "Enable VDR debug"
++msgstr ""
++
++msgctxt "#1206"
++msgid "Enable VDR debug"
++msgstr ""
++
++msgctxt "#37007"
++msgid "PVR plugin"
++msgstr ""
++
++msgctxt "#1207"
++msgid "Select PVR plugin"
++msgstr ""
++
++msgctxt "#37008"
++msgid "Enable plugin: iptv"
++msgstr ""
++
++msgctxt "#1208"
++msgid "Enabled iptv plugin"
++msgstr ""
++
++msgctxt "#37009"
++msgid "iptv num devices"
++msgstr ""
++
++msgctxt "#1209"
++msgid "iptv num devices"
++msgstr ""
++
++msgctxt "#37010"
++msgid "Enable plugin: streamdev-client"
++msgstr ""
++
++msgctxt "#1210"
++msgid "Enable streamdev-client plugin"
++msgstr ""
++
++msgctxt "#37011"
++msgid "Enable plugin: streamdev-server"
++msgstr ""
++
++msgctxt "#1211"
++msgid "Enabled streamdev-server plugin"
++msgstr ""
++
++msgctxt "#37012"
++msgid "Enable plugin: wirbelscan"
++msgstr ""
++
++msgctxt "#1212"
++msgid "Enabled wirbelscan plugin"
++msgstr ""
++
++msgctxt "#37013"
++msgid "Enable plugin: live"
++msgstr ""
++
++msgctxt "#1213"
++msgid "Enabled live plugin"
++msgstr ""
++
++msgctxt "#37014"
++msgid "live: listen on ip"
++msgstr ""
++
++msgctxt "#1214"
++msgid "Listen ip address for live plugin"
++msgstr ""
++
++msgctxt "#37015"
++msgid "live: listen on port"
++msgstr ""
++
++msgctxt "#1215"
++msgid "Listen port for live plugin"
++msgstr ""
++
++msgctxt "#37018"
++msgid "Enable plugin: eepg"
++msgstr ""
++
++msgctxt "#1218"
++msgid "Enabled eepg plugin"
++msgstr ""
++
++msgctxt "#37019"
++msgid "Enable plugin: epgsearch"
++msgstr ""
++
++msgctxt "#1219"
++msgid "Enabled epgsearch plugin"
++msgstr ""
++
++msgctxt "#37020"
++msgid "Enable plugin: xmltv2vdr"
++msgstr ""
++
++msgctxt "#1220"
++msgid "Enabled xmltv2vdr plugin"
++msgstr ""
++
++msgctxt "#37021"
++msgid "Enable plugin: softcam"
++msgstr ""
++
++msgctxt "#1221"
++msgid "Enabled softcam plugin"
++msgstr ""
++
++msgctxt "#37022"
++msgid "softcam: options"
++msgstr ""
++
++msgctxt "#1222"
++msgid "softcam plugin options"
++msgstr ""
++
++msgctxt "#37023"
++msgid "Enable plugin: dummydevice"
++msgstr ""
++
++msgctxt "#1223"
++msgid "Enabled dummydevice plugin"
++msgstr ""
++
++msgctxt "#37024"
++msgid "Enable plugin: satip"
++msgstr ""
++
++msgctxt "#1224"
++msgid "Enabled satip plugin"
++msgstr ""
++
++msgctxt "#37026"
++msgid "Enable plugin: epgfixer"
++msgstr ""
++
++msgctxt "#1226"
++msgid "Enabled epgfixer plugin"
++msgstr ""
++
++msgctxt "#37027"
++msgid "Enable plugin: restfulapi"
++msgstr ""
++
++msgctxt "#1227"
++msgid "Enabled restfulapi plugin"
++msgstr ""
++
++msgctxt "#37028"
++msgid "restfulapi: listen on ip"
++msgstr ""
++
++msgctxt "#1228"
++msgid "Listen ip address for restfulapi plugin"
++msgstr ""
++
++msgctxt "#37029"
++msgid "restfulapi: listen on port"
++msgstr ""
++
++msgctxt "#1229"
++msgid "Listen port for restfulapi plugin"
++msgstr ""
++
++##########################################################
++
++msgctxt "#38000"
++msgid "TV Frontend"
++msgstr ""
++
++msgctxt "#38001"
++msgid "TV Frontend"
++msgstr ""
++
++msgctxt "#1301"
++msgid "Select TV Frontend"
++msgstr ""
++
++##########################################################
++## VDR front
++
++msgctxt "#39000"
++msgid "VDR frontend"
++msgstr ""
++
++msgctxt "#39022"
++msgid "Enable plugin: femon"
++msgstr ""
++
++msgctxt "#1422"
++msgid "Enabled femon plugin"
++msgstr ""
++
++msgctxt "#39023"
++msgid "Enable plugin: systeminfo"
++msgstr ""
++
++msgctxt "#1423"
++msgid "Enabled systeminfo plugin"
++msgstr ""
++
++msgctxt "#39024"
++msgid "Enable plugin: sleeptimer"
++msgstr ""
++
++msgctxt "#1424"
++msgid "Enabled sleeptimer plugin"
++msgstr ""
++
++msgctxt "#39025"
++msgid "Enable plugin: filebrowser"
++msgstr ""
++
++msgctxt "#1425"
++msgid "Enabled filebrowser plugin"
++msgstr ""
++
++msgctxt "#39026"
++msgid "Enable plugin: lcdproc"
++msgstr ""
++
++msgctxt "#1426"
++msgid "Enabled lcdproc plugin"
++msgstr ""
++
++msgctxt "#39027"
++msgid "Enable plugin: text2skin"
++msgstr ""
++
++msgctxt "#1427"
++msgid "Enabled text2skin plugin"
++msgstr ""
++
++msgctxt "#39028"
++msgid "Enable plugin: skinnopacity"
++msgstr ""
++
++msgctxt "#1428"
++msgid "Enabled skinnopacity plugin"
++msgstr ""
++
++msgctxt "#39029"
++msgid "Enable plugin: skinflat"
++msgstr ""
++
++msgctxt "#1429"
++msgid "Enabled skinflat plugin"
++msgstr ""
++
++msgctxt "#39030"
++msgid "Enable plugin: skinflatplus"
++msgstr ""
++
++msgctxt "#1430"
++msgid "Enabled skinflatplus plugin"
++msgstr ""
++
++msgctxt "#39031"
++msgid "Enable plugin: menuorg"
++msgstr ""
++
++msgctxt "#1431"
++msgid "Enabled menuorg plugin"
++msgstr ""
++
++msgctxt "#39032"
++msgid "Enable plugin: tvguide"
++msgstr ""
++
++msgctxt "#1432"
++msgid "Enabled tvguide plugin"
++msgstr ""
++
++msgctxt "#39033"
++msgid "Enable plugin: tvscraper"
++msgstr ""
++
++msgctxt "#1433"
++msgid "Enabled tvscraper plugin"
++msgstr ""
++
++msgctxt "#39034"
++msgid "Enable plugin: skindesigner"
++msgstr ""
++
++msgctxt "#1434"
++msgid "Enabled skindesigner plugin"
++msgstr ""
++
++msgctxt "#39035"
++msgid "Enable plugin: weatherforecast"
++msgstr ""
++
++msgctxt "#1435"
++msgid "Enabled weatherforecast plugin"
++msgstr ""
++
++msgctxt "#39036"
++msgid "Enable plugin: favorites"
++msgstr ""
++
++msgctxt "#1436"
++msgid "Enabled favorites plugin"
++msgstr ""
++
++msgctxt "#39038"
++msgid "VDR output plugin"
++msgstr ""
++
++msgctxt "#1438"
++msgid "Select VDR output plugin"
++msgstr ""
++
++msgctxt "#39039"
++msgid "VDR video output"
++msgstr ""
++
++msgctxt "#1439"
++msgid "Select VDR video output"
++msgstr ""
++
++msgctxt "#39040"
++msgid "softhddevice audio device"
++msgstr ""
++
++msgctxt "#1440"
++msgid "Enter softhddevice audio device"
++msgstr ""
++
++msgctxt "#39041"
++msgid "xineliboutput audio device"
++msgstr ""
++
++msgctxt "#1441"
++msgid "Enter xineliboutput audio device"
++msgstr ""
++
++msgctxt "#39042"
++msgid "softhddevice options"
++msgstr ""
++
++msgctxt "#1442"
++msgid "Enter softhddevice options"
++msgstr ""
++
++msgctxt "#39043"
++msgid "xineliboutput options"
++msgstr ""
++
++msgctxt "#1443"
++msgid "Enter xineliboutput options"
++msgstr ""
++
++##########################################################
++## DVB
++
++msgctxt "#40000"
++msgid "DVB Configuration"
++msgstr ""
++
++msgctxt "#40001"
++msgid "Wait for frontend initialization"
++msgstr ""
++
++msgctxt "#1501"
++msgid "Wait for frontend initialization"
++msgstr ""
++
++msgctxt "#40002"
++msgid "Number of adapters to wait"
++msgstr ""
++
++msgctxt "#1502"
++msgid "Number of adapters to wait"
++msgstr ""
++
++msgctxt "#40003"
++msgid "Unload DVB mudules before suspend"
++msgstr ""
++
++msgctxt "#1503"
++msgid "Unload DVB mudules before suspend"
++msgstr ""
++
++##########################################################
++## Oscam
++
++msgctxt "#41000"
++msgid "Oscam Configuration"
++msgstr ""
++
++msgctxt "#41001"
++msgid "Enable Oscam"
++msgstr ""
++
++msgctxt "#1601"
++msgid "Enable Oscam"
++msgstr ""
++
++msgctxt "#41002"
++msgid "Oscam debug level"
++msgstr ""
++
++msgctxt "#1602"
++msgid "Oscam debug level"
++msgstr ""
++
++msgctxt "#41003"
++msgid "Restart on suspend / resume"
++msgstr ""
++
++msgctxt "#1603"
++msgid "Restart on resume"
++msgstr ""
++
++##########################################################
++
++msgctxt "#42000"
++msgid "Tvheadend is a TV streaming server for Linux supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, and Analog video (V4L) as input sources."
++msgstr ""
++
++msgctxt "#42001"
++msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
++msgstr ""
+diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
+--- a/language/Russian/strings.po	2016-02-28 15:45:01.000000000 +0200
++++ b/language/Russian/strings.po	2016-04-24 02:31:41.602771982 +0300
+@@ -743,3 +743,669 @@
+ msgctxt "#32391"
+ msgid "Enable LCD Driver Support"
+ msgstr "Включить поддержку драйвера ЖК-экрана"
++
++##########################################################
++## Keyboard Options
++
++msgctxt "#32400"
++msgid "Keyboard Switches"
++msgstr "Переключение клавиатуры"
++
++msgctxt "#799"
++msgid "Configure keyboard switches"
++msgstr "Настроить переключение клавиатуры"
++
++##########################################################
++## Transmission
++
++msgctxt "#33000"
++msgid "Transmission"
++msgstr "Transmission"
++
++msgctxt "#800"
++msgid "Configuration transmission: a fast, easy and free BitTorrent client"
++msgstr "Конфигурация Transmission: быстрого, легкого и бесплатного BitTorrent клиента"
++
++msgctxt "#33001"
++msgid "Transmission daemon"
++msgstr "Transmission сервис"
++
++msgctxt "#33002"
++msgid "Enable Transmission"
++msgstr "Запуск Transmission"
++
++msgctxt "#801"
++msgid "Enabled Transmission autostart"
++msgstr "Разрешить запуск Transmission"
++
++msgctxt "#33003"
++msgid "Enable Transmission Secure"
++msgstr "Использовать авторизацию"
++
++msgctxt "#802"
++msgid "Use authentification"
++msgstr "Использовать авторизацию"
++
++msgctxt "#33004"
++msgid "User Name"
++msgstr "Пользователь"
++
++msgctxt "#803"
++msgid "Username for authentification"
++msgstr "Пользователь для авторизации"
++
++msgctxt "#33005"
++msgid "Password"
++msgstr "Пароль"
++
++msgctxt "#804"
++msgid "Password for authentification"
++msgstr "Пароль для авторизации"
++
++msgctxt "#33006"
++msgid "Enabled IPs"
++msgstr "Разрешенные IP адреса"
++
++msgctxt "#805"
++msgid "Allowed IP addresses (comma-delimited)"
++msgstr "Разрешенные IP адреса (разделитель-запятая)"
++
++msgctxt "#33007"
++msgid "Limit Global"
++msgstr "Общий лимит"
++
++msgctxt "#806"
++msgid "Overall peer limit"
++msgstr "Общий лимит"
++
++msgctxt "#33008"
++msgid "Limit Torrent"
++msgstr "Лимит на торрент"
++
++msgctxt "#807"
++msgid "Peer limit per torrent"
++msgstr "Лимит на торрент"
++
++msgctxt "#33009"
++msgid "Download Directory"
++msgstr "Папка загрузки"
++
++msgctxt "#808"
++msgid "Select directory for download"
++msgstr "Выбрать папку для загрузки"
++
++msgctxt "#33010"
++msgid "Transmission is a cross-platform BitTorrent client"
++msgstr "Transmission кросс-платформенный клиент BitTorrent"
++
++##########################################################
++## Tv server
++
++msgctxt "#34000"
++msgid "TV"
++msgstr "ТВ"
++
++msgctxt "#1000"
++msgid "Configuration TV: Tvheadend or VDR and Oscam"
++msgstr "Конфигурация ТВ: Tvheadend или VDR а также Oscam"
++
++##########################################################
++
++msgctxt "#35000"
++msgid "TV Server"
++msgstr "ТВ Сервер"
++
++msgctxt "#35001"
++msgid "TV Server"
++msgstr "Выбранный ТВ Сервер"
++
++msgctxt "#1001"
++msgid "Select TV Server"
++msgstr "Выбрать ТВ сервер"
++
++##########################################################
++## Tvheadend
++
++msgctxt "#36000"
++msgid "Tvheadend Configuration"
++msgstr "Конфигурация Tvheadend"
++
++msgctxt "#36001"
++msgid "Preload capmt_ca.so library"
++msgstr "Предзагрузка библиотеки capmt_ca.so"
++
++msgctxt "#1101"
++msgid "Preload capmt_ca.so library with Tvheadend"
++msgstr "Предзагрузка библиотеки capmt_ca.so с Tvheadend"
++
++msgctxt "#36002"
++msgid "Enable Tvheadend backup"
++msgstr "Разрешить резервное копирование"
++
++msgctxt "#1102"
++msgid "Enable Tvheadend backup on update"
++msgstr "Разрешить резервное копирование при обновлении"
++
++msgctxt "#36003"
++msgid "Enable Tvheadend debug"
++msgstr "Разрешить отладку"
++
++msgctxt "#1103"
++msgid "Enable Tvheadend debug"
++msgstr "Разрешить отладку tvheadend"
++
++msgctxt "#36004"
++msgid "Аdapters"
++msgstr "Адаптеры"
++
++msgctxt "#1104"
++msgid "Used adapters"
++msgstr "Использовать адаптеры"
++
++msgctxt "#36005"
++msgid "XMLTV source type"
++msgstr "XMLTV тип источника"
++
++msgctxt "#1105"
++msgid "Select XMLTV type"
++msgstr "Выбрат XMLTV тип"
++
++msgctxt "#36006"
++msgid "XMLTV File location"
++msgstr "XMLTV путь"
++
++msgctxt "#1107"
++msgid "Local location XMLTV file"
++msgstr "Выбрать XMLTV файлы"
++
++msgctxt "#36007"
++msgid "XMLTV Web location"
++msgstr "XMLTV ссылка"
++
++msgctxt "#1107"
++msgid "Web location XMLTV file"
++msgstr "Выбрать XMLTV ссылку"
++
++msgctxt "#36008"
++msgid "XMLTV Script location"
++msgstr "XMLTV скрипт"
++
++msgctxt "#1108"
++msgid "Location XMLTV script"
++msgstr "Выбрать XMLTV script"
++
++##########################################################
++## VDR
++
++msgctxt "#37000"
++msgid "VDR Configuration"
++msgstr "Конфигурация VDR"
++
++msgctxt "#37001"
++msgid "Enable external record command"
++msgstr "Разрешить внешнию команду записи"
++
++msgctxt "#1201"
++msgid "Enable external record command"
++msgstr "Разрешить внешнию команду записи"
++
++msgctxt "#37002"
++msgid "External record command patch"
++msgstr "Путь к внешней команде записи"
++
++msgctxt "#1202"
++msgid "External record command patch"
++msgstr "Путь к внешней команде записи"
++
++msgctxt "#37003"
++msgid "Enable charset override"
++msgstr "Разрешить кодировку переопределения"
++
++msgctxt "#1203"
++msgid "Enable charset override"
++msgstr "Разрешить кодировку переопределения"
++
++msgctxt "#37004"
++msgid "Charset override"
++msgstr "Кодировка переопределения"
++
++msgctxt "#1204"
++msgid "Charset override"
++msgstr "Кодировка переопределения"
++
++msgctxt "#37005"
++msgid "VDR Video Dir"
++msgstr "VDR папка для видео"
++
++msgctxt "#1205"
++msgid "Select Video Dir"
++msgstr "Выбрать папку для видео"
++
++msgctxt "#37006"
++msgid "Enable VDR debug"
++msgstr "Разрешить отладку"
++
++msgctxt "#1206"
++msgid "Enable VDR debug"
++msgstr "Разрешить отладку VDR"
++
++msgctxt "#37007"
++msgid "PVR plugin"
++msgstr "PVR плагин"
++
++msgctxt "#1207"
++msgid "Select PVR plugin"
++msgstr "Выбрать PVR плагин"
++
++msgctxt "#37008"
++msgid "Enable plugin: iptv"
++msgstr "Плагин: iptv"
++
++msgctxt "#1208"
++msgid "Enabled iptv plugin"
++msgstr "Разрешить iptv плагин"
++
++msgctxt "#37009"
++msgid "iptv num devices"
++msgstr "Количество устройств iptv"
++
++msgctxt "#1209"
++msgid "iptv num devices"
++msgstr "Количество устройств iptv"
++
++msgctxt "#37010"
++msgid "Enable plugin: streamdev-client"
++msgstr "Плагин: streamdev-client"
++
++msgctxt "#1210"
++msgid "Enable streamdev-client plugin"
++msgstr "Разрешить streamdev-client плагин"
++
++msgctxt "#37011"
++msgid "Enable plugin: streamdev-server"
++msgstr "Плагин: streamdev-server"
++
++msgctxt "#1211"
++msgid "Enabled streamdev-server plugin"
++msgstr "Разрешить streamdev-server плагин"
++
++msgctxt "#37012"
++msgid "Enable plugin: wirbelscan"
++msgstr "Плагин: wirbelscan"
++
++msgctxt "#1212"
++msgid "Enabled wirbelscan plugin"
++msgstr "Разрешить wirbelscan плагин"
++
++msgctxt "#37013"
++msgid "Enable plugin: live"
++msgstr "Плагин: live"
++
++msgctxt "#1213"
++msgid "Enabled live plugin"
++msgstr "Разрешить live плагин"
++
++msgctxt "#37014"
++msgid "live: listen on ip"
++msgstr "live: IP"
++
++msgctxt "#1214"
++msgid "Listen ip address for live plugin"
++msgstr "IP-адрес для live плагина"
++
++msgctxt "#37015"
++msgid "live: listen on port"
++msgstr "live: Порт"
++
++msgctxt "#1215"
++msgid "Listen port for live plugin"
++msgstr "Порт для live плагина"
++
++msgctxt "#37018"
++msgid "Enable plugin: eepg"
++msgstr "Плагин: eepg"
++
++msgctxt "#1218"
++msgid "Enabled eepg plugin"
++msgstr "Разрешить eepg плагин"
++
++msgctxt "#37019"
++msgid "Enable plugin: epgsearch"
++msgstr "Плагин: epgsearch"
++
++msgctxt "#1219"
++msgid "Enabled epgsearch plugin"
++msgstr "Разрешить epgsearch плагин"
++
++msgctxt "#37020"
++msgid "Enable plugin: xmltv2vdr"
++msgstr "Плагин: xmltv2vdr"
++
++msgctxt "#1220"
++msgid "Enabled xmltv2vdr plugin"
++msgstr "Разрешить xmltv2vdr плагин"
++
++msgctxt "#37021"
++msgid "Enable plugin: softcam"
++msgstr "Плагин: softcam"
++
++msgctxt "#1221"
++msgid "Enabled softcam plugin"
++msgstr "Разрешить softcam плагин"
++
++msgctxt "#37022"
++msgid "softcam: options"
++msgstr "softcam: опции"
++
++msgctxt "#1222"
++msgid "softcam plugin options"
++msgstr "Опции для softcam плагина"
++
++msgctxt "#37023"
++msgid "Enable plugin: dummydevice"
++msgstr "Плагин: dummydevice"
++
++msgctxt "#1223"
++msgid "Enabled dummydevice plugin"
++msgstr "Разрешить dummydevice плагин"
++
++msgctxt "#37024"
++msgid "Enable plugin: satip"
++msgstr "Плагин: satip"
++
++msgctxt "#1224"
++msgid "Enabled satip plugin"
++msgstr "Разрешить satip плагин"
++
++msgctxt "#37026"
++msgid "Enable plugin: epgfixer"
++msgstr "Плагин: epgfixer"
++
++msgctxt "#1226"
++msgid "Enabled epgfixer plugin"
++msgstr "Разрешить epgfixer плагин"
++
++msgctxt "#37027"
++msgid "Enable plugin: restfulapi"
++msgstr "Плагин: restfulapi"
++
++msgctxt "#1227"
++msgid "Enabled restfulapi plugin"
++msgstr "Разрешить restfulapi плагин"
++
++msgctxt "#37028"
++msgid "restfulapi: listen on ip"
++msgstr "restfulapi: IP"
++
++msgctxt "#1228"
++msgid "Listen ip address for restfulapi plugin"
++msgstr "IP-адрес для restfulapi плагина"
++
++msgctxt "#37029"
++msgid "restfulapi: listen on port"
++msgstr "restfulapi: Порт"
++
++msgctxt "#1229"
++msgid "Listen port for restfulapi plugin"
++msgstr "Порт для restfulapi плагина"
++
++##########################################################
++
++msgctxt "#38000"
++msgid "TV Frontend"
++msgstr "ТВ Фронтенд"
++
++msgctxt "#38001"
++msgid "TV Frontend"
++msgstr "Выбранный ТВ Фронтенд"
++
++msgctxt "#1301"
++msgid "Select TV Frontend"
++msgstr "Выбрать ТВ Фронтенд"
++
++##########################################################
++## VDR front
++
++msgctxt "#39000"
++msgid "VDR frontend"
++msgstr "VDR Фронтенд"
++
++msgctxt "#39022"
++msgid "Enable plugin: femon"
++msgstr "Плагин: femon"
++
++msgctxt "#1422"
++msgid "Enabled femon plugin"
++msgstr "Разрешить femon плагин"
++
++msgctxt "#39023"
++msgid "Enable plugin: systeminfo"
++msgstr "Плагин: systeminfo"
++
++msgctxt "#1423"
++msgid "Enabled systeminfo plugin"
++msgstr "Разрешить systeminfo плагин"
++
++msgctxt "#39024"
++msgid "Enable plugin: sleeptimer"
++msgstr "Плагин: sleeptimer"
++
++msgctxt "#1424"
++msgid "Enabled sleeptimer plugin"
++msgstr "Разрешить sleeptimer плагин"
++
++msgctxt "#39025"
++msgid "Enable plugin: filebrowser"
++msgstr "Плагин: filebrowser"
++
++msgctxt "#1425"
++msgid "Enabled filebrowser plugin"
++msgstr "Разрешить filebrowser плагин"
++
++msgctxt "#39026"
++msgid "Enable plugin: lcdproc"
++msgstr "Плагин: lcdproc"
++
++msgctxt "#1426"
++msgid "Enabled lcdproc plugin"
++msgstr "Разрешить lcdproc плагин"
++
++msgctxt "#39027"
++msgid "Enable plugin: text2skin"
++msgstr "Плагин: text2skin"
++
++msgctxt "#1427"
++msgid "Enabled text2skin plugin"
++msgstr "Разрешить text2skin плагин"
++
++msgctxt "#39028"
++msgid "Enable plugin: skinnopacity"
++msgstr "Плагин: skinnopacity"
++
++msgctxt "#1428"
++msgid "Enabled skinnopacity plugin"
++msgstr "Разрешить skinnopacity плагин"
++
++msgctxt "#39029"
++msgid "Enable plugin: skinflat"
++msgstr "Плагин: skinflat"
++
++msgctxt "#1429"
++msgid "Enabled skinflat plugin"
++msgstr "Разрешить skinflat плагин"
++
++msgctxt "#39030"
++msgid "Enable plugin: skinflatplus"
++msgstr "Плагин: skinflatplus"
++
++msgctxt "#1430"
++msgid "Enabled skinflatplus plugin"
++msgstr "Разрешить skinflatplus плагин"
++
++msgctxt "#39031"
++msgid "Enable plugin: menuorg"
++msgstr "Плагин: menuorg"
++
++msgctxt "#1431"
++msgid "Enabled menuorg plugin"
++msgstr "Разрешить menuorg плагин"
++
++msgctxt "#39032"
++msgid "Enable plugin: tvguide"
++msgstr "Плагин: tvguide"
++
++msgctxt "#1432"
++msgid "Enabled tvguide plugin"
++msgstr "Разрешить tvguide плагин"
++
++msgctxt "#39033"
++msgid "Enable plugin: tvscraper"
++msgstr "Плагин: tvscraper"
++
++msgctxt "#1433"
++msgid "Enabled tvscraper plugin"
++msgstr "Разрешить tvscraper плагин"
++
++msgctxt "#39034"
++msgid "Enable plugin: skindesigner"
++msgstr "Плагин: skindesigner"
++
++msgctxt "#1434"
++msgid "Enabled skindesigner plugin"
++msgstr "Разрешить skindesigner плагин"
++
++msgctxt "#39035"
++msgid "Enable plugin: weatherforecast"
++msgstr "Плагин: weatherforecast"
++
++msgctxt "#1435"
++msgid "Enabled weatherforecast plugin"
++msgstr "Разрешить weatherforecast плагин"
++
++msgctxt "#39036"
++msgid "Enable plugin: favorites"
++msgstr "Плагин: favorites"
++
++msgctxt "#1436"
++msgid "Enabled favorites plugin"
++msgstr "Разрешить favorites плагин"
++
++msgctxt "#39038"
++msgid "VDR output plugin"
++msgstr "VDR плагин вывода"
++
++msgctxt "#1438"
++msgid "Select VDR output plugin"
++msgstr "Выбрать VDR плагин вывода"
++
++msgctxt "#39039"
++msgid "VDR video output"
++msgstr "VDR видео драйвер"
++
++msgctxt "#1439"
++msgid "Select VDR video output"
++msgstr "Выбрать VDR видео драйвер"
++
++msgctxt "#39040"
++msgid "softhddevice audio device"
++msgstr "softhddevice аудио устройство"
++
++msgctxt "#1440"
++msgid "Enter softhddevice audio device"
++msgstr "Введите softhddevice аудио устройство"
++
++msgctxt "#39041"
++msgid "xineliboutput audio device"
++msgstr "xineliboutput аудио устройство"
++
++msgctxt "#1441"
++msgid "Enter xineliboutput audio device"
++msgstr "Введите xineliboutput аудио устройство"
++
++msgctxt "#39042"
++msgid "softhddevice options"
++msgstr "softhddevice опции"
++
++msgctxt "#1442"
++msgid "Enter softhddevice options"
++msgstr "Введите softhddevice опции"
++
++msgctxt "#39043"
++msgid "xineliboutput options"
++msgstr "xineliboutput опции"
++
++msgctxt "#1443"
++msgid "Enter xineliboutput options"
++msgstr "Введите xineliboutput опции"
++
++##########################################################
++## DVB
++
++msgctxt "#40000"
++msgid "DVB Configuration"
++msgstr "Конфигурация DVB"
++
++msgctxt "#40001"
++msgid "Wait for frontend initialization"
++msgstr "Ожидать инициализацию адаптера"
++
++msgctxt "#1501"
++msgid "Wait for frontend initialization"
++msgstr "Ожидать инициализацию адаптера"
++
++msgctxt "#40002"
++msgid "Number of adapters to wait"
++msgstr "Номер адаптера"
++
++msgctxt "#1502"
++msgid "Number of adapters to wait"
++msgstr "Номер адаптера для ожидания"
++
++msgctxt "#40003"
++msgid "Unload DVB mudules before suspend"
++msgstr "Выгрузка DVB модулей перед остановкой"
++
++msgctxt "#1503"
++msgid "Unload DVB mudules before suspend"
++msgstr "Выгрузка DVB модулей перед остановкой"
++
++##########################################################
++## Oscam
++
++msgctxt "#41000"
++msgid "Oscam Configuration"
++msgstr "Конфигурация Oscam"
++
++msgctxt "#41001"
++msgid "Enable Oscam"
++msgstr "Запуск Oscam"
++
++msgctxt "#1601"
++msgid "Enable Oscam"
++msgstr "Запуск Oscam"
++
++msgctxt "#41002"
++msgid "Oscam debug level"
++msgstr "Уровень отладки Oscam"
++
++msgctxt "#1602"
++msgid "Oscam debug level"
++msgstr "Уровень отладки Oscam"
++
++msgctxt "#41003"
++msgid "Restart on suspend / resume"
++msgstr "Перезапуск при отключении / восстановлении"
++
++msgctxt "#1603"
++msgid "Restart on resume"
++msgstr "Перезапуск при отключении / восстановлении"
++
++##########################################################
++
++msgctxt "#42000"
++msgid "Tvheadend is a TV streaming server for Linux supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, and Analog video (V4L) as input sources."
++msgstr "Tvheadend ТВ потоковый сервер для Linux поддерживает DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, и аналогового видео (V4L) в качестве источников."
++
++msgctxt "#42001"
++msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
++msgstr "VDR приложение с открытым исходным кодом для Linux разработанный, чтобы позволить любому компьютеру работать в качестве цифрового видеомагнитофона для того, чтобы записывать и воспроизводить ТВ программы."
+diff -Naur a/src/defaults.py b/src/defaults.py
+--- a/src/defaults.py	2016-02-28 15:45:01.000000000 +0200
++++ b/src/defaults.py	2016-04-24 02:31:41.606771982 +0300
+@@ -77,6 +77,133 @@
+     'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
+     'D_LCD_DRIVER': 'none',
+     }
++    
++################################################################################
++# Transmission Module
++################################################################################
++
++transmission = {
++    'ENABLED': True,
++    'TRANSMISSION_DAEMON': '/usr/bin/transmission-daemon',
++    'TRANSMISSION_DAEMON_START': '/usr/bin/transmission.start',
++    'D_TRANSMISSION_SECURE': '1',
++    'D_TRANSMISSION_USERNAME': 'libreelec',
++    'D_TRANSMISSION_PASSWORD': 'libreelec',
++    'D_TRANSMISSION_IP': '*.*.*.*',
++    'D_TRANSMISSION_LIMIT_GLOBAL': '100',
++    'D_TRANSMISSION_LIMIT_TORRENT': '100',
++    'D_TRANSMISSION_DL_DIR': '/storage/downloads/',
++    }
++    
++################################################################################
++# Tv Servers Module
++################################################################################
++
++tvservers = {
++    'ENABLED': True,
++    'TVHEADEND_DAEMON': '/usr/bin/tvheadend',
++    'TVHEADEND_DAEMON_START': '/usr/bin/tvheadend.start',
++    'VDR_DAEMON': '/usr/bin/vdr.bin',
++    'VDR_DAEMON_START': '/usr/bin/vdr.start',
++    'VDR_DAEMON_FRONT_START': '/usr/bin/vdr-front.start',
++    'OSCAM_DAEMON': '/usr/bin/oscam',
++    'OSCAM_DAEMON_START': '/usr/bin/oscam.start',
++    #TVBACKEND
++    'D_TV_BACKEND': 'none',
++    #TVHEADEND
++    'D_PRELOAD_CAPMT_CA': '0',
++    'D_TVH_BACKUP': '0',
++    'D_TVH_DEBUG': '0',
++    'D_ADAPTERS': '',
++    'D_XMLTV_TYPE': 'none',
++    'D_XMLTV_LOCATION_FILE': '',
++    'D_XMLTV_LOCATION_WEB': 'http://',
++    'D_XMLTV_LOCATION_SCRIPT': '',
++    #VDR
++    'D_ENABLE_EXTERNAL_RECCMD': '0',
++    'D_EXTERNAL_RECCMD_PATH': '',
++    'D_ENABLE_CHARSET_OVERRIDE': '0',
++    'D_CHARSET_OVERRIDE_STR': '',
++    'D_VDR_VIDEO_DIR': '/storage/videos/',
++    'D_VDR_DEBUG': '0',
++    'D_PVR_PLUGIN': 'xvdr',
++    'D_ENABLE_IPTV': '0',
++    'D_IPTV_NUM_DEVICES': '1',
++    'D_ENABLE_STREAMDEV_CLIENT': '1',
++    'D_ENABLE_STREAMDEV_SERVER': '1',
++    'D_ENABLE_WIRBELSCAN': '0',
++    'D_ENABLE_LIVE': '0',
++    'D_LIVE_IP': '0.0.0.0',
++    'D_LIVE_PORT': '8008',
++    'D_ENABLE_EEPG': '1',
++    'D_ENABLE_EPGSEARCH': '1',
++    'D_ENABLE_XMLTV2VDR': '0',
++    'D_ENABLE_SOFTCAM': '1',
++    'D_SOFTCAM_OPTION': '',
++    'D_ENABLE_DUMMYDEVICE': '0',
++    'D_ENABLE_SATIP': '0',
++    'D_ENABLE_EPGFIXER': '0',
++    'D_ENABLE_RESTFULAPI': '0',
++    'D_RESTFULAPI_IP': '0.0.0.0',
++    'D_RESTFULAPI_PORT': '8002',
++    #TV FRONT
++    'D_TV_FRONT': 'none',
++    #VDR FRONT
++    'D_F_ENABLE_EXTERNAL_RECCMD': '0',
++    'D_F_EXTERNAL_RECCMD_PATH': '',
++    'D_F_ENABLE_CHARSET_OVERRIDE': '0',
++    'D_F_CHARSET_OVERRIDE_STR': '',
++    'D_F_VDR_VIDEO_DIR': '/storage/videos/',
++    'D_F_VDR_DEBUG': '0',
++    'D_F_ENABLE_IPTV': '1',
++    'D_F_IPTV_NUM_DEVICES': '1',
++    'D_F_ENABLE_STREAMDEV_CLIENT': '1',
++    'D_F_ENABLE_STREAMDEV_SERVER': '1',
++    'D_F_ENABLE_WIRBELSCAN': '1',
++    'D_F_ENABLE_LIVE': '0',
++    'D_F_LIVE_IP': '0.0.0.0',
++    'D_F_LIVE_PORT': '8008',
++    'D_F_ENABLE_EEPG': '1',
++    'D_F_ENABLE_EPGSEARCH': '1',
++    'D_F_ENABLE_XMLTV2VDR': '1',
++    'D_F_ENABLE_SOFTCAM': '1',
++    'D_F_SOFTCAM_OPTION': '',
++    'D_F_ENABLE_DUMMYDEVICE': '0',
++    'D_F_ENABLE_SATIP': '1',
++    'D_F_ENABLE_EPGFIXER': '0',
++    'D_F_ENABLE_RESTFULAPI': '0',
++    'D_F_RESTFULAPI_IP': '0.0.0.0',
++    'D_F_RESTFULAPI_PORT': '8002',
++    'D_F_ENABLE_FEMON': '1',
++    'D_F_ENABLE_SYSTEMINFO': '1',
++    'D_F_ENABLE_SLEEPTIMER': '1',
++    'D_F_ENABLE_FILEBROWSER': '1',
++    'D_F_ENABLE_LCDPROC': '1',
++    'D_F_ENABLE_TEXT2SKIN': '1',
++    'D_F_ENABLE_SKINNOPACITY': '1',
++    'D_F_ENABLE_SKINFLAT': '1',
++    'D_F_ENABLE_SKINFLAT_PLUS': '1',
++    'D_F_ENABLE_MENUORG': '0',
++    'D_F_ENABLE_TVGUIDE': '1',
++    'D_F_ENABLE_TVSCRAPER': '1',
++    'D_F_ENABLE_SKINDESIGNER': '0',
++    'D_F_ENABLE_WEATHERFORECAST': '0',
++    'D_F_ENABLE_FAVORITES': '0',
++    'D_F_FRONT': 'soft',
++    'D_F_OUTPUT_VIDEO': 'auto',
++    'D_F_SOUND_SOFT': 'alsa',
++    'D_F_SOUND_XINE': 'alsa',
++    'D_F_SOFT_PARAM': '',
++    'D_F_XINE_PARAM': '',
++    #DVB
++    'D_WAIT_FOR_FEINIT': '0',
++    'D_NUM_ADAPTERS': '1',
++    'D_REMOVE_MODULES': '',
++    #OSCAM
++    'D_OSCAM_ENABLE': '1',
++    'D_OSCAM_DEBUG': '1',
++    'D_RESTART_ON_RESUME': '0',
++    }
+ 
+ system = {
+     'ENABLED': True,
+@@ -113,4 +240,8 @@
+     'obexd': ['obex.service'],
+     'crond': ['cron.service'],
+     'lcdd': ['lcdd.service'],
++    'transmission': ['transmission.service'],
++    'tvheadend': ['tvheadend.service'],  
++    'vdr': ['vdr.service'],
++    'oscam': ['oscam.service'],
+     }
+diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
+--- a/src/resources/lib/modules/system.py	2016-02-28 15:45:01.000000000 +0200
++++ b/src/resources/lib/modules/system.py	2016-04-24 02:31:41.606771982 +0300
+@@ -130,6 +130,15 @@
+                             'values': [],
+                             'InfoText': 713,
+                             },
++                        'KeyboardSwitches': {
++                            'order': 6,
++                            'name': 32400,
++                            'value': 'grp-ctrl_shift_toggle',
++                            'action': 'set_keyboard_layout',
++                            'type': 'multivalue',
++                            'values': [],
++                            'InfoText': 799,
++                            },
+                         },
+                     },
+                 'update': {
+@@ -266,12 +275,18 @@
+                 arrLayouts,
+                 arrTypes,
+                 self.arrVariants,
++                arrOptions
+                 ) = self.get_keyboard_layouts()
+             if not arrTypes is None:
+                 self.struct['keyboard']['settings']['KeyboardType']['values'] = arrTypes
+                 value = self.oe.read_setting('system', 'KeyboardType')
+                 if not value is None:
+                     self.struct['keyboard']['settings']['KeyboardType']['value'] = value
++            if not arrOptions is None:
++                self.struct['keyboard']['settings']['KeyboardSwitches']['values'] = arrOptions
++                value = self.oe.read_setting('system', 'KeyboardSwitches')
++                if not value is None:
++                    self.struct['keyboard']['settings']['KeyboardSwitches']['value'] = value                    
+             if not arrLayouts is None:
+                 self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
+                 self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
+@@ -362,7 +377,8 @@
+                         ]['KeyboardLayout2']['value']]
+                 self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
+                                 + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
+-                                + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']), 1)
++                                + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']) + ' ' + '-group ' 
++                                + unicode(self.struct['keyboard']['settings']['KeyboardSwitches']['value']), 1)
+                 if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
+                     os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
+                 config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
+@@ -371,7 +387,8 @@
+                                   self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
+                 config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
+                                   ]['settings']['KeyboardLayout2']['value'] + '"\n')
+-                config_file.write('XKBOPTIONS="grp:alt_shift_toggle"\n')
++                KbdOpt = self.struct['keyboard']['settings']['KeyboardSwitches']['value']
++                config_file.write('XKBOPTIONS="' + KbdOpt.replace('-',':') + '"\n')
+                 config_file.close()
+                 parameters = [
+                     '-display ' + os.environ['DISPLAY'],
+@@ -380,7 +397,7 @@
+                     '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
+                             ]['KeyboardVariant2']['value'],
+                     '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
+-                    '-option "grp:alt_shift_toggle"',
++                    '-option ' + unicode(KbdOpt.replace('-',':'))
+                     ]
+                 self.oe.execute('setxkbmap ' + ' '.join(parameters))
+             elif self.nox_keyboard_layouts == True:
+@@ -455,6 +472,7 @@
+             arrLayouts = []
+             arrVariants = {}
+             arrTypes = []
++            arrOptions = []
+             if os.path.exists(self.KEYBOARD_INFO):
+                 objXmlFile = open(self.KEYBOARD_INFO, 'r')
+                 strXmlText = objXmlFile.read()
+@@ -496,8 +514,20 @@
+                                 if subnode_2.nodeName == 'description':
+                                     if hasattr(subnode_2.firstChild, 'nodeValue'):
+                                         arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
++                for xml_layout in xml_conf.getElementsByTagName('option'):
++                    for subnode_1 in xml_layout.childNodes:
++                        if subnode_1.nodeName == 'configItem':
++                            for subnode_2 in subnode_1.childNodes:
++                                if subnode_2.nodeName == 'name':
++                                    if hasattr(subnode_2.firstChild,'nodeValue'):
++                                        ovalue = subnode_2.firstChild.nodeValue.replace(':','-')
++                                if subnode_2.nodeName == 'description':
++                                    if hasattr(subnode_2.firstChild,'nodeValue'):
++                                        if (ovalue.find('grp-') != -1) and (ovalue.find('_toggle') != -1):
++                                            arrOptions.append(subnode_2.firstChild.nodeValue + ':' + ovalue)
+                 arrLayouts.sort()
+                 arrTypes.sort()
++                arrOptions.sort()
+             elif os.path.exists(self.NOX_KEYBOARD_INFO):
+                 for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
+                     if os.path.isfile(layout):
+@@ -512,6 +542,7 @@
+                 arrLayouts,
+                 arrTypes,
+                 arrVariants,
++                arrOptions
+                 )
+         except Exception, e:
+             self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
+diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
+--- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
++++ b/src/resources/lib/modules/transmission.py	2016-04-24 02:31:41.606771982 +0300
+@@ -0,0 +1,331 @@
++################################################################################
++#      This file is part of OpenELEC - http://www.openelec.tv
++#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
++#      Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
++#
++#  This program is dual-licensed; you can redistribute it and/or modify
++#  it under the terms of the GNU General Public License as published by
++#  the Free Software Foundation; either version 2 of the License, or
++#  (at your option) any later version.
++#
++#  This Program is distributed in the hope that it will be useful,
++#  but WITHOUT ANY WARRANTY; without even the implied warranty of
++#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++#  GNU General Public License for more details.
++#
++#  You should have received a copy of the GNU General Public License
++#  along with OpenELEC; see the file COPYING.  If not, see
++#  <http://www.gnu.org/licenses/>.
++#
++#  Alternatively, you can license this library under a commercial license,
++#  please contact OpenELEC Licensing for more information.
++#
++#  For more information contact:
++#  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
++################################################################################
++# -*- coding: utf-8 -*-
++import os
++import glob
++
++class transmission:
++
++    ENABLED = False
++
++    TRANSMISSION_DAEMON = None
++    TRANSMISSION_DAEMON_START = None
++
++    D_TRANSMISSION_SECURE = None
++    D_TRANSMISSION_USERNAME = None
++    D_TRANSMISSION_PASSWORD = None
++    D_TRANSMISSION_IP = None
++    D_TRANSMISSION_LIMIT_GLOBAL = None
++    D_TRANSMISSION_LIMIT_TORRENT = None
++    D_TRANSMISSION_DL_DIR = None
++
++    menu = {'7': {
++        'name': 33000,
++        'menuLoader': 'load_menu',
++        'listTyp': 'list',
++        'InfoText': 800,
++        }
++    }
++
++    def __init__(self, oeMain):
++        try:
++            oeMain.dbg_log('transmission::__init__', 'enter_function', 0)
++
++            self.oe = oeMain
++
++            self.struct = {
++                'transmission': {
++                    'order': 1,
++                    'name': 33001,
++                    'not_supported': [],
++                    'settings': {
++                        'transmission_autostart': {
++                            'order': 1,
++                            'name': 33002,
++                            'value': '0',
++                            'action': 'initialize_transmission',
++                            'type': 'bool',
++                            'InfoText': 801,
++                        },
++                        'transmission_secure': {
++                            'order': 2,
++                            'name': 33003,
++                            'value': '1',
++                            'action': 'initialize_transmission',
++                            'type': 'bool',
++                            'parent': {'entry': 'transmission_autostart','value': ['1']},
++                            'InfoText': 802,
++                        },
++                        'transmission_username': {
++                            'order': 3,
++                            'name': 33004,
++                            'value': 'libreelec',
++                            'action': 'initialize_transmission',
++                            'type': 'text',
++                            'parent': {'entry': 'transmission_secure','value': ['1']},
++                            'InfoText': 803,
++                        },
++                        'transmission_password': {
++                            'order': 4,
++                            'name': 33005,
++                            'value': 'libreelec',
++                            'action': 'initialize_transmission',
++                            'type': 'text',
++                            'parent': {'entry': 'transmission_secure','value': ['1']},
++                            'InfoText': 804,
++                        },
++                        'transmission_ip': {
++                            'order': 5,
++                            'name': 33006,
++                            'value': '*.*.*.*',
++                            'action': 'initialize_transmission',
++                            'type': 'text',
++                            'parent': {'entry': 'transmission_autostart','value': ['1']},
++                            'InfoText': 805,
++                        },
++                        'transmission_limit_global': {
++                            'order': 6,
++                            'name': 33007,
++                            'value': '100',
++                            'action': 'initialize_transmission',
++                            'type': 'num',
++                            'parent': {'entry': 'transmission_autostart','value': ['1']},
++                            'InfoText': 806,
++                        },
++                        'transmission_limit_torrent': {
++                            'order': 7,
++                            'name': 33008,
++                            'value': '100',
++                            'action': 'initialize_transmission',
++                            'type': 'num',
++                            'parent': {'entry': 'transmission_autostart','value': ['1']},
++                            'InfoText': 807,
++                        },
++                        'transmission_dl_dir': {
++                            'order': 8,
++                            'name': 33009,
++                            'value': '/storage/downloads/',
++                            'action': 'initialize_transmission',
++                            'type': 'folder',
++                            'parent': {'entry': 'transmission_autostart','value': ['1']},
++                            'InfoText': 808,
++                        },
++                    }
++                },
++            }
++
++            self.oe.dbg_log('transmission::__init__', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::__init__', 'ERROR: (' + repr(e) + ')')
++
++    def start_service(self):
++        try:
++            self.oe.dbg_log('transmission::start_service', 'enter_function', 0)
++            self.load_values()
++            self.initialize_transmission(service=1)
++            self.oe.dbg_log('transmission::start_service', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::start_service', 'ERROR: (%s)' % repr(e))
++
++    def stop_service(self):
++        try:
++            self.oe.dbg_log('transmission::stop_service', 'enter_function', 0)
++            self.oe.dbg_log('transmission::stop_service', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::stop_service', 'ERROR: (' + repr(e) + ')')
++
++    def do_init(self):
++        try:
++            self.oe.dbg_log('transmission::do_init', 'exit_function', 0)
++            self.load_values()
++            self.oe.dbg_log('transmission::do_init', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::do_init', 'ERROR: (%s)' % repr(e))
++
++    def set_value(self, listItem):
++        try:
++            self.oe.dbg_log('transmission::set_value', 'enter_function', 0)
++            self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
++            self.oe.dbg_log('transmission::set_value', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::set_value', 'ERROR: (' + repr(e)  + ')')
++
++    def load_menu(self, focusItem):
++        try:
++            self.oe.dbg_log('transmission::load_menu', 'enter_function', 0)
++            self.oe.winOeMain.build_menu(self.struct)
++            self.oe.dbg_log('transmission::load_menu', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::load_menu', 'ERROR: (%s)' % repr(e))
++
++    def load_values(self):
++        try:
++            self.oe.dbg_log('transmission::load_values', 'enter_function', 0)
++
++            if os.path.isfile(self.TRANSMISSION_DAEMON_START) and os.path.isfile(self.TRANSMISSION_DAEMON):
++
++                self.struct['transmission']['settings']['transmission_autostart']['value'] = \
++                self.oe.get_service_state('transmission')
++
++                self.struct['transmission']['settings']['transmission_secure']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_SECURE', self.D_TRANSMISSION_SECURE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['transmission']['settings']['transmission_username']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_USERNAME', self.D_TRANSMISSION_USERNAME).replace('"', '')
++
++                self.struct['transmission']['settings']['transmission_password']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_PASSWORD', self.D_TRANSMISSION_PASSWORD).replace('"', '')
++
++                self.struct['transmission']['settings']['transmission_ip']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_IP', self.D_TRANSMISSION_IP).replace('"', '')
++
++                self.struct['transmission']['settings']['transmission_limit_global']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_LIMIT_GLOBAL', self.D_TRANSMISSION_LIMIT_GLOBAL).replace('"', '')
++
++                self.struct['transmission']['settings']['transmission_limit_torrent']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_LIMIT_TORRENT', self.D_TRANSMISSION_LIMIT_TORRENT).replace('"', '')
++
++                self.struct['transmission']['settings']['transmission_dl_dir']['value'] = \
++                self.oe.get_service_option('transmission', 'TRANSMISSION_DL_DIR', self.D_TRANSMISSION_DL_DIR).replace('"', '')
++
++            else:
++                self.struct['transmission']['hidden'] = 'true'
++
++            self.oe.dbg_log('transmission::load_values', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::load_values', 'ERROR: (%s)'  % repr(e))
++
++    def initialize_transmission(self, **kwargs):
++        try:
++            self.oe.dbg_log('transmission::initialize_transmission', 'enter_function', 0)
++
++            self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem'])
++
++            options = {}
++
++            if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
++
++                state = 1
++
++                if 'hidden' in self.struct['transmission']['settings']['transmission_username']:
++                    del self.struct['transmission']['settings']['transmission_username']['hidden']
++
++                if 'hidden' in self.struct['transmission']['settings']['transmission_password']:
++                    del self.struct['transmission']['settings']['transmission_password']['hidden']
++
++                if self.struct['transmission']['settings']['transmission_secure']['value'] == '1':
++                    val = 'true'
++                else:
++                    val = 'false'
++
++                options['TRANSMISSION_SECURE']   = '"%s"' % val
++                options['TRANSMISSION_USERNAME'] = '"%s"' % self.struct['transmission']['settings']['transmission_username']['value']
++                options['TRANSMISSION_PASSWORD'] = '"%s"' % self.struct['transmission']['settings']['transmission_password']['value']
++                options['TRANSMISSION_IP'] = '"%s"' % self.struct['transmission']['settings']['transmission_ip']['value']
++                options['TRANSMISSION_LIMIT_GLOBAL'] = '"%s"' % self.struct['transmission']['settings']['transmission_limit_global']['value']
++                options['TRANSMISSION_LIMIT_TORRENT'] = '"%s"' % self.struct['transmission']['settings']['transmission_limit_torrent']['value']
++                options['TRANSMISSION_DL_DIR'] = '"%s"' % self.struct['transmission']['settings']['transmission_dl_dir']['value']
++
++            else:
++
++                state = 0
++
++                self.struct['transmission']['settings']['transmission_username']['hidden'] = True
++                self.struct['transmission']['settings']['transmission_password']['hidden'] = True
++
++            self.oe.set_service('transmission', options, state)
++
++            self.load_values()
++
++            self.oe.set_busy(0)
++
++            self.oe.dbg_log('transmission::initialize_transmission', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.set_busy(0)
++            self.oe.dbg_log('transmission::initialize_transmission', 'ERROR: (%s)' % repr(e), 4)
++
++    def exit(self):
++        try:
++            self.oe.dbg_log('transmission::exit', 'enter_function', 0)
++            self.oe.dbg_log('transmission::exit', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::exit', 'ERROR: (%s)' % repr(e), 4)
++
++    def do_wizard(self):
++        try:
++            self.oe.dbg_log('transmission::do_wizard', 'enter_function', 0)
++            self.oe.winOeMain.set_wizard_title(self.oe._(33000))
++            self.oe.winOeMain.set_wizard_text(self.oe._(33010))
++            self.oe.winOeMain.set_wizard_button_title(self.oe._(33001))
++            self.set_wizard_buttons()
++            self.oe.dbg_log('transmission::do_wizard', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::do_wizard', 'ERROR: (%s)' % repr(e))
++
++    def set_wizard_buttons(self):
++        try:
++            self.oe.dbg_log('transmission::set_wizard_buttons', 'enter_function', 0)
++
++            if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
++                self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(33000), self, 'wizard_set_transmission', True)
++            else:
++                self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(33000), self, 'wizard_set_transmission')
++
++            self.oe.dbg_log('transmission::set_wizard_buttons', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::set_wizard_buttons', 'ERROR: (%s)' % repr(e))
++
++    def wizard_set_transmission(self):
++        try:
++            self.oe.dbg_log('transmission::wizard_set_transmission', 'enter_function', 0)
++            if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
++                self.struct['transmission']['settings']['transmission_autostart']['value'] = '0'
++ 
++            else:
++                self.struct['transmission']['settings']['transmission_autostart']['value'] = '1'
++
++                self.initialize_transmission()
++                self.load_values()
++                self.set_wizard_buttons()
++
++                self.oe.dbg_log('transmission::wizard_set_transmission', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
+diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
+--- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
++++ b/src/resources/lib/modules/tvservers.py	2016-04-24 02:31:41.606771982 +0300
+@@ -0,0 +1,2063 @@
++################################################################################
++#      This file is part of OpenELEC - http://www.openelec.tv
++#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
++#      Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
++#
++#  This program is dual-licensed; you can redistribute it and/or modify
++#  it under the terms of the GNU General Public License as published by
++#  the Free Software Foundation; either version 2 of the License, or
++#  (at your option) any later version.
++#
++#  This Program is distributed in the hope that it will be useful,
++#  but WITHOUT ANY WARRANTY; without even the implied warranty of
++#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++#  GNU General Public License for more details.
++#
++#  You should have received a copy of the GNU General Public License
++#  along with OpenELEC; see the file COPYING.  If not, see
++#  <http://www.gnu.org/licenses/>.
++#
++#  Alternatively, you can license this library under a commercial license,
++#  please contact OpenELEC Licensing for more information.
++#
++#  For more information contact:
++#  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
++################################################################################
++# -*- coding: utf-8 -*-
++import xbmc
++import xbmcgui
++import os
++import glob
++import oeWindows
++
++class tvservers:
++
++    ENABLED = False
++
++    TVHEADEND_DAEMON = None
++    TVHEADEND_DAEMON_START = None
++    VDR_DAEMON = None
++    VDR_DAEMON_START = None
++    VDR_DAEMON_FRONT_START = None
++    OSCAM_DAEMON = None
++    OSCAM_DAEMON_START = None
++
++    D_TV_BACKEND = None
++
++    D_PRELOAD_CAPMT_CA = None
++    D_TVH_BACKUP = None
++    D_TVH_DEBUG = None
++    D_ADAPTERS = None
++    D_XMLTV_TYPE = None
++    D_XMLTV_LOCATION_FILE = None
++    D_XMLTV_LOCATION_WEB = None
++    D_XMLTV_LOCATION_SCRIPT = None
++
++    D_ENABLE_EXTERNAL_RECCMD = None
++    D_EXTERNAL_RECCMD_PATH = None
++    D_ENABLE_CHARSET_OVERRIDE = None
++    D_CHARSET_OVERRIDE_STR = None
++    D_VDR_VIDEO_DIR = None
++    D_VDR_DEBUG = None
++    D_PVR_PLUGIN = None
++    D_ENABLE_IPTV = None
++    D_IPTV_NUM_DEVICES = None
++    D_ENABLE_STREAMDEV_CLIENT = None
++    D_ENABLE_STREAMDEV_SERVER = None
++    D_ENABLE_WIRBELSCAN = None
++    D_ENABLE_LIVE = None
++    D_LIVE_IP = None
++    D_LIVE_PORT = None
++    D_ENABLE_EEPG = None
++    D_ENABLE_EPGSEARCH = None
++    D_ENABLE_XMLTV2VDR = None
++    D_ENABLE_SOFTCAM = None
++    D_SOFTCAM_OPTION = None
++    D_ENABLE_DUMMYDEVICE = None
++    D_ENABLE_SATIP = None
++    D_ENABLE_EPGFIXER = None
++    D_ENABLE_RESTFULAPI = None
++    D_RESTFULAPI_IP = None
++    D_RESTFULAPI_PORT = None
++
++    D_TV_FRONT = None
++
++    D_F_ENABLE_EXTERNAL_RECCMD = None
++    D_F_EXTERNAL_RECCMD_PATH = None
++    D_F_ENABLE_CHARSET_OVERRIDE = None
++    D_F_CHARSET_OVERRIDE_STR = None
++    D_F_VDR_VIDEO_DIR = None
++    D_F_VDR_DEBUG = None
++    D_F_ENABLE_IPTV = None
++    D_F_IPTV_NUM_DEVICES = None
++    D_F_ENABLE_STREAMDEV_CLIENT = None
++    D_F_ENABLE_STREAMDEV_SERVER = None
++    D_F_ENABLE_WIRBELSCAN = None
++    D_F_ENABLE_LIVE = None
++    D_F_LIVE_IP = None
++    D_F_LIVE_PORT = None
++    D_F_ENABLE_EEPG = None
++    D_F_ENABLE_EPGSEARCH = None
++    D_F_ENABLE_XMLTV2VDR = None
++    D_F_ENABLE_SOFTCAM = None
++    D_F_SOFTCAM_OPTION = None
++    D_F_ENABLE_DUMMYDEVICE = None
++    D_F_ENABLE_SATIP = None
++    D_F_ENABLE_EPGFIXER = None
++    D_F_ENABLE_RESTFULAPI = None
++    D_F_RESTFULAPI_IP = None
++    D_F_RESTFULAPI_PORT = None
++    D_F_ENABLE_FEMON = None
++    D_F_ENABLE_SYSTEMINFO = None
++    D_F_ENABLE_SLEEPTIMER = None
++    D_F_ENABLE_FILEBROWSER = None
++    D_F_ENABLE_LCDPROC = None
++    D_F_ENABLE_TEXT2SKIN = None
++    D_F_ENABLE_SKINNOPACITY = None
++    D_F_ENABLE_SKINFLAT = None
++    D_F_ENABLE_SKINFLAT_PLUS = None
++    D_F_ENABLE_MENUORG = None
++    D_F_ENABLE_TVGUIDE = None
++    D_F_ENABLE_TVSCRAPER = None
++    D_F_ENABLE_SKINDESIGNER = None
++    D_F_ENABLE_WEATHERFORECAST = None
++    D_F_ENABLE_FAVORITES = None
++    D_F_FRONT = None
++    D_F_OUTPUT_VIDEO = None
++    D_F_SOUND_SOFT = None
++    D_F_SOUND_XINE = None
++    D_F_SOFT_PARAM = None
++    D_F_XINE_PARAM = None
++
++    D_WAIT_FOR_FEINIT = None
++    D_NUM_ADAPTERS = None
++    D_REMOVE_MODULES = None
++
++    D_OSCAM_ENABLE = None
++    D_OSCAM_DEBUG = None
++    D_RESTART_ON_RESUME = None
++
++    LOADING_VALUES = None
++
++    menu = {'6': {
++        'name': 34000,
++        'menuLoader': 'load_menu',
++        'listTyp': 'list',
++        'InfoText': 1000,
++        }}
++
++    def __init__(self, oeMain):
++        try:
++            oeMain.dbg_log('tvservers::__init__', 'enter_function', 0)
++
++            self.oe = oeMain
++
++            self.LOADING_VALUES='0'
++
++            self.struct = {
++                'tvbackends': {
++                    'order': 1,
++                    'name': 35000,
++                    'not_supported': [],
++                    'settings': {
++                        'tv_backend': {
++                            'order': 1,
++                            'name': 35001,
++                            'value': 'none',
++                            'values': ['none','tvheadend','vdr'],
++                            'action': 'initialize_tv_backend',
++                            'type': 'multivalue',
++                            'InfoText': 1001,
++                        },
++                    },
++                },
++                'tvheadend': {
++                    'order': 2,
++                    'name': 36000,
++                    'not_supported': [],
++                    'settings': {
++                        'preload_capmt_ca': {
++                            'order': 1,
++                            'name': 36001,
++                            'value': '0',
++                            'action': 'initialize_tvheadend',
++                            'type': 'bool',
++                            'InfoText': 1101,
++                        },
++                        'tvh_backup': {
++                            'order': 2,
++                            'name': 36002,
++                            'value': '0',
++                            'action': 'initialize_tvheadend',
++                            'type': 'bool',
++                            'InfoText': 1102,
++                        },
++                        'tvh_debug': {
++                            'order': 3,
++                            'name': 36003,
++                            'value': '0',
++                            'action': 'initialize_tvheadend',
++                            'type': 'bool',
++                            'InfoText': 1103,
++                        },
++                        'adapters': {
++                            'order': 4,
++                            'name': 36004,
++                            'value': '',
++                            'action': 'initialize_tvheadend',
++                            'type': 'text',
++                            'InfoText': 1104,
++                        },
++                        'xmltv_type': {
++                            'order': 5,
++                            'name': 36005,
++                            'value': 'none',
++                            'values': ['none','file','web','script'],
++                            'action': 'initialize_tvheadend',
++                            'type': 'multivalue',
++                            'InfoText': 1105,
++                        },
++                        'xmltv_location_file': {
++                            'order': 6,
++                            'name': 36006,
++                            'value': '',
++                            'action': 'initialize_tvheadend',
++                            'type': 'file',
++                            'parent': {'entry': 'xmltv_type','value': ['file']},
++                            'InfoText': 1106,
++                        },
++                        'xmltv_location_web': {
++                            'order': 7,
++                            'name': 36007,
++                            'value': 'http://',
++                            'action': 'initialize_tvheadend',
++                            'type': 'text',
++                            'parent': {'entry': 'xmltv_type','value': ['web']},
++                            'InfoText': 1107,
++                        },
++                        'xmltv_location_script': {
++                            'order': 8,
++                            'name': 36008,
++                            'value': '',
++                            'action': 'initialize_tvheadend',
++                            'type': 'folder',
++                            'parent': {'entry': 'xmltv_type','value': ['script']},
++                            'InfoText': 1108,
++                        },
++                    },
++                },
++                'vdr': {
++                    'order': 3,
++                    'name': 37000,
++                    'not_supported': [],
++                    'settings': {
++                        'enable_ext_reccmd': {
++                            'order': 1,
++                            'name': 37001,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1201,
++                        },
++                        'ext_reccmd_path': {
++                            'order': 2,
++                            'name': 37002,
++                            'value': '',
++                            'action': 'initialize_vdr',
++                            'type': 'folder',
++                            'parent': {'entry': 'enable_ext_reccmd','value': ['1']},
++                            'InfoText': 1202,
++                        },
++                        'enable_charset_override': {
++                            'order': 3,
++                            'name': 37003,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1203,
++                        },
++                        'charset_override': {
++                            'order': 4,
++                            'name': 37004,
++                            'value': '',
++                            'action': 'initialize_vdr',
++                            'parent': {'entry': 'enable_charset_override','value': ['1']},
++                            'type': 'text',
++                            'InfoText': 1204,
++                        },
++                        'vdr_video_dir': {
++                            'order': 5,
++                            'name': 37005,
++                            'value': '/storage/videos/',
++                            'action': 'initialize_vdr',
++                            'type': 'folder',
++                            'InfoText': 1205,
++                        },
++                        'vdr_debug': {
++                            'order': 6,
++                            'name': 37006,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1206,
++                        },
++                        'pvr_plugin': {
++                            'order': 7,
++                            'name': 37007,
++                            'value': 'xvdr',
++                            'values': ['xvdr','vnsiserver'],
++                            'action': 'initialize_vdr',
++                            'type': 'multivalue',
++                            'InfoText': 1207,
++                        },
++                        'enable_iptv': {
++                            'order': 8,
++                            'name': 37008,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1208,
++                        },
++                        'num_devices': {
++                            'order': 9,
++                            'name': 37009,
++                            'value': '1',
++                            'action': 'initialize_vdr',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_iptv','value': ['1']},
++                            'InfoText': 1209,
++                        },
++                        'enable_streamdev_client': {
++                            'order': 10,
++                            'name': 37010,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1210,
++                        },
++                        'enable_streamdev_server': {
++                            'order': 11,
++                            'name': 37011,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1211,
++                        },
++                        'enable_wirbelscan': {
++                            'order': 12,
++                            'name': 37012,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1212,
++                        },
++                        'enable_live': {
++                            'order': 13,
++                            'name': 37013,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1213,
++                        },
++                        'live_ip': {
++                            'order': 14,
++                            'name': 37014,
++                            'value': '0.0.0.0',
++                            'action': 'initialize_vdr',
++                            'type': 'text',
++                            'parent': {'entry': 'enable_live','value': ['1']},
++                            'InfoText': 1214,
++                        },
++                        'live_port': {
++                            'order': 15,
++                            'name': 37015,
++                            'value': '8008',
++                            'action': 'initialize_vdr',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_live','value': ['1']},
++                            'InfoText': 1215,
++                        },
++                        'enable_eepg': {
++                            'order': 16,
++                            'name': 37018,
++                            'value': '1',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1218,
++                        },
++                        'enable_epgsearch': {
++                            'order': 17,
++                            'name': 37019,
++                            'value': '1',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1219,
++                        },
++                        'enable_xmltv2vdr': {
++                            'order': 18,
++                            'name': 37020,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1220,
++                        },
++                        'enable_softcam': {
++                            'order': 19,
++                            'name': 37021,
++                            'value': '1',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1221,
++                        },
++                        'softcam_option': {
++                            'order': 20,
++                            'name': 37022,
++                            'value': '',
++                            'action': 'initialize_vdr',
++                            'type': 'text',
++                            'parent': {'entry': 'enable_softcam','value': ['1']},
++                            'InfoText': 1222,
++                        },
++                        'enable_dummydevice': {
++                            'order': 21,
++                            'name': 37023,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1223,
++                        },
++                        'enable_satip': {
++                            'order': 22,
++                            'name': 37024,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1224,
++                        },
++                        'enable_epgfixer': {
++                            'order': 23,
++                            'name': 37026,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1226,
++                        },
++                        'enable_restfulapi': {
++                            'order': 24,
++                            'name': 37027,
++                            'value': '0',
++                            'action': 'initialize_vdr',
++                            'type': 'bool',
++                            'InfoText': 1227,
++                        },
++                        'restfulapi_ip': {
++                            'order': 25,
++                            'name': 37028,
++                            'value': '0.0.0.0',
++                            'action': 'initialize_vdr',
++                            'type': 'text',
++                            'parent': {'entry': 'enable_restfulapi','value': ['1']},
++                            'InfoText': 1228,
++                        },
++                        'restfulapi_port': {
++                            'order': 26,
++                            'name': 37029,
++                            'value': '8002',
++                            'action': 'initialize_vdr',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_restfulapi','value': ['1']},
++                            'InfoText': 1229,
++                        },
++                    },
++                },
++                'tvfrontends': {
++                    'order': 4,
++                    'name': 38000,
++                    'not_supported': [],
++                    'settings': {
++                        'tv_frontends': {
++                            'order': 1,
++                            'name': 38001,
++                            'value': 'none',
++                            'values': ['none','vdr'],
++                            'action': 'initialize_tv_frontends',
++                            'type': 'multivalue',
++                            'InfoText': 1301,
++                        },
++                    },
++                },
++                'vdr-front': {
++                    'order': 5,
++                    'name': 39000,
++                    'not_supported': [],
++                    'settings': {
++                        'enable_ext_reccmd': {
++                            'order': 1,
++                            'name': 37001,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1201,
++                        },
++                        'ext_reccmd_path': {
++                            'order': 2,
++                            'name': 37002,
++                            'value': '',
++                            'action': 'initialize_vdr_front',
++                            'parent': {'entry': 'enable_ext_reccmd','value': ['1']},
++                            'type': 'folder',
++                            'InfoText': 1202,
++                        },
++                        'enable_charset_override': {
++                            'order': 3,
++                            'name': 37003,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1203,
++                        },
++                        'charset_override': {
++                            'order': 4,
++                            'name': 37004,
++                            'value': '',
++                            'action': 'initialize_vdr_front',
++                            'parent': {'entry': 'enable_charset_override','value': ['1']},
++                            'type': 'text',
++                            'InfoText': 1204,
++                        },
++                        'vdr_video_dir': {
++                             'order': 5,
++                            'name': 37005,
++                            'value': '/storage/videos/',
++                            'action': 'initialize_vdr_front',
++                            'type': 'folder',
++                            'InfoText': 1205,
++                        },
++                        'vdr_debug': {
++                            'order': 6,
++                            'name': 37006,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1206,
++                        },
++                        'enable_iptv': {
++                            'order': 7,
++                            'name': 37008,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1208,
++                        },
++                        'num_devices': {
++                            'order': 8,
++                            'name': 37009,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_iptv','value': ['1']},
++                            'InfoText': 1209,
++                        },
++                        'enable_streamdev_client': {
++                            'order': 9,
++                            'name': 37010,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1210,
++                        },
++                        'enable_streamdev_server': {
++                            'order': 10,
++                            'name': 37011,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1211,
++                        },
++                        'enable_wirbelscan': {
++                            'order': 11,
++                            'name': 37012,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1212,
++                        },
++                        'enable_live': {
++                            'order': 12,
++                            'name': 37013,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1213,
++                        },
++                        'live_ip': {
++                            'order': 13,
++                            'name': 37014,
++                            'value': '0.0.0.0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'enable_live','value': ['1']},
++                            'InfoText': 1214,
++                        },
++                        'live_port': {
++                            'order': 14,
++                            'name': 37015,
++                            'value': '8008',
++                            'action': 'initialize_vdr_front',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_live','value': ['1']},
++                            'InfoText': 1215,
++                        },
++                       'enable_eepg': {
++                            'order': 15,
++                            'name': 37018,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1218,
++                        },
++                        'enable_epgsearch': {
++                            'order': 16,
++                            'name': 37019,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1219,
++                        },
++                        'enable_xmltv2vdr': {
++                            'order': 17,
++                            'name': 37020,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1220,
++                        },
++                        'enable_softcam': {
++                            'order': 18,
++                            'name': 37021,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1221,
++                        },
++                        'softcam_option': {
++                            'order': 19,
++                            'name': 37022,
++                            'value': '',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'enable_softcam','value': ['1']},
++                            'InfoText': 1222,
++                        },
++                        'enable_dummydevice': {
++                            'order': 20,
++                            'name': 37023,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1223,
++                        },
++                        'enable_satip': {
++                            'order': 21,
++                            'name': 37024,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1224,
++                        },
++                        'enable_epgfixer': {
++                            'order': 22,
++                            'name': 37026,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1226,
++                        },
++                        'enable_restfulapi': {
++                            'order': 23,
++                            'name': 37027,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1227,
++                        },
++                        'restfulapi_ip': {
++                            'order': 24,
++                            'name': 37028,
++                            'value': '0.0.0.0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'enable_restfulapi','value': ['1']},
++                            'InfoText': 1228,
++                        },
++                        'restfulapi_port': {
++                            'order': 25,
++                            'name': 37029,
++                            'value': '8002',
++                            'action': 'initialize_vdr_front',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_restfulapi','value': ['1']},
++                            'InfoText': 1229,
++                        },
++                        'enable_femon': {
++                            'order': 26,
++                            'name': 39022,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1422,
++                        },
++                        'enable_systeminfo': {
++                            'order': 27,
++                            'name': 39023,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1423,
++                        }, 
++                        'enable_sleeptimer': {
++                            'order': 28,
++                            'name': 39024,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1424,
++                        },
++                        'enable_filebrowser': {
++                            'order': 29,
++                            'name': 39025,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1425,
++                        },
++                        'enable_lcdproc': {
++                            'order': 30,
++                            'name': 39026,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1426,
++                        },
++                        'enable_text2skin': {
++                            'order': 31,
++                            'name': 39027,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1427,
++                        },
++                        'enable_skinnopacity': {
++                            'order': 32,
++                            'name': 39028,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1428,
++                        },
++                        'enable_skinflat': {
++                            'order': 33,
++                            'name': 39029,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1429,
++                        },
++                        'enable_skinflat_plus': {
++                            'order': 34,
++                            'name': 39030,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1430,
++                        },
++                        'enable_menuorg': {
++                            'order': 35,
++                            'name': 39031,
++                            'value': '0',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1431,
++                        },
++                        'enable_tvguide': {
++                            'order': 36,
++                            'name': 39032,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1432,
++                        },
++                        'enable_tvscraper': {
++                            'order': 37,
++                            'name': 39033,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1433,
++                        },
++                        'enable_skindesigner': {
++                            'order': 38,
++                            'name': 39034,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1434,
++                        },
++                        'enable_weatherforecast': {
++                            'order': 39,
++                            'name': 39035,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1435,
++                        },
++                        'enable_favorites': {
++                            'order': 40,
++                            'name': 39036,
++                            'value': '1',
++                            'action': 'initialize_vdr_front',
++                            'type': 'bool',
++                            'InfoText': 1436,
++                        },
++                        'vdr_output': {
++                            'order': 41,
++                            'name': 39038,
++                            'value': 'soft',
++                            'values': ['soft','xine'],
++                            'action': 'initialize_vdr_front',
++                            'type': 'multivalue',
++                            'InfoText': 1438,
++                        },
++                        'vdr_video': {
++                            'order': 42,
++                            'name': 39039,
++                            'value': 'auto',
++                            'values': ['auto','vdpau','vaapi'],
++                            'action': 'initialize_vdr_front',
++                            'type': 'multivalue',
++                            'InfoText': 1439,
++                        },
++                        'vdr_sound_soft': {
++                            'order': 43,
++                            'name': 39040,
++                            'value': 'alsa',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'vdr_output','value': ['soft']},
++                            'InfoText': 1440,
++                        },
++                        'vdr_sound_xine': {
++                            'order': 44,
++                            'name': 39041,
++                            'value': 'auto',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'vdr_output','value': ['xine']},
++                            'InfoText': 1441,
++                        },
++                        'vdr_soft_param': {
++                            'order': 45,
++                            'name': 39042,
++                            'value': '',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'vdr_output','value': ['soft']},
++                            'InfoText': 1442,
++                        },
++                        'vdr_xine_param': {
++                            'order': 46,
++                            'name': 39043,
++                            'value': '',
++                            'action': 'initialize_vdr_front',
++                            'type': 'text',
++                            'parent': {'entry': 'vdr_output','value': ['xine']},
++                            'InfoText': 1443,
++                        },
++                    },
++                },
++                'dvb': {
++                    'order': 6,
++                    'name': 40000,
++                    'not_supported': [],
++                    'settings': {
++                        'wait_for_feinit': {
++                            'order': 1,
++                            'name': 40001,
++                            'value': '0',
++                            'action': 'initialize_tv_backend',
++                            'type': 'bool',
++                            'InfoText': 1501,
++                        },
++                        'num_adapters': {
++                            'order': 2,
++                            'name': 40002,
++                            'value': '1',
++                            'action': 'initialize_tv_backend',
++                            'type': 'num',
++                            'InfoText': 1502,
++                        },
++                        'remove_modules': {
++                            'order': 3,
++                            'name': 40003,
++                            'value': '',
++                            'action': 'initialize_tv_backend',
++                            'type': 'text',
++                            'InfoText': 1503,
++                        },
++                    },
++                },
++                'oscam': {
++                    'order': 7,
++                    'name': 41000,
++                    'not_supported': [],
++                    'settings': {
++                        'enable_oscam': {
++                            'order': 1,
++                            'name': 41001,
++                            'value': '0',
++                            'action': 'initialize_oscam',
++                            'type': 'bool',
++                            'InfoText': 1601,
++                        },
++                        'oscam_debug': {
++                            'order': 2,
++                            'name': 41002,
++                            'value': '1',
++                            'action': 'initialize_oscam',
++                            'type': 'num',
++                            'parent': {'entry': 'enable_oscam','value': ['1']},
++                            'InfoText': 1602,
++                        },
++                        'restart_on_resume': {
++                            'order': 3,
++                            'name': 41003,
++                            'value': '0',
++                            'action': 'initialize_oscam',
++                            'type': 'bool',
++                            'parent': {'entry': 'enable_oscam','value': ['1']},
++                            'InfoText': 1603,
++                        },
++                    },
++                },
++            }
++
++            self.oe.dbg_log('tvservers::__init__', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::__init__', 'ERROR: (%s)' % repr(e))
++
++    def start_service(self):
++        try:
++            self.oe.dbg_log('tvservers::start_service', 'enter_function', 0)
++
++            self.load_values()
++
++            self.initialize_tv_backend(service=1)
++            self.initialize_tv_frontends(service=1)
++            self.initialize_oscam(service=1)
++
++            self.oe.dbg_log('tvservers::start_service', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::start_service', 'ERROR: (%s)' % repr(e))
++
++    def stop_service(self):
++        try:
++            self.oe.dbg_log('tvservers::stop_service', 'enter_function', 0)
++
++            self.oe.dbg_log('tvservers::stop_service', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::stop_service', 'ERROR: (%s)' % repr(e))
++
++    def do_init(self):
++        try:
++            self.oe.dbg_log('tvservers::do_init', 'exit_function', 0)
++
++            self.load_values()
++
++            self.oe.dbg_log('tvservers::do_init', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::do_init', 'ERROR: (%s)' % repr(e))
++
++    def set_value(self, listItem):
++        try:
++            self.oe.dbg_log('tvservers::set_value', 'enter_function', 0)
++
++            self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
++
++            self.oe.dbg_log('tvservers::set_value', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::set_value', 'ERROR: (%s)' % repr(e))
++
++    def load_menu(self, focusItem):
++        try:
++            self.oe.dbg_log('tvservers::load_menu', 'enter_function', 0)
++
++            self.oe.winOeMain.build_menu(self.struct)
++
++            self.oe.dbg_log('tvservers::load_menu', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::load_menu', 'ERROR: (%s)' % repr(e))
++
++    def load_values(self):
++        try:
++            self.oe.dbg_log('tvservers::load_values', 'enter_function', 0)
++
++            tvheadenabled = \
++            self.oe.get_service_state('tvheadend')
++
++            vdrenabled = \
++            self.oe.get_service_state('vdr')
++
++            oscamenabled = \
++            self.oe.get_service_state('oscam')
++
++            vdrfrontenabled = \
++            self.oe.get_service_state('vdr-front')
++
++            #tvbackend
++
++            if tvheadenabled == '0' and vdrenabled == '0':
++
++                self.struct['tvbackends']['settings']['tv_backend']['value'] = 'none'
++
++            if tvheadenabled == '1' and vdrenabled == '0':
++
++                self.struct['tvbackends']['settings']['tv_backend']['value'] = 'tvheadend'
++
++            if tvheadenabled == '0' and vdrenabled == '1':
++
++                self.struct['tvbackends']['settings']['tv_backend']['value'] = 'vdr'
++
++            #tvheadend
++
++            if os.path.isfile(self.TVHEADEND_DAEMON_START) and os.path.isfile(self.TVHEADEND_DAEMON) and tvheadenabled=='1':
++
++                if 'hidden' in self.struct['tvheadend']:
++                    del self.struct['tvheadend']['hidden']
++
++                self.struct['tvheadend']['settings']['preload_capmt_ca']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_PRELOAD_CAPMT_CA', self.D_PRELOAD_CAPMT_CA).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['tvheadend']['settings']['tvh_backup']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_BACKUP', self.D_TVH_BACKUP).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['tvheadend']['settings']['tvh_debug']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_DEBUG', self.D_TVH_DEBUG).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['tvheadend']['settings']['adapters']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_ADAPTERS', self.D_ADAPTERS).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['tvheadend']['settings']['xmltv_type']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_TYPE', self.D_XMLTV_TYPE).replace('"', '')
++
++                self.struct['tvheadend']['settings']['xmltv_location_file']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_FILE', self.D_XMLTV_LOCATION_FILE).replace('"', '')
++
++                self.struct['tvheadend']['settings']['xmltv_location_web']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_WEB', self.D_XMLTV_LOCATION_WEB).replace('"', '')
++
++                self.struct['tvheadend']['settings']['xmltv_location_script']['value'] = \
++                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_SCRIPT', self.D_XMLTV_LOCATION_SCRIPT).replace('"', '')
++
++            else:
++                self.struct['tvheadend']['hidden'] = 'true'
++
++            #vdr
++
++            if os.path.isfile(self.VDR_DAEMON_START) and os.path.isfile(self.VDR_DAEMON) and vdrenabled=='1':
++
++                if 'hidden' in self.struct['vdr']:
++                    del self.struct['vdr']['hidden']
++
++                self.struct['vdr']['settings']['enable_ext_reccmd']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_EXTERNAL_RECCMD', self.D_ENABLE_EXTERNAL_RECCMD).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['ext_reccmd_path']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_EXTERNAL_RECCMD_PATH', self.D_EXTERNAL_RECCMD_PATH).replace('"', '')
++
++                self.struct['vdr']['settings']['enable_charset_override']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_CHARSET_OVERRIDE', self.D_ENABLE_CHARSET_OVERRIDE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['charset_override']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_CHARSET_OVERRIDE_STR', self.D_CHARSET_OVERRIDE_STR).replace('"', '')
++
++                self.struct['vdr']['settings']['vdr_video_dir']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_VIDEO_DIR', self.D_VDR_VIDEO_DIR).replace('"', '')
++
++                self.struct['vdr']['settings']['vdr_debug']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_DEBUG', self.D_VDR_DEBUG).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['pvr_plugin']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_PVR_PLUGIN', self.D_PVR_PLUGIN).replace('"', '')
++
++                self.struct['vdr']['settings']['enable_iptv']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_IPTV', self.D_ENABLE_IPTV).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['num_devices']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_IPTV_NUM_DEVICES', self.D_IPTV_NUM_DEVICES).replace('"', '')
++
++                self.struct['vdr']['settings']['enable_streamdev_client']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_STREAMDEV_CLIENT', self.D_ENABLE_STREAMDEV_CLIENT).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_streamdev_server']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_STREAMDEV_SERVER', self.D_ENABLE_STREAMDEV_SERVER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_wirbelscan']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_WIRBELSCAN', self.D_ENABLE_WIRBELSCAN).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_live']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_LIVE', self.D_ENABLE_LIVE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['live_ip']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_LIVE_IP', self.D_LIVE_IP).replace('"', '')
++
++                self.struct['vdr']['settings']['live_port']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_LIVE_PORT', self.D_LIVE_PORT).replace('"', '')
++
++                self.struct['vdr']['settings']['enable_eepg']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_EEPG', self.D_ENABLE_EEPG).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_epgsearch']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_EPGSEARCH', self.D_ENABLE_EPGSEARCH).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_xmltv2vdr']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_XMLTV2VDR', self.D_ENABLE_XMLTV2VDR).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_softcam']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_SOFTCAM', self.D_ENABLE_SOFTCAM).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['softcam_option']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_DVBAPI_OPTION', self.D_SOFTCAM_OPTION).replace('"', '')
++
++                self.struct['vdr']['settings']['enable_dummydevice']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_DUMMYDEVICE', self.D_ENABLE_DUMMYDEVICE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_satip']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_SATIP', self.D_ENABLE_SATIP).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_epgfixer']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_EPGFIXER', self.D_ENABLE_EPGFIXER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['enable_restfulapi']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_ENABLE_RESTFULAPI', self.D_ENABLE_RESTFULAPI).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr']['settings']['restfulapi_ip']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_RESTFULAPI_IP', self.D_RESTFULAPI_IP).replace('"', '')
++
++                self.struct['vdr']['settings']['restfulapi_port']['value'] = \
++                self.oe.get_service_option('vdr', 'VDR_RESTFULAPI_PORT', self.D_RESTFULAPI_PORT).replace('"', '')
++
++            else:
++                self.struct['vdr']['hidden'] = 'true'
++
++            #tvfrontend
++
++            if vdrfrontenabled == '1':
++
++                self.struct['tvfrontends']['settings']['tv_frontends']['value'] = 'vdr'
++
++            else:
++
++                self.struct['tvfrontends']['settings']['tv_frontends']['value'] = 'none'
++
++            #vdr-front
++
++            if os.path.isfile(self.VDR_DAEMON_FRONT_START) and vdrfrontenabled=='1':
++
++                if 'hidden' in self.struct['vdr-front']:
++                    del self.struct['vdr-front']['hidden']
++
++                self.struct['vdr-front']['settings']['enable_ext_reccmd']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_EXTERNAL_RECCMD', self.D_F_ENABLE_EXTERNAL_RECCMD).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['ext_reccmd_path']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_EXTERNAL_RECCMD_PATH', self.D_F_EXTERNAL_RECCMD_PATH).replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_charset_override']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_CHARSET_OVERRIDE', self.D_F_ENABLE_CHARSET_OVERRIDE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['charset_override']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_CHARSET_OVERRIDE_STR', self.D_F_CHARSET_OVERRIDE_STR).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_video_dir']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_VIDEO_DIR', self.D_F_VDR_VIDEO_DIR).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_debug']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_DEBUG', self.D_F_VDR_DEBUG).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_iptv']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_IPTV', self.D_F_ENABLE_IPTV).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['num_devices']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_IPTV_NUM_DEVICES', self.D_F_IPTV_NUM_DEVICES).replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_streamdev_client']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_STREAMDEV_CLIENT', self.D_F_ENABLE_STREAMDEV_CLIENT).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_streamdev_server']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_STREAMDEV_SERVER', self.D_F_ENABLE_STREAMDEV_SERVER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_wirbelscan']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_WIRBELSCAN', self.D_F_ENABLE_WIRBELSCAN).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_live']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_LIVE', self.D_F_ENABLE_LIVE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['live_ip']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_LIVE_IP', self.D_F_LIVE_IP).replace('"', '')
++
++                self.struct['vdr-front']['settings']['live_port']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_LIVE_PORT', self.D_F_LIVE_PORT).replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_eepg']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_EEPG', self.D_F_ENABLE_EEPG).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_epgsearch']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_EPGSEARCH', self.D_F_ENABLE_EPGSEARCH).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_xmltv2vdr']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_XMLTV2VDR', self.D_F_ENABLE_XMLTV2VDR).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_softcam']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SOFTCAM', self.D_F_ENABLE_SOFTCAM).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['softcam_option']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_DVBAPI_OPTION', self.D_F_SOFTCAM_OPTION).replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_dummydevice']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_DUMMYDEVICE', self.D_F_ENABLE_DUMMYDEVICE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_satip']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SATIP', self.D_F_ENABLE_SATIP).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_epgfixer']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_EPGFIXER', self.D_F_ENABLE_EPGFIXER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_restfulapi']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_RESTFULAPI', self.D_F_ENABLE_RESTFULAPI).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['restfulapi_ip']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_RESTFULAPI_IP', self.D_F_RESTFULAPI_IP).replace('"', '')
++
++                self.struct['vdr-front']['settings']['restfulapi_port']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_RESTFULAPI_PORT', self.D_F_RESTFULAPI_PORT).replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_femon']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_FEMON', self.D_F_ENABLE_FEMON).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_systeminfo']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SYSTEMINFO', self.D_F_ENABLE_SYSTEMINFO).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_sleeptimer']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SLEEPTIMER', self.D_F_ENABLE_SLEEPTIMER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_filebrowser']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_FILEBROWSER', self.D_F_ENABLE_FILEBROWSER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_lcdproc']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_LCDPROC', self.D_F_ENABLE_LCDPROC).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_text2skin']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_TEXT2SKIN', self.D_F_ENABLE_TEXT2SKIN).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_skinnopacity']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SKINNOPACITY', self.D_F_ENABLE_SKINNOPACITY).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_skinflat']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SKINFLAT', self.D_F_ENABLE_SKINFLAT).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_skinflat_plus']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SKINFLAT_PLUS', self.D_F_ENABLE_SKINFLAT_PLUS).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_menuorg']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_MENUORG', self.D_F_ENABLE_MENUORG).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_tvguide']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_TVGUIDE', self.D_F_ENABLE_TVGUIDE).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_tvscraper']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_TVSCRAPER', self.D_F_ENABLE_TVSCRAPER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_skindesigner']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_SKINDESIGNER', self.D_F_ENABLE_SKINDESIGNER).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_weatherforecast']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_WEATHERFORECAST', self.D_F_ENABLE_WEATHERFORECAST).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['enable_favorites']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_FAVORITES', self.D_F_ENABLE_FAVORITES).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_output']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_FRONT', self.D_F_FRONT).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_video']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_OUTPUT_VIDEO', self.D_F_OUTPUT_VIDEO).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_sound_soft']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_SOUND_SOFT', self.D_F_SOUND_SOFT).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_sound_xine']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_SOUND_XINE', self.D_F_SOUND_XINE).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_soft_param']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_SOFT_PARAM', self.D_F_SOFT_PARAM).replace('"', '')
++
++                self.struct['vdr-front']['settings']['vdr_xine_param']['value'] = \
++                self.oe.get_service_option('vdr-front', 'VDR_XINE_PARAM', self.D_F_XINE_PARAM).replace('"', '')
++
++            else:
++                self.struct['vdr-front']['hidden'] = 'true'
++
++            #dvb
++
++            if (os.path.isfile(self.TVHEADEND_DAEMON_START) and os.path.isfile(self.TVHEADEND_DAEMON) and tvheadenabled=='1') or \
++            (os.path.isfile(self.VDR_DAEMON_START) and os.path.isfile(self.VDR_DAEMON) and vdrenabled=='1') or \
++            (os.path.isfile(self.VDR_DAEMON_FRONT_START) and vdrfrontenabled=='1'):
++
++                if 'hidden' in self.struct['dvb']:
++                    del self.struct['dvb']['hidden']
++
++                self.struct['dvb']['settings']['wait_for_feinit']['value'] = \
++                self.oe.get_service_option('dvb', 'DVB_WAIT_FOR_FEINIT', self.D_WAIT_FOR_FEINIT).replace('true','1').replace('false','0').replace('"', '')
++
++                self.struct['dvb']['settings']['num_adapters']['value'] = \
++                self.oe.get_service_option('dvb', 'DVB_NUM_ADAPTERS', self.D_NUM_ADAPTERS).replace('"', '')
++
++                self.struct['dvb']['settings']['remove_modules']['value'] = \
++                self.oe.get_service_option('dvb', 'DVB_REMOVE_MODULES', self.D_REMOVE_MODULES).replace('"', '')
++
++            else:
++                self.struct['dvb']['hidden'] = 'true'
++
++            #oscam
++
++            if os.path.isfile(self.OSCAM_DAEMON_START) and os.path.isfile(self.OSCAM_DAEMON):
++
++                if 'hidden' in self.struct['oscam']:
++                    del self.struct['oscam']['hidden']
++
++                self.struct['oscam']['settings']['enable_oscam']['value'] = oscamenabled
++
++                self.struct['oscam']['settings']['oscam_debug']['value'] = \
++                self.oe.get_service_option('oscam', 'OSCAM_DEBUG', self.D_OSCAM_DEBUG).replace('"', '')
++
++                self.struct['oscam']['settings']['restart_on_resume']['value'] = \
++                self.oe.get_service_option('oscam', 'RESTART_ON_RESUME', self.D_RESTART_ON_RESUME).replace('true','1').replace('false','0').replace('"', '')
++
++            else:
++                self.struct['oscam']['hidden'] = 'true'
++
++            self.oe.dbg_log('tvservers::load_values', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::load_values', 'ERROR: (%s)' % repr(e))
++
++    def initialize_tv_backend(self, **kwargs):
++        try:
++            self.oe.dbg_log('tvservers::initialize_tv_backend', 'enter_function', 0)
++
++            self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem']) 
++
++            state = 1
++            options = {}
++
++            if self.struct['dvb']['settings']['wait_for_feinit']['value'] == '1':
++                val1 = 'true'
++            else:
++                val1 = 'false'
++
++            options['DVB_WAIT_FOR_FEINIT']   = '"%s"' % val1
++            options['DVB_NUM_ADAPTERS'] = '"%s"' % self.struct['dvb']['settings']['num_adapters']['value']
++            options['DVB_REMOVE_MODULES'] = '"%s"' % self.struct['dvb']['settings']['remove_modules']['value']
++
++            self.oe.set_service('dvb', options, state)
++
++            self.LOADING_VALUES='1'
++
++            self.initialize_vdr(service=1)
++
++            self.initialize_tvheadend(service=1)
++
++            self.LOADING_VALUES='0'
++
++            self.load_values()
++
++            self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_tv_backend', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.set_busy(0)
++            self.oe.dbg_log('tvservers::initialize_tv_backend', 'ERROR: (%s)' % repr(e), 4)
++
++    def initialize_tvheadend(self, **kwargs):
++        try:
++            self.oe.dbg_log('tvservers::initialize_tvheadend', 'enter_function', 0)
++
++            if self.LOADING_VALUES=='0':
++
++                self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem'])
++
++            options = {}
++
++            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'tvheadend':
++
++                state = 1
++
++                if 'hidden' in self.struct['tvheadend']:
++                    del self.struct['tvheadend']['hidden']
++
++                if self.struct['tvheadend']['settings']['preload_capmt_ca']['value'] == '1':
++                    val1 ='true'
++
++                else:
++                    val1 ='false'
++
++                if self.struct['tvheadend']['settings']['tvh_backup']['value'] == '1':
++                    val2 ='true'
++
++                else:
++                    val2 ='false'
++
++                if self.struct['tvheadend']['settings']['tvh_debug']['value'] == '1':
++                    val3 ='true'
++
++                else:
++                    val3 ='false'
++
++                options['TVHEADEND_PRELOAD_CAPMT_CA']   = '"%s"' % val1
++                options['TVHEADEND_BACKUP']   = '"%s"' % val2
++                options['TVHEADEND_DEBUG']   = '"%s"' % val3
++                options['TVHEADEND_ADAPTERS'] = '"%s"' % self.struct['tvheadend']['settings']['adapters']['value']
++                options['TVHEADEND_XMLTV_TYPE'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_type']['value']
++                options['TVHEADEND_XMLTV_LOCATION_FILE'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_file']['value']
++                options['TVHEADEND_XMLTV_LOCATION_WEB'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_web']['value']
++                options['TVHEADEND_XMLTV_LOCATION_SCRIPT'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_script']['value']
++
++            else:
++
++                state = 0
++
++            self.oe.set_service('tvheadend', options, state)
++
++            if self.LOADING_VALUES=='0':
++
++                self.load_values()
++                self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_tvheadend', 'exit_function', 0)
++
++        except Exception, e:
++
++            if self.LOADING_VALUES=='0':
++
++                self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_tvheadend', 'ERROR: (%s)' % repr(e), 4)
++
++    def initialize_vdr(self, **kwargs):
++        try:
++            self.oe.dbg_log('tvservers::initialize_vdr', 'enter_function', 0)
++
++            if self.LOADING_VALUES=='0':
++
++                self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem'])
++
++            options = {}
++
++            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'vdr':
++
++                state = 1
++
++                if 'hidden' in self.struct['vdr']:
++                    del self.struct['vdr']['hidden']
++
++                if self.struct['vdr']['settings']['enable_ext_reccmd']['value'] == '1':
++                    val1 = 'true'
++
++                else:
++                    val1 = 'false'
++
++                if self.struct['vdr']['settings']['enable_charset_override']['value'] == '1':
++                    val2 = 'true'
++
++                else:
++                    val2 = 'false'
++
++                if self.struct['vdr']['settings']['vdr_debug']['value'] == '1':
++                    val3 = 'true'
++
++                else:
++                    val3 = 'false'
++
++                if self.struct['vdr']['settings']['enable_iptv']['value'] == '1':
++                    val4 = 'true'
++
++                else:
++                    val4 = 'false'
++
++                if self.struct['vdr']['settings']['enable_streamdev_client']['value'] == '1':
++                    val5 = 'true'
++
++                else:
++                    val5 = 'false'
++
++                if self.struct['vdr']['settings']['enable_streamdev_server']['value'] == '1':
++                    val6 = 'true'
++
++                else:
++                    val6 = 'false'
++
++                if self.struct['vdr']['settings']['enable_wirbelscan']['value'] == '1':
++                    val7 = 'true'
++
++                else:
++                    val7 = 'false'
++
++                if self.struct['vdr']['settings']['enable_live']['value'] == '1':
++                    val8 = 'true'
++
++                else:
++                    val8 = 'false'
++
++                if self.struct['vdr']['settings']['enable_eepg']['value'] == '1':
++                    val10 = 'true'
++
++                else:
++                    val10 = 'false'
++
++                if self.struct['vdr']['settings']['enable_epgsearch']['value'] == '1':
++                    val11 = 'true'
++
++                else:
++                    val11 = 'false'
++
++                if self.struct['vdr']['settings']['enable_xmltv2vdr']['value'] == '1':
++                    val12 = 'true'
++
++                else:
++                    val12 = 'false'
++
++                if self.struct['vdr']['settings']['enable_softcam']['value'] == '1':
++                    val13 = 'true'
++
++                else:
++                    val13 = 'false'
++
++                if self.struct['vdr']['settings']['enable_dummydevice']['value'] == '1':
++                    val14 = 'true'
++
++                else:
++                    val14 = 'false'
++
++                if self.struct['vdr']['settings']['enable_satip']['value'] == '1':
++                    val15 = 'true'
++
++                else:
++                    val15 = 'false'
++
++                if self.struct['vdr']['settings']['enable_epgfixer']['value'] == '1':
++                    val16 = 'true'
++
++                else:
++                    val16 = 'false'
++
++                if self.struct['vdr']['settings']['enable_restfulapi']['value'] == '1':
++                    val17 = 'true'
++
++                else:
++                    val17 = 'false'
++
++                options['VDR_ENABLE_EXTERNAL_RECCMD'] = '"%s"' % val1
++                options['VDR_EXTERNAL_RECCMD_PATH'] = '"%s"' % self.struct['vdr']['settings']['ext_reccmd_path']['value']
++                options['VDR_ENABLE_CHARSET_OVERRIDE'] = '"%s"' % val2
++                options['VDR_CHARSET_OVERRIDE_STR'] = '"%s"' % self.struct['vdr']['settings']['charset_override']['value']
++                options['VDR_VIDEO_DIR'] = '"%s"' % self.struct['vdr']['settings']['vdr_video_dir']['value']
++                options['VDR_DEBUG'] = '"%s"' % val3
++                options['VDR_PVR_PLUGIN'] = '"%s"' % self.struct['vdr']['settings']['pvr_plugin']['value']
++                options['VDR_ENABLE_IPTV'] = '"%s"' % val4
++                options['VDR_IPTV_NUM_DEVICES'] = '"%s"' % self.struct['vdr']['settings']['num_devices']['value']
++                options['VDR_ENABLE_STREAMDEV_CLIENT'] = '"%s"' % val5
++                options['VDR_ENABLE_STREAMDEV_SERVER'] = '"%s"' % val6
++                options['VDR_ENABLE_WIRBELSCAN'] = '"%s"' % val7
++                options['VDR_ENABLE_LIVE'] = '"%s"' % val8
++                options['VDR_LIVE_IP'] = '"%s"' % self.struct['vdr']['settings']['live_ip']['value']
++                options['VDR_LIVE_PORT'] = '"%s"' % self.struct['vdr']['settings']['live_port']['value']
++                options['VDR_ENABLE_EEPG'] = '"%s"' % val10
++                options['VDR_ENABLE_EPGSEARCH'] = '"%s"' % val11
++                options['VDR_ENABLE_XMLTV2VDR'] = '"%s"' % val12
++                options['VDR_ENABLE_SOFTCAM'] = '"%s"' % val13
++                options['VDR_DVBAPI_OPTION'] = '"%s"' % self.struct['vdr']['settings']['softcam_option']['value']
++                options['VDR_ENABLE_DUMMYDEVICE'] = '"%s"' % val14
++                options['VDR_ENABLE_SATIP'] = '"%s"' % val15
++                options['VDR_ENABLE_EPGFIXER'] = '"%s"' % val16
++                options['VDR_ENABLE_RESTFULAPI'] = '"%s"' % val17
++                options['VDR_RESTFULAPI_IP'] = '"%s"' % self.struct['vdr']['settings']['restfulapi_ip']['value']
++                options['VDR_RESTFULAPI_PORT'] = '"%s"' % self.struct['vdr']['settings']['restfulapi_port']['value']
++
++            else:
++
++                state = 0
++
++            self.oe.set_service('vdr', options, state)
++
++            if self.LOADING_VALUES=='0':
++
++                self.load_values()
++                self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_vdr', 'exit_function', 0)
++
++        except Exception, e:
++
++            if self.LOADING_VALUES=='0':
++
++                self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_vdr', 'ERROR: (%s)' % repr(e), 4)
++
++    def initialize_oscam(self, **kwargs):
++        try:
++            self.oe.dbg_log('tvservers::initialize_oscam', 'enter_function', 0)
++
++            self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem'])
++
++            options = {}
++
++            if self.struct['oscam']['settings']['enable_oscam']['value'] == '1':
++
++                state = 1
++
++                if self.struct['oscam']['settings']['restart_on_resume']['value'] == '1':
++                    val1 = 'true'
++                else:
++                    val1 = 'false'
++
++                options['OSCAM_DEBUG']   = '"%s"' % self.struct['oscam']['settings']['oscam_debug']['value']
++                options['RESTART_ON_RESUME'] = '"%s"' % val1
++
++            else:
++
++                state = 0
++
++            self.oe.set_service('oscam', options, state)
++
++            self.load_values()
++
++            self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_oscam', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.set_busy(0)
++            self.oe.dbg_log('tvservers::initialize_oscam', 'ERROR: (%s)' % repr(e), 4)
++
++    def initialize_tv_frontends(self, **kwargs):
++        try:
++            self.oe.dbg_log('tvservers::initialize_tv_frontends', 'enter_function', 0)
++
++            self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem'])
++
++            self.LOADING_VALUES='1'
++
++            self.initialize_vdr_front(service=1)
++
++            self.LOADING_VALUES='0'
++
++            self.load_values()
++
++            self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_tv_frontends', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.set_busy(0)
++            self.oe.dbg_log('tvservers::initialize_tv_frontends', 'ERROR: (%s)' % repr(e), 4)
++
++    def initialize_vdr_front(self, **kwargs):
++        try:
++            self.oe.dbg_log('tvservers::initialize_vdr_front', 'enter_function', 0)
++
++            if self.LOADING_VALUES=='0':
++
++                self.oe.set_busy(1)
++
++            if 'listItem' in kwargs:
++                self.set_value(kwargs['listItem'])
++
++            options = {}
++
++            if self.struct['tvfrontends']['settings']['tv_frontends']['value'] == 'vdr':
++
++                state = 1
++
++                if 'hidden' in self.struct['vdr-front']:
++                    del self.struct['vdr-front']['hidden']
++
++                if self.struct['vdr-front']['settings']['enable_ext_reccmd']['value'] == '1':
++                    val1 = 'true'
++
++                else:
++                    val1 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_charset_override']['value'] == '1':
++                    val2 = 'true'
++
++                else:
++                    val2 = 'false'
++
++                if self.struct['vdr-front']['settings']['vdr_debug']['value'] == '1':
++                    val3 = 'true'
++
++                else:
++                    val3 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_iptv']['value'] == '1':
++                    val4 = 'true'
++
++                else:
++                    val4 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_streamdev_client']['value'] == '1':
++                    val5 = 'true'
++
++                else:
++                    val5 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_streamdev_server']['value'] == '1':
++                    val6 = 'true'
++
++                else:
++                    val6 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_wirbelscan']['value'] == '1':
++                    val7 = 'true'
++
++                else:
++                    val7 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_live']['value'] == '1':
++                    val8 = 'true'
++
++                else:
++                    val8 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_eepg']['value'] == '1':
++                    val10 = 'true'
++
++                else:
++                    val10 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_epgsearch']['value'] == '1':
++                    val11 = 'true'
++
++                else:
++                    val11 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_xmltv2vdr']['value'] == '1':
++                    val12 = 'true'
++
++                else:
++                    val12 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_softcam']['value'] == '1':
++                    val13 = 'true'
++
++                else:
++                    val13 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_dummydevice']['value'] == '1':
++                    val14 = 'true'
++
++                else:
++                    val14 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_satip']['value'] == '1':
++                    val15 = 'true'
++
++                else:
++                    val15 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_epgfixer']['value'] == '1':
++                    val17 = 'true'
++
++                else:
++                    val17 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_restfulapi']['value'] == '1':
++                    val18 = 'true'
++
++                else:
++                    val18 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_femon']['value'] == '1':
++                    val19 = 'true'
++
++                else:
++                    val19 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_systeminfo']['value'] == '1':
++                    val20 = 'true'
++
++                else:
++                    val20 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_sleeptimer']['value'] == '1':
++                    val21 = 'true'
++
++                else:
++                    val21 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_filebrowser']['value'] == '1':
++                    val22 = 'true'
++
++                else:
++                    val22 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_lcdproc']['value'] == '1':
++                    val23 = 'true'
++
++                else:
++                    val23 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_text2skin']['value'] == '1':
++                    val24 = 'true'
++
++                else:
++                    val24 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_skinnopacity']['value'] == '1':
++                    val25 = 'true'
++
++                else:
++                    val25 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_skinflat']['value'] == '1':
++                    val26 = 'true'
++
++                else:
++                    val26 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_skinflat_plus']['value'] == '1':
++                    val27 = 'true'
++
++                else:
++                    val27 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_menuorg']['value'] == '1':
++                    val28 = 'true'
++
++                else:
++                    val28 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_tvguide']['value'] == '1':
++                    val29 = 'true'
++
++                else:
++                    val29 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_tvscraper']['value'] == '1':
++                    val30 = 'true'
++
++                else:
++                    val30 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_skindesigner']['value'] == '1':
++                    val31 = 'true'
++
++                else:
++                    val31 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_weatherforecast']['value'] == '1':
++                    val32 = 'true'
++
++                else:
++                    val32 = 'false'
++
++                if self.struct['vdr-front']['settings']['enable_favorites']['value'] == '1':
++                    val33 = 'true'
++
++                else:
++                    val33 = 'false'
++
++                options['VDR_ENABLE_EXTERNAL_RECCMD'] = '"%s"' % val1
++                options['VDR_EXTERNAL_RECCMD_PATH'] = '"%s"' % self.struct['vdr-front']['settings']['ext_reccmd_path']['value']
++                options['VDR_ENABLE_CHARSET_OVERRIDE'] = '"%s"' % val2
++                options['VDR_CHARSET_OVERRIDE_STR'] = '"%s"' % self.struct['vdr-front']['settings']['charset_override']['value']
++                options['VDR_VIDEO_DIR'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_video_dir']['value']
++                options['VDR_DEBUG'] = '"%s"' % val3
++                options['VDR_ENABLE_IPTV'] = '"%s"' % val4
++                options['VDR_IPTV_NUM_DEVICES'] = '"%s"' % self.struct['vdr-front']['settings']['num_devices']['value']
++                options['VDR_ENABLE_STREAMDEV_CLIENT'] = '"%s"' % val5
++                options['VDR_ENABLE_STREAMDEV_SERVER'] = '"%s"' % val6
++                options['VDR_ENABLE_WIRBELSCAN'] = '"%s"' % val7
++                options['VDR_ENABLE_LIVE'] = '"%s"' % val8
++                options['VDR_LIVE_IP']   = '"%s"' % self.struct['vdr-front']['settings']['live_ip']['value']
++                options['VDR_LIVE_PORT'] = '"%s"' % self.struct['vdr-front']['settings']['live_port']['value']
++                options['VDR_ENABLE_EEPG'] = '"%s"' % val10
++                options['VDR_ENABLE_EPGSEARCH'] = '"%s"' % val11
++                options['VDR_ENABLE_XMLTV2VDR'] = '"%s"' % val12
++                options['VDR_ENABLE_SOFTCAM'] = '"%s"' % val13
++                options['VDR_DVBAPI_OPTION'] = '"%s"' % self.struct['vdr-front']['settings']['softcam_option']['value']
++                options['VDR_ENABLE_DUMMYDEVICE'] = '"%s"' % val14
++                options['VDR_ENABLE_SATIP'] = '"%s"' % val15
++                options['VDR_ENABLE_EPGFIXER'] = '"%s"' % val17
++                options['VDR_ENABLE_RESTFULAPI'] = '"%s"' % val18
++                options['VDR_RESTFULAPI_IP'] = '"%s"' % self.struct['vdr-front']['settings']['restfulapi_ip']['value']
++                options['VDR_RESTFULAPI_PORT'] = '"%s"' % self.struct['vdr-front']['settings']['restfulapi_port']['value']
++                options['VDR_ENABLE_FEMON'] = '"%s"' % val19
++                options['VDR_ENABLE_SYSTEMINFO'] = '"%s"' % val20
++                options['VDR_ENABLE_SLEEPTIMER'] = '"%s"' % val21
++                options['VDR_ENABLE_FILEBROWSER'] = '"%s"' % val22
++                options['VDR_ENABLE_LCDPROC'] = '"%s"' % val23
++                options['VDR_ENABLE_TEXT2SKIN'] = '"%s"' % val24
++                options['VDR_ENABLE_SKINNOPACITY'] = '"%s"' % val25
++                options['VDR_ENABLE_SKINFLAT'] = '"%s"' % val26
++                options['VDR_ENABLE_SKINFLAT_PLUS'] = '"%s"' % val27
++                options['VDR_ENABLE_MENUORG'] = '"%s"' % val28
++                options['VDR_ENABLE_TVGUIDE'] = '"%s"' % val29
++                options['VDR_ENABLE_TVSCRAPER'] = '"%s"' % val30
++                options['VDR_ENABLE_SKINDESIGNER'] = '"%s"' % val31
++                options['VDR_ENABLE_WEATHERFORECAST'] = '"%s"' % val32
++                options['VDR_ENABLE_FAVORITES'] = '"%s"' % val33
++                options['VDR_FRONT'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_output']['value']
++                options['VDR_OUTPUT_VIDEO'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_video']['value']
++                options['VDR_SOUND_SOFT'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_sound_soft']['value']
++                options['VDR_SOUND_XINE'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_sound_xine']['value']
++                options['VDR_SOFT_PARAM'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_soft_param']['value']
++                options['VDR_XINE_PARAM'] = '"%s"' % self.struct['vdr-front']['settings']['vdr_xine_param']['value']
++
++                self.oe.dbg_log('tvservers::initialize_vdr_front', 'save option', 0)
++
++            else:
++
++                state = 0
++
++            self.oe.set_service('vdr-front', options, state)
++
++            if self.LOADING_VALUES=='0':
++
++                self.load_values()
++                self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_vdr_front', 'exit_function', 0)
++
++        except Exception, e:
++
++            if self.LOADING_VALUES=='0':
++
++                self.oe.set_busy(0)
++
++            self.oe.dbg_log('tvservers::initialize_vdr_front', 'ERROR: (%s)' % repr(e), 4)
++
++    def exit(self):
++        try:
++            self.oe.dbg_log('tvservers::exit', 'enter_function', 0)
++            self.oe.dbg_log('tvservers::exit', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::exit', 'ERROR: (%s)' % repr(e), 4)
++
++    def do_wizard(self):
++        try:
++            self.oe.dbg_log('tvservers::do_wizard', 'enter_function', 0)
++            self.oe.winOeMain.set_wizard_title(self.oe._(34000))
++            self.oe.winOeMain.set_wizard_text(self.oe._(42000)+'[CR][CR]'+self.oe._(42001))
++            self.oe.winOeMain.set_wizard_button_title(self.oe._(35000))
++            self.set_wizard_buttons()
++            self.oe.dbg_log('tvservers::do_wizard', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::do_wizard', 'ERROR: (%s)' % repr(e))
++
++    def set_wizard_buttons(self):
++        try:
++            self.oe.dbg_log('tvservers::set_wizard_buttons', 'enter_function', 0)
++
++            self.oe.winOeMain.set_wizard_button_2(self.oe._(34000).encode('utf-8')+self.get_tvbackend(), self,'select_tvbackend')
++
++            self.oe.dbg_log('tvservers::set_wizard_buttons', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::set_wizard_buttons', 'ERROR: (%s)' % repr(e))
++
++    def get_tvbackend(self):
++        try:
++            current_tv_backend = ':'+self.struct['tvbackends']['settings']['tv_backend']['value']
++            return current_tv_backend
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::get_tvbackend()','ERROR: (%s)' % repr(e))
++
++    def select_tvbackend(self):
++        try:
++            self.oe.dbg_log('tvservers::select_tvbackend', 'enter_function', 0)
++
++            defaultValue = self.struct['tvbackends']['settings']['tv_backend']['value']
++            items = self.struct['tvbackends']['settings']['tv_backend']['values']
++            title = self.oe._(35001).encode('utf-8')
++            select_window = xbmcgui.Dialog()
++            ret = select_window.select(title, items)
++            result = items[ret]
++
++            if defaultValue != result:
++                self.struct['tvbackends']['settings']['tv_backend']['value'] = result
++                self.wizard_set_tvbackend()
++                self.oe.winOeMain.set_wizard_button_2(self.oe._(34000).encode('utf-8')+self.get_tvbackend(), self, 'select_tvbackend')
++
++            self.oe.dbg_log('tvservers::select_tvbackend', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::select_tvbackend', 'ERROR: (%s)' % repr(e))
++
++    def wizard_set_tvbackend(self):
++        try:
++            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'enter_function', 0)
++
++            options = {}
++
++            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'tvheadend':
++                self.oe.set_service('vdr', options, 0)
++                self.oe.set_service('tvheadend', options, 1)
++
++            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'vdr':
++                self.oe.set_service('vdr', options, 1)
++                self.oe.set_service('tvheadend', options, 0)
++
++            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'none':
++                self.oe.set_service('vdr', options, 0)
++                self.oe.set_service('tvheadend', options, 0)
++
++            self.initialize_tv_backend()
++            self.initialize_tvheadend()
++            self.initialize_vdr()
++            self.initialize_tv_frontends()
++            self.initialize_vdr_front()
++            self.initialize_oscam()
++            self.load_values()
++
++            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'exit_function', 0)
++
++        except Exception, e:
++            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'ERROR: (%s)' % repr(e))
++

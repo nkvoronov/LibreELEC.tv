@@ -52,8 +52,8 @@ post_install() {
     cp -P $OSCAM_DIR/.$TARGET_NAME/utils/list_smargo $INSTALL/usr/bin
     cp -P $PKG_DIR/scripts/* $INSTALL/usr/bin
 
-  mkdir -p $INSTALL/usr/config/oscam/default
-    cp -p $PKG_DIR/config/* $INSTALL/usr/config/oscam/default
+  mkdir -p $INSTALL/usr/config/oscam
+    cp -p $PKG_DIR/config/* $INSTALL/usr/config/oscam
 
   enable_service oscam.service
 }
