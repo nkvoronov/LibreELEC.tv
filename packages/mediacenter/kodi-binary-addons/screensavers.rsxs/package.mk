@@ -49,10 +49,11 @@ configure_target() {
 addon() {
   for _ADDON in $PKG_BUILD/.install_pkg/usr/share/kodi/addons/* ; do
     _ADDON_ID=$(basename $_ADDON)
+    ADDONSO=$(xmlstarlet sel -t -v "/addon/extension/@library_linux" $PKG_BUILD/.install_pkg/usr/share/kodi/addons/$_ADDON_ID/addon.xml)
 
     mkdir -p $ADDON_BUILD/$_ADDON_ID/
     cp -PR $PKG_BUILD/.install_pkg/usr/share/kodi/addons/$_ADDON_ID/* $ADDON_BUILD/$_ADDON_ID/
-    cp -PL $PKG_BUILD/.install_pkg/usr/lib/kodi/addons/$_ADDON_ID/*.so $ADDON_BUILD/$_ADDON_ID/
+    cp -PL $PKG_BUILD/.install_pkg/usr/lib/kodi/addons/$_ADDON_ID/$ADDONSO $ADDON_BUILD/$_ADDON_ID/
 
     MULTI_ADDONS="$MULTI_ADDONS $_ADDON_ID"
   done
