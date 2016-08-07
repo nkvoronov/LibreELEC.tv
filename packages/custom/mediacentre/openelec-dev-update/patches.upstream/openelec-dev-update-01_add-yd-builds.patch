@@ -1142,8 +1142,8 @@ diff -Naur a/resources/lib/builds.py b/resources/lib/builds.py
                             subdir=arch,
                             extractor=DualAudioReleaseLinkExtractor)
      _sources["DarkAngel2401 Dual Audio Builds"] = builds_url
-+    
-+    _sources["YLLOW_DRAGON Builds"] = BuildsURL("https://www.dropbox.com/sh/rb8zwx8dog9u593/AADsKisWoX15tfzd0_B22gfUa?dl=0",
++
++    _sources["YLLOW_DRAGON Builds"] = BuildsURL("https://www.dropbox.com/sh/bmbp21focleabbm/AACm5f0_JZ1lDCkSszT-Yaqaa?dl=0",
 +                           extractor=YDBuildLinkExtractor)
  
      return _sources

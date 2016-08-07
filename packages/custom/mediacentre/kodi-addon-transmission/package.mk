@@ -55,9 +55,6 @@ post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/script.transmission
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.transmission
 
-  mkdir -p $INSTALL/usr/share/kodi/addons/script.transmission/resources/skins
-    cp -PR $PKG_DIR/skins/* $INSTALL/usr/share/kodi/addons/script.transmission/resources/skins
-
   python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.transmission/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/script.transmission/resources/lib/ -name "*.py"`
 }

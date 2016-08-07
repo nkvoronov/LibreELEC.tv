@@ -52,9 +52,6 @@ post_makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libreelec
     cp $PKG_DIR/scripts/* $INSTALL/usr/lib/libreelec
 
-  mkdir -p $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/skins
-    cp -PR $PKG_DIR/skins/* $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/skins
-
 #  # bluetooth is optional
 #    if [ ! "$BLUETOOTH_SUPPORT" = yes ]; then
 #      rm -f resources/lib/modules/bluetooth.py

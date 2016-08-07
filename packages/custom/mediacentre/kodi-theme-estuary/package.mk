@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-theme-estuary"
-PKG_VERSION="eac7b57"
+PKG_VERSION="e1ec180"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -47,8 +47,4 @@ makeinstall_target() {
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/skin.estuary-jarvis
     cp -PR $PKG_BUILD/skin.estuary-jarvis/* $INSTALL/usr/share/kodi/addons/skin.estuary-jarvis
-
-  rm -fR $INSTALL/usr/share/kodi/addons/skin.estuary-jarvis/1080i/service-OpenELEC-Settings-getPasskey.xml
-  rm -fR $INSTALL/usr/share/kodi/addons/skin.estuary-jarvis/1080i/service-OpenELEC-Settings-mainWindow.xml
-  rm -fR $INSTALL/usr/share/kodi/addons/skin.estuary-jarvis/1080i/service-OpenELEC-Settings-wizard.xml
 }
