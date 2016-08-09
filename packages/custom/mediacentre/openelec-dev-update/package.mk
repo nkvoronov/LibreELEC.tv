@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="openelec-dev-update"
-PKG_VERSION="6094b69"
+PKG_VERSION="2691b45"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
-PKG_GIT_URL="https://github.com/LS80/script.openelec.devupdate.git"
-PKG_GIT_BRANCH="master"
+PKG_SITE="https://github.com/nkvoronov/script.openelec.devupdate.git"
+PKG_GIT_URL="https://github.com/nkvoronov/script.openelec.devupdate.git"
+PKG_GIT_BRANCH="14.38.1"
 PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain Python kodi kodi-module-requests kodi-module-bs4 kodi-module-html2text kodi-backup"
 PKG_PRIORITY="optional"
@@ -35,13 +35,6 @@ PKG_LONGDESC="This KODI  addon downloads and extracts OpenELEC development (nigh
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-
-post_unpack() {
-  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-    cat $patch | patch -d \
-    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-  done
-}
 
 make_target() {
   : # nothing
@@ -54,12 +47,6 @@ makeinstall_target() {
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/script.openelec.devupdate
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.openelec.devupdate
-  
-  rm -rf $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/resources/lib/.gitignore
-  rm -rf $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/.gitignore
-  rm -rf $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/.project
-  rm -rf $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/icon.svg
-  rm -rf $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/README.md
 
   python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/script.openelec.devupdate/resources/lib/ -name "*.py"`
