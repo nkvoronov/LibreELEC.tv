@@ -49,12 +49,14 @@ addon() {
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
   LIB_NCURSESW=$(get_build_dir ncursesw6)
+  LIB_ICE=$(get_build_dir libICE)
+  LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
   GCC_DIR=$(get_build_dir gcc)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
-    #cp -P $QT4/bin/qtconfig $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $QT4/bin/qtconfig $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
@@ -63,6 +65,8 @@ addon() {
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
+    cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
+    cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
 
     cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
@@ -80,9 +84,9 @@ addon() {
     cp -PR $QT4/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins
     rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins/graphicssystems/*.prl
 
-  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
-    #cp -P $QT4/translations/qt_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
-    #cp -P $QT4/translations/qvfb_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
+    cp -P $QT4/translations/qt_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
+    cp -P $QT4/translations/qvfb_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/

@@ -33,7 +33,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared \
+                           --enable-shared \
                            --with-libuuid \
                            --without-xmlto \
                            --without-fop"
