@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
+#      This file is part of LibreELEC - https://libreelec.tv
 #      Copyright (C) 2009-2016 Lukas Rusak (lrusak@libreelec.tv)
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="visualization.wavforhue"
-PKG_VERSION="e57e436"
+PKG_VERSION="b1805db"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

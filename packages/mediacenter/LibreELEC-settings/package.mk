@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="LibreELEC-settings"
-PKG_VERSION="bbe9cdf"
+PKG_VERSION="17315f4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="prop."
-PKG_SITE="http://www.libreelec.tv"
+PKG_SITE="https://libreelec.tv"
 PKG_URL="https://github.com/LibreELEC/service.libreelec.settings/archive/$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="service.libreelec.settings-$PKG_VERSION*"
 PKG_DEPENDS_TARGET="toolchain Python connman pygobject dbus-python"
@@ -40,13 +40,6 @@ if [ "$DISPLAYSERVER" = "x11" ]; then
 else
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bkeymaps"
 fi
-
-post_unpack() {
-  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-    cat $patch | patch -d \
-    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-  done
-}
 
 post_makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libreelec

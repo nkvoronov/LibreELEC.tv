@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="pulseaudio"
-PKG_VERSION="8.0"
+PKG_VERSION="9.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -48,11 +48,18 @@ else
   PULSEAUDIO_AVAHI="--disable-avahi"
 fi
 
+if [ "$TARGET_FPU" = "neon" -o "$TARGET_FPU" = "neon-fp16" -o "$TARGET_FPU" = "neon-vfpv4" ]; then
+  PULSEAUDIO_NEON="--enable-neon-opt"
+else
+  PULSEAUDIO_NEON="--disable-neon-opt"
+fi
+
 # package specific configure options
 PKG_CONFIGURE_OPTS_TARGET="--disable-silent-rules \
                            --disable-nls \
                            --enable-largefile \
                            --disable-rpath \
+                           $PULSEAUDIO_NEON \
                            --disable-x11 \
                            --disable-tests \
                            --disable-samplerate \

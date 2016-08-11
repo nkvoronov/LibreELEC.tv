@@ -1,5 +1,8 @@
-7.0.101
+8.0.102
+- Build with Linux 4.7 RPi libraries
+
+8.0.101
 - Move settings to Kodi
 
-7.0.100
+8.0.100
 - Initial addon

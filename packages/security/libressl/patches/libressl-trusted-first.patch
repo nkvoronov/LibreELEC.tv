@@ -4,16 +4,16 @@ Date: Wed, 20 Apr 2016 22:26:49 +0200
 Subject: [PATCH] trusted first
 
 ---
- apps/apps.c                |  2 ++
+ apps/openssl/apps.c        |  2 ++
  crypto/x509/x509_vfy.c     | 14 ++++++++++++++
  include/openssl/x509_vfy.h |  2 ++
  3 files changed, 18 insertions(+)
 
-diff --git a/apps/apps.c b/apps/apps.c
+diff --git a/apps/openssl/apps.c b/apps/openssl/apps.c
 index 6e40965..cbdd080 100644
---- a/apps/apps.c
-+++ b/apps/apps.c
-@@ -2051,6 +2051,8 @@ args_verify(char ***pargs, int *pargc, int *badarg, BIO *err,
+--- a/apps/openssl/apps.c
++++ b/apps/openssl/apps.c
+@@ -1943,6 +1943,8 @@ args_verify(char ***pargs, int *pargc, int *badarg, BIO *err,
  		flags |= X509_V_FLAG_NOTIFY_POLICY;
  	else if (!strcmp(arg, "-check_ss_sig"))
  		flags |= X509_V_FLAG_CHECK_SS_SIGNATURE;
@@ -57,6 +57,6 @@ index e4050b2..ddf77e7 100644
  #define X509_V_FLAG_CHECK_SS_SIGNATURE		0x4000
 +/* Use trusted store first */
 +#define X509_V_FLAG_TRUSTED_FIRST		0x8000
+ /* Do not check certificate or CRL validity against current time. */
+ #define X509_V_FLAG_NO_CHECK_TIME		0x200000
  
- 
- #define X509_VP_FLAG_DEFAULT			0x1

@@ -1,0 +1,61 @@
+# Kodi Media Center language file
+# Addon Name: openelec-modify
+# Addon id: tools.openelec-modify
+# Addon Provider: YLLOW_DRAGON
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: English (http://www.transifex.com/projects/p/xbmc-addons/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#1000"
+msgid "General"
+msgstr ""
+
+msgctxt "#1100"
+msgid "Folders"
+msgstr ""
+
+msgctxt "#1101"
+msgid "Work dir"
+msgstr ""
+
+msgctxt "#1102"
+msgid "Backup dir"
+msgstr ""
+
+msgctxt "#1200"
+msgid "Options"
+msgstr ""
+
+msgctxt "#1201"
+msgid "Enable backup"
+msgstr ""
+
+msgctxt "#1202"
+msgid "Current Kernel"
+msgstr ""
+
+msgctxt "#1203"
+msgid "Debug"
+msgstr ""
+
+msgctxt "#2000"
+msgid "Updates settings"
+msgstr ""
+
+msgctxt "#2100"
+msgid "Updates"
+msgstr ""
+
+msgctxt "#2101"
+msgid "Refresh list..."
+msgstr ""

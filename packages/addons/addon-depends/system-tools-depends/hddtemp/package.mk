@@ -30,15 +30,9 @@ PKG_SHORTDESC="hddtemp: tool that reports hard drive temperature"
 PKG_LONGDESC="hddtemp is a small utility (daemonizable) that gives you the temperature of your hard drive by reading S.M.A.R.T. informations (for drives that support this feature)."
 PKG_AUTORECONF="no"
 
-#PKG_CONFIGURE_OPTS_TARGET="--with-db-path=/storage/.kodi/addons/virtual.system-tools/data/hddtemp.db"
-PKG_CONFIGURE_OPTS_TARGET="--with-db-path=/etc/hddtemp.db"
+PKG_CONFIGURE_OPTS_TARGET="--with-db-path=/storage/.kodi/addons/virtual.system-tools/data/hddtemp.db"
 
 makeinstall_target() {
   : # nop
-}
-
-post_makeinstall_target() {
-  mkdir -p $INSTALL/etc
-    cp -P $PKG_DIR/data/hddtemp.db $INSTALL/etc
 }
 

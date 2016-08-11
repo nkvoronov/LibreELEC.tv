@@ -25,15 +25,10 @@ if [ -z "$3" ]; then
   exit 1
 fi
 
-[ -z "$PKG_URL" -a -z "$PKG_GIT_URL" ] && exit 1
+[ -z "$PKG_URL" -o -z "$PKG_SOURCE_NAME" ] && exit 1
 [ ! -d "$SOURCES/$1" -o ! -d "$3" ] && exit 1
 
-if [ -n "$PKG_GIT_URL" ]; then
-  PKG_SOURCE_NAME="$PKG_NAME-$PKG_VERSION.tar.xz"
-fi
-
-if [ -n "$PKG_SOURCE_NAME" ]; then
-  case $PKG_SOURCE_NAME in
+case $PKG_SOURCE_NAME in
   $2)
     f="$SOURCES/$1/$PKG_SOURCE_NAME"
     if [ ! -f $f ]; then
@@ -75,5 +70,4 @@ if [ -n "$PKG_SOURCE_NAME" ]; then
         ;;
     esac
     ;;
-  esac
-fi
+esac

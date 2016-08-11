@@ -1,10 +1,7 @@
 [Unit]
 Description=Samba NMB Daemon
-After=network.target samba-config.service
-Requires=samba-config.service
-
+After=network.target smbd.service
 ConditionPathExists=/storage/.cache/services/samba.conf
-ConditionPathExists=/run/samba/smb.conf
 
 [Service]
 Type=forking

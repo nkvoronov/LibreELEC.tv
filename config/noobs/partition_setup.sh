@@ -1,20 +1,20 @@
 #!/bin/sh -x
 ################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 LibreELEC Team
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
-#  LibreELEC is free software: you can redistribute it and/or modify
+#  OpenELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 2 of the License, or
 #  (at your option) any later version.
 #
-#  LibreELEC is distributed in the hope that it will be useful,
+#  OpenELEC is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
+#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
 MOUNTPOINT="/tmp/LibreELEC-System"
@@ -26,10 +26,10 @@ md5sumCheck() {
     if [ "$?" = "1" ]; then
       echo "#######################################################"
       echo "#                                                     #"
-      echo "#     Invalid MD5 checksum - Installation stopped     #"
+      echo "# LibreELEC failed md5 check - Installation will quit #"
       echo "#                                                     #"
-      echo "#         Your download was probably corrupt.         #"
-      echo "#    Visit https://libreelec.tv to download again     #"
+      echo "#    Your original download was probably corrupt.     #"
+      echo "#   Please visit libreelec.tv and get another copy    #"
       echo "#                                                     #"
       echo "#######################################################"
       exit 1

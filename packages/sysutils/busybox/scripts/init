@@ -144,6 +144,10 @@
       overlay)
         OVERLAY=yes
         ;;
+      setfbres=*)
+        SWITCH_FRAMEBUFFER="${arg#*=}"
+        SWITCH_FRAMEBUFFER="${SWITCH_FRAMEBUFFER//,/ }"
+        ;;
       break=*)
         BREAK="${arg#*=}"
         ;;
@@ -161,6 +165,10 @@
     if test "$PROGRESS" = "yes"; then
       echo "### $1 ###"
     fi
+  }
+
+  debug_msg() {
+    echo "$1" >&$SILENT_OUT
   }
 
   debug_shell() {
@@ -395,33 +403,72 @@
   }
 
   load_splash() {
+    local set_default_res=no
+    local vres
+
     if [ ! "$SPLASH" = "no" ]; then
       progress "Loading bootsplash"
-
-      SPLASHIMAGE="/splash/splash-full.png"
 
       # load uvesafb module if needed
       if [ -f "$MODULE_DIR/uvesafb.ko" -a ! -e /dev/fb0 ]; then
         progress "Loading kernel module uvesafb.ko"
-        insmod "$MODULE_DIR/uvesafb.ko" || \
+        insmod "$MODULE_DIR/uvesafb.ko" && \
+          set_default_res=yes || \
           progress "... Failed to load kernel module uvesafb, skipping"
-
-        # set framebuffer to a default resolution (1024x768-32)
-        if [ ! "$SWITCH_FRAMEBUFFER" = "no" ]; then
-          fbset -g 1024 768 1024 768 32
-          SPLASHIMAGE="/splash/splash-1024.png"
-        fi
       fi
 
       if [ -e /dev/fb0 ]; then
+        # Set framebuffer to a custom resolution and/or fallback to default resolution (1024x768-32), if required.
+        if [ ! "$SWITCH_FRAMEBUFFER" = "no" ]; then
+          if [ "$SWITCH_FRAMEBUFFER" = "1080" ]; then
+            SWITCH_FRAMEBUFFER="1920 1080 1920 1080 32"
+          elif [ "$SWITCH_FRAMEBUFFER" = "720" ]; then
+            SWITCH_FRAMEBUFFER="1280 720 1280 720 32"
+          fi
+
+          # Try setting a custom framebuffer resolution
+          if [ ! "${SWITCH_FRAMEBUFFER:-yes}" = "yes" ]; then
+            fbset -g $SWITCH_FRAMEBUFFER 2>/dev/null && set_default_res=no
+          fi
+
+          # Set a default resolution if required
+          if [ "$set_default_res" = "yes" ]; then
+            fbset -g 1024 768 1024 768 32
+          fi
+        fi
+
         # load splash
-        if [ -f /flash/oemsplash.png ]; then
-          SPLASHIMAGE="/flash/oemsplash.png"
-        elif [ -f /splash/splash.conf ]; then
+        if [ -f /splash/splash.conf ]; then
           . /splash/splash.conf
         fi
 
-        ply-image $SPLASHIMAGE > /dev/null 2>&1
+        # Select splash image based on current native resolution
+        if [ -z "$SPLASHIMAGE" ]; then
+          vres="$(fbset 2>/dev/null | awk '/geometry/ { print $3 }')"
+
+          if [ -f /flash/oemsplash.png -o -f /flash/oemsplash-1080.png ]; then
+            if [ -n "$vres" -a -f /flash/oemsplash-$vres.png ]; then
+              SPLASHIMAGE="/flash/oemsplash-$vres.png"
+            elif [ -f /flash/oemsplash-1080.png ]; then
+              SPLASHIMAGE="/flash/oemsplash-1080.png"
+            else
+              SPLASHIMAGE="/flash/oemsplash.png"
+            fi
+          else
+            if [ -n "$vres" -a -f /splash/splash-$vres.png ]; then
+              SPLASHIMAGE="/splash/splash-$vres.png"
+            else
+              SPLASHIMAGE="/splash/splash-1080.png"
+            fi
+          fi
+        fi
+
+        if [ -n "$SPLASHIMAGE" -a -f "$SPLASHIMAGE" ]; then
+          ply-image $SPLASHIMAGE > /dev/null 2>&1
+        fi
+
+        debug_msg "Framebuffer vertical res: $vres"
+        debug_msg "Framebuffer splash image: $SPLASHIMAGE"
       fi
     fi
   }
@@ -565,6 +612,24 @@
     fi
   }
 
+  check_out_of_space() {
+    if [ "$(df /storage | awk '/[0-9]%/{print $4}')" -eq "0" ]; then
+      echo ""
+      echo "The $1 is corrupt, or there is not enough"
+      echo "free space on /storage to complete the upgrade!"
+      echo ""
+      echo "Please free up space on your /storage partition"
+      echo "by deleting unecessary files, then try again."
+      echo ""
+      return 0
+    else
+      echo ""
+      echo "The $1 is corrupt/invalid!"
+      echo ""
+      return 1
+    fi
+  }
+
   do_cleanup() {
     StartProgress spinner "Cleaning up... "
 
@@ -616,13 +681,29 @@
     echo ""
 
     if [ -f "$UPDATE_TAR" ] ; then
+      TARRESULT="0"
+
       echo "Found new .tar archive"
       StartProgress spinner "Extracting contents of archive... "
         mkdir -p $UPDATE_DIR/.tmp &>/dev/null
-        tar -xf "$UPDATE_TAR" -C $UPDATE_DIR/.tmp &>/dev/null
+        tar -xf "$UPDATE_TAR" -C $UPDATE_DIR/.tmp 1>/dev/null 2>/tmp/tarresult.txt || TARRESULT="1"
+
+      if [ "${TARRESULT}" -eq "0" ]; then
         mv $UPDATE_DIR/.tmp/*/target/* $UPDATE_DIR &>/dev/null
         sync
         StopProgress "done"
+      else
+        StopProgress "FAILED"
+
+        echo "Failed to extract contents of archive file!"
+        echo "tar result: '$(cat /tmp/tarresult.txt)'"
+
+        check_out_of_space "archive"
+
+        do_cleanup
+        StartProgress countdown "Normal startup in 30s... " 30 "NOW"
+        return 0
+      fi
     elif [ -f "$UPDATE_IMG_GZ" -o -f "$UPDATE_IMG" ] ; then
       mkdir -p $UPDATE_DIR/.tmp/mnt &>/dev/null
       IMG_FILE="$UPDATE_DIR/.tmp/update.img"
@@ -639,6 +720,9 @@
         if [ "${GZRESULT}" -eq "1" ]; then
           echo "Failed to decompress image file!"
           echo "gunzip result: '$(cat /tmp/gzresult.txt)'"
+
+          check_out_of_space "compressed image"
+
           do_cleanup
           StartProgress countdown "Normal startup in 30s... " 30 "NOW"
           return 0
@@ -680,7 +764,11 @@
       # don't make temporary files but instead copy
       # directly from mountpoint to /flash
       UPDATE_DIR=$UPDATE_ROOT/.tmp/mnt
-      UPDATE_KERNEL=$(basename $IMAGE_KERNEL)
+      if [ ! -b $IMAGE_KERNEL -o -z "@KERNEL_NAME@" ]; then
+        UPDATE_KERNEL=$(basename $IMAGE_KERNEL)
+      else
+        UPDATE_KERNEL="@KERNEL_NAME@"
+      fi
     fi
 
     sync
@@ -709,7 +797,7 @@
             else
               StopProgress "FAILED"
               MD5_FAILED="1"
-	    fi
+            fi
 
           StartProgress spinner "Checking ${UPDATE_SYSTEM}.md5... "
             if md5sum -sc "$UPDATE_ROOT/${UPDATE_SYSTEM}.check.md5"; then

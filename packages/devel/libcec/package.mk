@@ -17,14 +17,13 @@
 ################################################################################
 
 PKG_NAME="libcec"
-PKG_VERSION="3.0.1"
+PKG_VERSION="6d68d21"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://libcec.pulse-eight.com/"
-PKG_URL="https://github.com/Pulse-Eight/libcec/archive/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_SOURCE_DIR="$PKG_NAME-$PKG_NAME-$PKG_VERSION"
-PKG_DEPENDS_TARGET="toolchain systemd lockdev platform"
+PKG_URL="https://github.com/Pulse-Eight/libcec/archive/$PKG_VERSION.tar.gz"
+PKG_DEPENDS_TARGET="toolchain systemd lockdev p8-platform"
 PKG_PRIORITY="optional"
 PKG_SECTION="system"
 PKG_SHORTDESC="libCEC is an open-source dual licensed library designed for communicating with the Pulse-Eight USB - CEC Adaptor"
@@ -44,9 +43,13 @@ else
 fi
 
 if [ "$KODIPLAYER_DRIVER" = "libamcodec" ]; then
-  EXTRA_CMAKE_OPTS="$EXTRA_CMAKE_OPTS -DHAVE_AMLOGIC_API=1"
+  if [ "$PROJECT" = "Odroid_C2" ]; then
+    EXTRA_CMAKE_OPTS="$EXTRA_CMAKE_OPTS -DHAVE_AOCEC_API=1"
+  else
+    EXTRA_CMAKE_OPTS="$EXTRA_CMAKE_OPTS -DHAVE_AMLOGIC_API=1"
+  fi
 else
-  EXTRA_CMAKE_OPTS="$EXTRA_CMAKE_OPTS -DHAVE_AMLOGIC_API=0"
+  EXTRA_CMAKE_OPTS="$EXTRA_CMAKE_OPTS -DHAVE_AOCEC_API=0 -DHAVE_AMLOGIC_API=0"
 fi
 
 configure_target() {

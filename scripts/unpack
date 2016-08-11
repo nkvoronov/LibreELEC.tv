@@ -32,7 +32,7 @@ fi
 
 $SCRIPTS/get $1
 
-STAMP=$PKG_BUILD/.openelec-unpack
+STAMP=$PKG_BUILD/.libreelec-unpack
 
 mkdir -p $BUILD
 
@@ -41,8 +41,8 @@ mkdir -p $BUILD
 STAMP_DEPENDS="$PKG_DIR $PKG_NEED_UNPACK $PROJECT_DIR/$PROJECT/patches/$PKG_NAME"
 
 for i in $BUILD/$1-*; do
-  if [ -d $i -a -f "$i/.openelec-unpack" ] ; then
-    . "$i/.openelec-unpack"
+  if [ -d $i -a -f "$i/.libreelec-unpack" ] ; then
+    . "$i/.libreelec-unpack"
     if [ "$STAMP_PKG_NAME" = "$1" ]; then
       PKG_DEEPMD5=$(find $STAMP_DEPENDS -exec md5sum {} \; 2>/dev/null | sort | md5sum | cut -d" " -f1)
       if [ ! "$PKG_DEEPMD5" = "$STAMP_PKG_DEEPMD5" ] ; then
@@ -82,8 +82,6 @@ else
     $SCRIPTS/extract $1 "$1*.tgz"     $BUILD
     $SCRIPTS/extract $1 "$1*.7z"      $BUILD
     $SCRIPTS/extract $1 "$1*.zip"     $BUILD
-  elif [ -n "$PKG_GIT_URL" ]; then
-    $SCRIPTS/extract $1 "$1*.tar.xz"  $BUILD
   fi
 fi
 
@@ -100,7 +98,7 @@ if [ -d "$PKG_DIR/sources" ]; then
   cp -PRf $PKG_DIR/sources/* $BUILD/${PKG_NAME}-${PKG_VERSION}
 fi
 
-if [ -z "$PKG_URL" -o -z "$PKG_GIT_URL" ]; then
+if [ -z "$PKG_URL" ]; then
   mkdir -p "${BUILD}/${PKG_NAME}-${PKG_VERSION}"
 fi
 

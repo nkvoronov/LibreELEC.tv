@@ -56,7 +56,7 @@ index 1c906a2..99ca567 100644
      Stop(EXITCODE_RESTARTAPP);
  #endif
      break;
-@@ -2890,12 +2891,19 @@ bool CApplication::Cleanup()
+@@ -2890,14 +2891,21 @@ bool CApplication::Cleanup()
    }
  }
  
@@ -71,6 +71,8 @@ index 1c906a2..99ca567 100644
  {
    try
    {
+     m_frameMoveGuard.unlock();
+
      CVariant vExitCode(CVariant::VariantTypeObject);
 -    vExitCode["exitcode"] = exitCode;
 +    vExitCode["exitcode"] = m_ExitCode;
@@ -121,14 +123,14 @@ index c46cba1..ed3f35f 100644
    bool m_AppFocused;
    bool m_renderGUI;
  
-diff --git a/xbmc/main/main.cpp b/xbmc/main/main.cpp
+diff --git a/xbmc/platform/posix/main.cpp b/xbmc/platform/posix/main.cpp
 index 01027f8..4cfb04e 100644
---- a/xbmc/main/main.cpp
-+++ b/xbmc/main/main.cpp
+--- a/xbmc/platform/posix/main.cpp
++++ b/xbmc/platform/posix/main.cpp
 @@ -41,12 +41,27 @@
  #include "input/linux/LIRC.h"
  #endif
- #include "XbmcContext.h"
+ #include "platform/XbmcContext.h"
 +#include "Application.h"
 +
 +void xbmc_term_handler(int signum)

@@ -17,13 +17,15 @@
 ################################################################################
 
 PKG_NAME="ffmpeg"
-PKG_VERSION="2.8.6"
+# Current branch is: release/3.1-xbmc
+PKG_VERSION="c65cfe4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
-PKG_URL="https://ffmpeg.org/releases/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain yasm:host zlib bzip2 libvorbis libressl dcadec speex"
+PKG_URL="https://github.com/xbmc/FFmpeg/archive/${PKG_VERSION}.tar.gz"
+PKG_SOURCE_DIR="FFmpeg-${PKG_VERSION}*"
+PKG_DEPENDS_TARGET="toolchain yasm:host zlib bzip2 libressl speex"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="FFmpeg is a complete, cross-platform solution to record, convert and stream audio and video."
@@ -32,10 +34,10 @@ PKG_LONGDESC="FFmpeg is a complete, cross-platform solution to record, convert a
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-# configure GPU drivers and dependencies:
-  get_graphicdrivers
+# Dependencies
+get_graphicdrivers
 
-if [ "$VAAPI_SUPPORT" = yes ]; then
+if [ "$VAAPI_SUPPORT" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
   FFMPEG_VAAPI="--enable-vaapi"
 else
@@ -49,7 +51,7 @@ else
   FFMPEG_VDPAU="--disable-vdpau"
 fi
 
-if [ "$DEBUG" = yes ]; then
+if [ "$DEBUG" = "yes" ]; then
   FFMPEG_DEBUG="--enable-debug --disable-stripping"
 else
   FFMPEG_DEBUG="--disable-debug --enable-stripping"
@@ -61,55 +63,48 @@ fi
 
 case "$TARGET_ARCH" in
   arm)
-      FFMPEG_CPU=""
-      FFMPEG_TABLES="--enable-hardcoded-tables"
-      FFMPEG_PIC="--enable-pic"
-  ;;
-  x86_64)
-      FFMPEG_CPU=""
-      FFMPEG_TABLES="--disable-hardcoded-tables"
-      FFMPEG_PIC="--enable-pic"
-  ;;
+    FFMPEG_TABLES="--enable-hardcoded-tables"
+    ;;
+  *)
+    FFMPEG_TABLES="--disable-hardcoded-tables"
+    ;;
 esac
 
 case "$TARGET_FPU" in
   neon*)
-      FFMPEG_FPU="--enable-neon"
-  ;;
-  vfp*)
-      FFMPEG_FPU=""
-  ;;
+    FFMPEG_FPU="--enable-neon"
+    ;;
   *)
-      FFMPEG_FPU=""
-  ;;
+    FFMPEG_FPU="--disable-neon"
+    ;;
 esac
 
 pre_configure_target() {
   cd $ROOT/$PKG_BUILD
   rm -rf .$TARGET_NAME
 
-# ffmpeg fails building with LTO support
+# ffmpeg fails building for x86_64 with LTO support
   strip_lto
 
 # ffmpeg fails running with GOLD support
   strip_gold
 
+
   if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
-    export CFLAGS="-I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads -I$SYSROOT_PREFIX/usr/include/interface/vmcs_host/linux -DRPI=1 $CFLAGS"
-    export FFMPEG_LIBS="-lbcm_host -lvcos -lvchiq_arm -lmmal -lmmal_core -lmmal_util -lvcsm"
+    CFLAGS="-I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads -I$SYSROOT_PREFIX/usr/include/interface/vmcs_host/linux -DRPI=1 $CFLAGS"
+    FFMPEG_LIBS="-lbcm_host -lvcos -lvchiq_arm -lmmal -lmmal_core -lmmal_util -lvcsm"
   fi
 }
 
 configure_target() {
-  ./configure --prefix=/usr \
-              --cpu=$TARGET_CPU \
-              --arch=$TARGET_ARCH \
+  ./configure --prefix="/usr" \
+              --cpu="$TARGET_CPU" \
+              --arch="$TARGET_ARCH" \
               --enable-cross-compile \
-              --cross-prefix=$TARGET_PREFIX \
-              --sysroot=$SYSROOT_PREFIX \
+              --cross-prefix="$TARGET_PREFIX" \
+              --sysroot="$SYSROOT_PREFIX" \
               --sysinclude="$SYSROOT_PREFIX/usr/include" \
               --target-os="linux" \
-              --extra-version="$PKG_VERSION" \
               --nm="$NM" \
               --ar="$AR" \
               --as="$CC" \
@@ -120,10 +115,8 @@ configure_target() {
               --host-ldflags="$HOST_LDFLAGS" \
               --host-libs="-lm" \
               --extra-cflags="$CFLAGS" \
-              --extra-ldflags="$LDFLAGS -fPIC" \
+              --extra-ldflags="$LDFLAGS" \
               --extra-libs="$FFMPEG_LIBS" \
-              --extra-version="" \
-              --build-suffix="" \
               --disable-static \
               --enable-shared \
               --enable-gpl \
@@ -132,7 +125,7 @@ configure_target() {
               --enable-logging \
               --disable-doc \
               $FFMPEG_DEBUG \
-              $FFMPEG_PIC \
+              --enable-pic \
               --pkg-config="$ROOT/$TOOLCHAIN/bin/pkg-config" \
               --enable-optimizations \
               --disable-extra-warnings \
@@ -194,7 +187,6 @@ configure_target() {
               --disable-libopencore-amrwb \
               --disable-libopencv \
               --disable-libdc1394 \
-              --enable-libdcadec \
               --disable-libfaac \
               --disable-libfreetype \
               --disable-libgsm \
@@ -205,9 +197,8 @@ configure_target() {
               --disable-libschroedinger \
               --enable-libspeex \
               --disable-libtheora \
-              --disable-libvo-aacenc \
               --disable-libvo-amrwbenc \
-              --enable-libvorbis --enable-muxer=ogg --enable-encoder=libvorbis \
+              --disable-libvorbis \
               --disable-libvpx \
               --disable-libx264 \
               --disable-libxavs \
@@ -215,7 +206,6 @@ configure_target() {
               --enable-zlib \
               --enable-asm \
               --disable-altivec \
-              $FFMPEG_CPU \
               $FFMPEG_FPU \
               --enable-yasm \
               --disable-symver

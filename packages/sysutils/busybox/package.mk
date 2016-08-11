@@ -17,14 +17,14 @@
 ################################################################################
 
 PKG_NAME="busybox"
-PKG_VERSION="1.24.2"
+PKG_VERSION="1.25.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.busybox.net"
 PKG_URL="http://busybox.net/downloads/$PKG_NAME-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_HOST=""
-PKG_DEPENDS_TARGET="toolchain busybox:host hdparm dosfstools e2fsprogs zip unzip pciutils usbutils parted"
+PKG_DEPENDS_TARGET="toolchain busybox:host hdparm dosfstools e2fsprogs zip unzip pciutils usbutils parted procps-ng"
 PKG_DEPENDS_INIT="toolchain"
 PKG_PRIORITY="required"
 PKG_SECTION="system"
@@ -253,6 +253,7 @@ makeinstall_init() {
   cp $PKG_DIR/scripts/functions $INSTALL
   cp $PKG_DIR/scripts/init $INSTALL
   sed -e "s/@DISTRONAME@/$DISTRONAME/g" \
+      -e "s/@KERNEL_NAME@/$KERNEL_NAME/g" \
       -i $INSTALL/init
   chmod 755 $INSTALL/init
 }

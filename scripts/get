@@ -27,7 +27,7 @@ if [ -z "$1" ]; then
   done
 fi
 
-if [ -n "$PKG_URL" -o -n "$PKG_GIT_URL" ]; then
+if [ -n "$PKG_URL" -a -n "$PKG_SOURCE_NAME" ]; then
   mkdir -p $SOURCES/$1
 
   # Avoid concurrent downloads of the same package
@@ -38,106 +38,40 @@ if [ -n "$PKG_URL" -o -n "$PKG_GIT_URL" ]; then
     sleep 1
   done
 
-  if [ -n "$PKG_URL" ]; then
+  PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
+  PACKAGE_MIRROR="$DISTRO_MIRROR/$PKG_NAME/$PKG_SOURCE_NAME"
+  [ "$VERBOSE" != "yes" ] && WGET_OPT=-q
+  WGET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $WGET_OPT -O $SOURCES/$1/$PKG_SOURCE_NAME"
 
-    PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
-    PACKAGE_MIRROR="$DISTRO_MIRROR/$PKG_NAME/$PKG_SOURCE_NAME"
-    [ "$VERBOSE" != "yes" ] && WGET_OPT=-q
-    WGET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $WGET_OPT -O $SOURCES/$1/$PKG_SOURCE_NAME"
+  NBWGET="1"
 
-    NBWGET="1"
+  STAMP="$PACKAGE.url"
+  MD5SUM="$PACKAGE.md5"
 
-    STAMP="$PACKAGE.url"
-    MD5SUM="$PACKAGE.md5"
+  DL="yes"
+  if [ -f "$STAMP" ]; then
+    [ "`cat $STAMP`" == "$PKG_URL" ] && DL="no"
+  fi
 
-    DL="yes"
-    if [ -f "$STAMP" ]; then
-      [ "`cat $STAMP`" == "$PKG_URL" ] && DL="no"
-    fi
-
-    if [ "$DL" == "yes" ]; then
-      rm -f $STAMP
-
-      printf "%${BUILD_INDENT}c ${boldcyan}GET${endcolor}      $1\n" ' '>&$SILENT_OUT
-      export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
-
-      until [ -f "$STAMP" ] || $WGET_CMD $PKG_URL || $WGET_CMD $PACKAGE_MIRROR; do
-        NBWGET=$(($NBWGET+1))
-        if [ "$NBWGET" -gt "10" ]; then
-          echo -e "\nCant't get $1 sources : $PKG_URL\n Try later !!"
-          exit 1
-        fi
-      done
-
-      echo $PKG_URL > $STAMP
-      md5sum -t $PACKAGE > $MD5SUM
-
-      rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/unpack
-      rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/build
-    fi
-
-  elif [ -n "$PKG_GIT_URL" ]; then
-
-    SOURCE_NAME="${PKG_NAME}-${PKG_VERSION}.tar.xz"
-    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
-
-    [ "$VERBOSE" = "yes" ] && GIT_OPT=-v
-    [ -z "$PKG_GIT_BRANCH" ] && PKG_GIT_BRANCH=master
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git ]; then
-      GIT_CLONE_CMD="git fetch -v origin $PKG_GIT_BRANCH:$PKG_GIT_BRANCH"
-    else
-      GIT_CLONE_CMD="git clone -v --bare -b "$PKG_GIT_BRANCH" "$PKG_GIT_URL" $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git"
-    fi
-
-    NBGIT="1"
-
-    STAMP="$PACKAGE.url"
-    MD5SUM="$PACKAGE.md5"
-
-    if [ -f "$STAMP" ]; then
-      [ "`cat $STAMP`" = "$PKG_GIT_URL $PKG_GIT_BRANCH $PKG_VERSION" ] && exit 0
-    fi
-    DL="yes"
-
+  if [ "$DL" == "yes" ]; then
     rm -f $STAMP
 
-    printf "%${BUILD_INDENT}c ${boldcyan}CHECKOUT${endcolor}      $1\n" ' '>&$SILENT_OUT
+    printf "%${BUILD_INDENT}c ${boldcyan}GET${endcolor}      $1\n" ' '>&$SILENT_OUT
     export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
 
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git ]; then
-      cd $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git
-    else
-      rm -rf $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git
-    fi
-
-    until [ -f "$STAMP" ] || $GIT_CLONE_CMD; do
-      NBGIT=$(($NBGIT+1))
-      if [ "$NBGIT" -gt "10" ]; then
-        echo -e "\nCant't get $1 sources : $i\n Try later !!"
+    until [ -f "$STAMP" ] || $WGET_CMD $PKG_URL || $WGET_CMD $PACKAGE_MIRROR; do
+      NBWGET=$(($NBWGET+1))
+      if [ "$NBWGET" -gt "10" ]; then
+        echo -e "\nCant't get $1 sources : $PKG_URL\n Try later !!"
         exit 1
       fi
     done
 
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      cd $ROOT
-    fi
-
-    pushd $ROOT/$SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git > /dev/null
-      git archive --format=tar --prefix=${PKG_NAME}-${PKG_VERSION}/ ${PKG_VERSION} | \
-        xz > $ROOT/$SOURCES/$1/${PKG_NAME}-${PKG_VERSION}.tar.xz
-    popd > /dev/null
-
-    echo "$PKG_GIT_URL $PKG_GIT_BRANCH $PKG_VERSION"> $STAMP
+    echo $PKG_URL > $STAMP
     md5sum -t $PACKAGE > $MD5SUM
-
-    if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      rm -rf $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git
-    fi
 
     rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/unpack
     rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/build
-
   fi
 fi
 

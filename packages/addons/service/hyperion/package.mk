@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
+#      This file is part of LibreELEC - https://libreelec.tv
 #      Copyright (C) 2009-2016 Lukas Rusak (lrusak@libreelec.tv)
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="hyperion"
-PKG_VERSION="d2f4725"
+PKG_VERSION="85fcec3"
 PKG_REV="102"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tvdzwan/hyperion"
@@ -30,7 +30,7 @@ PKG_LONGDESC="Hyperion($PKG_VERSION) is an modern opensource AmbiLight implement
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Hyperion"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="7.0"
+PKG_ADDON_REPOVERSION="8.0"
 
 AMLOGIC_SUPPORT="-DENABLE_AMLOGIC=0"
 DISPMANX_SUPPORT="-DENABLE_DISPMANX=0"
@@ -44,7 +44,7 @@ elif [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
   DISPMANX_SUPPORT="-DENABLE_DISPMANX=1"
   FB_SUPPORT="-DENABLE_FB=0"
 elif [ "$DISPLAYSERVER" = "x11" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET xorg-server"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET xorg-server xrandr"
   X11_SUPPORT="-DENABLE_X11=1"
 fi
 
