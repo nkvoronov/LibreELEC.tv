@@ -19,12 +19,12 @@
 ################################################################################
 
 PKG_NAME="vlc"
-PKG_VERSION="2.2.1"
+PKG_VERSION="2.2.4"
 PKG_REV="23"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
-PKG_URL="http://download.videolan.org/pub/videolan/vlc/$PKG_VERSION/vlc-$PKG_VERSION.tar.xz"
+PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
 libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 opus lirc libavc1394 \
 libdc1394 libdvdnav a52dec libssh2 libmatroska libshout gnutls ncursesw6 SDL_image qt4"
@@ -227,7 +227,7 @@ pre_configure_target() {
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
 
   PKG_CONFIG_PATH="$(get_build_dir ncursesw6)/.install_tmp/usr/lib/pkgconfig"
-  CFLAGS="$CFLAGS -I$(get_build_dir ncursesw6)/.install_tmp/usr/include"
+  CFLAGS="$CFLAGS -DLUA_COMPAT_5_1 -I$(get_build_dir ncursesw6)/.install_tmp/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncursesw6)/.install_tmp/usr/lib"
 }
 

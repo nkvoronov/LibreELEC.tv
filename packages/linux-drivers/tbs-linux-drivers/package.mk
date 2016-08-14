@@ -22,8 +22,7 @@ PKG_REV="1"
 PKG_ARCH="i386 x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tbsdtv.com/english/Download.html"
-PKG_URL="http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v${PKG_VERSION}.zip"
-PKG_SOURCE_DIR="$PKG_NAME"
+PKG_URL="http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v$PKG_VERSION.zip"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"
@@ -32,6 +31,10 @@ PKG_SHORTDESC="Linux TBS tuner drivers"
 PKG_LONGDESC="Linux TBS tuner drivers"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
+
+unpack() {
+  unzip -q $ROOT/$SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip -d $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
+}
 
 post_unpack() {
   tar xjf $ROOT/$PKG_BUILD/linux-tbs-drivers.tar.bz2 -C $ROOT/$PKG_BUILD

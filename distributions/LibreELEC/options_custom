@@ -35,7 +35,7 @@
   PHP_SUPPORT="yes"
 
 # Perl
-  PERL_VERSION="5.18.2"
+  PERL_VERSION="5.24.0"
   PERL_SUPPORT="yes"
 
 # EPG Updaters

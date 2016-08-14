@@ -19,12 +19,12 @@
 ################################################################################
 
 PKG_NAME="chromaprint"
-PKG_VERSION="1.1"
+PKG_VERSION="1.3.2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://wiki.acoustid.org/wiki/Chromaprint"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_SITE="https://acoustid.org/chromaprint"
+PKG_URL="https://bitbucket.org/acoustid/chromaprint/downloads/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="audio"

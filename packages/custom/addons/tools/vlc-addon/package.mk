@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="vlc-addon"
-PKG_VERSION="2.2.1"
+PKG_VERSION="2.2.4"
 PKG_REV="23"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -32,6 +32,7 @@ PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, 
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="xbmc.python.script"
+PKG_ADDON_REPOVERSION="8.0"
 PKG_AUTORECONF="no"
 
 make_target() {

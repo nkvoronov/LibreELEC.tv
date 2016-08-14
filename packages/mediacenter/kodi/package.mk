@@ -18,11 +18,15 @@
 
 PKG_NAME="kodi"
 PKG_VERSION="17.0-alpha3-fc46cf2"
+PKG_VERSION_GIT="fc46cf2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
 PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
+#PKG_GIT_URL="https://github.com/xbmc/xbmc.git"
+#PKG_GIT_BRANCH="master"
+#PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain kodi:host xmlstarlet:host Python zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt yajl sqlite ffmpeg crossguid giflib libdvdnav"
 PKG_DEPENDS_HOST="lzo:host libpng:host libjpeg-turbo:host giflib:host"
 PKG_PRIORITY="optional"
@@ -232,6 +236,7 @@ export PYTHON_VERSION=2.7
 export PYTHON_CPPFLAGS="-I$SYSROOT_PREFIX/usr/include/python$PYTHON_VERSION"
 export PYTHON_LDFLAGS="-L$SYSROOT_PREFIX/usr/lib/python$PYTHON_VERSION -lpython$PYTHON_VERSION"
 export PYTHON_SITE_PKG="$SYSROOT_PREFIX/usr/lib/python$PYTHON_VERSION/site-packages"
+export GIT_REV="$PKG_VERSION_GIT"
 
 PKG_CONFIGURE_OPTS_TARGET="gl_cv_func_gettimeofday_clobber=no \
                            ac_python_version=$PYTHON_VERSION \
@@ -279,6 +284,8 @@ PKG_CONFIGURE_OPTS_TARGET="gl_cv_func_gettimeofday_clobber=no \
 pre_configure_host() {
 # kodi fails to build in subdirs
   rm -rf $ROOT/$PKG_BUILD/.$HOST_NAME
+
+  echo "$PKG_VERSION_GIT" > VERSION
 }
 
 configure_host() {

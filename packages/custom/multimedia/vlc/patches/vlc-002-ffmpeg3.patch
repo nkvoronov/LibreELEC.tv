@@ -1,0 +1,258 @@
+diff -Naur a/configure b/configure
+--- a/configure	2016-05-31 19:56:33.000000000 +0300
++++ b/configure	2016-08-14 00:26:58.406132657 +0300
+@@ -36536,15 +36536,15 @@
+ $as_echo "yes" >&6; }
+ 
+     if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavutil < 55\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "libavutil < 55") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavutil < 60\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "libavutil < 60") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+   :
+ else
+ 
+-      as_fn_error $? "libavutil versions 55 and later are not supported." "$LINENO" 5
++      as_fn_error $? "libavutil versions < 60 are not supported." "$LINENO" 5
+ 
+ fi
+ 
+@@ -36830,13 +36830,13 @@
+   case "${avfork}" in
+     ffmpeg)
+       if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavcodec >= 57.10.100\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "libavcodec >= 57.10.100") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavcodec >= 60.10.100\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "libavcodec >= 60.10.100") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+ 
+-        as_fn_error $? "VA API requires FFmpeg libavcodec < 57.10 or libav." "$LINENO" 5
++        as_fn_error $? "VA API requires FFmpeg libavcodec < 60.10 or libav." "$LINENO" 5
+ 
+ fi
+       ;;
+@@ -36914,13 +36914,13 @@
+     case "${avfork}" in
+       ffmpeg)
+         if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavcodec >= 57.10.100\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "libavcodec >= 57.10.100") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavcodec >= 60.10.100\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "libavcodec >= 60.10.100") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+ 
+-          as_fn_error $? "DXVA2 requires FFmpeg libavcodec < 57.10 or libav." "$LINENO" 5
++          as_fn_error $? "DXVA2 requires FFmpeg libavcodec < 60.10 or libav." "$LINENO" 5
+ 
+ fi
+         ;;
+@@ -45106,13 +45106,13 @@
+     libav) av_vdpau_ver="55.26.0" ;;
+     ffmpeg) av_vdpau_ver="55.42.100"
+       if test -n "$PKG_CONFIG" && \
+-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavcodec >= 57.10.100\""; } >&5
+-  ($PKG_CONFIG --exists --print-errors "libavcodec >= 57.10.100") 2>&5
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libavcodec >= 60.10.100\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "libavcodec >= 60.10.100") 2>&5
+   ac_status=$?
+   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+   test $ac_status = 0; }; then
+ 
+-        as_fn_error $? "VDPAU requires FFmpeg libavcodec < 57.10 or libav." "$LINENO" 5
++        as_fn_error $? "VDPAU requires FFmpeg libavcodec < 60.10 or libav." "$LINENO" 5
+ 
+ fi
+       ;;
+diff -Naur a/configure.ac b/configure.ac
+--- a/configure.ac	2016-05-31 19:11:07.000000000 +0300
++++ b/configure.ac	2016-08-14 01:15:30.370066075 +0300
+@@ -2323,8 +2323,8 @@
+ [  --enable-avcodec        libavcodec codec (default enabled)])
+ AS_IF([test "${enable_avcodec}" != "no"], [
+   PKG_CHECK_MODULES(AVCODEC,[libavcodec >= 53.34.0 libavutil >= 51.22.0], [
+-    PKG_CHECK_EXISTS([libavutil < 55],, [
+-      AC_MSG_ERROR([libavutil versions 55 and later are not supported.])
++    PKG_CHECK_EXISTS([libavutil < 60],, [
++      AC_MSG_ERROR([libavutil versions < 60 are not supported.])
+     ])
+     VLC_SAVE_FLAGS
+     CPPFLAGS="${CPPFLAGS} ${AVCODEC_CFLAGS}"
+@@ -2382,8 +2382,8 @@
+ AS_IF([test "${have_vaapi}" = "yes" -a "${have_avcodec}" = "yes"], [
+   case "${avfork}" in
+     ffmpeg)
+-      PKG_CHECK_EXISTS([libavcodec >= 57.10.100], [
+-        AC_MSG_ERROR([VA API requires FFmpeg libavcodec < 57.10 or libav.])
++      PKG_CHECK_EXISTS([libavcodec >= 60.10.100], [
++        AC_MSG_ERROR([VA API requires FFmpeg libavcodec < 60.10 or libav.])
+       ])
+       ;;
+   esac
+@@ -2416,8 +2416,8 @@
+   AS_IF([test "x${have_avcodec}" = "xyes"], [
+     case "${avfork}" in
+       ffmpeg)
+-        PKG_CHECK_EXISTS([libavcodec >= 57.10.100], [
+-          AC_MSG_ERROR([DXVA2 requires FFmpeg libavcodec < 57.10 or libav.])
++        PKG_CHECK_EXISTS([libavcodec >= 60.10.100], [
++          AC_MSG_ERROR([DXVA2 requires FFmpeg libavcodec < 60.10 or libav.])
+         ])
+         ;;
+     esac
+@@ -3180,8 +3180,8 @@
+   case "${avfork}" in
+     libav) av_vdpau_ver="55.26.0" ;;
+     ffmpeg) av_vdpau_ver="55.42.100"
+-      PKG_CHECK_EXISTS([libavcodec >= 57.10.100], [
+-        AC_MSG_ERROR([VDPAU requires FFmpeg libavcodec < 57.10 or libav.])
++      PKG_CHECK_EXISTS([libavcodec >= 60.10.100], [
++        AC_MSG_ERROR([VDPAU requires FFmpeg libavcodec < 60.10 or libav.])
+       ])
+       ;;
+   esac
+diff -Naur a/modules/codec/avcodec/audio.c b/modules/codec/avcodec/audio.c
+--- a/modules/codec/avcodec/audio.c	2016-01-18 22:49:57.000000000 +0200
++++ b/modules/codec/avcodec/audio.c	2016-08-13 23:55:22.918175998 +0300
+@@ -35,14 +35,11 @@
+ #include <vlc_aout.h>
+ #include <vlc_codec.h>
+ #include <vlc_avcodec.h>
++#include "avcodec.h"
+ 
+ #include <libavcodec/avcodec.h>
+ #include <libavutil/mem.h>
+ 
+-#include <libavutil/audioconvert.h>
+-
+-#include "avcodec.h"
+-
+ /*****************************************************************************
+  * decoder_sys_t : decoder descriptor
+  *****************************************************************************/
+diff -Naur a/modules/codec/avcodec/avcommon_compat.h b/modules/codec/avcodec/avcommon_compat.h
+--- a/modules/codec/avcodec/avcommon_compat.h	2015-02-02 21:42:29.000000000 +0200
++++ b/modules/codec/avcodec/avcommon_compat.h	2016-08-13 23:57:45.554172737 +0300
+@@ -506,6 +506,15 @@
+ 
+ #endif /* HAVE_LIBAVUTIL_AVUTIL_H */
+ 
++#if LIBAVUTIL_VERSION_MAJOR >= 55
++# define FF_API_AUDIOCONVERT 1
++#endif
++
++/* libavutil/pixfmt.h */
++#ifndef PixelFormat
++# define PixelFormat AVPixelFormat
++#endif
++
+ #ifdef HAVE_LIBAVFORMAT_AVFORMAT_H
+ # include <libavformat/avformat.h>
+ 
+diff -Naur a/modules/codec/avcodec/encoder.c b/modules/codec/avcodec/encoder.c
+--- a/modules/codec/avcodec/encoder.c	2015-10-21 20:48:45.000000000 +0300
++++ b/modules/codec/avcodec/encoder.c	2016-08-14 00:02:56.550165626 +0300
+@@ -41,7 +41,6 @@
+ #include <vlc_cpu.h>
+ 
+ #include <libavcodec/avcodec.h>
+-#include <libavutil/audioconvert.h>
+ 
+ #include "avcodec.h"
+ #include "avcommon.h"
+@@ -311,7 +310,7 @@
+     else if( !GetFfmpegCodec( p_enc->fmt_out.i_codec, &i_cat, &i_codec_id,
+                              &psz_namecodec ) )
+     {
+-        if( FindFfmpegChroma( p_enc->fmt_out.i_codec ) == PIX_FMT_NONE )
++        if( FindFfmpegChroma( p_enc->fmt_out.i_codec ) == AV_PIX_FMT_NONE )
+             return VLC_EGENERIC; /* handed chroma output */
+ 
+         i_cat      = VIDEO_ES;
+@@ -1017,7 +1016,7 @@
+         }
+     }
+ 
+-    p_sys->frame = avcodec_alloc_frame();
++    p_sys->frame = av_frame_alloc();
+     if( !p_sys->frame )
+     {
+         goto error;
+@@ -1088,7 +1087,8 @@
+     AVFrame *frame = NULL;
+     if( likely(p_pict) ) {
+         frame = p_sys->frame;
+-        avcodec_get_frame_defaults( frame );
++        av_frame_unref( frame );
++
+         for( i_plane = 0; i_plane < p_pict->i_planes; i_plane++ )
+         {
+             p_sys->frame->data[i_plane] = p_pict->p[i_plane].p_pixels;
+@@ -1329,7 +1329,7 @@
+     //How much we need to copy from new packet
+     const int leftover = leftover_samples * p_sys->p_context->channels * p_sys->i_sample_bytes;
+ 
+-    avcodec_get_frame_defaults( p_sys->frame );
++    av_frame_unref( p_sys->frame );
+     p_sys->frame->format     = p_sys->p_context->sample_fmt;
+     p_sys->frame->nb_samples = leftover_samples + p_sys->i_samples_delay;
+ 
+@@ -1451,7 +1451,8 @@
+     while( ( p_aout_buf->i_nb_samples >= p_sys->i_frame_size ) ||
+            ( p_sys->b_variable && p_aout_buf->i_nb_samples ) )
+     {
+-        avcodec_get_frame_defaults( p_sys->frame );
++        av_frame_unref( p_sys->frame );
++
+         if( p_sys->b_variable )
+             p_sys->frame->nb_samples = p_aout_buf->i_nb_samples;
+         else
+diff -Naur a/modules/codec/avcodec/vaapi.c b/modules/codec/avcodec/vaapi.c
+--- a/modules/codec/avcodec/vaapi.c	2015-02-02 21:42:29.000000000 +0200
++++ b/modules/codec/avcodec/vaapi.c	2016-08-14 00:04:01.614164138 +0300
+@@ -595,7 +595,7 @@
+         return err;
+ 
+     /* Only VLD supported */
+-    p_va->pix_fmt = PIX_FMT_VAAPI_VLD;
++    p_va->pix_fmt = AV_PIX_FMT_VAAPI_VLD;
+     p_va->setup = Setup;
+     p_va->get = Get;
+     p_va->release = Release;
+diff -Naur a/modules/codec/avcodec/video.c b/modules/codec/avcodec/video.c
+--- a/modules/codec/avcodec/video.c	2016-04-07 22:36:15.000000000 +0300
++++ b/modules/codec/avcodec/video.c	2016-08-14 00:06:00.042161430 +0300
+@@ -234,7 +234,7 @@
+     p_sys->p_codec = p_codec;
+     p_sys->i_codec_id = i_codec_id;
+     p_sys->psz_namecodec = psz_namecodec;
+-    p_sys->p_ff_pic = avcodec_alloc_frame();
++    p_sys->p_ff_pic = av_frame_alloc();
+     p_sys->b_delayed_open = true;
+     p_sys->p_va = NULL;
+     vlc_sem_init( &p_sys->sem_mt, 0 );
+@@ -446,7 +446,7 @@
+     if( ffmpeg_OpenCodec( p_dec ) < 0 )
+     {
+         msg_Err( p_dec, "cannot open codec (%s)", p_sys->psz_namecodec );
+-        avcodec_free_frame( &p_sys->p_ff_pic );
++        av_frame_free( &p_sys->p_ff_pic );
+         vlc_sem_destroy( &p_sys->sem_mt );
+         free( p_sys );
+         return VLC_EGENERIC;
+@@ -826,7 +826,7 @@
+     wait_mt( p_sys );
+ 
+     if( p_sys->p_ff_pic )
+-        avcodec_free_frame( &p_sys->p_ff_pic );
++        av_frame_free( &p_sys->p_ff_pic );
+ 
+     if( p_sys->p_va )
+         vlc_va_Delete( p_sys->p_va );

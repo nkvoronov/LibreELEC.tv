@@ -17,12 +17,14 @@
 ################################################################################
 
 PKG_NAME="pvr.vdr.vnsi"
-PKG_VERSION="8515b4b"
+PKG_VERSION="98673d3"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_URL="https://github.com/kodi-pvr/pvr.vdr.vnsi/archive/$PKG_VERSION.tar.gz"
+PKG_GIT_URL="https://github.com/kodi-pvr/pvr.vdr.vnsi"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain kodi-platform"
 PKG_PRIORITY="optional"
 PKG_SECTION=""

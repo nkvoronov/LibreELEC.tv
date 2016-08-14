@@ -36,7 +36,7 @@ PKG_DISCLAIMER="using oscam may be illegal in your country. if in doubt, do not 
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_AUTORECONF="no"
-PKG_ADDON_REPOVERSION="7.0"
+PKG_ADDON_REPOVERSION="8.0"
 
 make_target() {
   : # nothing to do here

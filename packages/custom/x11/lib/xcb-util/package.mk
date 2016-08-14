@@ -17,12 +17,12 @@
 ################################################################################
 
 PKG_NAME="xcb-util"
-PKG_VERSION="0.3.9"
+PKG_VERSION="0.4.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://xcb.freedesktop.org"
-PKG_URL="http://xcb.freedesktop.org/dist//${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_URL="http://xcb.freedesktop.org/dist/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="x11/lib"

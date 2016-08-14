@@ -34,7 +34,7 @@ PKG_LONGDESC="mupen64plus (Version: $PKG_VERSION): Nintendo 64 emulator."
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="xbmc.python.script"
 PKG_AUTORECONF="no"
-PKG_ADDON_REPOVERSION="7.0"
+PKG_ADDON_REPOVERSION="8.0"
 
 make_target() {
   : # nothing to make here

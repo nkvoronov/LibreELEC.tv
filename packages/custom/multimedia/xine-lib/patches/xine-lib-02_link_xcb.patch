@@ -1,0 +1,24 @@
+diff -Naur a/m4/video_out.m4 b/m4/video_out.m4
+--- a/m4/video_out.m4	2015-08-08 17:36:25.000000000 +0300
++++ b/m4/video_out.m4	2016-08-13 17:22:59.862714315 +0300
+@@ -305,7 +305,7 @@
+     dnl xcb
+     XINE_ARG_WITH([xcb], [Enable support for XCB video out plugins])
+     if test x"$with_xcb" != x"no"; then
+-        PKG_CHECK_MODULES([XCB], [xcb-shape >= 1.0], [have_xcb=yes], [have_xcb=no])
++        PKG_CHECK_MODULES([XCB], [xcb xcb-shape >= 1.0], [have_xcb=yes], [have_xcb=no])
+         if test x"$hard_enable_xcb" = x"yes" && test x"$have_xcb" != x"yes"; then
+             AC_MSG_ERROR([XCB support requested, but XCB not found])
+         elif test x"$have_xcb" = x"yes"; then
+diff -Naur a/src/video_out/Makefile.am b/src/video_out/Makefile.am
+--- a/src/video_out/Makefile.am	2015-08-08 17:36:25.000000000 +0300
++++ b/src/video_out/Makefile.am	2016-08-13 17:24:36.906712096 +0300
+@@ -147,7 +147,7 @@
+ xineplug_vo_out_xcbshm_la_CFLAGS = $(AM_CFLAGS) $(XCB_CFLAGS) $(XCBSHM_CFLAGS) $(AVUTIL_CFLAGS)
+ 
+ xineplug_vo_out_xcbxv_la_SOURCES = video_out_xcbxv.c $(XCBOSD)
+-xineplug_vo_out_xcbxv_la_LIBADD = $(XINE_LIB) $(PTHREAD_LIBS) $(LTLIBINTL) $(XCBXV_LIBS) $(XCB_LIBS)
++xineplug_vo_out_xcbxv_la_LIBADD = $(XINE_LIB) $(PTHREAD_LIBS) $(LTLIBINTL) $(XCBXV_LIBS) $(XCB_LIBS) $(XCBSHM_LIBS)
+ xineplug_vo_out_xcbxv_la_CFLAGS = $(AM_CFLAGS) $(XCB_CFLAGS) $(XCBXV_CFLAGS)
+ 
+ xineplug_vo_out_xshm_la_SOURCES = video_out_xshm.c $(X11OSD)

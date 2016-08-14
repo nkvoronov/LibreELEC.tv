@@ -16,37 +16,33 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="pvr.hts"
-PKG_VERSION="66dcb89"
+PKG_NAME="dcadec"
+PKG_VERSION="0e07438"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://www.kodi.tv"
-PKG_GIT_URL="https://github.com/kodi-pvr/pvr.hts"
-PKG_GIT_BRANCH="master"
-PKG_KEEP_CHECKOUT="no"
-PKG_DEPENDS_TARGET="toolchain kodi-platform"
+PKG_SITE="https://github.com/foo86/dcadec"
+PKG_URL="https://github.com/foo86/dcadec/archive/$PKG_VERSION.tar.gz"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION=""
-PKG_SHORTDESC="pvr.hts"
-PKG_LONGDESC="pvr.hts"
+PKG_SECTION="audio"
+PKG_SHORTDESC="DTS Coherent Acoustics decoder with support for HD extensions"
+PKG_LONGDESC="DTS Coherent Acoustics decoder with support for HD extensions"
+
+PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-PKG_IS_ADDON="yes"
-PKG_ADDON_TYPE="xbmc.pvrclient"
+# todo: we need to build as shared library, otherwise sond dont work
+# in kodi with enabled dcadec support and we have 100% CPU usage
+# (to test disable passtrough and use a DTS-HD sample)
+PKG_MAKE_OPTS_TARGET="PREFIX=/usr BINDIR=/usr/bin LIBDIR=/usr/lib INCLUDEDIR=/usr/include PKG_CONFIG_PATH=/usr/lib/pkgconfig CONFIG_SHARED=1"
+PKG_MAKEINSTALL_OPTS_TARGET="$PKG_MAKE_OPTS_TARGET"
 
-configure_target() {
-  cmake -DCMAKE_TOOLCHAIN_FILE=$CMAKE_CONF \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DCMAKE_MODULE_PATH=$SYSROOT_PREFIX/usr/lib/kodi \
-        -DCMAKE_PREFIX_PATH=$SYSROOT_PREFIX/usr \
-        ..
+pre_configure_target() {
+  export CFLAGS="$CFLAGS -fPIC -DPIC"
+  export LDFLAGS="$LDFLAGS -fPIC -DPIC"
 }
 
-addon() {
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/
-  cp -R $PKG_BUILD/.install_pkg/usr/share/kodi/addons/$PKG_NAME/* $ADDON_BUILD/$PKG_ADDON_ID/
-
-  ADDONSO=$(xmlstarlet sel -t -v "/addon/extension/@library_linux" $ADDON_BUILD/$PKG_ADDON_ID/addon.xml)
-  cp -L $PKG_BUILD/.install_pkg/usr/lib/kodi/addons/$PKG_NAME/$ADDONSO $ADDON_BUILD/$PKG_ADDON_ID/
+post_makeinstall_target() {
+  rm -rf $INSTALL/usr/bin
 }

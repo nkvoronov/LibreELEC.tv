@@ -32,7 +32,7 @@ PKG_LONGDESC="This project describes how to build your own digital satellite rec
 PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="7.0"
+PKG_ADDON_REPOVERSION="8.0"
 
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
@@ -530,12 +530,10 @@ addon() {
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-shm.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-shm.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-sync.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-sync.so.1
       cp -P $LIBXCBUTIL_DIR/.install_pkg/usr/lib/libxcb-util.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-util.so.1
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xevie.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xevie.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xf86dri.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xf86dri.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xfixes.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xfixes.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xinerama.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xinerama.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xkb.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xkb.so.1
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xprint.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xprint.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xtest.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xtest.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xv.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xv.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xvmc.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xvmc.so.0
@@ -726,10 +724,10 @@ addon() {
       cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3400.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
       cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
 

@@ -16,37 +16,25 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="pvr.hts"
-PKG_VERSION="66dcb89"
+PKG_NAME="libmpeg2"
+PKG_VERSION="0.5.1"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://www.kodi.tv"
-PKG_GIT_URL="https://github.com/kodi-pvr/pvr.hts"
-PKG_GIT_BRANCH="master"
-PKG_KEEP_CHECKOUT="no"
-PKG_DEPENDS_TARGET="toolchain kodi-platform"
+PKG_SITE="http://libmpeg2.sourceforge.net/"
+PKG_URL="http://libmpeg2.sourceforge.net/files/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION=""
-PKG_SHORTDESC="pvr.hts"
-PKG_LONGDESC="pvr.hts"
-PKG_AUTORECONF="no"
+PKG_SECTION="multimedia"
+PKG_SHORTDESC="libmpeg2: The MPEG Library - version 2"
+PKG_LONGDESC="The MPEG Library is a collection of C routines to decode MPEG-1 and MPEG-2 movies and dither them in a variety of colour schemes."
+PKG_IS_ADDON="no"
 
-PKG_IS_ADDON="yes"
-PKG_ADDON_TYPE="xbmc.pvrclient"
+PKG_AUTORECONF="yes"
 
-configure_target() {
-  cmake -DCMAKE_TOOLCHAIN_FILE=$CMAKE_CONF \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DCMAKE_MODULE_PATH=$SYSROOT_PREFIX/usr/lib/kodi \
-        -DCMAKE_PREFIX_PATH=$SYSROOT_PREFIX/usr \
-        ..
+PKG_CONFIGURE_OPTS_TARGET="--disable-sdl --without-x"
+
+post_makeinstall_target() {
+  rm -rf $INSTALL/usr/bin
 }
 
-addon() {
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/
-  cp -R $PKG_BUILD/.install_pkg/usr/share/kodi/addons/$PKG_NAME/* $ADDON_BUILD/$PKG_ADDON_ID/
-
-  ADDONSO=$(xmlstarlet sel -t -v "/addon/extension/@library_linux" $ADDON_BUILD/$PKG_ADDON_ID/addon.xml)
-  cp -L $PKG_BUILD/.install_pkg/usr/lib/kodi/addons/$PKG_NAME/$ADDONSO $ADDON_BUILD/$PKG_ADDON_ID/
-}
