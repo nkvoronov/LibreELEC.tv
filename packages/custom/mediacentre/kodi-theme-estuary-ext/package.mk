@@ -18,7 +18,7 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-theme-estuary"
+PKG_NAME="kodi-theme-estuary-ext"
 PKG_VERSION="e1ec180"
 PKG_REV="1"
 PKG_ARCH="any"

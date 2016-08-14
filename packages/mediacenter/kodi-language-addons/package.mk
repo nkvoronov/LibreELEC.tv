@@ -16,37 +16,27 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="mediacenter"
-PKG_VERSION=""
+PKG_NAME="kodi-language-addons"
+PKG_VERSION="ce9947c"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://libreelec.tv"
-PKG_URL=""
-PKG_DEPENDS_TARGET="toolchain $MEDIACENTER"
+PKG_SITE="https://github.com/xbmc/repo-resources"
+PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION="virtual"
-PKG_SHORTDESC="Mediacenter: Metapackage"
-PKG_LONGDESC=""
+PKG_SECTION="mediacenter"
+PKG_SHORTDESC="kodi language add-ons"
+PKG_LONGDESC="kodi language add-ons"
 
-PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
+PKG_IS_ADDON="no"
 
-  if [ "$MEDIACENTER" = "kodi" ]; then
-    for i in $SKINS; do
-      PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $MEDIACENTER-theme-$i"
-    done
+make_target() {
+  :
+}
 
-# some python stuff needed for various addons
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Pillow \
-                                          simplejson \
-                                          pycrypto"
-# other packages
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET LibreELEC-settings \
-                                          xmlstarlet \
-                                          peripheral.joystick"
-
-  if [ "$KODI_LANGUAGE_ADDONS" = "yes" ]; then
-    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-language-addons"
-  fi
-fi
+makeinstall_target() {
+  mkdir -p $INSTALL/usr/share/kodi/addons/
+    cp -PR $ROOT/$PKG_BUILD/* $INSTALL/usr/share/kodi/addons/
+}

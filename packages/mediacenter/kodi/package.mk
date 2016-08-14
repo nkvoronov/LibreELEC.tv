@@ -17,13 +17,11 @@
 ################################################################################
 
 PKG_NAME="kodi"
-#PKG_VERSION="17.0-alpha3-fc46cf2"
 PKG_VERSION="fc46cf2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-#PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_GIT_URL="https://github.com/xbmc/xbmc.git"
 PKG_GIT_BRANCH="master"
 PKG_KEEP_CHECKOUT="no"
@@ -314,6 +312,7 @@ makeinstall_host() {
 pre_build_target() {
 # adding fake Makefile for stripped skin
   mkdir -p $ROOT/$PKG_BUILD/addons/skin.estuary/media
+  cp -PR $PKG_DIR/theme/* $ROOT/$PKG_BUILD/addons/skin.estuary
   touch $ROOT/$PKG_BUILD/addons/skin.estuary/media/Makefile.in
 }
 
@@ -352,6 +351,16 @@ make_target() {
   if [ "$DISPLAYSERVER" = "x11" ]; then
     make kodi-xrandr
   fi
+
+  if [ "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
+    rm -rf addons/skin.estuary
+  else
+    TexturePacker -input addons/skin.estuary/media/ -output Textures.xbt -dupecheck -use_none
+
+    for theme in addons/skin.estuary/themes/*; do
+      TexturePacker -input $theme -output $(basename $theme).xbt -dupecheck
+    done
+  fi
 }
 
 post_makeinstall_target() {
@@ -366,6 +375,7 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/share/kodi/addons/service.xbmc.versioncheck
   rm -rf $INSTALL/usr/share/kodi/addons/visualization.vortex
   rm -rf $INSTALL/usr/share/xsessions
+  rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/build.bat
 
   mkdir -p $INSTALL/usr/lib/kodi
     cp $PKG_DIR/scripts/kodi-config $INSTALL/usr/lib/kodi
@@ -382,6 +392,20 @@ post_makeinstall_target() {
 
   if [ ! "$DISPLAYSERVER" = "x11" ]; then
     rm -rf $INSTALL/usr/lib/kodi/kodi-xrandr
+  fi
+
+  if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
+    # Rebrand
+    sed -e "s,@DISTRONAME@,$DISTRONAME,g" -i $INSTALL/usr/share/kodi/addons/skin.estuary/1080i/Home.xml
+
+    rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/media
+    rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/themes
+    mkdir -p $INSTALL/usr/share/kodi/addons/skin.estuary/media
+
+    cp Textures.xbt $INSTALL/usr/share/kodi/addons/skin.estuary/media
+    for theme in addons/skin.estuary/themes/*; do
+      cp $(basename $theme).xbt $INSTALL/usr/share/kodi/addons/skin.estuary/media
+    done
   fi
 
   mkdir -p $INSTALL/usr/share/kodi/addons
