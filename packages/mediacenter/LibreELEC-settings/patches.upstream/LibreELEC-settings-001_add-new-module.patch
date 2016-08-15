@@ -1,7 +1,7 @@
 diff -Naur a/language/English/strings.po b/language/English/strings.po
---- a/language/English/strings.po	2016-02-28 15:45:01.000000000 +0200
-+++ b/language/English/strings.po	2016-04-24 02:31:41.598771982 +0300
-@@ -837,3 +837,669 @@
+--- a/language/English/strings.po	2016-06-25 13:54:11.000000000 +0300
++++ b/language/English/strings.po	2016-08-15 14:06:47.105543344 +0300
+@@ -803,3 +803,669 @@
  msgctxt "#32391"
  msgid "Enable LCD Driver Support"
  msgstr ""
@@ -672,8 +672,8 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr ""
 diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
---- a/language/Russian/strings.po	2016-02-28 15:45:01.000000000 +0200
-+++ b/language/Russian/strings.po	2016-04-24 02:31:41.602771982 +0300
+--- a/language/Russian/strings.po	2016-06-25 13:54:11.000000000 +0300
++++ b/language/Russian/strings.po	2016-08-15 14:06:47.109543344 +0300
 @@ -743,3 +743,669 @@
  msgctxt "#32391"
  msgid "Enable LCD Driver Support"
@@ -1345,8 +1345,8 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr "VDR приложение с открытым исходным кодом для Linux разработанный, чтобы позволить любому компьютеру работать в качестве цифрового видеомагнитофона для того, чтобы записывать и воспроизводить ТВ программы."
 diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2016-02-28 15:45:01.000000000 +0200
-+++ b/src/defaults.py	2016-04-24 02:31:41.606771982 +0300
+--- a/src/defaults.py	2016-06-25 13:54:11.000000000 +0300
++++ b/src/defaults.py	2016-08-15 14:11:47.537530385 +0300
 @@ -77,6 +77,133 @@
      'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
      'D_LCD_DRIVER': 'none',
@@ -1368,7 +1368,7 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'D_TRANSMISSION_LIMIT_TORRENT': '100',
 +    'D_TRANSMISSION_DL_DIR': '/storage/downloads/',
 +    }
-+    
++
 +################################################################################
 +# Tv Servers Module
 +################################################################################
@@ -1491,8 +1491,8 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'oscam': ['oscam.service'],
      }
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
---- a/src/resources/lib/modules/system.py	2016-02-28 15:45:01.000000000 +0200
-+++ b/src/resources/lib/modules/system.py	2016-04-24 02:31:41.606771982 +0300
+--- a/src/resources/lib/modules/system.py	2016-06-25 13:54:11.000000000 +0300
++++ b/src/resources/lib/modules/system.py	2016-08-15 14:11:12.513531895 +0300
 @@ -130,6 +130,15 @@
                              'values': [],
                              'InfoText': 713,
@@ -1509,7 +1509,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                          },
                      },
                  'update': {
-@@ -266,12 +275,18 @@
+@@ -332,12 +341,18 @@
                  arrLayouts,
                  arrTypes,
                  self.arrVariants,
@@ -1524,11 +1524,11 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +                self.struct['keyboard']['settings']['KeyboardSwitches']['values'] = arrOptions
 +                value = self.oe.read_setting('system', 'KeyboardSwitches')
 +                if not value is None:
-+                    self.struct['keyboard']['settings']['KeyboardSwitches']['value'] = value                    
++                    self.struct['keyboard']['settings']['KeyboardSwitches']['value'] = value
              if not arrLayouts is None:
                  self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
                  self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
-@@ -362,7 +377,8 @@
+@@ -452,7 +467,8 @@
                          ]['KeyboardLayout2']['value']]
                  self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
                                  + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
@@ -1538,7 +1538,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
                      os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
                  config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
-@@ -371,7 +387,8 @@
+@@ -461,7 +477,8 @@
                                    self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
                  config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
                                    ]['settings']['KeyboardLayout2']['value'] + '"\n')
@@ -1548,7 +1548,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  config_file.close()
                  parameters = [
                      '-display ' + os.environ['DISPLAY'],
-@@ -380,7 +397,7 @@
+@@ -470,7 +487,7 @@
                      '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
                              ]['KeyboardVariant2']['value'],
                      '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
@@ -1557,7 +1557,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                      ]
                  self.oe.execute('setxkbmap ' + ' '.join(parameters))
              elif self.nox_keyboard_layouts == True:
-@@ -455,6 +472,7 @@
+@@ -537,6 +554,7 @@
              arrLayouts = []
              arrVariants = {}
              arrTypes = []
@@ -1565,7 +1565,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if os.path.exists(self.KEYBOARD_INFO):
                  objXmlFile = open(self.KEYBOARD_INFO, 'r')
                  strXmlText = objXmlFile.read()
-@@ -496,8 +514,20 @@
+@@ -578,8 +596,20 @@
                                  if subnode_2.nodeName == 'description':
                                      if hasattr(subnode_2.firstChild, 'nodeValue'):
                                          arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
@@ -1586,7 +1586,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              elif os.path.exists(self.NOX_KEYBOARD_INFO):
                  for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
                      if os.path.isfile(layout):
-@@ -512,6 +542,7 @@
+@@ -594,6 +624,7 @@
                  arrLayouts,
                  arrTypes,
                  arrVariants,
@@ -1594,9 +1594,30 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  )
          except Exception, e:
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
+@@ -862,7 +893,7 @@
+                         return 0
+                 except:
+                     pass
+-                    
++
+                 self.backup_dlg = xbmcgui.DialogProgress()
+                 self.backup_dlg.create('LibreELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
+                 if not os.path.exists(self.BACKUP_DESTINATION):
+@@ -892,9 +923,9 @@
+                                               False, 
+                                               False, 
+                                               self.BACKUP_DESTINATION )
+-            
++
+             restore_file_name = restore_file_path.split('/')[-1]
+-            
++
+             if not os.path.exists(self.RESTORE_DIR):
+                 os.makedirs(self.RESTORE_DIR)
+             else:
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2016-04-24 02:31:41.606771982 +0300
++++ b/src/resources/lib/modules/transmission.py	2016-08-15 14:06:47.109543344 +0300
 @@ -0,0 +1,331 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -1931,7 +1952,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2016-04-24 02:31:41.606771982 +0300
++++ b/src/resources/lib/modules/tvservers.py	2016-08-15 14:06:47.113543344 +0300
 @@ -0,0 +1,2063 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv

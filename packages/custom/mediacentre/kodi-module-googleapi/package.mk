@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-module-googleapi"
-PKG_VERSION="11709c0"
+PKG_VERSION="3b2d3fa"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -36,12 +36,12 @@ PKG_LONGDESC="Google API python classes and dependencies"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-post_unpack() {
-  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-    cat $patch | patch -d \
-    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-  done
-}
+#post_unpack() {
+#  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
+#    cat $patch | patch -d \
+#    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
+#  done
+#}
 
 make_target() {
   : # nothing to make here

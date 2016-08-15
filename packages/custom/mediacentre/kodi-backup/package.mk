@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-backup"
-PKG_VERSION="0926c5d"
+PKG_VERSION="210a907"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

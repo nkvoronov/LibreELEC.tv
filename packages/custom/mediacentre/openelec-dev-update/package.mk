@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="openelec-dev-update"
-PKG_VERSION="2691b45"
+PKG_VERSION="92a7296"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

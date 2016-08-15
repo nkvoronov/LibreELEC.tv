@@ -19,12 +19,14 @@
 ################################################################################
 
 PKG_NAME="kodi-addon-rss-editor"
-PKG_VERSION="2.0.4"
+PKG_VERSION="407a03b"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_SITE="https://github.com/XBMC-Addons/script.rss.editor"
+PKG_GIT_URL="https://github.com/XBMC-Addons/script.rss.editor.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
 PKG_SECTION="mediacentre"
@@ -34,12 +36,12 @@ PKG_LONGDESC="XBMC Audio Mixer"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-post_unpack() {
-  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-    cat $patch | patch -d \
-    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-  done
-}
+#post_unpack() {
+#  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
+#    cat $patch | patch -d \
+#    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
+#  done
+#}
 
 make_target() {
   : # nothing to make here
@@ -52,10 +54,6 @@ makeinstall_target() {
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/script.rss.editor
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.rss.editor
-
-  rm -fR $INSTALL/usr/share/kodi/addons/script.rss.editor/resources/skins
-  mkdir -p $INSTALL/usr/share/kodi/addons/script.rss.editor/resources/skins
-    cp -PR $PKG_DIR/skins/* $INSTALL/usr/share/kodi/addons/script.rss.editor/resources/skins
 
   python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.rss.editor/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/script.rss.editor/resources/lib/ -name "*.py"`

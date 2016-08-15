@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="kodi-addon-xvdr"
-PKG_VERSION="88265b8"
+PKG_VERSION="ae66610"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
