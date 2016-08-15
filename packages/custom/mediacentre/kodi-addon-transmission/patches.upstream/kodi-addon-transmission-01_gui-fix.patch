@@ -7,7 +7,7 @@ diff -Naur a/addon.xml b/addon.xml
         name="Transmission"
 -       version="0.7.6"
 -       provider-name="Correl Roush">
-+       version="0.7.62"
++       version="1.7.6"
 +       provider-name="Correl Roush, YLLOW_DRAGON">
    <requires>
      <import addon="xbmc.python" version="2.14.0"/>

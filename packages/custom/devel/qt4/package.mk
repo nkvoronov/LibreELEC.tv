@@ -135,6 +135,6 @@ post_install() {
     rm -f $INSTALL/usr/lib/qt4/plugins/graphicssystems/*.prl
 
   mkdir -p $INSTALL/usr/share/qt4/translations
-    cp -P $PKG_BUILD/translations/qt_*.ts $INSTALL/usr/share/qt4/translations
-    cp -P $PKG_BUILD/translations/qvfb_*.ts $INSTALL/usr/share/qt4/translations
+    cp -P $PKG_BUILD/translations/qt_*.qm $INSTALL/usr/share/qt4/translations
+    cp -P $PKG_BUILD/translations/qvfb_*.qm $INSTALL/usr/share/qt4/translations
 }

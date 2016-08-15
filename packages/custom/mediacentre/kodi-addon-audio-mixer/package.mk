@@ -55,10 +55,6 @@ post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer
 
-  rm -fR $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer/resources/skins
-  mkdir -p $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer/resources/skins
-    cp -PR $PKG_DIR/skins/* $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer/resources/skins
-
   python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/script.xbmc.audio.mixer/resources/lib/ -name "*.py"`
 }
