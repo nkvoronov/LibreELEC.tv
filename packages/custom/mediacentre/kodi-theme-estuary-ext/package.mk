@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-theme-estuary-ext"
-PKG_VERSION="e1ec180"
+PKG_VERSION="028c38a"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
