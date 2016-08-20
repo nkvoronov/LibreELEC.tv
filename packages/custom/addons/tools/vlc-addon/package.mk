@@ -20,7 +20,7 @@
 
 PKG_NAME="vlc-addon"
 PKG_VERSION="2.2.4"
-PKG_REV="25"
+PKG_REV="26"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -47,6 +47,7 @@ addon() {
   VLC_DIR=$(get_build_dir_usr vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
   QT4=$(get_build_dir qt4)
+  LUA=$(get_build_dir lua)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
   LIB_NCURSESW=$(get_build_dir ncursesw6)
@@ -58,8 +59,11 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
     cp -P $QT4/bin/qtconfig $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $LUA/src/lua $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $LUA/src/luac $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+    cp -P $LUA/src/liblua.so.5.3.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -P $QT4/lib/libQtCore.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
     cp -P $QT4/lib/libQtGui.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4

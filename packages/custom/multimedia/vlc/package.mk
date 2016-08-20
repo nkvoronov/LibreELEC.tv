@@ -20,13 +20,13 @@
 
 PKG_NAME="vlc"
 PKG_VERSION="2.2.4"
-PKG_REV="25"
+PKG_REV="26"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
-libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 opus lirc libavc1394 \
+libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 x265 opus lirc libavc1394 \
 libdc1394 libdvdnav a52dec libssh2 libmatroska libshout gnutls ncursesw6 SDL_image qt4"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
@@ -135,7 +135,7 @@ PKG_CONFIGURE_CODEC_PLUGINS_OPTS="--disable-wma-fixed \
 	--enable-png \
 	--enable-jpeg \
 	--disable-x262 \
-	--disable-x265 \
+	--enable-x265 \
 	--disable-x26410b \
 	--enable-x264 \
 	--disable-mfx \
@@ -221,7 +221,9 @@ PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_MAIN_OPT \
 	$PKG_CONFIGURE_VISUALISATIONS_OPTS \
 	$PKG_CONFIGURE_SERVICE_DISCOVERY_PLUGINS_OPTS \
 	$PKG_CONFIGURE_MISC_OPTIONS_OPTS \
-	$PKG_CONFIGURE_COMPONENTS_OPTS"
+	$PKG_CONFIGURE_COMPONENTS_OPTS \
+	LUAC=$SYSROOT_PREFIX/usr/bin/luac \
+	LUA_LIBS=$SYSROOT_PREFIX/usr/lib"
 
 pre_configure_target() {
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
