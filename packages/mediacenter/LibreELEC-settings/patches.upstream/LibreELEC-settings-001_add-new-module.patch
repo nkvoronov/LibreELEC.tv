@@ -849,7 +849,7 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgid "XMLTV File location"
 +msgstr "XMLTV путь"
 +
-+msgctxt "#1107"
++msgctxt "#1106"
 +msgid "Local location XMLTV file"
 +msgstr "Выбрать XMLTV файлы"
 +

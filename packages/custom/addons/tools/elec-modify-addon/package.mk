@@ -18,7 +18,7 @@
 
 PKG_NAME="elec-modify-addon"
 PKG_VERSION="1"
-PKG_REV="27"
+PKG_REV="28"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""

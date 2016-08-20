@@ -17,7 +17,7 @@
 
         <!-- topbar -->
         <include content="TopBar">
-            <param name="breadcrumbs_label" value="$LOCALIZE[5]$INFO[Control.GetLabel(2), / ]" />
+            <param name="breadcrumbs_label" value="$ADDON[service.libreelec.settings 600]" />
             <param name="breadcrumbs_icon" value="os/libreelec/logo_libreelec.png" />
         </include>
 
@@ -127,6 +127,13 @@
                         <height>300</height>
                         <texture border="1">os/libreelec/logo_big.png</texture>
                     </control>
+                    <control type="image">
+                        <left>22</left>
+                        <top>170</top>
+                        <width>935</width>
+                        <height>3</height>
+                        <texture colordiffuse="button_focus" border="2">dialogs/separator.png</texture>
+                    </control>
                     <control type="label">
                         <left>60</left>
                         <top>50</top>
@@ -189,31 +196,34 @@
                     </control>
                     <control type="textbox">
                         <left>60</left>
-                        <top>170</top>
+                        <top>180</top>
                         <width>900</width>
-                        <height>300</height>
+                        <height>170</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
                         <label>$ADDON[service.libreelec.settings 609]</label>
+                        <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
                     </control>
                     <control type="textbox">
                         <left>60</left>
-                        <top>340</top>
+                        <top>350</top>
                         <width>1200</width>
-                        <height>400</height>
+                        <height>150</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
                         <label>$ADDON[service.libreelec.settings 610]</label>
+                        <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
                     </control>
                     <control type="textbox">
                         <left>60</left>
-                        <top>670</top>
-                        <width>1150</width>
-                        <height>90</height>
+                        <top>530</top>
+                        <width>1200</width>
+                        <height>100</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
                         <align>left</align>
                         <label>$ADDON[service.libreelec.settings 611]</label>
+                        <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
                     </control>
                 </control>
                 <!-- simple list content -->
@@ -259,9 +269,11 @@
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
                             <control type="image">
+                                <left>0</left>
+                                <top>60</top>
                                 <width>1256</width>
-                                <height>63</height>
-                                <texture border="40">lists/separator.png</texture>
+                                <height>3</height>
+                                <texture colordiffuse="AAAAAAAA" border="3">dialogs/separator-grey.png</texture>
                             </control>
                             <control type="label">
                                 <aligny>center</aligny>
@@ -345,9 +357,11 @@
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
                             <control type="image">
+                                <left>0</left>
+                                <top>60</top>
                                 <width>1256</width>
-                                <height>63</height>
-                                <texture border="40">lists/separator.png</texture>
+                                <height>3</height>
+                                <texture colordiffuse="AAAAAAAA" border="3">dialogs/separator-grey.png</texture>
                             </control>
                             <control type="label">
                                 <aligny>center</aligny>
@@ -1070,8 +1084,8 @@
                 <label>$INFO[Window.Property(InfoText)]</label>
                 <align>left</align>
                 <font>font10</font>
-                <textcolor>white</textcolor>
-                <shadowcolor>black</shadowcolor>
+                <textcolor>button_focus</textcolor>
+                <autoscroll time="3000" delay="4000" repeat="5000">true</autoscroll>
             </control>
             <control type="button" id="1501">
                 <left>1400</left>

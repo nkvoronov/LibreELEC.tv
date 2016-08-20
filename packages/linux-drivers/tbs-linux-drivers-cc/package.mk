@@ -17,14 +17,14 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers-cc"
-PKG_VERSION="7995e07"
+PKG_VERSION="db5a951"
 PKG_REV="1"
 PKG_ARCH="i386 x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="https://bitbucket.org/CrazyCat/linux-tbs-drivers"
 PKG_GIT_URL="https://bitbucket.org/CrazyCat/linux-tbs-drivers.git"
 PKG_GIT_BRANCH="master"
-PKG_KEEP_CHECKOUT="yes"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"

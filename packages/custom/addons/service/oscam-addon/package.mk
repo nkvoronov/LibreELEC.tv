@@ -20,8 +20,8 @@
 ################################################################################
 
 PKG_NAME="oscam-addon"
-PKG_VERSION="11272"
-PKG_REV="94"
+PKG_VERSION="11273"
+PKG_REV="95"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"

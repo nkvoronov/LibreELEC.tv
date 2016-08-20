@@ -20,7 +20,7 @@
 
 PKG_NAME="vlc"
 PKG_VERSION="2.2.4"
-PKG_REV="24"
+PKG_REV="25"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -229,15 +229,6 @@ pre_configure_target() {
   PKG_CONFIG_PATH="$(get_build_dir ncursesw6)/.install_tmp/usr/lib/pkgconfig"
   CFLAGS="$CFLAGS -DLUA_COMPAT_5_1 -I$(get_build_dir ncursesw6)/.install_tmp/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncursesw6)/.install_tmp/usr/lib"
-}
-
-pre_make_target() {
-  #This sed fixes compilation with lua 5.3.
-  sed -e 's/luaL_optint/(int)&eger/' \
-    -i $(get_build_dir vlc)/modules/lua/libs/{net,osd,volume}.c
-  sed -e 's/luaL_checkint(/(int)luaL_checkinteger(/' \
-    -i $(get_build_dir vlc)/modules/lua/{demux,libs/{configuration,net,osd,playlist}}.c \
-       $(get_build_dir vlc)/modules/lua/{demux,libs/{stream,variables,volume}}.c
 }
 
 post_install() {
