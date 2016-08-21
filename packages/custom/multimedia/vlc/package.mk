@@ -20,7 +20,7 @@
 
 PKG_NAME="vlc"
 PKG_VERSION="2.2.4"
-PKG_REV="26"
+PKG_REV="27"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -135,7 +135,7 @@ PKG_CONFIGURE_CODEC_PLUGINS_OPTS="--disable-wma-fixed \
 	--enable-png \
 	--enable-jpeg \
 	--disable-x262 \
-	--enable-x265 \
+	--disable-x265 \
 	--disable-x26410b \
 	--enable-x264 \
 	--disable-mfx \
@@ -223,13 +223,14 @@ PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_MAIN_OPT \
 	$PKG_CONFIGURE_MISC_OPTIONS_OPTS \
 	$PKG_CONFIGURE_COMPONENTS_OPTS \
 	LUAC=$SYSROOT_PREFIX/usr/bin/luac \
-	LUA_LIBS=$SYSROOT_PREFIX/usr/lib"
+	RCC=$SYSROOT_PREFIX/usr/bin/rcc"
 
 pre_configure_target() {
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
+  export LUA_LIBS="-L$SYSROOT_PREFIX/usr/lib -llua -lm"
 
   PKG_CONFIG_PATH="$(get_build_dir ncursesw6)/.install_tmp/usr/lib/pkgconfig"
-  CFLAGS="$CFLAGS -DLUA_COMPAT_5_1 -I$(get_build_dir ncursesw6)/.install_tmp/usr/include"
+  CFLAGS="$CFLAGS -I$(get_build_dir ncursesw6)/.install_tmp/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncursesw6)/.install_tmp/usr/lib"
 }
 
