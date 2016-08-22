@@ -20,7 +20,7 @@
 
 PKG_NAME="vlc-addon"
 PKG_VERSION="2.2.4"
-PKG_REV="28"
+PKG_REV="29"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -50,7 +50,7 @@ addon() {
   LUA=$(get_build_dir lua)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
-  LIB_NCURSESW=$(get_build_dir ncursesw6)
+  LIB_NCURSESW=$(get_build_dir ncurses)
   LIB_ICE=$(get_build_dir libICE)
   LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
@@ -70,6 +70,10 @@ addon() {
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libformw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libmenuw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libpanelw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpanelw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libtinfo.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1

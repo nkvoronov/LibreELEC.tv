@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="htop"
-PKG_VERSION="1.0.3"
+PKG_VERSION="2.0.2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -27,7 +27,7 @@ PKG_SITE="http://htop.sourceforge.net/"
 PKG_URL="http://hisham.hm/htop/releases/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain ncurses"
 PKG_PRIORITY="optional"
-PKG_SECTION="debug"
+PKG_SECTION="tools"
 PKG_SHORTDESC="htop: Htop is an ncurses based interactive process viewer for Linux."
 PKG_LONGDESC="Htop is an ncurses based interactive process viewer for Linux."
 
@@ -36,22 +36,23 @@ PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="ac_cv_func_malloc_0_nonnull=yes \
             ac_cv_func_realloc_0_nonnull=yes \
+            ac_cv_lib_ncursesw_addnwstr=yes \
+            --enable-unicode \
+            --enable-openvz \
+            --enable-vserver \
             --enable-cgroup \
-            --disable-vserver \
-            --disable-unicode \
-            --disable-native-affinity \
+            --enable-proc \
             --disable-hwloc \
             --with-gnu-ld"
 
-pre_build_target() {
-  mkdir -p $PKG_BUILD/.$TARGET_NAME
-  cp -RP $PKG_BUILD/* $PKG_BUILD/.$TARGET_NAME
-}
-
 pre_configure_target() {
+  cd $ROOT/$PKG_BUILD
+  rm -rf .$HOST_NAME
+
   PKG_CONFIG_PATH="$(get_build_dir ncurses)/.install_tmp/usr/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ncurses)/.install_tmp/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncurses)/.install_tmp/usr/lib"
+  LIBS="-L$(get_build_dir ncurses)/.install_tmp/usr/lib -lncursesw"
 }
 
 makeinstall_target() {

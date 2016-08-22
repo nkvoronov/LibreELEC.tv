@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="mc"
-PKG_VERSION="4.8.11"
+PKG_VERSION="4.8.17"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -26,7 +26,7 @@ PKG_URL="http://ftp.midnight-commander.org/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain libtool:host gettext:host glib pcre slang"
 PKG_PRIORITY="optional"
 PKG_SECTION="tools"
-PKG_SHORTDESC="mc: free cross-platform filemanager #fu_cv_sys_stat_statfs2_bsize=yes"
+PKG_SHORTDESC="mc: free cross-platform filemanager"
 PKG_LONGDESC="Midnight Commander - free cross-platform filemanager and clone of Norton Commander"
 
 PKG_IS_ADDON="no"
@@ -52,17 +52,7 @@ PKG_CONFIGURE_OPTS_TARGET="--host=$TARGET_NAME \
             --without-diff-viewer \
             --with-subshell"
 
-pre_build_target() {
-  mkdir -p $PKG_BUILD/.$TARGET_NAME
-  cp -RP $PKG_BUILD/* $PKG_BUILD/.$TARGET_NAME
-}
-
 pre_configure_target() {
   export CFLAGS="$CFLAGS -I$SYSROOT_PREFIX/usr/include/slang"
   export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
-}
-
-post_makeinstall_target() {
-  mkdir -p $INSTALL/usr/share/mc
-  cp -P $PKG_DIR/config/mc.lib $INSTALL/usr/share/mc
 }

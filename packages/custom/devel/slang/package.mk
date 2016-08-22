@@ -17,12 +17,12 @@
 ################################################################################
 
 PKG_NAME="slang"
-PKG_VERSION="2.2.4"
+PKG_VERSION="2.3.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://www.jedsoft.org/slang/"
-PKG_URL="ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v2.2/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_URL="http://www.jedsoft.org/releases/slang/$PKG_NAME-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="devel"

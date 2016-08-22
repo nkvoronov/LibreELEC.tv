@@ -294,7 +294,7 @@ post_install() {
     ln -s /usr/libexec/mc/mc.csh $INSTALL/usr/share/mc/bin/mc.csh
     ln -s /usr/libexec/mc/mc.sh $INSTALL/usr/share/mc/bin/mc.sh
     mkdir -p $INSTALL/usr/share/locale
-    for fgmo in `ls $(get_build_dir mc)/.$TARGET_NAME/po/*.gmo`;do
+    for fgmo in `ls $(get_build_dir mc)/po/*.gmo`;do
       fname=`basename $fgmo .gmo`
       mkdir -p $INSTALL/usr/share/locale/$fname
       mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
@@ -303,6 +303,6 @@ post_install() {
   fi
 
   if [ "$ENABLE_HTOP" = yes ]; then
-    cp -P $(get_build_dir htop)/.$TARGET_NAME/htop $INSTALL/usr/bin
+    cp -P $(get_build_dir htop)/htop $INSTALL/usr/bin
   fi
 }
