@@ -285,7 +285,7 @@ addon() {
   fi
 
   if [ "$ENABLE_HTOP" = yes ]; then
-    cp -P $(get_build_dir htop)/.$TARGET_NAME/htop $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $(get_build_dir htop)/htop $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
 
   debug_strip $ADDON_BUILD/$PKG_ADDON_ID/bin
