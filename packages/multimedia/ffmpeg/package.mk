@@ -17,14 +17,14 @@
 ################################################################################
 
 PKG_NAME="ffmpeg"
-# Current branch is: release/3.1-xbmc
-PKG_VERSION="c65cfe4"
+PKG_VERSION="4275b27"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
-PKG_URL="https://github.com/xbmc/FFmpeg/archive/${PKG_VERSION}.tar.gz"
-PKG_SOURCE_DIR="FFmpeg-${PKG_VERSION}*"
+PKG_GIT_URL="https://github.com/xbmc/FFmpeg.git"
+PKG_GIT_BRANCH="release/3.1-xbmc"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain yasm:host zlib bzip2 libressl speex"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
