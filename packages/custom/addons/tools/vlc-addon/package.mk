@@ -20,7 +20,7 @@
 
 PKG_NAME="vlc-addon"
 PKG_VERSION="2.2.4"
-PKG_REV="29"
+PKG_REV="30"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -107,4 +107,6 @@ addon() {
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
     cp -p $fgmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vlc.mo
   done
+
+  ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
 }

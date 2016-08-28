@@ -52,7 +52,6 @@ pre_configure_target() {
   PKG_CONFIG_PATH="$(get_build_dir ncurses)/.install_tmp/usr/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ncurses)/.install_tmp/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncurses)/.install_tmp/usr/lib"
-  LIBS="-L$(get_build_dir ncurses)/.install_tmp/usr/lib -lncursesw"
 }
 
 makeinstall_target() {

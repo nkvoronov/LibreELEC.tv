@@ -33,6 +33,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 PKG_CONFIGURE_OPTS_TARGET="--with-shared \
+                           --with-normal \
                            --with-termlib=tinfo \
                            --without-debug \
                            --without-ada \
@@ -42,7 +43,10 @@ PKG_CONFIGURE_OPTS_TARGET="--with-shared \
                            --without-progs \
                            --without-tests \
                            --enable-widec \
-                           --enable-overwrite"
+                           --enable-pc-files \
+                           --with-pkg-config-libdir=/usr/lib/pkgconfig \
+                           --enable-ext-colors \
+                           --enable-ext-mouse"
 
 pre_configure_target() {
   # causes some segmentation fault's (dialog) when compiled with gcc's link time optimization.
@@ -52,14 +56,14 @@ pre_configure_target() {
 
 makeinstall_target() {
   make install DESTDIR=$ROOT/$PKG_BUILD/.install_tmp $PKG_MAKEINSTALL_OPTS_TARGET
-  mkdir -p $ROOT/$PKG_BUILD/.install_tmp/usr/lib/pkgconfig
-    cp -P $PKG_DIR/config/* $ROOT/$PKG_BUILD/.install_tmp/usr/lib/pkgconfig
 }
 
 post_install() {
   mkdir -p $INSTALL/usr/lib
     cp -P $ROOT/$PKG_BUILD/.install_tmp/usr/lib/*.so $INSTALL/usr/lib
     cp -P $ROOT/$PKG_BUILD/.install_tmp/usr/lib/*.so.* $INSTALL/usr/lib
+
+  ln -sf /usr/share/terminfo $INSTALL/usr/lib/terminfo
 
   mkdir -p $INSTALL/usr/share
     cp -R $ROOT/$PKG_BUILD/.install_tmp/usr/share/* $INSTALL/usr/share
