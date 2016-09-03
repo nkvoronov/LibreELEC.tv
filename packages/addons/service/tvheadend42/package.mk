@@ -17,9 +17,9 @@
 ################################################################################
 
 PKG_NAME="tvheadend42"
-PKG_VERSION="0bc30b9"
-PKG_VERSION_NUMBER="4.1.2134"
-PKG_REV="103"
+PKG_VERSION="65dfd15"
+PKG_VERSION_NUMBER="4.1.2195"
+PKG_REV="104"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
@@ -64,6 +64,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --enable-tvhcsa \
                            --enable-trace \
                            --nowerror \
+                           --disable-bintray_cache \
                            --python=$ROOT/$TOOLCHAIN/bin/python"
 
 post_unpack() {

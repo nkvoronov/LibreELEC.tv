@@ -59,8 +59,9 @@ trap cleanup SIGINT
 # generate volume id for fat partition
   UUID_1=$(date '+%d%m')
   UUID_2=$(date '+%M%S')
-  FAT_VOL_ID="${UUID_1}${UUID_2}"
+  FAT_SERIAL_NUMBER="${UUID_1}${UUID_2}"
   UUID_SYSTEM="${UUID_1}-${UUID_2}"
+  FAT_VOLUME_LABEL="LIBREELEC"
 
 # create an image
   echo
@@ -115,9 +116,9 @@ fi
   alias mmd="mmd -i $DISK@@$OFFSET"
 
   if [ "$BOOTLOADER" = "syslinux" ]; then
-    mformat -v "$FAT_VOL_ID" -N "$FAT_VOL_ID" ::
+    mformat -v "$FAT_VOLUME_LABEL" -N "$FAT_SERIAL_NUMBER" ::
   elif [ "$BOOTLOADER" = "bcm2835-bootloader" -o "$BOOTLOADER" = "u-boot" ]; then
-    mformat ::
+    mformat -v "$FAT_VOLUME_LABEL" ::
   fi
   sync
 
@@ -188,7 +189,8 @@ EOF
     mcopy $RELEASE_DIR/3rdparty/bootloader/fixup.dat ::
     mcopy $RELEASE_DIR/3rdparty/bootloader/start.elf ::
     mcopy $RELEASE_DIR/3rdparty/bootloader/config.txt ::
-      
+    mcopy $RELEASE_DIR/3rdparty/bootloader/distroconfig.txt ::
+ 
     if [ -f $RELEASE_DIR/3rdparty/bootloader/dt-blob.bin ]; then
       mcopy $RELEASE_DIR/3rdparty/bootloader/dt-blob.bin ::
     fi
@@ -229,9 +231,8 @@ elif [ "$BOOTLOADER" = "u-boot" ]; then
      # allow custom dd script for vendor specific fusing
       . $RELEASE_DIR/3rdparty/bootloader/u-boot-fuse
     elif [ -f "$RELEASE_DIR/3rdparty/bootloader/u-boot" ]; then
-      dd if="$RELEASE_DIR/3rdparty/bootloader/bl1" of="$DISK" conv=fsync,notrunc bs=1 count=442 >"$SAVE_ERROR" 2>&1 || show_error
-      dd if="$RELEASE_DIR/3rdparty/bootloader/bl1" of="$DISK" conv=fsync,notrunc bs=512 skip=1 seek=1 >"$SAVE_ERROR" 2>&1 || show_error
-      dd if="$RELEASE_DIR/3rdparty/bootloader/u-boot" of="$DISK" conv=fsync,notrunc bs=512 seek=97 >"$SAVE_ERROR" 2>&1 || show_error
+      dd if="$RELEASE_DIR/3rdparty/bootloader/u-boot" of="$DISK" conv=fsync,notrunc bs=1 count=112 >"$SAVE_ERROR" 2>&1 || show_error
+      dd if="$RELEASE_DIR/3rdparty/bootloader/u-boot" of="$DISK" conv=fsync,notrunc bs=512 skip=1 seek=1 >"$SAVE_ERROR" 2>&1 || show_error
     fi
 
     echo "image: copying files to part1..."
@@ -246,11 +247,20 @@ elif [ "$BOOTLOADER" = "u-boot" ]; then
       mcopy $RELEASE_DIR/3rdparty/bootloader/u-boot.img ::
     fi
 
+    if [ -f $RELEASE_DIR/3rdparty/bootloader/boot-logo.bmp.gz ]; then
+      mcopy $RELEASE_DIR/3rdparty/bootloader/boot-logo.bmp.gz ::
+    fi
+
     for dtb in $RELEASE_DIR/3rdparty/bootloader/*.dtb ; do
       if [ -f $dtb ] ; then
         mcopy "$dtb" ::/$(basename "$dtb")
       fi
     done
+
+    # copy Amlogic device tree image
+    if [ -f "$RELEASE_DIR/3rdparty/bootloader/dtb.img" ]; then
+      mcopy $RELEASE_DIR/3rdparty/bootloader/dtb.img ::
+    fi
 fi # bootloader
 
 # extract part2 from image to format and copy files

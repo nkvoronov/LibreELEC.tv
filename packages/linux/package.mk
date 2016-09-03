@@ -31,11 +31,15 @@ PKG_SHORTDESC="linux26: The Linux kernel 2.6 precompiled kernel binary image and
 PKG_LONGDESC="This package contains a precompiled kernel image and the modules."
 case "$LINUX" in
   hardkernel)
-    PKG_VERSION="b8b59bb"
+    PKG_VERSION="365fa20"
     PKG_URL="https://github.com/hardkernel/linux/archive/$PKG_VERSION.tar.gz"
     ;;
-  amlogic)
-    PKG_VERSION="amlogic-3.10-c8d5b2f"
+  amlogic-3.10)
+    PKG_VERSION="$LINUX-c8d5b2f"
+    PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
+    ;;
+  amlogic-3.14)
+    PKG_VERSION="$LINUX-9c0ad98"
     PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
     ;;
   imx6)
@@ -55,7 +59,7 @@ case "$LINUX" in
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET imx6-status-led imx6-soc-fan irqbalanced"
     ;;
   *)
-    PKG_VERSION="4.7"
+    PKG_VERSION="4.7.2"
     PKG_URL="http://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     ;;
 esac
@@ -171,7 +175,7 @@ make_target() {
 
   if [ "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
     LDFLAGS="" mkbootimg --kernel arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET --ramdisk $ROOT/$BUILD/image/initramfs.cpio \
-      --second "$ANDROID_BOOTIMG_SECOND" --output arch/$TARGET_KERNEL_ARCH/boot/boot.img
+      $ANDROID_BOOTIMG_OPTIONS --output arch/$TARGET_KERNEL_ARCH/boot/boot.img
     mv -f arch/$TARGET_KERNEL_ARCH/boot/boot.img arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET
   fi
 }
@@ -182,6 +186,9 @@ makeinstall_target() {
     for dtb in arch/$TARGET_KERNEL_ARCH/boot/dts/*.dtb; do
       cp $dtb $INSTALL/usr/share/bootloader 2>/dev/null || :
     done
+    if [ -f arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/$KERNEL_UBOOT_EXTRA_TARGET ]; then
+      cp arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/$KERNEL_UBOOT_EXTRA_TARGET $INSTALL/usr/share/bootloader/dtb.img 2>/dev/null || :
+    fi
   elif [ "$BOOTLOADER" = "bcm2835-bootloader" ]; then
     mkdir -p $INSTALL/usr/share/bootloader/overlays
     cp -p arch/$TARGET_KERNEL_ARCH/boot/dts/*.dtb $INSTALL/usr/share/bootloader
