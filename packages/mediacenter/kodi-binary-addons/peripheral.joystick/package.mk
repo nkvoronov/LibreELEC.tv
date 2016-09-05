@@ -17,12 +17,15 @@
 ################################################################################
 
 PKG_NAME="peripheral.joystick"
-PKG_VERSION="8653627"
+PKG_VERSION="9e88033"
 PKG_REV="0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/peripheral.joystick"
-PKG_URL="https://github.com/kodi-game/peripheral.joystick/archive/$PKG_VERSION.tar.gz"
+PKG_GIT_URL="https://github.com/kodi-game/peripheral.joystick.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="no"
+
 PKG_DEPENDS_TARGET="toolchain kodi-platform p8-platform"
 PKG_PRIORITY="optional"
 PKG_SECTION=""
