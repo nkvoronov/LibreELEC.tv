@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-theme-confluence-extented"
-PKG_VERSION="d2ba45b"
+PKG_VERSION="3aee1d6"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

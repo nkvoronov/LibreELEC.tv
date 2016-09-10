@@ -924,7 +924,7 @@ diff -Naur a/skinflatplus.c b/skinflatplus.c
 @@ -17,7 +17,7 @@
  #include "imageloader.h"
  
- static const char *VERSION        = "0.5.1";
+ static const char *VERSION        = "0.6.0";
 -static const char *DESCRIPTION    = "skin flatplus";
 +static const char *DESCRIPTION    = tr("'flatPlus' Skin");
  

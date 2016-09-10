@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-theme-confluence-plood"
-PKG_VERSION="9a96ee4"
+PKG_VERSION="e953438"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
