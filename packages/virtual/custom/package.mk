@@ -54,16 +54,12 @@ if [ "$KODI_ADDON_VDRFRONT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-vdrfront kodi-addon-xvdr"
 fi
 
-if [ "$KODI_THEME_CONFLUENCE_PLOOD" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-confluence-plood"
-fi
-
 if [ "$KODI_THEME_CONFLUENCE_EXTENTED" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-confluence-extented"
 fi
 
-if [ "$KODI_THEME_ESTUARY_EXT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-estuary-ext"
+if [ "$KODI_THEME_ESTUARY_EXTENTED" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-estuary-extented"
 fi
 
 if [ "$OPENELEC_DEV_UPDATE" = yes ]; then

@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="kodi-theme-confluence-extented"
-PKG_VERSION="3aee1d6"
+PKG_VERSION="56b3723"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/nkvoronov/skin.confluence-extented.git"
 PKG_GIT_URL="https://github.com/nkvoronov/skin.confluence-extented.git"
-PKG_GIT_BRANCH="jarvis"
+PKG_GIT_BRANCH="krypton"
 PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain Python kodi kodi-addon-favourites kodi-addon-randomandlastitems kodi-addon-skinwidgets kodi-addon-pvrfavourites"
 PKG_PRIORITY="optional"
@@ -44,6 +44,6 @@ makeinstall_target() {
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis
-    cp -PR $PKG_BUILD/skin.confluence-extented-jarvis/* $INSTALL/usr/share/kodi/addons/skin.confluence-extented-jarvis
+  mkdir -p $INSTALL/usr/share/kodi/addons/skin.confluence-extented-krypton
+    cp -PR $PKG_BUILD/skin.confluence-extented-krypton/* $INSTALL/usr/share/kodi/addons/skin.confluence-extented-krypton
 }
