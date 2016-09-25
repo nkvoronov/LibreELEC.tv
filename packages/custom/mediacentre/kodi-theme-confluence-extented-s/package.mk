@@ -18,19 +18,19 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-theme-confluence-extented"
-PKG_VERSION="5dc1ec1"
+PKG_NAME="kodi-theme-confluence-extented-s"
+PKG_VERSION="46b7e7a"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/nkvoronov/skin.confluence-extented.git"
 PKG_GIT_URL="https://github.com/nkvoronov/skin.confluence-extented.git"
-PKG_GIT_BRANCH="krypton"
+PKG_GIT_BRANCH="krypton-s"
 PKG_KEEP_CHECKOUT="no"
-PKG_DEPENDS_TARGET="toolchain Python kodi kodi-addon-favourites kodi-addon-randomandlastitems kodi-addon-skinwidgets kodi-addon-pvrfavourites"
+PKG_DEPENDS_TARGET="toolchain Python kodi kodi-addon-skinwidgets kodi-addon-pvrfavourites kodi-addon-skinshortcuts kodi-addon-skinhelperservice"
 PKG_PRIORITY="optional"
 PKG_SECTION="mediacentre"
-PKG_SHORTDESC="kodi-theme-Confluence-extented: KODI Mediacenter additional theme"
+PKG_SHORTDESC="kodi-theme-Confluence-extented-s: KODI Mediacenter additional theme"
 PKG_LONGDESC="KODI Media Center (which was formerly named Xbox Media Center) is a free and open source cross-platform media player and home entertainment system software with a 10-foot user interface designed for the living-room TV. Its graphical user interface allows the user to easily manage video, photos, podcasts, and music from a computer, optical disk, local network, and the internet using a remote control."
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -44,6 +44,10 @@ makeinstall_target() {
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/skin.confluence-extented-krypton
-    cp -PR $PKG_BUILD/skin.confluence-extented-krypton/* $INSTALL/usr/share/kodi/addons/skin.confluence-extented-krypton
+  mkdir -p $INSTALL/usr/config/skin.confluence-extented-s-krypton
+    cp -pR $PKG_DIR/config/* $INSTALL/usr/config/skin.confluence-extented-s-krypton
+  mkdir -p $INSTALL/usr/share/kodi/addons/skin.confluence-extented-s-krypton
+    cp -PR $PKG_BUILD/skin.confluence-extented-s-krypton/* $INSTALL/usr/share/kodi/addons/skin.confluence-extented-s-krypton
+    rm -f $INSTALL/usr/share/kodi/addons/skin.confluence-extented-s-krypton/720p/script-skinshortcuts-includes.xml
+    ln -sf /storage/.config/skin.confluence-extented-s-krypton/script-skinshortcuts-includes.xml $INSTALL/usr/share/kodi/addons/skin.confluence-extented-s-krypton/720p/script-skinshortcuts-includes.xml
 }

@@ -18,32 +18,36 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-theme-confluence-extented"
-PKG_VERSION="5dc1ec1"
+PKG_NAME="kodi-addon-skinhelperservice"
+PKG_VERSION="fd0bb57"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/nkvoronov/skin.confluence-extented.git"
-PKG_GIT_URL="https://github.com/nkvoronov/skin.confluence-extented.git"
-PKG_GIT_BRANCH="krypton"
+PKG_SITE="https://github.com/marcelveldt/script.skin.helper.service.git"
+PKG_GIT_URL="https://github.com/marcelveldt/script.skin.helper.service.git"
+PKG_GIT_BRANCH="master"
 PKG_KEEP_CHECKOUT="no"
-PKG_DEPENDS_TARGET="toolchain Python kodi kodi-addon-favourites kodi-addon-randomandlastitems kodi-addon-skinwidgets kodi-addon-pvrfavourites"
+PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
 PKG_SECTION="mediacentre"
-PKG_SHORTDESC="kodi-theme-Confluence-extented: KODI Mediacenter additional theme"
-PKG_LONGDESC="KODI Media Center (which was formerly named Xbox Media Center) is a free and open source cross-platform media player and home entertainment system software with a 10-foot user interface designed for the living-room TV. Its graphical user interface allows the user to easily manage video, photos, podcasts, and music from a computer, optical disk, local network, and the internet using a remote control."
+PKG_SHORTDESC="script.skinshortcuts was written with the intention of making user customizable shortcuts on the home page easier for skinners."
+PKG_LONGDESC="script.skinshortcuts was written with the intention of making user customizable shortcuts on the home page easier for skinners."
+
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 make_target() {
-  : # nothing
+  : # nothing to make here
 }
 
 makeinstall_target() {
-  : # nothing
+  : # nothing to install here
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/skin.confluence-extented-krypton
-    cp -PR $PKG_BUILD/skin.confluence-extented-krypton/* $INSTALL/usr/share/kodi/addons/skin.confluence-extented-krypton
+  mkdir -p $INSTALL/usr/share/kodi/addons/script.skin.helper.service
+    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.skin.helper.service
+
+  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.skin.helper.service/resources/lib/ -f
+  rm -rf `find $INSTALL/usr/share/kodi/addons/script.skin.helper.service/resources/lib/ -name "*.py"`
 }

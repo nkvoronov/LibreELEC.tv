@@ -58,6 +58,10 @@ if [ "$KODI_THEME_CONFLUENCE_EXTENTED" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-confluence-extented"
 fi
 
+if [ "$KODI_THEME_CONFLUENCE_EXTENTED_S" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-confluence-extented-s"
+fi
+
 if [ "$KODI_THEME_ESTUARY_EXTENTED" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-estuary-extented"
 fi
