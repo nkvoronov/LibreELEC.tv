@@ -18,20 +18,20 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-addon-skinhelperservice"
-PKG_VERSION="6cad2bb"
+PKG_NAME="kodi-module-thetvdb"
+PKG_VERSION="f805378"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/marcelveldt/script.skin.helper.service.git"
-PKG_GIT_URL="https://github.com/marcelveldt/script.skin.helper.service.git"
+PKG_SITE="https://github.com/marcelveldt/script.module.thetvdb.git"
+PKG_GIT_URL="https://github.com/marcelveldt/script.module.thetvdb.git"
 PKG_GIT_BRANCH="master"
 PKG_KEEP_CHECKOUT="no"
-PKG_DEPENDS_TARGET="toolchain Python kodi kodi-module-thetvdb kodi-module-musicbrainz"
+PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
 PKG_SECTION="mediacentre"
-PKG_SHORTDESC="script.skinshortcuts was written with the intention of making user customizable shortcuts on the home page easier for skinners."
-PKG_LONGDESC="script.skinshortcuts was written with the intention of making user customizable shortcuts on the home page easier for skinners."
+PKG_SHORTDESC="Kodi python module to access the new thetvdb api v2"
+PKG_LONGDESC="Kodi python module to access the new thetvdb api v2"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -45,9 +45,9 @@ makeinstall_target() {
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/script.skin.helper.service
-    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.skin.helper.service
+  mkdir -p $INSTALL/usr/share/kodi/addons/script.module.thetvdb
+    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.module.thetvdb
 
-  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.skin.helper.service/resources/lib/ -f
-  rm -rf `find $INSTALL/usr/share/kodi/addons/script.skin.helper.service/resources/lib/ -name "*.py"`
+  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.module.thetvdb/lib/ -f
+  rm -rf `find $INSTALL/usr/share/kodi/addons/script.module.thetvdb/lib/ -name "*.py"`
 }
