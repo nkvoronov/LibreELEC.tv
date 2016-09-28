@@ -17,9 +17,9 @@
 ################################################################################
 
 PKG_NAME="tvheadend42"
-PKG_VERSION="65dfd15"
-PKG_VERSION_NUMBER="4.1.2195"
-PKG_REV="104"
+PKG_VERSION="817f67e"
+PKG_VERSION_NUMBER="4.1.2236"
+PKG_REV="105"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
@@ -35,7 +35,6 @@ PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Tvheadend 4.2"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="8.0"
 
 # transcoding only for generic
 if [ "$TARGET_ARCH" = x86_64 ]; then

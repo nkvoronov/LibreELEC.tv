@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="emby"
-PKG_VERSION="3.0.6300"
-PKG_REV="104"
+PKG_VERSION="3.0.7100"
+PKG_REV="105"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
@@ -33,7 +33,6 @@ PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Emby (beta)"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="8.0"
 PKG_ADDON_REQUIRES="tools.mono:0.0.0"
 PKG_MAINTAINER="Anton Voyl (awiouy)"
 

@@ -18,7 +18,7 @@
 
 PKG_NAME="spotify-connect-web"
 PKG_VERSION="0.0.3-alpha"
-PKG_REV="102"
+PKG_REV="103"
 PKG_ARCH="arm"
 PKG_ADDON_PROJECTS="RPi2 WeTek_Core WeTek_Play"
 PKG_LICENSE="prop."
@@ -35,7 +35,6 @@ PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Spotify Connect Web"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="8.0"
 PKG_MAINTAINER="Anton Voyl (awiouy)"
 
 make_target() {

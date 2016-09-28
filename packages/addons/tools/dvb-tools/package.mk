@@ -33,31 +33,19 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="DVB Tools"
 PKG_ADDON_TYPE="xbmc.python.script"
 PKG_ADDON_PROVIDES=""
-PKG_ADDON_REPOVERSION="7.0"
 
 PKG_AUTORECONF="no"
 
-ENABLE_DVB_APPS="no"
-ENABLE_DVB_FE_TOOL="no"
-ENABLE_DVBLAST="no"
-
-if [ "$ENABLE_DVB_APPS" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-apps"
-fi
-
-if [ "$ENABLE_DVB_FE_TOOL" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-fe-tool"
-fi
-
-if [ "$ENABLE_DVBLAST" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvblast"
-fi
+PKG_DEPENDS_TARGET="toolchain \
+                    dvb-apps \
+                    dvb-fe-tool \
+                    dvblast"
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin/
 
-  if [ "$ENABLE_DVB_APPS" = yes ]; then
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin/
+    # dvb-apps
     cp -P $(get_build_dir dvb-apps)/util/dvbdate/dvbdate $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbnet/dvbnet $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbscan/dvbscan $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -69,15 +57,12 @@ addon() {
     cp -P $(get_build_dir dvb-apps)/util/szap/szap $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/szap/tzap $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/zap/zap $ADDON_BUILD/$PKG_ADDON_ID/bin
-  fi
 
-  if [ "$ENABLE_DVB_FE_TOOL" = yes ]; then
+    # dvb-de-tool
     cp -P $(get_build_dir dvb-fe-tool)/.$TARGET_NAME/utils/dvb/dvb-fe-tool $ADDON_BUILD/$PKG_ADDON_ID/bin
-  fi
 
-  if [ "$ENABLE_DVBLAST" = yes ]; then
+    # dvblast
     cp -P $(get_build_dir dvblast)/dvblast $ADDON_BUILD/$PKG_ADDON_ID/bin
-  fi
 
   debug_strip $ADDON_BUILD/$PKG_ADDON_ID/bin
 }

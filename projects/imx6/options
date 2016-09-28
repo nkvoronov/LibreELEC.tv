@@ -44,6 +44,10 @@
     UBOOT_CONFIG="mx6_cubox-i_config"
     UBOOT_CONFIG="$UBOOT_CONFIG matrix"
 
+    UBOOT_CONFIG_V2="udoo_config"
+    UBOOT_CONFIG_V2="$UBOOT_CONFIG_V2 tbs2910_config"
+    #UBOOT_CONFIG_V2="$UBOOT_CONFIG_V2 wandboard_config"
+
   # Target Configfile for u-boot
     UBOOT_CONFIGFILE=""
 
@@ -76,20 +80,11 @@
 # setup build defaults
 ################################################################################
 
-  # Build optimizations (size/normal)
-    OPTIMIZATIONS="size"
-
   # Project CFLAGS
     PROJECT_CFLAGS=""
 
-  # LTO (Link Time Optimization) support
-    LTO_SUPPORT="yes"
-
-  # GOLD (Google Linker) support
-    GOLD_SUPPORT="yes"
-
   # SquashFS compression method (gzip / lzo / xz)
-    SQUASHFS_COMPRESSION="gzip"
+    SQUASHFS_COMPRESSION="lzo"
 
 
 ################################################################################

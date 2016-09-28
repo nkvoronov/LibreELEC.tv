@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="bcm2835-driver"
-PKG_VERSION="d0bc6ce"
+PKG_VERSION="ad8608c"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="nonfree"
@@ -89,6 +89,7 @@ makeinstall_target() {
     ln -s dtoverlay $INSTALL/usr/bin/dtparam
     cp -PRv $FLOAT/opt/vc/bin/vcdbg $INSTALL/usr/bin
     cp -PRv $FLOAT/opt/vc/lib/libdebug_sym.so $INSTALL/usr/lib
+    cp -PRv $FLOAT/opt/vc/lib/libelftoolchain.so $INSTALL/usr/lib
     cp -PRv $FLOAT/opt/vc/bin/vcgencmd $INSTALL/usr/bin
     cp -PRv $FLOAT/opt/vc/bin/tvservice $INSTALL/usr/bin
     cp -PRv $FLOAT/opt/vc/bin/edidparser $INSTALL/usr/bin
