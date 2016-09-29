@@ -32,7 +32,7 @@ PKG_LONGDESC="Middleware to access a smart card using SCard API (PC/SC)"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
+PKG_CONFIGURE_OPTS_TARGET="--enable-shared \
             --enable-static \
             --disable-libudev \
             --enable-libusb \
