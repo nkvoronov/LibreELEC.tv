@@ -16,7 +16,7 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="x264"
+PKG_NAME="x264x"
 PKG_VERSION="snapshot-20160623-2245"
 PKG_REV="1"
 PKG_ARCH="any"
