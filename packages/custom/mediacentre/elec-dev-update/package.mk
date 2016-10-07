@@ -18,20 +18,20 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-addon-pvrfavourites"
-PKG_VERSION="fc1d7c7"
+PKG_NAME="elec-dev-update"
+PKG_VERSION="d8543ae"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/nkvoronov/script.pvr.favourites.git"
-PKG_GIT_URL="https://github.com/nkvoronov/script.pvr.favourites.git"
-PKG_GIT_BRANCH="master"
+PKG_SITE="https://github.com/nkvoronov/script.openelec.devupdate.git"
+PKG_GIT_URL="https://github.com/nkvoronov/script.openelec.devupdate.git"
+PKG_GIT_BRANCH="14.38.krypton"
 PKG_KEEP_CHECKOUT="no"
-PKG_DEPENDS_TARGET="toolchain Python kodi"
+PKG_DEPENDS_TARGET="toolchain Python kodi kodi-module-requests kodi-module-bs4 kodi-module-html2text kodi-backup"
 PKG_PRIORITY="optional"
 PKG_SECTION="mediacentre"
-PKG_SHORTDESC="pvrfavourites addon for KODI"
-PKG_LONGDESC="This addon allows pvrfavourites KODI."
+PKG_SHORTDESC="This KODI  addon downloads and extracts OpenELEC development (nightly) builds and official releases, ready to be installed on the next reboot."
+PKG_LONGDESC="This KODI  addon downloads and extracts OpenELEC development (nightly) builds and official releases, ready to be installed on the next reboot."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -45,9 +45,12 @@ makeinstall_target() {
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/script.pvr.favourites
-    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.pvr.favourites
+  mkdir -p $INSTALL/usr/share/kodi/addons/script.elec.devupdate
+    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.elec.devupdate
 
-  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.pvr.favourites/resources/lib/ -f
-  rm -rf `find $INSTALL/usr/share/kodi/addons/script.pvr.favourites/resources/lib/ -name "*.py"`
+  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.elec.devupdate/resources/lib/ -f
+  rm -rf `find $INSTALL/usr/share/kodi/addons/script.elec.devupdate/resources/lib/ -name "*.py"`
+
+  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.elec.devupdate/resources/__init__.py -f
+  rm -rf $INSTALL/usr/share/kodi/addons/script.elec.devupdate/resources/__init__.py
 }

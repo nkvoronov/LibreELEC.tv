@@ -18,36 +18,31 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-module-musicbrainz"
-PKG_VERSION="499e04e"
+PKG_NAME="kodi-repository-yellowdragon"
+PKG_VERSION="17.0.039"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/marcelveldt/script.module.musicbrainz.git"
-PKG_GIT_URL="https://github.com/marcelveldt/script.module.musicbrainz.git"
-PKG_GIT_BRANCH="master"
-PKG_KEEP_CHECKOUT="no"
+PKG_SITE=""
+PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_PRIORITY="optional"
 PKG_SECTION="mediacentre"
-PKG_SHORTDESC="Kodi module library for the Python bindings for Musicbrainz' NGS webservice developed by alastair"
-PKG_LONGDESC="Kodi module library for the Python bindings for Musicbrainz' NGS webservice developed by alastair"
+PKG_SHORTDESC="YLLOW_DRAGON addons repository for KODI."
+PKG_LONGDESC="YLLOW_DRAGON addons repository for KODI."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 make_target() {
-  : # nothing to make here
+  : # nothing
 }
 
 makeinstall_target() {
-  : # nothing to install here
+  : # nothing
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/script.module.musicbrainz
-    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.module.musicbrainz
-
-  python -Wi -t -B $ROOT/$TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.module.musicbrainz/lib/musicbrainzngs/ -f
-  rm -rf `find $INSTALL/usr/share/kodi/addons/script.module.musicbrainz/lib/musicbrainzngs/ -name "*.py"`
+  mkdir -p $INSTALL/usr/share/kodi/addons/repository.yellowdragon
+    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/repository.yellowdragon
 }

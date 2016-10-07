@@ -1,1692 +1,0 @@
-diff -Naur a/addon.xml b/addon.xml
---- a/addon.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/addon.xml	2016-05-02 20:38:42.000000000 +0300
-@@ -1,8 +1,8 @@
- <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
- <addon id="script.rss.editor"
-        name="RSS Editor"
--       version="2.0.4"
--       provider-name="rwparris2">
-+       version="2.1.5"
-+       provider-name="rwparris2, YLLOW_DRAGON">
-   <requires>
-     <import addon="xbmc.python" version="2.1.0"/>
-   </requires>
-@@ -13,8 +13,10 @@
-     <summary lang="en">A Script for editing XBMC's built in RSS Ticker</summary>
-     <summary lang="hu">RSS forrÃ¡s szerkesztÅ‘</summary> 
-     <summary lang="de">Skript zum Bearbeiten des XBMC internen RSS Tickers</summary>
-+    <summary lang="ru">Ğ¡ĞºÑ€Ğ¸Ğ¿Ñ‚ Ğ´Ğ»Ñ Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ Ğ±ĞµĞ³ÑƒÑ‰ĞµĞ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸ RSS KODI</summary>
-     <description lang="en">A Script for editing XBMC's built in RSS Ticker</description>
-     <description lang="hu">A szkript kÃ©pes szerkeszteni az XBMC beÃ©pÃ­tett RSS forrÃ¡s kÃ©szletÃ©t</description>
-     <description lang="de">Skript zum Bearbeiten des XBMC internen RSS Tickers</description>
-+    <description lang="ru">Ğ¡ĞºÑ€Ğ¸Ğ¿Ñ‚ Ğ´Ğ»Ñ Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ Ğ±ĞµĞ³ÑƒÑ‰ĞµĞ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸ RSS KODI</description>
-   </extension>
- </addon>
-diff -Naur a/default.py b/default.py
---- a/default.py	2015-11-15 11:50:56.000000000 +0200
-+++ b/default.py	2016-05-02 15:43:54.000000000 +0300
-@@ -1,8 +1,10 @@
--import sys, os
--import xbmc, xbmcaddon
-+import sys
-+import os
-+import xbmc
-+import xbmcaddon
- 
- # Script constants
--__addon__      = xbmcaddon.Addon()
-+__addon__      = xbmcaddon.Addon(id='script.rss.editor')
- __version__    = __addon__.getAddonInfo('version')
- __language__   = __addon__.getLocalizedString
- __cwd__        = __addon__.getAddonInfo('path')
-@@ -14,7 +16,7 @@
- 
- if (__name__ == "__main__"):
-     import resources.lib.rssEditor as rssEditor
--    ui = rssEditor.GUI("script-RSS_Editor-rssEditor.xml", __cwd__, "default", setNum = 'set1')
-+    ui = rssEditor.GUI("script-RSS_Editor-rssEditor.xml", __cwd__, "Default", setNum = 'set1')
-     del ui
- 
- sys.modules.clear()
-diff -Naur a/resources/language/English/strings.po b/resources/language/English/strings.po
---- a/resources/language/English/strings.po	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/language/English/strings.po	2016-05-02 15:11:20.000000000 +0300
-@@ -0,0 +1,146 @@
-+# XBMC Media Center language file
-+# Addon Name: RSS Editor
-+# Addon id: script.rss.editor
-+# Addon version: 2.1.4
-+# Addon Provider: rwparris2
-+msgid ""
-+msgstr ""
-+"Project-Id-Version: XBMC-Addons\n"
-+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
-+"POT-Creation-Date: 2014-06-04 04:09+0000\n"
-+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-+"Language-Team: LANGUAGE\n"
-+"MIME-Version: 1.0\n"
-+"Content-Type: text/plain; charset=UTF-8\n"
-+"Content-Transfer-Encoding: 8bit\n"
-+"Language: en\n"
-+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-+
-+msgctxt "#32000"
-+msgid "RSS Editor"
-+msgstr ""
-+
-+msgctxt "#32030"
-+msgid "Set Editor"
-+msgstr ""
-+
-+msgctxt "#32001"
-+msgid "Change Set"
-+msgstr ""
-+
-+msgctxt "#32004"
-+msgid "Feed"
-+msgstr ""
-+
-+msgctxt "#32005"
-+msgid "Set"
-+msgstr ""
-+
-+msgctxt "#32006"
-+msgid "Edit Attributes"
-+msgstr ""
-+
-+msgctxt "#32011"
-+msgid "Select a feed to remove"
-+msgstr ""
-+
-+msgctxt "#32012"
-+msgid "RSS Feed URL"
-+msgstr ""
-+
-+msgctxt "#32013"
-+msgid "Update Interval"
-+msgstr ""
-+
-+msgctxt "#32014"
-+msgid "Enter the paths of your RSS feeds %s"
-+msgstr ""
-+
-+msgctxt "#32020"
-+msgid "What Are Sets?"
-+msgstr ""
-+
-+msgctxt "#32021"
-+msgid "To use different sets in your skin,"
-+msgstr ""
-+
-+msgctxt "#32022"
-+msgid "each must be called from the skin"
-+msgstr ""
-+
-+msgctxt "#32023"
-+msgid "with a unique id"
-+msgstr ""
-+
-+msgctxt "#32024"
-+msgid "Select a Set "
-+msgstr ""
-+
-+msgctxt "#32025"
-+msgid "Set ID"
-+msgstr ""
-+
-+msgctxt "#32026"
-+msgid "Set %s already exists"
-+msgstr ""
-+
-+msgctxt "#32027"
-+msgid "Enable Right to Left Text for this Set?"
-+msgstr ""
-+
-+msgctxt "#32040"
-+msgid "Error: "
-+msgstr ""
-+
-+msgctxt "#32041"
-+msgid "was either not found in the system,"
-+msgstr ""
-+
-+msgctxt "#32042"
-+msgid "or does not contain parsable XML."
-+msgstr ""
-+
-+msgctxt "#32043"
-+msgid "Try deleting it from your userdata folder and restarting KODI."
-+msgstr ""
-+
-+msgctxt "#32044"
-+msgid "To Remove"
-+msgstr ""
-+
-+msgctxt "#32045"
-+msgid "Cannot Delete Set 1"
-+msgstr ""
-+
-+msgctxt "#32046"
-+msgid "Set 1 is required.  You cannot delete this."
-+msgstr ""
-+
-+msgctxt "#32047"
-+msgid "Reset set 1 to default?"
-+msgstr ""
-+
-+msgctxt "#32048"
-+msgid "Reset Required"
-+msgstr ""
-+
-+msgctxt "#32049"
-+msgid "You need to restart KODI for your changes to take effect"
-+msgstr ""
-+
-+msgctxt "#32050"
-+msgid "Set %s already exists."
-+msgstr ""
-+
-+msgctxt "#32051"
-+msgid "Your RSSFeeds.xml file is corrupt."
-+msgstr ""
-+
-+msgctxt "#32052"
-+msgid "Attempt to regenerate"
-+msgstr ""
-+
-+msgctxt "#32053"
-+msgid "You will loose all previous settings"
-+msgstr ""
-diff -Naur a/resources/language/English/strings.xml b/resources/language/English/strings.xml
---- a/resources/language/English/strings.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/language/English/strings.xml	1970-01-01 03:00:00.000000000 +0300
-@@ -1,39 +0,0 @@
--<?xml version="1.0" encoding="utf-8" standalone="yes"?>
--<strings>
--  <string id="0">RSS Editor</string>
--  <string id="30">Set Editor</string>
--
--  <string id="1">Change Set</string>
--  <string id="4">Feed</string>
--  <string id="5">Set</string>
--  <string id="6">Edit Attributes</string>
--
--  <string id="11">Select a feed to remove</string>
--  <string id="12">RSS Feed URL</string>
--  <string id="13">Update Interval</string>
--  <string id="14">Enter the paths of your RSS feeds %s</string>
--
--  <string id="20">What Are Sets?</string>
--  <string id="21">To use different sets in your skin,</string>
--  <string id="22">each must be called from the skin</string>
--  <string id="23">with a unique id</string>
--  <string id="24">Select a Set </string>
--  <string id="25">Set ID</string>
--  <string id="26">Set %s already exists</string>
--  <string id="27">Enable Right to Left Text for this Set?</string>
--
--  <string id="40">Error: </string>
--  <string id="41">was either not found in the system,</string>
--  <string id="42">or does not contain parsable XML.</string>
--  <string id="43">Try deleting it from your userdata folder and restarting XBMC.</string>
--  <string id="44">To Remove</string>
--  <string id="45">Cannot Delete Set 1</string>
--  <string id="46">Set 1 is required.  You cannot delete this.</string>
--  <string id="47">Reset set 1 to default?</string>
--  <string id="48">Reset Required</string>
--  <string id="49">You need to restart XBMC for your changes to take effect</string>
--  <string id="50">Set %s already exists.</string>
--  <string id="51">Your RSSFeeds.xml file is corrupt.</string>
--  <string id="52">Attempt to regenerate</string>
--  <string id="53">You will loose all previous settings</string>
--</strings>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/language/Finnish/strings.xml b/resources/language/Finnish/strings.xml
---- a/resources/language/Finnish/strings.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/language/Finnish/strings.xml	1970-01-01 03:00:00.000000000 +0300
-@@ -1,35 +0,0 @@
--ï»¿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
--<strings>   <!--  3.8.2009 Finnish   -->
--  <!--Title-->
--  <string id="0">RSS Ticker</string>
--  
--  <!--Buttons-->
--  <string id="1">Vaihda setti</string>
--  <string id="4"> SyÃ¶te</string>
--  <string id="5"> Setti</string>
--  
--  <!--Feeds-->
--  <string id="11">Valitse poistettava syÃ¶te</string>
--  <string id="12">RSS-syÃ¶tteen URL</string>
--  <string id="13">PÃ¤ivitysvÃ¤li</string>
--  <string id="14">Anna RSS-syÃ¶tteen %s polku</string>
--  
--  <!--Sets-->
--  <string id="20">MitÃ¤ ovat setit?</string>
--  <string id="21">KÃ¤yttÃ¤Ã¤ksesi erilaisia settejÃ¤,</string>
--  <string id="22">kÃ¤yttÃ¶liittymÃ¤n tÃ¤ytyy kutsua kutakin</string>
--  <string id="23">omalla tunnuksellaan</string>
--  <string id="24">Valitse setti </string>
--  
--  <!--Misc-->
--  <string id="40">Virhe: </string>
--  <string id="41"> ei lÃ¶ytynyt jÃ¤rjestelmÃ¤stÃ¤ tai</string>
--  <string id="42">ei sisÃ¤llÃ¤ sopivaa XML-tiedostoa.</string>
--  <string id="43">YritÃ¤ poistaa se userdata-kansiosta ja kÃ¤ynnistÃ¤ XBMC uudelleen.</string>
--  <string id="44">Poistaaksesi</string>
--  <string id="45">Et voi poistaa settiÃ¤ 1</string>
--  <string id="46">Setti 1 vaaditaan. Et voi poistaa sitÃ¤.</string>
--  <string id="47">Palauta setti 1 oletukseksi?</string>
--  <string id="48">Nollaus vaaditaan</string>
--  <string id="49">XBMC tÃ¤ytyy kÃ¤ynnistÃ¤Ã¤ uudelleen, ottaksesi muutokset kÃ¤yttÃ¶Ã¶n</string>
--</strings>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/language/German/strings.xml b/resources/language/German/strings.xml
---- a/resources/language/German/strings.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/language/German/strings.xml	1970-01-01 03:00:00.000000000 +0300
-@@ -1,39 +0,0 @@
--<?xml version="1.0" encoding="utf-8" standalone="yes"?>
--<strings>
--  <string id="0">RSS Editor</string>
--  <string id="30">Setze Editor</string>
--
--  <string id="1">Ã„ndere Set</string>
--  <string id="4">Feed</string>
--  <string id="5">Set</string>
--  <string id="6">Bearbeite Attribute</string>
--
--  <string id="11">WÃ¤hle Feed zum LÃ¶schen</string>
--  <string id="12">RSS Feed URL</string>
--  <string id="13">Update Interval</string>
--  <string id="14">Gebe die Pfade zu den RSS Feeds ein %s</string>
--
--  <string id="20">What Are Sets?</string>
--  <string id="21">To use different sets in your skin,</string>
--  <string id="22">each must be called from the skin</string>
--  <string id="23">with a unique id</string>
--  <string id="24">Select a Set </string>
--  <string id="25">Set ID</string>
--  <string id="26">Set %s already exists</string>
--  <string id="27">Enable Right to Left Text for this Set?</string>
--
--  <string id="40">Fehler: </string>
--  <string id="41">wurde im System nicht gefunden,</string>
--  <string id="42">oder enthÃ¤lt keine parsable XML.</string>
--  <string id="43">Bitte aus den Userdaten lÃ¶schen und XBMC neustarten</string>
--  <string id="44">Zu entfernen</string>
--  <string id="45">Kann Set 1 nicht lÃ¶schen</string>
--  <string id="46">Set 1 wird benÃ¶tigt.  Es kann icht gelÃ¶scht werden.</string>
--  <string id="47">Setze set 1 als default?</string>
--  <string id="48">Reset BenÃ¶tigt</string>
--  <string id="49">XBMC muss neu gestartet werden, damit Ã„nderungen aktiv werden</string>
--  <string id="50">Set %s existiert bereits.</string>
--  <string id="51">RSSFeeds.xml Datei ist korrupt.</string>
--  <string id="52">Versuche wieder herzustellen</string>
--  <string id="53">Alle vorigen Einstellungen gehen verloren</string>
--</strings>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/language/Hungarian/strings.xml b/resources/language/Hungarian/strings.xml
---- a/resources/language/Hungarian/strings.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/language/Hungarian/strings.xml	1970-01-01 03:00:00.000000000 +0300
-@@ -1,39 +0,0 @@
--<?xml version="1.0" encoding="utf-8" standalone="yes"?>
--<strings>
--  <string id="0">RSS SzerkesztÅ‘</string>
--  <string id="30">Szett szerkesztÅ‘</string>
--
--  <string id="1">Szett vÃ¡ltÃ¡sa</string>
--  <string id="4">ForrÃ¡s</string>
--  <string id="5">BeÃ¡llÃ­tÃ¡s</string>
--  <string id="6">AttribÃºtumok</string>
--
--  <string id="11">EltÃ¡volÃ­tandÃ³ forrÃ¡s vÃ¡lasztÃ¡sa</string>
--  <string id="12">RSS forrÃ¡s URL cÃ­me</string>
--  <string id="13">FrissÃ­tÃ©si idÅ‘kÃ¶z</string>
--  <string id="14">Ezen RSS forrÃ¡s helyÃ©nek vÃ¡lasztÃ¡sa: %s</string>
--
--  <string id="20">Mik azok a szettek?</string>
--  <string id="21">Az XBMC-ben kÃ¼lÃ¶nbÃ¶zÅ‘ szettek hasznÃ¡latÃ¡hoz,</string>
--  <string id="22">mindegyiket meg kell hÃ­vni a skin-bÅ‘l</string>
--  <string id="23">egy egyedi azonosÃ­tÃ³val</string>
--  <string id="24">Szett vÃ¡lasztÃ¡sa </string>
--  <string id="25">AzonosÃ­tÃ³ megadÃ¡sa</string>
--  <string id="26">Szett %s mÃ¡r lÃ©tezik</string>
--  <string id="27">JobbrÃ³l balra szÃ¶vegtÃ­pus?</string>
--
--  <string id="40">Hiba: </string>
--  <string id="41">vagy nem talÃ¡lhatÃ³ a rendszerben,</string>
--  <string id="42">vagy nem tartalmaz Ã©rtelmezhetÅ‘ XML-t.</string>
--  <string id="43">PrÃ³bÃ¡ld meg tÃ¶rÃ¶lni a felhasznÃ¡lÃ³i mappÃ¡bÃ³l Ã©s ÃºjraindÃ­tani az XBMC-t.</string>
--  <string id="44">TÃ¶rÃ¶lni</string>
--  <string id="45">A Szett 1 nem tÃ¶rÃ¶lhetÅ‘</string>
--  <string id="46">A Szett 1 szÃ¼ksÃ©ges.  Nem tÃ¶rÃ¶lheted.</string>
--  <string id="47">Szett 1 visszaÃ¡llÃ­tÃ¡sa az alapbeÃ¡llÃ­tÃ¡sra?</string>
--  <string id="48">VisszaÃ¡llÃ­tÃ¡s szÃ¼ksÃ©ges</string>
--  <string id="49">Az XBMC-t Ãºjra kell indÃ­tani a vÃ¡ltoztatÃ¡sokhoz.</string>
--  <string id="50">Szett %s mÃ¡r lÃ©tezik.</string>
--  <string id="51">Az Ã¡ltalad megadott RSSFeeds.xml fÃ¡jl hibÃ¡s.</string>
--  <string id="52">MegprÃ³bÃ¡lom ÃºjragenerÃ¡lni</string>
--  <string id="53">Minden korÃ¡bbi beÃ¡llÃ­tÃ¡s elveszik</string>
--</strings>
-diff -Naur a/resources/language/Russian/strings.po b/resources/language/Russian/strings.po
---- a/resources/language/Russian/strings.po	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/language/Russian/strings.po	2016-05-02 16:38:26.000000000 +0300
-@@ -0,0 +1,146 @@
-+# XBMC Media Center language file
-+# Addon Name: RSS Editor
-+# Addon id: script.rss.editor
-+# Addon version: 2.1.4
-+# Addon Provider: rwparris2
-+msgid ""
-+msgstr ""
-+"Project-Id-Version: XBMC-Addons\n"
-+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
-+"POT-Creation-Date: 2014-06-04 04:09+0000\n"
-+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-+"Language-Team: LANGUAGE\n"
-+"MIME-Version: 1.0\n"
-+"Content-Type: text/plain; charset=UTF-8\n"
-+"Content-Transfer-Encoding: 8bit\n"
-+"Language: ru\n"
-+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-+
-+msgctxt "#32000"
-+msgid "RSS Editor"
-+msgstr "RSS Ğ ĞµĞ´Ğ°ĞºÑ‚Ğ¾Ñ€"
-+
-+msgctxt "#32030"
-+msgid "Set Editor"
-+msgstr "Ğ ĞµĞ´Ğ°ĞºÑ‚Ğ¾Ñ€ Ğ½Ğ°Ğ±Ğ¾Ñ€Ğ¾Ğ²"
-+
-+msgctxt "#32001"
-+msgid "Change Set"
-+msgstr "Ğ˜Ğ·Ğ¼ĞµĞ½Ğ¸Ñ‚ÑŒ Ğ½Ğ°Ğ±Ğ¾Ñ€"
-+
-+msgctxt "#32004"
-+msgid "Feed"
-+msgstr "ĞšĞ°Ğ½Ğ°Ğ»"
-+
-+msgctxt "#32005"
-+msgid "Set"
-+msgstr "ĞĞ°Ğ±Ğ¾Ñ€"
-+
-+msgctxt "#32006"
-+msgid "Edit Attributes"
-+msgstr "Ğ˜Ğ·Ğ¼. Ğ°Ñ‚Ñ€Ğ¸Ğ±ÑƒÑ‚Ñ‹"
-+
-+msgctxt "#32011"
-+msgid "Select a feed to remove"
-+msgstr "Ğ’Ñ‹Ğ±ĞµÑ€Ğ¸Ñ‚Ğµ ĞºĞ°Ğ½Ğ°Ğ» Ğ´Ğ»Ñ ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ¸Ñ"
-+
-+msgctxt "#32012"
-+msgid "RSS Feed URL"
-+msgstr "RSS ĞºĞ°Ğ½Ğ°Ğ» URL"
-+
-+msgctxt "#32013"
-+msgid "Update Interval"
-+msgstr "Ğ˜Ğ½Ñ‚ĞµÑ€Ğ²Ğ°Ğ» Ğ¾Ğ±Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ¸Ñ"
-+
-+msgctxt "#32014"
-+msgid "Enter the paths of your RSS feeds %s"
-+msgstr "Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ğ¿ÑƒÑ‚Ğ¸ Ğ²Ğ°ÑˆĞ¸Ñ… RSS-ĞºĞ°Ğ½Ğ°Ğ»Ğ¾Ğ² %s"
-+
-+msgctxt "#32020"
-+msgid "What Are Sets?"
-+msgstr "ĞšĞ°ĞºĞ¸Ğµ Ğ½Ğ°Ğ±Ğ¾Ñ€Ñ‹?"
-+
-+msgctxt "#32021"
-+msgid "To use different sets in your skin,"
-+msgstr "Ğ”Ğ»Ñ Ñ‚Ğ¾Ğ³Ğ¾, Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ñ€Ğ°Ğ·Ğ»Ğ¸Ñ‡Ğ½Ñ‹Ğµ Ğ½Ğ°Ğ±Ğ¾Ñ€Ñ‹ Ğ² Ğ²Ğ°ÑˆĞµĞ¼ ÑĞºĞ¸Ğ½Ğµ,"
-+
-+msgctxt "#32022"
-+msgid "each must be called from the skin"
-+msgstr "ĞºĞ°Ğ¶Ğ´Ñ‹Ğ¹ Ğ¸Ğ· Ğ½Ğ¸Ñ… Ğ´Ğ¾Ğ»Ğ¶Ğ½ Ğ±Ñ‹Ñ‚ÑŒ Ğ²Ñ‹Ğ·Ğ²Ğ°Ğ½ Ğ¸Ğ· ÑĞºĞ¸Ğ½Ğ°"
-+
-+msgctxt "#32023"
-+msgid "with a unique id"
-+msgstr "Ñ ÑƒĞ½Ğ¸ĞºĞ°Ğ»ÑŒĞ½Ñ‹Ğ¼ ID"
-+
-+msgctxt "#32024"
-+msgid "Select a Set "
-+msgstr "Ğ’Ñ‹Ğ±Ñ€Ğ°Ñ‚ÑŒ Ğ½Ğ°Ğ±Ğ¾Ñ€ "
-+
-+msgctxt "#32025"
-+msgid "Set ID"
-+msgstr "Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚ÑŒ ID"
-+
-+msgctxt "#32026"
-+msgid "Set %s already exists"
-+msgstr "ĞĞ°Ğ±Ğ¾Ñ€ %s ÑÑƒÑ‰ĞµÑÑ‚Ğ²ÑƒĞµÑ‚"
-+
-+msgctxt "#32027"
-+msgid "Enable Right to Left Text for this Set?"
-+msgstr "Ğ’ĞºĞ»ÑÑ‡Ğ¸Ñ‚ÑŒ Ğ¡Ğ¿Ñ€Ğ°Ğ²Ğ° ĞĞ°Ğ»ĞµĞ²Ğ¾ Ñ‚ĞµĞºÑÑ‚ Ğ´Ğ»Ñ ÑÑ‚Ğ¾Ğ³Ğ¾ Ğ½Ğ°Ğ±Ğ¾Ñ€Ğ°?"
-+
-+msgctxt "#32040"
-+msgid "Error: "
-+msgstr "ĞÑˆĞ¸Ğ±ĞºĞ°: "
-+
-+msgctxt "#32041"
-+msgid "was either not found in the system,"
-+msgstr "Ğ½Ğµ Ğ½Ğ°Ğ¹Ğ´ĞµĞ½ Ğ² ÑĞ¸ÑÑ‚ĞµĞ¼Ğµ,"
-+
-+msgctxt "#32042"
-+msgid "or does not contain parsable XML."
-+msgstr "Ğ¸Ğ»Ğ¸ ÑĞ¾Ğ´ĞµÑ€Ğ¶Ğ¸Ñ‚ Ğ½ĞµĞ¿Ñ€Ğ°Ğ²Ğ¸Ğ»ÑŒĞ½Ñ‹Ğ¹ XML."
-+
-+msgctxt "#32043"
-+msgid "Try deleting it from your userdata folder and restarting KODI."
-+msgstr "ĞŸĞ¾Ğ¿Ñ€Ğ¾Ğ±ÑƒĞ¹Ñ‚Ğµ ÑƒĞ´Ğ°Ğ»Ğ¸Ñ‚ÑŒ ĞµĞ³Ğ¾ Ğ¸Ğ· Ğ¿Ğ°Ğ¿ĞºĞ¸ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒÑĞºĞ¸Ñ… Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ğ¸ Ğ¿ĞµÑ€ĞµĞ·Ğ°Ğ¿ÑƒÑÑ‚Ğ¸Ñ‚ÑŒ KODI."
-+
-+msgctxt "#32044"
-+msgid "To Remove"
-+msgstr "Ğ£Ğ´Ğ°Ğ»Ğ¸Ñ‚ÑŒ"
-+
-+msgctxt "#32045"
-+msgid "Cannot Delete Set 1"
-+msgstr "ĞĞµ ÑƒĞ´Ğ°ĞµÑ‚ÑÑ ÑƒĞ´Ğ°Ğ»Ğ¸Ñ‚ÑŒ Ğ½Ğ°Ğ±Ğ¾Ñ€ 1"
-+
-+msgctxt "#32046"
-+msgid "Set 1 is required.  You cannot delete this."
-+msgstr "ĞĞ°Ğ±Ğ¾Ñ€ 1 Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼. Ğ’Ñ‹ Ğ½Ğµ Ğ¼Ğ¾Ğ¶ĞµÑ‚Ğµ ÑƒĞ´Ğ°Ğ»ÑÑ‚ÑŒ ĞµĞ³Ğ¾."
-+
-+msgctxt "#32047"
-+msgid "Reset set 1 to default?"
-+msgstr "Ğ¡Ğ±Ñ€Ğ¾ÑĞ¸Ñ‚ÑŒ Ğ½Ğ°Ğ±Ğ¾Ñ€ 1 Ğ½Ğ° Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ Ğ¿Ğ¾ ÑƒĞ¼Ğ¾Ğ»Ñ‡Ğ°Ğ½Ğ¸Ñ?"
-+
-+msgctxt "#32048"
-+msgid "Reset Required"
-+msgstr "Ğ¡Ğ±Ñ€Ğ¾Ñ Ğ¾Ğ±ÑĞ·Ğ°Ñ‚ĞµĞ»ĞµĞ½"
-+
-+msgctxt "#32049"
-+msgid "You need to restart KODI for your changes to take effect"
-+msgstr "Ğ’Ğ°Ğ¼ Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ¿ĞµÑ€ĞµĞ·Ğ°Ğ¿ÑƒÑÑ‚Ğ¸Ñ‚ÑŒ KODI Ğ´Ğ»Ñ Ñ‚Ğ¾Ğ³Ğ¾ Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ Ğ²Ğ°ÑˆĞ¸ Ğ¸Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ Ğ²ÑÑ‚ÑƒĞ¿Ğ¸Ğ»Ğ¸ Ğ² ÑĞ¸Ğ»Ñƒ"
-+
-+msgctxt "#32050"
-+msgid "Set %s already exists."
-+msgstr "ĞĞ°Ğ±Ğ¾Ñ€ %s ÑÑƒÑ‰ĞµÑÑ‚Ğ²ÑƒĞµÑ‚"
-+
-+msgctxt "#32051"
-+msgid "Your RSSFeeds.xml file is corrupt."
-+msgstr "Ğ¤Ğ°Ğ¹Ğ» RSS Feeds.xml Ğ¿Ğ¾Ğ²Ñ€ĞµĞ¶Ğ´ĞµĞ½."
-+
-+msgctxt "#32052"
-+msgid "Attempt to regenerate"
-+msgstr "ĞŸĞ¾Ğ¿Ñ‹Ñ‚ĞºĞ° Ğ²Ğ¾ÑÑÑ‚Ğ°Ğ½Ğ¾Ğ²Ğ¸Ñ‚ÑŒ"
-+
-+msgctxt "#32053"
-+msgid "You will loose all previous settings"
-+msgstr "Ğ’Ñ‹ Ğ¿Ğ¾Ñ‚ĞµÑ€ÑĞµÑ‚Ğµ Ğ²ÑĞµ Ğ¿Ñ€ĞµĞ´Ñ‹Ğ´ÑƒÑ‰Ğ¸Ğµ Ğ½Ğ°ÑÑ‚Ñ€Ğ¾Ğ¹ĞºĞ¸"
-diff -Naur a/resources/lib/rssEditor.py b/resources/lib/rssEditor.py
---- a/resources/lib/rssEditor.py	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/lib/rssEditor.py	2016-05-02 20:17:14.000000000 +0300
-@@ -20,13 +20,13 @@
-         self.defineControls()
-         self.feedsList = self.parser.feedsList[self.setNum]['feedslist'] #shortname
-         if not self.feedsList:
--            xbmcgui.Dialog().ok(getLS(40)+'RssFeeds.xml', 'RssFeeds.xml '+getLS(41), getLS(42), getLS(43))
-+            xbmcgui.Dialog().ok(getLS(32040)+'RssFeeds.xml', 'RssFeeds.xml '+getLS(32041), getLS(32042), getLS(32043))
-             self.closeDialog()
-         self.showDialog()
- 
-     def defineControls(self):
-         #actions
--        self.action_cancel_dialog = (9, 10)
-+        self.action_cancel_dialog = ( 9, 10, 92, 216, 247, 257, 275, 61467, 61448 )
-         #control ids
-         self.control_heading_label_id       = 2
-         self.control_list_label_id          = 3
-@@ -47,9 +47,9 @@
-         self.cancel_button      = self.getControl(self.control_cancel_button_id)
- 
-     def showDialog(self):
--        self.heading_label.setLabel(getLS(0))
--        self.list_label.setLabel(getLS(12))
--        self.changeSet_button.setLabel(getLS(1))
-+        self.heading_label.setLabel(getLS(32000))
-+        self.list_label.setLabel(getLS(32012))
-+        self.changeSet_button.setLabel(getLS(32001))
-         self.updateFeedsList()
- 
-     def closeDialog(self):
-@@ -78,7 +78,7 @@
-         #change/modify set
-         elif controlId == self.control_changeSet_button_id:
-             import setEditor
--            setEditorUI = setEditor.GUI("script-RSS_Editor-setEditor.xml", __cwd__, "default", setNum = self.setNum)
-+            setEditorUI = setEditor.GUI("script-RSS_Editor-setEditor.xml", __cwd__, "Default", setNum = self.setNum)
-             self.close()
-             del setEditorUI
-         #save xml
-@@ -104,11 +104,11 @@
-             self.feedsList = [{'url':'http://', 'updateinterval':'30'}]
- 
-     def getNewFeed(self, url = 'http://', newUpdateInterval = '30'):
--        kb = xbmc.Keyboard(url, getLS(12), False)
-+        kb = xbmc.Keyboard(url, getLS(32012), False)
-         kb.doModal()
-         if kb.isConfirmed():
-             newUrl = kb.getText()
--            newUpdateInterval = xbmcgui.Dialog().numeric(0, getLS(13), newUpdateInterval)
-+            newUpdateInterval = xbmcgui.Dialog().numeric(0, getLS(32013), newUpdateInterval)
-         else:
-             newUrl = None
-         return newUrl, newUpdateInterval
-@@ -118,6 +118,6 @@
-         for feed in self.feedsList:
-             self.list.addItem(feed['url'])
-         if self.setNum == 'set1':
--            self.list_label.setLabel(getLS(14) % (''))
-+            self.list_label.setLabel(getLS(32014) % (''))
-         else:
--            self.list_label.setLabel(getLS(14) % ('('+self.setNum+')'))
-+            self.list_label.setLabel(getLS(32014) % ('('+self.setNum+')'))
-diff -Naur a/resources/lib/setEditor.py b/resources/lib/setEditor.py
---- a/resources/lib/setEditor.py	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/lib/setEditor.py	2016-05-02 20:18:28.000000000 +0300
-@@ -19,13 +19,13 @@
-     def onInit(self):
-         self.defineControls()
-         if not self.parser.feedsList:
--            xbmcgui.Dialog().ok(getLS(40)+'RssFeeds.xml', 'RssFeeds.xml '+getLS(41), getLS(42), getLS(43))
-+            xbmcgui.Dialog().ok(getLS(32040)+'RssFeeds.xml', 'RssFeeds.xml '+getLS(32041), getLS(32042), getLS(32043))
-             self.closeDialog()
-         self.showDialog()
- 
-     def defineControls(self):
-         #actions
--        self.action_cancel_dialog = (9, 10)
-+        self.action_cancel_dialog = ( 9, 10, 92, 216, 247, 257, 275, 61467, 61448 )
-         #control ids
-         self.control_heading_label_id       = 2
-         self.control_list_label_id          = 3
-@@ -48,15 +48,15 @@
-         self.dFeedsList = [{'url':'http://feeds.feedburner.com/xbmc', 'updateinterval':'30'}]
- 
-     def showDialog(self):
--        self.heading_label.setLabel(getLS(30))
--        self.list_label.setLabel(getLS(24))
--        self.modifySet_button.setLabel(getLS(6))
-+        self.heading_label.setLabel(getLS(32030))
-+        self.list_label.setLabel(getLS(32024))
-+        self.modifySet_button.setLabel(getLS(32006))
-         self.updateSetsList()
- 
-     def closeDialog(self):
-         """Close the Set Editor Dialog and open RSS Editor Dialog"""
-         import rssEditor
--        rssEditorUI = rssEditor.GUI("script-RSS_Editor-rssEditor.xml", __cwd__, "default", setNum = self.setNum)
-+        rssEditorUI = rssEditor.GUI("script-RSS_Editor-rssEditor.xml", __cwd__, "Default", setNum = self.setNum)
-         self.close()
-         del rssEditorUI
- 
-@@ -126,10 +126,10 @@
-             #add default information
-             self.parser.feedsList[newSetLabel] = {'feedslist':self.dFeedsList, 'attrs':{'rtl':rtl, 'id':newSetNum}}
- 
--    def getSetNum(self, defaultSetNum, title = getLS(25)):
-+    def getSetNum(self, defaultSetNum, title = getLS(32025)):
-         newSetNum = str(xbmcgui.Dialog().numeric(0, title, str(defaultSetNum)))
-         if self.setNumExists(newSetNum) and newSetNum != defaultSetNum:
--            self.getSetNum(defaultSetNum, getLS(50) % newSetNum)
-+            self.getSetNum(defaultSetNum, getLS(32050) % newSetNum)
-         else:
-             return newSetNum
- 
-@@ -139,7 +139,7 @@
- 
-     def containsRTLText(self):
-         """Returns xml style lowercase 'true' or 'false'"""
--        return str(bool(xbmcgui.Dialog().yesno(getLS(27), getLS(27)))).lower()
-+        return str(bool(xbmcgui.Dialog().yesno(getLS(32027), getLS(32027)))).lower()
- 
-     def removeSet(self, setNum = None):
-         """Removes a set or if set is required resets it to default"""
-@@ -147,7 +147,7 @@
-             setNum = self.list.getSelectedItem().getLabel()
-         if setNum == 'set1':
-             #Ask if user wants to set everything to default.
--            if xbmcgui.Dialog().yesno(getLS(45), getLS(46), getLS(47)):
-+            if xbmcgui.Dialog().yesno(getLS(32045), getLS(32046), getLS(32047)):
-                 self.parser.feedsList[setNum] = {'feedslist':self.dFeedsList, 'attrs':{'rtl':'false','id':'1'}}
-         else:
-             del self.parser.feedsList[setNum]
-@@ -156,4 +156,4 @@
-         self.list.reset()
-         for setNum in sorted(self.parser.feedsList.keys()):
-             self.list.addItem(setNum)
--            self.list_label.setLabel(getLS(24))
-+            self.list_label.setLabel(getLS(32024))
-diff -Naur a/resources/lib/xmlParser.py b/resources/lib/xmlParser.py
---- a/resources/lib/xmlParser.py	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/lib/xmlParser.py	2016-05-02 14:32:56.000000000 +0300
-@@ -48,7 +48,7 @@
-                 self.feedsTree = parse(self.RssFeedsPath)
-             except:
-                 log('[script] RSS Editor --> Failed to parse ' + unicodedata.normalize( 'NFKD', self.RssFeedsPath ).encode( 'ascii', 'ignore' ))
--                regen = xbmcgui.Dialog().yesno(getLS(40), getLS(51), getLS(52), getLS(53))
-+                regen = xbmcgui.Dialog().yesno(getLS(32040), getLS(32051), getLS(32052), getLS(32053))
-                 if regen:
-                     log('[script] RSS Editor --> Attempting to Regenerate RssFeeds.xml')
-                     xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<rssfeeds>\n\
-diff -Naur a/resources/skins/default/720p/script-RSS_Editor-rssEditor.xml b/resources/skins/default/720p/script-RSS_Editor-rssEditor.xml
---- a/resources/skins/default/720p/script-RSS_Editor-rssEditor.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/720p/script-RSS_Editor-rssEditor.xml	1970-01-01 03:00:00.000000000 +0300
-@@ -1,189 +0,0 @@
--ï»¿<!--based on PMIII DialogMediaSource.xml by Jezz_X & chokemaniac-->
--<window id="129">
--    <defaultcontrol always="true">10</defaultcontrol>
--    <animation effect="fade" time="400">WindowOpen</animation>
--    <animation effect="fade" time="400">WindowClose</animation>
--    <coordinates>
--        <system>1</system>
--        <posx>105</posx>
--        <posy>130</posy>
--    </coordinates>
--    <controls>
--        <control type="image">
--            <posx>-300</posx>
--            <posy>-300</posy>
--            <width>1300</width>
--            <height>1300</height>
--            <texture>black.png</texture>
--            <animation effect="fade" time="2000">WindowOpen</animation>
--        </control>
--        <control type="image">
--            <description>background image</description>
--            <posx>-15</posx>
--            <posy>-15</posy>
--            <width>540</width>
--            <height>375</height>
--            <texture>dialog-panel2.png</texture>
--        </control>
--        <control type="label" id="2">
--            <description>Heading Label</description>
--            <posx>10</posx>
--            <posy>-2</posy>
--            <width>500</width>
--            <align>left</align>
--            <textcolor>dialogheader</textcolor>
--        </control>
--        <control type="label" id="3">
--            <description>List Label</description>
--            <posx>10</posx>
--            <posy>35</posy>
--            <width>500</width>
--            <align>left</align>
--        </control>
--        <control type="list" id="10">
--            <posx>10</posx>
--            <posy>60</posy>
--            <width>380</width>
--            <height>160</height>
--            <onup>9001</onup>
--            <onleft>13</onleft>
--            <onright>13</onright>
--            <ondown>9001</ondown>
--            <pagecontrol>-</pagecontrol>
--            <scrolltime>200</scrolltime>
--            <itemlayout height="40">
--                <control type="image">
--                    <posx>0</posx>
--                    <posy>0</posy>
--                    <width>380</width>
--                    <height>32</height>
--                    <texture>input-nofocus.png</texture>
--                </control>
--                <control type="label">
--                    <posx>5</posx>
--                    <posy>0</posy>
--                    <width>370</width>
--                    <height>32</height>
--                    <aligny>center</aligny>
--                    <align>left</align>
--                    <info>ListItem.Label</info>
--                </control>
--            </itemlayout>
--            <focusedlayout height="40">
--                <control type="image">
--                    <posx>0</posx>
--                    <posy>0</posy>
--                    <width>380</width>
--                    <height>32</height>
--                    <texture>input-nofocus.png</texture>
--                    <visible>!Control.hasfocus(10)</visible>
--                </control>
--                <control type="image">
--                    <posx>0</posx>
--                    <posy>0</posy>
--                    <width>380</width>
--                    <height>32</height>
--                    <texture>input-focus.png</texture>
--                    <visible>Control.hasfocus(14)|Control.hasfocus(10)</visible>
--                </control>
--                <control type="label">
--                    <posx>5</posx>
--                    <posy>0</posy>
--                    <width>370</width>
--                    <height>32</height>
--                    <aligny>center</aligny>
--                    <align>left</align>
--                    <info>ListItem.Label</info>
--                </control>
--            </focusedlayout>
--        </control>
--        <control type="group" id="9000">
--            <control type="button" id="11">
--                <description>Change Set Button</description>
--                <posx>400</posx>
--                <posy>140</posy>
--                <width>110</width>
--                <height>32</height>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <onup>14</onup>
--                <onleft>10</onleft>
--                <onright>10</onright>
--                <ondown>9001</ondown>
--            </control>
--            <control type="button" id="13">
--                <description>Add Button</description>
--                <posx>400</posx>
--                <posy>60</posy>
--                <width>110</width>
--                <height>32</height>
--                <label>15019</label>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <onup>9001</onup>
--                <onleft>10</onleft>
--                <onright>10</onright>
--                <ondown>14</ondown>
--            </control>
--            <control type="button" id="14">
--                <description>Remove Button</description>
--                <posx>400</posx>
--                <posy>100</posy>
--                <width>110</width>
--                <height>32</height>
--                <label>1210</label>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <onup>13</onup>
--                <onleft>10</onleft>
--                <onright>10</onright>
--                <ondown>11</ondown>
--            </control>
--        </control>
--        <control type="group" id="9001">
--            <control type="button" id="18">
--                <description>Ok Button</description>
--                <posx>285</posx>
--                <posy>290</posy>
--                <width>110</width>
--                <height>32</height>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <label>186</label>
--                <onup>10</onup>
--                <onleft>10</onleft>
--                <onright>19</onright>
--                <ondown>10</ondown>
--            </control>
--            <control type="button" id="19">
--                <description>Cancel Button</description>
--                <posx>400</posx>
--                <posy>290</posy>
--                <width>110</width>
--                <height>32</height>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <label>222</label>
--                <onup>10</onup>
--                <onleft>18</onleft>
--                <onright>11</onright>
--                <ondown>10</ondown>
--            </control>
--        </control>
--    </controls>
--</window>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/720p/script-RSS_Editor-setEditor.xml b/resources/skins/default/720p/script-RSS_Editor-setEditor.xml
---- a/resources/skins/default/720p/script-RSS_Editor-setEditor.xml	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/720p/script-RSS_Editor-setEditor.xml	1970-01-01 03:00:00.000000000 +0300
-@@ -1,189 +0,0 @@
--ï»¿<!--based on PMIII DialogMediaSource.xml by Jezz_X & chokemaniac-->
--<window id="129">
--    <defaultcontrol always="true">10</defaultcontrol>
--    <animation effect="fade" time="400">WindowOpen</animation>
--    <animation effect="fade" time="400">WindowClose</animation>
--    <coordinates>
--        <system>1</system>
--        <posx>105</posx>
--        <posy>130</posy>
--    </coordinates>
--    <controls>
--        <control type="image">
--            <posx>-300</posx>
--            <posy>-300</posy>
--            <width>1300</width>
--            <height>1300</height>
--            <texture>black.png</texture>
--            <animation effect="fade" time="2000">WindowOpen</animation>
--        </control>
--        <control type="image">
--            <description>background image</description>
--            <posx>-15</posx>
--            <posy>-15</posy>
--            <width>540</width>
--            <height>375</height>
--            <texture>dialog-panel2.png</texture>
--        </control>
--        <control type="label" id="2">
--            <description>Heading Label</description>
--            <posx>10</posx>
--            <posy>-2</posy>
--            <width>500</width>
--            <align>left</align>
--            <textcolor>dialogheader</textcolor>
--        </control>
--        <control type="label" id="3">
--            <description>List Label</description>
--            <posx>10</posx>
--            <posy>35</posy>
--            <width>500</width>
--            <align>left</align>
--        </control>
--        <control type="list" id="10">
--            <posx>10</posx>
--            <posy>60</posy>
--            <width>380</width>
--            <height>160</height>
--            <onup>9001</onup>
--            <onleft>13</onleft>
--            <onright>13</onright>
--            <ondown>9001</ondown>
--            <pagecontrol>-</pagecontrol>
--            <scrolltime>200</scrolltime>
--            <itemlayout height="40">
--                <control type="image">
--                    <posx>0</posx>
--                    <posy>0</posy>
--                    <width>380</width>
--                    <height>32</height>
--                    <texture>input-nofocus.png</texture>
--                </control>
--                <control type="label">
--                    <posx>5</posx>
--                    <posy>0</posy>
--                    <width>370</width>
--                    <height>32</height>
--                    <aligny>center</aligny>
--                    <align>left</align>
--                    <info>ListItem.Label</info>
--                </control>
--            </itemlayout>
--            <focusedlayout height="40">
--                <control type="image">
--                    <posx>0</posx>
--                    <posy>0</posy>
--                    <width>380</width>
--                    <height>32</height>
--                    <texture>input-nofocus.png</texture>
--                    <visible>!Control.hasfocus(10)</visible>
--                </control>
--                <control type="image">
--                    <posx>0</posx>
--                    <posy>0</posy>
--                    <width>380</width>
--                    <height>32</height>
--                    <texture>input-focus.png</texture>
--                    <visible>Control.hasfocus(14)|Control.hasfocus(10)|Control.hasfocus(11)</visible>
--                </control>
--                <control type="label">
--                    <posx>5</posx>
--                    <posy>0</posy>
--                    <width>370</width>
--                    <height>32</height>
--                    <aligny>center</aligny>
--                    <align>left</align>
--                    <info>ListItem.Label</info>
--                </control>
--            </focusedlayout>
--        </control>
--        <control type="group" id="9000">
--            <control type="button" id="11">
--                <description>Change Set Button</description>
--                <posx>400</posx>
--                <posy>140</posy>
--                <width>110</width>
--                <height>32</height>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <onup>14</onup>
--                <onleft>10</onleft>
--                <onright>10</onright>
--                <ondown>9001</ondown>
--            </control>
--            <control type="button" id="13">
--                <description>Add Button</description>
--                <posx>400</posx>
--                <posy>60</posy>
--                <width>110</width>
--                <height>32</height>
--                <label>15019</label>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <onup>9001</onup>
--                <onleft>10</onleft>
--                <onright>10</onright>
--                <ondown>14</ondown>
--            </control>
--            <control type="button" id="14">
--                <description>Remove Button</description>
--                <posx>400</posx>
--                <posy>100</posy>
--                <width>110</width>
--                <height>32</height>
--                <label>1210</label>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <onup>13</onup>
--                <onleft>10</onleft>
--                <onright>10</onright>
--                <ondown>11</ondown>
--            </control>
--        </control>
--        <control type="group" id="9001">
--            <control type="button" id="18">
--                <description>Ok Button</description>
--                <posx>285</posx>
--                <posy>290</posy>
--                <width>110</width>
--                <height>32</height>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <label>186</label>
--                <onup>10</onup>
--                <onleft>10</onleft>
--                <onright>19</onright>
--                <ondown>10</ondown>
--            </control>
--            <control type="button" id="19">
--                <description>Cancel Button</description>
--                <posx>400</posx>
--                <posy>290</posy>
--                <width>110</width>
--                <height>32</height>
--                <textoffsetx>12</textoffsetx>
--                <align>center</align>
--                <aligny>center</aligny>
--                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
--                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
--                <label>222</label>
--                <onup>10</onup>
--                <onleft>18</onleft>
--                <onright>11</onright>
--                <ondown>10</ondown>
--            </control>
--        </control>
--    </controls>
--</window>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/media/black.png b/resources/skins/default/media/black.png
---- a/resources/skins/default/media/black.png	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/media/black.png	1970-01-01 03:00:00.000000000 +0300
-@@ -1,14 +0,0 @@
--‰PNG
--
--   IHDR         óÿa   	pHYs     šœ  
--OiCCPPhotoshop ICC profile  xÚSgTSé=÷ŞôBKˆ€”KoR RB‹€‘&*!	Jˆ!¡ÙQÁEEÈ ˆ€ŒQ,Š
--Øä!¢ƒ£ˆŠÊûá{£kÖ¼÷æÍşµ×>ç¬ó³ÏÀ–H3Q5€©BàƒÇÄÆáä.@
--$p ³d!sı# ø~<<+"À¾ xÓ ÀM›À0‡ÿêB™\€„Àt‘8K€ @zB¦ @F€˜&S   `Ëcbã P- `'æÓ €ø™{ [”! ‘  eˆD h; ¬ÏVŠE X0 fKÄ9 Ø- 0IWfH °· ÀÎ²  0Qˆ…) { `È##x „™ FòW<ñ+®ç*  x™²<¹$9E[-qWW.(ÎI+6aaš@.Ây™24àóÌ   ‘àƒóıxÎ®ÎÎ6¶_-ê¿ÿ"bbãşåÏ«p@  át~Ñş,/³€;€mş¢%îh^ u÷‹f²@µ  éÚWópø~<<E¡¹ÙÙåääØJÄB[aÊW}şgÂ_ÀWılù~<ü÷õà¾â$2]GøàÂÌôL¥Ï’	„bÜæGü·ÿüÓ"ÄIb¹X*ãQqDšŒó2¥"‰B’)Å%Òÿdâß,û>ß5 °j>{‘-¨]cöK'XtÀâ÷  ò»oÁÔ(€hƒáÏwÿï?ıG % €fI’q  ^D$.TÊ³?Ç  D *°AôÁ,ÀÁÜÁü`6„B$ÄÂBB
--d€r`)¬‚B(†Í°*`/Ô@4ÀQh†“p.ÂU¸=púaÁ(¼	AÈa!ÚˆbŠX#™…ø!ÁH‹$ ÉˆQ"K‘5H1RŠT UHò=r9‡\Fº‘;È 2‚ü†¼G1”²Q=ÔµC¹¨7„F¢Ğdt1š ›Ğr´=Œ6¡çĞ«hÚ>CÇ0Àè3Äl0.ÆÃB±8,	“cË±"¬«Æ°V¬»‰õcÏ±wEÀ	6wB aAHXLXNØH¨ $4Ú	7	„QÂ'"“¨K´&ºùÄb21‡XH,#Ö/{ˆCÄ7$‰C2'¹I±¤TÒÒFÒnR#é,©›4H#“ÉÚdk²9”, +È…ääÃä3ää!ò[
--b@q¤øSâ(RÊjJåå4åe˜2AU£šRİ¨¡T5ZB­¡¶R¯Q‡¨4uš9ÍƒIK¥­¢•Óhh÷i¯ètºİ•N—ĞWÒËéGè—èôw†ƒÇˆg(›gw¯˜L¦Ó‹ÇT071ë˜ç™™oUX*¶*|‘Ê
--•J•&•*/T©ª¦ªŞªUóUËT©^S}®FU3Sã©	Ô–«UªPëSSg©;¨‡ªg¨oT?¤~Yı‰YÃLÃOC¤Q ±_ã¼Æ c³x,!k«†u5Ä&±ÍÙ|v*»˜ı»‹=ª©¡9C3J3W³Ró”f?ã˜qøœtN	ç(§—ó~ŠŞï)â)¦4L¹1e\kª–—–X«H«Q«Gë½6®í§¦½E»YûAÇJ'\'GgÎçSÙSİ§
--§M=:õ®.ªk¥¡»Dw¿n§î˜¾^€Lo§Şy½çú}/ıTımú§õGX³$ÛÎ<Å5qo</ÇÛñQC]Ã@C¥a•a—á„‘¹Ñ<£ÕFFŒiÆ\ã$ãmÆmÆ£&&!&KMêMîšRM¹¦)¦;L;LÇÍÌÍ¢ÍÖ™5›=1×2ç›ç›×›ß·`ZxZ,¶¨¶¸eI²äZ¦Yî¶¼n…Z9Y¥XUZ]³F­­%Ö»­»§§¹N“N«ÖgÃ°ñ¶É¶©·°åØÛ®¶m¶}agbg·Å®Ãî“½“}º}ı=‡Ù«Z~s´r:V:ŞšÎœî?}Åô–é/gXÏÏØ3ã¶Ë)ÄiS›ÓGgg¹sƒóˆ‹‰K‚Ë.—>.›ÆİÈ½äJtõq]ázÒõ›³›Âí¨Û¯î6îiî‡ÜŸÌ4Ÿ)Y3sĞÃÈCàQåÑ?Ÿ•0kß¬~OCOgµç#/c/‘W­×°·¥wª÷aï>ö>rŸã>ã<7Ş2ŞY_Ì7À·È·ËOÃo_…ßC#ÿdÿzÿÑ §€%g‰A[ûøz|!¿?:Ûeö²ÙíAŒ ¹AA‚­‚åÁ­!hÈì­!÷ç˜Î‘Îi…P~èÖĞaæa‹Ã~'…‡…W†?pˆXÑ1—5wÑÜCsßDúD–DŞ›g1O9¯-J5*>ª.j<Ú7º4º?Æ.fYÌÕXXIlK9.*®6nl¾ßüíó‡ââã{˜/È]py¡ÎÂô…§©.,:–@LˆN8”ğA*¨Œ%òw%
--yÂÂg"/Ñ6ÑˆØC\*NòH*Mz’ì‘¼5y$Å3¥,å¹„'©¼LLİ›:šv m2=:½1ƒ’‘qBª!M“¶gêgæfvË¬e…²şÅn‹·/•Ék³¬Y-
--¶B¦èTZ(×*²geWf¿Í‰Ê9–«+ÍíÌ³ÊÛ7œïŸÿíÂá’¶¥†KW-Xæ½¬j9²<qyÛ
--ã+†V¬<¸Š¶*mÕO«íW—®~½&zMk^ÁÊ‚ÁµkëU
--å…}ëÜ×í]OX/Yßµaú†>‰Š®Û—Ø(Üxå‡oÊ¿™Ü”´©«Ä¹dÏfÒféæŞ-[–ª—æ—nÙÚ´ßV´íõöEÛ/—Í(Û»ƒ¶C¹£¿<¸¼e§ÉÎÍ;?T¤TôTúT6îÒİµa×ønÑî{¼ö4ìÕÛ[¼÷ı>É¾ÛUUMÕfÕeûIû³÷?®‰ªéø–ûm]­NmqíÇÒı#¶×¹ÔÕÒ=TRÖ+ëGÇ¾şïw-6UœÆâ#pDyäé÷	ß÷:ÚvŒ{¬áÓvg/jBšòšF›Sšû[b[ºOÌ>ÑÖêŞzüGÛœ4<YyJóTÉiÚé‚Ó“gòÏŒ•}~.ùÜ`Û¢¶{çcÎßjoïºtáÒEÿ‹ç;¼;Î\ò¸tò²ÛåW¸Wš¯:_mêtê<ş“ÓOÇ»œ»š®¹\k¹îz½µ{f÷é7Îİô½yñÿÖÕ9=İ½ózo÷Å÷õßİ~r'ıÎË»Ùw'î­¼O¼_ô@íAÙCİ‡Õ?[şÜØïÜjÀw óÑÜG÷…ƒÏş‘õC™Ë††ë8>99â?rıéü§CÏdÏ&ş¢şË®/~øÕë×ÎÑ˜Ñ¡—ò—“¿m|¥ıêÀë¯ÛÆÂÆ¾Éx31^ôVûíÁwÜwï£ßOä| (ÿhù±õSĞ§û“““ÿ˜óüc3-Û   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   #IDATxÚbd``h`  01PF5`Ô€Áb    ÿÿ K.  ÎHo    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/media/dialog-panel2.png b/resources/skins/default/media/dialog-panel2.png
---- a/resources/skins/default/media/dialog-panel2.png	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/media/dialog-panel2.png	1970-01-01 03:00:00.000000000 +0300
-@@ -1,25 +0,0 @@
--‰PNG
--
--   IHDR  ½  O   ÙtV   	pHYs     šœ  
--MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
--VœHUÄ‚Õ
--Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-- ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
--Ğzù‹y8ü@¡PÈ<
--í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
--¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
--!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
--ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
--îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF  ÄIDATxÚìİÍ$iğ'«²»y™^†E^±æ^1ÈBˆB²ˆ+#„O£İ¶87ˆƒeÉ»G‹,ş€±/Öp–@ŒF‚“}ğz!ù,°f›îŞª¬¬ØÃdÑ±ñ¼FduuÖç#•:;_"xâ‰øæ“Yñ«U×u ®ƒ#] Àu±Î=aµZ­†ÿü„ï~÷»ñ®w½ëËÇÇÇŸ!ü™î`ßV«ÕÔG”Bÿ»ëºÿ~÷îİW£¯}¼9»£]È÷·oß¾}üíoû?şîw¿ûæüãğÖ[o…?üáö OÄÍ›7Ã‡>ô¡ğâ‹/†O}êSÿ­ëºÿr÷îİŸdCovG»°[÷?/½ôÒŸ~á_øo¼ñÆ¿õÕWÃıû÷õ6 WÆg?ûÙğòË/‡gŸ}öîİ»wÿkIèÃîfáÖîçæw¾ó¿şÉO~òWßûŞ÷ô, WÒG?úÑğõ¯=¼ç=ïù‹»wïşß0˜ÍÅïfáİ!„gBwBÏ½üòËÿöŞ½{õıï?º¢Õjÿğñû¦O½¶äñÔúJ–›ZVêşÚíœz,õš\›cË˜úwj™¹ı0Õ‡±6N=V³_K—Û¯¹¾¨]GjÿåÆb®5ã.µ¯çŒçšåæ+]ªoK·£f}¹¶äÆ~n›sÇI{kŸ›:rçÒe¤Æmíı-çØ’óhÉ9ş­·Ş
--¯½öZøõ¯ı·¯¼òÊ¿êïÿ"KzëİÌî½!„Û»Ğ»ıñüß½ñÆa»İ^¬¨ëºÇşo@×u¡ŸMN5~üºáòJÂ&ö¼ñrjUÉãã¶·kÎ‰®e û3¶?Æ·cÛQú& ¶ŞÔ˜(ÙÎÚı•jSê@jûcËÅÔXOı?×†Ò“vªßKÖ5u,¶¼!,éçØq’:®bçÔXK½ù,[ÃvÆ±Øòsë)9cçÉThåÎµ5¯‹=/µ%Î+­ãµoóOúÓ°^¯Ã¿øÅ¿!ü§ÇBo7Ë[fyÏ†ŞBx.„ğ¾;wî¼ğ‹_ü¢jÇ¶¼[Z" j—Ó²®–@«ÙÙK´1µì%û¨&´jN6­¯_êy—µ]û§­ãxÉ6ÕôeËì¨æä?·íûê—šqØÒ†%¶}ÉYùÒëŸÚG¿ıíoÃ›o¾V«Õ¿‰ÍôÆ³¼gw÷Âs7oŞ¼óàÁpåu]>|v9vr±Ğ{Ïh¦÷ş®ëÖçççz€§*ÿ¦Boø}Şğ—Xï|§wçüüühé©= \–qèõßéİß{ûŸ®ë$ zS×çÿz Dèƒïx€ÇAqj 0ôV£ğ;Ü zã €§Ü*z«ñ ‡8Ó[Ş—Õ‚z¹ê -•%J+’´Ôˆ>§¥~`é6”´+Wÿ®d}KÖplynI}ĞÚûJÇEéØ™ûœ¹•‹RıSSÆ.·ßkÆ}í~Y¢nfíq3·‚ÊÜš™©Z”s+÷”Ôş¬=ÇÌ9~[¶aéófÍò×K¯p\w­5ğj:6UO²´†çğµ±Z ¹zSíÈ‰Õµ›ªõ[×Ô:çÔPœªó7Õ×©mNÕ÷œz^®ÆáøşX»§úpªÿjOãeÅÆ\ª®èTíÈ©vçöÍÔ‰‡ãõå‡©¶LõwI]ÓÔ~.=·ŒÛÛÇµA8Şo±1;FSÇmé±VrŞŠË©sĞ¸¿RõGKÎ«©s`îxIÕü'cçÎ©¾ÉÛ§–µ[¢vfk­·ÒwÖ-I¡¶>Ş’Õ¡væ3·FhÍ»æÒv–öMIÅ¥ê,¶Ì,jß´µŒÙ%fêKÎ¶j‹ïó}kÊ9cs‰Ùlí'P5Ÿb,Ñ?5c¾e¦ZzÌ–lûœvÄ>Ş€ƒ$ô z  ô @è€Ğ ¡ B „ = z Ğz©Â½±Zr¹Ç†÷oO­cjÙ¹vMı5‚ÒåÔÔLU>­'U@vªÍ¥µér/õ—bıœÚ×¹Jñ©¿"ÛŸ5ã7Õ–\ÍÜkSûµæ/f´Á’±Pr,—Öq,İ/¥Û;fjÇxnµôWí1Ÿ;N–®=YÓ®TßÖşE‘Úzš¥ùPrœÔ×ê‚Ó©*í5îÒV¨äuµ,WM|É"ªKoMXµöQé	ºf¿·„øøÿ¥á¢¤àoªŸbI$v;5Æá²‚¯ö˜‰ı„ÚıßR°º¥(sM¸¤şjÉÇ|ÍşÙWğåî+s±¿r°TLç¼9™õW–úrO‹CÜÖë°ÿ.kçü5CÙG‡<®Ó¹î¯Ò×øN€kCè ô @è€Ğ ¡ B „ = z 0iX©åhÎ‹kS[ô¹v}%…\§Ú˜+F+dš+pZZ¤¸¦PsÉãµÅ¬[j!–İNí«ÚÂÂ¹m¬ÙÔø*^RX¹öx*-´[ºİ¥ÅÀK·£¥àyj?åÎ¥û¤f|ÆÚU{ü–óš1PZ”¿u¿ÔœŸKÇEÉ¹¬ä<•;··ôÙb§kƒ¯/:,Î+X+ÈÛZãpøºÚâ¥ã6åÔT‘àÒP,ÙÎ¹…e—.\ÚŸ¥û±ää]úºšà‹§½n<F‡c9·­5ëJ«ší^zÜïo-ÈÜZ½¶½%Å²Kƒ/wNˆ§Ò"è5okú+w¬Î9Í)˜]s,æ^—êï©s÷Ş?ŞœSU}_ÓÛ}¼nmßW,±Ü¥Úö¤‹úÎ-İ:«k]şÜşZ²¿kß¤Í]şÒceç„'qn;”sÓeMßépm= „ = z  ô @è€Ğ ¡ W$ôæ\Q_S«nëO-oîvík{[Ú_Sª+ÕÎ%ªR´Öa¼Œı_SdN›sË[²jÈeT¹*USæ®³u×”Ak­Şr+W]Ör—XÎ¢µ7ÇucuÇõ8ûçÅ3õúÒZwã6¤¶%·¬Øúº®ûg÷ÇÚXÚŞ©çÆşŸ«e:U72Õ/ãuŒû'öšØş™¹ú”ã}>õXjŸÄ¶q¼=SmK…ñrJÚ2Ş–TÁ©c«¤~hlOµ¯´Ÿ§“©õ•á’¾ê‡Üş-9ÄÎO©¾Ní·Ü—’cjj\¦^{~î¼ë³ÜI='•¹õæ2 uıãÇ×K&mí;™šÂÂµ3±–¿²0çİvË¬¥f-ï [Ş1æ*ı—Î[Š×ôsKeş–öÖÑ¹s[öÇœ‚ÜK¡}/I-õÉ@KíÚ6Î/q©]÷Ü¿1ç˜­éß\øN€kCè ô @è€Ğ ¡ B „ \•Ğ–ééo×^´>~ıøy%4¦^;Õ¦š‹`S·Çëµ«åâùÚ×æÚ[^É~+Ù?¹ı[Wî¢ëØ6”\T=õ“7±çNµ¡f?äú³¤/Kö]Í1TzLÔ[µû07ŞsmÊíÏšc65JÏÒ¾¬÷±±WZ¾0·­¥çñÒşÈ§©m*9fRû«fûC˜Y‘eÉú„­ÁWó¼¥ƒ¯¤öU5¦¥*Aiµ•Ò¶ÌéÚà«YÇœö×ñ¥‡Ö1ŞrµŒÑ–7_-oøjÇ@í¶Ö—Úçì+øJÇîœ¾Ógs«µÔ_ÍcãÇ}¼	€7@è€Ğ ¡ B „ = z  ô  WU†lªæ^×u÷õ·Ç÷M-§7|î”Øã¹×Ÿ;nïø¾ØöŒÛ\Ú©çÅî›êÏTÆÖŸkçxÛÇËLµ¯dMõ×¸-%ë˜ÚŞØ²K¶5õü’ñ[ÒöÔñëÇÔ>‹É’ã¢dŒäöYÉ²¦ú-5FK™’ñX²ïJİØù u,·ì’väÆÂœsgË±;G–kcË¨9ŸN‰X¤±æĞ›êø–Úw¹xÉã¥WÛÆÖº}­õëJ‹õÖlcn]5}ÚZ×²d¼Ìí»Ömm¿µm¿Ì×ÖöSmÚ¹Ëj³söİœz´sÛµäy`Î9pnÒ%j}ÎÇKÔwV{€kKè ô @è€Ğ ¡ B „ = ¸ÄĞk©„ÒZ-!·œ’öå;§bÌÕbrí.icíúK+-ÄªUÌmSiµ‰¥·{nŸ,µ¿‡ÛV»Ÿk¿Ö
--8sÚQRIeNŸ•ì¯ÚsÅ’U¤–8/ís=sª=µŒ×ÒíÉUs©©”ÚÆê2d¹q%eeJk%o×Ôœ›znIÛbËO=>õXM]Ä©š¥ojêé¥öSjÿÅêİÕÔ>MõyI-ÓÒÚµõXS5ûbc&VµäïãÒ’s¹ıUr<äêc¦ú¸¤mÉ	7öÿ’’­m.í›Ü~¯§¶¾jIµSlŒæÎ%c}ê\Ã©}Vä5c(vŞLí¯¦Ğk}ÇUzßÜzqK¼kÚÇì¯t»—®á·¯™ÌR³ƒÒÚ{û˜-Ñ—ñ¾¶>ak.U;õ*oúf¹sòáµ/-5:}§Àµ!ô z  ô @è€Ğ ¡ W:ôZ®QÊ]×·ÄµSË,iWËu4©ªSÿŸ³şÒkÈÆ•RZ*V”îšÊS¯k¹NhÜ¶94bûm©*!±m‰U¶©İšã öõ¥}UzläÆ~jù¹×§Æ×œ¾©½vv‰ÊNs+GåÆY¬½¹‹¿—8Ï–î¿ÖqCcÕ§ï+øJoïc‡´”—ªíƒ¹e›ZÚ='ø¦n§*cÔhcíIUÃi=PZƒvÎñ°ô˜š|±Ê$­÷-U
--pÎ¾Sb+×7-E#öq!yëØ,	'|©ŠSKŸ¯cÏóñæLŸèwûNßğtôµĞàÚz = z  ô @è€Ğ ¡ W!ôjË5•Tëh½`1W¾©¶ÄÜ
--¹ò?-Ë[â¨¶İ5ûmîz–¨N²DûæTöÈ=·´$YK÷½k+fìãÂãÒã¨¥¬Ü¥èZ^[»=%}°Ïãv©ñXS*±µ
--UIûÖKlt¬ÄQÉèK[M• šznÉ	*Vê¦ôõ±Ç‡m­=QävV¬ÄWí‰w¼ÃÿÇn·¶=·¿Zg×uËêó\ÛsÛY3®Jöyªÿ§ÚÖ¬¥ÇÈ“¾ÔØ+íÿÜ1:µÎÒcwêv®ô]í¸©=VRc,w<N-3Uæ«u?åöÉœó@Íö·ßøşæĞÛÇ»Ğ¥f4sfVûœQ]Æ²KOR-³âËêÚÅœšœKÏ$ŸÄ¬üªhS­E‹—ZÇœÙİÒÇå’ŸP,µŸmLûN€kCè ô @è€Ğ ¡ B „ Bè-Ur)Wögé‹½÷Uh©‹q‡íÜ×…¯S-Ušjn	§%öSÍzç\˜¼ôñò$á–1=÷bîšåÎ­æqYç‡\›.«œXî˜ÎíïÚc¿ôø-]nM?­—ğ¹’8±¦JĞL•ÿ;µ¼X‰¡Ò’RSíZoÎ¸DRm°Òò<Ã²]±×µ–V*9IäJSµ¼Ù¿njK¥öÏÔcãÛ©v«)ó”+£O-å¤ZÄ±©1›ÚgÃ×æöyîXH•+­X©­Øş(-]—:nKöimÄÒı;ÅÆWÉy·dbÏKë©óvj_ŒßÒ×-R†lNúÖÎ(r'}”ûYê~ÍiÎ,iN™¥¥úké™æœB³¥ïf÷1o-f½ï"Ô¥ïê[ÏÖ™Å¾fO©e¶B_r¦;wV4·en¹µuZ—:§µ¾éNµÅwz \B ¡ B „ = z  ô àª†Ş¸VíâÃ×”^4YÒš6Lİ¿8ãímÙ––u÷Í>úrÉ`K•g[ª5%×¿¹<§
--5Ì½{_û`ëo9_µ¶oŸeèZÇçÇQÍXYºÄàeY/Ñ%%µJC'Uº,WÒij}±²Z©Çc¥lbë/í“áókJÅÚ4.ŸT³ÿJÊ@åŞ€ŒËÿì#øJKv•`¹væ–ÓRšªå„[:îJ+¢LåšÒz±’^¹±+Ç+UÛ%åc·§JfÅÆHjl––u+)­8¾¯¤l`iiÀ’²‘ãã¨dù©ò±rg5û²dÿÌ
--½}¼›(]VËº[
--"Ï-~ÚrÒkyİRešZË˜-]²¬u5³×})o)ÛÕúîzÉÙCmé°Úc®´TTk;öù©ÏÒÇûœñ±Ä§_KÏ¸[ËºÍ-l½Ä±â;= ®µ. ®³®ëÂùùùÅíşc¶ş¾œív£G?êM½å¬Ó=¡„óóó‹ïĞúÀ:??¿¸½İnª«ªÂ£££°Z­ÂÑÑQ8::zì±ş~Ìô€õÁ¶İn/ş½ê!V«v›ú †åÑÑQ8>>sCï*şgàpNöÛíö"Ü†Ç¼`ˆı¿B`Ï3¶>à†!ÇşƒqJ„GGGa½^_ü+ô *Âml}¸¯£âj¾é8==},/~ÖëõA|Ú×|qzî‚Éşyãûs&N-?u±øÔE¼Sm·'Õ¾ØzRm.oª=©/s½×\\ûxÉŸ©>H©~Éõel|Œ—•ºÀ9¶ÎTLí¿Ò1•kß÷çöKnä–“:ÎRÏÎÜÎÎÎ.şåpÂp³Ù<6¾‡AØ‡anìÕœoSc-wZçø5Í3½–‹ºk.L,¹p±µŒP®}5í¯¹˜²µÌQëÅÁ%Ï¹`Î…¶-û¿dŸÍ-`P»K¥c|ÎÅÒK]äßu]Øl6³·³³3³·k6ƒ?;;ûgolúğşÛz¾­y^Ë…ö>Ş’Qgp¾{cJÿ&h:ëõú±Ÿ§úãMàğôeõ!ç·&™ó†i³Ù\|4Ú,:Á'õı ĞƒkrgggAgÇ>Cpü±èx&xY!(ôàšxúwàB'i*oÜ¸nÜ¸±×ë…°~7õËpCğÑ£Gáèèè" —
--=8ÀG?£ƒ§Ñùùy899	'''!„p~KÌ…<Åú,OOOÃf³qù ©ÿH~<¼qã†Ğƒëğ.xtp]g«Õ*Ü¸q#Ü¼y³8 gÿåôqEŠK,#µœ¥–™ëÜW›sËİg_í»íOªı©uNU‹iYÖùùùEÈùnşøIÇééi8==-Àõz®tQ®ÑSaZó¼áºc¥—r¯K•Šµ§tÙ©ûjŞ`ÔôiK•‘ÔsZ÷ïT?§–]Srlj=-eÈbë˜
--®š±Ò·'76cc|8›sÍ´à"eÈjKR-qbŸ[**÷ø>K}Íí£}õéeµ½¦”VMÉ±¥ÆAÉ:ZÆJË˜İl6Aç’˜€÷îİÛí¶›=Ó–±ÙlÂÉÉ‰_D=`78°„<ıG—'''‚.‘ĞƒK²İn/‚ÎG— ôààô¿^}zzê—Q@èÁaêgt®£¡É÷t ôà õŸœœøø„&_ÂÓéhÎ‹K/=ê±ÔrV«UÓEÃ±çÔ^kÇÔræ´+öÜñóK/ÖzîÜĞcÛX2J×]3¾Z+İÔôáf³	<¿ÿıïÃƒ\—™^ê¤‘+µTrÒ--£5UrjnğÕ†_Írr'ÛÜ‰·¶?[B¾¶òJKğÅöoì¾q)¯š××®küš³³³‹ß¾t™\ÃĞ»ŒÚ‘K”&›;{½ŠË]ªm—Um©õ·ÎÈKŸ;Uóí·ßö==8L]×]ü¹Å „dĞõu/OOOu=8Ü Sà„œ¾Øf³ñ— ôàğô§æ% ô88ıÇ–ş +pi¡×_Cµ×¯Ï>oÎ:÷a|áe¶³v±>mYæ“Ø}	°>ì ½aEÔÅÒSïÄÇ¡0u!û8ĞRÁ’Zîpù¹‹İÇmˆİ7u»äâç©‹èkÖ;Õ±å¥Ú4Õ–ØÅëS¡ÛSÛzmÍvõ!×l¹Ùl|l	\îLoÎEÂµ•ER'ùÜræ\ì«äÒrñsËvÕlKK¹®Òòn5ŠÏynïüÑÕ³³3!\Ğƒ%™ÉB! ôxÚœ]ü9àÊ‡Ş“.TÌÓ¡ëºÇ¾ëo˜éñÔÛl638=Âv»ççç}Lé#Jà`Cïìì,Ü¿?<|ø0¬×ëp||}ìy@†MŸŸ‡ívkö\ÏĞëK==zôè±ûW«U8>>GGGáèèèâöğ>®Ş¬møÓ‡œò]€Ğ+ÃÜL Ÿ®×ë‹ \¯×9eX¡eªÊÊø9SÿİŸªÚ²rZ±j%¹mˆİNm[^ÛíöbæÖï£şÿ BoÏ3‹B4û ì†a¸^¯/3ÈXU”¹UGÆÿ/-c{CPSIfê5ıíş;µ>¸úpÿ ğ„C/§ö„İáp9¾›Eö»–ÎÊæ|gÙ¿¶Ÿyƒ­ÿÿxö5|cĞÏÒ 8 Ğ«5†%É"õqëa€Ğ»2J¾Ÿàéä×*z  ô @è€Ğ ¡ B „ = z  ô z  ô @è€Ğ ¡ B „ = z  ô z  ô @è€Ğ ¡ B „ = z  ô zº  ¡ B „ = z  ô @è€Ğ ¡ B ¡ B „ = z  ô @è€Ğ ¡ B ¡ B „ = z  ô @è€Ğ ¡ B ¡ B „ = z  ô @è€Ğ ¡ B „ B „ = z  ô @è€Ğ ¡ B „ B „ = z  ô @è€Ğ ¡ B „ B „ = z  ô @è€Ğ ¡ B „ = „ = z  ô @è€Ğ ¡ B „ = „^¯+¼ «Ò™Şcawzzº½uë–îà©°Ë¬‡¹Ğëwñïo~ó›‡üàõ" WŞ3Ï<v™õb¡7»óİO·û7üìg?û»_|QOpå}ìcŸşô§Cá¤fz]a»ºíğöë¯¿şwŸüä'Ã/¼ 7¸²nİº^zé¥ğ‰O|"„şçTèuƒÙİ6„pBØ~¶o¿ıöé+¯¼ò¿¾ò•¯> ®¤;wî„¯~õ«áÃşğ·_ıõwß½{wÓ?¶êºw>Í\­VÇ!„[!„gBBø!„?ßıüYáı!„;!„wîsŸûó/ùËÿú?øAøÑ~~õ«_…~9 ğ$<ûì³á…^_úÒ—ÂíÛ·ÿó×¾öµ¿	!œt]wŞ?g=šéõ3¼ÓÂ£ğÎo¼<!Üßâ:„Ğığ‡?üo¾ùæßãßøÜf³	?ÿùÏÃ½{÷ô8 OÄ7ÂóÏ?>ó™Ï„û÷ïÿå7¿ùÍ×Âî÷Q††3½UáÆ.Ün‡ŞBøÀn–÷İÏŸìf‚·BëçŸşöç?ÿùù‘|äı·oßv- ûÖ­V«nµZ¯V«ó£££³ããã³Õjõ'''ûË_şòÕo}ë[¯í&m'!„m7ø(rzÇ!„›!„wï‚ï¹ÂŸîï¹]>Bx×. Ãà¢? ØWØífnı§‘Ã;ŸBşÿÂß‡~·»ı»Çí{>½õh¡Ãşã.Øú_v9Û¥fz7w¡§” —z›]õ¡÷!„ßï~îïÂî4üñÊƒÇ\„^×uİ;“½‹……w¾Ïëïë“õ½£™^zf| ì+ğ†¡×OÌúß9éú4ÏúÀëF¿e¹Xøvbö×'ëƒÁ,o|¼	ÀåÎô¶»Lz{7«{´ÀG»œÚìÓu—<z»ÙŞ*üñcÎ0¸}Şù–›£YĞà²Boø5\ÿÓ‡İ¦N¹n5uÿ.øÂ ØúY]vıı¾ÏàIÌöúKìúŸş;¼®K\8¾Š=6¾Õ àúßğ\M û
--»©_}ùEè.S)e•«¤2¿>ØV€'‚İ(³Wz p(|'€Ğ ¡ B „ = z  ô @è€Ğ ¡€Ğ ¡ O¹ ‡à%
--~    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/media/input-focus.png b/resources/skins/default/media/input-focus.png
---- a/resources/skins/default/media/input-focus.png	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/media/input-focus.png	1970-01-01 03:00:00.000000000 +0300
-@@ -1,13 +0,0 @@
--‰PNG
--
--   IHDR      &   ²#ø   	pHYs     šœ  
--MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
--VœHUÄ‚Õ
--Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-- ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
--Ğzù‹y8ü@¡PÈ<
--í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
--¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
--!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
--ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
--îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   ±IDATxÚìÖ1  A`¢2jPƒÍP€‹ì6ßu³ªö  Z‰¿Ç ĞF. @?            @       €             @       €       @       €             @       €           <ñ7] }\   ÿÿ f'¯dÍn    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/media/input-nofocus.png b/resources/skins/default/media/input-nofocus.png
---- a/resources/skins/default/media/input-nofocus.png	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/media/input-nofocus.png	1970-01-01 03:00:00.000000000 +0300
-@@ -1,13 +0,0 @@
--‰PNG
--
--   IHDR      &   ²#ø   	pHYs     šœ  
--MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
--VœHUÄ‚Õ
--Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-- ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
--Ğzù‹y8ü@¡PÈ<
--í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
--¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
--!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
--ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
--îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   ¯IDATxÚìÖ±  Au(ŒÒíé‚İäónWU. `”è½® €1òø  æ          @       €             @       €        @       €             @       €             à‹Şt Ìñ   ÿÿ XÍÕ9µ~    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/media/keyboard-btn-backspace-focus.png b/resources/skins/default/media/keyboard-btn-backspace-focus.png
---- a/resources/skins/default/media/keyboard-btn-backspace-focus.png	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/media/keyboard-btn-backspace-focus.png	1970-01-01 03:00:00.000000000 +0300
-@@ -1,13 +0,0 @@
--‰PNG
--
--   IHDR   v      ´ÈK-   	pHYs  N   N }™Ş  
--MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
--VœHUÄ‚Õ
--Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-- ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
--Ğzù‹y8ü@¡PÈ<
--í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
--¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
--!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
--ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
--îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF  ·IDATxÚì›ÍJÃ@F¡4Mbj‰¶şn|¸ºòq\éƒ¹…¢”V[kkb¢..“¶Áå´|†lîa&î—‹~ÿ±u4 .¯oê‰ïo˜O¡Èá«R¼–×„8vA°œ¿ºè›XÇèÑÆtïs¨>U<Ÿi†°Û†¬‡g6ÖV¬“zOğ<„ÅªRÅóZlÒt!_Øœ“ÛpÛïèÑ¤î`ü³	|~¨x>FĞÙ‡Üî“º'+bçSÛ~Ÿ‡&u8€·	”…Šç3­x)5JààÈ\Öb‹ÜŞ©‹™­Ô·	¼¾,~%Ëk63‡E¾"ö«²ƒRUÚö[&U+väÆæ¬*Í¡û’	TšíDb%VH¬X!±Bb…ÄJ¬X!±Bb…ÄŠXv¦ZG>Œ¬ÏçZBÂ_¢Ä\…‘¹k†æ²'–I;ëù(Vñ|¦ÃŞ¾9K;æ0NVÄ¶3Du×;òŠÆø‹ÆôNÍ]Ö3—µØ °”D¹¼Âl~³f;=7‡.†Z§]º-I-;£øéˆıOüÔÉí(0¾1'ß?ã ;úÅc;ù  ÿÿ À‰po·ùæ    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/default/media/keyboard-btn-backspace.png b/resources/skins/default/media/keyboard-btn-backspace.png
---- a/resources/skins/default/media/keyboard-btn-backspace.png	2015-11-15 11:50:56.000000000 +0200
-+++ b/resources/skins/default/media/keyboard-btn-backspace.png	1970-01-01 03:00:00.000000000 +0300
-@@ -1,13 +0,0 @@
--‰PNG
--
--   IHDR   v      ´ÈK-   	pHYs  N   N }™Ş  
--MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
--VœHUÄ‚Õ
--Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-- ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
--Ğzù‹y8ü@¡PÈ<
--í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
--¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
--!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
--ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
--îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   [IDATxÚìÛA  ÁÀ`µˆ±à£³+!÷ÎØU/´³’äÜk‰FvU¦zVX„EX„EX„aaa…EX„EX„EXaaa.=}   ÿÿ ±°—U©IG    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/720p/script-RSS_Editor-rssEditor.xml b/resources/skins/Default/720p/script-RSS_Editor-rssEditor.xml
---- a/resources/skins/Default/720p/script-RSS_Editor-rssEditor.xml	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/720p/script-RSS_Editor-rssEditor.xml	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,189 @@
-+ï»¿<!--based on PMIII DialogMediaSource.xml by Jezz_X & chokemaniac-->
-+<window id="129">
-+    <defaultcontrol always="true">10</defaultcontrol>
-+    <animation effect="fade" time="400">WindowOpen</animation>
-+    <animation effect="fade" time="400">WindowClose</animation>
-+    <coordinates>
-+        <system>1</system>
-+        <posx>105</posx>
-+        <posy>130</posy>
-+    </coordinates>
-+    <controls>
-+        <control type="image">
-+            <posx>-300</posx>
-+            <posy>-300</posy>
-+            <width>1300</width>
-+            <height>1300</height>
-+            <texture>black.png</texture>
-+            <animation effect="fade" time="2000">WindowOpen</animation>
-+        </control>
-+        <control type="image">
-+            <description>background image</description>
-+            <posx>-15</posx>
-+            <posy>-15</posy>
-+            <width>540</width>
-+            <height>375</height>
-+            <texture>dialog-panel2.png</texture>
-+        </control>
-+        <control type="label" id="2">
-+            <description>Heading Label</description>
-+            <posx>10</posx>
-+            <posy>-2</posy>
-+            <width>500</width>
-+            <align>left</align>
-+            <textcolor>dialogheader</textcolor>
-+        </control>
-+        <control type="label" id="3">
-+            <description>List Label</description>
-+            <posx>10</posx>
-+            <posy>35</posy>
-+            <width>500</width>
-+            <align>left</align>
-+        </control>
-+        <control type="list" id="10">
-+            <posx>10</posx>
-+            <posy>60</posy>
-+            <width>380</width>
-+            <height>160</height>
-+            <onup>9001</onup>
-+            <onleft>13</onleft>
-+            <onright>13</onright>
-+            <ondown>9001</ondown>
-+            <pagecontrol>-</pagecontrol>
-+            <scrolltime>200</scrolltime>
-+            <itemlayout height="40">
-+                <control type="image">
-+                    <posx>0</posx>
-+                    <posy>0</posy>
-+                    <width>380</width>
-+                    <height>32</height>
-+                    <texture>input-nofocus.png</texture>
-+                </control>
-+                <control type="label">
-+                    <posx>5</posx>
-+                    <posy>0</posy>
-+                    <width>370</width>
-+                    <height>32</height>
-+                    <aligny>center</aligny>
-+                    <align>left</align>
-+                    <info>ListItem.Label</info>
-+                </control>
-+            </itemlayout>
-+            <focusedlayout height="40">
-+                <control type="image">
-+                    <posx>0</posx>
-+                    <posy>0</posy>
-+                    <width>380</width>
-+                    <height>32</height>
-+                    <texture>input-nofocus.png</texture>
-+                    <visible>!Control.hasfocus(10)</visible>
-+                </control>
-+                <control type="image">
-+                    <posx>0</posx>
-+                    <posy>0</posy>
-+                    <width>380</width>
-+                    <height>32</height>
-+                    <texture>input-focus.png</texture>
-+                    <visible>Control.hasfocus(14)|Control.hasfocus(10)</visible>
-+                </control>
-+                <control type="label">
-+                    <posx>5</posx>
-+                    <posy>0</posy>
-+                    <width>370</width>
-+                    <height>32</height>
-+                    <aligny>center</aligny>
-+                    <align>left</align>
-+                    <info>ListItem.Label</info>
-+                </control>
-+            </focusedlayout>
-+        </control>
-+        <control type="group" id="9000">
-+            <control type="button" id="11">
-+                <description>Change Set Button</description>
-+                <posx>400</posx>
-+                <posy>140</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <onup>14</onup>
-+                <onleft>10</onleft>
-+                <onright>10</onright>
-+                <ondown>9001</ondown>
-+            </control>
-+            <control type="button" id="13">
-+                <description>Add Button</description>
-+                <posx>400</posx>
-+                <posy>60</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <label>15019</label>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <onup>9001</onup>
-+                <onleft>10</onleft>
-+                <onright>10</onright>
-+                <ondown>14</ondown>
-+            </control>
-+            <control type="button" id="14">
-+                <description>Remove Button</description>
-+                <posx>400</posx>
-+                <posy>100</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <label>1210</label>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <onup>13</onup>
-+                <onleft>10</onleft>
-+                <onright>10</onright>
-+                <ondown>11</ondown>
-+            </control>
-+        </control>
-+        <control type="group" id="9001">
-+            <control type="button" id="18">
-+                <description>Ok Button</description>
-+                <posx>285</posx>
-+                <posy>290</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <label>186</label>
-+                <onup>10</onup>
-+                <onleft>10</onleft>
-+                <onright>19</onright>
-+                <ondown>10</ondown>
-+            </control>
-+            <control type="button" id="19">
-+                <description>Cancel Button</description>
-+                <posx>400</posx>
-+                <posy>290</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <label>222</label>
-+                <onup>10</onup>
-+                <onleft>18</onleft>
-+                <onright>11</onright>
-+                <ondown>10</ondown>
-+            </control>
-+        </control>
-+    </controls>
-+</window>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/720p/script-RSS_Editor-setEditor.xml b/resources/skins/Default/720p/script-RSS_Editor-setEditor.xml
---- a/resources/skins/Default/720p/script-RSS_Editor-setEditor.xml	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/720p/script-RSS_Editor-setEditor.xml	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,189 @@
-+ï»¿<!--based on PMIII DialogMediaSource.xml by Jezz_X & chokemaniac-->
-+<window id="129">
-+    <defaultcontrol always="true">10</defaultcontrol>
-+    <animation effect="fade" time="400">WindowOpen</animation>
-+    <animation effect="fade" time="400">WindowClose</animation>
-+    <coordinates>
-+        <system>1</system>
-+        <posx>105</posx>
-+        <posy>130</posy>
-+    </coordinates>
-+    <controls>
-+        <control type="image">
-+            <posx>-300</posx>
-+            <posy>-300</posy>
-+            <width>1300</width>
-+            <height>1300</height>
-+            <texture>black.png</texture>
-+            <animation effect="fade" time="2000">WindowOpen</animation>
-+        </control>
-+        <control type="image">
-+            <description>background image</description>
-+            <posx>-15</posx>
-+            <posy>-15</posy>
-+            <width>540</width>
-+            <height>375</height>
-+            <texture>dialog-panel2.png</texture>
-+        </control>
-+        <control type="label" id="2">
-+            <description>Heading Label</description>
-+            <posx>10</posx>
-+            <posy>-2</posy>
-+            <width>500</width>
-+            <align>left</align>
-+            <textcolor>dialogheader</textcolor>
-+        </control>
-+        <control type="label" id="3">
-+            <description>List Label</description>
-+            <posx>10</posx>
-+            <posy>35</posy>
-+            <width>500</width>
-+            <align>left</align>
-+        </control>
-+        <control type="list" id="10">
-+            <posx>10</posx>
-+            <posy>60</posy>
-+            <width>380</width>
-+            <height>160</height>
-+            <onup>9001</onup>
-+            <onleft>13</onleft>
-+            <onright>13</onright>
-+            <ondown>9001</ondown>
-+            <pagecontrol>-</pagecontrol>
-+            <scrolltime>200</scrolltime>
-+            <itemlayout height="40">
-+                <control type="image">
-+                    <posx>0</posx>
-+                    <posy>0</posy>
-+                    <width>380</width>
-+                    <height>32</height>
-+                    <texture>input-nofocus.png</texture>
-+                </control>
-+                <control type="label">
-+                    <posx>5</posx>
-+                    <posy>0</posy>
-+                    <width>370</width>
-+                    <height>32</height>
-+                    <aligny>center</aligny>
-+                    <align>left</align>
-+                    <info>ListItem.Label</info>
-+                </control>
-+            </itemlayout>
-+            <focusedlayout height="40">
-+                <control type="image">
-+                    <posx>0</posx>
-+                    <posy>0</posy>
-+                    <width>380</width>
-+                    <height>32</height>
-+                    <texture>input-nofocus.png</texture>
-+                    <visible>!Control.hasfocus(10)</visible>
-+                </control>
-+                <control type="image">
-+                    <posx>0</posx>
-+                    <posy>0</posy>
-+                    <width>380</width>
-+                    <height>32</height>
-+                    <texture>input-focus.png</texture>
-+                    <visible>Control.hasfocus(14)|Control.hasfocus(10)|Control.hasfocus(11)</visible>
-+                </control>
-+                <control type="label">
-+                    <posx>5</posx>
-+                    <posy>0</posy>
-+                    <width>370</width>
-+                    <height>32</height>
-+                    <aligny>center</aligny>
-+                    <align>left</align>
-+                    <info>ListItem.Label</info>
-+                </control>
-+            </focusedlayout>
-+        </control>
-+        <control type="group" id="9000">
-+            <control type="button" id="11">
-+                <description>Change Set Button</description>
-+                <posx>400</posx>
-+                <posy>140</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <onup>14</onup>
-+                <onleft>10</onleft>
-+                <onright>10</onright>
-+                <ondown>9001</ondown>
-+            </control>
-+            <control type="button" id="13">
-+                <description>Add Button</description>
-+                <posx>400</posx>
-+                <posy>60</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <label>15019</label>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <onup>9001</onup>
-+                <onleft>10</onleft>
-+                <onright>10</onright>
-+                <ondown>14</ondown>
-+            </control>
-+            <control type="button" id="14">
-+                <description>Remove Button</description>
-+                <posx>400</posx>
-+                <posy>100</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <label>1210</label>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <onup>13</onup>
-+                <onleft>10</onleft>
-+                <onright>10</onright>
-+                <ondown>11</ondown>
-+            </control>
-+        </control>
-+        <control type="group" id="9001">
-+            <control type="button" id="18">
-+                <description>Ok Button</description>
-+                <posx>285</posx>
-+                <posy>290</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <label>186</label>
-+                <onup>10</onup>
-+                <onleft>10</onleft>
-+                <onright>19</onright>
-+                <ondown>10</ondown>
-+            </control>
-+            <control type="button" id="19">
-+                <description>Cancel Button</description>
-+                <posx>400</posx>
-+                <posy>290</posy>
-+                <width>110</width>
-+                <height>32</height>
-+                <textoffsetx>12</textoffsetx>
-+                <align>center</align>
-+                <aligny>center</aligny>
-+                <texturenofocus>keyboard-btn-backspace.png</texturenofocus>
-+                <texturefocus>keyboard-btn-backspace-focus.png</texturefocus>
-+                <label>222</label>
-+                <onup>10</onup>
-+                <onleft>18</onleft>
-+                <onright>11</onright>
-+                <ondown>10</ondown>
-+            </control>
-+        </control>
-+    </controls>
-+</window>
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/media/black.png b/resources/skins/Default/media/black.png
---- a/resources/skins/Default/media/black.png	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/media/black.png	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,14 @@
-+‰PNG
-+
-+   IHDR         óÿa   	pHYs     šœ  
-+OiCCPPhotoshop ICC profile  xÚSgTSé=÷ŞôBKˆ€”KoR RB‹€‘&*!	Jˆ!¡ÙQÁEEÈ ˆ€ŒQ,Š
-+Øä!¢ƒ£ˆŠÊûá{£kÖ¼÷æÍşµ×>ç¬ó³ÏÀ–H3Q5€©BàƒÇÄÆáä.@
-+$p ³d!sı# ø~<<+"À¾ xÓ ÀM›À0‡ÿêB™\€„Àt‘8K€ @zB¦ @F€˜&S   `Ëcbã P- `'æÓ €ø™{ [”! ‘  eˆD h; ¬ÏVŠE X0 fKÄ9 Ø- 0IWfH °· ÀÎ²  0Qˆ…) { `È##x „™ FòW<ñ+®ç*  x™²<¹$9E[-qWW.(ÎI+6aaš@.Ây™24àóÌ   ‘àƒóıxÎ®ÎÎ6¶_-ê¿ÿ"bbãşåÏ«p@  át~Ñş,/³€;€mş¢%îh^ u÷‹f²@µ  éÚWópø~<<E¡¹ÙÙåääØJÄB[aÊW}şgÂ_ÀWılù~<ü÷õà¾â$2]GøàÂÌôL¥Ï’	„bÜæGü·ÿüÓ"ÄIb¹X*ãQqDšŒó2¥"‰B’)Å%Òÿdâß,û>ß5 °j>{‘-¨]cöK'XtÀâ÷  ò»oÁÔ(€hƒáÏwÿï?ıG % €fI’q  ^D$.TÊ³?Ç  D *°AôÁ,ÀÁÜÁü`6„B$ÄÂBB
-+d€r`)¬‚B(†Í°*`/Ô@4ÀQh†“p.ÂU¸=púaÁ(¼	AÈa!ÚˆbŠX#™…ø!ÁH‹$ ÉˆQ"K‘5H1RŠT UHò=r9‡\Fº‘;È 2‚ü†¼G1”²Q=ÔµC¹¨7„F¢Ğdt1š ›Ğr´=Œ6¡çĞ«hÚ>CÇ0Àè3Äl0.ÆÃB±8,	“cË±"¬«Æ°V¬»‰õcÏ±wEÀ	6wB aAHXLXNØH¨ $4Ú	7	„QÂ'"“¨K´&ºùÄb21‡XH,#Ö/{ˆCÄ7$‰C2'¹I±¤TÒÒFÒnR#é,©›4H#“ÉÚdk²9”, +È…ääÃä3ää!ò[
-+b@q¤øSâ(RÊjJåå4åe˜2AU£šRİ¨¡T5ZB­¡¶R¯Q‡¨4uš9ÍƒIK¥­¢•Óhh÷i¯ètºİ•N—ĞWÒËéGè—èôw†ƒÇˆg(›gw¯˜L¦Ó‹ÇT071ë˜ç™™oUX*¶*|‘Ê
-+•J•&•*/T©ª¦ªŞªUóUËT©^S}®FU3Sã©	Ô–«UªPëSSg©;¨‡ªg¨oT?¤~Yı‰YÃLÃOC¤Q ±_ã¼Æ c³x,!k«†u5Ä&±ÍÙ|v*»˜ı»‹=ª©¡9C3J3W³Ró”f?ã˜qøœtN	ç(§—ó~ŠŞï)â)¦4L¹1e\kª–—–X«H«Q«Gë½6®í§¦½E»YûAÇJ'\'GgÎçSÙSİ§
-+§M=:õ®.ªk¥¡»Dw¿n§î˜¾^€Lo§Şy½çú}/ıTımú§õGX³$ÛÎ<Å5qo</ÇÛñQC]Ã@C¥a•a—á„‘¹Ñ<£ÕFFŒiÆ\ã$ãmÆmÆ£&&!&KMêMîšRM¹¦)¦;L;LÇÍÌÍ¢ÍÖ™5›=1×2ç›ç›×›ß·`ZxZ,¶¨¶¸eI²äZ¦Yî¶¼n…Z9Y¥XUZ]³F­­%Ö»­»§§¹N“N«ÖgÃ°ñ¶É¶©·°åØÛ®¶m¶}agbg·Å®Ãî“½“}º}ı=‡Ù«Z~s´r:V:ŞšÎœî?}Åô–é/gXÏÏØ3ã¶Ë)ÄiS›ÓGgg¹sƒóˆ‹‰K‚Ë.—>.›ÆİÈ½äJtõq]ázÒõ›³›Âí¨Û¯î6îiî‡ÜŸÌ4Ÿ)Y3sĞÃÈCàQåÑ?Ÿ•0kß¬~OCOgµç#/c/‘W­×°·¥wª÷aï>ö>rŸã>ã<7Ş2ŞY_Ì7À·È·ËOÃo_…ßC#ÿdÿzÿÑ §€%g‰A[ûøz|!¿?:Ûeö²ÙíAŒ ¹AA‚­‚åÁ­!hÈì­!÷ç˜Î‘Îi…P~èÖĞaæa‹Ã~'…‡…W†?pˆXÑ1—5wÑÜCsßDúD–DŞ›g1O9¯-J5*>ª.j<Ú7º4º?Æ.fYÌÕXXIlK9.*®6nl¾ßüíó‡ââã{˜/È]py¡ÎÂô…§©.,:–@LˆN8”ğA*¨Œ%òw%
-+yÂÂg"/Ñ6ÑˆØC\*NòH*Mz’ì‘¼5y$Å3¥,å¹„'©¼LLİ›:šv m2=:½1ƒ’‘qBª!M“¶gêgæfvË¬e…²şÅn‹·/•Ék³¬Y-
-+¶B¦èTZ(×*²geWf¿Í‰Ê9–«+ÍíÌ³ÊÛ7œïŸÿíÂá’¶¥†KW-Xæ½¬j9²<qyÛ
-+ã+†V¬<¸Š¶*mÕO«íW—®~½&zMk^ÁÊ‚ÁµkëU
-+å…}ëÜ×í]OX/Yßµaú†>‰Š®Û—Ø(Üxå‡oÊ¿™Ü”´©«Ä¹dÏfÒféæŞ-[–ª—æ—nÙÚ´ßV´íõöEÛ/—Í(Û»ƒ¶C¹£¿<¸¼e§ÉÎÍ;?T¤TôTúT6îÒİµa×ønÑî{¼ö4ìÕÛ[¼÷ı>É¾ÛUUMÕfÕeûIû³÷?®‰ªéø–ûm]­NmqíÇÒı#¶×¹ÔÕÒ=TRÖ+ëGÇ¾şïw-6UœÆâ#pDyäé÷	ß÷:ÚvŒ{¬áÓvg/jBšòšF›Sšû[b[ºOÌ>ÑÖêŞzüGÛœ4<YyJóTÉiÚé‚Ó“gòÏŒ•}~.ùÜ`Û¢¶{çcÎßjoïºtáÒEÿ‹ç;¼;Î\ò¸tò²ÛåW¸Wš¯:_mêtê<ş“ÓOÇ»œ»š®¹\k¹îz½µ{f÷é7Îİô½yñÿÖÕ9=İ½ózo÷Å÷õßİ~r'ıÎË»Ùw'î­¼O¼_ô@íAÙCİ‡Õ?[şÜØïÜjÀw óÑÜG÷…ƒÏş‘õC™Ë††ë8>99â?rıéü§CÏdÏ&ş¢şË®/~øÕë×ÎÑ˜Ñ¡—ò—“¿m|¥ıêÀë¯ÛÆÂÆ¾Éx31^ôVûíÁwÜwï£ßOä| (ÿhù±õSĞ§û“““ÿ˜óüc3-Û   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   #IDATxÚbd``h`  01PF5`Ô€Áb    ÿÿ K.  ÎHo    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/media/dialog-panel2.png b/resources/skins/Default/media/dialog-panel2.png
---- a/resources/skins/Default/media/dialog-panel2.png	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/media/dialog-panel2.png	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,25 @@
-+‰PNG
-+
-+   IHDR  ½  O   ÙtV   	pHYs     šœ  
-+MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
-+VœHUÄ‚Õ
-+Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-+ ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
-+Ğzù‹y8ü@¡PÈ<
-+í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
-+¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
-+!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
-+ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
-+îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF  ÄIDATxÚìİÍ$iğ'«²»y™^†E^±æ^1ÈBˆB²ˆ+#„O£İ¶87ˆƒeÉ»G‹,ş€±/Öp–@ŒF‚“}ğz!ù,°f›îŞª¬¬ØÃdÑ±ñ¼FduuÖç#•:;_"xâ‰øæ“Yñ«U×u ®ƒ#] Àu±Î=aµZ­†ÿü„ï~÷»ñ®w½ëËÇÇÇŸ!ü™î`ßV«ÕÔG”Bÿ»ëºÿ~÷îİW£¯}¼9»£]È÷·oß¾}üíoû?şîw¿ûæüãğÖ[o…?üáö OÄÍ›7Ã‡>ô¡ğâ‹/†O}êSÿ­ëºÿr÷îİŸdCovG»°[÷?/½ôÒŸ~á_øo¼ñÆ¿õÕWÃıû÷õ6 WÆg?ûÙğòË/‡gŸ}öîİ»wÿkIèÃîfáÖîçæw¾ó¿şÉO~òWßûŞ÷ô, WÒG?úÑğõ¯=¼ç=ïù‹»wïşß0˜ÍÅïfáİ!„gBwBÏ½üòËÿöŞ½{õıï?º¢Õjÿğñû¦O½¶äñÔúJ–›ZVêşÚíœz,õš\›cË˜úwj™¹ı0Õ‡±6N=V³_K—Û¯¹¾¨]GjÿåÆb®5ã.µ¯çŒçšåæ+]ªoK·£f}¹¶äÆ~n›sÇI{kŸ›:rçÒe¤Æmíı-çØ’óhÉ9ş­·Ş
-+¯½öZøõ¯ı·¯¼òÊ¿êïÿ"KzëİÌî½!„Û»Ğ»ıñüß½ñÆa»İ^¬¨ëºÇşo@×u¡ŸMN5~üºáòJÂ&ö¼ñrjUÉãã¶·kÎ‰®e û3¶?Æ·cÛQú& ¶ŞÔ˜(ÙÎÚı•jSê@jûcËÅÔXOı?×†Ò“vªßKÖ5u,¶¼!,éçØq’:®bçÔXK½ù,[ÃvÆ±Øòsë)9cçÉThåÎµ5¯‹=/µ%Î+­ãµoóOúÓ°^¯Ã¿øÅ¿!ü§ÇBo7Ë[fyÏ†ŞBx.„ğ¾;wî¼ğ‹_ü¢jÇ¶¼[Z" j—Ó²®–@«ÙÙK´1µì%û¨&´jN6­¯_êy—µ]û§­ãxÉ6ÕôeËì¨æä?·íûê—šqØÒ†%¶}ÉYùÒëŸÚG¿ıíoÃ›o¾V«Õ¿‰ÍôÆ³¼gw÷Âs7oŞ¼óàÁpåu]>|v9vr±Ğ{Ïh¦÷ş®ëÖçççz€§*ÿ¦Boø}Şğ—Xï|§wçüüühé©= \–qèõßéİß{ûŸ®ë$ zS×çÿz Dèƒïx€ÇAqj 0ôV£ğ;Ü zã €§Ü*z«ñ ‡8Ó[Ş—Õ‚z¹ê -•%J+’´Ôˆ>§¥~`é6”´+Wÿ®d}KÖplynI}ĞÚûJÇEéØ™ûœ¹•‹RıSSÆ.·ßkÆ}í~Y¢nfíq3·‚ÊÜš™©Z”s+÷”Ôş¬=ÇÌ9~[¶aéófÍò×K¯p\w­5ğj:6UO²´†çğµ±Z ¹zSíÈ‰Õµ›ªõ[×Ô:çÔPœªó7Õ×©mNÕ÷œz^®ÆáøşX»§úpªÿjOãeÅÆ\ª®èTíÈ©vçöÍÔ‰‡ãõå‡©¶LõwI]ÓÔ~.=·ŒÛÛÇµA8Şo±1;FSÇmé±VrŞŠË©sĞ¸¿RõGKÎ«©s`îxIÕü'cçÎ©¾ÉÛ§–µ[¢vfk­·ÒwÖ-I¡¶>Ş’Õ¡væ3·FhÍ»æÒv–öMIÅ¥ê,¶Ì,jß´µŒÙ%fêKÎ¶j‹ïó}kÊ9cs‰Ùlí'P5Ÿb,Ñ?5c¾e¦ZzÌ–lûœvÄ>Ş€ƒ$ô z  ô @è€Ğ ¡ B „ = z Ğz©Â½±Zr¹Ç†÷oO­cjÙ¹vMı5‚ÒåÔÔLU>­'U@vªÍ¥µér/õ—bıœÚ×¹Jñ©¿"ÛŸ5ã7Õ–\ÍÜkSûµæ/f´Á’±Pr,—Öq,İ/¥Û;fjÇxnµôWí1Ÿ;N–®=YÓ®TßÖşE‘Úzš¥ùPrœÔ×ê‚Ó©*í5îÒV¨äuµ,WM|É"ªKoMXµöQé	ºf¿·„øøÿ¥á¢¤àoªŸbI$v;5Æá²‚¯ö˜‰ı„ÚıßR°º¥(sM¸¤şjÉÇ|ÍşÙWğåî+s±¿r°TLç¼9™õW–úrO‹CÜÖë°ÿ.kçü5CÙG‡<®Ó¹î¯Ò×øN€kCè ô @è€Ğ ¡ B „ = z 0iX©åhÎ‹kS[ô¹v}%…\§Ú˜+F+dš+pZZ¤¸¦PsÉãµÅ¬[j!–İNí«ÚÂÂ¹m¬ÙÔø*^RX¹öx*-´[ºİ¥ÅÀK·£¥àyj?åÎ¥û¤f|ÆÚU{ü–óš1PZ”¿u¿ÔœŸKÇEÉ¹¬ä<•;··ôÙb§kƒ¯/:,Î+X+ÈÛZãpøºÚâ¥ã6åÔT‘àÒP,ÙÎ¹…e—.\ÚŸ¥û±ää]úºšà‹§½n<F‡c9·­5ëJ«ší^zÜïo-ÈÜZ½¶½%Å²Kƒ/wNˆ§Ò"è5okú+w¬Î9Í)˜]s,æ^—êï©s÷Ş?ŞœSU}_ÓÛ}¼nmßW,±Ü¥Úö¤‹úÎ-İ:«k]şÜşZ²¿kß¤Í]şÒceç„'qn;”sÓeMßépm= „ = z  ô @è€Ğ ¡ W$ôæ\Q_S«nëO-oîvík{[Ú_Sª+ÕÎ%ªR´Öa¼Œı_SdN›sË[²jÈeT¹*USæ®³u×”Ak­Şr+W]Ör—XÎ¢µ7ÇucuÇõ8ûçÅ3õúÒZwã6¤¶%·¬Øúº®ûg÷ÇÚXÚŞ©çÆşŸ«e:U72Õ/ãuŒû'öšØş™¹ú”ã}>õXjŸÄ¶q¼=SmK…ñrJÚ2Ş–TÁ©c«¤~hlOµ¯´Ÿ§“©õ•á’¾ê‡Üş-9ÄÎO©¾Ní·Ü—’cjj\¦^{~î¼ë³ÜI='•¹õæ2 uıãÇ×K&mí;™šÂÂµ3±–¿²0çİvË¬¥f-ï [Ş1æ*ı—Î[Š×ôsKeş–öÖÑ¹s[öÇœ‚ÜK¡}/I-õÉ@KíÚ6Î/q©]÷Ü¿1ç˜­éß\øN€kCè ô @è€Ğ ¡ B „ \•Ğ–ééo×^´>~ıøy%4¦^;Õ¦š‹`S·Çëµ«åâùÚ×æÚ[^É~+Ù?¹ı[Wî¢ëØ6”\T=õ“7±çNµ¡f?äú³¤/Kö]Í1TzLÔ[µû07ŞsmÊíÏšc65JÏÒ¾¬÷±±WZ¾0·­¥çñÒşÈ§©m*9fRû«fûC˜Y‘eÉú„­ÁWó¼¥ƒ¯¤öU5¦¥*Aiµ•Ò¶ÌéÚà«YÇœö×ñ¥‡Ö1ŞrµŒÑ–7_-oøjÇ@í¶Ö—Úçì+øJÇîœ¾Ógs«µÔ_ÍcãÇ}¼	€7@è€Ğ ¡ B „ = z  ô  WU†lªæ^×u÷õ·Ç÷M-§7|î”Øã¹×Ÿ;nïø¾ØöŒÛ\Ú©çÅî›êÏTÆÖŸkçxÛÇËLµ¯dMõ×¸-%ë˜ÚŞØ²K¶5õü’ñ[ÒöÔñëÇÔ>‹É’ã¢dŒäöYÉ²¦ú-5FK™’ñX²ïJİØù u,·ì’väÆÂœsgË±;G–kcË¨9ŸN‰X¤±æĞ›êø–Úw¹xÉã¥WÛÆÖº}­õëJ‹õÖlcn]5}ÚZ×²d¼Ìí»Ömm¿µm¿Ì×ÖöSmÚ¹Ëj³söİœz´sÛµäy`Î9pnÒ%j}ÎÇKÔwV{€kKè ô @è€Ğ ¡ B „ = ¸ÄĞk©„ÒZ-!·œ’öå;§bÌÕbrí.icíúK+-ÄªUÌmSiµ‰¥·{nŸ,µ¿‡ÛV»Ÿk¿Ö
-+8sÚQRIeNŸ•ì¯ÚsÅ’U¤–8/ís=sª=µŒ×ÒíÉUs©©”ÚÆê2d¹q%eeJk%o×Ôœ›znIÛbËO=>õXM]Ä©š¥ojêé¥öSjÿÅêİÕÔ>MõyI-ÓÒÚµõXS5ûbc&VµäïãÒ’s¹ıUr<äêc¦ú¸¤mÉ	7öÿ’’­m.í›Ü~¯§¶¾jIµSlŒæÎ%c}ê\Ã©}Vä5c(vŞLí¯¦Ğk}ÇUzßÜzqK¼kÚÇì¯t»—®á·¯™ÌR³ƒÒÚ{û˜-Ñ—ñ¾¶>ak.U;õ*oúf¹sòáµ/-5:}§Àµ!ô z  ô @è€Ğ ¡ W:ôZ®QÊ]×·ÄµSË,iWËu4©ªSÿŸ³şÒkÈÆ•RZ*V”îšÊS¯k¹NhÜ¶94bûm©*!±m‰U¶©İšã öõ¥}UzläÆ~jù¹×§Æ×œ¾©½vv‰ÊNs+GåÆY¬½¹‹¿—8Ï–î¿ÖqCcÕ§ï+øJoïc‡´”—ªíƒ¹e›ZÚ='ø¦n§*cÔhcíIUÃi=PZƒvÎñ°ô˜š|±Ê$­÷-U
-+pÎ¾Sb+×7-E#öq!yëØ,	'|©ŠSKŸ¯cÏóñæLŸèwûNßğtôµĞàÚz = z  ô @è€Ğ ¡ W!ôjË5•Tëh½`1W¾©¶ÄÜ
-+¹ò?-Ë[â¨¶İ5ûmîz–¨N²DûæTöÈ=·´$YK÷½k+fìãÂãÒã¨¥¬Ü¥èZ^[»=%}°Ïãv©ñXS*±µ
-+UIûÖKlt¬ÄQÉèK[M• šznÉ	*Vê¦ôõ±Ç‡m­=QävV¬ÄWí‰w¼ÃÿÇn·¶=·¿Zg×uËêó\ÛsÛY3®Jöyªÿ§ÚÖ¬¥ÇÈ“¾ÔØ+íÿÜ1:µÎÒcwêv®ô]í¸©=VRc,w<N-3Uæ«u?åöÉœó@Íö·ßøşæĞÛÇ»Ğ¥f4sfVûœQ]Æ²KOR-³âËêÚÅœšœKÏ$ŸÄ¬üªhS­E‹—ZÇœÙİÒÇå’ŸP,µŸmLûN€kCè ô @è€Ğ ¡ B „ Bè-Ur)Wögé‹½÷Uh©‹q‡íÜ×…¯S-Ušjn	§%öSÍzç\˜¼ôñò$á–1=÷bîšåÎ­æqYç‡\›.«œXî˜ÎíïÚc¿ôø-]nM?­—ğ¹’8±¦JĞL•ÿ;µ¼X‰¡Ò’RSíZoÎ¸DRm°Òò<Ã²]±×µ–V*9IäJSµ¼Ù¿njK¥öÏÔcãÛ©v«)ó”+£O-å¤ZÄ±©1›ÚgÃ×æöyîXH•+­X©­Øş(-]—:nKöimÄÒı;ÅÆWÉy·dbÏKë©óvj_ŒßÒ×-R†lNúÖÎ(r'}”ûYê~ÍiÎ,iN™¥¥úké™æœB³¥ïf÷1o-f½ï"Ô¥ïê[ÏÖ™Å¾fO©e¶B_r¦;wV4·en¹µuZ—:§µ¾éNµÅwz \B ¡ B „ = z  ô àª†Ş¸VíâÃ×”^4YÒš6Lİ¿8ãímÙ––u÷Í>úrÉ`K•g[ª5%×¿¹<§
-+5Ì½{_û`ëo9_µ¶oŸeèZÇçÇQÍXYºÄàeY/Ñ%%µJC'Uº,WÒij}±²Z©Çc¥lbë/í“áókJÅÚ4.ŸT³ÿJÊ@åŞ€ŒËÿì#øJKv•`¹væ–ÓRšªå„[:îJ+¢LåšÒz±’^¹±+Ç+UÛ%åc·§JfÅÆHjl––u+)­8¾¯¤l`iiÀ’²‘ãã¨dù©ò±rg5û²dÿÌ
-+½}¼›(]VËº[
-+"Ï-~ÚrÒkyİRešZË˜-]²¬u5³×})o)ÛÕúîzÉÙCmé°Úc®´TTk;öù©ÏÒÇûœñ±Ä§_KÏ¸[ËºÍ-l½Ä±â;= ®µ. ®³®ëÂùùùÅíşc¶ş¾œív£G?êM½å¬Ó=¡„óóó‹ïĞúÀ:??¿¸½İnª«ªÂ£££°Z­ÂÑÑQ8::zì±ş~Ìô€õÁ¶İn/ş½ê!V«v›ú †åÑÑQ8>>sCï*şgàpNöÛíö"Ü†Ç¼`ˆı¿B`Ï3¶>à†!ÇşƒqJ„GGGa½^_ü+ô *Âml}¸¯£âj¾é8==},/~ÖëõA|Ú×|qzî‚Éşyãûs&N-?u±øÔE¼Sm·'Õ¾ØzRm.oª=©/s½×\\ûxÉŸ©>H©~Éõel|Œ—•ºÀ9¶ÎTLí¿Ò1•kß÷çöKnä–“:ÎRÏÎÜÎÎÎ.şåpÂp³Ù<6¾‡AØ‡anìÕœoSc-wZçø5Í3½–‹ºk.L,¹p±µŒP®}5í¯¹˜²µÌQëÅÁ%Ï¹`Î…¶-û¿dŸÍ-`P»K¥c|ÎÅÒK]äßu]Øl6³·³³3³·k6ƒ?;;ûgolúğşÛz¾­y^Ë…ö>Ş’Qgp¾{cJÿ&h:ëõú±Ÿ§úãMàğôeõ!ç·&™ó†i³Ù\|4Ú,:Á'õı ĞƒkrgggAgÇ>Cpü±èx&xY!(ôàšxúwàB'i*oÜ¸nÜ¸±×ë…°~7õËpCğÑ£Gáèèè" —
-+=8ÀG?£ƒ§Ñùùy899	'''!„p~KÌ…<Åú,OOOÃf³qù ©ÿH~<¼qã†Ğƒëğ.xtp]g«Õ*Ü¸q#Ü¼y³8 gÿåôqEŠK,#µœ¥–™ëÜW›sËİg_í»íOªı©uNU‹iYÖùùùEÈùnşøIÇééi8==-Àõz®tQ®ÑSaZó¼áºc¥—r¯K•Šµ§tÙ©ûjŞ`ÔôiK•‘ÔsZ÷ïT?§–]Srlj=-eÈbë˜
-+®š±Ò·'76cc|8›sÍ´à"eÈjKR-qbŸ[**÷ø>K}Íí£}õéeµ½¦”VMÉ±¥ÆAÉ:ZÆJË˜İl6Aç’˜€÷îİÛí¶›=Ó–±ÙlÂÉÉ‰_D=`78°„<ıG—'''‚.‘ĞƒK²İn/‚ÎG— ôààô¿^}zzê—Q@èÁaêgt®£¡É÷t ôà õŸœœøø„&_ÂÓéhÎ‹K/=ê±ÔrV«UÓEÃ±çÔ^kÇÔræ´+öÜñóK/ÖzîÜĞcÛX2J×]3¾Z+İÔôáf³	<¿ÿıïÃƒ\—™^ê¤‘+µTrÒ--£5UrjnğÕ†_Írr'ÛÜ‰·¶?[B¾¶òJKğÅöoì¾q)¯š××®küš³³³‹ß¾t™\ÃĞ»ŒÚ‘K”&›;{½ŠË]ªm—Um©õ·ÎÈKŸ;Uóí·ßö==8L]×]ü¹Å „dĞõu/OOOu=8Ü Sà„œ¾Øf³ñ— ôàğô§æ% ô88ıÇ–ş +pi¡×_Cµ×¯Ï>oÎ:÷a|áe¶³v±>mYæ“Ø}	°>ì ½aEÔÅÒSïÄÇ¡0u!û8ĞRÁ’Zîpù¹‹İÇmˆİ7u»äâç©‹èkÖ;Õ±å¥Ú4Õ–ØÅëS¡ÛSÛzmÍvõ!×l¹Ùl|l	\îLoÎEÂµ•ER'ùÜræ\ì«äÒrñsËvÕlKK¹®Òòn5ŠÏynïüÑÕ³³3!\Ğƒ%™ÉB! ôxÚœ]ü9àÊ‡Ş“.TÌÓ¡ëºÇ¾ëo˜éñÔÛl638=Âv»ççç}Lé#Jà`Cïìì,Ü¿?<|ø0¬×ëp||}ìy@†MŸŸ‡ívkö\ÏĞëK==zôè±ûW«U8>>GGGáèèèâöğ>®Ş¬møÓ‡œò]€Ğ+ÃÜL Ÿ®×ë‹ \¯×9eX¡eªÊÊø9SÿİŸªÚ²rZ±j%¹mˆİNm[^ÛíöbæÖï£şÿ BoÏ3‹B4û ì†a¸^¯/3ÈXU”¹UGÆÿ/-c{CPSIfê5ıíş;µ>¸úpÿ ğ„C/§ö„İáp9¾›Eö»–ÎÊæ|gÙ¿¶Ÿyƒ­ÿÿxö5|cĞÏÒ 8 Ğ«5†%É"õqëa€Ğ»2J¾Ÿàéä×*z  ô @è€Ğ ¡ B „ = z  ô z  ô @è€Ğ ¡ B „ = z  ô z  ô @è€Ğ ¡ B „ = z  ô zº  ¡ B „ = z  ô @è€Ğ ¡ B ¡ B „ = z  ô @è€Ğ ¡ B ¡ B „ = z  ô @è€Ğ ¡ B ¡ B „ = z  ô @è€Ğ ¡ B „ B „ = z  ô @è€Ğ ¡ B „ B „ = z  ô @è€Ğ ¡ B „ B „ = z  ô @è€Ğ ¡ B „ = „ = z  ô @è€Ğ ¡ B „ = „^¯+¼ «Ò™Şcawzzº½uë–îà©°Ë¬‡¹Ğëwñïo~ó›‡üàõ" WŞ3Ï<v™õb¡7»óİO·û7üìg?û»_|QOpå}ìcŸşô§Cá¤fz]a»ºíğöë¯¿şwŸüä'Ã/¼ 7¸²nİº^zé¥ğ‰O|"„şçTèuƒÙİ6„pBØ~¶o¿ıöé+¯¼ò¿¾ò•¯> ®¤;wî„¯~õ«áÃşğ·_ıõwß½{wÓ?¶êºw>Í\­VÇ!„[!„gBBø!„?ßıüYáı!„;!„wîsŸûó/ùËÿú?øAøÑ~~õ«_…~9 ğ$<ûì³á…^_úÒ—ÂíÛ·ÿó×¾öµ¿	!œt]wŞ?g=šéõ3¼ÓÂ£ğÎo¼<!Üßâ:„Ğığ‡?üo¾ùæßãßøÜf³	?ÿùÏÃ½{÷ô8 OÄ7ÂóÏ?>ó™Ï„û÷ïÿå7¿ùÍ×Âî÷Q††3½UáÆ.Ün‡ŞBøÀn–÷İÏŸìf‚·BëçŸşöç?ÿùù‘|äı·oßv- ûÖ­V«nµZ¯V«ó£££³ããã³Õjõ'''ûË_şòÕo}ë[¯í&m'!„m7ø(rzÇ!„›!„wï‚ï¹ÂŸîï¹]>Bx×. Ãà¢? ØWØífnı§‘Ã;ŸBşÿÂß‡~·»ı»Çí{>½õh¡Ãşã.Øú_v9Û¥fz7w¡§” —z›]õ¡÷!„ßï~îïÂî4üñÊƒÇ\„^×uİ;“½‹……w¾Ïëïë“õ½£™^zf| ì+ğ†¡×OÌúß9éú4ÏúÀëF¿e¹Xøvbö×'ëƒÁ,o|¼	ÀåÎô¶»Lz{7«{´ÀG»œÚìÓu—<z»ÙŞ*üñcÎ0¸}Şù–›£YĞà²Boø5\ÿÓ‡İ¦N¹n5uÿ.øÂ ØúY]vıı¾ÏàIÌöúKìúŸş;¼®K\8¾Š=6¾Õ àúßğ\M û
-+»©_}ùEè.S)e•«¤2¿>ØV€'‚İ(³Wz p(|'€Ğ ¡ B „ = z  ô @è€Ğ ¡€Ğ ¡ O¹ ‡à%
-+~    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/media/input-focus.png b/resources/skins/Default/media/input-focus.png
---- a/resources/skins/Default/media/input-focus.png	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/media/input-focus.png	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,13 @@
-+‰PNG
-+
-+   IHDR      &   ²#ø   	pHYs     šœ  
-+MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
-+VœHUÄ‚Õ
-+Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-+ ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
-+Ğzù‹y8ü@¡PÈ<
-+í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
-+¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
-+!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
-+ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
-+îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   ±IDATxÚìÖ1  A`¢2jPƒÍP€‹ì6ßu³ªö  Z‰¿Ç ĞF. @?            @       €             @       €       @       €             @       €           <ñ7] }\   ÿÿ f'¯dÍn    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/media/input-nofocus.png b/resources/skins/Default/media/input-nofocus.png
---- a/resources/skins/Default/media/input-nofocus.png	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/media/input-nofocus.png	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,13 @@
-+‰PNG
-+
-+   IHDR      &   ²#ø   	pHYs     šœ  
-+MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
-+VœHUÄ‚Õ
-+Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-+ ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
-+Ğzù‹y8ü@¡PÈ<
-+í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
-+¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
-+!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
-+ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
-+îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   ¯IDATxÚìÖ±  Au(ŒÒíé‚İäónWU. `”è½® €1òø  æ          @       €             @       €        @       €             @       €             à‹Şt Ìñ   ÿÿ XÍÕ9µ~    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/media/keyboard-btn-backspace-focus.png b/resources/skins/Default/media/keyboard-btn-backspace-focus.png
---- a/resources/skins/Default/media/keyboard-btn-backspace-focus.png	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/media/keyboard-btn-backspace-focus.png	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,13 @@
-+‰PNG
-+
-+   IHDR   v      ´ÈK-   	pHYs  N   N }™Ş  
-+MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
-+VœHUÄ‚Õ
-+Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-+ ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
-+Ğzù‹y8ü@¡PÈ<
-+í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
-+¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
-+!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
-+ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
-+îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF  ·IDATxÚì›ÍJÃ@F¡4Mbj‰¶şn|¸ºòq\éƒ¹…¢”V[kkb¢..“¶Áå´|†lîa&î—‹~ÿ±u4 .¯oê‰ïo˜O¡Èá«R¼–×„8vA°œ¿ºè›XÇèÑÆtïs¨>U<Ÿi†°Û†¬‡g6ÖV¬“zOğ<„ÅªRÅóZlÒt!_Øœ“ÛpÛïèÑ¤î`ü³	|~¨x>FĞÙ‡Üî“º'+bçSÛ~Ÿ‡&u8€·	”…Šç3­x)5JààÈ\Öb‹ÜŞ©‹™­Ô·	¼¾,~%Ëk63‡E¾"ö«²ƒRUÚö[&U+väÆæ¬*Í¡û’	TšíDb%VH¬X!±Bb…ÄJ¬X!±Bb…ÄŠXv¦ZG>Œ¬ÏçZBÂ_¢Ä\…‘¹k†æ²'–I;ëù(Vñ|¦ÃŞ¾9K;æ0NVÄ¶3Du×;òŠÆø‹ÆôNÍ]Ö3—µØ °”D¹¼Âl~³f;=7‡.†Z§]º-I-;£øéˆıOüÔÉí(0¾1'ß?ã ;úÅc;ù  ÿÿ À‰po·ùæ    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸
-diff -Naur a/resources/skins/Default/media/keyboard-btn-backspace.png b/resources/skins/Default/media/keyboard-btn-backspace.png
---- a/resources/skins/Default/media/keyboard-btn-backspace.png	1970-01-01 03:00:00.000000000 +0300
-+++ b/resources/skins/Default/media/keyboard-btn-backspace.png	2015-11-15 12:50:56.000000000 +0200
-@@ -0,0 +1,13 @@
-+‰PNG
-+
-+   IHDR   v      ´ÈK-   	pHYs  N   N }™Ş  
-+MiCCPPhotoshop ICC profile  xÚSwX“÷>ß÷eVBØğ±—l "#¬ÈY¢’ a„@Å…ˆ
-+VœHUÄ‚Õ
-+Hˆâ (¸gAŠˆZ‹U\8îÜ§µ}zïííû×û¼çœçüÎyÏ€&‘æ¢j 9R…<:ØOHÄÉ½€Hà æËÂgÅ  ğyx~t°?ü¯o  pÕ.$ÇáÿƒºP&W  ‘ à"çR È.TÈ È °S³d
-+ ”  ly|B" ª ìôI> Ø©“Ü Ø¢©  ™(G$@» `UR,ÀÂ  ¬@".À®€Y¶2G€½ vX@` €™B,Ì  8 CÍ L 0Ò¿à©_p…¸H ÀË•Í—KÒ3¸•Ğwòğàâ!âÂl±Ba)f	ä"œ—›#HçLÎ  ùÑÁş8?çæäáæfçlïôÅ¢şkğo">!ñßş¼Œ NÏïÚ_ååÖpÇ°u¿k©[ ÚV hßù]3Û	 Z
-+Ğzù‹y8ü@¡PÈ<
-+í%b¡½0ã‹>ÿ3áoà‹~öü@şÛzğ qš@™­À£ƒıqanv®RçËB1n÷ç#şÇ…ı)Ñâ4±\,ŠñX‰¸P"MÇy¹R‘D!É•âé2ñ–ı	“w ¬†OÀN¶µËlÀ~î‹XÒv @~ó-Œ‘ g42y÷  “¿ù@+ Í—¤ã  ¼è\¨”LÆ  D *°AÁ¬ÀœÁ¼ÀaD@$À<Bä€
-+¡–ATÀ:Øµ° šá´Á18çà\ëp`Â¼†	AÈa!:ˆbØ"Î™"aH4’€¤ éˆQ"ÅÈr¤©Bj‘]H#ò-r9\@úÛÈ 2ŠüŠ¼G1”²QÔu@¹¨ŠÆ sÑt4]€–¢kÑ´=€¶¢§ÑKèut }Šc€Ñ1fŒÙa\Œ‡E`‰X&ÇcåX5V5cX7vÀaï$‹€ì^„Âl‚GXLXC¨%ì#´ºW	ƒ„1Â'"“¨O´%zùÄxb:±XF¬&î!!%^'_“H$É’äN
-+!%2IIkHÛH-¤S¤>ÒiœL&ëmÉŞä²€¬ —‘·O’ûÉÃä·:ÅˆâL	¢$R¤”J5e?å¥Ÿ2B™ ªQÍ©Ôªˆ:ŸZIm vP/S‡©4uš%Í›CË¤-£ÕĞšigi÷h/étº	İƒE—Ğ—Òkèéçéƒôw†ƒÇHb(k{§·/™L¦Ó—™ÈT0×2™g˜˜oUX*ö*|‘Ê•:•V•~•çªTUsU?ÕyªT«U«^V}¦FU³Pã©	Ô«Õ©U»©6®ÎRwRPÏQ_£¾_ı‚úc²†…F †H£Tc·Æ!Æ2eñXBÖrVë,k˜Mb[²ùìLvûv/{LSCsªf¬f‘fæqÍÆ±àğ9ÙœJÎ!ÎÎ{--?-±Öj­f­~­7ÚzÚ¾ÚbírííëÚïup@,õ:m:÷u	º6ºQº…ºÛuÏê>Ócëyé	õÊõéİÑGõmô£õêïÖïÑ7046l18cğÌcèk˜i¸Ñğ„á¨Ëhº‘Äh£ÑI£'¸&î‡gã5x>f¬ob¬4ŞeÜk<abi2Û¤Ä¤Åä¾)Í”kšfºÑ´ÓtÌÌÈ,Ü¬Ø¬Éì9Õœka¾Ù¼Ûü…¥EœÅJ‹6‹Ç–Ú–|Ë–M–÷¬˜V>VyVõV×¬IÖ\ë,ëmÖWlPW››:›Ë¶¨­›­Äv›mßâ)Ò)õSnÚ1ìüì
-+ìšìí9öaö%ömöÏÌÖ;t;|rtuÌvlp¼ë¤á4Ã©Ä©ÃéWgg¡só5¦KË—v—Sm§Š§nŸzË•åîºÒµÓõ£›»›Ü­ÙmÔİÌ=Å}«ûM.›É]Ã=ïAôğ÷XâqÌã§›§Âóç/^v^Y^û½O³œ&Ö0mÈÛÄ[à½Ë{`:>=eúÎé>Æ>ŸzŸ‡¾¦¾"ß=¾#~Ö~™~üû;úËıø¿áyòñN`Áå½³k™¥5»/>B	Yr“oÀòùc3Üg,šÑÊZú0Ì&LÖ†Ïß~o¦ùLéÌ¶ˆàGlˆ¸i™ù})*2ª.êQ´Stqt÷,Ö¬äYûg½ñ©Œ¹;Ûj¶rvg¬jlRlcì›¸€¸ª¸x‡øEñ—t$	í‰äÄØÄ=‰ãsçlš3œäšT–tc®åÜ¢¹æéÎËw<Y5Y|8…˜—²?åƒ BP/Oå§nMò„›…OE¾¢¢Q±·¸J<’æV•ö8İ;}Cúh†OFuÆ3	OR+y‘’¹#óMVDÖŞ¬ÏÙqÙ-9”œ”œ£Ri–´+×0·(·Of++“äyæmÊ“‡Ê÷ä#ùsóÛl…LÑ£´R®PL/¨+x[[x¸H½HZÔ3ßfşêù#‚|½°P¸°³Ø¸xYñà"¿E»#‹Sw.1]RºdxiğÒ}ËhË²–ıPâXRUòjyÜòRƒÒ¥¥C+‚W4•©”ÉËn®ôZ¹ca•dUïj—Õ[V*•_¬p¬¨®ø°F¸æâWN_Õ|õymÚÚŞJ·ÊíëHë¤ën¬÷Y¿¯J½jAÕĞ†ğ­ñå_mJŞt¡zjõÍ´ÍÊÍ5a5í[Ì¶¬Ûò¡6£öz]ËVı­«·¾Ù&ÚÖ¿İw{óƒ;Şï”ì¼µ+xWk½E}õnÒî‚İbº¿æ~İ¸GwOÅ{¥{öEïëjtolÜ¯¿¿²	mR6H:på›€oÚ›íšwµpZ*ÂAåÁ'ß¦|{ãPè¡ÎÃÜÃÍß™·õëHy+Ò:¿u¬-£m =¡½ïèŒ£^G¾·ÿ~ï1ãcuÇ5W (=ñùä‚“ã§d§N?=Ô™Üy÷Lü™k]Q]½gCÏ?tîL·_÷ÉóŞç]ğ¼pô"÷bÛ%·K­=®=G~pıáH¯[oëe÷ËíW<®tôMë;ÑïÓújÀÕs×ø×.]Ÿy½ïÆì·n&İ¸%ºõøvöíw
-+îLÜ]zx¯ü¾Úıêúê´ş±eÀmàø`À`ÏÃYï	‡ş”ÿÓ‡áÒGÌGÕ#F#½òdÎ“á§²§ÏÊ~Vÿyës«çßıâûKÏXüØğù‹Ï¿®y©órï«©¯:Ç#Ç¼Îy=ñ¦ü­ÎÛ}ï¸ïºßÇ½™(ü@şPóÑúcÇ§ĞO÷>ç|şü/÷„óû%ÒŸ3   gAMA  ±|ûQ“    cHRM  z%  €ƒ  ùÿ  €é  u0  ê`  :˜  o’_ÅF   [IDATxÚìÛA  ÁÀ`µˆ±à£³+!÷ÎØU/´³’äÜk‰FvU¦zVX„EX„EX„aaa…EX„EX„EXaaa.=}   ÿÿ ±°—U©IG    IEND®B`‚
-\ Ğ’ ĞºĞ¾Ğ½Ñ†Ğµ Ñ„Ğ°Ğ¹Ğ»Ğ° Ğ½ĞµÑ‚ Ğ½Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸

@@ -34,40 +34,16 @@ PKG_LONGDESC="custom is a Metapackage for installing custom package"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-if [ "$KODI_ADDON_LCD" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-lcd"
-fi
-
-if [ "$KODI_ADDON_TRANSMISSION" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-transmission"
-fi
-
-if [ "$KODI_ADDON_AUDIO_MIXER" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-audio-mixer"
-fi
-
-if [ "$KODI_ADDON_RSS_EDITOR" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-rss-editor"
-fi
-
 if [ "$KODI_ADDON_VDRFRONT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-vdrfront kodi-addon-xvdr"
 fi
 
-if [ "$KODI_THEME_CONFLUENCE_EXTENTED" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-confluence-extented"
+if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-repository-yellowdragon"
 fi
 
-if [ "$KODI_THEME_CONFLUENCE_EXTENTED_S" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-confluence-extented-s"
-fi
-
-if [ "$KODI_THEME_ESTUARY_EXTENTED" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-theme-estuary-extented"
-fi
-
-if [ "$OPENELEC_DEV_UPDATE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET openelec-dev-update"
+if [ "$ELEC_DEV_UPDATE" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET elec-dev-update"
 fi
 
 if [ "$LOCALES_SUPPORT" = yes ]; then
