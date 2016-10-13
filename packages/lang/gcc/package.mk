@@ -26,6 +26,7 @@ PKG_URL="http://ftpmirror.gnu.org/gcc/$PKG_NAME-$PKG_VERSION/$PKG_NAME-$PKG_VERS
 PKG_DEPENDS_BOOTSTRAP="ccache:host autoconf:host binutils:host gmp:host mpfr:host mpc:host"
 PKG_DEPENDS_TARGET="gcc:host"
 PKG_DEPENDS_HOST="ccache:host autoconf:host binutils:host gmp:host mpfr:host mpc:host glibc"
+PKG_PRIORITY="optional"
 PKG_SECTION="lang"
 PKG_SHORTDESC="gcc: The GNU Compiler Collection Version 4 (aka GNU C Compiler)"
 PKG_LONGDESC="This package contains the GNU Compiler Collection. It includes compilers for the languages C, C++, Objective C, Fortran 95, Java and others ... This GCC contains the Stack-Smashing Protector Patch which can be enabled with the -fstack-protector command-line option. More information about it ca be found at http://www.research.ibm.com/trl/projects/security/ssp/."
@@ -33,49 +34,68 @@ PKG_LONGDESC="This package contains the GNU Compiler Collection. It includes com
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-GCC_COMMON_CONFIGURE_OPTS="--target=$TARGET_NAME \
-                           --with-sysroot=$SYSROOT_PREFIX \
-                           --with-gmp=$ROOT/$TOOLCHAIN \
-                           --with-mpfr=$ROOT/$TOOLCHAIN \
-                           --with-mpc=$ROOT/$TOOLCHAIN \
-                           --with-gnu-as \
-                           --with-gnu-ld \
-                           --enable-plugin \
-                           --enable-lto \
-                           --enable-gold \
-                           --enable-ld=default \
-                           --disable-multilib \
-                           --disable-nls \
-                           --enable-checking=release \
-                           --with-default-libstdcxx-abi=gcc4-compatible \
-                           --without-ppl \
-                           --without-cloog \
-                           --disable-libada \
-                           --disable-libmudflap \
-                           --disable-libitm \
-                           --disable-libquadmath \
-                           --disable-libgomp \
-                           --disable-libmpx \
-                           --disable-libssp"
+BOOTSTRAP_CONFIGURE_OPTS="--host=$HOST_NAME \
+                          --build=$HOST_NAME \
+                          --target=$TARGET_NAME \
+                          --prefix=$ROOT/$TOOLCHAIN \
+                          --with-sysroot=$SYSROOT_PREFIX \
+                          --with-gmp=$ROOT/$TOOLCHAIN \
+                          --with-mpfr=$ROOT/$TOOLCHAIN \
+                          --with-mpc=$ROOT/$TOOLCHAIN \
+                          --without-ppl \
+                          --without-cloog \
+                          --with-gnu-as \
+                          --with-gnu-ld \
+                          --enable-languages=c \
+                          --disable-__cxa_atexit \
+                          --disable-libada \
+                          --disable-libmudflap \
+                          --disable-libatomic \
+                          --disable-libitm \
+                          --disable-libsanitizer \
+                          --enable-gold \
+                          --enable-ld=default \
+                          --enable-plugin \
+                          --enable-lto \
+                          --disable-libquadmath \
+                          --disable-libssp \
+                          --disable-libgomp \
+                          --enable-cloog-backend=isl \
+                          --disable-shared \
+                          --disable-multilib \
+                          --disable-threads \
+                          --without-headers \
+                          --with-newlib \
+                          --disable-decimal-float \
+                          $GCC_OPTS \
+                          --disable-nls \
+                          --enable-checking=release \
+                          --with-default-libstdcxx-abi=gcc4-compatible"
 
-PKG_CONFIGURE_OPTS_BOOTSTRAP="$GCC_COMMON_CONFIGURE_OPTS \
-                              --disable-libatomic \
-                              --enable-languages=c \
-                              --disable-__cxa_atexit \
-                              --disable-libsanitizer \
-                              --enable-cloog-backend=isl \
-                              --disable-shared \
-                              --disable-threads \
-                              --without-headers \
-                              --with-newlib \
-                              --disable-decimal-float \
-                              $GCC_OPTS"
-
-PKG_CONFIGURE_OPTS_HOST="$GCC_COMMON_CONFIGURE_OPTS \
-                         --enable-libatomic \
-                         --enable-languages=c,c++ \
+PKG_CONFIGURE_OPTS_HOST="--target=$TARGET_NAME \
+                         --with-sysroot=$SYSROOT_PREFIX \
+                         --with-gmp=$ROOT/$TOOLCHAIN \
+                         --with-mpfr=$ROOT/$TOOLCHAIN \
+                         --with-mpc=$ROOT/$TOOLCHAIN \
+                         --without-ppl \
+                         --without-cloog \
+                         --enable-languages=${TOOLCHAIN_LANGUAGES} \
+                         --with-gnu-as \
+                         --with-gnu-ld \
                          --enable-__cxa_atexit \
+                         --disable-libada \
                          --enable-decimal-float \
+                         --disable-libmudflap \
+                         --disable-libssp \
+                         --disable-multilib \
+                         --enable-libatomic \
+                         --disable-libitm \
+                         --enable-gold \
+                         --enable-ld=default \
+                         --enable-plugin \
+                         --enable-lto \
+                         --disable-libquadmath \
+                         --disable-libgomp \
                          --enable-tls \
                          --enable-shared \
                          --disable-static \
@@ -85,11 +105,21 @@ PKG_CONFIGURE_OPTS_HOST="$GCC_COMMON_CONFIGURE_OPTS \
                          --disable-libstdcxx-pch \
                          --enable-libstdcxx-time \
                          --enable-clocale=gnu \
-                         $GCC_OPTS"
+                         $GCC_OPTS \
+                         --disable-nls \
+                         --enable-checking=release \
+                         --with-default-libstdcxx-abi=gcc4-compatible"
 
 pre_configure_host() {
   export CXXFLAGS="$CXXFLAGS -std=gnu++98"
-  unset CPP
+}
+
+pre_configure_bootstrap() {
+  setup_toolchain host
+}
+
+makeinstall_bootstrap() {
+  make install
 }
 
 post_make_host() {
@@ -98,8 +128,8 @@ post_make_host() {
   ln -sf libgcc_s.so.1 $TARGET_NAME/libgcc/libgcc_s.so
 
   if [ ! "$DEBUG" = yes ]; then
-    ${TARGET_PREFIX}strip $TARGET_NAME/libgcc/libgcc_s.so*
-    ${TARGET_PREFIX}strip $TARGET_NAME/libstdc++-v3/src/.libs/libstdc++.so*
+    $TARGET_STRIP $TARGET_NAME/libgcc/libgcc_s.so*
+    $TARGET_STRIP $TARGET_NAME/libstdc++-v3/src/.libs/libstdc++.so*
   fi
 }
 
@@ -108,29 +138,29 @@ post_makeinstall_host() {
 
   GCC_VERSION=`$ROOT/$TOOLCHAIN/bin/${TARGET_NAME}-gcc -dumpversion`
   DATE="0501`echo $GCC_VERSION | sed 's/\([0-9]\)/0\1/g' | sed 's/\.//g'`"
-  CROSS_CC=${TARGET_PREFIX}gcc-${GCC_VERSION}
-  CROSS_CXX=${TARGET_PREFIX}g++-${GCC_VERSION}
+  CROSS_CC=$TARGET_CC-$GCC_VERSION
+  CROSS_CXX=$TARGET_CXX-$GCC_VERSION
 
-  rm -f ${TARGET_PREFIX}gcc
+  rm -f $TARGET_CC
 
-cat > ${TARGET_PREFIX}gcc <<EOF
+cat > $TARGET_CC <<EOF
 #!/bin/sh
 $ROOT/$TOOLCHAIN/bin/ccache $CROSS_CC "\$@"
 EOF
 
-  chmod +x ${TARGET_PREFIX}gcc
+  chmod +x $TARGET_CC
 
   # To avoid cache trashing
   touch -c -t $DATE $CROSS_CC
 
-  [ ! -f "$CROSS_CXX" ] && mv ${TARGET_PREFIX}g++ $CROSS_CXX
+  [ ! -f "$CROSS_CXX" ] && mv $TARGET_CXX $CROSS_CXX
 
-cat > ${TARGET_PREFIX}g++ <<EOF
+cat > $TARGET_CXX <<EOF
 #!/bin/sh
 $ROOT/$TOOLCHAIN/bin/ccache $CROSS_CXX "\$@"
 EOF
 
-  chmod +x ${TARGET_PREFIX}g++
+  chmod +x $TARGET_CXX
 
   # To avoid cache trashing
   touch -c -t $DATE $CROSS_CXX
