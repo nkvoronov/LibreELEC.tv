@@ -25,6 +25,7 @@ PKG_SITE="http://www.gnu.org/software/libc/"
 PKG_URL="http://ftp.gnu.org/pub/gnu/glibc/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="ccache:host autotools:host autoconf:host linux:host gcc:bootstrap"
 PKG_DEPENDS_INIT="glibc"
+PKG_PRIORITY="optional"
 PKG_SECTION="toolchain/devel"
 PKG_SHORTDESC="glibc: The GNU C library"
 PKG_LONGDESC="The Glibc package contains the main C library. This library provides the basic routines for allocating memory, searching directories, opening and closing files, reading and writing files, string handling, pattern matching, arithmetic, and so on."
@@ -136,14 +137,25 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/lib/*.map
   rm -rf $INSTALL/var
 
+# create locale
+  if [ "$LOCALES_SUPPORT" = yes ]; then
+    cp $ROOT/$PKG_BUILD/.$TARGET_NAME/locale/localedef $INSTALL/usr/bin
+    mkdir -p $INSTALL/usr/share/i18n/locales/
+      cp $ROOT/$PKG_BUILD/localedata/locales/* $INSTALL/usr/share/i18n/locales/
+    mkdir -p $INSTALL/usr/share/i18n/charmaps
+      cp $ROOT/$PKG_BUILD/localedata/charmaps/* $INSTALL/usr/share/i18n/charmaps/
+      cp $ROOT/$PKG_BUILD/localedata/SUPPORTED $INSTALL/usr/share/i18n/
+    ln -s /storage/locale $INSTALL/usr/lib/locale
+  else
 # remove locales and charmaps
-  rm -rf $INSTALL/usr/share/i18n/charmaps
+    rm -rf $INSTALL/usr/share/i18n/charmaps
 
-  if [ ! "$GLIBC_LOCALES" = yes ]; then
-    rm -rf $INSTALL/usr/share/i18n/locales
+    if [ ! "$GLIBC_LOCALES" = yes ]; then
+      rm -rf $INSTALL/usr/share/i18n/locales
 
-    mkdir -p $INSTALL/usr/share/i18n/locales
-      cp -PR $ROOT/$PKG_BUILD/localedata/locales/POSIX $INSTALL/usr/share/i18n/locales
+      mkdir -p $INSTALL/usr/share/i18n/locales
+        cp -PR $ROOT/$PKG_BUILD/localedata/locales/POSIX $INSTALL/usr/share/i18n/locales
+    fi
   fi
 
 # create default configs
@@ -154,6 +166,13 @@ post_makeinstall_target() {
 
   if [ "$TARGET_ARCH" = "arm" -a "$TARGET_FLOAT" = "hard" ]; then
     ln -sf ld.so $INSTALL/lib/ld-linux.so.3
+  fi
+}
+
+post_install() {
+  if [ "$LOCALES_SUPPORT" = yes ]; then
+    mkdir -p $INSTALL/usr/bin
+      cp -pR $PKG_DIR/scripts/* $INSTALL/usr/bin
   fi
 }
 
