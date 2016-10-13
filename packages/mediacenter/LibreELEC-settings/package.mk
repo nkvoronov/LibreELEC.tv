@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="LibreELEC-settings"
-PKG_VERSION="17315f4"
+PKG_VERSION="6c2cd56"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="prop."
@@ -25,7 +25,6 @@ PKG_SITE="https://libreelec.tv"
 PKG_URL="https://github.com/LibreELEC/service.libreelec.settings/archive/$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="service.libreelec.settings-$PKG_VERSION*"
 PKG_DEPENDS_TARGET="toolchain Python connman pygobject dbus-python"
-PKG_PRIORITY="optional"
 PKG_SECTION=""
 PKG_SHORTDESC="LibreELEC-settings: Settings dialog for LibreELEC"
 PKG_LONGDESC="LibreELEC-settings: is a settings dialog for LibreELEC"
