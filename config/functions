@@ -455,6 +455,7 @@ show_config() {
   config_message="$config_message\n $dashes$dashes"
 
   config_message="$config_message\n - Kodi version:\t\t\t $MEDIACENTER"
+  config_message="$config_message\n - Kodi include language files:\t\t $KODI_LANGUAGE_ADDONS"
   config_message="$config_message\n - Kodi nonfree support:\t\t $KODI_NONFREE_SUPPORT"
   config_message="$config_message\n - Kodi Blu-Ray support:\t\t $KODI_BLURAY_SUPPORT"
   if [ "$KODI_BLURAY_SUPPORT" = "yes" ] ; then
@@ -478,6 +479,7 @@ show_config() {
   done
 
   config_message="$config_message\n - Default Skin:\t\t\t $SKIN_DEFAULT"
+  config_message="$config_message\n - Remove shipped skins:\t\t $SKIN_REMOVE_SHIPPED"
   config_message="$config_message\n - Include extra fonts:\t\t\t $KODI_EXTRA_FONTS"
 
   config_message="$config_message\n"
