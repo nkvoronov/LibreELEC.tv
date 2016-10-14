@@ -42,6 +42,7 @@ if [ -n "$PKG_ADDON_PROJECTS" -a ! "$PKG_ADDON_PROJECTS" = "any" ]; then
   fi
 fi
 
+
 pack_addon() {
   IFS=" "
   for i in $PKG_ADDON_REQUIRES; do

@@ -8,9 +8,8 @@
   LIBXCB_EXT="yes"
 
 # KODI addons
-  KODI_ADDON_VDRFRONT="yes"
+  KODI_ADDON_XVDR="yes"
   KODI_REPOSITORY_YELLOWDRAGON="yes"
-  ELEC_DEV_UPDATE="yes"
 
 # Services
   TRANSMISSION_SERVICE="yes"

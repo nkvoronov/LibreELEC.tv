@@ -26,7 +26,6 @@ PKG_URL="http://download.qt-project.org/official_releases/qt/4.8/${PKG_VERSION}/
 PKG_SOURCE_DIR="qt-everywhere-opensource-src-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain bzip2 Python zlib:host zlib libpng tiff dbus glib fontconfig mysql libressl \
 glibc liberation-fonts-ttf freetype font-util font-xfree86-type1 font-misc-misc alsa libXcursor libSM libICE"
-PKG_PRIORITY="optional"
 PKG_SECTION="devel"
 PKG_SHORTDESC="Qt GUI toolkit"
 PKG_LONGDESC="Qt GUI toolkit"

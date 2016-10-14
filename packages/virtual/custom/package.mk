@@ -26,7 +26,6 @@ PKG_LICENSE="GPL"
 PKG_SITE=""
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
-PKG_PRIORITY="optional"
 PKG_SECTION="virtual"
 PKG_SHORTDESC="custom: Metapackage for installing custom package"
 PKG_LONGDESC="custom is a Metapackage for installing custom package"
@@ -34,16 +33,12 @@ PKG_LONGDESC="custom is a Metapackage for installing custom package"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-if [ "$KODI_ADDON_VDRFRONT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-vdrfront kodi-addon-xvdr"
+if [ "$KODI_ADDON_XVDR" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-xvdr"
 fi
 
 if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-repository-yellowdragon"
-fi
-
-if [ "$ELEC_DEV_UPDATE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET elec-dev-update"
 fi
 
 if [ "$LOCALES_SUPPORT" = yes ]; then

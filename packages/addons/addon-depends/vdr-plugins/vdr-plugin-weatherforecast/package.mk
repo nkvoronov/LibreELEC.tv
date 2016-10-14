@@ -26,7 +26,6 @@ PKG_GIT_URL="https://projects.vdr-developer.org/git/vdr-plugin-weatherforecast.g
 PKG_GIT_BRANCH="master"
 PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain vdr jansson vdr-plugin-skindesigner"
-PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="WeatherForecast provides a weather forecast (who'd have thought? ;) ) based on forecast.io data."
 PKG_LONGDESC="WeatherForecast provides a weather forecast (who'd have thought? ;) ) based on forecast.io data."
