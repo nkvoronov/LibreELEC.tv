@@ -55,7 +55,7 @@ addon() {
     cp $TRANSMISSION_DIR/.$TARGET_NAME/utils/transmission-show $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/web
-    cp -R $TRANSMISSION_DIR/.$TARGET_NAME/web/* $ADDON_BUILD/$PKG_ADDON_ID/web
+    cp -R $TRANSMISSION_DIR/web/* $ADDON_BUILD/$PKG_ADDON_ID/web
     find $ADDON_BUILD/$PKG_ADDON_ID/web -name "Makefile*" -exec rm -rf {} ";"
     rm -rf $ADDON_BUILD/$PKG_ADDON_ID/web/LICENSE
 }

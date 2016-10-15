@@ -16,17 +16,17 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="libxml++"
-PKG_VERSION="2.36.0"
+PKG_NAME="libsigcpp"
+PKG_VERSION="2.2.10"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://libxmlplusplus.sourceforge.net/"
+PKG_SITE="http://libsigc.sourceforge.net/"
 PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain glibmm"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="devel"
-PKG_SHORTDESC="libxml++ is a C++ wrapper for the libxml2 XML parser and builder library. It presents a simple C++-like API that can achieve common tasks with less code."
-PKG_LONGDESC="libxml++ is a C++ wrapper for the libxml2 XML parser and builder library. It presents a simple C++-like API that can achieve common tasks with less code."
+PKG_SHORTDESC="libsigc++ implements a typesafe callback system for standard C++. It allows you to define signals and to connect those signals to any callback function, either global or a member function, regardless of whether it is static or virtual."
+PKG_LONGDESC="libsigc++ implements a typesafe callback system for standard C++. It allows you to define signals and to connect those signals to any callback function, either global or a member function, regardless of whether it is static or virtual."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"

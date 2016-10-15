@@ -53,7 +53,7 @@ post_install() {
     cp -P $PKG_DIR/scripts/* $INSTALL/usr/bin
 
   mkdir -p $INSTALL/usr/share/transmission/web
-    cp -R $TRANSMISSION_DIR/.$TARGET_NAME/web/* $INSTALL/usr/share/transmission/web
+    cp -R $TRANSMISSION_DIR/web/* $INSTALL/usr/share/transmission/web
     find $INSTALL/usr/share/transmission/web -name "Makefile*" -exec rm -rf {} ";"
     rm -rf $INSTALL/usr/share/transmission/web/LICENSE
 

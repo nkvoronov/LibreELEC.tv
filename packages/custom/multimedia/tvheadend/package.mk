@@ -47,7 +47,7 @@ fi
 PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --arch=$TARGET_ARCH \
                            --cpu=$TARGET_CPU \
-                           --cc=$TARGET_CC \
+                           --cc=$CC \
                            --disable-avahi \
                            --enable-bundle \
                            --disable-dbus_1 \
@@ -61,7 +61,9 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --disable-uriparser \
                            $TVH_TRANSCODING \
                            --enable-tvhcsa \
+                           --enable-trace \
                            --nowerror \
+                           --disable-bintray_cache \
                            --python=$ROOT/$TOOLCHAIN/bin/python"
 
 post_unpack() {
