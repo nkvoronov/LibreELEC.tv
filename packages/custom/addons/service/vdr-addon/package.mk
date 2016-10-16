@@ -206,15 +206,14 @@ addon() {
   CXXTOOLS_DIR=$(get_build_dir cxxtools)
   TNTNET_DIR=$(get_build_dir tntnet)
   GLIBMM_DIR=$(get_build_dir glibmm)
-  LIBXMLPP_DIR=$(get_build_dir libxml++)
-  LIBSIGPP_DIR=$(get_build_dir libsigc++)
+  LIBXMLPP_DIR=$(get_build_dir libxmlpp)
+  LIBSIGPP_DIR=$(get_build_dir libsigcpp)
   LIBXCB_DIR=$(get_build_dir libxcb)
   LIBXCBUTIL_DIR=$(get_build_dir xcb-util)
   LIBXCBUTILIMAGE_DIR=$(get_build_dir xcb-util-image)
   LIBXCBUTILKEYSYMS_DIR=$(get_build_dir xcb-util-keysyms)
   LIBXCBUTILRENDERUTIL_DIR=$(get_build_dir xcb-util-renderutil)
   LIBXCBUTILWM_DIR=$(get_build_dir xcb-util-wm)
-  JANSSON_DIR=$(get_build_dir jansson)
   IM_DIR=$(get_build_dir ImageMagick)
   XINELIB_DIR=$(get_build_dir xine-lib)
   LIBXFT_DIR=$(get_build_dir libXft)
@@ -580,9 +579,6 @@ addon() {
       mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
         cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-tvscraper.mo    
     done
-
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $JANSSON_DIR/.install_pkg/usr/lib/libjansson.so.4.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libjansson.so.4
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
@@ -715,7 +711,6 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $JANSSON_DIR/.install_pkg/usr/lib/libjansson.so.4.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libjansson.so.4
       cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
       cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10200.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
       cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
