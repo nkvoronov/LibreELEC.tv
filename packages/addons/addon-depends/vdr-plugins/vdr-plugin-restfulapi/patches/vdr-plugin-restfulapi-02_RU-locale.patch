@@ -44,7 +44,7 @@ diff -Naur a/restfulapi.cpp b/restfulapi.cpp
 @@ -12,7 +12,7 @@
  #include "statusmonitor.h"
  
- static const char *VERSION        = "0.2.6.1";
+ static const char *VERSION        = "0.2.6.5";
 -static const char *DESCRIPTION    = "Offers a RESTful-API to retrieve data from VDR";
 +static const char *DESCRIPTION    = tr("Offers a RESTful-API to retrieve data from VDR");
  static const char *MAINMENUENTRY  = NULL;//"Restfulapi";
