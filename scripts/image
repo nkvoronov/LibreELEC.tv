@@ -221,13 +221,7 @@ mkdir -p $TARGET_IMG
 rm -rf $TARGET_IMG/$IMAGE_NAME.kernel
 
 # copy kernel to target dir
-if [ "$BOOTLOADER" = "bcm2835-bootloader" ]; then
-  echo "injecting DeviceTreeBlobs to kernel..."
-  perl $BUILD/linux-$(kernel_version)/scripts/mkknlimg $BUILD/linux-$(kernel_version)/arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET $TARGET_IMG/$IMAGE_NAME.kernel
-  echo "...done"
-else
-  cp -PR $BUILD/linux-$(kernel_version)/arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET $TARGET_IMG/$IMAGE_NAME.kernel
-fi
+cp -PR $BUILD/linux-$(kernel_version)/arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET $TARGET_IMG/$IMAGE_NAME.kernel
 chmod 0644 $TARGET_IMG/$IMAGE_NAME.kernel
 
 # create squashfs file
@@ -403,6 +397,8 @@ if [ "$1" = "release" -o "$1" = "mkimage" -o "$1" = "amlpkg" -o "$1" = "noobs" ]
     echo "Creating Amlogic ZIP auto-install package"
     pushd sign > /dev/null
     echo --update_package=/sdcard/$IMAGE_NAME-update.zip > factory_update_param.aml
+    echo --wipe_data >> factory_update_param.aml
+    echo --wipe_cache >> factory_update_param.aml
     if [ -f "$INSTALL_SRC_DIR/files/recovery.img" ]; then
       cp $INSTALL_SRC_DIR/files/recovery.img .
     fi

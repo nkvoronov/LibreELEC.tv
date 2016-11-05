@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="peripheral.joystick"
-PKG_VERSION="abff316"
+PKG_VERSION="ae86732"
 PKG_REV="0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/kodi-game/peripheral.joystick"
+PKG_SITE="https://github.com/xbmc/peripheral.joystick"
 PKG_GIT_URL="https://github.com/kodi-game/peripheral.joystick.git"
 PKG_GIT_BRANCH="master"
 PKG_KEEP_CHECKOUT="no"
