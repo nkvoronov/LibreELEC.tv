@@ -76,7 +76,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
 +		--cc=$(FFMPEG_HOST)-gcc \
-+		--cxx=$(FFMPEG_HOST)-g++ \
++		--cxx=$(FFMPEG_HOST)-g++ --disable-vaapi --disable-vdpau \
  		--disable-all \
  		--enable-gpl \
  		--extra-cflags="$(ECFLAGS)" \
