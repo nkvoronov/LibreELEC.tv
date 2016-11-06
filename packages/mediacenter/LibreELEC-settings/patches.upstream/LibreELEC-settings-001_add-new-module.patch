@@ -1,10 +1,39 @@
 diff -Naur a/language/English/strings.po b/language/English/strings.po
---- a/language/English/strings.po	2016-06-25 13:54:11.000000000 +0300
-+++ b/language/English/strings.po	2016-08-15 14:06:47.105543344 +0300
-@@ -803,3 +803,669 @@
- msgctxt "#32391"
- msgid "Enable LCD Driver Support"
+--- a/language/English/strings.po	2016-10-29 18:26:58.000000000 +0300
++++ b/language/English/strings.po	2016-11-06 16:35:01.377479829 +0200
+@@ -104,6 +104,10 @@
+ msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
+ 
++msgctxt "#717"
++msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
++msgstr ""
++
+ msgctxt "#718"
+ msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://sprunge.us and display the short URL"
+ msgstr ""
+@@ -252,6 +256,14 @@
+ msgid "Interface"
+ msgstr ""
+ 
++msgctxt "#32007"
++msgid "Driver"
++msgstr ""
++
++msgctxt "#32008"
++msgid "LCD/VFD Driver"
++msgstr ""
++
+ msgctxt "#32009"
+ msgid "Keyboard"
+ msgstr ""
+@@ -800,3 +812,672 @@
+ msgid "Settings addon is not yet ready, please try again later."
+ msgstr ""
+ 
++msgctxt "#32391"
++msgid "Enable LCD Driver Support"
++msgstr ""
 +
 +##########################################################
 +## Keyboard Options
@@ -672,12 +701,41 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr ""
 diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
---- a/language/Russian/strings.po	2016-06-25 13:54:11.000000000 +0300
-+++ b/language/Russian/strings.po	2016-08-15 14:06:47.109543344 +0300
-@@ -743,3 +743,669 @@
- msgctxt "#32391"
- msgid "Enable LCD Driver Support"
- msgstr "Включить поддержку драйвера ЖК-экрана"
+--- a/language/Russian/strings.po	2016-10-29 18:26:58.000000000 +0300
++++ b/language/Russian/strings.po	2016-11-06 16:35:01.381479910 +0200
+@@ -116,6 +116,10 @@
+ msgid "Click to manually check the @DISTRONAME@ servers for an updated release"
+ msgstr "Нажмите для ручной проверки обновлений на серверах @DISTRONAME@"
+ 
++msgctxt "#717"
++msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
++msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе @DISTRONAME@  - Вы должны сконфигурировать правильный драйвер дисплея"
++
+ msgctxt "#720"
+ msgid "Set to ON and Bluetooth devices will be disabled during power-saving modes"
+ msgstr "Выберите ВКЛ для автоматического отключения Bluetooth устройств при простоях для экономии энергии"
+@@ -244,6 +248,14 @@
+ msgid "Interface"
+ msgstr "Интерфейс"
+ 
++msgctxt "#32007"
++msgid "Driver"
++msgstr "Драйвер"
++
++msgctxt "#32008"
++msgid "LCD/VFD Driver"
++msgstr "Драйвер LCD/VFD"
++
+ msgctxt "#32009"
+ msgid "Keyboard"
+ msgstr "Клавиатура"
+@@ -728,3 +740,672 @@
+ msgid "Settings addon is not yet ready, please try again later."
+ msgstr "Дополнение настройки ещё не готово. Повторите попытку позже."
+ 
++msgctxt "#32391"
++msgid "Enable LCD Driver Support"
++msgstr "Включить поддержку драйвера ЖК-экрана"
 +
 +##########################################################
 +## Keyboard Options
@@ -1345,13 +1403,16 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr "VDR приложение с открытым исходным кодом для Linux разработанный, чтобы позволить любому компьютеру работать в качестве цифрового видеомагнитофона для того, чтобы записывать и воспроизводить ТВ программы."
 diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2016-06-25 13:54:11.000000000 +0300
-+++ b/src/defaults.py	2016-08-15 14:11:47.537530385 +0300
-@@ -77,6 +77,133 @@
-     'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
-     'D_LCD_DRIVER': 'none',
-     }
-+    
+--- a/src/defaults.py	2016-10-29 18:26:58.000000000 +0300
++++ b/src/defaults.py	2016-11-06 16:37:10.644164205 +0200
+@@ -74,6 +74,135 @@
+     'D_SSH_DISABLE_PW_AUTH': '0',
+     'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
+     'CRON_DAEMON': '/sbin/crond',
++    'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
++    'D_LCD_DRIVER': 'none',
++    }
++
 +################################################################################
 +# Transmission Module
 +################################################################################
@@ -1477,23 +1538,126 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'D_OSCAM_ENABLE': '1',
 +    'D_OSCAM_DEBUG': '1',
 +    'D_RESTART_ON_RESUME': '0',
-+    }
+     }
  
  system = {
-     'ENABLED': True,
-@@ -113,4 +240,8 @@
+@@ -110,4 +239,9 @@
+     'bluez': ['bluetooth.service'],
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
-     'lcdd': ['lcdd.service'],
++    'lcdd': ['lcdd.service'],
 +    'transmission': ['transmission.service'],
 +    'tvheadend': ['tvheadend.service'],  
 +    'vdr': ['vdr.service'],
 +    'oscam': ['oscam.service'],
      }
+diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/services.py
+--- a/src/resources/lib/modules/services.py	2016-10-29 18:26:58.000000000 +0300
++++ b/src/resources/lib/modules/services.py	2016-11-06 16:34:21.876678981 +0200
+@@ -44,6 +44,8 @@
+     OPT_SSH_NOPASSWD = None
+     AVAHI_DAEMON = None
+     CRON_DAEMON = None
++    LCD_DRIVER_DIR = None
++    D_LCD_DRIVER = None
+     menu = {'4': {
+         'name': 32001,
+         'menuLoader': 'load_menu',
+@@ -171,6 +173,33 @@
+                         'InfoText': 745,
+                         }},
+                     },
++                'driver': {
++                    'order': 5,
++                    'name': 32007,
++                    'settings': {
++                        'lcd_enabled': {
++                            'name': 32391,
++                            'value': 'none',
++                            'action': 'set_lcd_driver',
++                            'type': 'bool',
++                            'InfoText': 717,
++                            'order': 1,
++                            },
++                        'lcd': {
++                            'name': 32008,
++                            'value': 'none',
++                            'action': 'set_lcd_driver',
++                            'type': 'multivalue',
++                            'parent': {
++                                'entry': 'lcd_enabled',
++                                'value': ['1'],
++                                },
++                            'values': [],
++                            'InfoText': 717,
++                            'order': 2,
++                            },
++                        },
++                    },
+                 'bluez': {
+                     'order': 6,
+                     'name': 32331,
+@@ -265,6 +294,14 @@
+         try:
+             self.oe.dbg_log('services::load_values', 'enter_function', 0)
+ 
++            # LCD
++
++            arrLcd = self.get_lcd_drivers()
++            self.struct['driver']['settings']['lcd']['values'] = arrLcd
++            self.struct['driver']['settings']['lcd_enabled']['value'] = self.oe.get_service_state('lcdd')
++            self.struct['driver']['settings']['lcd']['value'] = self.oe.get_service_option('lcdd', 'LCD_DRIVER', self.D_LCD_DRIVER).replace('"',
++                    '')
++
+             # SAMBA
+ 
+             if os.path.isfile(self.SAMBA_NMDB) and os.path.isfile(self.SAMBA_SMDB):
+@@ -467,6 +504,41 @@
+         except Exception, e:
+             self.oe.set_busy(0)
+             self.oe.dbg_log('services::init_obex', 'ERROR: (' + repr(e) + ')', 4)
++
++    def set_lcd_driver(self, listItem=None):
++        try:
++            self.oe.dbg_log('services::set_lcd_driver', 'enter_function', 0)
++            self.oe.set_busy(1)
++            state = 0
++            options = {}
++            if not listItem == None:
++                self.set_value(listItem)
++            if self.struct['driver']['settings']['lcd_enabled']['value'] == '1':
++                state = 1
++            if not self.struct['driver']['settings']['lcd']['value'] is None and not self.struct['driver']['settings']['lcd']['value'] == 'none' \
++                and state == 1:
++                options['LCD_DRIVER'] = '"%s"' % self.struct['driver']['settings']['lcd']['value']
++            self.oe.dbg_log('services::set_lcd_driver', repr(options), 0)
++            self.oe.dbg_log('services::set_lcd_driver', repr(state), 0)
++            self.oe.set_service('lcdd', options, state)
++            self.oe.set_busy(0)
++            self.oe.dbg_log('services::set_lcd_driver', 'exit_function', 0)
++        except Exception, e:
++            self.oe.set_busy(0)
++            self.oe.dbg_log('services::set_lcd_driver', 'ERROR: (' + repr(e) + ')')
++
++    def get_lcd_drivers(self):
++        try:
++            self.oe.dbg_log('services::get_lcd_drivers', 'enter_function', 0)
++            arrDrivers = ['none']
++            if os.path.exists(self.LCD_DRIVER_DIR):
++                for driver in glob.glob(self.LCD_DRIVER_DIR + '*'):
++                    arrDrivers.append(os.path.basename(driver).replace('.so', ''))
++            self.oe.dbg_log('services::get_lcd_drivers', 'exit_function', 0)
++            return arrDrivers
++        except Exception, e:
++            self.oe.dbg_log('services::get_lcd_drivers', 'ERROR: (' + repr(e) + ')')
++
+     def exit(self):
+         try:
+             self.oe.dbg_log('services::exit', 'enter_function', 0)
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
---- a/src/resources/lib/modules/system.py	2016-06-25 13:54:11.000000000 +0300
-+++ b/src/resources/lib/modules/system.py	2016-08-15 14:11:12.513531895 +0300
-@@ -130,6 +130,15 @@
+--- a/src/resources/lib/modules/system.py	2016-10-29 18:26:58.000000000 +0300
++++ b/src/resources/lib/modules/system.py	2016-11-06 16:35:01.385479992 +0200
+@@ -131,6 +131,15 @@
                              'values': [],
                              'InfoText': 713,
                              },
@@ -1509,7 +1673,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                          },
                      },
                  'update': {
-@@ -332,12 +341,18 @@
+@@ -347,12 +356,18 @@
                  arrLayouts,
                  arrTypes,
                  self.arrVariants,
@@ -1528,7 +1692,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if not arrLayouts is None:
                  self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
                  self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
-@@ -452,7 +467,8 @@
+@@ -467,7 +482,8 @@
                          ]['KeyboardLayout2']['value']]
                  self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
                                  + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
@@ -1538,7 +1702,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
                      os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
                  config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
-@@ -461,7 +477,8 @@
+@@ -476,7 +492,8 @@
                                    self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
                  config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
                                    ]['settings']['KeyboardLayout2']['value'] + '"\n')
@@ -1548,7 +1712,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  config_file.close()
                  parameters = [
                      '-display ' + os.environ['DISPLAY'],
-@@ -470,7 +487,7 @@
+@@ -485,7 +502,7 @@
                      '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
                              ]['KeyboardVariant2']['value'],
                      '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
@@ -1557,7 +1721,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                      ]
                  self.oe.execute('setxkbmap ' + ' '.join(parameters))
              elif self.nox_keyboard_layouts == True:
-@@ -537,6 +554,7 @@
+@@ -552,6 +569,7 @@
              arrLayouts = []
              arrVariants = {}
              arrTypes = []
@@ -1565,7 +1729,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if os.path.exists(self.KEYBOARD_INFO):
                  objXmlFile = open(self.KEYBOARD_INFO, 'r')
                  strXmlText = objXmlFile.read()
-@@ -578,8 +596,20 @@
+@@ -593,8 +611,20 @@
                                  if subnode_2.nodeName == 'description':
                                      if hasattr(subnode_2.firstChild, 'nodeValue'):
                                          arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
@@ -1586,7 +1750,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              elif os.path.exists(self.NOX_KEYBOARD_INFO):
                  for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
                      if os.path.isfile(layout):
-@@ -594,6 +624,7 @@
+@@ -609,6 +639,7 @@
                  arrLayouts,
                  arrTypes,
                  arrVariants,
@@ -1594,7 +1758,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  )
          except Exception, e:
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
-@@ -862,7 +893,7 @@
+@@ -877,7 +908,7 @@
                          return 0
                  except:
                      pass
@@ -1603,7 +1767,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  self.backup_dlg = xbmcgui.DialogProgress()
                  self.backup_dlg.create('LibreELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
                  if not os.path.exists(self.BACKUP_DESTINATION):
-@@ -892,9 +923,9 @@
+@@ -907,9 +938,9 @@
                                                False, 
                                                False, 
                                                self.BACKUP_DESTINATION )
@@ -1617,7 +1781,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              else:
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2016-08-15 14:06:47.109543344 +0300
++++ b/src/resources/lib/modules/transmission.py	2016-11-06 16:35:01.385479992 +0200
 @@ -0,0 +1,331 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -1952,7 +2116,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2016-08-15 14:06:47.113543344 +0300
++++ b/src/resources/lib/modules/tvservers.py	2016-11-06 16:35:01.389480073 +0200
 @@ -0,0 +1,2063 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
