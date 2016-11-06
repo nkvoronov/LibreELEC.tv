@@ -144,7 +144,6 @@ post_makeinstall_target() {
     mkdir -p $INSTALL/usr/share/i18n/charmaps
       cp $ROOT/$PKG_BUILD/localedata/charmaps/* $INSTALL/usr/share/i18n/charmaps/
       cp $ROOT/$PKG_BUILD/localedata/SUPPORTED $INSTALL/usr/share/i18n/
-      gzip $INSTALL/usr/share/i18n/charmaps/UTF-8
     ln -s /storage/locale $INSTALL/usr/lib/locale
   else
 # remove locales and charmaps
