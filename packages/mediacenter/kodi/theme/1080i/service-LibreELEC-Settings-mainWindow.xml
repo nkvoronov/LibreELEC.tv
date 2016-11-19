@@ -28,6 +28,7 @@
             <left>110</left>
             <!-- Main Menu (left) -->
             <control type="image">
+                <description>Menu Panel</description>
                 <left>-20</left>
                 <top>138</top>
                 <width>440</width>
@@ -35,6 +36,7 @@
                 <texture border="22">dialogs/dialog-bg.png</texture>
             </control>
             <control type="list" id="1000">
+                <description>button area</description>
                 <left>0</left>
                 <top>160</top>
                 <width>440</width>
@@ -64,7 +66,15 @@
                         <left>2</left>
                         <height>75</height>
                         <width>396</width>
+                        <texture border="40">lists/separator.png</texture>
+                        <visible>!Control.HasFocus(1000)</visible>
+                    </control>
+                    <control type="image">
+                        <left>2</left>
+                        <height>75</height>
+                        <width>396</width>
                         <texture colordiffuse="button_focus">lists/focus.png</texture>
+                        <animation effect="fade" start="100" end="30" time="0" condition="!Control.HasFocus(1000)">conditional</animation>
                     </control>
                     <control type="label">
                         <left>30</left>
@@ -1076,6 +1086,7 @@
                     </focusedlayout>
                 </control>
             </control>
+            <!-- Appearance Description -->
             <control type="textbox" id="1400">
                 <left>466</left>
                 <top>808</top>
@@ -1154,6 +1165,16 @@
             <onclick>PageUp(1100)</onclick>
             <visible>Container(1100).HasPrevious + Control.IsVisible(1100)</visible>
         </control>
+        <control type="scrollbar" id="1097">
+            <right>0</right>
+            <top>80</top>
+            <width>12</width>
+            <height>920</height>
+            <onleft>600</onleft>
+            <onright>600</onright>
+            <orientation>vertical</orientation>
+            <visible>Control.IsVisible(1100)</visible>
+        </control>
 
         <!-- network list ( 1200 ) up / down -->
         <control type="button" id="1092">
@@ -1184,6 +1205,16 @@
             <onclick>PageUp(1200)</onclick>
             <visible>Container(1200).HasPrevious + Control.IsVisible(1200)</visible>
         </control>
+        <control type="scrollbar" id="1098">
+            <right>0</right>
+            <top>80</top>
+            <width>12</width>
+            <height>920</height>
+            <onleft>600</onleft>
+            <onright>600</onright>
+            <orientation>vertical</orientation>
+            <visible>Control.IsVisible(1200)</visible>
+        </control>
 
         <!-- bluetooth list ( 1300 ) up / down -->
         <control type="button" id="1092">
@@ -1213,6 +1244,16 @@
             <onclick>SetFocus(1300)</onclick>
             <onclick>PageUp(1300)</onclick>
             <visible>Container(1300).HasPrevious + Control.IsVisible(1300)</visible>
+        </control>
+        <control type="scrollbar" id="1099">
+            <right>0</right>
+            <top>80</top>
+            <width>12</width>
+            <height>920</height>
+            <onleft>600</onleft>
+            <onright>600</onright>
+            <orientation>vertical</orientation>
+            <visible>Control.IsVisible(1300)</visible>
         </control>
 
     </controls>

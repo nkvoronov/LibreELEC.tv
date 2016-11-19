@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="kodi-repository-yellowdragon"
-PKG_VERSION="17.0.071"
+PKG_VERSION="17.0.072"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
