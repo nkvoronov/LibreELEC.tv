@@ -1,7 +1,7 @@
-diff -Naur a/addons/skin.estuary/1080i/Settings.xml b/addons/skin.estuary/1080i/Settings.xml
---- a/addons/skin.estuary/1080i/Settings.xml	2016-09-25 02:23:26.000000000 +0300
-+++ b/addons/skin.estuary/1080i/Settings.xml	2016-09-29 16:25:48.052277967 +0300
-@@ -146,6 +146,11 @@
+diff -Naur a/addons/skin.estuary/xml/Settings.xml b/addons/skin.estuary/xml/Settings.xml
+--- a/addons/skin.estuary/xml/Settings.xml	2016-11-25 20:46:29.000000000 +0200
++++ b/addons/skin.estuary/xml/Settings.xml	2016-11-27 17:48:34.394789272 +0200
+@@ -147,6 +147,11 @@
  					<icon>icons/settings/system.png</icon>
  				</item>
  				<item>
