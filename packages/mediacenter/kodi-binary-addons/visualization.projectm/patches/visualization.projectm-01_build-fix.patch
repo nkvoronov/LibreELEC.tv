@@ -1,0 +1,12 @@
+diff -Naur a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	2016-11-19 16:29:53.000000000 +0200
++++ b/CMakeLists.txt	2016-11-28 08:37:56.539296554 +0200
+@@ -20,6 +20,8 @@
+ find_package(ProjectM REQUIRED)
+ 
+ add_definitions(-DHAS_SDL_OPENGL)
++set(DATA_PATH "/storage/.kodi/addons/visualization.projectm/resources")
++add_definitions(-DDATAPATH="${DATA_PATH}")
+ 
+ set(INCLUDES ${OpenGL_INCLUDE_DIR}
+              ${EXTRA_INCLUDES}
