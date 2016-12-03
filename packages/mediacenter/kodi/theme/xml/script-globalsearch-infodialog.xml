@@ -145,10 +145,10 @@
 					<radioheight>48</radioheight>
 					<font>font12</font>
 					<label>$INFO[Control.GetLabel(192)]</label>
-					<textureradioonfocus colordiffuse="D0FFFFFF">icons/infodialogs/changelog.png</textureradioonfocus>
-					<textureradioonnofocus colordiffuse="D0FFFFFF">icons/infodialogs/changelog.png</textureradioonnofocus>
-					<textureradioofffocus colordiffuse="D0FFFFFF">icons/infodialogs/changelog.png</textureradioofffocus>
-					<textureradiooffnofocus colordiffuse="D0FFFFFF">icons/infodialogs/changelog.png</textureradiooffnofocus>
+					<textureradioonfocus colordiffuse="D0FFFFFF">icons/infodialogs/browse.png</textureradioonfocus>
+					<textureradioonnofocus colordiffuse="D0FFFFFF">icons/infodialogs/browse.png</textureradioonnofocus>
+					<textureradioofffocus colordiffuse="D0FFFFFF">icons/infodialogs/browse.png</textureradioofffocus>
+					<textureradiooffnofocus colordiffuse="D0FFFFFF">icons/infodialogs/browse.png</textureradiooffnofocus>
 					<onclick>SendClick(192)</onclick>
 					<visible>Control.IsVisible(192) + [Control.IsVisible(120) | Control.IsVisible(130) | Control.IsVisible(160)]</visible>
 				</control>

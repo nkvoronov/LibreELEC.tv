@@ -1,90 +1,89 @@
 <window>
 	<defaultcontrol always="true">901</defaultcontrol>
-	<allowoverlays>false</allowoverlays>
-	<animation effect="fade" time="250">WindowOpen</animation>
-	<animation effect="fade" time="250">WindowClose</animation>
 	<coordinates>
 		<left>290</left>
 		<top>130</top>
 	</coordinates>
+	<include>Animation_DialogPopupOpenClose</include>
+	<depth>DepthOSD</depth>
 	<controls>
-        <control type="image">
-			<left>-1920</left>
-			<top>-1080</top>
-			<width>5760</width>
-			<height>3240</height>
+		<control type="image">
+			<left>-2000</left>
+			<top>-2000</top>
+			<width>6000</width>
+			<height>6000</height>
 			<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
 			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 			<texture colordiffuse="C2FFFFFF">colors/black.png</texture>
 		</control>
-		<control type="image">
-			<left>0</left>
-			<top>0</top>
-			<width>1340</width>
-			<height>820</height>
-            <texture border="2">dialogs/dialog-bg-solid.png</texture>
-		</control>
-		<control type="image">
-			<left>0</left>
-			<top>0</top>
-			<width>1340</width>
-			<height>70</height>
-			<texture colordiffuse="button_focus" border="2">colors/white70.png</texture>
-		</control>
-		<control type="label">
-			<textoffsetx>70</textoffsetx>
-			<left>-30</left>
-			<top>0</top>
-			<width>1340</width>
-			<label>$ADDON[script.xbmc.audio.mixer 30001]</label>
-			<height>70</height>
-			<font>font20_title</font>
-			<align>left</align>
-			<aligny>center</aligny>
-			<shadowcolor>black</shadowcolor>
-		</control>
-        <control type="button" id="32001">
-			<left>-1920</left>
-			<top>-1080</top>
-			<width>5760</width>
-			<height>3240</height>
-			<texturefocus>-</texturefocus>
-			<texturenofocus>-</texturenofocus>
+		<control type="button">
+			<left>-2000</left>
+			<top>-2000</top>
+			<width>6000</width>
+			<height>6000</height>
+			<texturefocus />
+			<texturenofocus />
 			<onclick>Action(close)</onclick>
 		</control>
-		<control type="button" id="32002">
-			<description>button overlay to avoid closing in dialog area</description>
-			<left>0</left>
-			<top>0</top>
+		<control type="group">
 			<width>1340</width>
-			<height>820</height>
-			<texturefocus>-</texturefocus>
-			<texturenofocus>-</texturenofocus>
-			<onclick>noop</onclick>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<right>0</right>
+				<height>820</height>
+				<texture colordiffuse="dialog_tint">colors/white.png</texture>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<top>0</top>
+				<right>0</right>
+				<height>70</height>
+				<texture colordiffuse="button_focus" border="2">colors/white70.png</texture>
+			</control>
+			<control type="label" id="1">
+				<left>40</left>
+				<top>0</top>
+				<right>100</right>
+				<height>70</height>
+				<font>font32_title</font>
+				<label>$ADDON[script.xbmc.audio.mixer 30001]</label>
+				<aligny>center</aligny>
+				<shadowcolor>black</shadowcolor>
+				</control>
+			<control type="button" id="32002">
+				<description>button overlay to avoid closing in dialog area</description>
+				<left>0</left>
+				<top>0</top>
+				<right>0</right>
+				<height>820</height>
+				<texturefocus />
+				<texturenofocus />
+				<onclick>noop</onclick>
+			</control>
+			<control type="radiobutton">
+				<right>32</right>
+				<top>11</top>
+				<width>48</width>
+				<height>48</height>
+				<radiowidth>48</radiowidth>
+				<radioheight>48</radioheight>
+				<texturefocus />
+				<texturenofocus />
+				<label></label>
+				<textureradioofffocus colordiffuse="EEFFFFFF">dialogs/close.png</textureradioofffocus>
+				<textureradiooffnofocus colordiffuse="EEFFFFFF">icons/logo.png</textureradiooffnofocus>
+				<textureradioonfocus colordiffuse="EEFFFFFF">dialogs/close.png</textureradioonfocus>
+				<textureradioonnofocus colordiffuse="EEFFFFFF">icons/logo.png</textureradioonnofocus>
+				<onclick>Action(close)</onclick>
+			</control>
 		</control>
-		<control type="radiobutton" id="32000">
-			<left>1340</left>
-			<top>11</top>
-			<width>48</width>
-			<height>48</height>
-			<radiowidth>48</radiowidth>
-			<radioheight>48</radioheight>
-			<texturefocus>-</texturefocus>
-			<texturenofocus>-</texturenofocus>
-			<label></label>
-			<animation effect="slide" end="-70,0" time="0" condition="true">Conditional</animation>
-			<textureradioofffocus colordiffuse="EEFFFFFF">dialogs/close.png</textureradioofffocus>
-			<textureradiooffnofocus colordiffuse="EEFFFFFF">icons/logo.png</textureradiooffnofocus>
-			<textureradioonfocus colordiffuse="EEFFFFFF">dialogs/close.png</textureradioonfocus>
-			<textureradioonnofocus colordiffuse="EEFFFFFF">icons/logo.png</textureradioonnofocus>
-			<onclick>Action(close)</onclick>
-		</control>        
 		<control type="image">
 			<left>0</left>
 			<top>90</top>
 			<width>1340</width>
 			<height>660</height>
-            <texture border="40">buttons/dialogbutton-nofo.png</texture>
+			<texture border="40">buttons/dialogbutton-nofo.png</texture>
 		</control>
 		<control type="grouplist" id="17">
 			<description>Grouplist</description>
@@ -114,8 +113,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -136,22 +135,12 @@
 					<align>left</align>
 					<aligny>center</aligny>
 				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
-				</control>
 				<control type="slider" id="1902">
 					<description>Slider</description>
 					<left>610</left>
 					<top>25</top>
 					<width>590</width>
 					<height>20</height>
-                    <texturefocus>-</texturefocus>
-					<texturenofocus border="40">lists/separator.png</texturenofocus>
 					<onup>901</onup>
 					<ondown>901</ondown>
 				</control>
@@ -179,8 +168,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -200,14 +189,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="2902">
 					<description>Slider</description>
@@ -242,8 +223,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -263,14 +244,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="3902">
 					<description>Slider</description>
@@ -305,8 +278,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -326,14 +299,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="4902">
 					<description>Slider</description>
@@ -368,8 +333,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -389,14 +354,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="5902">
 					<description>Slider</description>
@@ -431,8 +388,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -452,14 +409,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="6902">
 					<description>Slider</description>
@@ -494,8 +443,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -515,14 +464,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="7902">
 					<description>Slider</description>
@@ -557,8 +498,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -578,14 +519,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="8902">
 					<description>Slider</description>
@@ -620,8 +553,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -641,14 +574,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="9902">
 					<description>Slider</description>
@@ -683,8 +608,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -704,14 +629,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="10902">
 					<description>Slider</description>
@@ -746,8 +663,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -767,14 +684,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="11902">
 					<description>Slider</description>
@@ -809,8 +718,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -830,14 +739,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="12902">
 					<description>Slider</description>
@@ -872,8 +773,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -893,14 +794,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="13902">
 					<description>Slider</description>
@@ -935,8 +828,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -956,14 +849,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="14902">
 					<description>Slider</description>
@@ -998,8 +883,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1019,14 +904,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="15902">
 					<description>Slider</description>
@@ -1061,8 +938,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1082,14 +959,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="16902">
 					<description>Slider</description>
@@ -1124,8 +993,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1145,14 +1014,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="17902">
 					<description>Slider</description>
@@ -1187,8 +1048,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1242,8 +1103,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1263,14 +1124,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="19902">
 					<description>Slider</description>
@@ -1305,8 +1158,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1326,14 +1179,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="20902">
 					<description>Slider</description>
@@ -1368,8 +1213,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1389,14 +1234,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="21902">
 					<description>Slider</description>
@@ -1431,8 +1268,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1452,14 +1289,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="22902">
 					<description>Slider</description>
@@ -1494,8 +1323,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1515,14 +1344,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="23902">
 					<description>Slider</description>
@@ -1557,8 +1378,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1578,14 +1399,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="24902">
 					<description>Slider</description>
@@ -1620,8 +1433,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1641,14 +1454,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="25902">
 					<description>Slider</description>
@@ -1683,8 +1488,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>					
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1704,14 +1509,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="26902">
 					<description>Slider</description>
@@ -1746,8 +1543,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1767,14 +1564,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="27902">
 					<description>Slider</description>
@@ -1809,8 +1598,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1830,14 +1619,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="28902">
 					<description>Slider</description>
@@ -1872,8 +1653,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1893,14 +1674,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="29902">
 					<description>Slider</description>
@@ -1935,8 +1708,8 @@
 					<visible>true</visible>
 					<label>$ADDON[script.xbmc.audio.mixer 30010]</label>
 					<font>font13</font>
-                    <texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
-                    <texturenofocus border="40">lists/separator.png</texturenofocus>
+					<texturefocus colordiffuse="button_focus">lists/focus.png</texturefocus>
+					<texturenofocus>-</texturenofocus>
 					<align>right</align>
 					<aligny>center</aligny>
 					<textoffsetx>105</textoffsetx>
@@ -1956,14 +1729,6 @@
 					<font>font13</font>
 					<align>left</align>
 					<aligny>center</aligny>
-				</control>
-                <control type="image">
-					<description>separator</description>
-					<left>590</left>
-					<top>0</top>
-					<width>750</width>
-					<height>80</height>
-					<texture border="40">lists/separator.png</texture>
 				</control>
 				<control type="slider" id="30902">
 					<description>Slider</description>
@@ -1987,7 +1752,7 @@
 			</control>
 		</control>
 		<control type="button" id="10">
-            <description>OK button</description>
+			<description>OK button</description>
 			<left>520</left>
 			<top>730</top>
 			<width>300</width>
@@ -1997,7 +1762,7 @@
 			<textcolor>white</textcolor>
 			<textoffsetx>20</textoffsetx>
 			<align>center</align>
-            <texturefocus border="40" colordiffuse="button_focus">buttons/dialogbutton-fo.png</texturefocus>
+			<texturefocus border="40" colordiffuse="button_focus">buttons/dialogbutton-fo.png</texturefocus>
 			<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
 			<onup>901</onup>
 			<ondown>901</ondown>
