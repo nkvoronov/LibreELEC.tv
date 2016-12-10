@@ -18,7 +18,7 @@
 
 PKG_NAME="system-tools"
 PKG_VERSION=""
-PKG_REV="102"
+PKG_REV="103"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
@@ -26,7 +26,7 @@ PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="virtual"
 PKG_SHORTDESC="A bundle of system tools and programs"
-PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, jq, lm_sensors, lshw, mrxvt, mtpfs, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
+PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, jq, lm_sensors, lshw, mrxvt, mtpfs,  nmon, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="System Tools"
@@ -53,6 +53,7 @@ ENABLE_LM_SENSORS="yes"
 ENABLE_LSHW="no"
 ENABLE_MRXVT="no"
 ENABLE_MTPFS="no"
+ENABLE_NMON="no"
 ENABLE_P7ZIP="yes"
 ENABLE_PATCH="no"
 ENABLE_PV="no"
@@ -129,6 +130,10 @@ fi
 
 if [ "$ENABLE_MTPFS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mtpfs"
+fi
+
+if [ "$ENABLE_NMON" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET nmon"
 fi
 
 if [ "$ENABLE_P7ZIP" = yes ]; then
@@ -246,6 +251,10 @@ addon() {
 
   if [ "$ENABLE_MTPFS" = yes ]; then
     cp -P $(get_build_dir mtpfs)/.$TARGET_NAME/mtpfs $ADDON_BUILD/$PKG_ADDON_ID/bin/
+  fi
+
+  if [ "$ENABLE_NMON" = yes ]; then
+    cp -P $(get_build_dir nmon)/nmon $ADDON_BUILD/$PKG_ADDON_ID/bin/
   fi
 
   if [ "$ENABLE_P7ZIP" = yes ]; then

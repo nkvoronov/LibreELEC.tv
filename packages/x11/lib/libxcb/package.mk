@@ -29,7 +29,7 @@ PKG_SHORTDESC="libxcb: X C-language Bindings library"
 PKG_LONGDESC="X C-language Bindings library."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="yes"
+PKG_AUTORECONF="no"
 
 if [ "$LIBXCB_EXT" != yes ]; then
   PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared \
