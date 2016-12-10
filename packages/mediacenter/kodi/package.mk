@@ -394,9 +394,6 @@ post_makeinstall_target() {
   fi
 
   if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
-    # Rebrand
-    # sed -e "s,@DISTRONAME@,$DISTRONAME,g" -i $INSTALL/usr/share/kodi/addons/skin.estuary/xml/Settings.xml
-
     rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/media
     rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/themes
     mkdir -p $INSTALL/usr/share/kodi/addons/skin.estuary/media
