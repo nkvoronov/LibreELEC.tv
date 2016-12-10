@@ -472,6 +472,7 @@ show_config() {
   config_message="$config_message\n $dashes$dashes"
 
   config_message="$config_message\n - Kodi version:\t\t\t $MEDIACENTER"
+  config_message="$config_message\n - Kodi include language files:\t\t $KODI_LANGUAGE_ADDONS"
   config_message="$config_message\n - Kodi nonfree support:\t\t $KODI_NONFREE_SUPPORT"
   config_message="$config_message\n - Kodi Blu-Ray support:\t\t $KODI_BLURAY_SUPPORT"
   if [ "$KODI_BLURAY_SUPPORT" = "yes" ] ; then
@@ -495,7 +496,35 @@ show_config() {
   done
 
   config_message="$config_message\n - Default Skin:\t\t\t $SKIN_DEFAULT"
+  config_message="$config_message\n - Remove shipped skins:\t\t $SKIN_REMOVE_SHIPPED"
   config_message="$config_message\n - Include extra fonts:\t\t\t $KODI_EXTRA_FONTS"
+
+  config_message="$config_message\n"
+  config_message="$config_message\n $dashes$dashes"
+  config_message="$config_message\n Custom options for $DISTRONAME"
+  config_message="$config_message\n $dashes$dashes"
+  config_message="$config_message\n"
+
+  config_message="$config_message\n - Custom source:\t\t\t $DISTRO_CUSTOM_SRC"
+  if [ "$OEM_SUPPORT" = "yes" ] ; then
+    config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
+    config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
+    config_message="$config_message\n - KODI XVD addon:\t\t\t $KODI_ADDON_XVDR"
+    config_message="$config_message\n - KODI YELLOWDRAGON repository:\t $KODI_REPOSITORY_YELLOWDRAGON"
+    config_message="$config_message\n - Transmission service:\t\t $TRANSMISSION_SERVICE"
+    config_message="$config_message\n - Oscam service:\t\t\t $OSCAM_SERVICE"
+    config_message="$config_message\n - Tvheadend  service:\t\t\t $TVHEADEND_SERVICE"
+    config_message="$config_message\n - VDR service:\t\t\t\t $VDR_SERVICE"
+    config_message="$config_message\n - System tools:\t\t\t $SYS_TOOLS_ENABLED"
+    config_message="$config_message\n - DVB tools:\t\t\t\t $DVB_TOOLS_ENABLED"
+    config_message="$config_message\n - PHP:\t\t\t\t\t $PHP_SUPPORT"
+    config_message="$config_message\n - Perl:\t\t\t\t $PERL_SUPPORT"
+    config_message="$config_message\n - EPG updaters:\t\t\t $EPGUPDATERS_SUPPORT"
+    config_message="$config_message\n - Libtorrent:\t\t\t\t $LIBTORRENTS_SUPPORT"
+    config_message="$config_message\n - Acestream:\t\t\t\t $ACESTREAM_SUPPORT"
+    config_message="$config_message\n - Game emulators:\t\t\t $GAME_EMULATORS"
+    config_message="$config_message\n - VLC:\t\t\t\t\t $VLC_ENABLE"
+  fi
 
   config_message="$config_message\n"
   config_message="$config_message\n $dashes$dashes$dashes"

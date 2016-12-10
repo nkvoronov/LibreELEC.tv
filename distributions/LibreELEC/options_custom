@@ -31,7 +31,7 @@
   PERL_SUPPORT="yes"
 
 # EPG Updaters
-  EPGUpdaters_SUPPORT="yes"
+  EPGUPDATERS_SUPPORT="yes"
 
 # Lib Torrents
   LIBTORRENTS_SUPPORT="yes"
