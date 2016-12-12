@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="libtorrent-addon"
-PKG_VERSION="1.0.3"
-PKG_REV="3"
+PKG_VERSION="1.0.10"
+PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.libtorrent.org/"

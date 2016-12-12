@@ -18,13 +18,13 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="kodi-repository-yellowdragon"
+PKG_NAME="repository.yellowdragon"
 PKG_VERSION="17.0.076"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="https://github.com/nkvoronov/repository.yellowdragon/raw/krypton/repo/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
 PKG_SECTION="mediacentre"
 PKG_SHORTDESC="YLLOW_DRAGON addons repository for KODI."
@@ -32,6 +32,10 @@ PKG_LONGDESC="YLLOW_DRAGON addons repository for KODI."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
+
+unpack() {
+  unzip -q $ROOT/$SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip -d $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
+}
 
 make_target() {
   : # nothing
@@ -43,5 +47,5 @@ makeinstall_target() {
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/repository.yellowdragon
-    cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/repository.yellowdragon
+    cp -PR $PKG_BUILD/repository.yellowdragon/* $INSTALL/usr/share/kodi/addons/repository.yellowdragon
 }

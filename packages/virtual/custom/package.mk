@@ -38,7 +38,7 @@ if [ "$KODI_ADDON_XVDR" = yes ]; then
 fi
 
 if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-repository-yellowdragon"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET repository.yellowdragon"
 fi
 
 if [ "$LOCALES_SUPPORT" = yes ]; then

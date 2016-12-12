@@ -19,12 +19,13 @@
 ################################################################################
 
 PKG_NAME="liblivemedia"
-PKG_VERSION="2015.06.24"
+PKG_VERSION="2016.11.28"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.live555.com/liveMedia"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="http://live555.com/liveMedia/public/live.$PKG_VERSION.tar.gz"
+PKG_SOURCE_DIR="live"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="This code forms a set of C++ libraries for multimedia streaming, using open standard protocols (RTP/RTCP, RTSP, SIP)"

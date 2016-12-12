@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-systeminfo"
-PKG_VERSION="0.1.3"
+PKG_VERSION="0.1.4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://firefly.vdr-developer.org/systeminfo"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="http://firefly.vdr-developer.org/systeminfo/vdr-systeminfo-$PKG_VERSION.tar.bz2"
+PKG_SOURCE_DIR="systeminfo-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="vdr systeminfo"

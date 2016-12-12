@@ -19,12 +19,13 @@
 ################################################################################
 
 PKG_NAME="mupen64plus"
-PKG_VERSION="2.5.0"
+PKG_VERSION="2.5"
 PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://mupen64plus.googlecode.com"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="https://github.com/mupen64plus/mupen64plus-core/releases/download/2.5/mupen64plus-bundle-src-$PKG_VERSION.tar.gz"
+PKG_SOURCE_DIR="mupen64plus-bundle-src-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain SDL2 libpng glib freetype"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="Nintendo 64 emulator"

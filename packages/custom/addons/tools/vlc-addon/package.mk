@@ -20,7 +20,7 @@
 
 PKG_NAME="vlc-addon"
 PKG_VERSION="2.2.4"
-PKG_REV="30"
+PKG_REV="31"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -57,7 +57,6 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
-    cp -P $QT4/bin/qtconfig $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $LUA/src/lua $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $LUA/src/luac $ADDON_BUILD/$PKG_ADDON_ID/bin
 
@@ -86,15 +85,6 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
-
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins
-    cp -PR $QT4/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins
-    rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/qt4/plugins/graphicssystems/*.prl
-
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
-    cp -P $QT4/translations/qt_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
-    cp -P $QT4/translations/qvfb_*.qm $ADDON_BUILD/$PKG_ADDON_ID/share/qt4/translations
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/

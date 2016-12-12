@@ -19,12 +19,12 @@
 ################################################################################
 
 PKG_NAME="libtorrent-rasterbar"
-PKG_VERSION="1.0.3"
+PKG_VERSION="1.0.10"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://www.libtorrent.org/"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/arvidn/libtorrent/releases/download/libtorrent-1_0_10/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain boost"
 PKG_SECTION="tools"
 PKG_SHORTDESC="libtorrent is a feature complete C++ bittorrent implementation focusing on efficiency and scalability. It runs on embedded devices as well as desktops. It boasts a well documented library interface that is easy to use. It comes with a simple bittorrent client demonstrating the use of the library."

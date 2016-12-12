@@ -242,9 +242,6 @@ post_install() {
     mv $INSTALL/usr/bin/vlc $INSTALL/usr/bin/vlc.bin
     cp -pR $PKG_DIR/scripts/* $INSTALL/usr/bin
 
-  mkdir -p $INSTALL/usr/config/vlc
-    cp -pR $PKG_DIR/config/* $INSTALL/usr/config/vlc
-
   mkdir -p $INSTALL/usr/share/locale
   for fgmo in `ls $PKG_BUILD/po/*.gmo`;do
     fname=`basename $fgmo .gmo`
