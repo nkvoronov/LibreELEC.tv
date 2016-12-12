@@ -35,20 +35,19 @@ PKG_DISCLAIMER="using oscam may be illegal in your country. if in doubt, do not 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-configure_target() {
-  cmake -DCMAKE_TOOLCHAIN_FILE=$CMAKE_CONF \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DLIBUSBDIR=$SYSROOT_PREFIX/usr \
-        -DWITH_SSL=0 \
-        -DHAVE_LIBCRYPTO=0 \
-        -DHAVE_DVBAPI=1 -DWITH_STAPI=0 \
-        -DWEBIF=1 \
-        -DWITH_DEBUG=0 \
-        -DOPTIONAL_INCLUDE_DIR=$SYSROOT_PREFIX/usr/include \
-        -DSTATIC_LIBUSB=1 \
-        -DCLOCKFIX=0 \
-        ..
+pre_unpack()  {
+  export OSCAM_VERSION="$PKG_VERSION"
 }
+
+PKG_CMAKE_OPTS_TARGET="-DLIBUSBDIR=$SYSROOT_PREFIX/usr \
+                       -DWITH_SSL=0 \
+                       -DHAVE_LIBCRYPTO=0 \
+                       -DHAVE_DVBAPI=1 -DWITH_STAPI=0 \
+                       -DWEBIF=1 \
+                       -DWITH_DEBUG=0 \
+                       -DOPTIONAL_INCLUDE_DIR=$SYSROOT_PREFIX/usr/include \
+                       -DSTATIC_LIBUSB=1 \
+                       -DCLOCKFIX=0"
 
 makeinstall_target() {
   : # nop

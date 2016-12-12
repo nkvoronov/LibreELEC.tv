@@ -7,7 +7,7 @@ index 7653731..a6b2ea8 100755
  	;;
  	'-r'|'--oscam-revision')
 -		(svnversion -n . 2>/dev/null || printf 0) | sed 's/.*://; s/[^0-9]*$//; s/^$/0/'
-+		echo "$OSCAM_ADDON_VERSION"
++		echo "$OSCAM_VERSION"
  		break
  	;;
  	'-O'|'--detect-osx-sdk-version')

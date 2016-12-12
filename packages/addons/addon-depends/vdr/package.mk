@@ -18,13 +18,13 @@
 ################################################################################
 
 PKG_NAME="vdr"
-PKG_VERSION="9ab55b4"
+PKG_VERSION="2.2.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvdr.de"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain fontconfig freetype libcap libjpeg-turbo bzip2"
+PKG_URL="ftp://ftp.tvdr.de/vdr/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_DEPENDS_TARGET="toolchain fontconfig freetype libcap libiconv libjpeg-turbo bzip2"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="vdr: A powerful DVB TV application"
 PKG_LONGDESC="This project describes how to build your own digital satellite receiver and video disk recorder. It is based mainly on the DVB-S digital satellite receiver card, which used to be available from Fujitsu Siemens and the driver software developed by the LinuxTV project."
@@ -37,7 +37,7 @@ post_unpack() {
 }
 
 pre_configure_target() {
-  export LDFLAGS=$(echo $LDFLAGS | sed -e "s|-Wl,--as-needed||")
+  export LDFLAGS="$(echo $LDFLAGS | sed -e "s|-Wl,--as-needed||") -L$SYSROOT_PREFIX/usr/lib/iconv"
 }
 
 pre_make_target() {
@@ -48,6 +48,7 @@ pre_make_target() {
   CONFDIR = /storage/.config/vdr
   LOCDIR = /usr/share/locale
   RESDIR = /storage/.config/vdr
+  LIBS += -liconv
 
   NO_KBD=yes
   VDR_USER=root

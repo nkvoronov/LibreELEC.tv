@@ -506,9 +506,9 @@ show_config() {
   config_message="$config_message\n"
 
   config_message="$config_message\n - Custom source:\t\t\t $DISTRO_CUSTOM_SRC"
+  config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
+  config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
   if [ "$OEM_SUPPORT" = "yes" ] ; then
-    config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
-    config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
     config_message="$config_message\n - KODI XVD addon:\t\t\t $KODI_ADDON_XVDR"
     config_message="$config_message\n - KODI YELLOWDRAGON repository:\t $KODI_REPOSITORY_YELLOWDRAGON"
     config_message="$config_message\n - Transmission service:\t\t $TRANSMISSION_SERVICE"

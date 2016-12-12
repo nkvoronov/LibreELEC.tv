@@ -17,12 +17,12 @@
 ################################################################################
 
 PKG_NAME="libcroco"
-PKG_VERSION="0.6.8"
+PKG_VERSION="0.6.11"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.linuxfromscratch.org/blfs/view/svn/general/libcroco.html"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="http://ftp.gnome.org/pub/GNOME/sources/${PKG_NAME}/${PKG_VERSION:0:3}/${PKG_NAME}-${PKG_VERSION}.tar.xz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="devel"
 PKG_SHORTDESC="The libcroco package contains a standalone CSS2 parsing and manipulation library."

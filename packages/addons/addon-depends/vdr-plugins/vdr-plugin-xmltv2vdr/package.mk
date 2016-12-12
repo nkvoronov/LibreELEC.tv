@@ -31,19 +31,21 @@ PKG_SHORTDESC="vdr-xmltv2vdr"
 PKG_LONGDESC="vdr-xmltv2vdr"
 
 PKG_IS_ADDON="no"
+
 PKG_AUTORECONF="no"
 
 pre_configure_target() {
   export CFLAGS="$CFLAGS -fPIC"
-  export CXXFLAGS="$CXXFLAGS -fPIC"
+  export CXXFLAGS="$CXXFLAGS -fPIC -Wno-narrowing"
   export LDFLAGS="$LDFLAGS -fPIC"
+  export LIBS="-L$SYSROOT_PREFIX/usr/lib/iconv -lpcre -lpcrecpp"
 }
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
   make VDRDIR=$VDR_DIR \
-  LIBDIR="." \
-  LOCALEDIR="./locale"
+    LIBDIR="." \
+    LOCALEDIR="./locale"
 }
 
 post_make_target() {

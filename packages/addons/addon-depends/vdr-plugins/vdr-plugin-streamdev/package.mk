@@ -31,6 +31,7 @@ PKG_SHORTDESC="TV"
 PKG_LONGDESC="TV"
 
 PKG_IS_ADDON="no"
+
 PKG_AUTORECONF="no"
 
 make_target() {
@@ -58,3 +59,4 @@ post_make_target() {
 makeinstall_target() {
   : # installation not needed, done by create-addon script
 }
+

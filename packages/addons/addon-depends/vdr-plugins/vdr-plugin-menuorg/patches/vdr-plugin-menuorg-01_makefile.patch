@@ -1,6 +1,6 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2014-10-17 23:30:56.000000000 +0300
-+++ b/Makefile	2014-10-18 09:42:06.613760695 +0300
+--- a/Makefile	2015-02-10 20:14:59.000000000 +0200
++++ b/Makefile	2016-12-11 08:33:45.769251518 +0200
 @@ -11,21 +11,15 @@
  ### The directory environment:
  
@@ -25,7 +25,7 @@ diff -Naur a/Makefile b/Makefile
  
  ### Allow user defined options to overwrite defaults:
  
-@@ -42,11 +36,15 @@
+@@ -42,11 +36,17 @@
  
  ### Includes and Defines (add further entries here):
  
@@ -38,10 +38,12 @@ diff -Naur a/Makefile b/Makefile
  LIBS +=  `pkg-config libxml++-2.6 --libs`
  LIBS +=  `pkg-config glibmm-2.4 --libs`
 +LIBS +=  `pkg-config glib-2.0 --libs`
++
++CXXFLAGS +=-std=c++11
  
  DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
  
-@@ -106,6 +104,7 @@
+@@ -106,6 +106,7 @@
  
  $(SOFILE): $(OBJS)
  	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@

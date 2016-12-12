@@ -206,8 +206,8 @@ addon() {
   CXXTOOLS_DIR=$(get_build_dir cxxtools)
   TNTNET_DIR=$(get_build_dir tntnet)
   GLIBMM_DIR=$(get_build_dir glibmm)
-  LIBXMLPP_DIR=$(get_build_dir libxmlpp)
-  LIBSIGPP_DIR=$(get_build_dir libsigcpp)
+  LIBXMLPP_DIR=$(get_build_dir libxml++)
+  LIBSIGPP_DIR=$(get_build_dir libsigc++)
   LIBXCB_DIR=$(get_build_dir libxcb)
   LIBXCBUTIL_DIR=$(get_build_dir xcb-util)
   LIBXCBUTILIMAGE_DIR=$(get_build_dir xcb-util-image)
@@ -348,9 +348,9 @@ addon() {
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $CXXTOOLS_DIR/.install_pkg/usr/lib/libcxxtools.so.9.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcxxtools.so.9
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
 
   fi
 
@@ -543,9 +543,9 @@ addon() {
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
@@ -563,9 +563,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
@@ -623,9 +623,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SKINFLATPLUS" = yes ]; then
@@ -646,9 +646,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SKINNOPACITY" = yes ]; then
@@ -668,9 +668,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SYSTEMINFO" = yes ]; then
@@ -712,16 +712,17 @@ addon() {
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
-      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10200.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
       cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
       cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3400.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
       cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
 

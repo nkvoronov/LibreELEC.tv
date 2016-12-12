@@ -26,7 +26,7 @@ PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="A bundle of system tools and programs"
-PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, jq, lm_sensors, lshw, mrxvt, mtpfs, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
+PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, jq, lm_sensors, lshw, mrxvt, mtpfs, nmon, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -48,6 +48,7 @@ ENABLE_LM_SENSORS="yes"
 ENABLE_LSHW="no"
 ENABLE_MRXVT="no"
 ENABLE_MTPFS="no"
+ENABLE_NMON="no"
 ENABLE_P7ZIP="yes"
 ENABLE_PATCH="no"
 ENABLE_PV="no"
@@ -124,6 +125,10 @@ fi
 
 if [ "$ENABLE_MTPFS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mtpfs"
+fi
+
+if [ "$ENABLE_NMON" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET nmon"
 fi
 
 if [ "$ENABLE_P7ZIP" = yes ]; then
@@ -251,6 +256,10 @@ post_install() {
 
   if [ "$ENABLE_MTPFS" = yes ]; then
     cp -P $(get_build_dir mtpfs)/.$TARGET_NAME/mtpfs $INSTALL/usr/bin/
+  fi
+
+  if [ "$ENABLE_NMON" = yes ]; then
+    cp -P $(get_build_dir nmon)/nmon $INSTALL/usr/bin/
   fi
 
   if [ "$ENABLE_P7ZIP" = yes ]; then

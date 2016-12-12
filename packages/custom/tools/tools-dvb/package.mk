@@ -34,6 +34,7 @@ PKG_AUTORECONF="no"
 ENABLE_DVB_APPS="no"
 ENABLE_DVB_FE_TOOL="no"
 ENABLE_DVBLAST="no"
+ENABLE_WSCAN="no"
 ENABLE_SCAN_S2="yes"
 ENABLE_SZAP_S2="yes"
 
@@ -47,6 +48,10 @@ fi
 
 if [ "$ENABLE_DVBLAST" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvblast"
+fi
+
+if [ "$ENABLE_WSCAN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET w_scan"
 fi
 
 if [ "$ENABLE_SCAN_S2" = yes ]; then
@@ -88,6 +93,10 @@ post_install() {
 
   if [ "$ENABLE_DVBLAST" = yes ]; then
     cp -P $(get_build_dir dvblast)/dvblast $INSTALL/usr/bin
+  fi
+
+  if [ "$ENABLE_WSCAN" = yes ]; then
+    cp -P $(get_build_dir w_scan)/.$TARGET_NAME/w_scan $INSTALL/usr/bin
   fi
 
   if [ "$ENABLE_SCAN_S2" = yes ]; then

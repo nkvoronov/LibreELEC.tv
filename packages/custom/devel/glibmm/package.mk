@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="glibmm"
-PKG_VERSION="2.39.93"
+PKG_VERSION="2.46.4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://developer.gnome.org/glibmm/stable/"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain libsigcpp"
+PKG_URL="http://ftp.gnome.org/pub/GNOME/sources/${PKG_NAME}/${PKG_VERSION:0:4}/${PKG_NAME}-${PKG_VERSION}.tar.xz"
+PKG_DEPENDS_TARGET="toolchain libsigc++"
 PKG_SECTION="devel"
 PKG_SHORTDESC="glibmm is the official C++ interface for the popular cross-platform library Glib. It provides non-UI API that is not available in standard C++ and makes it possible for gtkmm to wrap GObject-based APIs. See also the Programming with gtkmm book for a tutorial on programming with gtkmm and glibmm."
 PKG_LONGDESC="glibmm is the official C++ interface for the popular cross-platform library Glib. It provides non-UI API that is not available in standard C++ and makes it possible for gtkmm to wrap GObject-based APIs. See also the Programming with gtkmm book for a tutorial on programming with gtkmm and glibmm."

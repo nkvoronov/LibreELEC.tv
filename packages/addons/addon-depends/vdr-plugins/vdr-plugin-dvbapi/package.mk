@@ -31,6 +31,7 @@ PKG_SHORTDESC="TV"
 PKG_LONGDESC="TV"
 
 PKG_IS_ADDON="no"
+
 PKG_AUTORECONF="no"
 
 pre_make_target() {
