@@ -348,9 +348,9 @@ addon() {
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $CXXTOOLS_DIR/.install_pkg/usr/lib/libcxxtools.so.9.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcxxtools.so.9
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
 
   fi
 
@@ -543,9 +543,9 @@ addon() {
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
@@ -563,9 +563,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
@@ -623,9 +623,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SKINFLATPLUS" = yes ]; then
@@ -646,9 +646,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SKINNOPACITY" = yes ]; then
@@ -668,9 +668,9 @@ addon() {
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q8.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q8.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q8.so.2
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q8.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q8.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.2
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.2
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SYSTEMINFO" = yes ]; then

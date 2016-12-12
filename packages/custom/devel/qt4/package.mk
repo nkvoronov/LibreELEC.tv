@@ -1,19 +1,21 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2009-2016 Lukas Rusak (lrusak@libreelec.tv)
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
-#  LibreELEC is free software: you can redistribute it and/or modify
+#  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
 #
-#  LibreELEC is distributed in the hope that it will be useful,
+#  This Program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
+#  along with OpenELEC.tv; see the file COPYING.  If not, write to
+#  the Free Software Foundation, 51 Franklin Street, Suite 500, Boston, MA 02110, USA.
+#  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
 PKG_NAME="qt4"
@@ -22,27 +24,38 @@ PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
 PKG_URL="http://download.qt-project.org/official_releases/qt/4.8/$PKG_VERSION/qt-everywhere-opensource-src-$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="qt-everywhere-opensource-src-$PKG_VERSION"
-PKG_DEPENDS_TARGET="toolchain Python zlib:host zlib"
+PKG_DEPENDS_TARGET="toolchain bzip2 Python zlib:host zlib libpng tiff dbus glib fontconfig mysql libressl \
+glibc liberation-fonts-ttf freetype font-util font-xfree86-type1 font-misc-misc alsa libXcursor libSM libICE"
+PKG_SECTION="devel"
 PKG_SHORTDESC="Qt GUI toolkit"
 PKG_LONGDESC="Qt GUI toolkit"
 
-PLATFORM="qws/linux-libreelec-g++"
-QMAKE_CONF_DIR="mkspecs/$PLATFORM"
-QMAKE_CONF="$QMAKE_CONF_DIR/qmake.conf"
+PKG_IS_ADDON="no"
+PKG_AUTORECONF="no"
+
+PLATFORM="linux-g++-$TARGET_NAME"
+LEX=$ROOT/$TOOLCHAIN/bin/flex
+YACC=$ROOT/$TOOLCHAIN/bin/yacc
+INCDIR=$SYSROOT_PREFIX/usr/include
+LIBDIR=$SYSROOT_PREFIX/usr/lib
+QMAKE_CONF_DIR="$ROOT/$BUILD/$PKG_NAME-$PKG_VERSION/mkspecs/$PLATFORM"
+
 QTDIR=$SYSROOT_PREFIX/usr
 
-PKG_CONFIGURE_OPTS_TARGET="-prefix /usr \
-                           -hostprefix $QTDIR \
-                           -xplatform $PLATFORM \
-                           -make libs \
-                           -force-pkg-config \
-                           -release \
-                           -opensource \
+PKG_CONFIGURE_OPTS_TARGET="-prefix $QTDIR \
+                           -bindir $QTDIR/bin \
+                           -plugindir $QTDIR/lib/qt4/plugins \
+                           -importdir $QTDIR/lib/qt4/imports \
+                           -datadir $QTDIR/share/qt4 \
+                           -docdir $QTDIR/share/doc/qt4 \
+                           -translationdir $QTDIR/share/qt4/translations \
+                           -platform $PLATFORM \
                            -confirm-license \
+                           -opensource \
                            -fast \
                            -no-accessibility \
-                           -no-sql-mysql \
                            -no-sql-sqlite \
+                           -no-sql-mysql \
                            -no-qt3support \
                            -no-xmlpatterns \
                            -no-multimedia \
@@ -51,56 +64,37 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix /usr \
                            -no-phonon-backend \
                            -no-svg \
                            -no-webkit \
-                           -no-javascript-jit \
                            -no-script \
                            -no-scripttools \
-                           -no-declarative \
-                           -no-declarative-debug \
-                           -no-neon \
-                           -system-zlib \
-                           -no-gif \
-                           -no-libtiff \
-                           -no-libpng \
-                           -no-libmng \
-                           -no-libjpeg \
-                           -no-openssl \
+                           -no-javascript-jit \
+                           -qt-zlib \
+                           -qt-libtiff \
+                           -qt-libpng \
+                           -qt-libjpeg \
+                           -qt-libmng \
                            -no-rpath \
-                           -silent \
                            -optimized-qmake \
-                           -no-nis \
-                           -no-cups \
-                           -no-pch \
                            -dbus-linked \
                            -reduce-relocations \
-                           -reduce-exports \
                            -no-separate-debug-info \
                            -verbose \
                            -no-nas-sound \
                            -no-openvg \
                            -fontconfig \
                            -nomake examples \
-                           -nomake demos \
-                           -embedded $TARGET_ARCH"
+                           -nomake demos"
 
 configure_target() {
   cd ..
+
   mkdir -p $QMAKE_CONF_DIR
-  echo "include(../../common/linux.conf)" > $QMAKE_CONF
-  echo "include(../../common/gcc-base-unix.conf)" >> $QMAKE_CONF
-  echo "include(../../common/g++-unix.conf)" >> $QMAKE_CONF
-  echo "include(../../common/qws.conf)" >> $QMAKE_CONF
-  echo "QMAKE_CC = $CC" >> $QMAKE_CONF
-  echo "QMAKE_CXX = $CXX" >> $QMAKE_CONF
-  echo "QMAKE_LINK = $CXX" >> $QMAKE_CONF
-  echo "QMAKE_LINK_SHLIB = $CXX" >> $QMAKE_CONF
-  echo "QMAKE_AR = $AR cqs" >> $QMAKE_CONF
-  echo "QMAKE_OBJCOPY = $OBJCOPY" >> $QMAKE_CONF
-  echo "QMAKE_STRIP = $STRIP" >> $QMAKE_CONF
-  echo "QMAKE_CFLAGS = $CFLAGS" >> $QMAKE_CONF
-  echo "QMAKE_CXXFLAGS = $CXXFLAGS" >> $QMAKE_CONF
-  echo "QMAKE_LFLAGS = $LDFLAGS" >> $QMAKE_CONF
-  echo "load(qt_config)" >> $QMAKE_CONF
-  echo '#include "../../linux-g++/qplatformdefs.h"' >> $QMAKE_CONF_DIR/qplatformdefs.h
+    cp -P $PKG_DIR/mkspecs/* $QMAKE_CONF_DIR
+  sed "s#@CC@#${CC}#;s#@CFLAGS@#${CFLAGS}#;s#@CXX@#${CXX}#;s#@LEX@#${LEX}#;s#@YACC@#${YACC}#;s#@INCDIR@#${INCDIR}#;s#@LIBDIR@#${LIBDIR}#;s#@LDFLAGS@#${LDFLAGS}#;s#@AR@#${AR}#;s#@OBJCOPY@#${OBJCOPY}#;s#@STRIP@#${STRIP}#" $QMAKE_CONF_DIR/qmake.conf.in > $QMAKE_CONF_DIR/qmake.conf
+  rm -f $QMAKE_CONF_DIR/qmake.conf.in
+
+  export QT_FORCE_PKGCONFIG=yes
+  unset QMAKESPEC
+  export QT4PREFIX=$QTDIR
 
   CC="" CXX="" LD="" RANLIB="" AR="" AS="" CPPFLAGS="" CFLAGS="" LDFLAGS="" CXXFLAGS="" \
     PKG_CONFIG_SYSROOT_DIR="$SYSROOT_PREFIX" \
@@ -111,7 +105,7 @@ configure_target() {
 
 post_makeinstall_target() {
   mkdir -p $ROOT/$TOOLCHAIN/bin
-  cp -P $ROOT/$PKG_BUILD/bin/qmake $ROOT/$TOOLCHAIN/bin
+    cp -P $ROOT/$PKG_BUILD/bin/qmake $ROOT/$TOOLCHAIN/bin
 
   for file in $QTDIR/lib/pkgconfig/Qt*.pc; do
     sed -i -r 's/prefix=\//qtdir=\//g' $file
@@ -131,6 +125,7 @@ post_install() {
   mkdir -p $INSTALL/usr/lib
     cp -P $PKG_BUILD/lib/libQtCore.so* $INSTALL/usr/lib
     cp -P $PKG_BUILD/lib/libQtGui.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/lib/libQtNetwork.so* $INSTALL/usr/lib
 
   mkdir -p $INSTALL/usr/lib/fonts
     cp -P $PKG_BUILD/lib/fonts/* $INSTALL/usr/lib/fonts

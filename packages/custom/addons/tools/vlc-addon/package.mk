@@ -65,6 +65,7 @@ addon() {
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -P $QT4/lib/libQtCore.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
     cp -P $QT4/lib/libQtGui.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4
+    cp -P $QT4/lib/libQtNetwork.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtNetwork.so.4
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
@@ -77,7 +78,7 @@ addon() {
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
 
     cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
+    cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
     cp -P $QT4/lib/fonts/* $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
