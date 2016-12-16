@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="pvr.iptvsimple"
-PKG_VERSION="85866f9"
+PKG_VERSION="d2531ac"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
 PKG_GIT_URL="https://github.com/kodi-pvr/pvr.iptvsimple"
-PKG_GIT_BRANCH="master"
+PKG_GIT_BRANCH="Krypton"
 PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain kodi-platform zlib"
 PKG_SECTION=""
