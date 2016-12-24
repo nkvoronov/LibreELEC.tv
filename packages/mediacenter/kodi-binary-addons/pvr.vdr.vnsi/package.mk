@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="pvr.vdr.vnsi"
-PKG_VERSION="64d7033"
+PKG_VERSION="90aa7f0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
