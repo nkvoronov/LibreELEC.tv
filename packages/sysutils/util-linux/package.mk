@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="util-linux"
-PKG_VERSION="2.28.1"
+PKG_VERSION="2.29"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_URL="http://www.kernel.org/pub/linux/utils/util-linux/v2.28/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_URL="http://www.kernel.org/pub/linux/utils/util-linux/v2.29/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_DEPENDS_INIT="toolchain"
 PKG_SECTION="system"
@@ -82,13 +82,7 @@ PKG_CONFIGURE_OPTS_HOST="--enable-static \
                          --enable-uuidgen \
                          --enable-libuuid"
 
-PKG_CONFIGURE_OPTS_INIT="--prefix=/ \
-                         --bindir=/bin \
-                         --sbindir=/sbin \
-                         --sysconfdir=/etc \
-                         --libexecdir=/lib \
-                         --localstatedir=/var \
-                         $UTILLINUX_CONFIG_DEFAULT \
+PKG_CONFIGURE_OPTS_INIT="$UTILLINUX_CONFIG_DEFAULT \
                          --enable-libblkid \
                          --enable-libmount \
                          --enable-fsck"

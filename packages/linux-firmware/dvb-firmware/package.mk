@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="dvb-firmware"
-PKG_VERSION="1.1.0"
+PKG_VERSION="1.2.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Free-to-use"
@@ -36,5 +36,5 @@ make_target() {
 }
 
 makeinstall_target() {
-  DESTDIR=$INSTALL ./install
+  DESTDIR=$INSTALL/usr ./install
 }

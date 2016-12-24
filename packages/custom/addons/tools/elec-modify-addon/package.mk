@@ -18,7 +18,7 @@
 
 PKG_NAME="elec-modify-addon"
 PKG_VERSION="1"
-PKG_REV="29"
+PKG_REV="30"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
@@ -55,8 +55,8 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/updates/lcdproc-fix-install/update/usr/sbin
     cp -PR $LCDPROC_DIR/.install_pkg/usr/sbin/* $ADDON_BUILD/$PKG_ADDON_ID/updates/lcdproc-fix-install/update/usr/sbin
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/updates/tbscc-install/update/lib/modules/$VER_KERNEL/updates/tbs
-    find $TBS_DRIVER_DIR/v4l/ -name \*.ko -exec cp {} $ADDON_BUILD/$PKG_ADDON_ID/updates/tbscc-install/update/lib/modules/$VER_KERNEL/updates/tbs \;
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/updates/tbscc-install/update/usr/lib/modules/$VER_KERNEL/updates/tbs
+    find $TBS_DRIVER_DIR/v4l/ -name \*.ko -exec cp {} $ADDON_BUILD/$PKG_ADDON_ID/updates/tbscc-install/update/usr/lib/modules/$VER_KERNEL/updates/tbs \;
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/updates/tbscc-install/update/lib/firmware
     cp $TBS_DRIVER_DIR/v4l/firmware/*.fw $ADDON_BUILD/$PKG_ADDON_ID/updates/tbscc-install/update/lib/firmware
 }
