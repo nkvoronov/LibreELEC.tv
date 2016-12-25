@@ -43,8 +43,7 @@ post_unpack() {
 
 make_target() {
   cd $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
-  [ "$TARGET_ARCH" = "i386" ] && ./v4l/tbs-x86_r3.sh
-  [ "$TARGET_ARCH" = "x86_64" ] && ./v4l/tbs-x86_64.sh
+  ./v4l/tbs-x86_64.sh
   LDFLAGS="" make DIR=$(kernel_path) prepare
   LDFLAGS="" make DIR=$(kernel_path)
 }
@@ -52,6 +51,6 @@ make_target() {
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs
   find $ROOT/$PKG_BUILD/v4l/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs \;
-  mkdir -p $INSTALL/lib/firmware/
-  cp $ROOT/$PKG_BUILD/v4l/firmware/*.fw $INSTALL/lib/firmware/
+  mkdir -p $INSTALL/usr/lib/firmware/
+  cp $ROOT/$PKG_BUILD/v4l/firmware/*.fw $INSTALL/usr/lib/firmware/
 }

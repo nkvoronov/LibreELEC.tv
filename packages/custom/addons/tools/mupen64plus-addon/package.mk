@@ -58,6 +58,6 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $MUPEN64PLUS_DIR/test/libmupen64plus.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmupen64plus.so.2
     cp -P $MUPEN64PLUS_DIR/test/mupen64plus-*.so $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $(get_build_dir SDL2)/.install_pkg/usr/lib/libSDL2-2.0.so.0.4.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL2-2.0.so.0
+    cp -P $(get_build_dir SDL2)/.install_pkg/usr/lib/libSDL2-2.0.so.0.4.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL2-2.0.so.0
 
 }

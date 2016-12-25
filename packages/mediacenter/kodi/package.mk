@@ -303,7 +303,6 @@ post_makeinstall_target() {
     cp $PKG_DIR/scripts/cputemp $INSTALL/usr/bin
       ln -sf cputemp $INSTALL/usr/bin/gputemp
     cp $PKG_DIR/scripts/setwakeup.sh $INSTALL/usr/bin
-    cp tools/EventClients/Clients/Kodi\ Send/kodi-send.py $INSTALL/usr/bin/kodi-send
 
   if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
     rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/media
