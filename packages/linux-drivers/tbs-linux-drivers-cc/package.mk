@@ -19,7 +19,7 @@
 PKG_NAME="tbs-linux-drivers-cc"
 PKG_VERSION="d7afcda"
 PKG_REV="1"
-PKG_ARCH="i386 x86_64"
+PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="https://bitbucket.org/CrazyCat/linux-tbs-drivers"
 PKG_GIT_URL="https://bitbucket.org/CrazyCat/linux-tbs-drivers.git"

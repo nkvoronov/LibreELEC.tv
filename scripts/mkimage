@@ -126,7 +126,7 @@ if [ "$BOOTLOADER" = "syslinux" ]; then
   # create bootloader configuration
     echo "image: creating bootloader configuration..."
     cat << EOF > "$LE_TMP"/syslinux.cfg
-SAY Press <TAB> to edit options (installer, live, run)
+SAY Wait for installer to start or press <TAB> for more options (live, run)
 DEFAULT installer
 TIMEOUT 50
 PROMPT 1

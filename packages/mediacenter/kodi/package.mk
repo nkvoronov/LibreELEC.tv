@@ -243,17 +243,11 @@ PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$ROOT/$TOOLCHAIN \
                        $KODI_PLAYER"
 
 pre_build_target() {
-# adding fake Makefile for stripped skin
+
   mkdir -p $ROOT/$PKG_BUILD/addons/skin.estuary/media
   cp -PR $PKG_DIR/theme/* $ROOT/$PKG_BUILD/addons/skin.estuary
   touch $ROOT/$PKG_BUILD/addons/skin.estuary/media/Makefile.in
 
-# setup skin dir from default skin
-  SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
-
-# setup default skin inside the sources
-  sed -i -e "s|skin.estuary|$SKIN_DIR|g" $ROOT/$PKG_BUILD/xbmc/system.h
-  sed -i -e "s|skin.estuary|$SKIN_DIR|g" $ROOT/$PKG_BUILD/system/settings/settings.xml
 }
 
 pre_configure_target() {

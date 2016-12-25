@@ -150,6 +150,8 @@ for i in $PKG_DIR/patches/$PKG_NAME-*.patch \
     PATCH_DESC="(common)"
   elif [ "$thisdir" = "$PKG_DIR/patches/$PATCH_ARCH" ]; then
     PATCH_DESC="(common - $PATCH_ARCH)"
+  elif [ "$thisdir" = "$PKG_DIR/patches/$PKG_VERSION" ]; then
+    PATCH_DESC="(common - $PKG_VERSION)"
   elif [ "$thisdir" = "$PKG_DIR/patches/$PKG_VERSION/$PATCH_ARCH" ]; then
     PATCH_DESC="($PKG_VERSION - $PATCH_ARCH)"
   elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME" ]; then
