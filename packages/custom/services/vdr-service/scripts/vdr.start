@@ -176,7 +176,7 @@ init_vdr_plugins() {
         VDR_ARG="$VDR_ARG -P 'restfulapi $VDR_RESTFULAPI_ARGS'"
     fi
 
-    # vnsi/xvdr last
+    # vnsi last
     VDR_ARG="$VDR_ARG -P $PVR_PLUGIN"
 }
 

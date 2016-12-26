@@ -41,7 +41,7 @@ else
 fi
 
 post_unpack() {
-  if [ "$OEM_SUPPORT" = "yes" ]; then
+  if [ "$CUSTOM_SUPPORT" = "yes" ]; then
     for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
       cat $patch | patch -d \
       `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1

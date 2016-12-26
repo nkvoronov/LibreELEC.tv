@@ -189,7 +189,7 @@
   INSTALLER_SUPPORT="yes"
 
 # Testpackages for development (yes / no)
-  TESTING="no"
+  TESTING="yes"
 
 # OEM packages for OEM's (yes / no)
   OEM_SUPPORT="no"

@@ -63,7 +63,7 @@ make_target() {
 }
 
 makeinstall_target() {
-  if [ "$LIBTORRENTS_SUPPORT" = yes ]; then
+  if [ "$BOOST_PYTHON_SUPPORT" = yes ]; then
     $ROOT/$TOOLCHAIN/bin/bjam -d2 --toolset=gcc link=static \
                                   --prefix=$SYSROOT_PREFIX/usr \
                                   --ignore-site-config \

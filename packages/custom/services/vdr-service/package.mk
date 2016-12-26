@@ -18,7 +18,7 @@
 
 PKG_NAME="vdr-service"
 PKG_VERSION="2.2.0"
-PKG_REV="115"
+PKG_REV="116"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -42,7 +42,6 @@ ENABLE_VDR_PLUGIN_RESTFULAPI="yes"
 ENABLE_VDR_PLUGIN_STREAMDEV="yes"
 ENABLE_VDR_PLUGIN_VNSISERVER="yes"
 ENABLE_VDR_PLUGIN_XMLTV2VDR="yes"
-ENABLE_VDR_PLUGIN_XVDR="yes"
 ENABLE_VDR_PLUGIN_SATIP="yes"
 ENABLE_VDR_PLUGIN_WIRBELSCAN="yes"
 ENABLE_VDR_PLUGIN_FEMON="yes"
@@ -105,10 +104,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_XMLTV2VDR" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-xmltv2vdr"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_XVDR" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-xvdr"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_SATIP" = yes ]; then
@@ -353,19 +348,6 @@ post_install() {
     mkdir -p $INSTALL/usr/config/vdr/epgsources/
       cp $VDR_PLUGIN_XMLTV2VDR_DIR/dist/epgdata2xmltv/epgdata2xmltv.dist $INSTALL/usr/config/vdr/epgsources/epgdata2xmltv
     cp -PR $VDR_PLUGIN_XMLTV2VDR_DIR/locale/* $INSTALL/usr/share/locale
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_XVDR" = yes ]; then 
-    VDR_PLUGIN_XVDR_DIR=$(get_build_dir vdr-plugin-xvdr)
-    cp -PR $VDR_PLUGIN_XVDR_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    mkdir -p $INSTALL/usr/config/vdr/plugins/xvdr
-      cp -PR $VDR_PLUGIN_XVDR_DIR/xvdr/*.conf $INSTALL/usr/config/vdr/plugins/xvdr
-    for fmo in `ls $VDR_PLUGIN_XVDR_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-xvdr.mo
-    done
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SATIP" = yes ]; then

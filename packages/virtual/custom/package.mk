@@ -33,10 +33,6 @@ PKG_LONGDESC="custom is a Metapackage for installing custom package"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-if [ "$KODI_ADDON_XVDR" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-addon-xvdr"
-fi
-
 if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET repository.yellowdragon"
 fi

@@ -201,6 +201,9 @@ $SCRIPTS/install network
 # Install gdb in all builds, including releases
 $SCRIPTS/install debug
 
+# Custom packages
+[ "$CUSTOM_SUPPORT" = "yes" ] && $SCRIPTS/install custom
+
 # OEM packages
 [ "$OEM_SUPPORT" = "yes" ] && $SCRIPTS/install oem
 
