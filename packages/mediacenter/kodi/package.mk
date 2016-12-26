@@ -242,32 +242,12 @@ PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$ROOT/$TOOLCHAIN \
                        $KODI_BLURAY \
                        $KODI_PLAYER"
 
-pre_build_target() {
-
-  mkdir -p $ROOT/$PKG_BUILD/addons/skin.estuary/media
-  cp -PR $PKG_DIR/theme/* $ROOT/$PKG_BUILD/addons/skin.estuary
-  touch $ROOT/$PKG_BUILD/addons/skin.estuary/media/Makefile.in
-
-}
-
 pre_configure_target() {
 # kodi should never be built with lto
   strip_lto
   strip_gold
 
   export LIBS="$LIBS -lz -lterminfo"
-}
-
-post_make_target() {
-  if [ "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
-    rm -rf addons/skin.estuary
-  else
-    TexturePacker -input addons/skin.estuary/media/ -output Textures.xbt -dupecheck -use_none
-
-    for theme in addons/skin.estuary/themes/*; do
-      TexturePacker -input $theme -output $(basename $theme).xbt -dupecheck
-    done
-  fi
 }
 
 post_makeinstall_target() {
@@ -297,17 +277,6 @@ post_makeinstall_target() {
     cp $PKG_DIR/scripts/cputemp $INSTALL/usr/bin
       ln -sf cputemp $INSTALL/usr/bin/gputemp
     cp $PKG_DIR/scripts/setwakeup.sh $INSTALL/usr/bin
-
-  if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
-    rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/media
-    rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary/themes
-
-    mkdir -p $INSTALL/usr/share/kodi/addons/skin.estuary/media
-      cp Textures.xbt $INSTALL/usr/share/kodi/addons/skin.estuary/media
-      for theme in addons/skin.estuary/themes/*; do
-        cp $(basename $theme).xbt $INSTALL/usr/share/kodi/addons/skin.estuary/media
-      done
-  fi
 
   mkdir -p $INSTALL/usr/share/kodi/addons
     cp -R $PKG_DIR/config/os.openelec.tv $INSTALL/usr/share/kodi/addons
@@ -374,6 +343,25 @@ post_makeinstall_target() {
   fi
 
   debug_strip $INSTALL/usr/lib/kodi/kodi.bin
+
+  # install skin
+  SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
+  if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
+    cp -PR $PKG_DIR/theme/* $ROOT/$PKG_BUILD/addons/$SKIN_DIR
+    mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp -R $ROOT/$PKG_BUILD/addons/$SKIN_DIR/* $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp $ROOT/$PKG_BUILD/addons/$SKIN_DIR/*.txt $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp $ROOT/$PKG_BUILD/addons/$SKIN_DIR/*.xml $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+        rm -rf $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media
+        rm -rf $INSTALL/usr/share/kodi/addons/$SKIN_DIR/themes
+
+      mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media
+        TexturePacker -input $ROOT/$PKG_BUILD/addons/$SKIN_DIR/media/ -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/Textures.xbt -dupecheck -use_none
+
+        for theme in $ROOT/$PKG_BUILD/addons/$SKIN_DIR/themes/*; do
+          TexturePacker -input $theme -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/$(basename $theme).xbt -dupecheck
+        done
+  fi
 }
 
 post_install() {
