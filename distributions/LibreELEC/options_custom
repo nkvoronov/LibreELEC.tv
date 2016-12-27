@@ -48,4 +48,4 @@
   GAME_EMULATORS="yes"
 
 # vlc
-  VLC_ENABLE="no"
+  VLC_ENABLE="yes"
