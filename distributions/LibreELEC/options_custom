@@ -39,13 +39,13 @@
   EPGUPDATERS_SUPPORT="yes"
 
 # Lib Torrents
-  LIBTORRENTS_SUPPORT="no"
+  LIBTORRENTS_SUPPORT="yes"
 
 # Acestream Engine
-  ACESTREAM_SUPPORT="no"
+  ACESTREAM_SUPPORT="yes"
 
 # Other
-  GAME_EMULATORS="no"
+  GAME_EMULATORS="yes"
 
 # vlc
   VLC_ENABLE="no"

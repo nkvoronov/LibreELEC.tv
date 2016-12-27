@@ -142,6 +142,9 @@ post_makeinstall_target() {
       cp $ROOT/$PKG_BUILD/localedata/charmaps/* $INSTALL/usr/share/i18n/charmaps/
       cp $ROOT/$PKG_BUILD/localedata/SUPPORTED $INSTALL/usr/share/i18n/
     ln -s /storage/locale $INSTALL/usr/lib/locale
+    mkdir -p $INSTALL/usr/config
+      cp $PKG_DIR/config/Locale.conf $INSTALL/usr/config
+      ln -s /storage/.config/Locale.conf $INSTALL/etc/profile.d/99-locale.conf
   else
 # remove locales and charmaps
     rm -rf $INSTALL/usr/share/i18n/charmaps
