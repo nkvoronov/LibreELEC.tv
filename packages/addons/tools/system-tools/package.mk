@@ -44,10 +44,10 @@ ENABLE_FDUPES="no"
 ENABLE_FILE="no"
 ENABLE_GETSCANCODES="no"
 ENABLE_HDDTEMP="yes"
-ENABLE_HD-IDLE="no"
+ENABLE_HD_IDLE="no"
 ENABLE_HID_MAPPER="no"
-ENABLE_I2C-TOOLS="no"
-ENABLE_INOTIFY-TOOLS="no"
+ENABLE_I2C_TOOLS="no"
+ENABLE_INOTIFY_TOOLS="no"
 ENABLE_JQ="no"
 ENABLE_LM_SENSORS="yes"
 ENABLE_LSHW="no"
@@ -62,7 +62,7 @@ ENABLE_PV="no"
 ENABLE_SCREEN="no"
 ENABLE_STRACE="no"
 ENABLE_UNRAR="yes"
-ENABLE_USB-MODESWITCH="no"
+ENABLE_USB_MODESWITCH="no"
 
 if [ "$ENABLE_AUTOSSH" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET autossh"
@@ -100,7 +100,7 @@ if [ "$ENABLE_HDDTEMP" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET hddtemp"
 fi
 
-if [ "$ENABLE_HD-IDLE" = yes ]; then
+if [ "$ENABLE_HD_IDLE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET hd-idle"
 fi
 
@@ -108,11 +108,11 @@ if [ "$ENABLE_HID_MAPPER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET hid_mapper"
 fi
 
-if [ "$ENABLE_I2C-TOOLS" = yes ]; then
+if [ "$ENABLE_I2C_TOOLS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET i2c-tools"
 fi
 
-if [ "$ENABLE_INOTIFY-TOOLS" = yes ]; then
+if [ "$ENABLE_INOTIFY_TOOLS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET inotify-tools"
 fi
 
@@ -172,7 +172,7 @@ if [ "$ENABLE_UNRAR" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET unrar"
 fi
 
-if [ "$ENABLE_USB-MODESWITCH" = yes ]; then
+if [ "$ENABLE_USB_MODESWITCH" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET usb-modeswitch"
 fi
 
@@ -222,7 +222,7 @@ addon() {
     cp -P $(get_build_dir hddtemp)/debian/hddtemp.db $ADDON_BUILD/$PKG_ADDON_ID/data
   fi
     # hd-idle
-  if [ "$ENABLE_HD-IDLE" = yes ]; then
+  if [ "$ENABLE_HD_IDLE" = yes ]; then
     cp -P $(get_build_dir hd-idle)/hd-idle $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
     # hid_mapper
@@ -230,7 +230,7 @@ addon() {
     cp -P $(get_build_dir hid_mapper)/hid_mapper $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
     # i2c-tools
-  if [ "$ENABLE_I2C-TOOLS" = yes ]; then
+  if [ "$ENABLE_I2C_TOOLS" = yes ]; then
     cp -P $(get_build_dir i2c-tools)/tools/i2cdetect $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir i2c-tools)/tools/i2cdump $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir i2c-tools)/tools/i2cget $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -303,7 +303,7 @@ addon() {
     cp -P $(get_build_dir unrar)/unrar $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
     # usb-modeswitch
-  if [ "$ENABLE_USB-MODESWITCH" = yes ]; then
+  if [ "$ENABLE_USB_MODESWITCH" = yes ]; then
     cp -P $(get_build_dir usb-modeswitch)/usb_modeswitch $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
 

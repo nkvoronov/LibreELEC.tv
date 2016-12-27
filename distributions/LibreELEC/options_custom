@@ -25,8 +25,8 @@
   VDR_SERVICE="no"
 
 # Tools
-  SYS_TOOLS_ENABLED="no"
-  DVB_TOOLS_ENABLED="no"
+  SYS_TOOLS_ENABLED="yes"
+  DVB_TOOLS_ENABLED="yes"
 
 # PHP
   PHP_SUPPORT="no"
