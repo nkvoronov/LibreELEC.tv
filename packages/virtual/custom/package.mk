@@ -37,10 +37,6 @@ if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET repository.yellowdragon"
 fi
 
-if [ "$LOCALES_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kbd"
-fi
-
 if [ "$TRANSMISSION_SERVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET transmission-service"
 fi
