@@ -144,6 +144,7 @@ post_makeinstall_target() {
     ln -s /storage/locale $INSTALL/usr/lib/locale
     mkdir -p $INSTALL/usr/config
       cp $PKG_DIR/config/Locale.conf $INSTALL/usr/config
+    mkdir -p $INSTALL/etc/profile.d
       ln -s /storage/.config/Locale.conf $INSTALL/etc/profile.d/99-locale.conf
   else
 # remove locales and charmaps
