@@ -1,12 +1,7 @@
-From: Team LibreELEC - https://LibreELEC.tv
-Subject: adjust Tvheadend ffmpeg build to work with LibreELEC (transcoding) 07.05.2016
-
----
-
-diff --git a/Makefile b/Makefile
---- a/Makefile
-+++ b/Makefile
-@@ -97,50 +97,65 @@ FFMPEG_CONFIG := \
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2016-12-28 20:42:38.000000000 +0200
++++ b/Makefile	2016-12-30 15:18:44.270446558 +0200
+@@ -103,50 +103,65 @@
      PKG_CONFIG_LIBDIR=$(FFMPEG_LIBDIR)/pkgconfig $(PKG_CONFIG) \
      --define-variable=prefix=$(FFMPEG_PREFIX) --static
  
@@ -78,7 +73,7 @@ diff --git a/Makefile b/Makefile
  endif
  
  # LIBAV ########################################################################
-@@ -613,7 +628,7 @@ reconfigure:
+@@ -620,7 +635,7 @@
  
  # Binary
  ${PROG}: .config.mk make_webui $(OBJS)

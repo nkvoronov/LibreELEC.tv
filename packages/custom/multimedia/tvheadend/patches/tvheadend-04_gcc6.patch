@@ -1,11 +1,11 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2016-08-23 22:33:53.857013081 +0100
-+++ b/Makefile.ffmpeg	2016-08-23 22:35:03.249419823 +0100
+--- a/Makefile.ffmpeg	2016-12-28 20:42:38.000000000 +0200
++++ b/Makefile.ffmpeg	2016-12-30 15:37:03.182454791 +0200
 @@ -446,7 +446,7 @@
  $(LIB_ROOT)/$(LIBFDKAAC)/.tvh_build: \
  		$(LIB_ROOT)/$(LIBFDKAAC)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBFDKAAC) && \
--		CXXFLAGS="$(CFLAGS_PI)" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE)
+-		CXXFLAGS="$(CFLAGS_PI) -std=c++98" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE)
 +		CXXFLAGS="$(CFLAGS_PI) -Wno-narrowing" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE)
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBFDKAAC) install

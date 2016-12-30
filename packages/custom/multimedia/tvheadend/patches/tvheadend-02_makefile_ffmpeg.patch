@@ -1,12 +1,7 @@
-From: Team LibreELEC - https://LibreELEC.tv
-Subject: adjust Tvheadend ffmpeg build to work with LibreELEC (transcoding) 07.05.2016
-
----
-
-diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg
-+++ b/Makefile.ffmpeg
-@@ -24,6 +24,9 @@ FFMPEG_HOST   := $(ARCH)-linux-gnu
+diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
+--- a/Makefile.ffmpeg	2016-12-28 20:42:38.000000000 +0200
++++ b/Makefile.ffmpeg	2016-12-30 15:30:27.054121900 +0200
+@@ -24,10 +24,12 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
  
@@ -16,7 +11,11 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  unexport CFLAGS
  unexport LDFLAGS
  
-@@ -145,7 +148,7 @@ $(LIB_ROOT)/$(YASM)/.tvh_download:
+-
+ # ##############################################################################
+ # Upstream Packages
+ # ##############################################################################
+@@ -145,7 +147,7 @@
  
  $(LIB_ROOT)/$(YASM)/.tvh_build: \
  		$(LIB_ROOT)/$(YASM)/.tvh_download
@@ -25,7 +24,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(YASM) install
  	@touch $@
-@@ -238,6 +241,7 @@ $(LIB_ROOT)/$(LIBX265)/.tvh_build: \
+@@ -238,6 +240,7 @@
  	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
  		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
  		-DENABLE_SHARED:BOOL=OFF \
@@ -33,7 +32,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  		../../source
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
-@@ -271,7 +275,7 @@ endif
+@@ -271,7 +274,7 @@
  ifeq (yes,$(CONFIG_LIBVPX_STATIC))
  
  ifneq (,$(FFMPEG_TARGET))
@@ -42,7 +41,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  endif
  
  $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
-@@ -283,7 +287,7 @@ $(LIB_ROOT)/$(LIBVPX)/.tvh_build: \
+@@ -283,7 +286,7 @@
  		$(LIB_ROOT)/$(YASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
@@ -51,7 +50,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
  		--disable-docs \
-@@ -359,7 +363,8 @@ $(LIB_ROOT)/$(LIBTHEORA)/.tvh_build: \
+@@ -359,7 +362,8 @@
  		$(LIB_ROOT)/$(LIBTHEORA)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBTHEORA) && \
  		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
@@ -61,7 +60,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--disable-examples \
  		--disable-spec \
  		$(LIBTHEORA_HOST)
-@@ -406,7 +411,8 @@ $(LIB_ROOT)/$(LIBVORBIS)/.tvh_build: \
+@@ -406,7 +410,8 @@
  		$(LIB_ROOT)/$(LIBVORBIS)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVORBIS) && \
  		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
@@ -71,7 +70,7 @@ diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
  	@touch $@
-@@ -559,6 +565,8 @@ $(LIB_ROOT)/$(FFMPEG)/.tvh_build: \
+@@ -569,6 +574,8 @@
  		$(LIB_ROOT)/$(LIBMFX)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
