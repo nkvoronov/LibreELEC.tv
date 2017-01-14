@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="repository.yellowdragon"
-PKG_VERSION="17.0.087"
+PKG_VERSION="17.0.092"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
