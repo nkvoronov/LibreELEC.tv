@@ -45,7 +45,4 @@ if [ "$MEDIACENTER" = "kodi" ]; then
                                           xmlstarlet \
                                           peripheral.joystick"
 
-  if [ "$KODI_LANGUAGE_ADDONS" = "yes" ]; then
-    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET kodi-language-addons"
-  fi
 fi
