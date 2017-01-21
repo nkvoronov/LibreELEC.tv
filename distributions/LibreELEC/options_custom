@@ -45,7 +45,7 @@
   ACESTREAM_SUPPORT="yes"
 
 # Other
-  GAME_EMULATORS="yes"
+  GAME_EMULATORS="no"
 
 # vlc
   VLC_ENABLE="yes"
