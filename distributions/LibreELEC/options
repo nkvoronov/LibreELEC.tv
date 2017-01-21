@@ -186,7 +186,7 @@
   INSTALLER_SUPPORT="yes"
 
 # Testpackages for development (yes / no)
-  TESTING="yes"
+  TESTING="no"
 
 # OEM packages for OEM's (yes / no)
   OEM_SUPPORT="no"
