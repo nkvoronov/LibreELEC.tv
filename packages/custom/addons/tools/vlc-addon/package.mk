@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
+#      This file is part of LibreELEC - http://www.openelec.tv
 #      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
@@ -28,11 +28,11 @@ PKG_DEPENDS_TARGET="toolchain vlc vlc-htsp-plugin"
 PKG_SECTION="tools"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="VLC"
 PKG_ADDON_TYPE="xbmc.python.script"
-PKG_ADDON_REPOVERSION="8.0"
-PKG_AUTORECONF="no"
 
 make_target() {
   : # nothing to make here

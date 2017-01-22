@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
+#      This file is part of LibreELEC - http://www.openelec.tv
 #      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #      Copyright (C) 2011 Anthony Nash (nash.ant@gmail.com)
 #
@@ -29,9 +29,10 @@ PKG_SECTION="service"
 PKG_SHORTDESC="vdr: A powerful DVB TV application"
 PKG_LONGDESC="This project describes how to build your own digital satellite receiver and video disk recorder. It is based mainly on the DVB-S digital satellite receiver card, which used to be available from Fujitsu Siemens and the driver software developed by the LinuxTV project."
 PKG_AUTORECONF="no"
+
 PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="VDR"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="8.0"
 
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"

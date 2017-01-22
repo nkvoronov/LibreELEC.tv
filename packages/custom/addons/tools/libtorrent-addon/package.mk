@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
+#      This file is part of LibreELEC - http://www.openelec.tv
 #      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
@@ -29,11 +29,11 @@ PKG_DEPENDS_TARGET="toolchain libtorrent-rasterbar"
 PKG_SECTION="tools"
 PKG_SHORTDESC="libtorrent (Version: $PKG_VERSION): libtorrent is a feature complete C++ bittorrent implementation focusing on efficiency and scalability. It runs on embedded devices as well as desktops. It boasts a well documented library interface that is easy to use. It comes with a simple bittorrent client demonstrating the use of the library."
 PKG_LONGDESC="libtorrent (Version: $PKG_VERSION): libtorrent is a feature complete C++ bittorrent implementation focusing on efficiency and scalability. It runs on embedded devices as well as desktops. It boasts a well documented library interface that is easy to use. It comes with a simple bittorrent client demonstrating the use of the library."
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="Libtorrent"
 PKG_ADDON_TYPE="xbmc.python.script"
-PKG_AUTORECONF="no"
-PKG_ADDON_REPOVERSION="8.0"
 
 make_target() {
   : # nothing to make here

@@ -32,7 +32,8 @@ PKG_IS_ADDON="no"
 PKG_USE_CMAKE="no"
 PKG_AUTORECONF="no"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-shared --enable-static \
+PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
+                           --enable-static \
                            --enable-libc \
                            --enable-gcc-atomics \
                            --enable-atomic \

@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
+#      This file is part of LibreELEC - http://www.openelec.tv
 #      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
@@ -29,11 +29,11 @@ PKG_DEPENDS_TARGET="toolchain acestream-engine"
 PKG_SECTION="tools"
 PKG_SHORTDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_LONGDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="ACEStream"
 PKG_ADDON_TYPE="xbmc.python.script"
-PKG_AUTORECONF="no"
-PKG_ADDON_REPOVERSION="8.0"
 
 make_target() {
   : # nothing to make here

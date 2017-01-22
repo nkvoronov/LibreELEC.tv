@@ -81,10 +81,6 @@ if [ "$ACESTREAM_SUPPORT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET acestream-engine"
 fi
 
-if [ "$GAME_EMULATORS" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mupen64plus"
-fi
-
 if [ "$VLC_ENABLE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vlc vlc-htsp-plugin"
 fi

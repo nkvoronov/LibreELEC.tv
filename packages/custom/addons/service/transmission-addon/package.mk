@@ -1,5 +1,5 @@
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
+#      This file is part of LibreELEC - http://www.openelec.tv
 #      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
 #  This Program is free software; you can redistribute it and/or modify
@@ -29,12 +29,11 @@ PKG_DEPENDS_TARGET="toolchain transmission"
 PKG_SECTION="service"
 PKG_SHORTDESC="transmission: a fast, easy and free BitTorrent client"
 PKG_LONGDESC="transmission is a fast, easy and free BitTorrent client"
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="Transmission"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_PROVIDES=""
-PKG_ADDON_REPOVERSION="8.0"
-PKG_AUTORECONF="no"
 
 make_target() {
   : # nothing to do here
