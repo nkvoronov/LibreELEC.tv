@@ -33,15 +33,41 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="DVB Tools"
 PKG_ADDON_TYPE="xbmc.python.script"
 
-PKG_DEPENDS_TARGET="toolchain \
-                    dvb-apps \
-                    dvb-fe-tool \
-                    dvblast \
-                    w_scan"
+ENABLE_DVB_APPS="no"
+ENABLE_DVB_FE_TOOL="no"
+ENABLE_DVBLAST="no"
+ENABLE_WSCAN="no"
+ENABLE_SCAN_S2="yes"
+ENABLE_SZAP_S2="yes"
+
+if [ "$ENABLE_DVB_APPS" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-apps"
+fi
+
+if [ "$ENABLE_DVB_FE_TOOL" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-fe-tool"
+fi
+
+if [ "$ENABLE_DVBLAST" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvblast"
+fi
+
+if [ "$ENABLE_WSCAN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET w_scan"
+fi
+
+if [ "$ENABLE_SCAN_S2" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET scan-s2"
+fi
+
+if [ "$ENABLE_SZAP_S2" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET szap-s2"
+fi
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin/
-    # dvb-apps
+  # dvb-apps
+  if [ "$ENABLE_DVB_APPS" = yes ]; then
     cp -P $(get_build_dir dvb-apps)/util/dvbdate/dvbdate $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbnet/dvbnet $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbscan/dvbscan $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -53,15 +79,34 @@ addon() {
     cp -P $(get_build_dir dvb-apps)/util/szap/szap $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/szap/tzap $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/zap/zap $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # dvb-de-tool
+  fi
+  # dvb-de-tool
+  if [ "$ENABLE_DVB_FE_TOOL" = yes ]; then
     cp -P $(get_build_dir dvb-fe-tool)/.$TARGET_NAME/utils/dvb/dvb-fe-tool $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # dvblast
+  fi
+  # dvblast
+  if [ "$ENABLE_DVBLAST" = yes ]; then
     cp -P $(get_build_dir dvblast)/dvblast $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # w_scan
+  fi
+  # w_scan
+  if [ "$ENABLE_WSCAN" = yes ]; then
     cp -P $(get_build_dir w_scan)/.$TARGET_NAME/w_scan $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
+  # scan-s2
+  if [ "$ENABLE_SCAN_S2" = yes ]; then
+    cp -P $(get_build_dir scan-s2)/scan-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -pR $(get_build_dir scan-s2)/atsc $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -pR $(get_build_dir scan-s2)/dvb-c $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -pR $(get_build_dir scan-s2)/dvb-s $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -pR $(get_build_dir scan-s2)/dvb-t $ADDON_BUILD/$PKG_ADDON_ID/share
+  fi
+  # szap-s2
+  if [ "$ENABLE_SZAP_S2" = yes ]; then
+    cp -P $(get_build_dir szap-s2)/szap-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $(get_build_dir szap-s2)/tzap-t2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
 
   debug_strip $ADDON_BUILD/$PKG_ADDON_ID/bin
 }

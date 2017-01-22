@@ -1,21 +1,19 @@
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+#      This file is part of LibreELEC - http://www.libreelec.tv
+#      Copyright (C) 2016 Team LibreELEC
 #
-#  This Program is free software; you can redistribute it and/or modify
+#  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2, or (at your option)
-#  any later version.
+#  the Free Software Foundation, either version 2 of the License, or
+#  (at your option) any later version.
 #
-#  This Program is distributed in the hope that it will be useful,
+#  LibreELEC is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.tv; see the file COPYING.  If not, write to
-#  the Free Software Foundation, 51 Franklin Street, Suite 500, Boston, MA 02110, USA.
-#  http://www.gnu.org/copyleft/gpl.html
+#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
 PKG_NAME="vlc"
@@ -26,7 +24,7 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
-libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 x265 opus lirc libavc1394 \
+libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 opus lirc libavc1394 \
 libdc1394 libdvdnav a52dec libssh2 libmatroska libshout gnutls ncurses SDL_image qt4"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"

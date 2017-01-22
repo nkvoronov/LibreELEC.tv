@@ -72,7 +72,7 @@ makeinstall_target() {
 
 post_install() {
   mkdir -p $INSTALL/usr/bin/
-
+  # dvb-apps
   if [ "$ENABLE_DVB_APPS" = yes ]; then
     cp -P $(get_build_dir dvb-apps)/util/dvbdate/dvbdate $INSTALL/usr/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbnet/dvbnet $INSTALL/usr/bin
@@ -86,19 +86,19 @@ post_install() {
     cp -P $(get_build_dir dvb-apps)/util/szap/tzap $INSTALL/usr/bin
     cp -P $(get_build_dir dvb-apps)/util/zap/zap $INSTALL/usr/bin
   fi
-
+  # dvb-de-tool
   if [ "$ENABLE_DVB_FE_TOOL" = yes ]; then
     cp -P $(get_build_dir dvb-fe-tool)/.$TARGET_NAME/utils/dvb/dvb-fe-tool $INSTALL/usr/bin
   fi
-
+  # dvblast
   if [ "$ENABLE_DVBLAST" = yes ]; then
     cp -P $(get_build_dir dvblast)/dvblast $INSTALL/usr/bin
   fi
-
+  # w_scan
   if [ "$ENABLE_WSCAN" = yes ]; then
     cp -P $(get_build_dir w_scan)/.$TARGET_NAME/w_scan $INSTALL/usr/bin
   fi
-
+  # scan-s2
   if [ "$ENABLE_SCAN_S2" = yes ]; then
     cp -P $(get_build_dir scan-s2)/scan-s2 $INSTALL/usr/bin
 
@@ -108,7 +108,7 @@ post_install() {
     cp -pR $(get_build_dir scan-s2)/dvb-s $INSTALL/usr/share/scan-s2
     cp -pR $(get_build_dir scan-s2)/dvb-t $INSTALL/usr/share/scan-s2
   fi
-
+  # szap-s2
   if [ "$ENABLE_SZAP_S2" = yes ]; then
     cp -P $(get_build_dir szap-s2)/szap-s2 $INSTALL/usr/bin
     cp -P $(get_build_dir szap-s2)/tzap-t2 $INSTALL/usr/bin
