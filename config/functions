@@ -542,7 +542,6 @@ show_config() {
     config_message="$config_message\n - EPG updaters:\t\t\t $EPGUPDATERS_SUPPORT"
     config_message="$config_message\n - Libtorrent:\t\t\t\t $LIBTORRENTS_SUPPORT"
     config_message="$config_message\n - Acestream:\t\t\t\t $ACESTREAM_SUPPORT"
-    config_message="$config_message\n - Game emulators:\t\t\t $GAME_EMULATORS"
     config_message="$config_message\n - VLC:\t\t\t\t\t $VLC_ENABLE"
   fi
 
