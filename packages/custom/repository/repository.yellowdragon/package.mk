@@ -24,7 +24,7 @@ PKG_LICENSE="GPL"
 PKG_SITE=""
 PKG_URL="https://github.com/nkvoronov/repository.yellowdragon/raw/krypton/repo/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
-PKG_SECTION="mediacentre"
+PKG_SECTION="repository"
 PKG_SHORTDESC="YLLOW_DRAGON addons repository for KODI."
 PKG_LONGDESC="YLLOW_DRAGON addons repository for KODI."
 
