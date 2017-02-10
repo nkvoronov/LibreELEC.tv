@@ -18,7 +18,6 @@
 
 PKG_NAME="jansson"
 PKG_VERSION="2.6"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.digip.org/jansson/"

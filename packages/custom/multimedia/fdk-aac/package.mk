@@ -18,7 +18,6 @@
 
 PKG_NAME="fdk-aac"
 PKG_VERSION="0.1.4"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="fdk-aac license"
 PKG_SITE="http://sourceforge.net/projects/opencore-amr/"

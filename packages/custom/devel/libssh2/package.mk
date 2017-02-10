@@ -18,7 +18,6 @@
 
 PKG_NAME="libssh2"
 PKG_VERSION="1.4.3"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://libssh2.org"

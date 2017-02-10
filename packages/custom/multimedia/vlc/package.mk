@@ -18,7 +18,6 @@
 
 PKG_NAME="vlc"
 PKG_VERSION="2.2.4"
-PKG_REV="30"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"

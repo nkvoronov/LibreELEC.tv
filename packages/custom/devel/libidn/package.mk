@@ -18,7 +18,6 @@
 
 PKG_NAME="libidn"
 PKG_VERSION="1.32"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.gnutls.org"

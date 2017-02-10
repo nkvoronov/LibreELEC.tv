@@ -18,7 +18,6 @@
 
 PKG_NAME="libxml++"
 PKG_VERSION="2.40.1"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://libxmlplusplus.sourceforge.net/"

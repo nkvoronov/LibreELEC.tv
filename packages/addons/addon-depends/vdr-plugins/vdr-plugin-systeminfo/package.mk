@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-systeminfo"
 PKG_VERSION="0.1.4"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://firefly.vdr-developer.org/systeminfo"

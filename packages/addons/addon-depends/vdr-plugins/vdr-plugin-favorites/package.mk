@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-favorites"
 PKG_VERSION="0.0.2"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.vdr-wiki.de/wiki/index.php/Favorites-plugin"

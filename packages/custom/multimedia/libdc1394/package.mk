@@ -18,7 +18,6 @@
 
 PKG_NAME="libdc1394"
 PKG_VERSION="2.2.1"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://damien.douxchamps.net/ieee1394/libdc1394"

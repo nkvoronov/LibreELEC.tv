@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-text2skin"
 PKG_VERSION="7bd88a0"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-text2skin"

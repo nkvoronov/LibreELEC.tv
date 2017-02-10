@@ -18,7 +18,6 @@
 
 PKG_NAME="zvbi"
 PKG_VERSION="0.2.35"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://zapping.sourceforge.net/ZVBI/index.html"

@@ -18,7 +18,6 @@
 
 PKG_NAME="vlc-htsp-plugin"
 PKG_VERSION="4980231"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/BtbN/vlc-htsp-plugin.git"

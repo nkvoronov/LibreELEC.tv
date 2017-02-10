@@ -18,7 +18,6 @@
 
 PKG_NAME="glibmm"
 PKG_VERSION="2.46.4"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://developer.gnome.org/glibmm/stable/"

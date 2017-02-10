@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-filebrowser"
 PKG_VERSION="0.2.1"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/herrwiese/gentoo-portage/tree/master/media-plugins/vdr-filebrowser"

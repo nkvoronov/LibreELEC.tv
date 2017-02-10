@@ -18,7 +18,6 @@
 
 PKG_NAME="transmission"
 PKG_VERSION="2.92"
-PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"

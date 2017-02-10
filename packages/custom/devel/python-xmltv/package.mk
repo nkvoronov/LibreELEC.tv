@@ -18,7 +18,6 @@
 
 PKG_NAME="python-xmltv"
 PKG_VERSION="1.4.3"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE=""
 PKG_SITE="https://bitbucket.org/jfunk/python-xmltv"

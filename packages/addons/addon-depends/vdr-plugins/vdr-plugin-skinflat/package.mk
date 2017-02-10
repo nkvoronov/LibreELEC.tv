@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-skinflat"
 PKG_VERSION="1040bb7"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-skinflat"

@@ -17,13 +17,12 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers-cc"
-PKG_VERSION="d7afcda"
-PKG_REV="1"
+PKG_VERSION="7325134"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
-PKG_SITE="https://bitbucket.org/CrazyCat/linux-tbs-drivers"
-PKG_GIT_URL="https://bitbucket.org/CrazyCat/linux-tbs-drivers.git"
-PKG_GIT_BRANCH="master"
+PKG_SITE="https://github.com/nkvoronov/tbs-linux-drivers-cc.git"
+PKG_GIT_URL="https://github.com/nkvoronov/tbs-linux-drivers-cc.git"
+PKG_GIT_BRANCH="v161031-patch"
 PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
@@ -33,13 +32,6 @@ PKG_SHORTDESC="Linux TBS tuner drivers"
 PKG_LONGDESC="Linux TBS tuner drivers"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-
-post_unpack() {
-  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-    cat $patch | patch -d \
-    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-  done
-}
 
 make_target() {
   cd $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION

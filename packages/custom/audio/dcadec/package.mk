@@ -18,7 +18,6 @@
 
 PKG_NAME="dcadec"
 PKG_VERSION="0e07438"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/foo86/dcadec"

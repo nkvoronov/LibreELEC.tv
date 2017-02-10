@@ -18,7 +18,6 @@
 
 PKG_NAME="visualization.projectm"
 PKG_VERSION="8064b36"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/notspiff/visualization.projectm"

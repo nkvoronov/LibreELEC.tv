@@ -18,7 +18,6 @@
 
 PKG_NAME="libsigc++"
 PKG_VERSION="2.10.0"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://libsigc.sourceforge.net/"

@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-tvguide"
 PKG_VERSION="8287bb5"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-tvguide"

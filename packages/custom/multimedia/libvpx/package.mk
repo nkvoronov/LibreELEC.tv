@@ -18,7 +18,6 @@
 
 PKG_NAME="libvpx"
 PKG_VERSION="1.5.0"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="BSD-3c"
 PKG_SITE="http://www.webmproject.org/"

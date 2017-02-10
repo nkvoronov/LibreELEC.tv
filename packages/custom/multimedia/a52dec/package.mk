@@ -18,7 +18,6 @@
 
 PKG_NAME="a52dec"
 PKG_VERSION="0.7.4"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://liba52.sourceforge.net"

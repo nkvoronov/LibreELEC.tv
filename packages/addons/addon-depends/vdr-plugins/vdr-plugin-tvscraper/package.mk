@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-tvscraper"
 PKG_VERSION="9a000ca"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-tvscraper"

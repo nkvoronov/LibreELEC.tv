@@ -18,7 +18,6 @@
 
 PKG_NAME="libebml"
 PKG_VERSION="1.3.0"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://dl.matroska.org/downloads/libebml"

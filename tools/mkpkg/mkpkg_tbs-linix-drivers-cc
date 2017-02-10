@@ -20,11 +20,11 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers-cc"
-PKG_REPO="https://bitbucket.org/CrazyCat/linux-tbs-drivers.git"
+PKG_REPO="https://github.com/nkvoronov/tbs-linux-drivers-cc.git"
 
 echo "getting sources..."
   if [ ! -d $PKG_NAME.git ]; then
-    git clone $PKG_REPO $PKG_NAME.git
+    git clone -b v161031-patch $PKG_REPO $PKG_NAME.git
   fi
 
   cd $PKG_NAME.git

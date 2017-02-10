@@ -18,7 +18,6 @@
 
 PKG_NAME="ccid"
 PKG_VERSION="1.4.25"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://pcsclite.alioth.debian.org/ccid.html"

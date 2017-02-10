@@ -18,7 +18,6 @@
 
 PKG_NAME="ImageMagick"
 PKG_VERSION="6.9.6-7"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.imagemagick.org"

@@ -18,7 +18,6 @@
 
 PKG_NAME="nettle"
 PKG_VERSION="3.1.1"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.lysator.liu.se/~nisse/nettle"

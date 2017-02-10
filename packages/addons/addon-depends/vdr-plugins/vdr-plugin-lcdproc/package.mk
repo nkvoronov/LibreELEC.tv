@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-lcdproc"
 PKG_VERSION="0c54897"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-lcdproc"

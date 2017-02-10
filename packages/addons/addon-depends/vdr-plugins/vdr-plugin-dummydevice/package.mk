@@ -18,7 +18,6 @@
 
 PKG_NAME="vdr-plugin-dummydevice"
 PKG_VERSION="33fcf68"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/flensrocker/vdr-plugin-dummydevice.git"

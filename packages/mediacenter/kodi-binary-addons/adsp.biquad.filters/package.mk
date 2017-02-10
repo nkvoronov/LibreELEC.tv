@@ -18,7 +18,6 @@
 
 PKG_NAME="adsp.biquad.filters"
 PKG_VERSION="29bfe9d"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"

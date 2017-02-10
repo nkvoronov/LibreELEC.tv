@@ -18,7 +18,6 @@
 
 PKG_NAME="libcroco"
 PKG_VERSION="0.6.11"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.linuxfromscratch.org/blfs/view/svn/general/libcroco.html"

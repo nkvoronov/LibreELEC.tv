@@ -18,7 +18,6 @@
 
 PKG_NAME="libavc1394"
 PKG_VERSION="0.5.4"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://sourceforge.net/projects/libavc1394"

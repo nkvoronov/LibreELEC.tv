@@ -18,7 +18,6 @@
 
 PKG_NAME="SDL2"
 PKG_VERSION="2.0.5"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://www.libsdl.org/"
@@ -32,8 +31,7 @@ PKG_IS_ADDON="no"
 PKG_USE_CMAKE="no"
 PKG_AUTORECONF="no"
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
-                           --enable-static \
+PKG_CONFIGURE_OPTS_TARGET="--disable-shared --enable-static \
                            --enable-libc \
                            --enable-gcc-atomics \
                            --enable-atomic \

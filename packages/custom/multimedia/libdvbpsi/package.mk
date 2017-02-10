@@ -18,7 +18,6 @@
 
 PKG_NAME="libdvbpsi"
 PKG_VERSION="0.2.2"
-PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org/developers/libdvbpsi.html"
