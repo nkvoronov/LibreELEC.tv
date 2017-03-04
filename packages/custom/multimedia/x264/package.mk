@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="x264"
-PKG_VERSION="snapshot-20160307-2245-stable"
+PKG_VERSION="snapshot-20170228-2245-stable"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2+"
 PKG_SITE="http://videolan.org"

@@ -18,7 +18,7 @@
 
 PKG_NAME="mono"
 PKG_VERSION="4.8.0.495"
-PKG_REV="105"
+PKG_REV="102"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.mono-project.com"
@@ -64,8 +64,8 @@ configure_target() {
 }
 
 makeinstall_target() {
-  make -C "$PKG_BUILD/.$HOST_NAME" install DESTDIR="$INSTALL"
-  make -C "$PKG_BUILD/.$TARGET_NAME" install DESTDIR="$INSTALL"
+  make -C "$ROOT/$PKG_BUILD/.$HOST_NAME" install DESTDIR="$INSTALL"
+  make -C "$ROOT/$PKG_BUILD/.$TARGET_NAME" install DESTDIR="$INSTALL"
   $STRIP "$INSTALL/storage/.kodi/addons/$PKG_SECTION.$PKG_NAME/bin/mono"
 }
 
