@@ -18,7 +18,7 @@
 
 PKG_NAME="ffmpegx"
 PKG_VERSION="libreelec"
-PKG_REV="6"
+PKG_REV="7"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
@@ -31,7 +31,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 pre_configure_target() {
-  cd "$ROOT/$PKG_BUILD"
+  cd "$PKG_BUILD"
   rm -rf ".$TARGET_NAME"
   cp -PR $(get_build_dir ffmpeg)/* .
   make clean
@@ -86,7 +86,7 @@ configure_target() {
     --as="$CC" \
     --cc="$CC" \
     --ld="$CC" \
-    --pkg-config="$ROOT/$TOOLCHAIN/bin/pkg-config" \
+    --pkg-config="$TOOLCHAIN/bin/pkg-config" \
     --host-cc="$HOST_CC" \
     --host-cflags="$HOST_CFLAGS" \
     --host-ldflags="$HOST_LDFLAGS" \
@@ -99,7 +99,6 @@ configure_target() {
     \
     `#Advanced options` \
     $FFMPEG_ARM_AO \
-
 }
 
 makeinstall_target() {
