@@ -17,12 +17,14 @@
 ################################################################################
 
 PKG_NAME="szap-s2"
-PKG_VERSION="69ff3584caf9"
+PKG_VERSION="69ff358"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://bitbucket.org/CrazyCat/szap-s2"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_HG_URL="https://bitbucket.org/CrazyCat/szap-s2"
+PKG_HG_BRANCH="default"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="szap-s2"

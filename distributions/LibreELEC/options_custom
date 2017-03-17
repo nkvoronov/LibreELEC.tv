@@ -1,4 +1,5 @@
 ### CUSTOM OPTIONS ###
+# DISTRO_CUSTOM_SRC="https://dl.dropboxusercontent.com/u/6711518/packages"
   DISTRO_CUSTOM_SRC="https://dl.dropboxusercontent.com/u/6711518/packages"
 
 # Locales

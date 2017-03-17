@@ -1,8 +1,7 @@
-diff --git a/config.sh b/config.sh
-index 7653731..a6b2ea8 100755
---- a/config.sh
-+++ b/config.sh
-@@ -687,7 +687,7 @@ do
+diff -Naur a/config.sh b/config.sh
+--- a/config.sh	2017-03-17 15:27:21.000000000 +0200
++++ b/config.sh	2017-03-17 15:37:27.879306165 +0200
+@@ -689,7 +689,7 @@
  		break
  	;;
  	'-r'|'--oscam-revision')

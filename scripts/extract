@@ -25,10 +25,10 @@ if [ -z "$3" ]; then
   exit 1
 fi
 
-[ -z "$PKG_URL" -a -z "$PKG_GIT_URL" ] && exit 1
+[ -z "$PKG_URL" -a -z "$PKG_GIT_URL" -a -z "$PKG_SVN_URL" -a -z "$PKG_HG_URL" ] && exit 1
 [ ! -d "$SOURCES/$1" -o ! -d "$3" ] && exit 1
 
-if [ -n "$PKG_GIT_URL" ]; then
+if [ -n "$PKG_GIT_URL" -o -n "$PKG_SVN_URL" -o -n "$PKG_HG_URL" ]; then
   PKG_SOURCE_NAME="$PKG_NAME-$PKG_VERSION.tar.xz"
 fi
 
