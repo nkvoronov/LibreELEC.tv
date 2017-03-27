@@ -1,6 +1,6 @@
 diff -Naur a/language/English/strings.po b/language/English/strings.po
---- a/language/English/strings.po	2016-11-05 19:18:32.000000000 +0200
-+++ b/language/English/strings.po	2016-12-11 01:01:15.254171794 +0200
+--- a/language/English/strings.po	2017-03-23 07:25:48.000000000 +0200
++++ b/language/English/strings.po	2017-03-27 19:39:06.115910793 +0300
 @@ -100,6 +100,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
@@ -702,20 +702,20 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr ""
 diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
---- a/language/Russian/strings.po	2016-11-05 19:18:32.000000000 +0200
-+++ b/language/Russian/strings.po	2016-12-11 01:10:33.912618305 +0200
-@@ -112,6 +112,10 @@
- msgid "Click to manually check the @DISTRONAME@ servers for an updated release"
- msgstr "Нажмите для ручной проверки обновлений на серверах @DISTRONAME@"
+--- a/language/Russian/strings.po	2017-03-23 07:25:48.000000000 +0200
++++ b/language/Russian/strings.po	2017-03-27 19:54:33.565508225 +0300
+@@ -108,6 +108,10 @@
+ msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
+ msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
  
 +msgctxt "#717"
 +msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
 +msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе @DISTRONAME@  - Вы должны сконфигурировать правильный драйвер дисплея"
 +
- msgctxt "#720"
- msgid "Set to ON and Bluetooth devices will be disabled during power-saving modes"
- msgstr "Выберите ВКЛ для автоматического отключения Bluetooth устройств при простоях для экономии энергии"
-@@ -240,6 +244,14 @@
+ msgctxt "#718"
+ msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://sprunge.us and display the short URL"
+ msgstr "Отправить config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log на сайт http://sprunge.us и показать короткую URL ссылку"
+@@ -268,6 +272,14 @@
  msgid "Interface"
  msgstr "Интерфейс"
  
@@ -730,10 +730,11 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
-@@ -724,3 +736,672 @@
- msgid "Settings addon is not yet ready, please try again later."
- msgstr "Дополнение настройки ещё не готово. Повторите попытку позже."
- 
+@@ -823,3 +835,673 @@
+ msgctxt "#32392"
+ msgid "Enable Lirc"
+ msgstr "Включить Lirc"
++
 +msgctxt "#32399"
 +msgid "Enable LCD Driver Support"
 +msgstr "Включить поддержку драйвера ЖК-экрана"
@@ -1404,8 +1405,8 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr "VDR приложение с открытым исходным кодом для Linux разработанный, чтобы позволить любому компьютеру работать в качестве цифрового видеомагнитофона для того, чтобы записывать и воспроизводить ТВ программы."
 diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2016-11-05 19:18:32.000000000 +0200
-+++ b/src/defaults.py	2016-12-11 00:26:39.843414412 +0200
+--- a/src/defaults.py	2017-03-23 07:25:48.000000000 +0200
++++ b/src/defaults.py	2017-03-27 19:39:06.115910793 +0300
 @@ -75,8 +75,137 @@
      'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
      'CRON_DAEMON': '/sbin/crond',
@@ -1555,8 +1556,8 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'oscam': ['oscam.service'],
      }
 diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/services.py
---- a/src/resources/lib/modules/services.py	2016-11-05 19:18:32.000000000 +0200
-+++ b/src/resources/lib/modules/services.py	2016-12-11 01:02:59.776011140 +0200
+--- a/src/resources/lib/modules/services.py	2017-03-23 07:25:48.000000000 +0200
++++ b/src/resources/lib/modules/services.py	2017-03-27 19:39:06.119910807 +0300
 @@ -45,6 +45,8 @@
      AVAHI_DAEMON = None
      CRON_DAEMON = None
@@ -1656,8 +1657,8 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
          try:
              self.oe.dbg_log('services::inititialize_lircd', 'enter_function', 0)
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
---- a/src/resources/lib/modules/system.py	2016-11-05 19:18:32.000000000 +0200
-+++ b/src/resources/lib/modules/system.py	2016-12-11 00:43:36.485117267 +0200
+--- a/src/resources/lib/modules/system.py	2017-03-23 07:25:48.000000000 +0200
++++ b/src/resources/lib/modules/system.py	2017-03-27 19:39:06.119910807 +0300
 @@ -131,6 +131,15 @@
                              'values': [],
                              'InfoText': 713,
@@ -1761,7 +1762,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2016-12-11 00:16:34.000000000 +0200
++++ b/src/resources/lib/modules/transmission.py	2017-03-27 19:39:06.119910807 +0300
 @@ -0,0 +1,331 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -2096,7 +2097,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2016-12-11 00:16:34.000000000 +0200
++++ b/src/resources/lib/modules/tvservers.py	2017-03-27 19:39:06.123910821 +0300
 @@ -0,0 +1,2063 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv

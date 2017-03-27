@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="ImageMagick"
-PKG_VERSION="7.0.5-0"
+PKG_VERSION="7.0.5-4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.imagemagick.org"
