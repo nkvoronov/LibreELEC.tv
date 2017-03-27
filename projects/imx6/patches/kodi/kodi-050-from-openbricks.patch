@@ -3,6 +3,53 @@ https://github.com/OpenBricks/openbricks/tree/krypton-glibc/packages/multimedia/
 https://github.com/OpenBricks/openbricks/tree//packages/multimedia/kodi/patches
 
 ==============================================================
+file 0027-stop-resume-streams-on-OnLostDisplay-OnResetDisplay.patch
+==============================================================
+
+From ef590549752c0b7daccb12c28d34feb5e7ed2171 Mon Sep 17 00:00:00 2001
+From: Matus Kral <matuskral@me.com>
+Date: Mon, 18 Jul 2016 23:34:51 +0200
+Subject: [PATCH] stop/resume streams on OnLostDisplay/OnResetDisplay
+
+---
+ xbmc/cores/AudioEngine/Engines/ActiveAE/ActiveAE.cpp | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/xbmc/cores/AudioEngine/Engines/ActiveAE/ActiveAE.cpp b/xbmc/cores/AudioEngine/Engines/ActiveAE/ActiveAE.cpp
+index 4f55b37..4aad146 100644
+--- a/xbmc/cores/AudioEngine/Engines/ActiveAE/ActiveAE.cpp
++++ b/xbmc/cores/AudioEngine/Engines/ActiveAE/ActiveAE.cpp
+@@ -2843,6 +2843,11 @@ AEAudioFormat CActiveAE::GetCurrentSinkFormat()
+ void CActiveAE::OnLostDisplay()
+ {
+   Message *reply;
++  for(auto &&stream : m_streams)
++    m_controlPort.SendOutMessageSync(CActiveAEControlProtocol::PAUSESTREAM,
++                                                &reply, 1000,
++                                                &stream, sizeof(CActiveAEStream*));
++
+   if (m_controlPort.SendOutMessageSync(CActiveAEControlProtocol::DISPLAYLOST,
+                                                  &reply,
+                                                  5000))
+@@ -2862,7 +2867,12 @@ void CActiveAE::OnLostDisplay()
+ 
+ void CActiveAE::OnResetDisplay()
+ {
+-  m_controlPort.SendOutMessage(CActiveAEControlProtocol::DISPLAYRESET);
++  Message *reply;
++  m_controlPort.SendOutMessageSync(CActiveAEControlProtocol::DISPLAYRESET, &reply, 1000);
++  for(auto &&stream : m_streams)
++    m_controlPort.SendOutMessageSync(CActiveAEControlProtocol::RESUMESTREAM,
++                                                &reply, 1000,
++                                                &stream, sizeof(CActiveAEStream*));
+ }
+ 
+ void CActiveAE::OnAppFocusChange(bool focus)
+-- 
+1.9.1
+
+
+==============================================================
 file 0034-IMXCODEC-Use-uint32_t-for-physical-addresses.patch
 ==============================================================
 
@@ -1376,6 +1423,38 @@ index 5167bd2..bd15091 100644
    }
  
  #if 0
+-- 
+2.7.4
+
+
+==============================================================
+file 0046-IMXCODEC-Default-to-top-field-first-for-AVC-files-us.patch
+==============================================================
+
+From ea3d1ccc147395f5655580c187235b533811c043 Mon Sep 17 00:00:00 2001
+From: Rudi <r.ihle@s-t.de>
+Date: Fri, 10 Mar 2017 23:40:01 +0100
+Subject: [PATCH] IMXCODEC: Default to 'top field first' for AVC files using
+ MBAFF
+
+---
+ xbmc/cores/VideoPlayer/DVDCodecs/Video/DVDVideoCodecIMX.cpp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/xbmc/cores/VideoPlayer/DVDCodecs/Video/DVDVideoCodecIMX.cpp b/xbmc/cores/VideoPlayer/DVDCodecs/Video/DVDVideoCodecIMX.cpp
+index 9436d4e..933d4d5 100644
+--- a/xbmc/cores/VideoPlayer/DVDCodecs/Video/DVDVideoCodecIMX.cpp
++++ b/xbmc/cores/VideoPlayer/DVDCodecs/Video/DVDVideoCodecIMX.cpp
+@@ -1162,7 +1162,8 @@ bool CIMXCodec::GetPicture(DVDVideoPicture* pDvdVideoPicture)
+       m_warnOnce = false;
+       CLog::Log(LOGWARNING, "Interlaced content reported by VPU, but full frames detected - Please turn off deinterlacing manually.");
+     }
+-    else if (pBuffer->GetFieldType() == VPU_FIELD_TB || pBuffer->GetFieldType() == VPU_FIELD_TOP)
++
++    if (pBuffer->GetFieldType() != VPU_FIELD_BT && pBuffer->GetFieldType() != VPU_FIELD_BOTTOM)
+       pDvdVideoPicture->iFlags |= DVP_FLAG_TOP_FIELD_FIRST;
+ 
+     pDvdVideoPicture->iFlags |= DVP_FLAG_INTERLACED;
 -- 
 2.7.4
 
