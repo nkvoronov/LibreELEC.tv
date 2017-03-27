@@ -17,15 +17,16 @@
 ################################################################################
 
 PKG_NAME="lcdproc"
-PKG_VERSION="0.5.7"
+PKG_VERSION="0.5.8"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain libusb libhid libftdi1"
-PKG_SECTION="system"
-PKG_SHORTDESC="lcdproc: Software to display system information from your Linux/*BSD box on a LCD"
-PKG_LONGDESC="LCDproc is a piece of software that displays real-time system information from your Linux/*BSD box on a LCD. The server supports several serial devices: Matrix Orbital, Crystal Fontz, Bayrad, LB216, LCDM001 (kernelconcepts.de), Wirz-SLI, Cwlinux(.com) and PIC-an-LCD; and some devices connected to the LPT port: HD44780, STV5730, T6963, SED1520 and SED1330. Various clients are available that display things like CPU load, system load, memory usage, uptime, and a lot more."
+PKG_URL="https://github.com/lcdproc/lcdproc/archive/lcdproc-$PKG_VERSION.tar.gz"
+PKG_SOURCE_DIR="lcdproc-lcdproc-$PKG_VERSION*"
+PKG_DEPENDS_TARGET="toolchain libftdi1 libhid libugpio libusb netbsd-curses"
+PKG_SECTION="sysutils"
+PKG_SHORTDESC="LCDproc: Software to display system information from your Linux/*BSD box on a LCD"
+PKG_LONGDESC="LCDproc ($PKG_VERSION) is a piece of software that displays real-time system information from your Linux/*BSD box on a LCD. The server supports several serial devices: Matrix Orbital, Crystal Fontz, Bayrad, LB216, LCDM001 (kernelconcepts.de), Wirz-SLI, Cwlinux(.com) and PIC-an-LCD; and some devices connected to the LPT port: HD44780, STV5730, T6963, SED1520 and SED1330. Various clients are available that display things like CPU load, system load, memory usage, uptime, and a lot more."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
@@ -40,7 +41,14 @@ for i in $LCD_DRIVER; do
 done
 unset IFS
 
-PKG_CONFIGURE_OPTS_TARGET="--with-ft-prefix=$SYSROOT_PREFIX/usr --enable-libusb --enable-drivers=$LCD_DRIVER,!curses,!svga --enable-seamless-hbars"
+PKG_CONFIGURE_OPTS_TARGET="--with-ft-prefix=$SYSROOT_PREFIX/usr \
+                           --enable-libusb \
+                           --enable-libftdi \
+                           --disable-libX11 \
+                           --enable-libhid \
+                           --disable-libpng \
+                           --enable-drivers=$LCD_DRIVER \
+                           --enable-seamless-hbars"
 
 pre_make_target() {
   # dont build parallel
