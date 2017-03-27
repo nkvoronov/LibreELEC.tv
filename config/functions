@@ -119,8 +119,7 @@ get_module_dir() {
 # get package's build dir
 get_build_dir() {
   local _PKG_NAME="$(get_pkg_variable "$1" PKG_NAME)" _PKG_VERSION="$(get_pkg_version "$1")"
-  local _PKG_DIR=$(find $ROOT/projects/$PROJECT/packages -name $1 2>/dev/null)		+  if [ -n "$_PKG_NAME" -a -n "$_PKG_VERSION" ]; then
-  if [ -d "$_PKG_DIR" -a -f $_PKG_DIR/package.mk ] ; then
+  if [ -n "$_PKG_NAME" -a -n "$_PKG_VERSION" ]; then
     echo $ROOT/$BUILD/${_PKG_NAME}-${_PKG_VERSION}
   fi
 }
