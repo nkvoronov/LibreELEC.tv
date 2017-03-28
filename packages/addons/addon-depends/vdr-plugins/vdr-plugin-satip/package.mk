@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-satip"
-PKG_VERSION="2.2.3"
+PKG_VERSION="2.2.4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.saunalahti.fi/~rahrenbe/vdr/satip/"
