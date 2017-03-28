@@ -18,13 +18,13 @@
 
 PKG_NAME="lcdd"
 PKG_VERSION="0.5.8"
-PKG_REV="103"
+PKG_REV="104"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"
 PKG_URL="https://github.com/lcdproc/lcdproc/archive/lcdproc-$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="lcdproc-lcdproc-$PKG_VERSION*"
-PKG_DEPENDS_TARGET="toolchain freetype libftdi1 libhid libugpio libusb netbsd-curses serdisplib"
+PKG_DEPENDS_TARGET="toolchain libftdi1 libhid libugpio libusb netbsd-curses"
 PKG_SECTION="service"
 PKG_SHORTDESC="LCDproc: Software to display system information from your Linux/*BSD box on a LCD"
 PKG_LONGDESC="LCDproc ($PKG_VERSION) is a piece of software that displays real-time system information from your Linux/*BSD box on a LCD. The server supports several serial devices: Matrix Orbital, Crystal Fontz, Bayrad, LB216, LCDM001 (kernelconcepts.de), Wirz-SLI, Cwlinux(.com) and PIC-an-LCD; and some devices connected to the LPT port: HD44780, STV5730, T6963, SED1520 and SED1330. Various clients are available that display things like CPU load, system load, memory usage, uptime, and a lot more."
@@ -34,13 +34,23 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="LCDproc"
 PKG_ADDON_TYPE="xbmc.service"
 
+IFS=$','
+for i in $LCD_DRIVER; do
+  case $i in
+    glcd) PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET freetype serdisplib"
+      ;;
+    *)
+  esac
+done
+unset IFS
+
 PKG_CONFIGURE_OPTS_TARGET="--with-ft-prefix=$SYSROOT_PREFIX/usr \
                            --enable-libusb \
                            --enable-libftdi \
                            --disable-libX11 \
                            --enable-libhid \
                            --disable-libpng \
-                           --enable-drivers=all \
+                           --enable-drivers=$LCD_DRIVER \
                            --enable-seamless-hbars"
 
 pre_make_target() {
@@ -52,8 +62,10 @@ addon() {
   drivers="none|$(cat $ROOT/$PKG_BUILD/.$TARGET_NAME/config.log | sed -n "s|^DRIVERS=' \(.*\)'|\1|p" | sed "s|.so||g" | tr ' ' '|')"
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
 
   cp -PR $PKG_DIR/resources $ADDON_BUILD/$PKG_ADDON_ID
+  cp -PR $PKG_DIR/fonts $ADDON_BUILD/$PKG_ADDON_ID/share
 
   cp -PR $PKG_BUILD/.install_pkg/etc/LCDd.conf $ADDON_BUILD/$PKG_ADDON_ID/config/
   cp -PR $PKG_BUILD/.install_pkg/usr/lib       $ADDON_BUILD/$PKG_ADDON_ID/lib/
@@ -72,6 +84,7 @@ addon() {
       -e "s|^#GoodBye=\"Thanks for using\"|GoodBye=\"Thanks for using\"|" \
       -e "s|^#GoodBye=\"   LCDproc!\"|GoodBye=\"$DISTRONAME\"|" \
       -e "s|^#normal_font=.*$|normal_font=/usr/share/fonts/liberation/LiberationMono-Bold.ttf|" \
+      -e "s|^Font=/usr/share/lcdproc/fonts/cp1251.fnt|Font=/storage/.kodi/addons/service.lcdd/share/fonts/cp1251.fnt|" \
       -i $ADDON_BUILD/$PKG_ADDON_ID/config/LCDd.conf
 
   sed -e "s/@DRIVERS@/$drivers/" \

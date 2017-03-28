@@ -11,3 +11,4 @@ PROJECT=Generic ARCH=x86_64 ./scripts/create_addon libtorrent-addon
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vlc-addon
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon mono
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon emby
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon lcdd

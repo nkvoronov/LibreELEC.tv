@@ -56,8 +56,6 @@ pre_make_target() {
 }
 
 post_makeinstall_target() {
-  rm -rf $INSTALL/etc/lcd*.conf
-  rm -rf $INSTALL/usr/bin
 
   sed -e "s|^DriverPath=.*$|DriverPath=/usr/lib/lcdproc/|" \
       -e "s|^#Foreground=.*$|Foreground=no|" \
@@ -74,9 +72,6 @@ post_makeinstall_target() {
 
   mkdir -p $INSTALL/usr/lib/libreelec
     cp $PKG_DIR/scripts/lcd-wrapper $INSTALL/usr/lib/libreelec
-
-  mkdir -p $INSTALL/etc
-    cp $PKG_DIR/config/LCDd.conf $INSTALL/etc
 
   mkdir -p $INSTALL/usr/share/lcdproc/fonts
     cp -PR $PKG_DIR/fonts/*.fnt $INSTALL/usr/share/lcdproc/fonts
