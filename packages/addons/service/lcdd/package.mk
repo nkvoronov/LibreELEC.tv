@@ -71,7 +71,15 @@ addon() {
   cp -PR $PKG_BUILD/.install_pkg/usr/lib       $ADDON_BUILD/$PKG_ADDON_ID/lib/
   cp -PR $PKG_BUILD/.install_pkg/usr/sbin      $ADDON_BUILD/$PKG_ADDON_ID/bin/
 
-  cp -L $(get_build_dir serdisplib)/.install_pkg/usr/lib/libserdisp.so.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/
+  IFS=$','
+  for i in $LCD_DRIVER; do
+    case $i in
+      glcd) cp -L $(get_build_dir serdisplib)/.install_pkg/usr/lib/libserdisp.so.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/
+        ;;
+      *)
+    esac
+  done
+  unset IFS
 
   sed -e "s|^DriverPath=.*$|DriverPath=/storage/.kodi/addons/service.lcdd/lib/lcdproc/|" \
       -e "s|^#Foreground=.*$|Foreground=no|" \
