@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="pvr.hts"
-PKG_VERSION="f70531c"
+PKG_VERSION="cab4353"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
