@@ -31,7 +31,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET repository.yellowdragon"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET repository.yellowdragon repository.yellowdragon.libreelec"
 fi
 
 if [ "$TRANSMISSION_SERVICE" = yes ]; then
