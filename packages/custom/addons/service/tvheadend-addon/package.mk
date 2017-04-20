@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="tvheadend-addon"
-PKG_VERSION="4.1.2533"
-PKG_REV="169"
+PKG_VERSION="4.1.2539"
+PKG_REV="170"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
