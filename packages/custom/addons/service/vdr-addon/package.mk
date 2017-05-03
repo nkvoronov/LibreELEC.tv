@@ -18,7 +18,7 @@
 
 PKG_NAME="vdr-addon"
 PKG_VERSION="2.2.0"
-PKG_REV="125"
+PKG_REV="126"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
