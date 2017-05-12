@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-menuorg"
-PKG_VERSION="cec1981"
+PKG_VERSION="b856b0d"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://projects.vdr-developer.org/projects/plg-menuorg"
-PKG_GIT_URL="git://git.debian.org/git/pkg-vdr-dvb/vdr-plugin-menuorg.git"
+PKG_SITE="https://projects.vdr-developer.org/git/vdr-plugin-menuorg.git"
+PKG_GIT_URL="https://projects.vdr-developer.org/git/vdr-plugin-menuorg.git"
 PKG_GIT_BRANCH="master"
 PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain vdr glibmm libxml++"
