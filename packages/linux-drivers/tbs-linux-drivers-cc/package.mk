@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers-cc"
-PKG_VERSION="fcef947"
+PKG_VERSION="8b96c25"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/nkvoronov/tbs-linux-drivers-cc.git"
