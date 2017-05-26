@@ -37,6 +37,7 @@ ENABLE_DVBLAST="no"
 ENABLE_WSCAN="no"
 ENABLE_SCAN_S2="yes"
 ENABLE_SZAP_S2="yes"
+ENABLE_MUMUDVB="no"
 
 if [ "$ENABLE_DVB_APPS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-apps"
@@ -60,6 +61,10 @@ fi
 
 if [ "$ENABLE_SZAP_S2" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET szap-s2"
+fi
+
+if [ "$ENABLE_MUMUDVB" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mumudvb"
 fi
 
 make_target() {
@@ -112,5 +117,9 @@ post_install() {
   if [ "$ENABLE_SZAP_S2" = yes ]; then
     cp -P $(get_build_dir szap-s2)/szap-s2 $INSTALL/usr/bin
     cp -P $(get_build_dir szap-s2)/tzap-t2 $INSTALL/usr/bin
+  fi
+  # mumudvb
+  if [ "$ENABLE_MUMUDVB" = yes ]; then
+    cp -P $(get_build_dir mumudvb)/.$TARGET_NAME/src/mumudvb $INSTALL/usr/bin
   fi
 }

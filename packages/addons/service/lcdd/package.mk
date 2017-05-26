@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="lcdd"
-PKG_VERSION="0.5.8"
+PKG_VERSION="466edd3"
 PKG_REV="104"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

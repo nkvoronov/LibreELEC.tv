@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers"
-PKG_VERSION="170206"
+PKG_VERSION="170330"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tbsdtv.com/english/Download.html"

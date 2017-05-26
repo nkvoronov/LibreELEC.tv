@@ -1,6 +1,6 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
+#      This file is part of LibreELEC - https://libreelec.tv
+#      Copyright (C) 2016-present Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 PKG_NAME="dvb-tools"
 PKG_VERSION=""
-PKG_REV="101"
+PKG_REV="102"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
@@ -39,6 +39,7 @@ ENABLE_DVBLAST="no"
 ENABLE_WSCAN="no"
 ENABLE_SCAN_S2="yes"
 ENABLE_SZAP_S2="yes"
+ENABLE_MUMUDVB="yes"
 
 if [ "$ENABLE_DVB_APPS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-apps"
@@ -62,6 +63,10 @@ fi
 
 if [ "$ENABLE_SZAP_S2" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET szap-s2"
+fi
+
+if [ "$ENABLE_MUMUDVB" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mumudvb"
 fi
 
 addon() {
@@ -106,6 +111,10 @@ addon() {
   if [ "$ENABLE_SZAP_S2" = yes ]; then
     cp -P $(get_build_dir szap-s2)/szap-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir szap-s2)/tzap-t2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
+  # mumudvb
+  if [ "$ENABLE_MUMUDVB" = yes ]; then
+    cp -P $(get_build_dir mumudvb)/.$TARGET_NAME/src/mumudvb $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
 
   debug_strip $ADDON_BUILD/$PKG_ADDON_ID/bin
