@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="perl"
-PKG_VERSION="5.24.0"
+PKG_VERSION="5.24.1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.cpan.org/"

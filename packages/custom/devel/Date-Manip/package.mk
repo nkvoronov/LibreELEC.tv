@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="Date-Manip"
-PKG_VERSION="6.57"
+PKG_VERSION="6.58"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://cpansearch.perl.org/"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="http://search.cpan.org/CPAN/authors/id/S/SB/SBECK/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain perl Test-Inter"
 PKG_SECTION="devel"
 PKG_SHORTDESC="Perl Date manipulation routines"
