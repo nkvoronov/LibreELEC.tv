@@ -1,7 +1,7 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2016-12-28 20:42:38.000000000 +0200
-+++ b/Makefile	2016-12-30 15:18:44.270446558 +0200
-@@ -103,50 +103,65 @@
+--- a/Makefile	2017-07-06 16:14:55.000000000 +0300
++++ b/Makefile	2017-07-07 01:20:26.089154371 +0300
+@@ -105,50 +105,65 @@
      PKG_CONFIG_LIBDIR=$(FFMPEG_LIBDIR)/pkgconfig $(PKG_CONFIG) \
      --define-variable=prefix=$(FFMPEG_PREFIX) --static
  
@@ -73,7 +73,7 @@ diff -Naur a/Makefile b/Makefile
  endif
  
  # LIBAV ########################################################################
-@@ -620,7 +635,7 @@
+@@ -633,7 +648,7 @@
  
  # Binary
  ${PROG}: .config.mk make_webui $(OBJS)

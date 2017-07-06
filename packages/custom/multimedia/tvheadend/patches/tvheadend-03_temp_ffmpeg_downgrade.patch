@@ -1,9 +1,9 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2016-12-28 20:42:38.000000000 +0200
-+++ b/Makefile.ffmpeg	2016-12-30 15:34:13.632600583 +0200
-@@ -94,10 +94,10 @@
- LIBMFX_SHA1    = 84dbdf4a6b409067e863eb9564bb2efdec6d39ce
- LIBMFX_DIFFS   = libmfx.linux.path.diff
+--- a/Makefile.ffmpeg	2017-07-06 16:14:55.000000000 +0300
++++ b/Makefile.ffmpeg	2017-07-07 01:39:02.880705176 +0300
+@@ -93,10 +93,10 @@
+ LIBMFX_SHA1    = 33dec0b054d842e8380eb31b97afe02d07d5c6fc
+ LIBMFX_DIFFS   =
  
 -FFMPEG         = ffmpeg-3.3.2
 +FFMPEG         = ffmpeg-3.1.5

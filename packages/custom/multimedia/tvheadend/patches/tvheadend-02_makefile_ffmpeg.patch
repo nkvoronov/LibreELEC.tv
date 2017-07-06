@@ -1,7 +1,7 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2016-12-28 20:42:38.000000000 +0200
-+++ b/Makefile.ffmpeg	2016-12-30 15:30:27.054121900 +0200
-@@ -24,10 +24,12 @@
+--- a/Makefile.ffmpeg	2017-07-06 16:14:55.000000000 +0300
++++ b/Makefile.ffmpeg	2017-07-07 01:34:36.930659301 +0300
+@@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
  
@@ -11,20 +11,16 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  unexport CFLAGS
  unexport LDFLAGS
  
--
- # ##############################################################################
- # Upstream Packages
- # ##############################################################################
-@@ -145,7 +147,7 @@
+@@ -167,7 +170,7 @@
  
  $(LIB_ROOT)/$(YASM)/.tvh_build: \
  		$(LIB_ROOT)/$(YASM)/.tvh_download
--	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE)
-+	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) CC=$(HOST_CC)
+-	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) \
++	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) CC=$(HOST_CC) \
+ 		--libdir=/$(EPREFIX0)/lib
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(YASM) install
- 	@touch $@
-@@ -238,6 +240,7 @@
+@@ -260,6 +263,7 @@
  	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
  		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
  		-DENABLE_SHARED:BOOL=OFF \
@@ -32,7 +28,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		../../source
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
-@@ -271,7 +274,7 @@
+@@ -293,7 +297,7 @@
  ifeq (yes,$(CONFIG_LIBVPX_STATIC))
  
  ifneq (,$(FFMPEG_TARGET))
@@ -41,7 +37,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  endif
  
  $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
-@@ -283,7 +286,7 @@
+@@ -305,7 +309,7 @@
  		$(LIB_ROOT)/$(YASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
@@ -50,27 +46,27 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
  		--disable-docs \
-@@ -359,7 +362,8 @@
- 		$(LIB_ROOT)/$(LIBTHEORA)/.tvh_download
+@@ -384,7 +388,8 @@
  	cd $(LIB_ROOT)/$(LIBTHEORA) && \
  		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
+ 		--libdir=/$(EPREFIX0)/lib \
 -		--with-ogg=$(EPREFIX) \
 +		OGG_CFLAGS=-I$(EPREFIX)/include \
 +		OGG_LIBS=-L$(EPREFIX)/lib \
  		--disable-examples \
  		--disable-spec \
  		$(LIBTHEORA_HOST)
-@@ -406,7 +410,8 @@
- 		$(LIB_ROOT)/$(LIBVORBIS)/.tvh_download
+@@ -432,7 +437,8 @@
  	cd $(LIB_ROOT)/$(LIBVORBIS) && \
  		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
+ 		--libdir=/$(EPREFIX0)/lib \
 -		--with-ogg=$(EPREFIX)
 +		OGG_CFLAGS=-I$(EPREFIX)/include \
 +		OGG_LIBS=-L$(EPREFIX)/lib
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
  	@touch $@
-@@ -569,6 +574,8 @@
+@@ -596,6 +602,8 @@
  		$(LIB_ROOT)/$(LIBMFX)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
