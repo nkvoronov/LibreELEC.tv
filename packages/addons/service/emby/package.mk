@@ -1,6 +1,6 @@
 ################################################################################
 #      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
+#      Copyright (C) 2016-present Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 PKG_NAME="emby"
 PKG_VERSION="3.2.25.0"
-PKG_REV="124"
+PKG_REV="125"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
