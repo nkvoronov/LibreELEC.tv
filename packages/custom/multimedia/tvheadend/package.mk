@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="tvheadend"
-PKG_VERSION="debe129"
-PKG_VERSION_NUMBER="4.3.302"
+PKG_VERSION="97458ba"
+PKG_VERSION_NUMBER="4.3.317"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
