@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="lcdproc"
-PKG_VERSION="466edd3"
+PKG_VERSION="79fa538"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"
