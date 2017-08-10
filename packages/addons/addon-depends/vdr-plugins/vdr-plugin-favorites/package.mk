@@ -17,11 +17,13 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-favorites"
-PKG_VERSION="0.0.2"
+PKG_VERSION="8d3f3a5"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.vdr-wiki.de/wiki/index.php/Favorites-plugin"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_GIT_URL="https://github.com/nkvoronov/vdr-plugin-favorites.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="vdr favorites"

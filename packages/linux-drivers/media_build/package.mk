@@ -17,11 +17,13 @@
 ################################################################################
 
 PKG_NAME="media_build"
-PKG_VERSION="2017-01-22-rpi"
+PKG_VERSION="7790503"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/crazycat69/linux_media"
-PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_SITE="https://github.com/crazycat69/linux_media.git"
+PKG_GIT_URL="https://github.com/crazycat69/linux_media.git"
+PKG_GIT_BRANCH="latest"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"

@@ -17,12 +17,14 @@
 ################################################################################
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="3.0.3"
+PKG_VERSION="8b32bcc"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
-PKG_URL="$DISTRO_CUSTOM_SRC/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_GIT_URL="https://github.com/nkvoronov/tools-ace.git"
+PKG_GIT_BRANCH="master"
+PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
