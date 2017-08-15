@@ -40,7 +40,7 @@ makeinstall_target() {
 
 post_makeinstall_target() {
   mkdir -p $SYSROOT_PREFIX/usr/include/matroska
-    cp -PR $ROOT/$PKG_BUILD/matroska/* $SYSROOT_PREFIX/usr/include/matroska
+    cp -PR $PKG_BUILD/matroska/* $SYSROOT_PREFIX/usr/include/matroska
   mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/make/linux/{*.a,*.so*} $SYSROOT_PREFIX/usr/lib
+    cp -P $PKG_BUILD/make/linux/{*.a,*.so*} $SYSROOT_PREFIX/usr/lib
 }

@@ -39,7 +39,7 @@ pre_configure_target() {
   export CXXFLAGS="$CXXFLAGS -fPIC"
   export LDFLAGS="$LDFLAGS -fPIC"
 
-  mv $SYSROOT_PREFIX/usr/bin/xml2-config $ROOT/$TOOLCHAIN/bin
+  mv $SYSROOT_PREFIX/usr/bin/xml2-config $TOOLCHAIN/bin
 }
 
 make_target() {
@@ -48,20 +48,20 @@ make_target() {
   LIBDIR="." \
   LOCALEDIR="./locale"
 
-  mkdir -p $ROOT/$PKG_BUILD/installs
+  mkdir -p $PKG_BUILD/installs
     cp -PR $PKG_DIR/configs/* $ROOT/$PKG_BUILD/installs
 
   mkdir -p $SYSROOT_PREFIX/usr/include/libskindesignerapi
-    cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/*.h $SYSROOT_PREFIX/usr/include/libskindesignerapi
+    cp -PR $PKG_BUILD/libskindesignerapi/*.h $SYSROOT_PREFIX/usr/include/libskindesignerapi
   mkdir -p $SYSROOT_PREFIX/usr/lib
     rm -f $SYSROOT_PREFIX/usr/lib/libskindesignerapi.*
-    cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib
+    cp -PR $PKG_BUILD/libskindesignerapi/libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib
     ln -s libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib/libskindesignerapi.so.0
     ln -s libskindesignerapi.so.0.1.2 $SYSROOT_PREFIX/usr/lib/libskindesignerapi.so
   mkdir -p $SYSROOT_PREFIX/usr/lib/pkgconfig
-    cp -PR $ROOT/$PKG_BUILD/libskindesignerapi/libskindesignerapi.pc $SYSROOT_PREFIX/usr/lib/pkgconfig
+    cp -PR $PKG_BUILD/libskindesignerapi/libskindesignerapi.pc $SYSROOT_PREFIX/usr/lib/pkgconfig
 
-  mv $ROOT/$TOOLCHAIN/bin/xml2-config $SYSROOT_PREFIX/usr/bin
+  mv $TOOLCHAIN/bin/xml2-config $SYSROOT_PREFIX/usr/bin
 }
 
 makeinstall_target() {

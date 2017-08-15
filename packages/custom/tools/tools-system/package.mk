@@ -33,6 +33,7 @@ PKG_AUTORECONF="no"
 
 ENABLE_AUTOSSH="no"
 ENABLE_DIFFUTILS="no"
+ENABLE_DSTAT="no"
 ENABLE_DTACH="no"
 ENABLE_EFIBOOTMGR="no"
 ENABLE_EVTEST="yes"
@@ -59,6 +60,7 @@ ENABLE_SCREEN="no"
 ENABLE_STRACE="no"
 ENABLE_UNRAR="yes"
 ENABLE_USB_MODESWITCH="no"
+ENABLE_VIN="no"
 
 if [ "$ENABLE_AUTOSSH" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET autossh"
@@ -66,6 +68,10 @@ fi
 
 if [ "$ENABLE_DIFFUTILS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET diffutils"
+fi
+
+if [ "$ENABLE_DSTAT" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dstat"
 fi
 
 if [ "$ENABLE_DTACH" = yes ]; then
@@ -172,6 +178,10 @@ if [ "$ENABLE_USB-MODESWITCH" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET usb-modeswitch"
 fi
 
+if [ "$ENABLE_VIM" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vim"
+fi
+
 make_target() {
   : # nothing to make here
 }
@@ -184,58 +194,62 @@ post_install() {
   mkdir -p $INSTALL/
   mkdir -p $INSTALL/usr/bin/
   mkdir -p $INSTALL/usr/lib/
-    # autossh
+  # autossh
   if [ "$ENABLE_AUTOSSH" = yes ]; then
     cp -P $(get_build_dir autossh)/.$TARGET_NAME/autossh $INSTALL/usr/bin
   fi
-    # diffutils
+  # diffutils
   if [ "$ENABLE_DIFFUTILS" = yes ]; then
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/cmp $INSTALL/usr/bin
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/diff $INSTALL/usr/bin
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/diff3 $INSTALL/usr/bin
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/sdiff $INSTALL/usr/bin
   fi
-    # dtach
+  # dstat
+  if [ "$ENABLE_DSTAT" = yes ]; then
+    cp -P $(get_build_dir dstat)/dstat $INSTALL/usr/bin
+  fi
+  # dtach
   if [ "$ENABLE_DTACH" = yes ]; then
     cp -P $(get_build_dir dtach)/.$TARGET_NAME/dtach $INSTALL/usr/bin
   fi
-    # efibootmgr
+  # efibootmgr
   if [ "$ENABLE_EFIBOOTMGR" = yes ]; then
     cp -P $(get_build_dir efibootmgr)/src/efibootmgr/efibootmgr $INSTALL/usr/bin 2>/dev/null || :
   fi
-    # evtest
+  # evtest
   if [ "$ENABLE_EVTEST" = yes ]; then
     cp -P $(get_build_dir evtest)/.$TARGET_NAME/evtest $INSTALL/usr/bin
   fi
-    # fdupes
+  # fdupes
   if [ "$ENABLE_FDUPES" = yes ]; then
     cp -P $(get_build_dir fdupes)/fdupes $INSTALL/usr/bin
   fi
-    # file
+  # file
   if [ "$ENABLE_FILE" = yes ]; then
     cp -P $(get_build_dir file)/.$TARGET_NAME/src/file $INSTALL/usr/bin
     mkdir -p $INSTALL/usr/data/
     cp -P $(get_build_dir file)/.$TARGET_NAME/magic/magic.mgc $INSTALL/usr/data
   fi
-    # getscancodes
+  # getscancodes
   if [ "$ENABLE_GETSCANCODES" = yes ]; then
     cp -P $(get_build_dir getscancodes)/getscancodes $INSTALL/usr/bin
   fi
-
+  # hddtemp
   if [ "$ENABLE_HDDTEMP" = yes ]; then
     cp -P $(get_build_dir hddtemp)/.$TARGET_NAME/src/hddtemp $INSTALL/usr/bin
     mkdir -p $INSTALL/etc
     cp -P $(get_build_dir hddtemp)/debian/hddtemp.db $INSTALL/etc
   fi
-    # hd-idle
+  # hd-idle
   if [ "$ENABLE_HD_IDLE" = yes ]; then
     cp -P $(get_build_dir hd-idle)/hd-idle $INSTALL/usr/bin
   fi
-    # hid_mapper
+  # hid_mapper
   if [ "$ENABLE_HID_MAPPER" = yes ]; then
     cp -P $(get_build_dir hid_mapper)/hid_mapper $INSTALL/usr/bin
   fi
-    # i2c-tools
+  # i2c-tools
   if [ "$ENABLE_I2C_TOOLS" = yes ]; then
     cp -P $(get_build_dir i2c-tools)/tools/i2cdetect $INSTALL/usr/bin
     cp -P $(get_build_dir i2c-tools)/tools/i2cdump $INSTALL/usr/bin
@@ -243,24 +257,24 @@ post_install() {
     cp -P $(get_build_dir i2c-tools)/tools/i2cset $INSTALL/usr/bin
     cp -P $(get_build_dir i2c-tools)/py-smbus/build/lib.linux-*/smbus.so $INSTALL/usr/lib
   fi
-    # inotify-tools
+  # inotify-tools
   if [ "$ENABLE_INOTIFY_TOOLS" = yes ]; then
     cp -P $(get_build_dir inotify-tools)/.$TARGET_NAME/src/inotifywait $INSTALL/usr/bin
     cp -P $(get_build_dir inotify-tools)/.$TARGET_NAME/src/inotifywatch $INSTALL/usr/bin
   fi
-    # jq
+  # jq
   if [ "$ENABLE_JQ" = yes ]; then
     cp -P $(get_build_dir jq)/.$TARGET_NAME/jq $INSTALL/usr/bin
   fi
-    # lm_sensors
+  # lm_sensors
   if [ "$ENABLE_LM_SENSORS" = yes ]; then
     cp -P $(get_build_dir lm_sensors)/prog/sensors/sensors $INSTALL/usr/bin 2>/dev/null || :
   fi
-    # lshw
+  # lshw
   if [ "$ENABLE_LSHW" = yes ]; then
     cp -P $(get_build_dir lshw)/src/lshw $INSTALL/usr/bin
   fi
-    # mc
+  # mc
   if [ "$ENABLE_MC" = yes ]; then
     cp -PR  $(get_build_dir mc)/.install_pkg/* $INSTALL
     mkdir -p $INSTALL/usr/share/mc/bin
@@ -276,51 +290,55 @@ post_install() {
       cp -p $fgmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/mc.mo
     done
   fi
-    # htop
+  # htop
   if [ "$ENABLE_HTOP" = yes ]; then
     cp -P $(get_build_dir htop)/htop $INSTALL/usr/bin
   fi
-    # mrxvt
+  # mrxvt
   if [ "$ENABLE_MRXVT" = yes ]; then
     cp -P $(get_build_dir mrxvt)/.$TARGET_NAME/src/mrxvt $INSTALL/usr/bin 2>/dev/null || :
   fi
-    # mtpfs
+  # mtpfs
   if [ "$ENABLE_MTPFS" = yes ]; then
     cp -P $(get_build_dir mtpfs)/.$TARGET_NAME/mtpfs $INSTALL/usr/bin/
   fi
-    # nmon
+  # nmon
   if [ "$ENABLE_NMON" = yes ]; then
     cp -P $(get_build_dir nmon)/nmon $INSTALL/usr/bin/
   fi
-    # p7zip
+  # p7zip
   if [ "$ENABLE_P7ZIP" = yes ]; then
     cp -P $(get_build_dir p7zip)/bin/7z.so $INSTALL/usr/bin
     cp -PR $(get_build_dir p7zip)/bin/Codecs $INSTALL/usr/bin
     cp -P $(get_build_dir p7zip)/bin/7z $INSTALL/usr/bin
     cp -P $(get_build_dir p7zip)/bin/7za $INSTALL/usr/bin
   fi
-    # patch
+  # patch
   if [ "$ENABLE_PATCH" = yes ]; then
     cp -P $(get_build_dir patch)/.$TARGET_NAME/src/patch $INSTALL/usr/bin
   fi
-    # pv
+  # pv
   if [ "$ENABLE_PV" = yes ]; then
     cp -P $(get_build_dir pv)/.$TARGET_NAME/pv $INSTALL/usr/bin
   fi
-    # screen
+  # screen
   if [ "$ENABLE_SCREEN" = yes ]; then
     cp -P $(get_build_dir screen)/screen $INSTALL/usr/bin
   fi
-    # strace
+  # strace
   if [ "$ENABLE_STRACE" = yes ]; then
     cp -P $(get_build_dir strace)/.$TARGET_NAME/strace $INSTALL/usr/bin
   fi
-    # unrar
+  # unrar
   if [ "$ENABLE_UNRAR" = yes ]; then
     cp -P $(get_build_dir unrar)/unrar $INSTALL/usr/bin
   fi
-    # usb-modeswitch
+  # usb-modeswitch
   if [ "$ENABLE_USB_MODESWITCH" = yes ]; then
     cp -P $(get_build_dir usb-modeswitch)/usb_modeswitch $INSTALL/usr/bin
+  fi
+  # vim
+  if [ "$ENABLE_VIM" = yes ]; then
+    cp -P $(get_build_dir vim)/.install_pkg/usr/bin/vim $INSTALL/usr/bin
   fi
 }

@@ -23,7 +23,7 @@ PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="http://www.tinc-vpn.org/"
 PKG_URL="${PKG_SITE}/packages/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain libressl lzo zlib"
+PKG_DEPENDS_TARGET="toolchain openssl lzo zlib"
 PKG_SECTION="service/system"
 PKG_SHORTDESC="tinc: a Virtual Private Network daemon"
 PKG_LONGDESC="tinc ($PKG_VERSION) is a Virtual Private Network (VPN) daemon that uses tunnelling and encryption to create a secure private network between hosts on the Internet. Because the VPN appears to the IP level network code as a normal network device, there is no need to adapt any existing software. This allows VPN sites to share information with each other over the Internet without exposing any information to others."
@@ -40,7 +40,7 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-curses   \
 
 pre_configure_target() {
   # tinc fails to build in subdirs
-  cd $ROOT/$PKG_BUILD
+  cd $PKG_BUILD
   rm -rf .$TARGET_NAME
 }
 

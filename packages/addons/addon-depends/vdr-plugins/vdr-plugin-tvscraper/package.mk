@@ -37,7 +37,7 @@ pre_configure_target() {
   export CXXFLAGS="$CXXFLAGS -fPIC"
   export LDFLAGS="$LDFLAGS -fPIC"
 
-  mv $SYSROOT_PREFIX/usr/bin/xml2-config $ROOT/$TOOLCHAIN/bin
+  mv $SYSROOT_PREFIX/usr/bin/xml2-config $TOOLCHAIN/bin
 }
 
 make_target() {
@@ -46,7 +46,7 @@ make_target() {
   LIBDIR="." \
   LOCALEDIR="./locale"
 
-  mv $ROOT/$TOOLCHAIN/bin/xml2-config $SYSROOT_PREFIX/usr/bin
+  mv $TOOLCHAIN/bin/xml2-config $SYSROOT_PREFIX/usr/bin
 }
 
 makeinstall_target() {

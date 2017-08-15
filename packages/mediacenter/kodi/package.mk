@@ -32,7 +32,7 @@ PKG_LONGDESC="Kodi Media Center (which was formerly named Xbox Media Center or X
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-PKG_CMAKE_SCRIPT="$ROOT/$PKG_BUILD/project/cmake/CMakeLists.txt"
+PKG_CMAKE_SCRIPT="$PKG_BUILD/project/cmake/CMakeLists.txt"
 
   get_graphicdrivers
 
@@ -206,9 +206,9 @@ KODI_LIBDVD="$KODI_DVDCSS \
              -DLIBDVDNAV_URL=$ROOT/$SOURCES/libdvdnav/libdvdnav-$(get_pkg_version libdvdnav).tar.gz \
              -DLIBDVDREAD_URL=$ROOT/$SOURCES/libdvdread/libdvdread-$(get_pkg_version libdvdread).tar.gz"
 
-PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$ROOT/$TOOLCHAIN \
-                       -DWITH_TEXTUREPACKER=$ROOT/$TOOLCHAIN/bin/TexturePacker \
-                       -DDEPENDS_PATH=$ROOT/$PKG_BUILD/depends \
+PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$TOOLCHAIN \
+                       -DWITH_TEXTUREPACKER=$TOOLCHAIN/bin/TexturePacker \
+                       -DDEPENDS_PATH=$PKG_BUILD/depends \
                        -DPYTHON_INCLUDE_DIRS=$SYSROOT_PREFIX/usr/include/python2.7 \
                        -DGIT_VERSION=$PKG_VERSION \
                        -DENABLE_INTERNAL_FFMPEG=OFF \
@@ -352,18 +352,18 @@ post_makeinstall_target() {
   # install skin
   SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
   if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
-    cp -PR $PKG_DIR/theme/* $ROOT/$PKG_BUILD/addons/$SKIN_DIR
+    cp -PR $PKG_DIR/theme/* $PKG_BUILD/addons/$SKIN_DIR
     mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR
-      cp -R $ROOT/$PKG_BUILD/addons/$SKIN_DIR/* $INSTALL/usr/share/kodi/addons/$SKIN_DIR
-      cp $ROOT/$PKG_BUILD/addons/$SKIN_DIR/*.txt $INSTALL/usr/share/kodi/addons/$SKIN_DIR
-      cp $ROOT/$PKG_BUILD/addons/$SKIN_DIR/*.xml $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp -R $PKG_BUILD/addons/$SKIN_DIR/* $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp $PKG_BUILD/addons/$SKIN_DIR/*.txt $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp $PKG_BUILD/addons/$SKIN_DIR/*.xml $INSTALL/usr/share/kodi/addons/$SKIN_DIR
         rm -rf $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media
         rm -rf $INSTALL/usr/share/kodi/addons/$SKIN_DIR/themes
 
       mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media
-        TexturePacker -input $ROOT/$PKG_BUILD/addons/$SKIN_DIR/media/ -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/Textures.xbt -dupecheck -use_none
+        TexturePacker -input $PKG_BUILD/addons/$SKIN_DIR/media/ -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/Textures.xbt -dupecheck -use_none
 
-        for theme in $ROOT/$PKG_BUILD/addons/$SKIN_DIR/themes/*; do
+        for theme in $PKG_BUILD/addons/$SKIN_DIR/themes/*; do
           TexturePacker -input $theme -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/$(basename $theme).xbt -dupecheck
         done
   fi

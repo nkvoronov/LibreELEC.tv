@@ -40,7 +40,7 @@ makeinstall_target() {
 
 post_makeinstall_target() {
   mkdir -p $SYSROOT_PREFIX/usr/include/ebml
-    cp -PR $ROOT/$PKG_BUILD/ebml/* $SYSROOT_PREFIX/usr/include/ebml
+    cp -PR $PKG_BUILD/ebml/* $SYSROOT_PREFIX/usr/include/ebml
   mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/make/linux/{*.a,*.so*} $SYSROOT_PREFIX/usr/lib
+    cp -P $PKG_BUILD/make/linux/{*.a,*.so*} $SYSROOT_PREFIX/usr/lib
 }

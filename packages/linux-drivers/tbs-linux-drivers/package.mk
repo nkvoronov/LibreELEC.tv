@@ -37,7 +37,7 @@ unpack() {
 
 post_unpack() {
   tar xjf $ROOT/$PKG_BUILD/linux-tbs-drivers.tar.bz2 -C $ROOT/$PKG_BUILD
-  chmod -R u+rwX $ROOT/$PKG_BUILD/linux-tbs-drivers/*
+  chmod -R u+rwX $PKG_BUILD/linux-tbs-drivers/*
 
   for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
     cat $patch | patch -d \
@@ -54,7 +54,7 @@ make_target() {
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs
-  find $ROOT/$PKG_BUILD/linux-tbs-drivers/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs \;
+  find $PKG_BUILD/linux-tbs-drivers/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs \;
   mkdir -p $INSTALL/usr/lib/firmware/
-  cp $ROOT/$PKG_BUILD/*.fw $INSTALL/usr/lib/firmware/
+  cp $PKG_BUILD/*.fw $INSTALL/usr/lib/firmware/
 }

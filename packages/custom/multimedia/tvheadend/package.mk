@@ -69,12 +69,12 @@ post_unpack() {
 
 pre_configure_target() {
 # fails to build in subdirs
-  cd $ROOT/$PKG_BUILD
+  cd $PKG_BUILD
   rm -rf .$TARGET_NAME
 
 # transcoding
   if [ "$TARGET_ARCH" = x86_64 ]; then
-    export AS=$ROOT/$TOOLCHAIN/bin/yasm
+    export AS=$TOOLCHAIN/bin/yasm
   fi
 
   export CROSS_COMPILE=$TARGET_PREFIX

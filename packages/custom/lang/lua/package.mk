@@ -55,12 +55,12 @@ makeinstall_target() {
 
 post_install() {
   mkdir -p $INSTALL/usr/bin
-    cp -P $ROOT/$PKG_BUILD/src/lua $INSTALL/usr/bin
-    cp -P $ROOT/$PKG_BUILD/src/luac $INSTALL/usr/bin
+    cp -P $PKG_BUILD/src/lua $INSTALL/usr/bin
+    cp -P $PKG_BUILD/src/luac $INSTALL/usr/bin
   ln -sf /usr/bin/lua $INSTALL/usr/bin/lua$_MAJORVER
   ln -sf /usr/bin/luac $INSTALL/usr/bin/luac$_MAJORVER
 
   mkdir -p $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/src/liblua.so $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/src/liblua.so.* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/src/liblua.so $INSTALL/usr/lib
+    cp -P $PKG_BUILD/src/liblua.so.* $INSTALL/usr/lib
 }

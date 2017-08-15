@@ -105,7 +105,7 @@ post_make_host() {
 post_makeinstall_host() {
   cp -PR $TARGET_NAME/libstdc++-v3/src/.libs/libstdc++.so* $SYSROOT_PREFIX/usr/lib
 
-  GCC_VERSION=`$ROOT/$TOOLCHAIN/bin/${TARGET_NAME}-gcc -dumpversion`
+  GCC_VERSION=`$TOOLCHAIN/bin/${TARGET_NAME}-gcc -dumpversion`
   DATE="0501`echo $GCC_VERSION | sed 's/\([0-9]\)/0\1/g' | sed 's/\.//g'`"
   CROSS_CC=${TARGET_PREFIX}gcc-${GCC_VERSION}
   CROSS_CXX=${TARGET_PREFIX}g++-${GCC_VERSION}
@@ -114,7 +114,7 @@ post_makeinstall_host() {
 
 cat > ${TARGET_PREFIX}gcc <<EOF
 #!/bin/sh
-$ROOT/$TOOLCHAIN/bin/ccache $CROSS_CC "\$@"
+$TOOLCHAIN/bin/ccache $CROSS_CC "\$@"
 EOF
 
   chmod +x ${TARGET_PREFIX}gcc
@@ -126,7 +126,7 @@ EOF
 
 cat > ${TARGET_PREFIX}g++ <<EOF
 #!/bin/sh
-$ROOT/$TOOLCHAIN/bin/ccache $CROSS_CXX "\$@"
+$TOOLCHAIN/bin/ccache $CROSS_CXX "\$@"
 EOF
 
   chmod +x ${TARGET_PREFIX}g++
@@ -145,9 +145,9 @@ make_target() {
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libgcc/libgcc_s.so* $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libstdc++-v3/src/.libs/libstdc++.so* $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libatomic/.libs/libatomic.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libgcc/libgcc_s.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libstdc++-v3/src/.libs/libstdc++.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libatomic/.libs/libatomic.so* $INSTALL/usr/lib
 }
 
 configure_init() {
@@ -160,5 +160,5 @@ make_init() {
 
 makeinstall_init() {
   mkdir -p $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libgcc/libgcc_s.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/.$HOST_NAME/$TARGET_NAME/libgcc/libgcc_s.so* $INSTALL/usr/lib
 }

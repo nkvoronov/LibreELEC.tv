@@ -23,7 +23,7 @@ PKG_LICENSE="OSS"
 PKG_SITE="http://www.python.org/"
 PKG_URL="http://www.python.org/ftp/python/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_HOST="zlib:host bzip2:host sqlite:host"
-PKG_DEPENDS_TARGET="toolchain sqlite expat zlib bzip2 libressl libffi Python:host"
+PKG_DEPENDS_TARGET="toolchain sqlite expat zlib bzip2 openssl libffi Python:host"
 PKG_SECTION="lang"
 PKG_SHORTDESC="python: The Python programming language"
 PKG_LONGDESC="Python is an interpreted object-oriented programming language, and is often compared with Tcl, Perl, Java or Scheme."
@@ -87,7 +87,7 @@ makeinstall_host() {
 }
 
 pre_configure_target() {
-  export PYTHON_FOR_BUILD=$ROOT/$TOOLCHAIN/bin/python
+  export PYTHON_FOR_BUILD=$TOOLCHAIN/bin/python
 }
 
 make_target() {
@@ -125,7 +125,7 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/bin/python*-config
 
   cd $INSTALL/usr/lib/python2.7
-  python -Wi -t -B $ROOT/$PKG_BUILD/Lib/compileall.py -d /usr/lib/python2.7 -f .
+  python -Wi -t -B $PKG_BUILD/Lib/compileall.py -d /usr/lib/python2.7 -f .
   find $INSTALL/usr/lib/python2.7 -name "*.py" -exec rm -f {} \; &>/dev/null
 
   # strip

@@ -38,7 +38,7 @@ configure_target() {
 }
 
 make_target() {
-  export CARGO_HOME="$ROOT/$TOOLCHAIN/.cargo"
+  export CARGO_HOME="$TOOLCHAIN/.cargo"
   export RUSTUP_HOME="$CARGO_HOME"
   export PATH="$CARGO_HOME/bin:$PATH"
   rm -rf "$CARGO_HOME"
@@ -65,8 +65,8 @@ linker = "$CC"
 EOF
 
   cat <<'EOF' >"$CARGO_HOME/env"
-export CARGO_HOME="$ROOT/$TOOLCHAIN/.cargo"
-export CARGO_TARGET_DIR="$ROOT/$PKG_BUILD/.$TARGET_NAME"
+export CARGO_HOME="$TOOLCHAIN/.cargo"
+export CARGO_TARGET_DIR="$PKG_BUILD/.$TARGET_NAME"
 export PATH="$CARGO_HOME/bin:$PATH"
 export RUSTUP_HOME="$CARGO_HOME"
 mkdir -p "$CARGO_TARGET_DIR"

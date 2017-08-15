@@ -39,7 +39,7 @@ make_host() {
 
 makeinstall_host() {
   mkdir -p $ROOT/$TOOLCHAIN/bin
-    cp bin.*/bjam $ROOT/$TOOLCHAIN/bin
+    cp bin.*/bjam $TOOLCHAIN/bin
 }
 
 pre_configure_target() {
@@ -50,8 +50,8 @@ pre_configure_target() {
 
 configure_target() {
   sh bootstrap.sh --prefix=/usr \
-                  --with-bjam=$ROOT/$TOOLCHAIN/bin/bjam \
-                  --with-python=$ROOT/$TOOLCHAIN/bin/python \
+                  --with-bjam=$TOOLCHAIN/bin/bjam \
+                  --with-python=$TOOLCHAIN/bin/python \
 
   echo "using gcc : `$CC -v 2>&1  | tail -n 1 |awk '{print $3}'` : $CC  : <compileflags>\"$CFLAGS\" <linkflags>\"$LDFLAGS\" ;" \
     > tools/build/src/user-config.jam

@@ -17,10 +17,6 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-. /etc/os-release
-. /etc/profile
-oe_setup_addon service.librespot
-
 activate_card() {
   if [ -e "/proc/asound/$1" ]; then
     return
@@ -39,61 +35,89 @@ activate_card() {
   esac
 }
 
-if [ ! "$(cat /proc/asound/pcm 2> /dev/null)" ]; then
-  case "$LIBREELEC_ARCH" in
-    RPi*.arm)
-      activate_card "ALSA"
+init_alsa() {
+  . /etc/os-release
+
+  if [ ! "$(cat /proc/asound/pcm 2> /dev/null)" ]; then
+    case "$LIBREELEC_ARCH" in
+      RPi*.arm)
+        activate_card "ALSA"
+        ;;
+      *)
+        echo "Unable to activate an audio interface on $LIBREELEC_ARCH"
+        exit
+        ;;
+    esac
+  fi
+
+  case "$ls_o" in
+    *:CARD=*)
+      card="${ls_o##*:CARD=}"
+      card="${card%%,*}"
+      activate_card "$card"
+      index="$(readlink /proc/asound/$card)"
+      index="${index##*card}"
       ;;
+    hw:*,*)
+      echo "The hw:d,s specification is unreliable, use device:CARD=card instead"
+      index="${ls_o##hw:}"
+      index="${index%%,*}"
+      card="card$index"
+      activate_card "$card"
+      ;;    
     *)
-      echo "Unable to activate an audio interface on $LIBREELEC_ARCH"
-      exit
+      if [ -n "$ls_o" ]; then
+        echo "Unknown playback device specification $ls_o"
+      fi
       ;;
   esac
-fi
 
-case "$ls_o" in
-  *:CARD=*)
-    card="${ls_o##*:CARD=}"
-    card="${card%%,*}"
-    activate_card "$card"
-    index="$(readlink /proc/asound/$card)"
-    index="${index##*card}"
-    ;;
-  hw:*,*)
-    echo "The hw:d,s specification is unreliable, use device:CARD=card instead"
-    index="${ls_o##hw:}"
-    index="${index%%,*}"
-    card="card$index"
-    activate_card "$card"
-    ;;    
-  *)
-    if [ -n "$ls_o" ]; then
-      echo "Unknown playback device specification $ls_o"
-    fi
-    ;;
-esac
+  case "$LIBREELEC_ARCH" in
+    RPi*.arm)
+      [ "$(readlink /proc/asound/ALSA)" == "card$index" ] && [ "$pcm_3" ] &&
+        amixer -c "$index" cset name="PCM Playback Route" "$pcm_3"
+      ;;
+  esac
+}
+
+
+. /etc/profile
+oe_setup_addon service.librespot
+
+LIBRESPOT="librespot --cache \"$ADDON_HOME/cache\" \
+                     --disable-audio-cache \
+                     --name \"Librespot@$HOSTNAME\" \
+                     --onstart librespot.onstart \
+                     --onstop librespot.onstop"
 
 if [ -n "$ls_b" -a "$ls_b" != "-" ]; then
-  bitrate="--bitrate $ls_b"
-fi
-
-if [ -n "$ls_o" ]; then
-  device="--device $ls_o"
+  LIBRESPOT="$LIBRESPOT --bitrate $ls_b"
 fi
 
 if [ -n "$ls_p" -a -n "$ls_u" ]; then
-  discovery="--disable-discovery --password $ls_p --username $ls_u"
+  LIBRESPOT="$LIBRESPOT --disable-discovery \
+                        --password \"$ls_p\" \
+                        --username \"$ls_u\""
 fi
 
-case "$LIBREELEC_ARCH" in
-  RPi*.arm)
-    [ "$(readlink /proc/asound/ALSA)" == "card$index" ] && [ "$pcm_3" ] &&
-      amixer -c "$index" cset name="PCM Playback Route" "$pcm_3"
-    ;;
-esac
+if [ "$ls_O" == "Kodi" ]; then
+  LIBRESPOT="$LIBRESPOT --backend pulseaudio"
+else
+  init_alsa
+  if [ -n "$ls_o" ]; then
+    LIBRESPOT="$LIBRESPOT --device \"$ls_o\""
+  fi
+fi
 
-librespot $bitrate                     \
-          --cache "$ADDON_HOME/cache"  \
-          $device                      \
-          $discovery                   \
-          --name "Librespot@$HOSTNAME"
+if [ -z "$(pactl list short modules | grep sink_name=$LS_SINK)" ]; then
+  pactl load-module module-null-sink sink_name="$LS_SINK" > /dev/null
+fi
+pactl suspend-sink "$LS_SINK" 1
+if [ -z "$(pactl list short modules | grep source=$LS_SINK.monitor)" ]; then
+  pactl load-module module-rtp-send source="$LS_SINK.monitor" \
+    destination_ip=127.0.0.1 port="$LS_PORT" source_ip=127.0.0.1 > /dev/null
+fi
+
+export LS_FIFO="$ADDON_DIR/rc"
+
+eval $LIBRESPOT

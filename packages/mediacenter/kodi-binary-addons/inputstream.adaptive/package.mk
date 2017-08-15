@@ -17,10 +17,10 @@
 ################################################################################
 
 PKG_NAME="inputstream.adaptive"
-PKG_VERSION="f23ba39"
+PKG_VERSION="a02656d"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_URL="https://github.com/liberty-developer/inputstream.adaptive/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/peak3d/inputstream.adaptive/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform"
 PKG_SECTION=""
 PKG_SHORTDESC="inputstream.adaptive"
@@ -33,10 +33,10 @@ post_makeinstall_target() {
     cmake -DCMAKE_TOOLCHAIN_FILE=$CMAKE_CONF \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DDECRYPTERPATH=special://home/cdm \
-        $ROOT/$PKG_BUILD/wvdecrypter
+        $PKG_BUILD/wvdecrypter
     make
 
-  cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/wv/libssd_wv.so $INSTALL/usr/lib
+  cp -P $PKG_BUILD/.$TARGET_NAME/wv/libssd_wv.so $INSTALL/usr/lib
 }
 
 addon() {

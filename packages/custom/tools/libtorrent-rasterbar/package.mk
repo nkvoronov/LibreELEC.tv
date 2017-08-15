@@ -53,5 +53,5 @@ configure_target() {
 
 post_install() {
   mkdir -p $INSTALL/usr/share/$PKG_NAME
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/bindings/python/*.py $INSTALL/usr/share/$PKG_NAME
+    cp -P $PKG_BUILD/.$TARGET_NAME/bindings/python/*.py $INSTALL/usr/share/$PKG_NAME
 }

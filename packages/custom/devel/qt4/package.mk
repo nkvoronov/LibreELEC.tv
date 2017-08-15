@@ -32,8 +32,8 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 PLATFORM="linux-g++-$TARGET_NAME"
-LEX=$ROOT/$TOOLCHAIN/bin/flex
-YACC=$ROOT/$TOOLCHAIN/bin/yacc
+LEX=$TOOLCHAIN/bin/flex
+YACC=$TOOLCHAIN/bin/yacc
 INCDIR=$SYSROOT_PREFIX/usr/include
 LIBDIR=$SYSROOT_PREFIX/usr/lib
 QMAKE_CONF_DIR="$ROOT/$BUILD/$PKG_NAME-$PKG_VERSION/mkspecs/$PLATFORM"
@@ -102,8 +102,8 @@ configure_target() {
 }
 
 post_makeinstall_target() {
-  mkdir -p $ROOT/$TOOLCHAIN/bin
-    cp -P $ROOT/$PKG_BUILD/bin/qmake $ROOT/$TOOLCHAIN/bin
+  mkdir -p $TOOLCHAIN/bin
+    cp -P $PKG_BUILD/bin/qmake $TOOLCHAIN/bin
 
   for file in $QTDIR/lib/pkgconfig/Qt*.pc; do
     sed -i -r 's/prefix=\//qtdir=\//g' $file

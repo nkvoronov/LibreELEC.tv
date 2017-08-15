@@ -45,5 +45,5 @@ makeinstall_target() {
 
 post_install() {
   rm -rf .install/usr/lib/python*/site-packages/*.py
-  cp -PR $ROOT/$PKG_BUILD/.install/* $INSTALL
+  cp -PR $PKG_BUILD/.install/* $INSTALL
 }

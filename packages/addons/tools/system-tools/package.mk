@@ -1,6 +1,6 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
+#      This file is part of LibreELEC - https://libreelec.tv
+#      Copyright (C) 2016-present Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 PKG_NAME="system-tools"
 PKG_VERSION=""
-PKG_REV="104"
+PKG_REV="107"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
@@ -37,6 +37,7 @@ PKG_AUTORECONF="no"
 
 ENABLE_AUTOSSH="no"
 ENABLE_DIFFUTILS="no"
+ENABLE_DSTAT="no"
 ENABLE_DTACH="no"
 ENABLE_EFIBOOTMGR="no"
 ENABLE_EVTEST="yes"
@@ -63,6 +64,7 @@ ENABLE_SCREEN="no"
 ENABLE_STRACE="no"
 ENABLE_UNRAR="yes"
 ENABLE_USB_MODESWITCH="no"
+ENABLE_VIN="no"
 
 if [ "$ENABLE_AUTOSSH" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET autossh"
@@ -70,6 +72,10 @@ fi
 
 if [ "$ENABLE_DIFFUTILS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET diffutils"
+fi
+
+if [ "$ENABLE_DSTAT" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dstat"
 fi
 
 if [ "$ENABLE_DTACH" = yes ]; then
@@ -176,60 +182,68 @@ if [ "$ENABLE_USB_MODESWITCH" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET usb-modeswitch"
 fi
 
+if [ "$ENABLE_VIM" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vim"
+fi
+
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/data/
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin/
-    # autossh
+  # autossh
   if [ "$ENABLE_AUTOSSH" = yes ]; then
     cp -P $(get_build_dir autossh)/.$TARGET_NAME/autossh $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # diffutils
+  # diffutils
   if [ "$ENABLE_DIFFUTILS" = yes ]; then
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/cmp $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/diff $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/diff3 $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir diffutils)/.$TARGET_NAME/src/sdiff $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # dtach
+  # dstat
+  if [ "$ENABLE_DSTAT" = yes ]; then
+    cp -P $(get_build_dir dstat)/dstat $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
+  # dtach
   if [ "$ENABLE_DTACH" = yes ]; then
     cp -P $(get_build_dir dtach)/.$TARGET_NAME/dtach $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # efibootmgr
+  # efibootmgr
   if [ "$ENABLE_EFIBOOTMGR" = yes ]; then
     cp -P $(get_build_dir efibootmgr)/src/efibootmgr/efibootmgr $ADDON_BUILD/$PKG_ADDON_ID/bin 2>/dev/null || :
   fi
-    # evtest
+  # evtest
   if [ "$ENABLE_EVTEST" = yes ]; then
     cp -P $(get_build_dir evtest)/.$TARGET_NAME/evtest $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # fdupes
+  # fdupes
   if [ "$ENABLE_FDUPES" = yes ]; then
     cp -P $(get_build_dir fdupes)/fdupes $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # file
+  # file
   if [ "$ENABLE_FILE" = yes ]; then
     cp -P $(get_build_dir file)/.$TARGET_NAME/src/file $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir file)/.$TARGET_NAME/magic/magic.mgc $ADDON_BUILD/$PKG_ADDON_ID/data
   fi
-    # getscancodes
+  # getscancodes
   if [ "$ENABLE_GETSCANCODES" = yes ]; then
     cp -P $(get_build_dir getscancodes)/getscancodes $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # hddtemp
+  # hddtemp
   if [ "$ENABLE_HDDTEMP" = yes ]; then
     cp -P $(get_build_dir hddtemp)/.$TARGET_NAME/src/hddtemp $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir hddtemp)/debian/hddtemp.db $ADDON_BUILD/$PKG_ADDON_ID/data
   fi
-    # hd-idle
+  # hd-idle
   if [ "$ENABLE_HD_IDLE" = yes ]; then
     cp -P $(get_build_dir hd-idle)/hd-idle $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # hid_mapper
+  # hid_mapper
   if [ "$ENABLE_HID_MAPPER" = yes ]; then
     cp -P $(get_build_dir hid_mapper)/hid_mapper $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # i2c-tools
+  # i2c-tools
   if [ "$ENABLE_I2C_TOOLS" = yes ]; then
     cp -P $(get_build_dir i2c-tools)/tools/i2cdetect $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir i2c-tools)/tools/i2cdump $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -237,74 +251,78 @@ addon() {
     cp -P $(get_build_dir i2c-tools)/tools/i2cset $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir i2c-tools)/py-smbus/build/lib.linux-*/smbus.so $ADDON_BUILD/$PKG_ADDON_ID/lib
   fi
-    # inotify-tools
+  # inotify-tools
   if [ "$ENABLE_INOTIFY_TOOLS" = yes ]; then
     cp -P $(get_build_dir inotify-tools)/.$TARGET_NAME/src/inotifywait $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir inotify-tools)/.$TARGET_NAME/src/inotifywatch $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # jq
+  # jq
   if [ "$ENABLE_JQ" = yes ]; then
     cp -P $(get_build_dir jq)/.$TARGET_NAME/jq $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # lm_sensors
+  # lm_sensors
   if [ "$ENABLE_LM_SENSORS" = yes ]; then
     cp -P $(get_build_dir lm_sensors)/prog/sensors/sensors $ADDON_BUILD/$PKG_ADDON_ID/bin 2>/dev/null || :
   fi
-    # lshw
+  # lshw
   if [ "$ENABLE_LSHW" = yes ]; then
     cp -P $(get_build_dir lshw)/src/lshw $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # mc
+  # mc
   if [ "$ENABLE_MC" = yes ]; then
     cp -Pa $(get_build_dir mc)/.install_pkg/usr/bin/* $ADDON_BUILD/$PKG_ADDON_ID/bin/
     cp -Pa $(get_build_dir mc)/.install_pkg/storage/.kodi/addons/virtual.system-tools/* $ADDON_BUILD/$PKG_ADDON_ID
   fi
-    # htop
+  # htop
   if [ "$ENABLE_HTOP" = yes ]; then
     cp -P $(get_build_dir htop)/htop $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # mrxvt
+  # mrxvt
   if [ "$ENABLE_MRXVT" = yes ]; then
     cp -P $(get_build_dir mrxvt)/.$TARGET_NAME/src/mrxvt $ADDON_BUILD/$PKG_ADDON_ID/bin 2>/dev/null || :
   fi
-    # mtpfs
+  # mtpfs
   if [ "$ENABLE_MTPFS" = yes ]; then
     cp -P $(get_build_dir mtpfs)/.$TARGET_NAME/mtpfs $ADDON_BUILD/$PKG_ADDON_ID/bin/
   fi
-    # nmon
+  # nmon
   if [ "$ENABLE_NMON" = yes ]; then
     cp -P $(get_build_dir nmon)/nmon $ADDON_BUILD/$PKG_ADDON_ID/bin/
   fi
-    # p7zip
+  # p7zip
   if [ "$ENABLE_P7ZIP" = yes ]; then
     cp -P $(get_build_dir p7zip)/bin/7z.so $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -PR $(get_build_dir p7zip)/bin/Codecs $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir p7zip)/bin/7z $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir p7zip)/bin/7za $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # patch
+  # patch
   if [ "$ENABLE_PATCH" = yes ]; then
     cp -P $(get_build_dir patch)/.$TARGET_NAME/src/patch $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # pv
+  # pv
   if [ "$ENABLE_PV" = yes ]; then
     cp -P $(get_build_dir pv)/.$TARGET_NAME/pv $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # screen
+  # screen
   if [ "$ENABLE_SCREEN" = yes ]; then
     cp -P $(get_build_dir screen)/screen $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # strace
+  # strace
   if [ "$ENABLE_STRACE" = yes ]; then
     cp -P $(get_build_dir strace)/.$TARGET_NAME/strace $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # unrar
+  # unrar
   if [ "$ENABLE_UNRAR" = yes ]; then
     cp -P $(get_build_dir unrar)/unrar $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
-    # usb-modeswitch
+  # usb-modeswitch
   if [ "$ENABLE_USB_MODESWITCH" = yes ]; then
     cp -P $(get_build_dir usb-modeswitch)/usb_modeswitch $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
+  # vim
+  if [ "$ENABLE_VIM" = yes ]; then
+    cp -P $(get_build_dir vim)/.install_pkg/usr/bin/vim $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
 
   debug_strip $ADDON_BUILD/$PKG_ADDON_ID/bin

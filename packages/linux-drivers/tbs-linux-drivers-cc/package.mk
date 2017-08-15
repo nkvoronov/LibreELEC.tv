@@ -42,7 +42,7 @@ make_target() {
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs
-  find $ROOT/$PKG_BUILD/v4l/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs \;
+  find $PKG_BUILD/v4l/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs \;
   mkdir -p $INSTALL/usr/lib/firmware/
-  cp $ROOT/$PKG_BUILD/v4l/firmware/*.fw $INSTALL/usr/lib/firmware/
+  cp $PKG_BUILD/v4l/firmware/*.fw $INSTALL/usr/lib/firmware/
 }

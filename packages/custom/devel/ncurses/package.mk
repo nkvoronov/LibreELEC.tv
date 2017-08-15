@@ -58,11 +58,11 @@ makeinstall_target() {
 
 post_install() {
   mkdir -p $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.install_tmp/usr/lib/*.so $INSTALL/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.install_tmp/usr/lib/*.so.* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/.install_tmp/usr/lib/*.so $INSTALL/usr/lib
+    cp -P $PKG_BUILD/.install_tmp/usr/lib/*.so.* $INSTALL/usr/lib
 
   ln -sf /usr/share/terminfo $INSTALL/usr/lib/terminfo
 
   mkdir -p $INSTALL/usr/share
-    cp -R $ROOT/$PKG_BUILD/.install_tmp/usr/share/* $INSTALL/usr/share
+    cp -R $PKG_BUILD/.install_tmp/usr/share/* $INSTALL/usr/share
 }
