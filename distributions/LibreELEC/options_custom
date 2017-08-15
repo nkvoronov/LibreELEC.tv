@@ -8,10 +8,10 @@
   TBS_DRIVERS="no"
 
 # TBS drivers (CrazyCat)
-  TBS_DRIVERS_CC="no"
+  TBS_DRIVERS_CC="yes"
 
 # Media build drivers
-  MEDIA_BUILD="yes"
+  MEDIA_BUILD="no"
 
 if [ "$TBS_DRIVERS" = yes ]; then
   ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbs-linux-drivers"
