@@ -1,0 +1,158 @@
+diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
+--- linux/drivers/media/rc/imon.c	2017-08-08 04:46:26.000000000 +0300
++++ linux.patch/drivers/media/rc/imon.c	2017-08-15 11:46:50.224131065 +0300
+@@ -327,6 +327,7 @@
+ 		{ 0x0000002b0000ffeell, KEY_EXIT },
+ 		{ 0x0000002c0000ffeell, KEY_SELECT },
+ 		{ 0x0000002d0000ffeell, KEY_MENU },
++		{ 0x0000002e0000ffeell, KEY_HOME },
+ 		{ 0, KEY_RESERVED }
+ 	}
+ };
+@@ -466,6 +467,15 @@
+ module_param(pad_stabilize, int, S_IRUGO | S_IWUSR);
+ MODULE_PARM_DESC(pad_stabilize, "Apply stabilization algorithm to iMON PAD presses in arrow key mode. 0=disable, 1=enable (default).");
+ 
++static int packet_delay_manually = 0;
++module_param(packet_delay_manually, int, S_IRUGO | S_IWUSR);
++MODULE_PARM_DESC(packet_delay_manually, "Packet delay manually: 0=no, 1=yes (default: no)");
++
++static int send_packet_delay = 5;
++module_param(send_packet_delay, int, S_IRUGO | S_IWUSR);
++MODULE_PARM_DESC(send_packet_delay, "Minimum delay between send_packet() calls (default 5ms)");
++
++
+ /*
+  * In certain use cases, mouse mode isn't really helpful, and could actually
+  * cause confusion, so allow disabling it when the IR device is open.
+@@ -658,7 +668,13 @@
+ 	 * send_packet can get called so rapidly as to overwhelm the device,
+ 	 * particularly on faster systems and/or those with quirky usb.
+ 	 */
+-	timeout = msecs_to_jiffies(ictx->send_packet_delay);
++
++	if (packet_delay_manually) {
++	    timeout = msecs_to_jiffies(send_packet_delay);
++	} else {
++	    timeout = msecs_to_jiffies(ictx->send_packet_delay);
++	}
++
+ 	set_current_state(TASK_INTERRUPTIBLE);
+ 	schedule_timeout(timeout);
+ 
+@@ -1334,8 +1350,7 @@
+ 	return keycode;
+ }
+ 
+-static bool imon_mouse_event(struct imon_context *ictx,
+-			     unsigned char *buf, int len)
++static bool imon_mouse_event(struct imon_context *ictx, unsigned char *buf, int len)
+ {
+ 	signed char rel_x = 0x00, rel_y = 0x00;
+ 	u8 right_shift = 1;
+@@ -1757,8 +1772,8 @@
+ 	}
+ 
+ 	if (debug) {
+-		printk(KERN_INFO "intf%d decoded packet: %*ph\n",
+-		       intf, len, buf);
++	    printk(KERN_INFO "intf%d decoded packet: %*ph\n", intf, len, buf);
++	    printk(" key code - %d\n", ictx->kc);
+ 	}
+ 
+ 	press_type = imon_parse_press_type(ictx, buf, ktype);
+@@ -1790,6 +1805,94 @@
+ 		msec = tv2int(&t, &prev_time);
+ 		if (msec < ictx->idev->rep[REP_DELAY]) {
+ 			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_RIGHT repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_RIGHT && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_LEFT repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_LEFT && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_UP repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_UP && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_DOWN repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_DOWN && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_ESC repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_ESC && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_ENTER repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_ENTER && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_MENU repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_MENU && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_MEDIA repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_MEDIA && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_EXIT repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_EXIT && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_SELECT repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_SELECT && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
++			return;
++		}
++	}
++	/* KEY_HOME repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_HOME && ictx->kc == ictx->last_keycode) {
++		msec = tv2int(&t, &prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
+ 			return;
+ 		}
+ 	}
