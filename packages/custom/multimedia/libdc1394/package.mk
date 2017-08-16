@@ -34,5 +34,5 @@ PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared --with-sdl-prefix=$S
 
 pre_configure_target() {
   mkdir -p $SYSROOT_PREFIX/usr/include/dc1394
-    cp -P $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION/dc1394/*.h $SYSROOT_PREFIX/usr/include/dc1394
+    cp -P $BUILD/$PKG_NAME-$PKG_VERSION/dc1394/*.h $SYSROOT_PREFIX/usr/include/dc1394
 }

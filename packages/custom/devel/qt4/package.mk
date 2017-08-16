@@ -36,7 +36,7 @@ LEX=$TOOLCHAIN/bin/flex
 YACC=$TOOLCHAIN/bin/yacc
 INCDIR=$SYSROOT_PREFIX/usr/include
 LIBDIR=$SYSROOT_PREFIX/usr/lib
-QMAKE_CONF_DIR="$ROOT/$BUILD/$PKG_NAME-$PKG_VERSION/mkspecs/$PLATFORM"
+QMAKE_CONF_DIR="$BUILD/$PKG_NAME-$PKG_VERSION/mkspecs/$PLATFORM"
 
 QTDIR=$SYSROOT_PREFIX/usr
 
@@ -96,7 +96,7 @@ configure_target() {
 
   CC="" CXX="" LD="" RANLIB="" AR="" AS="" CPPFLAGS="" CFLAGS="" LDFLAGS="" CXXFLAGS="" \
     PKG_CONFIG_SYSROOT_DIR="$SYSROOT_PREFIX" \
-    PKG_CONFIG="$ROOT/$TOOLCHAIN/bin/pkg-config" \
+    PKG_CONFIG="$TOOLCHAIN/bin/pkg-config" \
     PKG_CONFIG_PATH="$SYSROOT_PREFIX/usr/lib/pkgconfig" \
     ./configure $PKG_CONFIGURE_OPTS_TARGET
 }
@@ -110,7 +110,7 @@ post_makeinstall_target() {
     sed -i -r 's/exec_prefix=\$\{prefix\}/exec_prefix=\$\{qtdir\}/g' $file
     sed -i -e '3 s/^/prefix=\/usr\n/;' $file
     perl -pi -e "s, -L$QTDIR/?\S+,,g" $file
-    perl -pi -e "s, -L$ROOT/$BUILD/?\S+,,g" $file
+    perl -pi -e "s, -L$BUILD/?\S+,,g" $file
     perl -pi -e "s, -I$QTDIR/?\S+,,g" $file
   done
 

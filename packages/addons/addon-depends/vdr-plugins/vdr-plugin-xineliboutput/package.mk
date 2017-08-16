@@ -42,7 +42,7 @@ pre_configure_target() {
 }
 
 configure_target() {
-  cd $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
+  cd $BUILD/$PKG_NAME-$PKG_VERSION
   ./configure --enable-x11 \
               --enable-vdr \
               --enable-libxine \

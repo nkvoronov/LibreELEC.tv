@@ -53,7 +53,7 @@ pre_configure_target() {
 
 
 makeinstall_target() {
-  make install DESTDIR=$ROOT/$PKG_BUILD/.install_tmp $PKG_MAKEINSTALL_OPTS_TARGET
+  make install DESTDIR=$PKG_BUILD/.install_tmp $PKG_MAKEINSTALL_OPTS_TARGET
 }
 
 post_install() {

@@ -35,7 +35,7 @@ make_target() {
 }
 
 makeinstall_target() {
-  make install -C make/linux prefix=$ROOT/$PKG_BUILD/.install_pkg/usr
+  make install -C make/linux prefix=$PKG_BUILD/.install_pkg/usr
 }
 
 post_makeinstall_target() {

@@ -5,7 +5,7 @@
 
 # remove default skin included in Kodi (yes/no)
   SKIN_REMOVE_SHIPPED="no"
-  
+
 # LCD driver to Use - Possible drivers are ( Comma seperated:
 # bayrad,CFontz,CFontz633,CFontzPacket,curses,CwLnx,dm140,
 # ea65,EyeboxOne,g15,glcd,glcdlib,glk,hd44780,i2500vfd,
@@ -18,7 +18,7 @@
 # 'all,!xxx,!yyy' de-selects previously selected drivers
 # "none" for disable LCD support
   LCD_DRIVER="irtrans,imon,imonlcd,mdm166a,MtxOrb,lis,dm140,hd44780,CFontz,SureElec,vlsys_m428,serialVFD,shuttleVFD"
-  
+
 # Custom source
   DISTRO_CUSTOM_SRC=""
 
@@ -55,7 +55,7 @@ fi
   BOOST_PYTHON_SUPPORT="yes"
 
 # Custom packages
-  CUSTOM_SUPPORT="yes"
+  CUSTOM_SUPPORT="no"
 
 # KODI addons
   KODI_REPOSITORY_YELLOWDRAGON="yes"

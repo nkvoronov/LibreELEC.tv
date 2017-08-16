@@ -33,7 +33,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 make_target() {
-  cd $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
+  cd $BUILD/$PKG_NAME-$PKG_VERSION
   ./v4l/tbs-x86_64.sh
   LDFLAGS="" make DIR=$(kernel_path) prepare
   LDFLAGS="" make DIR=$(kernel_path)
