@@ -44,7 +44,7 @@ if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN
   PATCH_TMP="$SOURCES/$1/$1-$PKG_VERSION"
   GET_OPT=""
 
-  if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" ]; then
+  if [ -n "$PKG_URL" ]; then
 
     PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
     CMD_URL=$PKG_URL
@@ -52,7 +52,7 @@ if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN
     
     [ "$VERBOSE" != "yes" ] && GET_OPT=-q
     
-    GET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $GET_OPT -O $PACKAGE $CMD_URL"
+    GET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $GET_OPT -O $PACKAGE"
     
   elif [ -n "$PKG_GIT_URL" ]; then
   
@@ -127,9 +127,18 @@ if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN
   while [ $NBGET -gt 0 ]; do
     rm -f $PACKAGE
 
-    if $GET_CMD; then
+	if [ -n "$PKG_URL" ]; then
+		if $GET_CMD "$CMD_URL" || $GET_CMD "$PACKAGE_MIRROR"; then
+
+        	CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
+
+        	[ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
+
+        	printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"
+		fi
+	else
+    	if $GET_CMD; then
     
-        if [ -n "$PKG_GIT_URL" -o -n "$PKG_SVN_URL" -o -n "$PKG_HG_URL" ]; then
             cp -R $CHECKOUT_PATCH $PATCH_TMP
             rm -rf $PATCH_TMP/.git
             rm -f $PATCH_TMP/.gitignore
@@ -139,14 +148,14 @@ if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN
             rm -rf $PATCH_TMP/.hg
             tar cvJf $PACKAGE $PATCH_TMP
             rm -rf $PATCH_TMP
-        fi
     
-        CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
+        	CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
 
-        [ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
+        	[ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
 
-        printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"
-    fi
+        	printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"
+    	fi
+	fi
     NBGET=$((NBGET - 1))
   done
 
