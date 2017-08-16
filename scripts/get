@@ -138,16 +138,26 @@ if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN
 		fi
 	else
     	if $GET_CMD; then
+        
+            if [ "$PKG_KEEP_CHECKOUT" = "yes" ]; then
+                cd $ROOT
+            fi
     
-            cp -R $CHECKOUT_PATCH $PATCH_TMP
-            rm -rf $PATCH_TMP/.git
-            rm -f $PATCH_TMP/.gitignore
-            rm -f $PATCH_TMP/.gitmodules
-            rm -rf $PATCH_TMP/debian
-            rm -rf $PATCH_TMP/.svn
-            rm -rf $PATCH_TMP/.hg
-            tar cvJf $PACKAGE $PATCH_TMP
-            rm -rf $PATCH_TMP
+            pushd $ROOT/$SOURCES/$1 > /dev/null
+                cp -R $CHECKOUT_PATCH $PATCH_TMP
+                rm -rf $PATCH_TMP/.git
+                rm -f $PATCH_TMP/.gitignore
+                rm -f $PATCH_TMP/.gitmodules
+                rm -rf $PATCH_TMP/debian
+                rm -rf $PATCH_TMP/.svn
+                rm -rf $PATCH_TMP/.hg
+                tar cvJf $PACKAGE $PATCH_TMP
+                rm -rf $PATCH_TMP
+            popd > /dev/null
+    
+            if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
+                rm -rf $CHECKOUT_PATCH
+            fi
     
         	CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
 
@@ -166,10 +176,6 @@ if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN
     printf "${boldgreen}INFO${endcolor} Calculated checksum is: ${CALC_SHA256}\n\n"
     echo "${CMD_URL}" > $STAMP_URL
     echo "${CALC_SHA256}" > $STAMP_SHA
-  fi
-  
-  if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      rm -rf $CHECKOUT_PATCH
   fi
 
   exit 0
