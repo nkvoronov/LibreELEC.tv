@@ -34,9 +34,9 @@ PKG_AUTORECONF="no"
 
 GCC_COMMON_CONFIGURE_OPTS="--target=$TARGET_NAME \
                            --with-sysroot=$SYSROOT_PREFIX \
-                           --with-gmp=$ROOT/$TOOLCHAIN \
-                           --with-mpfr=$ROOT/$TOOLCHAIN \
-                           --with-mpc=$ROOT/$TOOLCHAIN \
+                           --with-gmp=$TOOLCHAIN \
+                           --with-mpfr=$TOOLCHAIN \
+                           --with-mpc=$TOOLCHAIN \
                            --with-gnu-as \
                            --with-gnu-ld \
                            --enable-plugin \

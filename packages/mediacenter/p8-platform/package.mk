@@ -22,8 +22,6 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
 PKG_GIT_URL="https://github.com/Pulse-Eight/platform.git"
-PKG_GIT_BRANCH="master"
-PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="Platform support library used by libCEC and binary add-ons for Kodi"
@@ -35,7 +33,6 @@ PKG_AUTORECONF="no"
 PKG_CMAKE_OPTS_TARGET="-DCMAKE_INSTALL_LIBDIR:STRING=lib \
                        -DCMAKE_INSTALL_LIBDIR_NOARCH:STRING=lib \
                        -DCMAKE_INSTALL_PREFIX_TOOLCHAIN=$SYSROOT_PREFIX/usr \
-                       -DCMAKE_PREFIX_PATH=$SYSROOT_PREFIX/usr \
                        -DBUILD_SHARED_LIBS=0"
 
 post_makeinstall_target() {

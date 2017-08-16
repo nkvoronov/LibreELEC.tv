@@ -1,24 +1,33 @@
 #!/bin/bash
 
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+#      This file is part of LibreELEC - https://libreelec.tv
+#      Copyright (C) 2017-present Team LibreELEC
 #
-#  OpenELEC is free software: you can redistribute it and/or modify
+#  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 2 of the License, or
 #  (at your option) any later version.
 #
-#  OpenELEC is distributed in the hope that it will be useful,
+#  LibreELEC is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
+#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
 . config/options $1
+
+_get_file_already_downloaded() {
+  if [ -f $PACKAGE ]; then
+    if [ "$(cat $STAMP_URL 2>/dev/null)" == "${CMD_URL}" ]; then
+      [ -z "${PKG_SHA256}" -o "$(cat $STAMP_SHA 2>/dev/null)" == "${PKG_SHA256}" ] && return 0
+    fi
+  fi
+  return 1
+}
 
 if [ -z "$1" ]; then
   for i in `find packages/ -type f -name package.mk`; do
@@ -27,244 +36,132 @@ if [ -z "$1" ]; then
   done
 fi
 
-if [ -n "$PKG_URL" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN_URL" -o -n "$PKG_HG_URL" ]; then
+if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" -o -n "$PKG_GIT_URL" -o -n "$PKG_SVN_URL" -o -n "$PKG_HG_URL" ]; then
+
   mkdir -p $SOURCES/$1
+  
+  SOURCE_NAME="$PKG_NAME-$PKG_VERSION.tar.xz"
+  PATCH_TMP="$SOURCES/$1/$1-$PKG_VERSION"
+  GET_OPT=""
+
+  if [ -n "$PKG_URL" -o -n "$PKG_SOURCE_NAME" ]; then
+
+    PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
+    CMD_URL=$PKG_URL
+    PACKAGE_MIRROR="$DISTRO_MIRROR/$PKG_NAME/$PKG_SOURCE_NAME"
+    
+    [ "$VERBOSE" != "yes" ] && GET_OPT=-q
+    
+    GET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $GET_OPT -O $PACKAGE $CMD_URL"
+    
+  elif [ -n "$PKG_GIT_URL" ]; then
+  
+    
+    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
+    CMD_URL=$PKG_GIT_URL
+    CHECKOUT_PATCH="$SOURCES/$1/$1-$PKG_GIT_BRANCH.git"
+
+    [ "$VERBOSE" = "yes" ] && GET_OPT=-v
+
+    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $CHECKOUT_PATCH ]; then
+      GET_CMD="git fetch $GET_OPT origin $PKG_GIT_BRANCH:$PKG_GIT_BRANCH"
+    else
+      GET_CMD="git clone $GET_OPT --bare -b $PKG_GIT_BRANCH $CMD_URL $CHECKOUT_PATCH"
+    fi
+    
+  elif [ -n "$PKG_SVN_URL" ]; then
+  
+    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
+    CMD_URL=$PKG_SVN_URL
+    CHECKOUT_PATCH="$SOURCES/$1/$1.svn"
+   
+    [ "$VERBOSE" != "yes" ] && GET_OPT=-q
+
+    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $CHECKOUT_PATCH ]; then
+      GET_CMD="svn update $GET_OPT -r $PKG_VERSION"
+    else
+      GET_CMD="svn checkout $GET_OPT -r $PKG_VERSION $CMD_URL $CHECKOUT_PATCH"
+    fi
+  elif [ -n "$PKG_HG_URL" ]; then
+
+    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
+    CMD_URL=$PKG_HG_URL
+    CHECKOUT_PATCH="$SOURCES/$1/$1-$PKG_HG_BRANCH.hg"
+
+    [ "$VERBOSE" != "yes" ] && GET_OPT=-v
+
+    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $CHECKOUT_PATCH ]; then
+      GET_CMD="hg pull $GET_OPT -r $PKG_VERSION"
+    else
+      GET_CMD="hg clone $GET_OPT -r $PKG_VERSION -b $PKG_HG_BRANCH $CMD_URL $CHECKOUT_PATCH"
+    fi
+  fi
+  
+  STAMP_URL="$PACKAGE.url"
+  STAMP_SHA="$PACKAGE.sha256"
+    
+  # Latest file already present, exit now...
+  _get_file_already_downloaded $1 && exit 0
 
   # Avoid concurrent downloads of the same package
   _isblocked=N
   exec 99<$SOURCES/$1
   while ! flock --nonblock --exclusive 99; do
-    [ ${_isblocked} == N ] && { echo "Project ${PROJECT} waiting to avoid concurrent download of ${1}..."; _isblocked=Y; }
+    [ ${_isblocked} == N ] && { echo "Project/Device ${DEVICE:-${PROJECT}} waiting, to avoid concurrent download of ${1}..."; _isblocked=Y; }
     sleep 1
   done
 
-  if [ -n "$PKG_URL" ]; then
+  # Check again in case of concurrent access - if nothing needs to be downloaded, exit now...
+  _get_file_already_downloaded $1 && exit 0
+    
+  # At this point, we need to download something...
+  printf "%${BUILD_INDENT}c ${boldcyan}GET${endcolor}      $1\n" ' '>&$SILENT_OUT
+  export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
 
-    PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
-    PACKAGE_MIRROR="$DISTRO_MIRROR/$PKG_NAME/$PKG_SOURCE_NAME"
-    [ "$VERBOSE" != "yes" ] && WGET_OPT=-q
-    WGET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $WGET_OPT -O $SOURCES/$1/$PKG_SOURCE_NAME"
+  # unset LD_LIBRARY_PATH to stop wget from using toolchain/lib and loading libssl.so/libcrypto.so instead of host libraries
+  unset LD_LIBRARY_PATH
 
-    NBWGET="1"
+  rm -f $STAMP_URL $STAMP_SHA
 
-    STAMP="$PACKAGE.url"
-    MD5SUM="$PACKAGE.md5"
+  NBGET=10
+  while [ $NBGET -gt 0 ]; do
+    rm -f $PACKAGE
 
-    DL="yes"
-    if [ -f "$STAMP" ]; then
-      [ "`cat $STAMP`" == "$PKG_URL" ] && DL="no"
-    fi
-
-    if [ "$DL" == "yes" ]; then
-      rm -f $STAMP
-
-      printf "%${BUILD_INDENT}c ${boldcyan}GET${endcolor}      $1\n" ' '>&$SILENT_OUT
-      export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
-
-      until [ -f "$STAMP" ] || $WGET_CMD $PKG_URL || $WGET_CMD $PACKAGE_MIRROR; do
-        NBWGET=$(($NBWGET+1))
-        if [ "$NBWGET" -gt "10" ]; then
-          echo -e "\nCant't get $1 sources : $PKG_URL\n Try later !!"
-          exit 1
+    if $GET_CMD; then
+    
+        if [ -n "$PKG_GIT_URL" -o -n "$PKG_SVN_URL" -o -n "$PKG_HG_URL" ]; then
+            cp -R $CHECKOUT_PATCH $PATCH_TMP
+            rm -rf $PATCH_TMP/.git
+            rm -f $PATCH_TMP/.gitignore
+            rm -f $PATCH_TMP/.gitmodules
+            rm -rf $PATCH_TMP/debian
+            rm -rf $PATCH_TMP/.svn
+            rm -rf $PATCH_TMP/.hg
+            tar cvJf $PACKAGE $PATCH_TMP
+            rm -rf $PATCH_TMP
         fi
-      done
+    
+        CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
 
-      echo $PKG_URL > $STAMP
-      md5sum -t $PACKAGE > $MD5SUM
+        [ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
 
-      rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/unpack
-      rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/build
+        printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"
     fi
+    NBGET=$((NBGET - 1))
+  done
 
-  elif [ -n "$PKG_GIT_URL" ]; then
-
-    SOURCE_NAME="${PKG_NAME}-${PKG_VERSION}.tar.xz"
-    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
-
-    GIT_OPT=""
-    [ "$VERBOSE" = "yes" ] && GIT_OPT=-v
-    [ -z "$PKG_GIT_BRANCH" ] && PKG_GIT_BRANCH=master
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git ]; then
-      GIT_CLONE_CMD="git fetch $GIT_OPT origin $PKG_GIT_BRANCH:$PKG_GIT_BRANCH"
-    else
-      GIT_CLONE_CMD="git clone $GIT_OPT --bare -b "$PKG_GIT_BRANCH" "$PKG_GIT_URL" $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git"
-    fi
-
-    NBGIT="1"
-
-    STAMP="$PACKAGE.url"
-    MD5SUM="$PACKAGE.md5"
-
-    if [ -f "$STAMP" ]; then
-      [ "`cat $STAMP`" = "$PKG_GIT_URL $PKG_GIT_BRANCH $PKG_VERSION" ] && exit 0
-    fi
-    DL="yes"
-
-    rm -f $STAMP
-
-    printf "%${BUILD_INDENT}c ${boldcyan}CHECKOUT${endcolor}      $1\n" ' '>&$SILENT_OUT
-    export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git ]; then
-      cd $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git
-    else
-      rm -rf $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git
-    fi
-
-    until [ -f "$STAMP" ] || $GIT_CLONE_CMD; do
-      NBGIT=$(($NBGIT+1))
-      if [ "$NBGIT" -gt "10" ]; then
-        echo -e "\nCant't get $1 sources : $i\n Try later !!"
-        exit 1
-      fi
-    done
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      cd $ROOT
-    fi
-
-    pushd $ROOT/$SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git > /dev/null
-      git archive --format=tar --prefix=${PKG_NAME}-${PKG_VERSION}/ ${PKG_VERSION} | \
-        xz > $ROOT/$SOURCES/$1/${PKG_NAME}-${PKG_VERSION}.tar.xz
-    popd > /dev/null
-
-    echo "$PKG_GIT_URL $PKG_GIT_BRANCH $PKG_VERSION"> $STAMP
-    md5sum -t $PACKAGE > $MD5SUM
-
-    if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      rm -rf $SOURCES/${1}/${1}-${PKG_GIT_BRANCH}.git
-    fi
-
-    rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/unpack
-    rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/build
-
-  elif [ -n "$PKG_SVN_URL" ]; then
-
-    SOURCE_NAME="${PKG_NAME}-${PKG_VERSION}.tar.xz"
-    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
-
-    SVN_OPT=""
-    [ "$VERBOSE" != "yes" ] && SVN_OPT=-q
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}.svn ]; then
-      SVN_CLONE_CMD="svn update $SVN_OPT -r $PKG_VERSION"
-    else
-      SVN_CLONE_CMD="svn checkout $SVN_OPT -r $PKG_VERSION $PKG_SVN_URL $SOURCES/${1}/${1}.svn"
-    fi
-
-    NBGIT="1"
-
-    STAMP="$PACKAGE.url"
-    MD5SUM="$PACKAGE.md5"
-
-    if [ -f "$STAMP" ]; then
-      [ "`cat $STAMP`" = "$PKG_SVN_URL $PKG_VERSION" ] && exit 0
-    fi
-    DL="yes"
-
-    rm -f $STAMP
-
-    printf "%${BUILD_INDENT}c ${boldcyan}CHECKOUT${endcolor}      $1\n" ' '>&$SILENT_OUT
-    export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}.svn ]; then
-      cd $SOURCES/${1}/${1}.svn
-    else
-      rm -rf $SOURCES/${1}/${1}.svn
-    fi
-
-    until [ -f "$STAMP" ] || $SVN_CLONE_CMD; do
-      NBGIT=$(($NBGIT+1))
-      if [ "$NBGIT" -gt "10" ]; then
-        echo -e "\nCant't get $1 sources : $i\n Try later !!"
-        exit 1
-      fi
-    done
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      cd $ROOT
-    fi
-
-    pushd $ROOT/$SOURCES/${1} > /dev/null
-       cp -R ${1}.svn ${1}-${PKG_VERSION}
-       tar cvJf ${1}-${PKG_VERSION}.tar.xz ${1}-${PKG_VERSION}
-       rm -rf ${1}-${PKG_VERSION}
-    popd > /dev/null
-
-    echo "$PKG_SVN_URL $PKG_VERSION"> $STAMP
-    md5sum -t $PACKAGE > $MD5SUM
-
-    if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      rm -rf $SOURCES/${1}/${1}.svn
-    fi
-
-    rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/unpack
-    rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/build
-	
-  elif [ -n "$PKG_HG_URL" ]; then
-
-    SOURCE_NAME="${PKG_NAME}-${PKG_VERSION}.tar.xz"
-    PACKAGE="$SOURCES/$1/$SOURCE_NAME"
-
-    HG_OPT=""
-    [ "$VERBOSE" != "yes" ] && HG_OPT=-v
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}-${PKG_HG_BRANCH}.hg ]; then
-      HG_CLONE_CMD="hg pull $HG_OPT -r $PKG_VERSION"
-    else
-      HG_CLONE_CMD="hg clone $HG_OPT -r $PKG_VERSION -b "$PKG_HG_BRANCH" "$PKG_HG_URL" $SOURCES/${1}/${1}-${PKG_HG_BRANCH}.hg"
-    fi
-
-    NBGIT="1"
-
-    STAMP="$PACKAGE.url"
-    MD5SUM="$PACKAGE.md5"
-
-    if [ -f "$STAMP" ]; then
-      [ "`cat $STAMP`" = "$PKG_HG_URL $PKG_HG_BRANCH $PKG_VERSION" ] && exit 0
-    fi
-    DL="yes"
-
-    rm -f $STAMP
-
-    printf "%${BUILD_INDENT}c ${boldcyan}CHECKOUT${endcolor}      $1\n" ' '>&$SILENT_OUT
-    export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" -a -d $SOURCES/${1}/${1}-${PKG_HG_BRANCH}.hg ]; then
-      cd $SOURCES/${1}/${1}-${PKG_HG_BRANCH}.hg
-    else
-      rm -rf $SOURCES/${1}/${1}-${PKG_HG_BRANCH}.hg
-    fi
-
-    until [ -f "$STAMP" ] || $HG_CLONE_CMD; do
-      NBGIT=$(($NBGIT+1))
-      if [ "$NBGIT" -gt "10" ]; then
-        echo -e "\nCant't get $1 sources : $i\n Try later !!"
-        exit 1
-      fi
-    done
-
-    if [ "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      cd $ROOT
-    fi
-
-    pushd $ROOT/$SOURCES/${1} > /dev/null
-       cp -R ${1}-${PKG_HG_BRANCH}.hg ${1}-${PKG_VERSION}
-       tar cvJf ${1}-${PKG_VERSION}.tar.xz ${1}-${PKG_VERSION}
-       rm -rf ${1}-${PKG_VERSION}
-    popd > /dev/null
-
-    echo "$PKG_HG_URL $PKG_HG_BRANCH $PKG_VERSION"> $STAMP
-    md5sum -t $PACKAGE > $MD5SUM
-
-    if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
-      rm -rf $SOURCES/${1}/${1}-${PKG_HG_BRANCH}.hg
-    fi
-
-    rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/unpack
-    rm -f $BUILD_BASE*/$STAMPS_NOARCH/$1/build
+  if [ $NBGET -eq 0 ]; then
+    echo -e "\nCant't get $1 sources : $CMD_URL\n Try later !!"
+    exit 1
+  else
+    printf "${boldgreen}INFO${endcolor} Calculated checksum is: ${CALC_SHA256}\n\n"
+    echo "${CMD_URL}" > $STAMP_URL
+    echo "${CALC_SHA256}" > $STAMP_SHA
   fi
-fi
+  
+  if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
+      rm -rf $CHECKOUT_PATCH
+  fi
 
-exit 0
+  exit 0
+fi

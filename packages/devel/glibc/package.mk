@@ -63,7 +63,7 @@ fi
 NSS_CONF_DIR="$PKG_BUILD/nss"
 
 GLIBC_EXCLUDE_BIN="catchsegv gencat getconf iconv iconvconfig ldconfig"
-GLIBC_EXCLUDE_BIN="$GLIBC_EXCLUDE_BIN localedef makedb mtrace pcprofiledump"
+GLIBC_EXCLUDE_BIN="$GLIBC_EXCLUDE_BIN makedb mtrace pcprofiledump localedef"
 GLIBC_EXCLUDE_BIN="$GLIBC_EXCLUDE_BIN pldd rpcgen sln sotruss sprof xtrace"
 
 pre_build_target() {
@@ -166,7 +166,7 @@ post_makeinstall_target() {
 
 # create default configs
   mkdir -p $INSTALL/etc
-    cp $PKG_DIR/config/nsswitch.conf $INSTALL/etc
+    cp $PKG_DIR/config/nsswitch-target.conf $INSTALL/etc/nsswitch.conf
     cp $PKG_DIR/config/host.conf $INSTALL/etc
     cp $PKG_DIR/config/gai.conf $INSTALL/etc
 
@@ -204,4 +204,10 @@ makeinstall_init() {
     if [ "$TARGET_ARCH" = "arm" -a "$TARGET_FLOAT" = "hard" ]; then
       ln -sf ld.so $INSTALL/usr/lib/ld-linux.so.3
     fi
+}
+
+post_makeinstall_init() {
+# create default configs
+  mkdir -p $INSTALL/etc
+    cp $PKG_DIR/config/nsswitch-init.conf $INSTALL/etc/nsswitch.conf
 }

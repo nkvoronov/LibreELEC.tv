@@ -41,7 +41,7 @@ makeinstall_target() {
 }
 
 addon() {
-  VLC_DIR=$(get_build_dir_usr vlc)
+  VLC_DIR=$(get_build_dir vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
   QT4=$(get_build_dir qt4)
   LUA=$(get_build_dir lua)

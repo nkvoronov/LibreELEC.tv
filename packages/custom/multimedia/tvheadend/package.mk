@@ -23,8 +23,6 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_GIT_URL="https://github.com/tvheadend/tvheadend.git"
-PKG_GIT_BRANCH="master"
-PKG_KEEP_CHECKOUT="no"
 PKG_DEPENDS_TARGET="toolchain curl libdvbcsa libiconv libressl Python:host yasm"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="Tvheadend: a TV streaming server for Linux"
@@ -61,7 +59,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --enable-trace \
                            --nowerror \
                            --disable-bintray_cache \
-                           --python=$ROOT/$TOOLCHAIN/bin/python"
+                           --python=$TOOLCHAIN/bin/python"
 
 post_unpack() {
   sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER'~g'$PKG_VERSION'~libreelec"/g' -i $PKG_BUILD/support/version

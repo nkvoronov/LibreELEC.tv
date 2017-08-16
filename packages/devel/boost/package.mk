@@ -38,7 +38,7 @@ make_host() {
 }
 
 makeinstall_host() {
-  mkdir -p $ROOT/$TOOLCHAIN/bin
+  mkdir -p $TOOLCHAIN/bin
     cp bin.*/bjam $TOOLCHAIN/bin
 }
 

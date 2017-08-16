@@ -124,17 +124,6 @@ get_build_dir() {
   fi
 }
 
-get_build_dir_usr() {
-  if [ ! -z $1 ] ; then
-    for _PKG_DIR in `find $ROOT/packages -name $1`;do
-      if [ -f $_PKG_DIR/package.mk ]; then
-        . $_PKG_DIR/package.mk
-        echo $BUILD/${PKG_NAME}-${PKG_VERSION}
-      fi
-    done
-  fi
-}
-
 get_pkg_version() {
   get_pkg_variable "$1" PKG_VERSION
 }

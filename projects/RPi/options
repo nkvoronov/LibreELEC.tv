@@ -57,7 +57,7 @@
 
   # Kernel to use. values can be:
   # default:  default mainline kernel
-    LINUX="default"
+    LINUX="default-rpi"
 
   # NOOBS supported hex versions (legacy)
     NOOBS_HEX="2,3,4,5,6,7,8,9,d,e,f,10,11,12,14,19,0092,0093"
@@ -116,15 +116,6 @@
 
   # build and install ATV IR remote support (yes / no)
     ATVCLIENT_SUPPORT="no"
-
-  # build with swap support (yes / no)
-    SWAP_SUPPORT="yes"
-
-  # swap support enabled per default (yes / no)
-    SWAP_ENABLED_DEFAULT="no"
-
-  # swapfile size if SWAP_SUPPORT=yes in MB
-    SWAPFILESIZE="128"
 
   # build with installer (yes / no)
     INSTALLER_SUPPORT="no"
