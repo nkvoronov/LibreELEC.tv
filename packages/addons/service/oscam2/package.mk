@@ -1,6 +1,6 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
+#      This file is part of LibreELEC - https://LibreELEC.tv
+#      Copyright (C) 2016-2017 Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -16,25 +16,23 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="oscam"
-PKG_VERSION="11391"
+PKG_NAME="oscam2"
+PKG_VERSION="d6fe72c"
+PKG_VERSION_NUMBER="11350"
+PKG_REV="103"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
-PKG_URL="http://www.streamboard.tv/svn/oscam/trunk"
-PKG_TYPE="svn"
+PKG_URL="http://repo.or.cz/oscam.git/snapshot/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain pcsc-lite"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="oscam: OSCam is Open Source Conditional Access Modul."
-PKG_LONGDESC="OSCam is Open Source Conditional Access Modul."
-PKG_DISCLAIMER="using oscam may be illegal in your country. if in doubt, do not install"
-
-PKG_IS_ADDON="no"
+PKG_SECTION="service.softcam"
+PKG_SHORTDESC="OSCam: an Open Source Conditional Access Modul"
+PKG_LONGDESC="OSCam($PKG_VERSION_NUMBER) is a software to be used to decrypt digital television channels, as an alternative for a conditional access module."
 PKG_AUTORECONF="no"
 
-pre_unpack()  {
-  export OSCAM_VERSION="$PKG_VERSION"
-}
+PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="OSCam"
+PKG_ADDON_TYPE="xbmc.service"
 
 PKG_CMAKE_OPTS_TARGET="-DLIBUSBDIR=$SYSROOT_PREFIX/usr \
                        -DWITH_SSL=0 \
@@ -46,10 +44,16 @@ PKG_CMAKE_OPTS_TARGET="-DLIBUSBDIR=$SYSROOT_PREFIX/usr \
                        -DSTATIC_LIBUSB=1 \
                        -DCLOCKFIX=0"
 
-makeinstall_target() {
-  : # nop
+pre_configure_target() {
+  export OSCAM_ADDON_VERSION="$PKG_VERSION_NUMBER"
 }
 
 makeinstall_target() {
   : # nop
+}
+
+addon() {
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $PKG_BUILD/.$TARGET_NAME/oscam $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $PKG_BUILD/.$TARGET_NAME/utils/list_smargo $ADDON_BUILD/$PKG_ADDON_ID/bin
 }
