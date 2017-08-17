@@ -44,13 +44,17 @@ SOURCE_NAME="$PKG_NAME-$PKG_VERSION.tar.xz"
 PATCH_TMP="$1-$PKG_VERSION"
 GET_OPT=""
 
+if [ ! "$PKG_TYPE" = "web" ]; then
+  PKG_SOURCE_NAME=$SOURCE_NAME
+fi
+
 if [ "$PKG_TYPE" = "web" ]; then
   PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
   PACKAGE_MIRROR="$DISTRO_MIRROR/$PKG_NAME/$PKG_SOURCE_NAME"
   [ "$VERBOSE" != "yes" ] && GET_OPT=-q
   GET_CMD="wget --timeout=30 --tries=3 --passive-ftp --no-check-certificate -c $GET_OPT -O $PACKAGE"
-elif [ "$PKG_TYPE" = "git" ]; then
-  PACKAGE="$SOURCES/$1/$SOURCE_NAME"
+elif [ "$PKG_TYPE" = "git" ]; then  
+  PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
   CHECKOUT_NAME="$1-$PKG_BRANCH.git"
   CHECKOUT_PATCH="$SOURCES/$1/$CHECKOUT_NAME"
   [ "$VERBOSE" = "yes" ] && GET_OPT=-v
@@ -60,7 +64,7 @@ elif [ "$PKG_TYPE" = "git" ]; then
     GET_CMD="git clone $GET_OPT --bare -b $PKG_BRANCH $PKG_URL $CHECKOUT_PATCH"
   fi
 elif [ "$PKG_TYPE" = "svn" ]; then
-  PACKAGE="$SOURCES/$1/$SOURCE_NAME"
+  PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
   CHECKOUT_NAME="$1.svn"
   CHECKOUT_PATCH="$SOURCES/$1/$CHECKOUT_NAME"
   [ "$VERBOSE" != "yes" ] && GET_OPT=-q
@@ -70,7 +74,7 @@ elif [ "$PKG_TYPE" = "svn" ]; then
     GET_CMD="svn checkout $GET_OPT -r $PKG_VERSION $PKG_URL $CHECKOUT_PATCH"
   fi
 elif [ "$PKG_TYPE" = "hg" ]; then
-  PACKAGE="$SOURCES/$1/$SOURCE_NAME"
+  PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
   CHECKOUT_NAME="$1-$PKG_BRANCH.hg"
   CHECKOUT_PATCH="$SOURCES/$1/$CHECKOUT_NAME"
   [ "$VERBOSE" != "yes" ] && GET_OPT=-v
@@ -80,6 +84,9 @@ elif [ "$PKG_TYPE" = "hg" ]; then
     GET_CMD="hg clone $GET_OPT -r $PKG_VERSION -b $PKG_BRANCH $PKG_URL $CHECKOUT_PATCH"
   fi
 fi
+
+echo "PSN : $PKG_SOURCE_NAME"
+echo "PKG : $PACKAGE"
 
 STAMP_URL="$PACKAGE.url"
 STAMP_SHA="$PACKAGE.sha256"
@@ -142,11 +149,11 @@ while [ $NBWGET -gt 0 ]; do
       fi
       if [ ! "$PKG_KEEP_CHECKOUT" = "yes" ]; then
         rm -rf $CHECKOUT_PATCH
-      fi      
+      fi
       CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
       [ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
       printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"      
-    fi    
+    fi
   fi
   NBWGET=$((NBWGET - 1))
 done
