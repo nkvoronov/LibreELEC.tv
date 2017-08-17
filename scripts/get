@@ -40,13 +40,8 @@ fi
 
 mkdir -p $SOURCES/$1
 
-SOURCE_NAME="$PKG_NAME-$PKG_VERSION.tar.xz"
 PATCH_TMP="$1-$PKG_VERSION"
 GET_OPT=""
-
-if [ ! "$PKG_TYPE" = "web" ]; then
-  PKG_SOURCE_NAME=$SOURCE_NAME
-fi
 
 if [ "$PKG_TYPE" = "web" ]; then
   PACKAGE="$SOURCES/$1/$PKG_SOURCE_NAME"
@@ -84,9 +79,6 @@ elif [ "$PKG_TYPE" = "hg" ]; then
     GET_CMD="hg clone $GET_OPT -r $PKG_VERSION -b $PKG_BRANCH $PKG_URL $CHECKOUT_PATCH"
   fi
 fi
-
-echo "PSN : $PKG_SOURCE_NAME"
-echo "PKG : $PACKAGE"
 
 STAMP_URL="$PACKAGE.url"
 STAMP_SHA="$PACKAGE.sha256"
@@ -136,7 +128,7 @@ while [ $NBWGET -gt 0 ]; do
       if [ "$PKG_TYPE" = "git" ]; then
         pushd $ROOT/$SOURCES/$1/$CHECKOUT_NAME > /dev/null
           git archive --format=tar --prefix=$PKG_NAME-$PKG_VERSION/ $PKG_VERSION | \
-          xz > $ROOT/$SOURCES/$1/$SOURCE_NAME
+          xz > $ROOT/$SOURCES/$1/$PKG_SOURCE_NAME
         popd > /dev/null
       else
         pushd $ROOT/$SOURCES/$1 > /dev/null
@@ -152,7 +144,7 @@ while [ $NBWGET -gt 0 ]; do
       fi
       CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
       [ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
-      printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"      
+      printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"
     fi
   fi
   NBWGET=$((NBWGET - 1))
