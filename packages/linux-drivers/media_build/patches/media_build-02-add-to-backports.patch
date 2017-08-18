@@ -1,7 +1,7 @@
 diff -Naur a/backports/backports.txt b/backports/backports.txt
 --- a/backports/backports.txt	2017-08-15 11:08:46.968363119 +0300
-+++ b/backports/backports.txt	2017-08-15 11:18:30.763901734 +0300
-@@ -25,6 +25,15 @@
++++ b/backports/backports.txt	2017-08-18 20:37:27.596479325 +0300
+@@ -25,6 +25,14 @@
  add pr_fmt.patch
  add debug.patch
  add drx39xxj.patch
@@ -12,7 +12,6 @@ diff -Naur a/backports/backports.txt b/backports/backports.txt
 +add linux-203-stb0899_enable_low_symbol_rate.patch
 +add linux-204-lirc_fix_for_4.12.patch
 +add linux-220-hauppauge_dualhd_second_tuner_support.patch
-+#add tbs66xx-support.patch
 +add imon-fix.patch
  
  [4.10.255]
