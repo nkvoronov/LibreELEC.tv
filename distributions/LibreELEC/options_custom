@@ -55,7 +55,7 @@ fi
   BOOST_PYTHON_SUPPORT="yes"
 
 # Custom packages
-  CUSTOM_SUPPORT="no"
+  CUSTOM_SUPPORT="yes"
 
 # KODI addons
   KODI_REPOSITORY_YELLOWDRAGON="yes"
@@ -66,7 +66,7 @@ fi
 
 # TV Services
   TVHEADEND_SERVICE="yes"
-  VDR_SERVICE="yes"
+  VDR_SERVICE="no"
 
 # Tools
   SYS_TOOLS_ENABLED="yes"
@@ -89,4 +89,4 @@ fi
   ACESTREAM_SUPPORT="yes"
 
 # vlc
-  VLC_ENABLE="yes"
+  VLC_ENABLE="no"

@@ -239,7 +239,7 @@ post_install() {
   if [ "$ENABLE_HDDTEMP" = yes ]; then
     cp -P $(get_build_dir hddtemp)/.$TARGET_NAME/src/hddtemp $INSTALL/usr/bin
     mkdir -p $INSTALL/etc
-    cp -P $(get_build_dir hddtemp)/debian/hddtemp.db $INSTALL/etc
+    cp -P $(get_build_dir hddtemp)/hddtemp.db $INSTALL/etc
   fi
   # hd-idle
   if [ "$ENABLE_HD_IDLE" = yes ]; then

@@ -22,7 +22,7 @@ PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
 PKG_URL="http://download.qt-project.org/official_releases/qt/4.8/$PKG_VERSION/qt-everywhere-opensource-src-$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="qt-everywhere-opensource-src-$PKG_VERSION"
-PKG_DEPENDS_TARGET="toolchain bzip2 Python zlib:host zlib libpng tiff dbus glib fontconfig mysql libressl \
+PKG_DEPENDS_TARGET="toolchain bzip2 Python zlib:host zlib libpng tiff dbus glib fontconfig mysql openssl \
 glibc liberation-fonts-ttf freetype font-util font-xfree86-type1 font-misc-misc alsa libXcursor libSM libICE"
 PKG_SECTION="devel"
 PKG_SHORTDESC="Qt GUI toolkit"

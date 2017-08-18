@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="slang"
-PKG_VERSION="2.3.0"
+PKG_VERSION="2.3.1a"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://www.jedsoft.org/slang/"
-PKG_URL="http://www.jedsoft.org/releases/slang/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_URL="http://www.jedsoft.org/releases/slang/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="devel"
 PKG_SHORTDESC="slang: multi-platform programmer's library designed to allow a developer to create robust multi-platform software."

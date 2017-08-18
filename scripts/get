@@ -110,7 +110,7 @@ NBWGET=10
 while [ $NBWGET -gt 0 ]; do
   rm -f $PACKAGE
   if [ "$PKG_TYPE" == "web" ]; then
-    if $GET_CMD "$CMD_URL" || $GET_CMD "$PACKAGE_MIRROR"; then
+    if $GET_CMD "$PKG_URL" || $GET_CMD "$PACKAGE_MIRROR"; then
       CALC_SHA256="$(sha256sum $PACKAGE | cut -d" " -f1)"
       [ -z "${PKG_SHA256}" -o "${PKG_SHA256}" == "${CALC_SHA256}" ] && break
       printf "${boldred}WARNING${endcolor} Incorrect checksum calculated on downloaded file: got ${CALC_SHA256}, wanted ${PKG_SHA256}\n\n"
@@ -135,7 +135,7 @@ while [ $NBWGET -gt 0 ]; do
           cp -R $CHECKOUT_NAME $PATCH_TMP
           rm -rf $PATCH_TMP/.svn
           rm -rf $PATCH_TMP/.hg
-          tar cvJf $PACKAGE $PATCH_TMP
+          tar cvJf $ROOT/$SOURCES/$1/$PKG_SOURCE_NAME $PATCH_TMP
           rm -rf $PATCH_TMP
         popd > /dev/null
       fi

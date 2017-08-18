@@ -233,7 +233,7 @@ addon() {
   # hddtemp
   if [ "$ENABLE_HDDTEMP" = yes ]; then
     cp -P $(get_build_dir hddtemp)/.$TARGET_NAME/src/hddtemp $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -P $(get_build_dir hddtemp)/debian/hddtemp.db $ADDON_BUILD/$PKG_ADDON_ID/data
+    cp -P $(get_build_dir hddtemp)/hddtemp.db $ADDON_BUILD/$PKG_ADDON_ID/data
   fi
   # hd-idle
   if [ "$ENABLE_HD_IDLE" = yes ]; then
