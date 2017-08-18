@@ -17,12 +17,11 @@
 ################################################################################
 
 PKG_NAME="xine-lib"
-PKG_VERSION="e6a81be"
+PKG_VERSION="1.2.8"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.xine-project.org/"
-PKG_URL="git://projects.vdr-developer.org/xine-lib.git"
-PKG_TYPE="git"
+PKG_URL="https://xine-lib.alioth.debian.org/releases/xine-lib-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain ffmpeg"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="xine is a high-performance, portable and reusable multimedia playback engine."
@@ -48,8 +47,7 @@ configure_target() {
              --disable-dxr3 \
              --disable-aalib \
              --disable-vcd \
-             --disable-musepack \
-             --disable-vpx
+             --disable-musepack
 }
 
 make_target() {

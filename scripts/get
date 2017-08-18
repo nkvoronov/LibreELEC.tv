@@ -135,7 +135,7 @@ while [ $NBWGET -gt 0 ]; do
           cp -R $CHECKOUT_NAME $PATCH_TMP
           rm -rf $PATCH_TMP/.svn
           rm -rf $PATCH_TMP/.hg
-          tar cvJf $ROOT/$SOURCES/$1/$PKG_SOURCE_NAME $PATCH_TMP
+          tar cJf $ROOT/$SOURCES/$1/$PKG_SOURCE_NAME $PATCH_TMP
           rm -rf $PATCH_TMP
         popd > /dev/null
       fi
