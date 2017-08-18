@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="liblivemedia"
-PKG_VERSION="2016.11.28"
+PKG_VERSION="2017.07.18"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.live555.com/liveMedia"

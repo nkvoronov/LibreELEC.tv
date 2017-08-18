@@ -38,5 +38,8 @@ PKG_CONFIGURE_OPTS_TARGET="gio_can_sniff=yes \
                            --disable-man \
                            --with-libpng \
                            --with-libjpeg \
-                           --with-libtiff \
-                           --with-libjasper"
+                           --with-libtiff"
+
+# --with-libjasper ????
+
+

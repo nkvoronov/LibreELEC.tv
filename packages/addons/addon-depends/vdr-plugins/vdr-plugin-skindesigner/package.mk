@@ -48,7 +48,7 @@ make_target() {
   LOCALEDIR="./locale"
 
   mkdir -p $PKG_BUILD/installs
-    cp -PR $PKG_DIR/configs/* $ROOT/$PKG_BUILD/installs
+    cp -PR $PKG_DIR/configs/* $PKG_BUILD/installs
 
   mkdir -p $SYSROOT_PREFIX/usr/include/libskindesignerapi
     cp -PR $PKG_BUILD/libskindesignerapi/*.h $SYSROOT_PREFIX/usr/include/libskindesignerapi

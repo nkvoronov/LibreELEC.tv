@@ -89,4 +89,4 @@ fi
   ACESTREAM_SUPPORT="yes"
 
 # vlc
-  VLC_ENABLE="no"
+  VLC_ENABLE="yes"
