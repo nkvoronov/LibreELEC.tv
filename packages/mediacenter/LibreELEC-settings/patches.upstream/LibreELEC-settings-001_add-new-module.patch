@@ -1,6 +1,6 @@
 diff -Naur a/language/English/strings.po b/language/English/strings.po
---- a/language/English/strings.po	2017-03-23 07:25:48.000000000 +0200
-+++ b/language/English/strings.po	2017-03-27 19:39:06.115910793 +0300
+--- a/language/English/strings.po	2017-08-11 21:11:38.000000000 +0300
++++ b/language/English/strings.po	2017-08-19 18:34:57.760224026 +0300
 @@ -100,6 +100,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
@@ -702,8 +702,8 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr ""
 diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
---- a/language/Russian/strings.po	2017-03-23 07:25:48.000000000 +0200
-+++ b/language/Russian/strings.po	2017-03-27 19:54:33.565508225 +0300
+--- a/language/Russian/strings.po	2017-08-11 21:11:38.000000000 +0300
++++ b/language/Russian/strings.po	2017-08-19 18:34:57.764224043 +0300
 @@ -108,6 +108,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
@@ -1405,12 +1405,12 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr "VDR приложение с открытым исходным кодом для Linux разработанный, чтобы позволить любому компьютеру работать в качестве цифрового видеомагнитофона для того, чтобы записывать и воспроизводить ТВ программы."
 diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2017-03-23 07:25:48.000000000 +0200
-+++ b/src/defaults.py	2017-03-27 19:39:06.115910793 +0300
-@@ -75,8 +75,137 @@
-     'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
+--- a/src/defaults.py	2017-08-11 21:11:38.000000000 +0300
++++ b/src/defaults.py	2017-08-19 18:42:24.000918335 +0300
+@@ -76,8 +76,137 @@
      'CRON_DAEMON': '/sbin/crond',
-     'LIRCD_UEVENT_FILE': '/sys/class/lirc/lirc0/uevent',
+     'LIRCD_DAEMON': '/usr/sbin/lircd',
+     'LIRCD_UINPUT_DAEMON': '/usr/sbin/lircd-uinput',
 +    'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
 +    'D_LCD_DRIVER': 'none',
      }
@@ -1545,10 +1545,10 @@ diff -Naur a/src/defaults.py b/src/defaults.py
  system = {
      'ENABLED': True,
      'KERNEL_CMD': '/proc/cmdline',
-@@ -111,4 +240,9 @@
-     'bluez': ['bluetooth.service'],
+@@ -113,4 +242,9 @@
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
+     'lircd': ['lircd.service', 'lircd-uinput.service'],
 +    'lcdd': ['lcdd.service'],
 +    'transmission': ['transmission.service'],
 +    'tvheadend': ['tvheadend.service'],  
@@ -1556,18 +1556,18 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'oscam': ['oscam.service'],
      }
 diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/services.py
---- a/src/resources/lib/modules/services.py	2017-03-23 07:25:48.000000000 +0200
-+++ b/src/resources/lib/modules/services.py	2017-03-27 19:39:06.119910807 +0300
-@@ -45,6 +45,8 @@
-     AVAHI_DAEMON = None
+--- a/src/resources/lib/modules/services.py	2017-08-11 21:11:38.000000000 +0300
++++ b/src/resources/lib/modules/services.py	2017-08-19 18:49:03.694265654 +0300
+@@ -46,6 +46,8 @@
      CRON_DAEMON = None
-     LIRCD_UEVENT_FILE = None
+     LIRCD_DAEMON = None
+     LIRCD_UINPUT_DAEMON = None
 +    LCD_DRIVER_DIR = None
 +    D_LCD_DRIVER = None
      menu = {'4': {
          'name': 32001,
          'menuLoader': 'load_menu',
-@@ -172,6 +174,33 @@
+@@ -173,6 +175,33 @@
                          'InfoText': 745,
                          }},
                      },
@@ -1601,7 +1601,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
                  'bluez': {
                      'order': 6,
                      'name': 32331,
-@@ -282,6 +311,13 @@
+@@ -283,6 +312,13 @@
          try:
              self.oe.dbg_log('services::load_values', 'enter_function', 0)
  
@@ -1615,7 +1615,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
              # SAMBA
  
              if os.path.isfile(self.SAMBA_NMDB) and os.path.isfile(self.SAMBA_SMDB):
-@@ -493,6 +529,40 @@
+@@ -494,6 +530,40 @@
              self.oe.set_busy(0)
              self.oe.dbg_log('services::init_obex', 'ERROR: (' + repr(e) + ')', 4)
  
@@ -1657,8 +1657,8 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
          try:
              self.oe.dbg_log('services::inititialize_lircd', 'enter_function', 0)
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
---- a/src/resources/lib/modules/system.py	2017-03-23 07:25:48.000000000 +0200
-+++ b/src/resources/lib/modules/system.py	2017-03-27 19:39:06.119910807 +0300
+--- a/src/resources/lib/modules/system.py	2017-08-11 21:11:38.000000000 +0300
++++ b/src/resources/lib/modules/system.py	2017-08-19 18:34:57.768224059 +0300
 @@ -131,6 +131,15 @@
                              'values': [],
                              'InfoText': 713,
@@ -1762,7 +1762,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2017-03-27 19:39:06.119910807 +0300
++++ b/src/resources/lib/modules/transmission.py	2017-08-19 18:34:57.768224059 +0300
 @@ -0,0 +1,331 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -2097,7 +2097,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2017-03-27 19:39:06.123910821 +0300
++++ b/src/resources/lib/modules/tvservers.py	2017-08-19 18:34:57.772224076 +0300
 @@ -0,0 +1,2063 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
