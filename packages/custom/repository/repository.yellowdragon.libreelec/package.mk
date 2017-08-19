@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="repository.yellowdragon.libreelec"
-PKG_VERSION="8.1"
+PKG_VERSION="8.2"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
