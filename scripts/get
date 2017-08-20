@@ -133,8 +133,10 @@ while [ $NBWGET -gt 0 ]; do
       else
         pushd $ROOT/$SOURCES/$1 > /dev/null
           cp -R $CHECKOUT_NAME $PATCH_TMP
-          rm -rf $PATCH_TMP/.svn
-          rm -rf $PATCH_TMP/.hg
+          if [ "$PKG_REMOVE_CVS_FILES" = "yes" ]; then
+            rm -rf $PATCH_TMP/.svn
+            rm -rf $PATCH_TMP/.hg
+          fi
           tar cJf $ROOT/$SOURCES/$1/$PKG_SOURCE_NAME $PATCH_TMP
           rm -rf $PATCH_TMP
         popd > /dev/null
