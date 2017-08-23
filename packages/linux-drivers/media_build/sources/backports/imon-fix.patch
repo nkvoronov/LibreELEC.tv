@@ -1,14 +1,6 @@
 diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 --- linux/drivers/media/rc/imon.c	2017-08-08 04:46:26.000000000 +0300
 +++ linux.patch/drivers/media/rc/imon.c	2017-08-15 11:46:50.224131065 +0300
-@@ -327,6 +327,7 @@
- 		{ 0x0000002b0000ffeell, KEY_EXIT },
- 		{ 0x0000002c0000ffeell, KEY_SELECT },
- 		{ 0x0000002d0000ffeell, KEY_MENU },
-+		{ 0x0000002e0000ffeell, KEY_HOME },
- 		{ 0, KEY_RESERVED }
- 	}
- };
 @@ -466,6 +467,15 @@
  module_param(pad_stabilize, int, S_IRUGO | S_IWUSR);
  MODULE_PARM_DESC(pad_stabilize, "Apply stabilization algorithm to iMON PAD presses in arrow key mode. 0=disable, 1=enable (default).");
@@ -148,8 +140,8 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +			return;
 +		}
 +	}
-+	/* KEY_HOME repeats from knob need to be suppressed */
-+	if (ictx->kc == KEY_HOME && ictx->kc == ictx->last_keycode) {
++	/* KEY_SELECT repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_SELECT && ictx->kc == ictx->last_keycode) {
 +		msec = tv2int(&t, &prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);

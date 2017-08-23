@@ -1,14 +1,6 @@
-diff -ru a/linux-tbs-drivers/linux/drivers/media/rc/imon.c b/linux-tbs-drivers/linux/drivers/media/rc/imon.c
---- a/linux-tbs-drivers/linux/drivers/media/rc/imon.c	2013-03-18 21:40:05.000000000 +0200
-+++ b/linux-tbs-drivers/linux/drivers/media/rc/imon.c	2013-07-13 22:29:15.114487800 +0300
-@@ -316,6 +316,7 @@
- 	{ 0x00000015ffffffeell, KEY_RIGHT },
- 	{ 0x00000016ffffffeell, KEY_ENTER },
- 	{ 0x00000017ffffffeell, KEY_ESC },
-+	{ 0x000000002e00ffeell, KEY_HOME },
- 	/* iMON Knob values */
- 	{ 0x000100ffffffffeell, KEY_VOLUMEUP },
- 	{ 0x010000ffffffffeell, KEY_VOLUMEDOWN },
+diff -ru a/linux/drivers/media/rc/imon.c b/linux/drivers/media/rc/imon.c
+--- a/linux/drivers/media/rc/imon.c	2013-03-18 21:40:05.000000000 +0200
++++ b/linux/drivers/media/rc/imon.c	2013-07-13 22:29:15.114487800 +0300
 @@ -346,6 +347,11 @@
  module_param(pad_stabilize, int, S_IRUGO | S_IWUSR);
  MODULE_PARM_DESC(pad_stabilize, "Apply stabilization algorithm to iMON PAD "
@@ -169,8 +161,8 @@ diff -ru a/linux-tbs-drivers/linux/drivers/media/rc/imon.c b/linux-tbs-drivers/l
 +			return;
 +		}
 +	}	
-+    /* KEY_HOME repeats from knob need to be suppressed */
-+	if (ictx->kc == KEY_HOME && ictx->kc == ictx->last_keycode) {
++    /* KEY_SELECT repeats from knob need to be suppressed */
++	if (ictx->kc == KEY_SELECT && ictx->kc == ictx->last_keycode) {
 +		msec = tv2int(&t, &prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
