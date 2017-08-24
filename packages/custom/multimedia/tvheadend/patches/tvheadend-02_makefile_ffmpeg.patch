@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2017-07-06 16:14:55.000000000 +0300
-+++ b/Makefile.ffmpeg	2017-07-07 01:34:36.930659301 +0300
+--- a/Makefile.ffmpeg	2017-08-23 18:13:45.000000000 +0300
++++ b/Makefile.ffmpeg	2017-08-24 19:31:24.289173552 +0300
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
@@ -11,7 +11,35 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  unexport CFLAGS
  unexport LDFLAGS
  
-@@ -167,7 +170,7 @@
+@@ -34,12 +37,10 @@
+ 
+ EXTLIBS        =
+ COMPONENTS     = avutil avcodec avformat swscale avresample swresample avfilter
+-PROTOCOLS      = file http https hls mmsh mmst rtmp rtmpe rtmps rtmpt rtmpte rtmpts \
+-                 ffrtmpcrypt ffrtmphttp rtp srtp tcp udp udplite unix
++PROTOCOLS      = file
+ DECODERS       = mpeg2video mp2 aac vorbis ac3 eac3 aac_latm h264 hevc
+ ENCODERS       = mpeg2video mp2 aac vorbis
+-MUXERS         = mpegts dvd matroska mp4
+-DEMUXERS       = mpegts mpeg matroska mp4 hls flv live_flv
++MUXERS         = mpegts mpeg2dvd matroska webm mp4
+ BSFS           = h264_mp4toannexb hevc_mp4toannexb
+ FILTERS        = yadif scale null aresample anull
+ 
+@@ -95,10 +96,10 @@
+ LIBMFX_SHA1    = 33dec0b054d842e8380eb31b97afe02d07d5c6fc
+ LIBMFX_DIFFS   =
+ 
+-FFMPEG         = ffmpeg-3.3.3
++FFMPEG         = ffmpeg-3.1.9
+ FFMPEG_TB      = $(FFMPEG).tar.bz2
+ FFMPEG_URL     = http://ffmpeg.org/releases/$(FFMPEG_TB)
+-FFMPEG_SHA1    = 23bce5ccc4aeae23e1893d6cea7b1bd57b2591cb
++FFMPEG_SHA1    = e16b592245987ed2442b8214c9e86c4234327ad0
+ 
+ 
+ # ##############################################################################
+@@ -169,7 +170,7 @@
  
  $(LIB_ROOT)/$(YASM)/.tvh_build: \
  		$(LIB_ROOT)/$(YASM)/.tvh_download
@@ -20,7 +48,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--libdir=/$(EPREFIX0)/lib
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(YASM) install
-@@ -260,6 +263,7 @@
+@@ -262,6 +263,7 @@
  	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
  		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
  		-DENABLE_SHARED:BOOL=OFF \
@@ -28,7 +56,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		../../source
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
-@@ -293,7 +297,7 @@
+@@ -295,7 +297,7 @@
  ifeq (yes,$(CONFIG_LIBVPX_STATIC))
  
  ifneq (,$(FFMPEG_TARGET))
@@ -37,7 +65,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  endif
  
  $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
-@@ -305,7 +309,7 @@
+@@ -307,7 +309,7 @@
  		$(LIB_ROOT)/$(YASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
@@ -46,7 +74,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
  		--disable-docs \
-@@ -384,7 +388,8 @@
+@@ -386,7 +388,8 @@
  	cd $(LIB_ROOT)/$(LIBTHEORA) && \
  		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
  		--libdir=/$(EPREFIX0)/lib \
@@ -56,7 +84,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--disable-examples \
  		--disable-spec \
  		$(LIBTHEORA_HOST)
-@@ -432,7 +437,8 @@
+@@ -434,7 +437,8 @@
  	cd $(LIB_ROOT)/$(LIBVORBIS) && \
  		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
  		--libdir=/$(EPREFIX0)/lib \
@@ -66,7 +94,16 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
  	@touch $@
-@@ -596,6 +602,8 @@
+@@ -474,7 +478,7 @@
+ $(LIB_ROOT)/$(LIBFDKAAC)/.tvh_build: \
+ 		$(LIB_ROOT)/$(LIBFDKAAC)/.tvh_download
+ 	cd $(LIB_ROOT)/$(LIBFDKAAC) && \
+-		CXXFLAGS="$(CFLAGS_PI) -std=c++98" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
++		CXXFLAGS="$(CFLAGS_PI) -Wno-narrowing" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
+ 		--libdir=/$(EPREFIX0)/lib
+ 	DESTDIR=$(EBUILDIR) \
+ 		$(MAKE) -C $(LIB_ROOT)/$(LIBFDKAAC) install
+@@ -598,6 +602,8 @@
  		$(LIB_ROOT)/$(LIBMFX)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
@@ -75,3 +112,11 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--disable-all \
  		--enable-gpl \
  		--extra-cflags="$(ECFLAGS)" \
+@@ -608,7 +614,6 @@
+ 		$(foreach protocol,$(PROTOCOLS),--enable-protocol=$(protocol)) \
+ 		$(foreach decoder,$(DECODERS),--enable-decoder=$(decoder)) \
+ 		$(foreach encoder,$(ENCODERS),--enable-encoder=$(encoder)) \
+-		$(foreach demuxer,$(DEMUXERS),--enable-demuxer=$(demuxer)) \
+ 		$(foreach muxer,$(MUXERS),--enable-muxer=$(muxer)) \
+ 		$(foreach bsf,$(BSFS),--enable-bsf=$(bsf)) \
+ 		$(foreach filter,$(FILTERS),--enable-filter=$(filter))
