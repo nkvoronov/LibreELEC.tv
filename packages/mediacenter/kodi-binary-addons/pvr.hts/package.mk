@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="pvr.hts"
-PKG_VERSION="d0b6f1f"
+PKG_VERSION="3211941"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
