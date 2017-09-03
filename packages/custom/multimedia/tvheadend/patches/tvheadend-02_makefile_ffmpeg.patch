@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2017-09-01 23:18:26.000000000 +0300
-+++ b/Makefile.ffmpeg	2017-09-02 16:44:12.058461688 +0300
+--- a/Makefile.ffmpeg	2017-08-23 18:13:45.000000000 +0300
++++ b/Makefile.ffmpeg	2017-08-24 19:31:24.289173552 +0300
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
@@ -18,17 +18,17 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
 -PROTOCOLS      = file http https hls mmsh mmst rtmp rtmpe rtmps rtmpt rtmpte rtmpts \
 -                 ffrtmpcrypt ffrtmphttp rtp srtp tcp udp udplite unix
 +PROTOCOLS      = file
- DECODERS       = mpeg2video mp2 aac vorbis ac3 eac3 aac_latm opus h264 hevc theora
+ DECODERS       = mpeg2video mp2 aac vorbis ac3 eac3 aac_latm h264 hevc
  ENCODERS       = mpeg2video mp2 aac vorbis
--MUXERS         = mpegts matroska mp4
--DEMUXERS       = mpegts matroska hls flv live_flv
+-MUXERS         = mpegts dvd matroska mp4
+-DEMUXERS       = mpegts mpeg matroska mp4 hls flv live_flv
 +MUXERS         = mpegts mpeg2dvd matroska webm mp4
  BSFS           = h264_mp4toannexb hevc_mp4toannexb
- FILTERS        = yadif format hwupload hwdownload scale null aresample anull
- HWACCELS       =
-@@ -94,10 +95,10 @@
- LIBOPUS_URL    = http://downloads.xiph.org/releases/opus/$(LIBOPUS_TB)
- LIBOPUS_SHA1   = 35d108ca9d6a8d05e52d06c5421a5f95b39fdac9
+ FILTERS        = yadif scale null aresample anull
+ 
+@@ -95,10 +96,10 @@
+ LIBMFX_SHA1    = 33dec0b054d842e8380eb31b97afe02d07d5c6fc
+ LIBMFX_DIFFS   =
  
 -FFMPEG         = ffmpeg-3.3.3
 +FFMPEG         = ffmpeg-3.1.9
@@ -37,18 +37,18 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
 -FFMPEG_SHA1    = 23bce5ccc4aeae23e1893d6cea7b1bd57b2591cb
 +FFMPEG_SHA1    = e16b592245987ed2442b8214c9e86c4234327ad0
  
+ 
  # ##############################################################################
- # Library Config
-@@ -168,7 +169,7 @@
+@@ -169,7 +170,7 @@
  
  $(LIB_ROOT)/$(YASM)/.tvh_build: \
  		$(LIB_ROOT)/$(YASM)/.tvh_download
--	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE_PI) \
+-	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) \
 +	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) CC=$(HOST_CC) \
  		--libdir=/$(EPREFIX0)/lib
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(YASM) install
-@@ -263,6 +264,7 @@
+@@ -262,6 +263,7 @@
  	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
  		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
  		-DENABLE_SHARED:BOOL=OFF \
@@ -56,7 +56,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		../../source
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
-@@ -296,7 +298,7 @@
+@@ -295,7 +297,7 @@
  ifeq (yes,$(CONFIG_LIBVPX_STATIC))
  
  ifneq (,$(FFMPEG_TARGET))
@@ -65,7 +65,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  endif
  
  $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
-@@ -308,7 +310,7 @@
+@@ -307,7 +309,7 @@
  		$(LIB_ROOT)/$(YASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
@@ -74,9 +74,9 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
  		--disable-docs \
-@@ -387,7 +389,8 @@
+@@ -386,7 +388,8 @@
  	cd $(LIB_ROOT)/$(LIBTHEORA) && \
- 		$(CONFIGURE_PI) \
+ 		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
  		--libdir=/$(EPREFIX0)/lib \
 -		--with-ogg=$(EPREFIX) \
 +		OGG_CFLAGS=-I$(EPREFIX)/include \
@@ -84,9 +84,9 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--disable-examples \
  		--disable-spec \
  		$(LIBTHEORA_HOST)
-@@ -435,7 +438,8 @@
+@@ -434,7 +437,8 @@
  	cd $(LIB_ROOT)/$(LIBVORBIS) && \
- 		$(CONFIGURE_PI) \
+ 		CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
  		--libdir=/$(EPREFIX0)/lib \
 -		--with-ogg=$(EPREFIX)
 +		OGG_CFLAGS=-I$(EPREFIX)/include \
@@ -94,18 +94,17 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
  	@touch $@
-@@ -474,7 +478,8 @@
- 
+@@ -474,7 +478,7 @@
  $(LIB_ROOT)/$(LIBFDKAAC)/.tvh_build: \
  		$(LIB_ROOT)/$(LIBFDKAAC)/.tvh_download
--	cd $(LIB_ROOT)/$(LIBFDKAAC) && CXXFLAGS="-std=c++98" $(CONFIGURE_PI) \
-+	cd $(LIB_ROOT)/$(LIBFDKAAC) \
+ 	cd $(LIB_ROOT)/$(LIBFDKAAC) && \
+-		CXXFLAGS="$(CFLAGS_PI) -std=c++98" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
 +		CXXFLAGS="$(CFLAGS_PI) -Wno-narrowing" CFLAGS="$(CFLAGS_PI)" $(CONFIGURE) \
  		--libdir=/$(EPREFIX0)/lib
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBFDKAAC) install
-@@ -620,6 +625,8 @@
- 		$(LIB_ROOT)/$(LIBOPUS)/.tvh_build \
+@@ -598,6 +602,8 @@
+ 		$(LIB_ROOT)/$(LIBMFX)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
 +		--cc=$(FFMPEG_HOST)-gcc \
@@ -113,11 +112,11 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--disable-all \
  		--enable-gpl \
  		--extra-cflags="$(ECFLAGS)" \
-@@ -630,7 +637,6 @@
+@@ -608,7 +614,6 @@
  		$(foreach protocol,$(PROTOCOLS),--enable-protocol=$(protocol)) \
  		$(foreach decoder,$(DECODERS),--enable-decoder=$(decoder)) \
  		$(foreach encoder,$(ENCODERS),--enable-encoder=$(encoder)) \
 -		$(foreach demuxer,$(DEMUXERS),--enable-demuxer=$(demuxer)) \
  		$(foreach muxer,$(MUXERS),--enable-muxer=$(muxer)) \
  		$(foreach bsf,$(BSFS),--enable-bsf=$(bsf)) \
- 		$(foreach filter,$(FILTERS),--enable-filter=$(filter)) \
+ 		$(foreach filter,$(FILTERS),--enable-filter=$(filter))
