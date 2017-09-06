@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
 --- a/Makefile.ffmpeg	2017-09-02 23:13:50.000000000 +0300
-+++ b/Makefile.ffmpeg	2017-09-06 03:08:13.904222633 +0300
++++ b/Makefile.ffmpeg	2017-09-06 16:18:34.225466359 +0300
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
@@ -66,16 +66,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
  	@touch $@
-@@ -515,7 +521,7 @@
- $(LIB_ROOT)/$(LIBOPUS)/.tvh_build: \
- 		$(LIB_ROOT)/$(YASM)/.tvh_build \
- 		$(LIB_ROOT)/$(LIBOPUS)/.tvh_download
--	cd $(LIB_ROOT)/$(LIBOPUS) && $(CONFIGURE_PI) \
-+	cd $(LIB_ROOT)/$(LIBOPUS) && CC=$(HOST_CC) $(CONFIGURE_PI)  \
- 		--disable-doc \
- 		--disable-extra-programs
- 	DESTDIR=$(EBUILDIR) \
-@@ -620,6 +626,8 @@
+@@ -620,9 +626,11 @@
  		$(LIB_ROOT)/$(LIBOPUS)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
@@ -83,4 +74,8 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
 +		--cxx=$(FFMPEG_HOST)-g++ \
  		--disable-all \
  		--enable-gpl \
- 		--extra-cflags="$(ECFLAGS)" \
+-		--extra-cflags="$(ECFLAGS)" \
++		--extra-cflags="$(ECFLAGS) -I$(EPREFIX)/include/opus" \
+ 		--extra-libs="$(ELIBS)" \
+ 		--pkg-config="$(ROOTDIR)/support/pkg-config.ffmpeg" \
+ 		$(foreach component,$(COMPONENTS),--enable-$(component)) \

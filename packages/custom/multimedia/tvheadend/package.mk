@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="tvheadend"
-PKG_VERSION="3ccebae"
-PKG_VERSION_NUMBER="4.3.425"
+PKG_VERSION="303f418"
+PKG_VERSION_NUMBER="4.3.438"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
@@ -35,7 +35,7 @@ PKG_AUTORECONF="no"
 # transcoding only for generic
 if [ "$TARGET_ARCH" = x86_64 ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
-  TVH_TRANSCODING="--enable-libav --enable-ffmpeg_static --enable-libx264 --enable-libx265 --enable-libvpx --disable-libtheora --enable-libvorbis --disable-libfdkaac --disable-libopus"
+  TVH_TRANSCODING="--enable-libav --enable-ffmpeg_static"
 else
   TVH_TRANSCODING="--disable-libav --disable-ffmpeg_static"
 fi
