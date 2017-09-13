@@ -1,7 +1,7 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2014-12-03 22:04:27.000000000 +0200
-+++ b/Makefile	2014-12-05 04:34:32.701964595 +0200
-@@ -35,25 +35,18 @@
+--- a/Makefile	2017-09-09 17:07:44.000000000 +0300
++++ b/Makefile	2017-09-13 22:20:38.523245978 +0300
+@@ -35,18 +35,11 @@
  ### The directory environment:
  
  # Use package data if installed...otherwise assume we're under the VDR source directory:
@@ -20,8 +20,9 @@ diff -Naur a/Makefile b/Makefile
 -export CXXFLAGS = $(call PKGCFG,cxxflags)
 +include $(VDRDIR)/Make.global
  
- ### Allow user defined options to overwrite defaults:
+ CXXFLAGS += -std=c++11
  
+@@ -55,7 +48,7 @@
  -include $(PLGCFG)
  
  ### The version number of VDR's plugin API:
@@ -30,15 +31,16 @@ diff -Naur a/Makefile b/Makefile
  
  ### The name of the distribution archive:
  
-@@ -65,6 +58,7 @@
+@@ -67,7 +60,7 @@
  SOFILE = libvdr-$(PLUGIN).so
  
  ### Includes and Defines and Dependencies (add further entries here):
+-
 +INCLUDES += -I$(VDRDIR)/include
- 
  INCLUDES += $(shell pkg-config --cflags Magick++ freetype2 fontconfig)
  
-@@ -126,6 +120,7 @@
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"' -DVDRLOGO=\"$(SKINFLATPLUS_VDRLOGO)\"
+@@ -128,6 +121,7 @@
  
  $(SOFILE): $(OBJS)
  	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@
