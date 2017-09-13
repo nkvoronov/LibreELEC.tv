@@ -17,10 +17,9 @@
 ################################################################################
 
 PKG_NAME="x264"
-PKG_VERSION="snapshot-20170327-2245-stable"
-PKG_ARCH="any"
-PKG_LICENSE="GPLv2+"
-PKG_SITE="http://videolan.org"
+PKG_VERSION="snapshot-20170524-2245-stable"
+PKG_LICENSE="GPL"
+PKG_SITE="http://www.videolan.org/developers/x264.html"
 PKG_URL="http://ftp.videolan.org/pub/videolan/x264/snapshots/$PKG_NAME-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain yasm:host"
 PKG_SECTION="multimedia"

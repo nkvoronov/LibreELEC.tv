@@ -18,7 +18,7 @@
 
 PKG_NAME="vlc-addon"
 PKG_VERSION="2.2.6"
-PKG_REV="32"
+PKG_REV="33"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
