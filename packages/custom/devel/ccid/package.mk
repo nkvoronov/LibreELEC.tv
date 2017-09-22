@@ -16,34 +16,23 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="python-xmltv"
-PKG_VERSION="1.4.3"
+PKG_NAME="ccid"
+PKG_VERSION="1.4.25"
 PKG_ARCH="any"
-PKG_LICENSE=""
-PKG_SITE="https://bitbucket.org/jfunk/python-xmltv"
-PKG_URL="https://pypi.python.org/packages/source/p/python-xmltv/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain Python distutilscross:host"
+PKG_LICENSE="LGPL"
+PKG_SITE="http://pcsclite.alioth.debian.org/ccid.html"
+PKG_URL="https://alioth.debian.org/frs/download.php/file/4187/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_DEPENDS_TARGET="toolchain pcsc-lite"
 PKG_SECTION="devel"
-PKG_SHORTDESC="A Python Module for Reading and Writing XMLTV Files"
-PKG_LONGDESC="A Python Module for Reading and Writing XMLTV Files"
+PKG_SHORTDESC="CCID free software driver"
+PKG_LONGDESC="CCID free software driver"
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_AUTORECONF="yes"
 
-pre_make_target() {
-  export PYTHONXCPREFIX="$SYSROOT_PREFIX/usr"
-  export LDFLAGS="$LDFLAGS -L$SYSROOT_PREFIX/usr/lib -L$SYSROOT_PREFIX/lib"
-}
+PKG_CONFIGURE_OPTS_TARGET="--enable-static --enable-twinserial"
 
 make_target() {
-  python setup.py build
-}
-
-makeinstall_target() {
-  python setup.py install --root=./.install --prefix=/usr
-}
-
-post_install() {
-  rm -rf .install/usr/lib/python*/site-packages/*.py
-  cp -PR $PKG_BUILD/.install/* $INSTALL
+  make
+  make -C src/ Info.plist
 }

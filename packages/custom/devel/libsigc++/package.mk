@@ -29,8 +29,3 @@ PKG_LONGDESC="libsigc++ implements a typesafe callback system for standard C++. 
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-
-post_install() {
-  rm -rf $INSTALL/usr/lib/sigc++-2.0
-  rm -rf $INSTALL/usr/share
-}

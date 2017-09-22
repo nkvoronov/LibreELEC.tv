@@ -39,7 +39,7 @@ if [ "$TRANSMISSION_SERVICE" = yes ]; then
 fi
 
 if [ "$OSCAM_SERVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET oscam-service"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET ccid oscam-service"
 fi
 
 if [ "$TVHEADEND_SERVICE" = yes ]; then
@@ -64,10 +64,6 @@ fi
 
 if [ "$PERL_SUPPORT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET perl Date-Manip"
-fi
-
-if [ "$EPGUPDATERS_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET xmltv2vdr zvdrtools"
 fi
 
 if [ "$LIBTORRENTS_SUPPORT" = yes ]; then

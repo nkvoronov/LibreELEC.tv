@@ -29,8 +29,3 @@ PKG_LONGDESC="libxml++ is a C++ wrapper for the libxml2 XML parser and builder l
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-
-post_install() {
-  rm -rf $INSTALL/usr/lib/libxml++-2.6
-  rm -rf $INSTALL/usr/share
-}

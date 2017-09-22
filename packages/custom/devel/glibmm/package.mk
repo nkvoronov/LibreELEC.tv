@@ -30,9 +30,4 @@ PKG_LONGDESC="glibmm is the official C++ interface for the popular cross-platfor
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-post_install() {
-  rm -rf $INSTALL/usr/lib/giomm-2.4
-  rm -rf $INSTALL/usr/lib/glibmm-2.4
-  rm -rf $INSTALL/usr/share
-}
 

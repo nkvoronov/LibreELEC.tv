@@ -65,7 +65,4 @@ post_install() {
 
   mkdir -p $INSTALL/usr/share
     cp -R $PKG_BUILD/.install_tmp/usr/share/* $INSTALL/usr/share
-
-  rm -rf $INSTALL/usr/lib/pkgconfig
-  rm -rf $INSTALL/usr/include
 }

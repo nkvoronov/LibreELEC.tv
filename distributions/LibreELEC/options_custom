@@ -79,9 +79,6 @@ fi
   PERL_VERSION="5.24.0"
   PERL_SUPPORT="yes"
 
-# EPG Updaters
-  EPGUPDATERS_SUPPORT="yes"
-
 # Lib Torrents
   LIBTORRENTS_SUPPORT="yes"
 
