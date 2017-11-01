@@ -18,7 +18,7 @@
 
 PKG_NAME="mono"
 PKG_VERSION="5.4.0.201"
-PKG_REV="109"
+PKG_REV="110"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.mono-project.com"
