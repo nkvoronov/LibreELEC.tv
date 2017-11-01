@@ -22,7 +22,7 @@ PKG_REV="133"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
 PKG_URL="https://github.com/MediaBrowser/Emby/releases/download/$PKG_VERSION/Emby.Mono.zip"
-PKG_DEPENDS_TARGET="toolchain ffmpegx imagemagick"
+PKG_DEPENDS_TARGET="toolchain ffmpegx imagemagickx"
 PKG_SECTION="service"
 PKG_SHORTDESC="Emby Server: a personal media server"
 PKG_LONGDESC="Emby Server ($PKG_VERSION) brings your home videos, music, and photos together, automatically converting and streaming your media on-the-fly to any device"
@@ -62,7 +62,7 @@ addon() {
         $ADDON_BUILD/$PKG_ADDON_ID/bin/
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-  cp -L $(get_build_dir imagemagick)/.install_pkg/usr/lib/libMagickCore-7.Q8.so.? \
-        $(get_build_dir imagemagick)/.install_pkg/usr/lib/libMagickWand-7.Q8.so   \
+  cp -L $(get_build_dir imagemagickx)/.install_pkg/usr/lib/libMagickCore-7.Q8.so.? \
+        $(get_build_dir imagemagickx)/.install_pkg/usr/lib/libMagickWand-7.Q8.so   \
         $ADDON_BUILD/$PKG_ADDON_ID/lib/
 }
