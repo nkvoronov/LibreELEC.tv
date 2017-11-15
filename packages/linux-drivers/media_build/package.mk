@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="media_build"
-PKG_VERSION="70f2404"
+PKG_VERSION="48b0842"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/crazycat69/linux_media"
