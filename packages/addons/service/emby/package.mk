@@ -18,7 +18,7 @@
 
 PKG_NAME="emby"
 PKG_VERSION="3.2.70.0"
-PKG_REV="138"
+PKG_REV="141"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
 PKG_URL="https://github.com/MediaBrowser/Emby/releases/download/$PKG_VERSION/Emby.Mono.zip"
@@ -31,7 +31,7 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Emby Server"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_REQUIRES="tools.mono:0.0.0"
-PKG_MAINTAINER="Anton Voyl (awiouy)"
+PKG_MAINTAINER="Anton Voyl (awiouy), YLLOW_DRAGON"
 
 unpack() {
   mkdir -p $PKG_BUILD

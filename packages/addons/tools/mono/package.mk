@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="mono"
-PKG_VERSION="5.4.1.6"
+PKG_VERSION="5.4.1.7"
 PKG_REV="109"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"

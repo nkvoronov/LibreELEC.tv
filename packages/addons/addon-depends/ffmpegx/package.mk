@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="ffmpegx"
-PKG_VERSION="3.4"
+PKG_VERSION="3.4.1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
