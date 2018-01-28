@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="d6858f9"
+PKG_VERSION="ad93610"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

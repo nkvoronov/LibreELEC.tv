@@ -18,7 +18,7 @@
 
 PKG_NAME="acestream-addon"
 PKG_VERSION="3.1.16"
-PKG_REV="4"
+PKG_REV="5"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
