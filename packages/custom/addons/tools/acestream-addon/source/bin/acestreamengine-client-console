@@ -26,7 +26,6 @@
 ADDON_DIR=/storage/.kodi/addons/tools.acestream
 
 chmod a+x $ADDON_DIR/share/acestreamengine
+chmod a+x $ADDON_DIR/share/start-engine
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ADDON_DIR/share/lib
-
-$ADDON_DIR/share/acestreamengine --lib-path $ADDON_DIR/share --client-console $1
+$ADDON_DIR/share/acestream/start-engine --client-console $1

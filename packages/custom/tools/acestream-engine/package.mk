@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="c45ed7d"
+PKG_VERSION="3.1.16"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
 PKG_URL="https://github.com/nkvoronov/tools-ace.git"
+PKG_BRANCH="v3.1.16"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
@@ -35,7 +36,7 @@ PKG_AUTORECONF="no"
 PYTHON_MODULES="no"
 
 if [ "$PYTHON_MODULES" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET M2Crypto apsw PyAMF"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET m2crypto apsw"
 fi
 
 make_target() {
@@ -48,16 +49,8 @@ makeinstall_target() {
 
 post_install() {
   mkdir -p $INSTALL/usr/share/acestream
-  if [ "$PROJECT" = "Generic" ]; then
-    cp -PR $PKG_BUILD/$TARGET_ARCH/acestream/* $INSTALL/usr/share/acestream
-  elif [ "$PROJECT" = "RPi" ]; then
-    cp -PR $PKG_BUILD/arm/RPi/acestream/* $INSTALL/usr/share/acestream
-  elif [ "$PROJECT" = "imx6" ]; then
-    cp -PR $PKG_BUILD/arm/v7/acestream/* $INSTALL/usr/share/acestream
-  fi
+    cp -PR $PKG_BUILD/acestream/* $INSTALL/usr/share/acestream
 
-  if [ "$PROJECT" = "Generic" ]; then
-    mkdir -p $INSTALL/usr/bin
-      cp -P $PKG_BUILD/acestreamengine-client-console $INSTALL/usr/bin
-  fi
+  mkdir -p $INSTALL/usr/bin
+    cp -P $PKG_BUILD/acestreamengine-client-console $INSTALL/usr/bin
 }

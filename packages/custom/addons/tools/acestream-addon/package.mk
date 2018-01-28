@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="acestream-addon"
-PKG_VERSION="3.0.3"
-PKG_REV="3"
+PKG_VERSION="3.1.16"
+PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
@@ -44,13 +44,6 @@ makeinstall_target() {
 addon() {
   ACESTREAM_DIR=$(get_build_dir acestream-engine)
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
-  if [ "$PROJECT" = "Generic" ]; then
-    cp -PR $ACESTREAM_DIR/$TARGET_ARCH/acestream/* $ADDON_BUILD/$PKG_ADDON_ID/share
-  elif [ "$PROJECT" = "RPi" ]; then
-    cp -PR $ACESTREAM_DIR/arm/RPi/acestream/* $ADDON_BUILD/$PKG_ADDON_ID/share
-  elif [ "$PROJECT" = "imx6" ]; then
-    cp -PR $ACESTREAM_DIR/arm/v7/acestream/* $ADDON_BUILD/$PKG_ADDON_ID/share
-  fi
-
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
+    cp -PR $ACESTREAM_DIR/acestream/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
 }
