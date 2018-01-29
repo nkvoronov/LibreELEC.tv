@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="bf66a35"
+PKG_VERSION="9317769"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -45,7 +45,9 @@ post_install() {
   mkdir -p $INSTALL/usr/share/acestream
     cp -PR $PKG_BUILD/acestream/* $INSTALL/usr/share/acestream
     cp -PR $PKG_BUILD/openssl/* $INSTALL/usr/share/acestream/lib
-    cp -PR $PKG_BUILD/python/* $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/old/* $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/lxml/* $INSTALL/usr/share/acestream/lib
+    rm $INSTALL/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
 
   mkdir -p $INSTALL/usr/bin
     cp -P $PKG_BUILD/acestreamengine-client-console $INSTALL/usr/bin
