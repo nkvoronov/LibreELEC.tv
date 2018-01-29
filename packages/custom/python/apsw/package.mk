@@ -16,36 +16,28 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="setuptools"
-PKG_VERSION="32.1.2"
+PKG_NAME="apsw"
+PKG_VERSION="3.15.2"
 PKG_ARCH="any"
-PKG_LICENSE="OSS"
-PKG_SITE="https://pypi.python.org/pypi/setuptools"
-PKG_URL="https://github.com/pypa/setuptools/archive/v$PKG_VERSION.tar.gz"
-PKG_DEPENDS_HOST="Python:host"
-PKG_DEPENDS_TARGET="toolchain Python distutilscross:host"
-PKG_SECTION="python/devel"
-PKG_SHORTDESC="setuptools: A collection of enhancements to the Python distutils"
-PKG_LONGDESC="Distribute is intended to replace Setuptools as the standard method for working with Python module distributions. Packages built and distributed using distribute look to the user like ordinary Python packages based on the distutils. Your users don't need to install or even know about setuptools in order to use them, and you don't have to include the entire setuptools package in your distributions. By including just a single bootstrap module (a 7K .py file), your package will automatically download and install setuptools if the user is building your package from source and doesn't have a suitable version already installed."
+PKG_LICENSE="MIT"
+PKG_SITE="https://github.com/rogerbinns/apsw"
+PKG_URL="https://github.com/rogerbinns/apsw/archive/$PKG_VERSION-r1.tar.gz"
+PKG_DEPENDS_TARGET="toolchain Python sqlite"
+PKG_SECTION="python"
+PKG_SHORTDESC="APSW provides an SQLite 3 wrapper that provides the thinnest layer over the SQLite database library possible."
+PKG_LONGDESC="APSW provides an SQLite 3 wrapper that provides the thinnest layer over the SQLite database library possible."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-make_host() {
-  python bootstrap.py
-}
-
-makeinstall_host() {
-  python setup.py install --prefix=$TOOLCHAIN
-}
 
 pre_make_target() {
   export PYTHONXCPREFIX="$SYSROOT_PREFIX/usr"
+  export LDSHARED="$CC -shared"
 }
 
 make_target() {
-  python bootstrap.py
-  python setup.py build --cross-compile
+  python setup.py build --enable=load_extension
 }
 
 makeinstall_target() {

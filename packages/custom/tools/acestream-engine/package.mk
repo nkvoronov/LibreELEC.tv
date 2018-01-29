@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="ad93610"
+PKG_VERSION="07eb21b"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -25,19 +25,13 @@ PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
 PKG_URL="https://github.com/nkvoronov/tools-ace.git"
 PKG_BRANCH="v3.1.16"
 PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_DEPENDS_TARGET="toolchain setuptools"
 PKG_SECTION="tools"
 PKG_SHORTDESC="This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_LONGDESC="This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-
-PYTHON_MODULES="no"
-
-if [ "$PYTHON_MODULES" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET m2crypto apsw"
-fi
 
 make_target() {
   : # nothing to make here
@@ -50,6 +44,8 @@ makeinstall_target() {
 post_install() {
   mkdir -p $INSTALL/usr/share/acestream
     cp -PR $PKG_BUILD/acestream/* $INSTALL/usr/share/acestream
+    cp -PR $PKG_BUILD/openssl/* $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/python/* $INSTALL/usr/share/acestream/lib
 
   mkdir -p $INSTALL/usr/bin
     cp -P $PKG_BUILD/acestreamengine-client-console $INSTALL/usr/bin
