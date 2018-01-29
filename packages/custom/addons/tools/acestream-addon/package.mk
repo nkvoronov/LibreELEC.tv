@@ -18,7 +18,7 @@
 
 PKG_NAME="acestream-addon"
 PKG_VERSION="3.1.16"
-PKG_REV="5"
+PKG_REV="6"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
@@ -44,6 +44,15 @@ makeinstall_target() {
 addon() {
   ACESTREAM_DIR=$(get_build_dir acestream-engine)
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
-    cp -PR $ACESTREAM_DIR/acestream/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
+    cp -PR $ACESTREAM_DIR/acestream/data/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/acestream/lib/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/old/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/lxml/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
+
+    cp -P $ACESTREAM_DIR/acestream/acestream.conf $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
+    cp -P $ACESTREAM_DIR/acestream/acestreamengine $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
 }
