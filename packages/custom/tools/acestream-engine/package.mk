@@ -47,7 +47,7 @@ post_install() {
     cp -PR $PKG_BUILD/openssl/* $INSTALL/usr/share/acestream/lib
     cp -PR $PKG_BUILD/old/* $INSTALL/usr/share/acestream/lib
     cp -PR $PKG_BUILD/lxml/* $INSTALL/usr/share/acestream/lib
-    rm $INSTALL/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
+    rm $INSTALL/usr/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
 
   mkdir -p $INSTALL/usr/bin
     cp -P $PKG_BUILD/acestreamengine-client-console $INSTALL/usr/bin
