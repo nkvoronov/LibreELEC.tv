@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="a0e05b5"
+PKG_VERSION="5b74bdc"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -44,10 +44,15 @@ makeinstall_target() {
 post_install() {
   mkdir -p $INSTALL/usr/share/acestream
     cp -PR $PKG_BUILD/acestream/* $INSTALL/usr/share/acestream
-    cp -PR $PKG_BUILD/openssl/* $INSTALL/usr/share/acestream/lib
-    cp -PR $PKG_BUILD/old/* $INSTALL/usr/share/acestream/lib
-    cp -PR $PKG_BUILD/lxml/* $INSTALL/usr/share/acestream/lib
     rm $INSTALL/usr/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
+
+    cp -PR $PKG_BUILD/libs/openssl/* $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/setuptools/*  $INSTALL/usr/share/acestream/lib
+    cp -P $PKG_BUILD/libs/M2Crypto  $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/apsw/*  $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/sqlite/*  $INSTALL/usr/share/acestream/lib
+    cp -P $PKG_BUILD/libs/lxml $INSTALL/usr/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/libxslt/* $INSTALL/usr/share/acestream/lib
 
   mkdir -p $INSTALL/usr/bin
     cp -P $PKG_BUILD/acestreamengine-client-console $INSTALL/usr/bin

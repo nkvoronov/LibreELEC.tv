@@ -46,12 +46,18 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
     cp -PR $ACESTREAM_DIR/acestream/data/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
+
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     cp -PR $ACESTREAM_DIR/acestream/lib/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -PR $ACESTREAM_DIR/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -PR $ACESTREAM_DIR/old/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -PR $ACESTREAM_DIR/lxml/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
+
+    cp -PR $ACESTREAM_DIR/libs/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/libs/setuptools/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -P $ACESTREAM_DIR/libs/M2Crypto $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/libs/apsw/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/libs/sqlite/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -P $ACESTREAM_DIR/libs/lxml $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $ACESTREAM_DIR/libs/libxslt/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
 
     cp -P $ACESTREAM_DIR/acestream/acestream.conf $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
     cp -P $ACESTREAM_DIR/acestream/acestreamengine $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
