@@ -53,10 +53,16 @@ addon() {
 
     cp -PR $ACESTREAM_DIR/libs/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     cp -PR $ACESTREAM_DIR/libs/setuptools/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -P $ACESTREAM_DIR/libs/M2Crypto $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto
+    cp -PR $ACESTREAM_DIR/libs/M2Crypto/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto
+
     cp -PR $ACESTREAM_DIR/libs/apsw/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     cp -PR $ACESTREAM_DIR/libs/sqlite/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -P $ACESTREAM_DIR/libs/lxml $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml
+    cp -PR $ACESTREAM_DIR/libs/lxml/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml
+
     cp -PR $ACESTREAM_DIR/libs/libxslt/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
 
     cp -P $ACESTREAM_DIR/acestream/acestream.conf $ADDON_BUILD/$PKG_ADDON_ID/share/acestream

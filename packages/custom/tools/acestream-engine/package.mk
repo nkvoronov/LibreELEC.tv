@@ -48,10 +48,16 @@ post_install() {
 
     cp -PR $PKG_BUILD/libs/openssl/* $INSTALL/usr/share/acestream/lib
     cp -PR $PKG_BUILD/libs/setuptools/*  $INSTALL/usr/share/acestream/lib
-    cp -P $PKG_BUILD/libs/M2Crypto  $INSTALL/usr/share/acestream/lib
+
+  mkdir -p $INSTALL/usr/share/acestream/lib/M2Crypto
+    cp -PR $PKG_BUILD/libs/M2Crypto/*  $INSTALL/usr/share/acestream/lib/M2Crypto
+
     cp -PR $PKG_BUILD/libs/apsw/*  $INSTALL/usr/share/acestream/lib
     cp -PR $PKG_BUILD/libs/sqlite/*  $INSTALL/usr/share/acestream/lib
-    cp -P $PKG_BUILD/libs/lxml $INSTALL/usr/share/acestream/lib
+
+  mkdir -p $INSTALL/usr/share/acestream/lib/lxml
+    cp -PR $PKG_BUILD/libs/lxml/* $INSTALL/usr/share/acestream/lib/lxml
+
     cp -PR $PKG_BUILD/libs/libxslt/* $INSTALL/usr/share/acestream/lib
 
   mkdir -p $INSTALL/usr/bin
