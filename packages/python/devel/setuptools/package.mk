@@ -23,7 +23,6 @@ PKG_LICENSE="OSS"
 PKG_SITE="https://pypi.python.org/pypi/setuptools"
 PKG_URL="https://github.com/pypa/setuptools/archive/v$PKG_VERSION.tar.gz"
 PKG_DEPENDS_HOST="Python:host"
-PKG_DEPENDS_TARGET="toolchain Python distutilscross:host"
 PKG_SECTION="python/devel"
 PKG_SHORTDESC="setuptools: A collection of enhancements to the Python distutils"
 PKG_LONGDESC="Distribute is intended to replace Setuptools as the standard method for working with Python module distributions. Packages built and distributed using distribute look to the user like ordinary Python packages based on the distutils. Your users don't need to install or even know about setuptools in order to use them, and you don't have to include the entire setuptools package in your distributions. By including just a single bootstrap module (a 7K .py file), your package will automatically download and install setuptools if the user is building your package from source and doesn't have a suitable version already installed."
@@ -37,21 +36,4 @@ make_host() {
 
 makeinstall_host() {
   python setup.py install --prefix=$TOOLCHAIN
-}
-
-pre_make_target() {
-  export PYTHONXCPREFIX="$SYSROOT_PREFIX/usr"
-}
-
-make_target() {
-  python bootstrap.py
-  python setup.py build --cross-compile
-}
-
-makeinstall_target() {
-  python setup.py install --root=$INSTALL --prefix=/usr
-}
-
-post_makeinstall_target() {
-  find $INSTALL/usr/lib -name "*.py" -exec rm -rf "{}" ";"
 }
