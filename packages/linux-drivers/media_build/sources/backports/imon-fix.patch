@@ -1,7 +1,19 @@
-diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
---- linux/drivers/media/rc/imon.c	2017-08-08 04:46:26.000000000 +0300
-+++ linux.patch/drivers/media/rc/imon.c	2017-08-15 11:46:50.224131065 +0300
-@@ -466,6 +467,15 @@
+diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
+--- a/drivers/media/rc/imon.c	2018-02-06 00:25:20.000000000 +0200
++++ b/drivers/media/rc/imon.c	2018-02-09 02:01:55.673768718 +0200
+@@ -1,9 +1,9 @@
+ /*
+- *   imon.c:	input and display driver for SoundGraph iMON IR/VFD/LCD
++ *   imon.c: input and display driver for SoundGraph iMON IR/VFD/LCD
+  *
+  *   Copyright(C) 2010  Jarod Wilson <jarod@wilsonet.com>
+  *   Portions based on the original lirc_imon driver,
+- *	Copyright(C) 2004  Venky Raju(dev@venky.ws)
++ *   Copyright(C) 2004  Venky Raju(dev@venky.ws)
+  *
+  *   Huge thanks to R. Geoff Newbury for invaluable debugging on the
+  *   0xffdc iMON devices, and for sending me one to hack on, without
+@@ -466,6 +466,15 @@
  module_param(pad_stabilize, int, S_IRUGO | S_IWUSR);
  MODULE_PARM_DESC(pad_stabilize, "Apply stabilization algorithm to iMON PAD presses in arrow key mode. 0=disable, 1=enable (default).");
  
@@ -17,7 +29,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
  /*
   * In certain use cases, mouse mode isn't really helpful, and could actually
   * cause confusion, so allow disabling it when the IR device is open.
-@@ -658,7 +668,13 @@
+@@ -657,7 +666,13 @@
  	 * send_packet can get called so rapidly as to overwhelm the device,
  	 * particularly on faster systems and/or those with quirky usb.
  	 */
@@ -32,7 +44,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
  	set_current_state(TASK_INTERRUPTIBLE);
  	schedule_timeout(timeout);
  
-@@ -1334,8 +1350,7 @@
+@@ -1310,8 +1325,7 @@
  	return keycode;
  }
  
@@ -42,7 +54,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
  {
  	signed char rel_x = 0x00, rel_y = 0x00;
  	u8 right_shift = 1;
-@@ -1757,8 +1772,8 @@
+@@ -1733,8 +1747,8 @@
  	}
  
  	if (debug) {
@@ -53,8 +65,8 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
  	}
  
  	press_type = imon_parse_press_type(ictx, buf, ktype);
-@@ -1790,6 +1805,94 @@
- 		msec = tv2int(&t, &prev_time);
+@@ -1766,6 +1780,94 @@
+ 		msec = ktime_ms_delta(t, prev_time);
  		if (msec < ictx->idev->rep[REP_DELAY]) {
  			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -62,7 +74,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_RIGHT repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_RIGHT && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -70,7 +82,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_LEFT repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_LEFT && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -78,7 +90,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_UP repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_UP && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -86,7 +98,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_DOWN repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_DOWN && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -94,7 +106,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_ESC repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_ESC && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -102,7 +114,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_ENTER repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_ENTER && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -110,7 +122,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_MENU repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_MENU && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -118,7 +130,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_MEDIA repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_MEDIA && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -126,7 +138,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_EXIT repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_EXIT && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -134,7 +146,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_SELECT repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_SELECT && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
@@ -142,7 +154,7 @@ diff -Naur linux/drivers/media/rc/imon.c linux.patch/drivers/media/rc/imon.c
 +	}
 +	/* KEY_SELECT repeats from knob need to be suppressed */
 +	if (ictx->kc == KEY_SELECT && ictx->kc == ictx->last_keycode) {
-+		msec = tv2int(&t, &prev_time);
++		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
 +			spin_unlock_irqrestore(&ictx->kc_lock, flags);
  			return;
