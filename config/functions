@@ -504,7 +504,6 @@ show_config() {
   config_message="$config_message\n"
 
   config_message="$config_message\n - Custom source:\t\t\t $DISTRO_CUSTOM_SRC"
-  config_message="$config_message\n - TBS drivers:\t\t\t\t $TBS_DRIVERS"
   config_message="$config_message\n - TBS drivers (CrazyCat):\t\t $TBS_DRIVERS_CC"
   config_message="$config_message\n - Media build drivers:\t\t\t $MEDIA_BUILD"
   config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"

@@ -17,11 +17,12 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers"
-PKG_VERSION="170330"
+PKG_VERSION="160126"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tbsdtv.com/english/Download.html"
-PKG_URL="http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v$PKG_VERSION.zip"
+PKG_URL="http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v${PKG_VERSION}.zip"
+PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_SECTION="driver"
@@ -30,18 +31,9 @@ PKG_LONGDESC="Linux TBS tuner drivers"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-unpack() {
-  unzip -q $ROOT/$SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip -d $ROOT/$BUILD/$PKG_NAME-$PKG_VERSION
-}
-
 post_unpack() {
   tar xjf $PKG_BUILD/linux-tbs-drivers.tar.bz2 -C $PKG_BUILD
   chmod -R u+rwX $PKG_BUILD/linux-tbs-drivers/*
-
-  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-    cat $patch | patch -d \
-    `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-  done
 }
 
 make_target() {
@@ -54,6 +46,6 @@ make_target() {
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs
   find $PKG_BUILD/linux-tbs-drivers/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$(get_module_dir)/updates/tbs \;
-  mkdir -p $INSTALL/usr/lib/firmware/
-  cp $PKG_BUILD/*.fw $INSTALL/usr/lib/firmware/
+  mkdir -p $INSTALL/lib/firmware/
+  cp $PKG_BUILD/*.fw $INSTALL/lib/firmware/
 }

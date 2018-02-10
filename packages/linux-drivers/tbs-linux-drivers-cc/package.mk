@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="tbs-linux-drivers-cc"
-PKG_VERSION="98955fa"
+PKG_VERSION="0d45df2"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/nkvoronov/tbs-linux-drivers-cc.git"
 PKG_URL="https://github.com/nkvoronov/tbs-linux-drivers-cc.git"
 PKG_TYPE="git"
-PKG_BRANCH="v161031-patch"
+PKG_BRANCH="v170330-patch"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"
