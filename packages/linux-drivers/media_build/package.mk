@@ -31,7 +31,7 @@ PKG_SHORTDESC="DVB drivers that replace the version shipped with the kernel"
 PKG_LONGDESC="DVB drivers that replace the version shipped with the kernel"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-PKG_USER_CONFIG="yes"
+PKG_USER_CONFIG="no"
 
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
