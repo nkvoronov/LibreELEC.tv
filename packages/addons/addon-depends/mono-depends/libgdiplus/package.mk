@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="libgdiplus"
-PKG_VERSION="5.4"
+PKG_VERSION="5.6"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/mono/libgdiplus"
 PKG_URL="https://github.com/mono/libgdiplus/archive/$PKG_VERSION.tar.gz"

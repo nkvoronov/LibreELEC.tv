@@ -17,7 +17,8 @@
 ################################################################################
 
 PKG_NAME="ffmpegx"
-PKG_VERSION="3.4.1"
+PKG_VERSION="3.4.2"
+PKG_SHA256="d079c68dc19a0223239a152ffc2b67ef1e9d3144e4d2c2563380dc59dccf33e5"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
@@ -26,7 +27,6 @@ PKG_SOURCE_DIR="FFmpeg-n${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain bzip2 fdk-aac libvorbis openssl opus x264 x265 zlib"
 PKG_SECTION="multimedia"
 PKG_LONGDESC="FFmpegx is an complete FFmpeg build to support encoding and decoding"
-PKG_AUTORECONF="no"
 
 # Dependencies
 get_graphicdrivers
@@ -35,8 +35,7 @@ if [ "$KODIPLAYER_DRIVER" == "bcm2835-driver" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bcm2835-driver"
 fi
 
-# ARMv6 is no longer supported by libvpx
-if [ "$PROJECT" != "RPi" -a "$PROJECT" != "Slice" ]; then
+if [[ ! $TARGET_ARCH = arm ]] || target_has_feature neon; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libvpx"
 fi
 
@@ -122,6 +121,16 @@ pre_configure_target() {
     --enable-libvorbis \
     --enable-encoder=libvorbis"
 
+# X11 grab for screen recording
+  if [ "$DISPLAYSERVER" = "x11" ]; then
+    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libxcb"
+    PKG_FFMPEG_LIBS="$PKG_FFMPEG_LIBS -lX11"
+    PKG_FFMPEG_X11_GRAB="\
+    --enable-libxcb \
+    --enable-libxcb-shm \
+    --enable-libxcb-xfixes \
+    --enable-libxcb-shape"
+  fi
 }
 
 configure_target() {
@@ -150,6 +159,9 @@ configure_target() {
     \
     `#General options` \
     --enable-avresample \
+    --disable-lzma \
+    --disable-alsa \
+    $PKG_FFMPEG_X11_GRAB \
     \
     `#Toolchain options` \
     --arch="$TARGET_ARCH" \
