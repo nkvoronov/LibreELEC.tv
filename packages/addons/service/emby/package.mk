@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="emby"
-PKG_VERSION="3.3.0.0"
+PKG_VERSION="3.3.1.0"
 PKG_REV="118"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
