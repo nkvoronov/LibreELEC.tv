@@ -1,6 +1,6 @@
 diff -Naur a/language/English/strings.po b/language/English/strings.po
---- a/language/English/strings.po	2017-08-11 21:11:38.000000000 +0300
-+++ b/language/English/strings.po	2017-08-19 18:34:57.760224026 +0300
+--- a/language/English/strings.po	2018-03-10 16:00:02.000000000 +0200
++++ b/language/English/strings.po	2018-03-17 21:34:41.923591916 +0200
 @@ -100,6 +100,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
@@ -10,9 +10,9 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgstr ""
 +
  msgctxt "#718"
- msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://sprunge.us and display the short URL"
+ msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://ix.io and display the short URL"
  msgstr ""
-@@ -252,6 +256,14 @@
+@@ -264,6 +268,14 @@
  msgid "Interface"
  msgstr ""
  
@@ -27,7 +27,7 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr ""
-@@ -807,3 +819,673 @@
+@@ -831,3 +843,691 @@
  msgctxt "#32392"
  msgid "Enable Lirc"
  msgstr ""
@@ -701,20 +701,38 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgctxt "#42001"
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr ""
++
++##########################################################
++
++msgctxt "#43000"
++msgid "Settings"
++msgstr ""
++
++msgctxt "#1700"
++msgid "Settings"
++msgstr ""
++
++msgctxt "#43001"
++msgid "Updates"
++msgstr ""
++
++msgctxt "#1701"
++msgid "Updates"
++msgstr ""
 diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
---- a/language/Russian/strings.po	2017-08-11 21:11:38.000000000 +0300
-+++ b/language/Russian/strings.po	2017-08-19 18:34:57.764224043 +0300
+--- a/language/Russian/strings.po	2018-03-10 16:00:02.000000000 +0200
++++ b/language/Russian/strings.po	2018-03-17 21:34:41.923591916 +0200
 @@ -108,6 +108,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
  
 +msgctxt "#717"
 +msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
-+msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе @DISTRONAME@  - Вы должны сконфигурировать правильный драйвер дисплея"
++msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе @DISTRONAME@ - Вы должны сконфигурировать правильный драйвер дисплея"
 +
  msgctxt "#718"
- msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://sprunge.us and display the short URL"
- msgstr "Отправить config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log на сайт http://sprunge.us и показать короткую URL ссылку"
+ msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://ix.io and display the short URL"
+ msgstr "Отправить config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log на сайт http://ix.io и показать короткую URL ссылку"
 @@ -268,6 +272,14 @@
  msgid "Interface"
  msgstr "Интерфейс"
@@ -730,7 +748,7 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
-@@ -823,3 +835,673 @@
+@@ -823,3 +835,691 @@
  msgctxt "#32392"
  msgid "Enable Lirc"
  msgstr "Включить Lirc"
@@ -1404,10 +1422,28 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgctxt "#42001"
 +msgid "VDR (The Video Disk Recorder) is an open source application for Linux designed to allow any computer to function as a digital video recorder, in order to record and replay TV programming using the computer's hard drive."
 +msgstr "VDR приложение с открытым исходным кодом для Linux разработанный, чтобы позволить любому компьютеру работать в качестве цифрового видеомагнитофона для того, чтобы записывать и воспроизводить ТВ программы."
++
++##########################################################
++
++msgctxt "#43000"
++msgid "Settings"
++msgstr "Настройки"
++
++msgctxt "#1700"
++msgid "Settings"
++msgstr "Настройки"
++
++msgctxt "#43001"
++msgid "Updates"
++msgstr "Обновления"
++
++msgctxt "#1701"
++msgid "Updates"
++msgstr "Обновления"
 diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2017-08-11 21:11:38.000000000 +0300
-+++ b/src/defaults.py	2017-08-19 18:42:24.000918335 +0300
-@@ -76,8 +76,137 @@
+--- a/src/defaults.py	2018-03-10 16:00:02.000000000 +0200
++++ b/src/defaults.py	2018-03-17 21:34:41.923591916 +0200
+@@ -79,8 +79,137 @@
      'CRON_DAEMON': '/sbin/crond',
      'LIRCD_DAEMON': '/usr/sbin/lircd',
      'LIRCD_UINPUT_DAEMON': '/usr/sbin/lircd-uinput',
@@ -1545,7 +1581,7 @@ diff -Naur a/src/defaults.py b/src/defaults.py
  system = {
      'ENABLED': True,
      'KERNEL_CMD': '/proc/cmdline',
-@@ -113,4 +242,9 @@
+@@ -116,4 +245,9 @@
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
      'lircd': ['lircd.service', 'lircd-uinput.service'],
@@ -1556,9 +1592,9 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'oscam': ['oscam.service'],
      }
 diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/services.py
---- a/src/resources/lib/modules/services.py	2017-08-11 21:11:38.000000000 +0300
-+++ b/src/resources/lib/modules/services.py	2017-08-19 18:49:03.694265654 +0300
-@@ -46,6 +46,8 @@
+--- a/src/resources/lib/modules/services.py	2018-03-10 16:00:02.000000000 +0200
++++ b/src/resources/lib/modules/services.py	2018-03-17 21:34:41.927591950 +0200
+@@ -49,6 +49,8 @@
      CRON_DAEMON = None
      LIRCD_DAEMON = None
      LIRCD_UINPUT_DAEMON = None
@@ -1567,7 +1603,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
      menu = {'4': {
          'name': 32001,
          'menuLoader': 'load_menu',
-@@ -173,6 +175,33 @@
+@@ -222,6 +224,33 @@
                          'InfoText': 745,
                          }},
                      },
@@ -1601,7 +1637,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
                  'bluez': {
                      'order': 6,
                      'name': 32331,
-@@ -283,6 +312,13 @@
+@@ -332,6 +361,13 @@
          try:
              self.oe.dbg_log('services::load_values', 'enter_function', 0)
  
@@ -1615,7 +1651,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
              # SAMBA
  
              if os.path.isfile(self.SAMBA_NMDB) and os.path.isfile(self.SAMBA_SMDB):
-@@ -494,6 +530,40 @@
+@@ -552,6 +588,40 @@
              self.oe.set_busy(0)
              self.oe.dbg_log('services::init_obex', 'ERROR: (' + repr(e) + ')', 4)
  
@@ -1657,8 +1693,8 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
          try:
              self.oe.dbg_log('services::inititialize_lircd', 'enter_function', 0)
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
---- a/src/resources/lib/modules/system.py	2017-08-11 21:11:38.000000000 +0300
-+++ b/src/resources/lib/modules/system.py	2017-08-19 18:34:57.768224059 +0300
+--- a/src/resources/lib/modules/system.py	2018-03-10 16:00:02.000000000 +0200
++++ b/src/resources/lib/modules/system.py	2018-03-17 21:34:41.927591950 +0200
 @@ -131,6 +131,15 @@
                              'values': [],
                              'InfoText': 713,
@@ -1675,7 +1711,109 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                          },
                      },
                  'update': {
-@@ -347,12 +356,18 @@
+@@ -142,17 +151,45 @@
+                             'value': 'auto',
+                             'action': 'set_auto_update',
+                             'type': 'multivalue',
+-                            'values': ['auto', 'manual'],
++                            'values': ['auto', 'manual', 'custom'],
+                             'InfoText': 714,
+                             'order': 1,
+                             },
++                        'CustomUpdateSettings': {
++                            'name': 43000,
++                            'value': '0',
++                            'action': 'do_update_settings',
++                            'type': 'button',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['custom'],
++                                },
++                            'InfoText': 1700,
++                            'order': 2,
++                            },
++                        'CustomUpdateDialog': {
++                            'name': 43001,
++                            'value': '0',
++                            'action': 'do_update_dialog',
++                            'type': 'button',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['custom'],
++                                },
++                            'InfoText': 1701,
++                            'order': 3,
++                            },
+                         'UpdateNotify': {
+                             'name': 32365,
+                             'value': '1',
+                             'action': 'set_value',
+                             'type': 'bool',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['auto', 'manual'],
++                                },
+                             'InfoText': 715,
+-                            'order': 2,
++                            'order': 4,
+                             },
+                         'ShowCustomChannels': {
+                             'name': 32016,
+@@ -164,7 +201,7 @@
+                                 'value': ['manual'],
+                                 },
+                             'InfoText': 761,
+-                            'order': 3,
++                            'order': 5,
+                             },
+                         'CustomChannel1': {
+                             'name': 32017,
+@@ -176,7 +213,7 @@
+                                 'value': ['1'],
+                                 },
+                             'InfoText': 762,
+-                            'order': 4,
++                            'order': 6,
+                             },
+                         'CustomChannel2': {
+                             'name': 32018,
+@@ -188,7 +225,7 @@
+                                 'value': ['1'],
+                                 },
+                             'InfoText': 762,
+-                            'order': 5,
++                            'order': 7,
+                             },
+                         'CustomChannel3': {
+                             'name': 32019,
+@@ -200,7 +237,7 @@
+                                 'value': ['1'],
+                                 },
+                             'InfoText': 762,
+-                            'order': 6,
++                            'order': 8,
+                             },
+                         'Channel': {
+                             'name': 32015,
+@@ -213,7 +250,7 @@
+                                 },
+                             'values': [],
+                             'InfoText': 760,
+-                            'order': 7,
++                            'order': 9,
+                             },
+                         'Build': {
+                             'name': 32020,
+@@ -226,7 +263,7 @@
+                                 },
+                             'values': [],
+                             'InfoText': 770,
+-                            'order': 8,
++                            'order': 10,
+                             },
+                         },
+                     },
+@@ -347,12 +384,18 @@
                  arrLayouts,
                  arrTypes,
                  self.arrVariants,
@@ -1694,7 +1832,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if not arrLayouts is None:
                  self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
                  self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
-@@ -467,7 +482,8 @@
+@@ -467,7 +510,8 @@
                          ]['KeyboardLayout2']['value']]
                  self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
                                  + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
@@ -1704,7 +1842,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
                      os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
                  config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
-@@ -476,7 +492,8 @@
+@@ -476,7 +520,8 @@
                                    self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
                  config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
                                    ]['settings']['KeyboardLayout2']['value'] + '"\n')
@@ -1714,7 +1852,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  config_file.close()
                  parameters = [
                      '-display ' + os.environ['DISPLAY'],
-@@ -485,7 +502,7 @@
+@@ -485,7 +530,7 @@
                      '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
                              ]['KeyboardVariant2']['value'],
                      '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
@@ -1723,7 +1861,31 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                      ]
                  self.oe.execute('setxkbmap ' + ' '.join(parameters))
              elif self.nox_keyboard_layouts == True:
-@@ -552,6 +569,7 @@
+@@ -546,12 +591,31 @@
+         except Exception, e:
+             self.oe.dbg_log('system::set_auto_update', 'ERROR: (' + repr(e) + ')')
+ 
++    def do_update_settings(self, listItem=None):
++        try:
++            self.oe.dbg_log('system::do_update_settings', 'enter_function', 0)
++            if xbmc.getCondVisibility('System.HasAddon(script.libreelec.devupdate)'):
++                xbmc.executebuiltin('Addon.OpenSettings(script.libreelec.devupdate)')
++            self.oe.dbg_log('system::do_update_settings', 'exit_function', 0)
++        except Exception, e:
++            self.oe.dbg_log('system::do_update_settings', 'ERROR: (' + repr(e) + ')')
++
++    def do_update_dialog(self, listItem=None):
++        try:
++            self.oe.dbg_log('system::do_update_dialog', 'enter_function', 0)
++            if xbmc.getCondVisibility('System.HasAddon(script.libreelec.devupdate)'):
++                xbmc.executebuiltin('RunAddon(script.libreelec.devupdate)')
++            self.oe.dbg_log('system::do_update_dialog', 'exit_function', 0)
++        except Exception, e:
++            self.oe.dbg_log('system::do_update_dialog', 'ERROR: (' + repr(e) + ')')
++
+     def get_keyboard_layouts(self):
+         try:
+             self.oe.dbg_log('system::get_keyboard_layouts', 'enter_function', 0)
              arrLayouts = []
              arrVariants = {}
              arrTypes = []
@@ -1731,7 +1893,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if os.path.exists(self.KEYBOARD_INFO):
                  objXmlFile = open(self.KEYBOARD_INFO, 'r')
                  strXmlText = objXmlFile.read()
-@@ -593,8 +611,20 @@
+@@ -593,8 +657,20 @@
                                  if subnode_2.nodeName == 'description':
                                      if hasattr(subnode_2.firstChild, 'nodeValue'):
                                          arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
@@ -1752,7 +1914,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              elif os.path.exists(self.NOX_KEYBOARD_INFO):
                  for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
                      if os.path.isfile(layout):
-@@ -609,6 +639,7 @@
+@@ -609,6 +685,7 @@
                  arrLayouts,
                  arrTypes,
                  arrVariants,
@@ -1760,9 +1922,30 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  )
          except Exception, e:
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
+@@ -894,7 +971,7 @@
+                         return 0
+                 except:
+                     pass
+-                    
++
+                 self.backup_dlg = xbmcgui.DialogProgress()
+                 self.backup_dlg.create('LibreELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
+                 if not os.path.exists(self.BACKUP_DESTINATION):
+@@ -924,9 +1001,9 @@
+                                               False, 
+                                               False, 
+                                               self.BACKUP_DESTINATION )
+-            
++
+             restore_file_name = restore_file_path.split('/')[-1]
+-            
++
+             if not os.path.exists(self.RESTORE_DIR):
+                 os.makedirs(self.RESTORE_DIR)
+             else:
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2017-08-19 18:34:57.768224059 +0300
++++ b/src/resources/lib/modules/transmission.py	2018-03-17 21:34:41.927591950 +0200
 @@ -0,0 +1,331 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -2097,7 +2280,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2017-08-19 18:34:57.772224076 +0300
++++ b/src/resources/lib/modules/tvservers.py	2018-03-17 21:34:41.935592020 +0200
 @@ -0,0 +1,2063 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
