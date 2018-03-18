@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="libva"
-PKG_VERSION="1.7.3"
+PKG_VERSION="2.1.0"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="http://freedesktop.org/wiki/Software/vaapi"

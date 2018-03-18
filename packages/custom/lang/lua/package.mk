@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="lua"
-PKG_VERSION="5.3.3"
+PKG_VERSION="5.3.4"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.lua.org/"

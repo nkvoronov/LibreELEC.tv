@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="script.libreelec.devupdate"
-PKG_VERSION="359b37f"
+PKG_VERSION="a911ba1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
@@ -40,11 +40,11 @@ makeinstall_target() {
 }
 
 post_install() {
-  rm $PKG_BUILD/README.md
-  rm $PKG_BUILD/LICENSE.txt
-
   mkdir -p $INSTALL/usr/share/kodi/addons/script.libreelec.devupdate
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/script.libreelec.devupdate
+
+  rm $INSTALL/usr/share/kodi/addons/script.libreelec.devupdate/README.md
+  rm $INSTALL/usr/share/kodi/addons/script.libreelec.devupdate/LICENSE.txt
 
   python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/script.libreelec.devupdate/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/script.libreelec.devupdate/resources/lib/ -name "*.py"`

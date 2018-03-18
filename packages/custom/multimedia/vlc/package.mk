@@ -17,14 +17,14 @@
 ################################################################################
 
 PKG_NAME="vlc"
-PKG_VERSION="2.2.6"
+PKG_VERSION="3.0.1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
+PKG_DEPENDS_TARGET="toolchain a52dec lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
 libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 opus lirc libavc1394 \
-libdc1394 libdvdnav a52dec libssh2 libmatroska libshout gnutls ncurses SDL_image qt4"
+libdc1394 libdvdnav libssh2 libmatroska libshout gnutls ncurses SDL_image qt5"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
