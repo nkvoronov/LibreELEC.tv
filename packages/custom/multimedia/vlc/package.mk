@@ -22,9 +22,12 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain a52dec lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
-libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 opus lirc libavc1394 \
-libdc1394 libdvdnav libssh2 libmatroska libshout gnutls ncurses SDL_image qt5"
+PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libdca lua libmatroska libupnp libmpeg2 xcb-util-keysyms gnutls liblivemedia libdc1394 libavc1394 libssh2 libshout libtheora zvbi SDL_image chromaprint ncurses \
+fdk-aac taglib ffmpeg faad2 libmad libXinerama freetype fribidi harfbuzz fontconfig libxml2 libbluray flac librsvg avahi systemd libmtp libdvdcss samba mesa libnfs mpg123 libdvdread libdvdnav libogg libmodplug \
+fluidsynth libvpx speex opus libpng libjpeg-turbo x265 x264 libass pulseaudio alsa-lib libsamplerate lirc libprojectM qt5"
+#lua libass librsvg liblivemedia libbluray samba dbus libdvbpsi ffmpeg flac xcb-util-keysyms alsa-lib libsamplerate \
+#libupnp libmtp libmad faad2 libmodplug libmpeg2 fluidsynth dcadec taglib libva libvdpau zvbi chromaprint libdca fdk-aac libvpx x264 opus lirc libavc1394 \
+#libdc1394 libdvdnav libssh2 libmatroska libshout gnutls ncurses SDL_image qt5"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
@@ -135,7 +138,7 @@ PKG_CONFIGURE_CODEC_PLUGINS_OPTS="--disable-wma-fixed \
 	--disable-x26410b \
 	--enable-x264 \
 	--disable-mfx \
-	--enable-fluidsynth \
+	--disable-fluidsynth \
 	--enable-zvbi \
 	--disable-telx \
 	--enable-libass \

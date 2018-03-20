@@ -22,7 +22,7 @@ PKG_REV="34"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
-PKG_DEPENDS_TARGET="toolchain vlc vlc-htsp-plugin"
+PKG_DEPENDS_TARGET="toolchain vlc"
 PKG_SECTION="tools"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
@@ -43,7 +43,7 @@ makeinstall_target() {
 addon() {
   VLC_DIR=$(get_build_dir vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
-  QT4=$(get_build_dir qt4)
+  QT5=$(get_build_dir qt5)
   LUA=$(get_build_dir lua)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
@@ -59,11 +59,11 @@ addon() {
     cp -P $LUA/src/luac $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $LUA/src/liblua.so.5.3.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5
+    cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    cp -P $QT4/lib/libQtCore.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
-    cp -P $QT4/lib/libQtGui.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4
-    cp -P $QT4/lib/libQtNetwork.so.4.8.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtNetwork.so.4
+    cp -P $QT5/qtbase/lib/libQt5Core.so.5.10.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
+    cp -P $QT5/qtbase/lib/libQt5Gui.so.5.10.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4
+    cp -P $QT5/qtbase/lib/libQt5Network.so.5.10.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtNetwork.so.4
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
@@ -75,12 +75,12 @@ addon() {
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
 
-    cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
+    #cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
+    #cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
-    cp -P $QT4/lib/fonts/* $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
-    rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts/README
+  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
+    #cp -P $QT5/lib/fonts/* $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
+    #rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts/README
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share

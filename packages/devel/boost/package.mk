@@ -63,7 +63,7 @@ make_target() {
 
 makeinstall_target() {
   if [ "$BOOST_PYTHON_SUPPORT" = yes ]; then
-	$TOOLCHAIN/bin/bjam -d2 --toolset=gcc link=static \
+    $TOOLCHAIN/bin/bjam -d2 --toolset=gcc link=static \
                                   --prefix=$SYSROOT_PREFIX/usr \
                                   --ignore-site-config \
                                   --layout=system \
@@ -76,7 +76,7 @@ makeinstall_target() {
                                   --with-regex -sICU_PATH="$SYSROOT_PREFIX/usr" \
                                   install
   else
-	$TOOLCHAIN/bin/bjam -d2 --toolset=gcc link=static \
+    $TOOLCHAIN/bin/bjam -d2 --toolset=gcc link=static \
                                   --prefix=$SYSROOT_PREFIX/usr \
                                   --ignore-site-config \
                                   --layout=system \

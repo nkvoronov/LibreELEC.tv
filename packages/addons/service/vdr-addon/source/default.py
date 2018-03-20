@@ -1,6 +1,6 @@
 ################################################################################
 #      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+#      Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
 #
 #  OpenELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -15,18 +15,3 @@
 #  You should have received a copy of the GNU General Public License
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
-
-PKG_NAME="speex"
-PKG_VERSION="1.2rc2"
-PKG_ARCH="any"
-PKG_LICENSE="BSD"
-PKG_SITE="http://downloads.us.xiph.org/releases/speex"
-#PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_URL="$PKG_SITE/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="audio"
-PKG_SHORTDESC="Speex / OPUS audio codec"
-PKG_LONGDESC="Speex / OPUS audio codec"
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"

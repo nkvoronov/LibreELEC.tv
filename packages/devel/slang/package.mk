@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="slang"
-PKG_VERSION="2.3.1a"
+PKG_VERSION="2.3.2"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://www.jedsoft.org/slang/"

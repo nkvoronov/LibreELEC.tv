@@ -17,12 +17,12 @@
 ################################################################################
 
 PKG_NAME="qt5"
-PKG_VERSION="5.10.1"
+PKG_VERSION="5.6.2"
 PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
-PKG_URL="https://download.qt.io/archive/qt/5.10/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
-PKG_SOURCE_DIR="qt-everywhere-src-$PKG_VERSION"
-PKG_DEPENDS_TARGET="toolchain bzip2 Python zlib:host zlib libpng tiff dbus glib fontconfig mysql openssl \
+PKG_URL="http://download.qt.io/official_releases/qt/5.6/$PKG_VERSION/single/qt-everywhere-opensource-src-$PKG_VERSION.tar.xz"
+PKG_SOURCE_DIR="qt-everywhere-opensource-src-$PKG_VERSION"
+PKG_DEPENDS_TARGET="toolchain pcre zlib bzip2 Python  libpng tiff dbus glib fontconfig mysql openssl \
 glibc liberation-fonts-ttf freetype font-util font-xfree86-type1 font-misc-misc alsa libXcursor libSM libICE"
 PKG_SECTION="devel"
 PKG_SHORTDESC="Qt GUI toolkit"
@@ -31,87 +31,114 @@ PKG_LONGDESC="Qt GUI toolkit"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-PLATFORM="linux-g++-$TARGET_NAME"
-LEX=$TOOLCHAIN/bin/flex
-YACC=$TOOLCHAIN/bin/yacc
-INCDIR=$SYSROOT_PREFIX/usr/include
-LIBDIR=$SYSROOT_PREFIX/usr/lib
-QMAKE_CONF_DIR="$BUILD/$PKG_NAME-$PKG_VERSION/mkspecs/$PLATFORM"
-
-QTDIR=$SYSROOT_PREFIX/usr
-
-PKG_CONFIGURE_OPTS_TARGET="-prefix $QTDIR \
-                           -bindir $QTDIR/bin \
-                           -plugindir $QTDIR/lib/qt5/plugins \
-                           -importdir $QTDIR/lib/qt5/imports \
-                           -datadir $QTDIR/share/qt5 \
-                           -docdir $QTDIR/share/doc/qt5 \
-                           -translationdir $QTDIR/share/qt4/translations \
-                           -device linux-libreelec-g++ \
-                           -confirm-license \
-                           -opensource \
-                           -no-accessibility \
-                           -no-sql-sqlite \
-                           -no-sql-mysql \
-                           -qt-zlib \
-                           -qt-libpng \
-                           -qt-libjpeg \
-                           -no-rpath \
-                           -optimized-qmake \
-                           -dbus-linked \
-                           -reduce-relocations \
-                           -no-separate-debug-info \
-                           -verbose \
-                           -no-openvg \
-                           -fontconfig \
-                           -nomake examples"
-
+PKG_CONFIGURE_OPTS_TARGET="-prefix /usr
+                           -sysroot $SYSROOT_PREFIX
+                           -hostprefix $TOOLCHAIN
+                           -device linux-libreelec-g++
+                           -opensource -confirm-license -v
+                           -no-sql-sqlite
+                           -no-sql-mysql
+                           -no-qml-debug
+                           -system-zlib
+                           -system-harfbuzz
+                           -openssl-linked
+                           -dbus-linked
+                           -make libs
+                           -nomake examples
+                           -nomake tests
+                           -skip qt3d
+                           -skip qtandroidextras
+                           -skip qtcanvas3d
+                           -skip qtconnectivity
+                           -skip qtdeclarative
+                           -skip qtdoc
+                           -skip qtenginio
+                           -skip qtgraphicaleffects
+                           -skip qtimageformats
+                           -skip qtlocation
+                           -skip qtmacextras
+                           -skip qtmultimedia
+                           -skip qtquickcontrols
+                           -skip qtquickcontrols2
+                           -skip qtscript
+                           -skip qtsensors
+                           -skip qtserialbus
+                           -skip qtserialport
+                           -skip qttools
+                           -skip qttranslations
+                           -skip qtwayland
+                           -skip qtwebchannel
+                           -skip qtwebengine
+                           -skip qtwebsockets
+                           -skip qtwebview
+                           -skip qtwinextras
+                           -skip qtxmlpatterns
+                           -no-rpath
+                           -optimized-qmake
+                           -no-use-gold-linker
+                           -reduce-relocations"
 
 configure_target() {
+  QMAKE_CONF_DIR="qtbase/mkspecs/devices/linux-libreelec-g++"
+  QMAKE_CONF="${QMAKE_CONF_DIR}/qmake.conf"
+
   cd ..
-
   mkdir -p $QMAKE_CONF_DIR
-    cp -P $PKG_DIR/mkspecs/* $QMAKE_CONF_DIR
-  sed "s#@CC@#${CC}#;s#@CFLAGS@#${CFLAGS}#;s#@CXX@#${CXX}#;s#@LEX@#${LEX}#;s#@YACC@#${YACC}#;s#@INCDIR@#${INCDIR}#;s#@LIBDIR@#${LIBDIR}#;s#@LDFLAGS@#${LDFLAGS}#;s#@AR@#${AR}#;s#@OBJCOPY@#${OBJCOPY}#;s#@STRIP@#${STRIP}#" $QMAKE_CONF_DIR/qmake.conf.in > $QMAKE_CONF_DIR/qmake.conf
-  rm -f $QMAKE_CONF_DIR/qmake.conf.in
+  echo "MAKEFILE_GENERATOR       = UNIX" > $QMAKE_CONF
+  echo "CONFIG                  += incremental" >> $QMAKE_CONF
+  echo "QMAKE_INCREMENTAL_STYLE  = sublib" >> $QMAKE_CONF
+  echo "include(../../common/linux.conf)" >> $QMAKE_CONF
+  echo "include(../../common/gcc-base-unix.conf)" >> $QMAKE_CONF
+  echo "include(../../common/g++-unix.conf)" >> $QMAKE_CONF
+  echo "load(device_config)" >> $QMAKE_CONF
+  echo "QMAKE_CC                = $CC" >> $QMAKE_CONF
+  echo "QMAKE_CXX               = $CXX" >> $QMAKE_CONF
+  echo "QMAKE_LINK              = $CXX" >> $QMAKE_CONF
+  echo "QMAKE_LINK_SHLIB        = $CXX" >> $QMAKE_CONF
+  echo "QMAKE_AR                = $AR cqs" >> $QMAKE_CONF
+  echo "QMAKE_OBJCOPY           = $OBJCOPY" >> $QMAKE_CONF
+  echo "QMAKE_NM                = $NM -P" >> $QMAKE_CONF
+  echo "QMAKE_STRIP             = $STRIP" >> $QMAKE_CONF
+  echo "QMAKE_CFLAGS = $CFLAGS" >> $QMAKE_CONF
+  echo "QMAKE_CXXFLAGS = $CXXFLAGS" >> $QMAKE_CONF
+  echo "QMAKE_LFLAGS = $LDFLAGS" >> $QMAKE_CONF
+  echo "load(qt_config)" >> $QMAKE_CONF
+  echo '#include "../../linux-g++/qplatformdefs.h"' >> $QMAKE_CONF_DIR/qplatformdefs.h
 
-  export QT_FORCE_PKGCONFIG=yes
-  unset QMAKESPEC
-  export QT5PREFIX=$QTDIR
-
-  CC="" CXX="" LD="" RANLIB="" AR="" AS="" CPPFLAGS="" CFLAGS="" LDFLAGS="" CXXFLAGS="" \
-    PKG_CONFIG_SYSROOT_DIR="$SYSROOT_PREFIX" \
-    PKG_CONFIG="$TOOLCHAIN/bin/pkg-config" \
-    PKG_CONFIG_PATH="$SYSROOT_PREFIX/usr/lib/pkgconfig" \
-    ./configure $PKG_CONFIGURE_OPTS_TARGET
+  unset CC CXX LD RANLIB AR AS CPPFLAGS CFLAGS LDFLAGS CXXFLAGS
+  ./configure $PKG_CONFIGURE_OPTS_TARGET
 }
 
 post_makeinstall_target() {
-  mkdir -p $TOOLCHAIN/bin
-    cp -P $PKG_BUILD/bin/qmake $TOOLCHAIN/bin
-
-  for file in $QTDIR/lib/pkgconfig/Qt*.pc; do
-    sed -i -r 's/prefix=\//qtdir=\//g' $file
-    sed -i -r 's/exec_prefix=\$\{prefix\}/exec_prefix=\$\{qtdir\}/g' $file
-    sed -i -e '3 s/^/prefix=\/usr\n/;' $file
-    perl -pi -e "s, -L$QTDIR/?\S+,,g" $file
-    perl -pi -e "s, -L$BUILD/?\S+,,g" $file
-    perl -pi -e "s, -I$QTDIR/?\S+,,g" $file
-  done
-
-  for file in $QTDIR/lib/libQt*.prl; do
-    sed -r -e '/^QMAKE_PRL_BUILD_DIR/d'  -e 's/(QMAKE_PRL_LIBS =).*/\1/' -i $file
-  done
+  mkdir -p $SYSROOT_PREFIX/usr/bin
+    ln -sf $TOOLCHAIN/bin/uic $SYSROOT_PREFIX/usr/bin/uic
+    ln -sf $TOOLCHAIN/bin/rcc $SYSROOT_PREFIX/usr/bin/rcc
 }
 
 post_install() {
   mkdir -p $INSTALL/usr/lib
-    cp -P $PKG_BUILD/lib/libQtCore.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/lib/libQtGui.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/lib/libQtNetwork.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Concurrent.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Core.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5DBus.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5EglDeviceIntegration.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Gui.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Network.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5OpenGL.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5PrintSupport.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Sql.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Test.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Widgets.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5XcbQpa.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5Xml.so* $INSTALL/usr/lib
+
+    cp -P $PKG_BUILD/qtsvg/lib/libQt5Svg.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtx11extras/lib/libQt5X11Extras.so* $INSTALL/usr/lib
+
+  mkdir -p $INSTALL/usr/lib/qt5/plugins
+    cp -PR $PKG_BUILD/qtbase/plugins/* $INSTALL/usr/lib/qt5/plugins
 
   mkdir -p $INSTALL/usr/lib/fonts
-    cp -P $PKG_BUILD/lib/fonts/* $INSTALL/usr/lib/fonts
+    cp -P $PKG_BUILD/qtbase/lib/fonts/* $INSTALL/usr/lib/fonts
     rm -f $INSTALL/usr/lib/fonts/README
 
 }
