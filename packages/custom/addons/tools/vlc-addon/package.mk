@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="vlc-addon"
-PKG_VERSION="2.2.6"
-PKG_REV="34"
+PKG_VERSION="3.0.1"
+PKG_REV="36"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -61,9 +61,29 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    cp -P $QT5/qtbase/lib/libQt5Core.so.5.10.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtCore.so.4
-    cp -P $QT5/qtbase/lib/libQt5Gui.so.5.10.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtGui.so.4
-    cp -P $QT5/qtbase/lib/libQt5Network.so.5.10.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQtNetwork.so.4
+    cp -P $QT5/qtbase/lib/libQt5Concurrent.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Concurrent.so.5
+    cp -P $QT5/qtbase/lib/libQt5Core.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Core.so.5
+    cp -P $QT5/qtbase/lib/libQt5DBus.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5DBus.so.5
+    cp -P $QT5/qtbase/lib/libQt5EglDeviceIntegration.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5EglDeviceIntegration.so.5
+    cp -P $QT5/qtbase/lib/libQt5Gui.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Gui.so.5
+    cp -P $QT5/qtbase/lib/libQt5Network.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Network.so.5
+    cp -P $QT5/qtbase/lib/libQt5OpenGL.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5OpenGL.so.5
+    cp -P $QT5/qtbase/lib/libQt5PrintSupport.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5PrintSupport.so.5
+    cp -P $QT5/qtbase/lib/libQt5Sql.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Sql.so.5
+    cp -P $QT5/qtbase/lib/libQt5Test.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Test.so.5
+    cp -P $QT5/qtbase/lib/libQt5Widgets.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Widgets.so.5
+    cp -P $QT5/qtbase/lib/libQt5XcbQpa.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5XcbQpa.so.5
+    cp -P $QT5/qtbase/lib/libQt5Xml.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Xml.so.5
+    cp -P $QT5/qtsvg/lib/libQt5Svg.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Svg.so.5
+    cp -P $QT5/qtx11extras/lib/libQt5X11Extras.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5X11Extras.so.5
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
+    cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
+    cp -P $QT5/qtbase/lib/fonts/* $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
+    rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts/README
+
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
@@ -74,13 +94,6 @@ addon() {
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
-
-    #cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    #cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
-
-  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
-    #cp -P $QT5/lib/fonts/* $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
-    #rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts/README
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
@@ -97,4 +110,8 @@ addon() {
   done
 
   ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
+
+    #cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
+    #cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
+
 }
