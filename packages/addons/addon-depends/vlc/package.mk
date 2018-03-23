@@ -206,24 +206,106 @@ PKG_CONFIGURE_COMPONENTS_OPTS="--enable-vlc \
 	--disable-macosx-vlc-app"
 
 
-PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_MAIN_OPT \
-	$PKG_CONFIGURE_OPTIMIZATION_OPTS \
-	SPKG_CONFIGURE_INPUT_PLUGINS_OPTS \
-	$PKG_CONFIGURE_MUX_DEMUX_PLUGINS_OPTS \
-	$PKG_CONFIGURE_CODEC_PLUGINS_OPTS \
-	$PKG_CONFIGURE_VIDEO_PLUGINS_OPTS \
-	$PKG_CONFIGURE_AUDIO_PLUGINS_OPTS \
-	$PKG_CONFIGURE_INTERFACE_PLUGINS_OPTS \
-	$PKG_CONFIGURE_VISUALISATIONS_OPTS \
-	$PKG_CONFIGURE_SERVICE_DISCOVERY_PLUGINS_OPTS \
-	$PKG_CONFIGURE_MISC_OPTIONS_OPTS \
-	$PKG_CONFIGURE_COMPONENTS_OPTS \
-	LUAC=$SYSROOT_PREFIX/usr/bin/luac \
-	RCC=$SYSROOT_PREFIX/usr/bin/rcc"
+PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
+              --sysconfdir=/etc \
+              --disable-rpath \
+              --enable-nls \
+              --enable-lua \
+              --disable-archive \
+              --enable-live555 \
+              --enable-dc1394 \
+              --enable-dv1394 \
+              --disable-dvdread \
+              --disable-dvdnav \
+              --enable-bluray \
+              --disable-opencv \
+              --enable-smbclient \
+              --enable-sftp \
+              --enable-nfs \
+              --enable-realrtsp \
+              --enable-dvbpsi \
+              --disable-gme \
+              --enable-ogg \
+              --enable-shout \
+              --enable-matroska \
+              --enable-mod \
+              --enable-mpc \
+              --enable-mad \
+              --enable-mpg123 \
+              --enable-gst-decode \
+              --enable-avcodec \
+              --enable-libva \
+              --enable-avformat \
+              --enable-postproc \
+              --enable-faad \
+              --enable-vpx \
+              --disable-twolame \
+              --enable-fdkaac \
+              --enable-a52 \
+              --enable-dca \
+              --enable-flac \
+              --enable-libmpeg2 \
+              --enable-vorbis \
+              --enable-speex \
+              --enable-opus \
+              --enable-oggspots \
+              --disable-schroedinger \
+              --enable-png \
+              --enable-jpeg \
+              --disable-x262 \
+              --enable-x264 \
+              --disable-x265 \
+              --enable-zvbi \
+              --enable-libass \
+              --disable-kate \
+              --disable-tiger \
+              --enable-vdpau \
+              --disable-wayland \
+              --enable-sdl-image \
+              --enable-freetype \
+              --enable-fribidi \
+              --enable-harfbuzz \
+              --enable-fontconfig \
+              --enable-svg \
+              --enable-svgdec \
+              --disable-aa \
+              --disable-caca \
+              --enable-pulse \
+              --enable-alsa \
+              --disable-jack \
+              --enable-samplerate \
+              --disable-soxr \
+              --enable-chromaprint \
+              --disable-chromecast \
+              --enable-qt \
+              --disable-skins2 \
+              --disable-libtar \
+              --enable-ncurses \
+              --enable-lirc \
+              --disable-goom \
+              --disable-projectm \
+              --enable-avahi \
+              --enable-mtp \
+              --enable-upnp \
+              --disable-microdns \
+              --enable-libxml2 \
+              --enable-libgcrypt \
+              --enable-gnutls \
+              --enable-taglib \
+              --disable-secret \
+              --disable-kwallet \
+              --disable-update-check \
+              --disable-notify \
+              --disable-libplacebo \
+              --disable-fluidsynth \
+              --enable-vlc"
 
 pre_configure_target() {
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
+  export LUAC=$SYSROOT_PREFIX/usr/bin/luac
   export LUA_LIBS="-L$SYSROOT_PREFIX/usr/lib -llua -lm"
+  export CXXFLAGS+=" -std=c++11"
+  export RCC=$TOOLCHAIN/bin/rcc
 
   PKG_CONFIG_PATH="$(get_build_dir ncurses)/.install_tmp/usr/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ncurses)/.install_tmp/usr/include"

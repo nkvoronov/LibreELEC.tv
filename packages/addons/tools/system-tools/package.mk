@@ -24,7 +24,7 @@ PKG_LICENSE="GPL"
 PKG_SITE=""
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="virtual"
+PKG_SECTION="tools"
 PKG_SHORTDESC="A bundle of system tools and programs"
 PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, inotify-tools, jq, lm_sensors, lshw, mc, mrxvt, mtpfs, nmon, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
 
@@ -186,6 +186,14 @@ if [ "$ENABLE_VIM" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vim"
 fi
 
+make_target() {
+  : # nop
+}
+
+makeinstall_target() {
+  : # nop
+}
+
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/data/
@@ -271,7 +279,7 @@ addon() {
   # mc
   if [ "$ENABLE_MC" = yes ]; then
     cp -Pa $(get_build_dir mc)/.install_pkg/usr/bin/* $ADDON_BUILD/$PKG_ADDON_ID/bin/
-    cp -Pa $(get_build_dir mc)/.install_pkg/storage/.kodi/addons/virtual.system-tools/* $ADDON_BUILD/$PKG_ADDON_ID
+    cp -PR  $(get_build_dir mc)/.install_pkg/* $ADDON_BUILD/$PKG_ADDON_ID
   fi
   # htop
   if [ "$ENABLE_HTOP" = yes ]; then

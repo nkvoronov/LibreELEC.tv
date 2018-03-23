@@ -73,6 +73,7 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix /usr
                            -skip qtwebview
                            -skip qtwinextras
                            -skip qtxmlpatterns
+                           -fontconfig
                            -no-rpath
                            -optimized-qmake
                            -no-use-gold-linker

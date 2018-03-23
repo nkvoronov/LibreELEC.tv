@@ -65,15 +65,19 @@ Cflags: -I${includedir}/liveMedia -I${includedir}/groupsock -I${includedir}/Basi
 Libs: -L${libdir} -lliveMedia -lgroupsock -lBasicUsageEnvironment -lUsageEnvironment
 EOF
 
+  rm -fR $SYSROOT_PREFIX/usr/include/BasicUsageEnvironment
   mkdir -p $SYSROOT_PREFIX/usr/include/BasicUsageEnvironment
     cp -P $PKG_BUILD/.$TARGET_NAME/BasicUsageEnvironment/include/* $SYSROOT_PREFIX/usr/include/BasicUsageEnvironment
     cp -P $PKG_BUILD/.$TARGET_NAME/BasicUsageEnvironment/*.a $SYSROOT_PREFIX/usr/lib
+  rm -fR  $SYSROOT_PREFIX/usr/include/UsageEnvironment
   mkdir -p $SYSROOT_PREFIX/usr/include/UsageEnvironment
     cp -P $PKG_BUILD/.$TARGET_NAME/UsageEnvironment/include/* $SYSROOT_PREFIX/usr/include/UsageEnvironment
     cp -P $PKG_BUILD/.$TARGET_NAME/UsageEnvironment/*.a $SYSROOT_PREFIX/usr/lib
+  rm -fR $SYSROOT_PREFIX/usr/include/groupsock
   mkdir -p $SYSROOT_PREFIX/usr/include/groupsock
     cp -P $PKG_BUILD/.$TARGET_NAME/groupsock/include/* $SYSROOT_PREFIX/usr/include/groupsock
     cp -P $PKG_BUILD/.$TARGET_NAME/groupsock/*.a $SYSROOT_PREFIX/usr/lib
+  rm -fR $SYSROOT_PREFIX/usr/include/liveMedia
   mkdir -p $SYSROOT_PREFIX/usr/include/liveMedia
     cp -P $PKG_BUILD/.$TARGET_NAME/liveMedia/include/* $SYSROOT_PREFIX/usr/include/liveMedia
     cp -P $PKG_BUILD/.$TARGET_NAME/liveMedia/*.a $SYSROOT_PREFIX/usr/lib

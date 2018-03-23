@@ -38,6 +38,7 @@ make_target() {
 }
 
 makeinstall_target() {
+  rm -f $SYSROOT_PREFIX/usr/share/man/man1/lua*
   make \
   TO_LIB="liblua.a liblua.so liblua.so.$_MAJORVER liblua.so.$PKG_VERSION" \
   INSTALL_DATA='cp -d' \

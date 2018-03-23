@@ -17,30 +17,18 @@
 ################################################################################
 
 PKG_NAME="libebml"
-PKG_VERSION="1.3.0"
+PKG_VERSION="1.3.5"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://dl.matroska.org/downloads/libebml"
-PKG_URL="http://dl.matroska.org/downloads/libebml/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_URL="http://dl.matroska.org/downloads/libebml/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="devel"
 PKG_SHORTDESC="The libebml library allows one to read and write files using EBML (the Extensible Binary Meta Language), a binary pendant to XML. Using libebml makes it easier to extend a file format without breaking support in older parsers."
 PKG_LONGDESC="The libebml library allows one to read and write files using EBML (the Extensible Binary Meta Language), a binary pendant to XML. Using libebml makes it easier to extend a file format without breaking support in older parsers."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_AUTORECONF="yes"
 
-make_target() {
-  make -C make/linux
-}
+PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
 
-makeinstall_target() {
-  make install -C make/linux prefix=$PKG_BUILD/.install_pkg/usr
-}
-
-post_makeinstall_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/include/ebml
-    cp -PR $PKG_BUILD/ebml/* $SYSROOT_PREFIX/usr/include/ebml
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $PKG_BUILD/make/linux/{*.a,*.so*} $SYSROOT_PREFIX/usr/lib
-}
