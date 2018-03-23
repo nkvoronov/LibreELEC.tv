@@ -110,12 +110,6 @@ configure_target() {
   ./configure $PKG_CONFIGURE_OPTS_TARGET
 }
 
-post_makeinstall_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/bin
-    ln -sf $TOOLCHAIN/bin/uic $SYSROOT_PREFIX/usr/bin/uic
-    ln -sf $TOOLCHAIN/bin/rcc $SYSROOT_PREFIX/usr/bin/rcc
-}
-
 post_install() {
   mkdir -p $INSTALL/usr/lib
     cp -P $PKG_BUILD/qtbase/lib/libQt5Concurrent.so* $INSTALL/usr/lib

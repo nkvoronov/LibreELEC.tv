@@ -52,6 +52,12 @@ addon() {
   LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
   GCC_DIR=$(get_build_dir gcc)
+  LIB_XPM=$(get_build_dir libXpm)
+  LIB_DVDREAD=$(get_build_dir libdvdreadv)
+  LIB_DVDNAV=$(get_build_dir libdvdnavv)
+  LIB_GME=$(get_build_dir libgme)
+  LIB_MDN=$(get_build_dir libmicrodns)
+  LIB_MPEG2=$(get_build_dir libmpeg2)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -94,6 +100,13 @@ addon() {
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
+    cp -P $LIB_XPM/.install_pkg/usr/lib/libXpm.so.4.11.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXpm.so.4
+    cp -P $LIB_DVDREAD/.install_pkg/usr/lib/libdvdread.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdread.so.4
+    cp -P $LIB_DVDNAV/.install_pkg/usr/lib/libdvdnav.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdnav.so.4
+    cp -P $LIB_GME/.install_pkg/usr/lib/libgme.so.0.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgme.so.0
+    cp -P $LIB_MDN/.install_pkg/usr/lib/libmicrodns.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmicrodns.so.0
+    cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2.so.0.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2.so.0
+    cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2convert.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2convert.so.0
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
