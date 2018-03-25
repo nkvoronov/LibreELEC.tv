@@ -52,16 +52,13 @@ post_makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libreelec
     cp $PKG_DIR/scripts/* $INSTALL/usr/lib/libreelec
 
-#  # bluetooth is optional
-#    if [ ! "$BLUETOOTH_SUPPORT" = yes ]; then
-#      rm -f resources/lib/modules/bluetooth.py
-#    fi
-
   python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/lib/ -name "*.py"`
 
   python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/service.libreelec.settings/oe.py -f
   rm -rf $INSTALL/usr/share/kodi/addons/service.libreelec.settings/oe.py
+
+  rm -f $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/fanart.png
 }
 
 post_install() {

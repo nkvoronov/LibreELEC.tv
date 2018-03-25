@@ -65,18 +65,6 @@ fi
   SYS_TOOLS_ENABLED="yes"
   DVB_TOOLS_ENABLED="yes"
 
-# PHP
-  PHP_SUPPORT="yes"
-
 # Perl
   PERL_VERSION="5.24.0"
   PERL_SUPPORT="yes"
-
-# Lib Torrents
-  LIBTORRENTS_SUPPORT="yes"
-
-# Acestream Engine
-  ACESTREAM_SUPPORT="yes"
-
-# vlc
-  VLC_ENABLE="yes"

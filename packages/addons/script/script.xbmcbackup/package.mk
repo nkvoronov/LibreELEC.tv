@@ -16,17 +16,17 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="script.libreelec.devupdate"
-PKG_VERSION="a911ba1"
+PKG_NAME="script.xbmcbackup"
+PKG_VERSION="1.1.2"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
-PKG_URL="https://github.com/nkvoronov/$PKG_NAME.git"
-PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain Python kodi script.module.beautifulsoup4 script.module.requests script.module.html2text script.xbmcbackup"
+PKG_URL="http://mirrors.kodi.tv/addons/krypton/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
+PKG_DEPENDS_TARGET="toolchain Python kodi script.module.httplib2 script.module.oauth2client script.module.uritemplate script.module.yaml script.module.googleapi"
+PKG_SOURCE_DIR="$PKG_NAME"
 PKG_SECTION=""
-PKG_SHORTDESC="Unofficial LibreELEC updater"
-PKG_LONGDESC="Unofficial LibreELEC updater"
+PKG_SHORTDESC="Backup and restore your XBMC database and configuration files in the event of a crash or file."
+PKG_LONGDESC="Backup and restore your XBMC database and configuration files in the event of a crash or file."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"

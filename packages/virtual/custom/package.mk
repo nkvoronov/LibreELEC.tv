@@ -58,22 +58,7 @@ if [ "$DVB_TOOLS_ENABLED" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tools-dvb"
 fi
 
-if [ "$PHP_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET php"
-fi
-
 if [ "$PERL_SUPPORT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET perl Date-Manip"
 fi
 
-if [ "$LIBTORRENTS_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libtorrent-rasterbar"
-fi
-
-if [ "$ACESTREAM_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET acestream-engine"
-fi
-
-if [ "$VLC_ENABLE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vlc"
-fi

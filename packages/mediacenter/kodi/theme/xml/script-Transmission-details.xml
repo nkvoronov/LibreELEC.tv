@@ -1,92 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <window>
 	<defaultcontrol>111</defaultcontrol>
-	<coordinates>
-		<system>1</system>
-		<left>240</left>
-		<top>70</top>
-	</coordinates>
 	<include>Animation_DialogPopupOpenClose</include>
-	<depth>DepthOSD</depth>
+	<depth>DepthDialog+</depth>
 	<controls>
-		<control type="image">
-			<left>-2000</left>
-			<top>-2000</top>
-			<width>6000</width>
-			<height>6000</height>
-			<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
-			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
-			<texture colordiffuse="C2FFFFFF">colors/black.png</texture>
-		</control>
-		<control type="button">
-			<left>-2000</left>
-			<top>-2000</top>
-			<width>6000</width>
-			<height>6000</height>
-			<texturefocus />
-			<texturenofocus />
-			<onclick>Action(close)</onclick>
-		</control>
 		<control type="group">
 			<width>1440</width>
-			<control type="image">
-				<left>0</left>
-				<top>0</top>
-				<right>0</right>
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
 				<height>940</height>
-				<texture colordiffuse="dialog_tint">colors/white.png</texture>
-			</control>
-			<control type="image">
-				<left>0</left>
-				<top>0</top>
-				<right>0</right>
-				<height>70</height>
-				<texture colordiffuse="button_focus" border="2">colors/white70.png</texture>
-			</control>
-			<control type="label" id="1">
-				<left>40</left>
-				<top>0</top>
-				<right>100</right>
-				<height>70</height>
-				<font>font32_title</font>
-				<label>$ADDON[script.transmission 32112]</label>
-				<aligny>center</aligny>
-				<shadowcolor>black</shadowcolor>
-			</control>
-			<control type="button" id="22002">
-				<description>button overlay to avoid closing in dialog area</description>
-				<left>0</left>
-				<top>0</top>
-				<right>0</right>
-				<height>940</height>
-				<texturefocus />
-				<texturenofocus />
-				<onclick>noop</onclick>
-			</control>
-			<control type="radiobutton">
-				<right>32</right>
-				<top>11</top>
-				<width>48</width>
-				<height>48</height>
-				<radiowidth>48</radiowidth>
-				<radioheight>48</radioheight>
-				<texturefocus />
-				<texturenofocus />
-				<label></label>
-				<textureradioofffocus colordiffuse="EEFFFFFF">dialogs/close.png</textureradioofffocus>
-				<textureradiooffnofocus colordiffuse="EEFFFFFF">icons/logo.png</textureradiooffnofocus>
-				<textureradioonfocus colordiffuse="EEFFFFFF">dialogs/close.png</textureradioonfocus>
-				<textureradioonnofocus colordiffuse="EEFFFFFF">icons/logo.png</textureradioonnofocus>
-				<onclick>Action(close)</onclick>
-			</control>
-		</control>
-		<control type="image">
-			<left>0</left>
-			<top>70</top>
-			<width>1440</width>
-			<height>870</height>
-			<texture border="40">buttons/dialogbutton-nofo.png</texture>
-		</control>
+			<include  content="DialogBackgroundCommons">
+				<param name="width" value="1440" />
+				<param name="height" value="940" />
+				<param name="header_label" value="$ADDON[script.transmission 32112]" />
+				<param name="header_id" value="1" />
+			</include>
 		<control type="group">
 			<left>30</left>
 			<top>90</top>
@@ -220,6 +148,7 @@
 					<aligny>center</aligny>
 				</control>
 			</focusedlayout>
+		</control>
 		</control>
 	</controls>
 </window>

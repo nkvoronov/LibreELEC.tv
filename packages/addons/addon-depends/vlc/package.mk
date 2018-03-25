@@ -22,9 +22,9 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain a52dec libXpm libdvbpsi libdca lua libmatroska libupnp libmpeg2 twolame xcb-util-keysyms gnutls liblivemedia libdc1394 libavc1394 libssh2 libshout libtheora zvbi SDL_image chromaprint ncurses libtar \
-libarchive fdk-aac taglib ffmpeg faad2 libmad libXinerama freetype fribidi harfbuzz fontconfig libxml2 libbluray flac librsvg avahi systemd libmtp libdvdcss samba mesa libnfs mpg123 libdvdreadv libdvdnavv libogg libmodplug libgme \
-fluidsynth libvpx speex opus libpng libjpeg-turbo x265 x264 libass pulseaudio alsa-lib libsamplerate lirc libprojectM libmicrodns qt5"
+PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libdca lua libmatroska libupnp libmpeg2 xcb-util-keysyms gnutls liblivemedia libdc1394 libavc1394 libssh2 libshout libtheora zvbi SDL_image chromaprint ncurses \
+fdk-aac taglib ffmpeg faad2 libmad libXinerama freetype fribidi harfbuzz fontconfig libxml2 libbluray flac librsvg avahi systemd libmtp libdvdcss samba mesa libnfs mpg123 libogg libmodplug \
+fluidsynth libvpx speex opus libpng libjpeg-turbo x265 x264 libass pulseaudio alsa-lib libsamplerate lirc qt5"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
@@ -33,16 +33,16 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
-              --sysconfdir=/etc \
+              --enable-run-as-root \
               --disable-rpath \
               --enable-nls \
               --enable-lua \
-              --enable-archive \
+              --disable-archive \
               --enable-live555 \
               --enable-dc1394 \
               --enable-dv1394 \
-              --enable-dvdread \
-              --enable-dvdnav \
+              --disable-dvdread \
+              --disable-dvdnav \
               --enable-bluray \
               --disable-opencv \
               --enable-smbclient \
@@ -50,7 +50,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
               --enable-nfs \
               --enable-realrtsp \
               --enable-dvbpsi \
-              --enable-gme \
+              --disable-gme \
               --enable-ogg \
               --enable-shout \
               --enable-matroska \
@@ -65,7 +65,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
               --enable-postproc \
               --enable-faad \
               --enable-vpx \
-              --enable-twolame \
+              --disable-twolame \
               --enable-fdkaac \
               --enable-a52 \
               --enable-dca \
@@ -104,8 +104,8 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
               --enable-chromaprint \
               --disable-chromecast \
               --enable-qt \
-              --enable-skins2 \
-              --enable-libtar \
+              --disable-skins2 \
+              --disable-libtar \
               --enable-ncurses \
               --enable-lirc \
               --disable-goom \

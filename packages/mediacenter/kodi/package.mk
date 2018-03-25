@@ -338,6 +338,25 @@ post_makeinstall_target() {
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.openelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.libreelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.libreelec.settings" $ADDON_MANIFEST
+  if [ "$CUSTOM_SUPPORT" = "yes" ]; then
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon.libreelec" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.libreelec.devupdate" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.beautifulsoup4" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.requests" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.urllib3" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.chardet" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.idna" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.certifi" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.html2text" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.xbmcbackup" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.httplib2" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.oauth2client" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.uritemplate" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" $ADDON_MANIFEST
+  fi
   if [ "$PROJECT" = "Slice" -o "$PROJECT" = "Slice3" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.slice" $ADDON_MANIFEST
   fi
