@@ -29,7 +29,7 @@ PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, 
 PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="VLC"
+PKG_ADDON_NAME="VLC 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
 make_target() {
@@ -52,11 +52,16 @@ addon() {
   LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
   GCC_DIR=$(get_build_dir gcc)
+  LIB_XMP=$(get_build_dir libXmp)
   LIB_DVDREAD=$(get_build_dir libdvdreadv)
   LIB_DVDNAV=$(get_build_dir libdvdnavv)
   LIB_GME=$(get_build_dir libgme)
   LIB_MDN=$(get_build_dir libmicrodns)
   LIB_MPEG2=$(get_build_dir libmpeg2)
+  LIB_TWOLAME=$(get_build_dir twolame)
+  LIB_UPNP=$(get_build_dir libupnp)
+  LIB_TAR=$(get_build_dir libtar)
+  LIB_ARCHIVE=$(get_build_dir libarchive)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -98,6 +103,7 @@ addon() {
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libtinfo.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
+    #cp -P $LIB_XMP/.install_pkg/usr/lib/libXmp.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXmp.so.0
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
     cp -P $LIB_DVDREAD/.install_pkg/usr/lib/libdvdread.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdread.so.4
     cp -P $LIB_DVDNAV/.install_pkg/usr/lib/libdvdnav.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdnav.so.4
@@ -105,6 +111,12 @@ addon() {
     cp -P $LIB_MDN/.install_pkg/usr/lib/libmicrodns.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmicrodns.so.0
     cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2.so.0.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2.so.0
     cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2convert.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2convert.so.0
+    cp -P $LIB_TWOLAME/.install_pkg/usr/lib/libtwolame.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtwolame.so.0
+    cp -P $LIB_UPNP/.install_pkg/usr/lib/libixml.so.2.0.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/libixml.so.2
+    cp -P $LIB_UPNP/.install_pkg/usr/lib/libthreadutil.so.6.0.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libthreadutil.so.6
+    cp -P $LIB_UPNP/.install_pkg/usr/lib/libupnp.so.6.4.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.6
+    cp -P $LIB_TAR/.install_pkg/usr/lib/libtar.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.0
+    cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share

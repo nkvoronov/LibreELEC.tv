@@ -23,7 +23,7 @@
 
 . /etc/profile
 
-ADDON_DIR=/storage/.kodi/addons/tools.acestream-addon
+ADDON_DIR=/storage/.kodi/addons/tools.acestream31
 
 chmod a+x $ADDON_DIR/share/acestream/acestreamengine
 chmod a+x $ADDON_DIR/share/acestream/start-engine
