@@ -32,6 +32,8 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="VLC 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
+QT5VWER="5.6.2"
+
 make_target() {
   : # nothing to make here
 }
@@ -44,7 +46,6 @@ addon() {
   VLC_DIR=$(get_build_dir vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
   QT5=$(get_build_dir qt5)
-  QT5VWER = "5.6.2"
   LUA=$(get_build_dir lua)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
