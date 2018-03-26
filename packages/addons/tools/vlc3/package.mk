@@ -44,6 +44,7 @@ addon() {
   VLC_DIR=$(get_build_dir vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
   QT5=$(get_build_dir qt5)
+  QT5VWER = "5.6.2"
   LUA=$(get_build_dir lua)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
@@ -71,21 +72,21 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    cp -P $QT5/qtbase/lib/libQt5Concurrent.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Concurrent.so.5
-    cp -P $QT5/qtbase/lib/libQt5Core.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Core.so.5
-    cp -P $QT5/qtbase/lib/libQt5DBus.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5DBus.so.5
-    cp -P $QT5/qtbase/lib/libQt5EglDeviceIntegration.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5EglDeviceIntegration.so.5
-    cp -P $QT5/qtbase/lib/libQt5Gui.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Gui.so.5
-    cp -P $QT5/qtbase/lib/libQt5Network.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Network.so.5
-    cp -P $QT5/qtbase/lib/libQt5OpenGL.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5OpenGL.so.5
-    cp -P $QT5/qtbase/lib/libQt5PrintSupport.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5PrintSupport.so.5
-    cp -P $QT5/qtbase/lib/libQt5Sql.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Sql.so.5
-    cp -P $QT5/qtbase/lib/libQt5Test.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Test.so.5
-    cp -P $QT5/qtbase/lib/libQt5Widgets.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Widgets.so.5
-    cp -P $QT5/qtbase/lib/libQt5XcbQpa.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5XcbQpa.so.5
-    cp -P $QT5/qtbase/lib/libQt5Xml.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Xml.so.5
-    cp -P $QT5/qtsvg/lib/libQt5Svg.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Svg.so.5
-    cp -P $QT5/qtx11extras/lib/libQt5X11Extras.so.5.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5X11Extras.so.5
+    cp -P $QT5/qtbase/lib/libQt5Concurrent.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Concurrent.so.5
+    cp -P $QT5/qtbase/lib/libQt5Core.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Core.so.5
+    cp -P $QT5/qtbase/lib/libQt5DBus.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5DBus.so.5
+    cp -P $QT5/qtbase/lib/libQt5EglDeviceIntegration.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5EglDeviceIntegration.so.5
+    cp -P $QT5/qtbase/lib/libQt5Gui.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Gui.so.5
+    cp -P $QT5/qtbase/lib/libQt5Network.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Network.so.5
+    cp -P $QT5/qtbase/lib/libQt5OpenGL.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5OpenGL.so.5
+    cp -P $QT5/qtbase/lib/libQt5PrintSupport.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5PrintSupport.so.5
+    cp -P $QT5/qtbase/lib/libQt5Sql.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Sql.so.5
+    cp -P $QT5/qtbase/lib/libQt5Test.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Test.so.5
+    cp -P $QT5/qtbase/lib/libQt5Widgets.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Widgets.so.5
+    cp -P $QT5/qtbase/lib/libQt5XcbQpa.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5XcbQpa.so.5
+    cp -P $QT5/qtbase/lib/libQt5Xml.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Xml.so.5
+    cp -P $QT5/qtsvg/lib/libQt5Svg.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Svg.so.5
+    cp -P $QT5/qtx11extras/lib/libQt5X11Extras.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5X11Extras.so.5
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
     cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
