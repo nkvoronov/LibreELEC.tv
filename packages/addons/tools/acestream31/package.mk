@@ -30,7 +30,7 @@ PKG_LONGDESC="acestream (Version: $PKG_VERSION): This is an innovative media pla
 PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="ACEStream 3.1.x"
+PKG_ADDON_NAME="ACE stream engine 3.1.x"
 PKG_ADDON_TYPE="xbmc.python.script"
 
 make_target() {

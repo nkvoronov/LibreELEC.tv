@@ -1,6 +1,6 @@
 diff -Naur a/qtbase/mkspecs/common/clang.conf b/qtbase/mkspecs/common/clang.conf
---- a/qtbase/mkspecs/common/clang.conf	2016-09-16 08:49:42.000000000 +0300
-+++ b/qtbase/mkspecs/common/clang.conf	2018-03-20 20:35:43.551782694 +0200
+--- a/qtbase/mkspecs/common/clang.conf	2018-02-08 20:24:48.000000000 +0200
++++ b/qtbase/mkspecs/common/clang.conf	2018-03-26 21:33:17.957954132 +0300
 @@ -16,7 +16,6 @@
  CONFIG                 += clang_pch_style
  QMAKE_PCH_OUTPUT_EXT    = .pch
@@ -10,20 +10,20 @@ diff -Naur a/qtbase/mkspecs/common/clang.conf b/qtbase/mkspecs/common/clang.conf
  QMAKE_CFLAGS_USE_PRECOMPILE      = -Xclang -include-pch -Xclang ${QMAKE_PCH_OUTPUT}
  QMAKE_CFLAGS_LTCG                = -flto
 diff -Naur a/qtbase/mkspecs/common/gcc-base.conf b/qtbase/mkspecs/common/gcc-base.conf
---- a/qtbase/mkspecs/common/gcc-base.conf	2016-09-16 08:49:42.000000000 +0300
-+++ b/qtbase/mkspecs/common/gcc-base.conf	2018-03-20 20:35:43.551782694 +0200
-@@ -44,7 +44,6 @@
- QMAKE_CFLAGS_SHLIB         += -fPIC
- QMAKE_CFLAGS_STATIC_LIB    += -fPIC
- QMAKE_CFLAGS_APP           += -fPIC
+--- a/qtbase/mkspecs/common/gcc-base.conf	2018-02-08 20:24:48.000000000 +0200
++++ b/qtbase/mkspecs/common/gcc-base.conf	2018-03-26 21:36:14.517912717 +0300
+@@ -46,7 +46,6 @@
+ QMAKE_CFLAGS_SHLIB         += $$QMAKE_CFLAGS_PIC
+ QMAKE_CFLAGS_STATIC_LIB    += $$QMAKE_CFLAGS_PIC
+ QMAKE_CFLAGS_APP           += $$QMAKE_CFLAGS_PIC
 -QMAKE_CFLAGS_ISYSTEM        = -isystem
  QMAKE_CFLAGS_YACC          += -Wno-unused -Wno-parentheses
  QMAKE_CFLAGS_HIDESYMS      += -fvisibility=hidden
  QMAKE_CFLAGS_EXCEPTIONS_OFF += -fno-exceptions
 diff -Naur a/qtbase/mkspecs/linux-icc/qmake.conf b/qtbase/mkspecs/linux-icc/qmake.conf
---- a/qtbase/mkspecs/linux-icc/qmake.conf	2016-09-16 08:49:42.000000000 +0300
-+++ b/qtbase/mkspecs/linux-icc/qmake.conf	2018-03-20 20:35:43.551782694 +0200
-@@ -21,7 +21,6 @@
+--- a/qtbase/mkspecs/linux-icc/qmake.conf	2018-02-08 20:24:48.000000000 +0200
++++ b/qtbase/mkspecs/linux-icc/qmake.conf	2018-03-26 21:38:04.842156585 +0300
+@@ -24,7 +24,6 @@
  QMAKE_CFLAGS_SHLIB      = -fPIC
  QMAKE_CFLAGS_STATIC_LIB = $$QMAKE_CFLAGS_SHLIB
  QMAKE_CFLAGS_YACC       =
@@ -32,27 +32,9 @@ diff -Naur a/qtbase/mkspecs/linux-icc/qmake.conf b/qtbase/mkspecs/linux-icc/qmak
  QMAKE_CFLAGS_SPLIT_SECTIONS = -ffunction-sections
  QMAKE_CFLAGS_LTCG       = -ipo -fno-fat-lto-objects
 diff -Naur a/qtbase/qmake/generators/unix/unixmake2.cpp b/qtbase/qmake/generators/unix/unixmake2.cpp
---- a/qtbase/qmake/generators/unix/unixmake2.cpp	2016-09-16 08:49:42.000000000 +0300
-+++ b/qtbase/qmake/generators/unix/unixmake2.cpp	2018-03-20 20:35:43.551782694 +0200
-@@ -180,16 +180,10 @@
-     t << "CXXFLAGS      = " << var("QMAKE_CXXFLAGS") << " $(DEFINES)\n";
-     t << "INCPATH       =";
-     {
--        QString isystem = var("QMAKE_CFLAGS_ISYSTEM");
-         const ProStringList &incs = project->values("INCLUDEPATH");
-         for(int i = 0; i < incs.size(); ++i) {
-             const ProString &inc = incs.at(i);
--            if (inc.isEmpty())
--                continue;
--
--            if (!isystem.isEmpty() && isSystemInclude(inc.toQString()))
--                t << ' ' << isystem << ' ';
--            else
-+            if (!inc.isEmpty())
-                 t << " -I";
-             t << escapeFilePath(inc);
-         }
-@@ -1332,10 +1326,8 @@
+--- a/qtbase/qmake/generators/unix/unixmake2.cpp	2018-02-08 20:24:48.000000000 +0200
++++ b/qtbase/qmake/generators/unix/unixmake2.cpp	2018-03-26 21:40:35.238740051 +0300
+@@ -1438,10 +1438,8 @@
      }
  
      if (include_deps && project->isActiveConfig("gcc_MD_depends")) {
@@ -66,9 +48,9 @@ diff -Naur a/qtbase/qmake/generators/unix/unixmake2.cpp b/qtbase/qmake/generator
  }
  
 diff -Naur a/qtbase/qmake/generators/win32/mingw_make.cpp b/qtbase/qmake/generators/win32/mingw_make.cpp
---- a/qtbase/qmake/generators/win32/mingw_make.cpp	2016-09-16 08:49:42.000000000 +0300
-+++ b/qtbase/qmake/generators/win32/mingw_make.cpp	2018-03-20 20:35:43.555782719 +0200
-@@ -254,17 +254,11 @@
+--- a/qtbase/qmake/generators/win32/mingw_make.cpp	2018-02-08 20:24:48.000000000 +0200
++++ b/qtbase/qmake/generators/win32/mingw_make.cpp	2018-03-26 21:42:50.407455552 +0300
+@@ -249,17 +249,11 @@
  {
      t << "INCPATH       = ";
  

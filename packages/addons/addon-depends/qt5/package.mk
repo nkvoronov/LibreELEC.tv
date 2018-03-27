@@ -17,13 +17,12 @@
 ################################################################################
 
 PKG_NAME="qt5"
-PKG_VERSION="5.6.2"
+PKG_VERSION="5.10.1"
 PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
-PKG_URL="http://download.qt.io/official_releases/qt/5.6/$PKG_VERSION/single/qt-everywhere-opensource-src-$PKG_VERSION.tar.xz"
-PKG_SOURCE_DIR="qt-everywhere-opensource-src-$PKG_VERSION"
-PKG_DEPENDS_TARGET="toolchain pcre zlib bzip2 Python  libpng tiff dbus glib fontconfig mysql openssl \
-glibc liberation-fonts-ttf freetype font-util font-xfree86-type1 font-misc-misc alsa libXcursor libSM libICE"
+PKG_URL="http://download.qt.io/official_releases/qt/5.10/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
+PKG_SOURCE_DIR="qt-everywhere-src-$PKG_VERSION"
+PKG_DEPENDS_TARGET="toolchain libjpeg-turbo xcb-util-keysyms xcb-util-renderutil fontconfig xcb-util-wm libXrender libXi sqlite xcb-util-image icu libinput libSM libxkbcommon alsa-lib"
 PKG_SECTION="devel"
 PKG_SHORTDESC="Qt GUI toolkit"
 PKG_LONGDESC="Qt GUI toolkit"
@@ -47,28 +46,38 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix /usr
                            -nomake examples
                            -nomake tests
                            -skip qt3d
+                           -skip qtactiveqt
                            -skip qtandroidextras
                            -skip qtcanvas3d
+                           -skip qtcharts
                            -skip qtconnectivity
+                           -skip qtdatavis3d
                            -skip qtdeclarative
                            -skip qtdoc
-                           -skip qtenginio
+                           -skip qtgamepad
                            -skip qtgraphicaleffects
                            -skip qtimageformats
                            -skip qtlocation
                            -skip qtmacextras
                            -skip qtmultimedia
+                           -skip qtnetworkauth
+                           -skip qtpurchasing
                            -skip qtquickcontrols
                            -skip qtquickcontrols2
+                           -skip qtremoteobjects
                            -skip qtscript
+                           -skip qtscxml
                            -skip qtsensors
                            -skip qtserialbus
                            -skip qtserialport
+                           -skip qtspeech
                            -skip qttools
                            -skip qttranslations
+                           -skip qtvirtualkeyboard
                            -skip qtwayland
                            -skip qtwebchannel
                            -skip qtwebengine
+                           -skip qtwebglplugin
                            -skip qtwebsockets
                            -skip qtwebview
                            -skip qtwinextras

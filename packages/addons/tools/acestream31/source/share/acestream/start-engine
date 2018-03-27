@@ -2,7 +2,7 @@
 
 . /etc/profile
 
-ADDON_DIR=/storage/.kodi/addons/tools.acestream-addon
+ADDON_DIR=/storage/.kodi/addons/tools.acestream31
 ROOT=$ADDON_DIR/share/acestream
 
 LD_LIBRARY_PATH=${ROOT}/lib ${ROOT}/acestreamengine --lib-path $ROOT "$@"

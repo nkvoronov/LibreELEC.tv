@@ -22,7 +22,7 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libdca libarchive lua libmatroska libupnp libmpeg2 xcb-util-keysyms gnutls liblivemedia libdc1394 libavc1394 libssh2 libshout libtheora zvbi SDL_image chromaprint ncurses \
+PKG_DEPENDS_TARGET="toolchain libXpm a52dec libdvbpsi libdca libarchive lua libmatroska libupnp libmpeg2 xcb-util-keysyms gnutls liblivemedia libdc1394 libavc1394 libssh2 libshout libtheora zvbi SDL_image chromaprint ncurses \
 fdk-aac taglib ffmpeg faad2 libmad libXinerama freetype fribidi harfbuzz fontconfig libxml2 libbluray flac librsvg avahi systemd libmtp libdvdcss samba mesa libnfs mpg123 libogg libmodplug libdvdreadv libdvdnavv libgme \
 twolame fluidsynth libvpx speex opus libpng libjpeg-turbo x265 x264 libass pulseaudio alsa-lib libsamplerate lirc libtar libmicrodns qt5"
 PKG_SECTION="multimedia"
@@ -104,7 +104,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
               --enable-chromaprint \
               --disable-chromecast \
               --enable-qt \
-              --disable-skins2 \
+              --enable-skins2 \
               --enable-libtar \
               --enable-ncurses \
               --enable-lirc \

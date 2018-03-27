@@ -29,10 +29,10 @@ PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, 
 PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="VLC 3"
+PKG_ADDON_NAME="Vlc Player 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
-QT5VWER="5.6.2"
+QT5VWER="5.10.1"
 
 make_target() {
   : # nothing to make here
@@ -47,14 +47,17 @@ addon() {
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
   QT5=$(get_build_dir qt5)
   LUA=$(get_build_dir lua)
+  LIB_SDL=$(get_build_dir SDL)
+  LIB_SDL_IMG=$(get_build_dir SDL_image)
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
+  LIB_CHROMA=$(get_build_dir chromaprint)
   LIB_NCURSESW=$(get_build_dir ncurses)
   LIB_ICE=$(get_build_dir libICE)
   LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
   GCC_DIR=$(get_build_dir gcc)
-  LIB_XMP=$(get_build_dir libXmp)
+  LIB_XPM=$(get_build_dir libXpm)
   LIB_DVDREAD=$(get_build_dir libdvdreadv)
   LIB_DVDNAV=$(get_build_dir libdvdnavv)
   LIB_GME=$(get_build_dir libgme)
@@ -64,6 +67,8 @@ addon() {
   LIB_UPNP=$(get_build_dir libupnp)
   LIB_TAR=$(get_build_dir libtar)
   LIB_ARCHIVE=$(get_build_dir libarchive)
+  LIB_XZ=$(get_build_dir xz)
+  LIB_FDKAAC=$(get_build_dir fdk-aac)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -71,12 +76,13 @@ addon() {
     cp -P $LUA/src/luac $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5
+    cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5.3
     cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -P $QT5/qtbase/lib/libQt5Concurrent.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Concurrent.so.5
     cp -P $QT5/qtbase/lib/libQt5Core.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Core.so.5
     cp -P $QT5/qtbase/lib/libQt5DBus.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5DBus.so.5
-    cp -P $QT5/qtbase/lib/libQt5EglDeviceIntegration.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5EglDeviceIntegration.so.5
+    cp -P $QT5/qtbase/lib/libQt5EglFSDeviceIntegration.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5EglFSDeviceIntegration.so.5
+    cp -P $QT5/qtbase/lib/libQt5EglFsKmsSupport.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5EglFsKmsSupport.so.5
     cp -P $QT5/qtbase/lib/libQt5Gui.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Gui.so.5
     cp -P $QT5/qtbase/lib/libQt5Network.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Network.so.5
     cp -P $QT5/qtbase/lib/libQt5OpenGL.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5OpenGL.so.5
@@ -92,12 +98,11 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
     cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
-    cp -P $QT5/qtbase/lib/fonts/* $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts
-    rm -f $ADDON_BUILD/$PKG_ADDON_ID/lib/fonts/README
-
-    cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4 $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6 $ADDON_BUILD/$PKG_ADDON_ID/lib
+    cp -P $LIB_SDL/.install_pkg/usr/lib/libSDL-1.2.so.0.11.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL-1.2.so.0
+    cp -P $LIB_SDL_IMG/.install_pkg/usr/lib/libSDL_image-1.2.so.0.8.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL_image-1.2.so.0
+    cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libebml.so.4
+    cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmatroska.so.6
+    cp -P $LIB_CHROMA/.install_pkg/usr/lib/libchromaprint.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libchromaprint.so.1
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libformw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libmenuw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
@@ -105,7 +110,7 @@ addon() {
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libtinfo.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
-    #cp -P $LIB_XMP/.install_pkg/usr/lib/libXmp.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXmp.so.0
+    cp -P $LIB_XPM/.install_pkg/usr/lib/libXpm.so.4.11.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXpm.so.4
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
     cp -P $LIB_DVDREAD/.install_pkg/usr/lib/libdvdread.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdread.so.4
     cp -P $LIB_DVDNAV/.install_pkg/usr/lib/libdvdnav.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdnav.so.4
@@ -119,6 +124,8 @@ addon() {
     cp -P $LIB_UPNP/.install_pkg/usr/lib/libupnp.so.6.4.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.6
     cp -P $LIB_TAR/.install_pkg/usr/lib/libtar.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.0
     cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
+    cp -P $LIB_XZ/.install_pkg/usr/lib/liblzma.so.5.2.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblzma.so.5
+    cp -P $LIB_FDKAAC/.install_pkg/usr/lib/libfdk-aac.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfdk-aac.so.1
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share

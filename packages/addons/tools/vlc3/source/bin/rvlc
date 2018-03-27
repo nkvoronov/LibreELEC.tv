@@ -22,15 +22,7 @@
 ################################################################################
 
 . /etc/profile
-
-ADDON_DIR=/storage/.kodi/addons/tools.vlc3
-
-chmod a+x $ADDON_DIR/bin/cvlc
-chmod a+x $ADDON_DIR/bin/nvlc
-chmod a+x $ADDON_DIR/bin/qvlc
-chmod a+x $ADDON_DIR/bin/rvlc
-chmod a+x $ADDON_DIR/bin/vlc
-chmod a+x $ADDON_DIR/bin/vlc.bin
+. /storage/.kodi/addons/tools.vlc3/etc/vlc.conf
 
 eval `dbus-launch --sh-syntax`
-exec $ADDON_DIR/bin/vlc.bin --no-plugins-cache -I "rc" "$@"
+LD_LIBRARY_PATH=$VLIBS exec $ADDON_DIR/bin/vlc.bin --no-plugins-cache -I "rc" "$@"

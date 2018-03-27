@@ -1,4 +1,0 @@
-#! /bin/sh
-
-eval `dbus-launch --sh-syntax`
-exec /usr/bin/vlc.bin --no-plugins-cache -I "rc" "$@"
