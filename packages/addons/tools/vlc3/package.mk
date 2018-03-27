@@ -18,7 +18,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.1"
-PKG_REV="37"
+PKG_REV="38"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -69,6 +69,8 @@ addon() {
   LIB_ARCHIVE=$(get_build_dir libarchive)
   LIB_XZ=$(get_build_dir xz)
   LIB_FDKAAC=$(get_build_dir fdk-aac)
+  LIB_PULS=$(get_build_dir pulseaudio)
+  LIB_XKBC=$(get_build_dir libxkbcommon)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -95,8 +97,8 @@ addon() {
     cp -P $QT5/qtsvg/lib/libQt5Svg.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Svg.so.5
     cp -P $QT5/qtx11extras/lib/libQt5X11Extras.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5X11Extras.so.5
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
-    cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/qt5/plugins
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/plugins
+    cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/plugins
 
     cp -P $LIB_SDL/.install_pkg/usr/lib/libSDL-1.2.so.0.11.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL-1.2.so.0
     cp -P $LIB_SDL_IMG/.install_pkg/usr/lib/libSDL_image-1.2.so.0.8.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL_image-1.2.so.0
@@ -122,10 +124,13 @@ addon() {
     cp -P $LIB_UPNP/.install_pkg/usr/lib/libixml.so.2.0.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/libixml.so.2
     cp -P $LIB_UPNP/.install_pkg/usr/lib/libthreadutil.so.6.0.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libthreadutil.so.6
     cp -P $LIB_UPNP/.install_pkg/usr/lib/libupnp.so.6.4.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.6
-    cp -P $LIB_TAR/.install_pkg/usr/lib/libtar.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.0
+    cp -P $LIB_TAR/.install_pkg/usr/lib/libtar.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtar.so.0
     cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
     cp -P $LIB_XZ/.install_pkg/usr/lib/liblzma.so.5.2.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblzma.so.5
     cp -P $LIB_FDKAAC/.install_pkg/usr/lib/libfdk-aac.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfdk-aac.so.1
+    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-9.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-9.0
+    cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon.so.0
+    cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon-x11.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon-x11.so.0
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
