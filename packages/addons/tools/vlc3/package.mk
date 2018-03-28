@@ -128,7 +128,7 @@ addon() {
     cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
     cp -P $LIB_XZ/.install_pkg/usr/lib/liblzma.so.5.2.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblzma.so.5
     cp -P $LIB_FDKAAC/.install_pkg/usr/lib/libfdk-aac.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfdk-aac.so.1
-    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-9.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-9.0
+    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-9.0.so $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-9.0.so
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon.so.0
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon-x11.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon-x11.so.0
 
