@@ -78,8 +78,22 @@ addon() {
     cp -P $LUA/src/luac $ADDON_BUILD/$PKG_ADDON_ID/bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+    cp -P $VLC_DIR/.install_pkg/usr/lib/libvlc.so.5.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libvlc.so.5
+    cp -P $VLC_DIR/.install_pkg/usr/lib/libvlccore.so.9.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libvlccore.so.9
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc
+    cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/libvlc_pulse.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/libvlc_pulse.so.0
+    cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/libvlc_vdpau.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/libvlc_vdpau.so.0
+    cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/libvlc_xcb_events.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/libvlc_xcb_events.so.0
+    cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/vlc_cache_gen $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/vlc_cache_gen
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/lua
+    cp -R $VLC_DIR/.install_pkg/usr/lib/vlc/lua/* $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/lua
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/plugins
+    cp -R $VLC_DIR/.install_pkg/usr/lib/vlc/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/plugins
+
     cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5.3
-    cp -R $VLC_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -P $QT5/qtbase/lib/libQt5Concurrent.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Concurrent.so.5
     cp -P $QT5/qtbase/lib/libQt5Core.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Core.so.5
     cp -P $QT5/qtbase/lib/libQt5DBus.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5DBus.so.5
