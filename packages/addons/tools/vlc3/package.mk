@@ -18,7 +18,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.1"
-PKG_REV="38"
+PKG_REV="39"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -85,7 +85,7 @@ addon() {
     cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/libvlc_pulse.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/libvlc_pulse.so.0
     cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/libvlc_vdpau.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/libvlc_vdpau.so.0
     cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/libvlc_xcb_events.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/libvlc_xcb_events.so.0
-    cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/vlc_cache_gen $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/vlc_cache_gen
+    cp -P $VLC_DIR/.install_pkg/usr/lib/vlc/vlc-cache-gen $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/vlc-cache-gen
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/lua
     cp -R $VLC_DIR/.install_pkg/usr/lib/vlc/lua/* $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/lua
@@ -150,15 +150,10 @@ addon() {
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
-    cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
+    cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-  for fgmo in `ls $VLC_DIR/po/*.gmo`;do
-    fname=`basename $fgmo .gmo`
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-    cp -p $fgmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vlc.mo
-  done
+    cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
 
   ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
 
