@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="go"
-PKG_VERSION="1.7.5"
+PKG_VERSION="1.9.2"
 PKG_ARCH="any"
 PKG_LICENSE="BSD"
 PKG_SITE="https://golang.org"
@@ -28,22 +28,21 @@ PKG_SECTION="system"
 PKG_SHORTDESC="Go is an open source programming language that makes it easy to build simple, reliable, and efficient software."
 PKG_LONGDESC="Go is an open source programming language that makes it easy to build simple, reliable, and efficient software."
 
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
 ####################################################################
 # On Fedora `dnf install golang` will install go to /usr/lib/golang
 #
-# On Ubuntu you need to install golang manually, similar to:
-# $ wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz
-# $ tar xf go1.6.linux-amd64.tar.gz -C /opt/
-# $ ln -s /opt/go /usr/lib/golang
+# On Ubuntu you need to install golang:
+# $ sudo apt install golang-go
 ####################################################################
 
 configure_host() {
   export GOOS=linux
   export GOROOT_FINAL=$TOOLCHAIN/lib/golang
-  export GOROOT_BOOTSTRAP=/usr/lib/golang
+  if [ -x /usr/lib/go/bin/go ]; then
+    export GOROOT_BOOTSTRAP=/usr/lib/go
+  else
+    export GOROOT_BOOTSTRAP=/usr/lib/golang
+  fi
   export GOARCH=amd64
 }
 

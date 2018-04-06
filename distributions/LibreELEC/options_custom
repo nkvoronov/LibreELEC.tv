@@ -61,6 +61,9 @@ fi
   TVHEADEND_SERVICE="yes"
   VDR_SERVICE="yes"
 
+# Docker Service
+  DOCKER_SERVICE="yes"
+
 # Tools
   SYS_TOOLS_ENABLED="yes"
   DVB_TOOLS_ENABLED="yes"

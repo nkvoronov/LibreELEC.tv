@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="libnetwork"
-PKG_VERSION="0f53435"
+PKG_VERSION="7b2b1fe"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="APL"
