@@ -47,8 +47,8 @@ post_install() {
   mkdir -p $INSTALL/usr/config/docker/data
     cp -p $PKG_DIR/config/* $INSTALL/usr/config/docker/etc
 
-  mkdir -p $INSTALL/usr/lib/docker
-    cp -p $PKG_DIR/lib/* $INSTALL/usr/lib/docker
+  mkdir -p $INSTALL/usr/lib
+    cp -PR $PKG_DIR/lib/* $INSTALL/usr/lib
 
   ln -sf /storage/.config/docker/etc $INSTALL/etc/docker
   mkdir -p $INSTALL/var/lib/docker
