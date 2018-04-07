@@ -51,7 +51,7 @@ post_install() {
     cp -PR $PKG_DIR/lib/* $INSTALL/usr/lib
 
   ln -sf /storage/.config/docker/etc $INSTALL/etc/docker
-  mkdir -p $INSTALL/var/lib/docker
+  mkdir -p $INSTALL/var/lib
   ln -sf /storage/.config/docker/data $INSTALL/var/lib/docker
 
   mkdir -p $INSTALL/usr/lib/udev/rules.d
