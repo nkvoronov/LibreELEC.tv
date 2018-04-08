@@ -515,7 +515,6 @@ show_config() {
     config_message="$config_message\n - Oscam service:\t\t\t $OSCAM_SERVICE"
     config_message="$config_message\n - Tvheadend  service:\t\t\t $TVHEADEND_SERVICE"
     config_message="$config_message\n - VDR service:\t\t\t\t $VDR_SERVICE"
-    config_message="$config_message\n - Docker service:\t\t\t $DOCKER_SERVICE"
     config_message="$config_message\n - System tools:\t\t\t $SYS_TOOLS_ENABLED"
     config_message="$config_message\n - DVB tools:\t\t\t\t $DVB_TOOLS_ENABLED"
     config_message="$config_message\n - Perl:\t\t\t\t $PERL_SUPPORT"

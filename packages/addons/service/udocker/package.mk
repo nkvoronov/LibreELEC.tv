@@ -1,6 +1,7 @@
 ################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
+#      This file is part of LibreELEC - https://libreelec.tv
+#      Copyright (C) 2009-2017 Lukas Rusak (lrusak@libreelec.tv)
+#      Copyright (C) 2017-present Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -16,19 +17,21 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="docker-service"
+PKG_NAME="udocker"
 PKG_VERSION="18.03.0"
+PKG_REV="118"
 PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
 PKG_URL="https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/docker-ce_${PKG_VERSION}~ce-0~ubuntu_amd64.deb"
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="service"
+PKG_SECTION="service/system"
 PKG_SHORTDESC="Docker is an open-source engine that automates the deployment of any application as a lightweight, portable, self-sufficient container that will run virtually anywhere."
 PKG_LONGDESC="Docker containers can encapsulate any payload, and will run consistently on and between virtually any server. The same container that a developer builds and tests on a laptop will run at scale, in production*, on VMs, bare-metal servers, OpenStack clusters, public instances, or combinations of the above."
 
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_IS_ADDON="yes"
+PKG_ADDON_NAME="uDocker"
+PKG_ADDON_TYPE="xbmc.service"
 
 make_target() {
   : # nothing to do here
@@ -38,24 +41,7 @@ makeinstall_target() {
   : # nothing to do here
 }
 
-post_install() {
-
-  mkdir -p $INSTALL/usr/bin
-    cp -P $PKG_BUILD/usr/bin/* $INSTALL/usr/bin
-
-  mkdir -p $INSTALL/usr/config/docker/etc
-  mkdir -p $INSTALL/usr/config/docker/data
-    cp -p $PKG_DIR/config/* $INSTALL/usr/config/docker/etc
-
-  mkdir -p $INSTALL/usr/lib
-    cp -PR $PKG_DIR/lib/* $INSTALL/usr/lib
-
-  ln -sf /storage/.config/docker/etc $INSTALL/etc/docker
-  mkdir -p $INSTALL/var/lib
-  ln -sf /storage/.config/docker/data $INSTALL/var/lib/docker
-
-  mkdir -p $INSTALL/usr/lib/udev/rules.d
-    cp -PR $PKG_BUILD/lib/udev/rules.d/*.rules $INSTALL/usr/lib/udev/rules.d
-
-  enable_service docker.service
+addon() {
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $PKG_BUILD/usr/bin/* $ADDON_BUILD/$PKG_ADDON_ID/bin
 }

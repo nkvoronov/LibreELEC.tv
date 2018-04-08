@@ -50,10 +50,6 @@ if [ "$VDR_SERVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-service"
 fi
 
-if [ "$DOCKER_SERVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET docker-service"
-fi
-
 if [ "$SYS_TOOLS_ENABLED" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tools-system"
 fi
