@@ -64,8 +64,7 @@ fi
 
 post_install() {
   if [ "$DOCKER_FIX" = yes ]; then
-    mkdir -p $INSTALL/usr/config/docker/etc
-    ln -sf /storage/.config/docker/etc $INSTALL/etc/docker
+    ln -sf /storage/.kodi/userdata/addon_data/service.system.udocker/config $INSTALL/etc/docker
   fi
 }
 

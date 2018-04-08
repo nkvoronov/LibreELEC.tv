@@ -19,7 +19,7 @@
 
 PKG_NAME="udocker"
 PKG_VERSION="18.03.0"
-PKG_REV="119"
+PKG_REV="120"
 PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"

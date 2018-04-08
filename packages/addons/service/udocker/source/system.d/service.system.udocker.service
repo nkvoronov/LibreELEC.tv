@@ -1,7 +1,6 @@
 [Unit]
 Description=Docker Application Container Engine
 Documentation=https://docs.docker.com
-Requires=/storage/.kodi/addons/service.system.udocker/system.d/service.system.udocker.socket
 After=network.target
 
 [Service]

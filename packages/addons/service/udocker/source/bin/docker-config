@@ -17,8 +17,8 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-ADDON_DIR="/storage/.kodi/addons/service.system.docker"
-ADDON_HOME_DIR="/storage/.kodi/userdata/addon_data/service.system.docker"
+ADDON_DIR="/storage/.kodi/addons/service.system.udocker"
+ADDON_HOME_DIR="/storage/.kodi/userdata/addon_data/service.system.udocker"
 
 if [ ! -d "$ADDON_HOME_DIR/config" ]; then
   mkdir -p $ADDON_HOME_DIR/config
