@@ -1,7 +1,7 @@
 [Unit]
 Description=Docker loopback mount
 Requires=local-fs.target
-Before=service.system.docker.service
+Before=service.system.udocker.service
 
 [Mount]
 What=/storage/btrfs-loop.img
