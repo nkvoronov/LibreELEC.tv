@@ -1,6 +1,6 @@
 [Unit]
 Description=Docker Socket for the API
-PartOf=service.system.udocker.service
+PartOf=/storage/.kodi/addons/service.system.udocker/system.d/service.system.udocker.service
 
 [Socket]
 ListenStream=/var/run/docker.sock

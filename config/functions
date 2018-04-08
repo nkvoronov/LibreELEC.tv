@@ -518,6 +518,7 @@ show_config() {
     config_message="$config_message\n - System tools:\t\t\t $SYS_TOOLS_ENABLED"
     config_message="$config_message\n - DVB tools:\t\t\t\t $DVB_TOOLS_ENABLED"
     config_message="$config_message\n - Perl:\t\t\t\t $PERL_SUPPORT"
+    config_message="$config_message\n - Docker Fix:\t\t\t\t $DOCKER_FIX"
   fi
 
   config_message="$config_message\n"

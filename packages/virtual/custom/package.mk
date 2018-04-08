@@ -62,3 +62,10 @@ if [ "$PERL_SUPPORT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET perl Date-Manip"
 fi
 
+post_install() {
+  if [ "$DOCKER_FIX" = yes ]; then
+    mkdir -p $INSTALL/usr/config/docker/etc
+    ln -sf /storage/.config/docker/etc $INSTALL/etc/docker
+  fi
+}
+
