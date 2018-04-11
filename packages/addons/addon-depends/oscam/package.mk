@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="oscam"
-PKG_VERSION="11410"
+PKG_VERSION="11420"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
-#PKG_URL="http://www.streamboard.tv/svn/oscam/trunk"
-#PKG_TYPE="svn"
-PKG_URL="https://www.dropbox.com/s/s29s10u983xara2/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="http://www.streamboard.tv/svn/oscam/trunk"
+PKG_TYPE="svn"
+#PKG_URL="https://www.dropbox.com/s/s29s10u983xara2/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_REMOVE_CVS_FILES="no"
 PKG_DEPENDS_TARGET="toolchain pcsc-lite"
 PKG_SECTION="multimedia"
