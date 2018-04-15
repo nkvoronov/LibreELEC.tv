@@ -31,7 +31,6 @@ PKG_SHORTDESC="DVB drivers that replace the version shipped with the kernel"
 PKG_LONGDESC="DVB drivers that replace the version shipped with the kernel"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
-PKG_USER_CONFIG="no"
 
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
@@ -44,14 +43,8 @@ make_target() {
 
   # copy config file
   if [ "$PROJECT" = Generic ] || [ "$PROJECT" = Virtual ]; then
-    if [ "$PKG_USER_CONFIG" = no ]; then 
-      if [ -f $PKG_DIR/config/generic.config ]; then
-        cp $PKG_DIR/config/generic.config v4l/.config
-      fi
-    else
-      if [ -f $PKG_DIR/config/user.config ]; then
-        cp $PKG_DIR/config/user.config v4l/.config
-      fi
+    if [ -f $PKG_DIR/config/generic.config ]; then
+      cp $PKG_DIR/config/generic.config v4l/.config
     fi
   else
     if [ -f $PKG_DIR/config/usb.config ]; then

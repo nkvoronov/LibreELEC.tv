@@ -1,12 +1,13 @@
 diff -Naur a/backports/backports.txt b/backports/backports.txt
 --- a/backports/backports.txt	2018-04-04 03:37:03.000000000 +0300
-+++ b/backports/backports.txt	2018-04-04 18:47:52.000165245 +0300
-@@ -25,6 +25,8 @@
++++ b/backports/backports.txt	2018-04-15 20:08:56.272189826 +0300
+@@ -25,6 +25,9 @@
  add pr_fmt.patch
  add debug.patch
  add drx39xxj.patch
 +add linux-062-imon_pad_ignore_diagonal.patch
 +add imon-fix.patch
++#add linux-999-fix-mce-kbd-stuck-keys.patch
  add noretpoline.patch
  
  [4.14.255]
