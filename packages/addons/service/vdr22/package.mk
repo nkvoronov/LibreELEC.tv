@@ -18,7 +18,7 @@
 
 PKG_NAME="vdr22"
 PKG_VERSION="2.2.0"
-PKG_REV="145"
+PKG_REV="146"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"

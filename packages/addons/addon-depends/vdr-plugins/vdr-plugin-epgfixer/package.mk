@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-epgfixer"
-PKG_VERSION="1ad4aaf"
+PKG_VERSION="354f28b"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-epgfixer"
