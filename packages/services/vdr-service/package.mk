@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="vdr-service"
-PKG_VERSION="2.2.0"
+PKG_VERSION="2.4.0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -31,22 +31,23 @@ PKG_AUTORECONF="no"
 PKG_IS_ADDON="no"
 
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
-ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
-ENABLE_VDR_PLUGIN_IPTV="yes"
 ENABLE_VDR_PLUGIN_DVBAPI="yes"
-ENABLE_VDR_PLUGIN_EEPG="yes"
+ENABLE_VDR_PLUGIN_EEPG="no"
 ENABLE_VDR_PLUGIN_EPGFIXER="yes"
-ENABLE_VDR_PLUGIN_LIVE="yes"
+ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
+ENABLE_VDR_PLUGIN_FAVORITES="no"
+ENABLE_VDR_PLUGIN_FEMON="yes"
+ENABLE_VDR_PLUGIN_FILEBROWSER="yes"
+ENABLE_VDR_PLUGIN_IPTV="yes"
+ENABLE_VDR_PLUGIN_LCDPROC="no"
+ENABLE_VDR_PLUGIN_LIVE="no"
+ENABLE_VDR_PLUGIN_MENUORG="yes"
 ENABLE_VDR_PLUGIN_RESTFULAPI="yes"
 ENABLE_VDR_PLUGIN_STREAMDEV="yes"
 ENABLE_VDR_PLUGIN_VNSISERVER="yes"
 ENABLE_VDR_PLUGIN_XMLTV2VDR="yes"
 ENABLE_VDR_PLUGIN_SATIP="yes"
 ENABLE_VDR_PLUGIN_WIRBELSCAN="yes"
-ENABLE_VDR_PLUGIN_FEMON="yes"
-ENABLE_VDR_PLUGIN_FILEBROWSER="yes"
-ENABLE_VDR_PLUGIN_LCDPROC="yes"
-ENABLE_VDR_PLUGIN_MENUORG="yes"
 ENABLE_VDR_PLUGIN_SLEEPTIMER="yes"
 ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
 ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
@@ -59,18 +60,10 @@ ENABLE_VDR_PLUGIN_SKINNOPACITY="yes"
 ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
 ENABLE_VDR_PLUGIN_SKINDESIGNER="yes"
 ENABLE_VDR_PLUGIN_WEATHERFORECAST="yes"
-ENABLE_VDR_PLUGIN_FAVORITES="yes"
+
 
 if [ "$ENABLE_VDR_PLUGIN_DUMMYDEVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dummydevice"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_EPGSEARCH" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-epgsearch"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-iptv"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_DVBAPI" = yes ]; then
@@ -85,8 +78,36 @@ if [ "$ENABLE_VDR_PLUGIN_EPGFIXER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-epgfixer"
 fi
 
+if [ "$ENABLE_VDR_PLUGIN_EPGSEARCH" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-epgsearch"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_FAVORITES" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-favorites"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_FEMON" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-femon"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_FILEBROWSER" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-filebrowser"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-iptv"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_LCDPROC" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-lcdproc"
+fi
+
 if [ "$ENABLE_VDR_PLUGIN_LIVE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-live"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-menuorg"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes ]; then
@@ -111,22 +132,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_WIRBELSCAN" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-wirbelscan vdr-plugin-wirbelscancontrol"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_FEMON" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-femon"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_FILEBROWSER" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-filebrowser"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_LCDPROC" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-lcdproc"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-menuorg"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_SLEEPTIMER" = yes ]; then
@@ -177,10 +182,6 @@ if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-weatherforecast"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_FAVORITES" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-favorites"
-fi
-
 make_target() {
   : # nothing to do here
 }
@@ -223,32 +224,6 @@ post_install() {
     cp -PR $VDR_PLUGIN_DUMMYDEVICE_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
   fi
 
-  if [ "$ENABLE_VDR_PLUGIN_EPGSEARCH" = yes ]; then
-    VDR_PLUGIN_EPGSEARCH_DIR=$(get_build_dir vdr-plugin-epgsearch)
-    cp -PR $VDR_PLUGIN_EPGSEARCH_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    mkdir -p $INSTALL/usr/config/vdr/plugins/epgsearch
-      cp -PR $VDR_PLUGIN_EPGSEARCH_DIR/conf/* $INSTALL/usr/config/vdr/plugins/epgsearch
-    for fmo in `ls $VDR_PLUGIN_EPGSEARCH_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-epgsearch.mo
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
-    VDR_PLUGIN_IPTV_DIR=$(get_build_dir vdr-plugin-iptv)
-    cp -PR $VDR_PLUGIN_IPTV_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    mkdir -p $INSTALL/usr/config/vdr/plugins/iptv
-      cp -PR $VDR_PLUGIN_IPTV_DIR/iptv/* $INSTALL/usr/config/vdr/plugins/iptv
-    for fmo in `ls $VDR_PLUGIN_IPTV_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-iptv.mo
-    done
-  fi
-
   if [ "$ENABLE_VDR_PLUGIN_DVBAPI" = yes ]; then
     VDR_PLUGIN_DVBAPI_DIR=$(get_build_dir vdr-plugin-dvbapi)
     cp -PR $VDR_PLUGIN_DVBAPI_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
@@ -285,6 +260,73 @@ post_install() {
     done
   fi
 
+  if [ "$ENABLE_VDR_PLUGIN_EPGSEARCH" = yes ]; then
+    VDR_PLUGIN_EPGSEARCH_DIR=$(get_build_dir vdr-plugin-epgsearch)
+    cp -PR $VDR_PLUGIN_EPGSEARCH_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    mkdir -p $INSTALL/usr/config/vdr/plugins/epgsearch
+      cp -PR $VDR_PLUGIN_EPGSEARCH_DIR/conf/* $INSTALL/usr/config/vdr/plugins/epgsearch
+    for fmo in `ls $VDR_PLUGIN_EPGSEARCH_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $INSTALL/usr/share/locale/$fname
+      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
+        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-epgsearch.mo
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_FAVORITES" = yes ]; then
+    VDR_PLUGIN_FAVORITES_DIR=$(get_build_dir vdr-plugin-favorites)
+    cp -PR $VDR_PLUGIN_FAVORITES_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    for fmo in `ls $VDR_PLUGIN_FAVORITES_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $INSTALL/usr/share/locale/$fname
+      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
+        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-favorites.mo
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_FEMON" = yes ]; then
+    VDR_PLUGIN_FEMON_DIR=$(get_build_dir vdr-plugin-femon)
+    cp -PR $VDR_PLUGIN_FEMON_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    for fmo in `ls $VDR_PLUGIN_FEMON_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $INSTALL/usr/share/locale/$fname
+      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
+        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-femon.mo
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_FILEBROWSER" = yes ]; then
+    VDR_PLUGIN_FILEBROWSER_DIR=$(get_build_dir vdr-plugin-filebrowser)
+    cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    mkdir -p $INSTALL/usr/config/vdr/plugins/filebrowser
+      cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/examples/filebrowser/*  $INSTALL/usr/config/vdr/plugins/filebrowser
+    cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/locale/* $INSTALL/usr/share/locale
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
+    VDR_PLUGIN_IPTV_DIR=$(get_build_dir vdr-plugin-iptv)
+    cp -PR $VDR_PLUGIN_IPTV_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    mkdir -p $INSTALL/usr/config/vdr/plugins/iptv
+      cp -PR $VDR_PLUGIN_IPTV_DIR/iptv/* $INSTALL/usr/config/vdr/plugins/iptv
+    for fmo in `ls $VDR_PLUGIN_IPTV_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $INSTALL/usr/share/locale/$fname
+      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
+        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-iptv.mo
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_LCDPROC" = yes ]; then
+    VDR_PLUGIN_LCDPROC_DIR=$(get_build_dir vdr-plugin-lcdproc)
+    cp -PR $VDR_PLUGIN_LCDPROC_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    for fmo in `ls $VDR_PLUGIN_LCDPROC_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $INSTALL/usr/share/locale/$fname
+      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
+        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-lcdproc.mo
+    done
+  fi
+
   if [ "$ENABLE_VDR_PLUGIN_LIVE" = yes ]; then
     VDR_PLUGIN_LIVE_DIR=$(get_build_dir vdr-plugin-live)
     cp -PR $VDR_PLUGIN_LIVE_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
@@ -295,7 +337,20 @@ post_install() {
       mkdir -p $INSTALL/usr/share/locale/$fname
       mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
         cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-live.mo
-    done   
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
+    VDR_PLUGIN_MENUORG_DIR=$(get_build_dir vdr-plugin-menuorg)
+    cp -PR $VDR_PLUGIN_MENUORG_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+    mkdir -p $INSTALL/usr/config/vdr/plugins/menuorg
+      cp -PR $VDR_PLUGIN_MENUORG_DIR/menuorg.*  $INSTALL/usr/config/vdr/plugins/menuorg
+    for fmo in `ls $VDR_PLUGIN_MENUORG_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $INSTALL/usr/share/locale/$fname
+      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
+        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-menuorg.mo
+    done
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes ]; then
@@ -367,60 +422,6 @@ post_install() {
     cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr 
     cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/locale/* $INSTALL/usr/share/locale
     cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/locale/* $INSTALL/usr/share/locale
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_FAVORITES" = yes ]; then
-    VDR_PLUGIN_FAVORITES_DIR=$(get_build_dir vdr-plugin-favorites)
-    cp -PR $VDR_PLUGIN_FAVORITES_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    for fmo in `ls $VDR_PLUGIN_FAVORITES_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-favorites.mo
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_FEMON" = yes ]; then
-    VDR_PLUGIN_FEMON_DIR=$(get_build_dir vdr-plugin-femon)
-    cp -PR $VDR_PLUGIN_FEMON_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    for fmo in `ls $VDR_PLUGIN_FEMON_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-femon.mo
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_FILEBROWSER" = yes ]; then
-    VDR_PLUGIN_FILEBROWSER_DIR=$(get_build_dir vdr-plugin-filebrowser)
-    cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    mkdir -p $INSTALL/usr/config/vdr/plugins/filebrowser
-      cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/examples/filebrowser/*  $INSTALL/usr/config/vdr/plugins/filebrowser
-    cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/locale/* $INSTALL/usr/share/locale
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_LCDPROC" = yes ]; then
-    VDR_PLUGIN_LCDPROC_DIR=$(get_build_dir vdr-plugin-lcdproc)
-    cp -PR $VDR_PLUGIN_LCDPROC_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    for fmo in `ls $VDR_PLUGIN_LCDPROC_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-lcdproc.mo
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
-    VDR_PLUGIN_MENUORG_DIR=$(get_build_dir vdr-plugin-menuorg)
-    cp -PR $VDR_PLUGIN_MENUORG_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    mkdir -p $INSTALL/usr/config/vdr/plugins/menuorg
-      cp -PR $VDR_PLUGIN_MENUORG_DIR/menuorg.*  $INSTALL/usr/config/vdr/plugins/menuorg
-    for fmo in `ls $VDR_PLUGIN_MENUORG_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $INSTALL/usr/share/locale/$fname
-      mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-menuorg.mo
-    done
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SLEEPTIMER" = yes ]; then

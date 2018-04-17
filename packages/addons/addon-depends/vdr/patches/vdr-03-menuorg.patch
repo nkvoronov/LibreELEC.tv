@@ -1,12 +1,6 @@
-Description: This patch is required by the MenuOrg plugin. It adds a service
- interface, that can be implemented by plugins to reorganize 
- VDR's main menu entries with the ability to create custom sub
- menus.
- This is version 0.5.s of the patch
-Author: Tobias Grimm <tg@e-tobi.net>
-
---- /dev/null
-+++ b/mainmenuitemsprovider.h
+diff -Naur a/mainmenuitemsprovider.h b/mainmenuitemsprovider.h
+--- a/mainmenuitemsprovider.h	1970-01-01 03:00:00.000000000 +0300
++++ b/mainmenuitemsprovider.h	2018-04-17 20:46:28.382778808 +0300
 @@ -0,0 +1,60 @@
 +/*
 + * vdr-menuorg - A plugin for the Linux Video Disk Recorder
@@ -68,9 +62,10 @@ Author: Tobias Grimm <tg@e-tobi.net>
 +};
 +
 +#endif //__MAINMENUITEMSPROVIDER_H
---- a/menu.c
-+++ b/menu.c
-@@ -31,6 +31,7 @@
+diff -Naur a/menu.c b/menu.c
+--- a/menu.c	2018-04-14 13:24:41.000000000 +0300
++++ b/menu.c	2018-04-17 20:46:28.382778808 +0300
+@@ -32,6 +32,7 @@
  #include "timers.h"
  #include "transfer.h"
  #include "videodir.h"
@@ -78,7 +73,7 @@ Author: Tobias Grimm <tg@e-tobi.net>
  
  #define MAXWAIT4EPGINFO   3 // seconds
  #define MODETIMEOUT       3 // seconds
-@@ -3778,6 +3779,9 @@
+@@ -4377,6 +4378,9 @@
    cancelEditingItem = NULL;
    stopRecordingItem = NULL;
    recordControlsState = 0;
@@ -88,7 +83,7 @@ Author: Tobias Grimm <tg@e-tobi.net>
    Set();
  
    // Initial submenus:
-@@ -3806,6 +3810,29 @@
+@@ -4405,6 +4409,29 @@
    SetTitle("VDR");
    SetHasHotkeys();
  
@@ -118,7 +113,7 @@ Author: Tobias Grimm <tg@e-tobi.net>
    // Basic menu items:
  
    Add(new cOsdItem(hk(tr("Schedule")),   osSchedule));
-@@ -3832,6 +3859,8 @@
+@@ -4431,6 +4458,8 @@
    if (Commands.Count())
       Add(new cOsdItem(hk(tr("Commands")),  osCommands));
  
@@ -127,7 +122,7 @@ Author: Tobias Grimm <tg@e-tobi.net>
    Update(true);
  
    Display();
-@@ -3937,6 +3966,41 @@
+@@ -4535,6 +4564,41 @@
                           state = osEnd;
                         }
                         break;
@@ -149,7 +144,7 @@ Author: Tobias Grimm <tg@e-tobi.net>
 +                          }
 +                       }
 +                       break;
-+    case osUser7:      {
++    case osUser3:      {
 +                          if (MenuOrgPatch::IsCustomMenuAvailable()) {
 +                            MenuOrgPatch::EnterSubMenu(Get(Current()));
 +                            Set();
@@ -157,7 +152,7 @@ Author: Tobias Grimm <tg@e-tobi.net>
 +                          }
 +                       }
 +                       break;
-+    case osUser8:      {
++    case osUser4:      {
 +                          if (MenuOrgPatch::IsCustomMenuAvailable()) {
 +                            cOsdMenu* osdMenu = MenuOrgPatch::Execute(Get(Current()));
 +                            if (osdMenu)
@@ -169,8 +164,9 @@ Author: Tobias Grimm <tg@e-tobi.net>
      default: switch (Key) {
                 case kRecord:
                 case kRed:    if (!HadSubMenu)
---- /dev/null
-+++ b/menuorgpatch.h
+diff -Naur a/menuorgpatch.h b/menuorgpatch.h
+--- a/menuorgpatch.h	1970-01-01 03:00:00.000000000 +0300
++++ b/menuorgpatch.h	2018-04-17 20:46:28.386778838 +0300
 @@ -0,0 +1,100 @@
 +/*
 + * vdr-menuorg - A plugin for the Linux Video Disk Recorder

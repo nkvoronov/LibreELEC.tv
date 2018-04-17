@@ -1,18 +1,6 @@
-diff -Naur a/femon.c b/femon.c
---- a/femon.c	2015-04-04 04:20:00.000000000 +0300
-+++ b/femon.c	2015-06-02 02:59:13.946979781 +0300
-@@ -25,7 +25,7 @@
- #define GITVERSION ""
- #endif
- 
--static const char VERSION[]       = "2.2.1" GITVERSION;
-+static const char VERSION[]       = "2.2.1";
- static const char DESCRIPTION[]   = trNOOP("DVB Signal Information Monitor (OSD)");
- static const char MAINMENUENTRY[] = trNOOP("Signal Information");
- 
 diff -Naur a/po/ru_RU.po b/po/ru_RU.po
---- a/po/ru_RU.po	2015-04-04 14:32:43.000000000 +0300
-+++ b/po/ru_RU.po	2015-06-02 04:21:41.114193196 +0300
+--- a/po/ru_RU.po	2018-04-15 22:55:31.000000000 +0300
++++ b/po/ru_RU.po	2018-04-17 23:41:05.181150960 +0300
 @@ -13,29 +13,29 @@
  "Language-Team: Russian <vdr@linuxtv.org>\n"
  "Language: ru\n"
@@ -46,7 +34,7 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Transponder Information"
 -msgstr "�������� � ������"
-+msgstr "Информация о транспондере"
++msgstr "Сведения о канале"
  
  msgid "Apid"
  msgstr "Apid"
@@ -95,7 +83,7 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Channel Mode"
 -msgstr ""
-+msgstr "Режим каналов"
++msgstr "Режим канала"
  
  msgid "Sampling Frequency"
 -msgstr ""
@@ -107,9 +95,8 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Bit Stream Mode"
 -msgstr ""
--
 +msgstr "Режим битового потока"
-+ 
+ 
  msgid "Audio Coding Mode"
 -msgstr ""
 +msgstr "Режим кодирования аудио"
@@ -152,12 +139,12 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Elchi"
  msgstr "Elchi"
-@@ -158,151 +158,151 @@
+@@ -158,154 +158,154 @@
  msgstr "PearlHD"
  
  msgid "Hide main menu entry"
 -msgstr "������ ������� � ������� ����"
-+msgstr "Скрыть в главном меню"
++msgstr "Скрыть команду в главном меню"
  
  msgid "Define whether the main menu entry is hidden."
 -msgstr ""
@@ -181,7 +168,7 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Position"
 -msgstr "���������� ����"
-+msgstr "Позиция"
++msgstr "Размещение окна"
  
  msgid "Define the position of OSD."
 -msgstr ""
@@ -224,8 +211,7 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
 +msgstr "Расчёт скорости потока данных"
  
  msgid "Define whether the DVB stream is analyzed and bitrates calculated."
--msgstr ""
-+msgstr "Определить, является ли проанализированым поток DVB и скорости рассчитана."
+ msgstr ""
  
  msgid "Calculation interval [0.1s]"
 -msgstr "������� ��������� (0,1 ���)"
@@ -233,7 +219,7 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Define an interval for calculation. The bigger interval generates more stable values."
 -msgstr ""
-+msgstr "Определите интервал для расчета. Чем больше интервал тем больше стабильность значения."
++msgstr "Определить, является ли проанализированым поток DVB и скорости рассчитана."
  
  msgid "Use SVDRP service"
 -msgstr ""
@@ -278,6 +264,10 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  msgid "H.264"
 -msgstr ""
 +msgstr "H.264"
+ 
+ msgid "H.265"
+-msgstr ""
++msgstr "H.265"
  
  msgid "MPEG-1 Layer I"
 -msgstr ""
@@ -353,16 +343,8 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "PAL"
  msgstr "PAL"
-@@ -311,79 +311,79 @@
- msgstr "NTSC"
- 
- msgid "SECAM"
--msgstr ""
-+msgstr "SECAM"
- 
- msgid "MAC"
--msgstr ""
-+msgstr "MAC"
+@@ -320,40 +320,40 @@
+ msgstr ""
  
  msgid "Hz"
 -msgstr "��"
@@ -413,28 +395,9 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
 +msgstr "Кн2"
  
  msgid "C"
--msgstr ""
-+msgstr "С"
- 
- msgid "L"
--msgstr ""
-+msgstr "Д"
- 
- msgid "R"
--msgstr ""
-+msgstr "К"
- 
- msgid "S"
--msgstr ""
-+msgstr "S"
- 
- msgid "SL"
--msgstr ""
-+msgstr "SL"
- 
- msgid "SR"
--msgstr ""
-+msgstr "SR"
+ msgstr ""
+@@ -374,19 +374,19 @@
+ msgstr ""
  
  msgid "dB"
 -msgstr "dB"
@@ -446,7 +409,7 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "MHz"
 -msgstr "���"
-+msgstr "МГц"
++msgstr "мГц"
  
  msgid "free"
 -msgstr ""
@@ -454,8 +417,8 @@ diff -Naur a/po/ru_RU.po b/po/ru_RU.po
  
  msgid "Mbit/s"
 -msgstr "����/�"
-+msgstr "Мбит/с"
++msgstr "мБит/с"
  
  msgid "kbit/s"
 -msgstr "����/�"
-+msgstr "кбит/с"
++msgstr "кБит/с"

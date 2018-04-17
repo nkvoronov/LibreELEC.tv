@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-dvbapi"
-PKG_VERSION="d7c7587"
+PKG_VERSION="7d51cc4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/manio/vdr-plugin-dvbapi"
@@ -29,7 +29,6 @@ PKG_SHORTDESC="TV"
 PKG_LONGDESC="TV"
 
 PKG_IS_ADDON="no"
-
 PKG_AUTORECONF="no"
 
 pre_make_target() {

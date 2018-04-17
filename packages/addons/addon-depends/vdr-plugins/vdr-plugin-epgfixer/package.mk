@@ -21,7 +21,7 @@ PKG_VERSION="354f28b"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-epgfixer"
-PKG_URL="https://projects.vdr-developer.org/git/vdr-plugin-epgfixer.git"
+PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgfixer.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr pcre"
 PKG_SECTION="multimedia"
@@ -29,7 +29,6 @@ PKG_SHORTDESC="vdr-plugin-epgfixer"
 PKG_LONGDESC="Plugin for modifying EPG data using regular expressions."
 
 PKG_IS_ADDON="no"
-
 PKG_AUTORECONF="no"
 
 make_target() {

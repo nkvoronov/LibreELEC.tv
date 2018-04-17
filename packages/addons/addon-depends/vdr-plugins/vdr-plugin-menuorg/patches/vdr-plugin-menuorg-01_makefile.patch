@@ -1,7 +1,7 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2015-02-10 20:14:59.000000000 +0200
-+++ b/Makefile	2016-12-11 08:33:45.769251518 +0200
-@@ -11,21 +11,15 @@
+--- a/Makefile	2018-02-27 20:05:03.000000000 +0200
++++ b/Makefile	2018-04-17 20:55:12.238889530 +0300
+@@ -14,21 +14,15 @@
  ### The directory environment:
  
  # Use package data if installed...otherwise assume we're under the VDR source directory:
@@ -25,7 +25,7 @@ diff -Naur a/Makefile b/Makefile
  
  ### Allow user defined options to overwrite defaults:
  
-@@ -42,11 +36,17 @@
+@@ -45,11 +39,17 @@
  
  ### Includes and Defines (add further entries here):
  
@@ -41,9 +41,9 @@ diff -Naur a/Makefile b/Makefile
 +
 +CXXFLAGS +=-std=c++11
  
- DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
- 
-@@ -106,6 +106,7 @@
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"' \
+ 	$(if $(GIT_REV), -DGIT_REV='"$(GIT_REV)"')
+@@ -110,6 +110,7 @@
  
  $(SOFILE): $(OBJS)
  	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@

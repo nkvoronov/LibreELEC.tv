@@ -18,7 +18,7 @@
 ################################################################################
 
 PKG_NAME="vdr"
-PKG_VERSION="2.2.0"
+PKG_VERSION="2.4.0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvdr.de"

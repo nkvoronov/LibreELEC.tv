@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-femon"
-PKG_VERSION="2.2.1"
+PKG_VERSION="2.4.0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.saunalahti.fi/~rahrenbe/vdr/femon/"

@@ -17,12 +17,12 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-iptv"
-PKG_VERSION="2.2.1"
+PKG_VERSION="5ae793f"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.saunalahti.fi/~rahrenbe/vdr/iptv/"
-PKG_URL="http://www.saunalahti.fi/~rahrenbe/vdr/vdr-iptv/files/vdr-iptv-$PKG_VERSION.tgz"
-PKG_SOURCE_DIR="iptv-$PKG_VERSION"
+PKG_URL="https://github.com/rofafor/vdr-plugin-iptv.git"
+PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr curl"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="vdr-plugin-iptv: an IPTV plugin for the Video Disk Recorder (VDR)"
