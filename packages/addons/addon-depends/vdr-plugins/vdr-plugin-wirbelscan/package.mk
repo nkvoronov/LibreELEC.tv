@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-wirbelscan"
-PKG_VERSION="0.0.9"
+PKG_VERSION="2017.06.04"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wirbel.htpc-forum.de/wirbelscan/index2.html"
-PKG_URL="http://wirbel.htpc-forum.de/wirbelscan/${PKG_NAME/-plugin/}-$PKG_VERSION.tgz"
+PKG_URL="http://wirbel.htpc-forum.de/wirbelscan/${PKG_NAME/-plugin/}-dev-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="wirbelscan-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
@@ -39,6 +39,7 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  cp backup/Makefile.old Makefile
   make VDRDIR=$VDR_DIR \
     LIBDIR="." \
     LOCALEDIR="./locale"

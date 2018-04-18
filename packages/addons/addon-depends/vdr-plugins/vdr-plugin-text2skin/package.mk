@@ -17,11 +17,11 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-text2skin"
-PKG_VERSION="7bd88a0"
+PKG_VERSION="8f7954d"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-text2skin"
-PKG_URL="https://projects.vdr-developer.org/git/vdr-plugin-text2skin.git"
+PKG_URL="https://github.com/vdr-projects/vdr-plugin-text2skin.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr ImageMagick"
 PKG_SECTION="multimedia"
