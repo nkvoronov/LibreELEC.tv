@@ -195,8 +195,8 @@ diff -Naur a/satip.c b/satip.c
  #define GITVERSION ""
  #endif
  
--       const char VERSION[]     = "2.2.4" GITVERSION;
-+       const char VERSION[]     = "2.2.4";
+-       const char VERSION[]     = "2.4.0" GITVERSION;
++       const char VERSION[]     = "2.4.0";
  static const char DESCRIPTION[] = trNOOP("SAT>IP Devices");
  
  class cPluginSatip : public cPlugin {

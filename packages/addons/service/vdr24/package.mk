@@ -46,23 +46,23 @@ ENABLE_VDR_PLUGIN_LCDPROC="no"
 ENABLE_VDR_PLUGIN_LIVE="no"
 ENABLE_VDR_PLUGIN_MENUORG="yes"
 ENABLE_VDR_PLUGIN_RESTFULAPI="yes"
-ENABLE_VDR_PLUGIN_STREAMDEV="yes"
-ENABLE_VDR_PLUGIN_VNSISERVER="yes"
-ENABLE_VDR_PLUGIN_XMLTV2VDR="yes"
 ENABLE_VDR_PLUGIN_SATIP="yes"
-ENABLE_VDR_PLUGIN_WIRBELSCAN="yes"
-ENABLE_VDR_PLUGIN_SLEEPTIMER="yes"
-ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
-ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
-ENABLE_VDR_PLUGIN_TVGUIDE="yes"
-ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
-ENABLE_VDR_PLUGIN_XINELIBOUTPUT="yes"
+ENABLE_VDR_PLUGIN_SKINDESIGNER="yes"
 ENABLE_VDR_PLUGIN_SKINFLAT="yes"
 ENABLE_VDR_PLUGIN_SKINFLATPLUS="yes"
 ENABLE_VDR_PLUGIN_SKINNOPACITY="yes"
+ENABLE_VDR_PLUGIN_SLEEPTIMER="yes"
+ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
+ENABLE_VDR_PLUGIN_STREAMDEV="yes"
 ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
-ENABLE_VDR_PLUGIN_SKINDESIGNER="yes"
+ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
+ENABLE_VDR_PLUGIN_TVGUIDE="yes"
+ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
+ENABLE_VDR_PLUGIN_VNSISERVER="yes"
 ENABLE_VDR_PLUGIN_WEATHERFORECAST="yes"
+ENABLE_VDR_PLUGIN_WIRBELSCAN="yes"
+ENABLE_VDR_PLUGIN_XINELIBOUTPUT="yes"
+ENABLE_VDR_PLUGIN_XMLTV2VDR="yes"
 
 if [ "$ENABLE_VDR_PLUGIN_DUMMYDEVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dummydevice"
@@ -116,48 +116,12 @@ if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-restfulapi"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_STREAMDEV" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-streamdev"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_VNSISERVER" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-vnsiserver"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_XMLTV2VDR" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-xmltv2vdr"
-fi
-
 if [ "$ENABLE_VDR_PLUGIN_SATIP" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-satip"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_WIRBELSCAN" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-wirbelscan vdr-plugin-wirbelscancontrol"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_SLEEPTIMER" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-sleeptimer"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_SOFTHDDEVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-softhddevice"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-text2skin"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguide"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvscraper"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-xineliboutput"
+if [ "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-skindesigner"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_SKINFLAT" = yes ]; then
@@ -172,16 +136,52 @@ if [ "$ENABLE_VDR_PLUGIN_SKINNOPACITY" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-skinnopacity"
 fi
 
+if [ "$ENABLE_VDR_PLUGIN_SLEEPTIMER" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-sleeptimer"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_SOFTHDDEVICE" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-softhddevice"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_STREAMDEV" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-streamdev"
+fi
+
 if [ "$ENABLE_VDR_PLUGIN_SYSTEMINFO" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-systeminfo"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-skindesigner"
+if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-text2skin"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguide"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvscraper"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_VNSISERVER" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-vnsiserver"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-weatherforecast"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_WIRBELSCAN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-wirbelscan vdr-plugin-wirbelscancontrol"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-xineliboutput"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_XMLTV2VDR" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-xmltv2vdr"
 fi
 
 make_target() {
@@ -410,42 +410,6 @@ addon() {
 
   fi
 
-  if [ "$ENABLE_VDR_PLUGIN_STREAMDEV" = yes ]; then
-    VDR_PLUGIN_STREAMDEV_DIR=$(get_build_dir vdr-plugin-streamdev)
-    cp -PR $VDR_PLUGIN_STREAMDEV_DIR/server/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    cp -PR $VDR_PLUGIN_STREAMDEV_DIR/client/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
-      cp -PR $VDR_PLUGIN_STREAMDEV_DIR/streamdev-server/streamdevhosts.conf $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
-    for fmo in `ls $VDR_PLUGIN_STREAMDEV_DIR/server/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-streamdev-server.mo
-    done
-    for fmo in `ls $VDR_PLUGIN_STREAMDEV_DIR/client/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-streamdev-client.mo
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_VNSISERVER" = yes ]; then
-    VDR_PLUGIN_VNSISERVER_DIR=$(get_build_dir vdr-plugin-vnsiserver)
-    cp -PR $VDR_PLUGIN_VNSISERVER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/vnsiserver
-      cp -PR $VDR_PLUGIN_VNSISERVER_DIR/vnsiserver/allowed_hosts.conf $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/vnsiserver
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_XMLTV2VDR" = yes ]; then
-    VDR_PLUGIN_XMLTV2VDR_DIR=$(get_build_dir vdr-plugin-xmltv2vdr)
-    cp -P $VDR_PLUGIN_XMLTV2VDR_DIR/dist/epgdata2xmltv/epgdata2xmltv $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -PR $VDR_PLUGIN_XMLTV2VDR_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/epgsources
-      cp $VDR_PLUGIN_XMLTV2VDR_DIR/dist/epgdata2xmltv/epgdata2xmltv.dist $ADDON_BUILD/$PKG_ADDON_ID/config/epgsources/epgdata2xmltv
-    cp -PR $VDR_PLUGIN_XMLTV2VDR_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
-  fi
-
   if [ "$ENABLE_VDR_PLUGIN_SATIP" = yes ]; then
     VDR_PLUGIN_SATIP_DIR=$(get_build_dir vdr-plugin-satip)
     cp -PR $VDR_PLUGIN_SATIP_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
@@ -457,137 +421,58 @@ addon() {
     done
   fi
 
-  if [ "$ENABLE_VDR_PLUGIN_WIRBELSCAN" = yes ]; then
-    VDR_PLUGIN_WIRBELSCAN_DIR=$(get_build_dir vdr-plugin-wirbelscan)
-    VDR_PLUGIN_WIRBELSCANCONTROL_DIR=$(get_build_dir vdr-plugin-wirbelscancontrol)
-    cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
-    cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_SLEEPTIMER" = yes ]; then
-    VDR_PLUGIN_SLEEPTIMER_DIR=$(get_build_dir vdr-plugin-sleeptimer)
-    cp -PR $VDR_PLUGIN_SLEEPTIMER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    for fmo in `ls $VDR_PLUGIN_SLEEPTIMER_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-sleeptimer.mo
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_SOFTHDDEVICE" = yes ]; then
-    VDR_PLUGIN_SOFTHDDEVICE_DIR=$(get_build_dir vdr-plugin-softhddevice)
-    cp -PR $VDR_PLUGIN_SOFTHDDEVICE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    for fmo in `ls $VDR_PLUGIN_SOFTHDDEVICE_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-softhddevice.mo
-    done
-
+  if [ "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
+    VDR_PLUGIN_SKINDESINGER_DIR=$(get_build_dir vdr-plugin-skindesigner)
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fontconfig/conf.avail
+      cp -P $VDR_PLUGIN_SKINDESINGER_DIR/installs/99-skindesigner.conf $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fontconfig/conf.avail
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
+      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/installs/TTF/* $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
+    mkfontdir $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
+    mkfontscale $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
+    cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb.so.1.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb.so.1
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-composite.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-composite.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-damage.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-damage.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-dpms.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-dpms.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-dri2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-dri2.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-dri3.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-dri3.so.0
-      cp -P $LIBXCBUTILWM_DIR/.install_pkg/usr/lib/libxcb-ewmh.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-ewmh.so.2
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-glx.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-glx.so.0
-      cp -P $LIBXCBUTILWM_DIR/.install_pkg/usr/lib/libxcb-icccm.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-icccm.so.4
-      cp -P $LIBXCBUTILIMAGE_DIR/.install_pkg/usr/lib/libxcb-image.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-image.so.0
-      cp -P $LIBXCBUTILKEYSYMS_DIR/.install_pkg/usr/lib/libxcb-keysyms.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-keysyms.so.1
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-present.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-present.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-randr.so.0.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-randr.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-record.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-record.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-render.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-render.so.0
-      cp -P $LIBXCBUTILRENDERUTIL_DIR/.install_pkg/usr/lib/libxcb-render-util.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-render-util.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-res.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-res.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-screensaver.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-screensaver.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-shape.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-shape.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-shm.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-shm.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-sync.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-sync.so.1
-      cp -P $LIBXCBUTIL_DIR/.install_pkg/usr/lib/libxcb-util.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-util.so.1
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xf86dri.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xf86dri.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xfixes.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xfixes.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xinerama.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xinerama.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xkb.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xkb.so.1
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xtest.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xtest.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xv.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xv.so.0
-      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xvmc.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xvmc.so.0
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
-    VDR_PLUGIN_TEXT2SKIN_DIR=$(get_build_dir vdr-plugin-text2skin)
-    cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
-
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.8.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.8
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.5
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.5
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
-    VDR_PLUGIN_TVGUIDE_DIR=$(get_build_dir vdr-plugin-tvguide)
-    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+      cp -P $VDR_PLUGIN_SKINDESINGER_DIR/libskindesignerapi/libskindesignerapi.so.0.1.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libskindesignerapi.so.0
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
-      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/icons $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
-    for fmo in `ls $VDR_PLUGIN_TVGUIDE_DIR/po/*.mo`;do
+      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
+      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/dtd $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
+      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/skins $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
+      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/scripts $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
+    for fmo in `ls $VDR_PLUGIN_SKINDESINGER_DIR/po/*.mo`;do
       fname=`basename $fmo .mo`
       mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
       mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-tvguide.mo
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-skindesigner.mo
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.8.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.8
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.8
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.8
-  fi
+      cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
+      cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
+      cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
+      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3400.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
+      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
+      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
+      cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
+      cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
 
-  if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
-    VDR_PLUGIN_TVSCRAPER_DIR=$(get_build_dir vdr-plugin-tvscraper)
-    cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvscraper
-      cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/conf/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvscraper
-    for fmo in `ls $VDR_PLUGIN_TVSCRAPER_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-tvscraper.mo    
-    done
-  fi
-
-  if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
-    VDR_PLUGIN_XINEOUTPUT_DIR=$(get_build_dir vdr-plugin-xineliboutput)
-    XINE_VERSION="2.5"
-    cp -P $VDR_PLUGIN_XINEOUTPUT_DIR/vdr-fbfe $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -P $VDR_PLUGIN_XINEOUTPUT_DIR/vdr-sxfe $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/libxineliboutput*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION
-      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/xineplug_inp_xvdr.so $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION/post
-      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/xineplug_post_*.so $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION/post
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
-      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/examples/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/xine
-      cp -PR $PKG_DIR/config-xine/* $ADDON_BUILD/$PKG_ADDON_ID/config/xine
-    for fmo in `ls $VDR_PLUGIN_XINEOUTPUT_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-xineliboutput.mo
-    done
-
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -PR $XINELIB_DIR/.install_pkg/usr/lib/xine $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $XINELIB_DIR/.install_pkg/usr/lib/libxine.so.2.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxine.so.2
+    if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes ]; then
+      VDR_PLUGIN_WEATHERFORECAST_DIR=$(get_build_dir vdr-plugin-weatherforecast)
+      cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
+        cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/templates $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
+      for fmo in `ls $VDR_PLUGIN_WEATHERFORECAST_DIR/po/*.mo`;do
+        fname=`basename $fmo .mo`
+        mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+        mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+          cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-weatherforecast.mo
+      done
+    fi
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SKINFLAT" = yes ]; then
@@ -655,6 +540,79 @@ addon() {
       cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.5
   fi
 
+  if [ "$ENABLE_VDR_PLUGIN_SLEEPTIMER" = yes ]; then
+    VDR_PLUGIN_SLEEPTIMER_DIR=$(get_build_dir vdr-plugin-sleeptimer)
+    cp -PR $VDR_PLUGIN_SLEEPTIMER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    for fmo in `ls $VDR_PLUGIN_SLEEPTIMER_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-sleeptimer.mo
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_SOFTHDDEVICE" = yes ]; then
+    VDR_PLUGIN_SOFTHDDEVICE_DIR=$(get_build_dir vdr-plugin-softhddevice)
+    cp -PR $VDR_PLUGIN_SOFTHDDEVICE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    for fmo in `ls $VDR_PLUGIN_SOFTHDDEVICE_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-softhddevice.mo
+    done
+
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb.so.1.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb.so.1
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-composite.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-composite.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-damage.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-damage.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-dpms.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-dpms.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-dri2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-dri2.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-dri3.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-dri3.so.0
+      cp -P $LIBXCBUTILWM_DIR/.install_pkg/usr/lib/libxcb-ewmh.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-ewmh.so.2
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-glx.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-glx.so.0
+      cp -P $LIBXCBUTILWM_DIR/.install_pkg/usr/lib/libxcb-icccm.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-icccm.so.4
+      cp -P $LIBXCBUTILIMAGE_DIR/.install_pkg/usr/lib/libxcb-image.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-image.so.0
+      cp -P $LIBXCBUTILKEYSYMS_DIR/.install_pkg/usr/lib/libxcb-keysyms.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-keysyms.so.1
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-present.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-present.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-randr.so.0.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-randr.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-record.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-record.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-render.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-render.so.0
+      cp -P $LIBXCBUTILRENDERUTIL_DIR/.install_pkg/usr/lib/libxcb-render-util.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-render-util.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-res.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-res.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-screensaver.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-screensaver.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-shape.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-shape.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-shm.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-shm.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-sync.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-sync.so.1
+      cp -P $LIBXCBUTIL_DIR/.install_pkg/usr/lib/libxcb-util.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-util.so.1
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xf86dri.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xf86dri.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xfixes.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xfixes.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xinerama.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xinerama.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xkb.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xkb.so.1
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xtest.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xtest.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xv.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xv.so.0
+      cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xvmc.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xvmc.so.0
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_STREAMDEV" = yes ]; then
+    VDR_PLUGIN_STREAMDEV_DIR=$(get_build_dir vdr-plugin-streamdev)
+    cp -PR $VDR_PLUGIN_STREAMDEV_DIR/server/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    cp -PR $VDR_PLUGIN_STREAMDEV_DIR/client/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
+      cp -PR $VDR_PLUGIN_STREAMDEV_DIR/streamdev-server/streamdevhosts.conf $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
+    for fmo in `ls $VDR_PLUGIN_STREAMDEV_DIR/server/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-streamdev-server.mo
+    done
+    for fmo in `ls $VDR_PLUGIN_STREAMDEV_DIR/client/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-streamdev-client.mo
+    done
+  fi
+
   if [ "$ENABLE_VDR_PLUGIN_SYSTEMINFO" = yes ]; then
     VDR_PLUGIN_SYSTEMINFO_DIR=$(get_build_dir vdr-plugin-systeminfo)
     cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
@@ -668,57 +626,100 @@ addon() {
     done
   fi
 
-  if [ "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
-    VDR_PLUGIN_SKINDESINGER_DIR=$(get_build_dir vdr-plugin-skindesigner)
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fontconfig/conf.avail
-      cp -P $VDR_PLUGIN_SKINDESINGER_DIR/installs/99-skindesigner.conf $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fontconfig/conf.avail
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/installs/TTF/* $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-    mkfontdir $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-    mkfontscale $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-    cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+  if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
+    VDR_PLUGIN_TEXT2SKIN_DIR=$(get_build_dir vdr-plugin-text2skin)
+    cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
+
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $VDR_PLUGIN_SKINDESINGER_DIR/libskindesignerapi/libskindesignerapi.so.0.1.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libskindesignerapi.so.0
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.8.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.8
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.5
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.5
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
+    VDR_PLUGIN_TVGUIDE_DIR=$(get_build_dir vdr-plugin-tvguide)
+    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
-      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/dtd $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
-      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/skins $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
-      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/scripts $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
-    for fmo in `ls $VDR_PLUGIN_SKINDESINGER_DIR/po/*.mo`;do
+      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
+      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/icons $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
+    for fmo in `ls $VDR_PLUGIN_TVGUIDE_DIR/po/*.mo`;do
       fname=`basename $fmo .mo`
       mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
       mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-skindesigner.mo
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-tvguide.mo
     done
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
-      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
-      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
-      cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
-      cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3400.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
-      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
-      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
-      cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
-
-    if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes ]; then
-      VDR_PLUGIN_WEATHERFORECAST_DIR=$(get_build_dir vdr-plugin-weatherforecast)
-      cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
-        cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/templates $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
-      for fmo in `ls $VDR_PLUGIN_WEATHERFORECAST_DIR/po/*.mo`;do
-        fname=`basename $fmo .mo`
-        mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-        mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-          cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-weatherforecast.mo
-      done
-    fi
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.8.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.8
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.8
+      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.5.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.8
   fi
+
+  if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
+    VDR_PLUGIN_TVSCRAPER_DIR=$(get_build_dir vdr-plugin-tvscraper)
+    cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvscraper
+      cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/conf/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvscraper
+    for fmo in `ls $VDR_PLUGIN_TVSCRAPER_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-tvscraper.mo    
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_VNSISERVER" = yes ]; then
+    VDR_PLUGIN_VNSISERVER_DIR=$(get_build_dir vdr-plugin-vnsiserver)
+    cp -PR $VDR_PLUGIN_VNSISERVER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/vnsiserver
+      cp -PR $VDR_PLUGIN_VNSISERVER_DIR/vnsiserver/allowed_hosts.conf $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/vnsiserver
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_WIRBELSCAN" = yes ]; then
+    VDR_PLUGIN_WIRBELSCAN_DIR=$(get_build_dir vdr-plugin-wirbelscan)
+    VDR_PLUGIN_WIRBELSCANCONTROL_DIR=$(get_build_dir vdr-plugin-wirbelscancontrol)
+    cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
+    cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
+    VDR_PLUGIN_XINEOUTPUT_DIR=$(get_build_dir vdr-plugin-xineliboutput)
+    XINE_VERSION="2.5"
+    cp -P $VDR_PLUGIN_XINEOUTPUT_DIR/vdr-fbfe $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $VDR_PLUGIN_XINEOUTPUT_DIR/vdr-sxfe $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/libxineliboutput*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION
+      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/xineplug_inp_xvdr.so $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION/post
+      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/xineplug_post_*.so $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION/post
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
+      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/examples/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/xine
+      cp -PR $PKG_DIR/config-xine/* $ADDON_BUILD/$PKG_ADDON_ID/config/xine
+    for fmo in `ls $VDR_PLUGIN_XINEOUTPUT_DIR/po/*.mo`;do
+      fname=`basename $fmo .mo`
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
+      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
+        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr-xineliboutput.mo
+    done
+
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+      cp -PR $XINELIB_DIR/.install_pkg/usr/lib/xine $ADDON_BUILD/$PKG_ADDON_ID/lib
+      cp -P $XINELIB_DIR/.install_pkg/usr/lib/libxine.so.2.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxine.so.2
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_XMLTV2VDR" = yes ]; then
+    VDR_PLUGIN_XMLTV2VDR_DIR=$(get_build_dir vdr-plugin-xmltv2vdr)
+    cp -P $VDR_PLUGIN_XMLTV2VDR_DIR/dist/epgdata2xmltv/epgdata2xmltv $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -PR $VDR_PLUGIN_XMLTV2VDR_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/epgsources
+      cp $VDR_PLUGIN_XMLTV2VDR_DIR/dist/epgdata2xmltv/epgdata2xmltv.dist $ADDON_BUILD/$PKG_ADDON_ID/config/epgsources/epgdata2xmltv
+    cp -PR $VDR_PLUGIN_XMLTV2VDR_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/locale
+  fi
+
 }
