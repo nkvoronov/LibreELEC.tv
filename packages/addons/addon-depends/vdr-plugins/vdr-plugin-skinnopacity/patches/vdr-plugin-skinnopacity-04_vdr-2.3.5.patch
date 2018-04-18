@@ -1,0 +1,53 @@
+--- a/detailview.c
++++ b/detailview.c
+@@ -92,7 +92,7 @@
+     if (channel) {
+         cImage *logo = imgCache->GetLogo(ctLogo, channel);
+         if (logo) {
+-            pixmapHeaderLogo->DrawImage(cPoint(border, max((headerHeight - geoManager->channelLogoHeight - border)/2, 0)), *logo);
++            pixmapHeaderLogo->DrawImage(cPoint(border, std::max((headerHeight - geoManager->channelLogoHeight - border)/2, 0)), *logo);
+             xText += logoWidth + border;
+         }
+     }
+@@ -191,7 +191,7 @@
+     int textLinesFull = wTextFull.Lines();
+     int textHeight = lineHeight * (textLinesTall + textLinesFull) + 2*border;
+     int yText = border;
+-    CreateContent(max(textHeight, imgHeight + 2*border));
++    CreateContent(std::max(textHeight, imgHeight + 2*border));
+     for (int i=0; i < textLinesTall; i++) {
+         pixmapContent->DrawText(cPoint(border, yText), wTextTall.GetLine(i), Theme.Color(clrMenuFontDetailViewText), clrTransparent, font);
+         yText += lineHeight;
+--- a/displaychannel.c
++++ b/displaychannel.c
+@@ -184,7 +184,7 @@
+     while (Running()) {
+         uint64_t Now = cTimeMs::Now();
+         cPixmap::Lock();
+-        double t = min(double(Now - Start) / FadeTime, 1.0);
++        double t = std::min(double(Now - Start) / FadeTime, 1.0);
+         int Alpha = t * ALPHA_OPAQUE;
+         channelView->SetAlpha(Alpha);
+         cPixmap::Unlock();
+--- a/geometrymanager.c
++++ b/geometrymanager.c
+@@ -200,7 +200,7 @@
+     replayJumpHeight = replayControlsHeight;
+ 
+     replayIconBorder = 5;
+-    replayIconSize = min(replayControlsHeight - 2*replayIconBorder, 128);
++    replayIconSize = std::min(replayControlsHeight - 2*replayIconBorder, 128);
+ 
+     replayMessageY = replayHeight - replayFooterHeight;
+     replayMessageWidth = replayWidth * 75 / 100;
+--- a/displaychannelview.c
++++ b/displaychannelview.c
+@@ -627,7 +627,7 @@
+         signalHeight = imgSignal->Height();
+         int signalMeterY = geoManager->channelFooterY +
+                            (geoManager->channelFooterHeight - 2*signalHeight - 5)/2;
+-        int labelWidth = max(fontInfoline->Width(*signalStrength),
++        int labelWidth = std::max(fontInfoline->Width(*signalStrength),
+                              fontInfoline->Width(*signalQuality)) + 2;
+         signalX = geoManager->channelFooterHeight / 2 + labelWidth;
+         pixmapSignalStrength = osd->CreatePixmap(3,

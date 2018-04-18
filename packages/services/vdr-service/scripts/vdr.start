@@ -121,9 +121,13 @@ init_vdr_plugins() {
         VDR_ARG="$VDR_ARG -P streamdev-client"
     fi
 
+    VDR_ENABLE_LIVE="false"
+
     if [ "$VDR_ENABLE_LIVE" == "true" ]; then
         VDR_ARG="$VDR_ARG -P 'live -i $VDR_LIVE_IP -p $VDR_LIVE_PORT'"
     fi
+
+    VDR_ENABLE_EEPG="false"
 
     if [ "$VDR_ENABLE_EEPG" == "true" ]; then
         VDR_ARG="$VDR_ARG -P eepg"

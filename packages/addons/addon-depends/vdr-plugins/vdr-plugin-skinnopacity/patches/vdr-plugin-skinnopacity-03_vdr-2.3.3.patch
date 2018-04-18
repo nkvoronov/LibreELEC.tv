@@ -1,0 +1,147 @@
+diff -Nur skinnopacity-2017.03.14/displaychannel.c skinnopacity_mod/displaychannel.c
+--- skinnopacity-2017.03.14/displaychannel.c	2017-03-24 10:33:11.000000000 +0100
++++ skinnopacity_mod/displaychannel.c	2017-03-24 10:22:10.000000000 +0100
+@@ -101,7 +101,8 @@
+         }
+         bool recCurrent = false;
+         eTimerMatch TimerMatch = tmNone;
+-        const cTimer *Timer = Timers.GetMatch(Present, &TimerMatch);
++        LOCK_TIMERS_READ;
++		const cTimer *Timer = Timers->GetMatch(Present, &TimerMatch);
+         if (Timer && Timer->Recording()) {
+             recCurrent = true;
+         }
+diff -Nur skinnopacity-2017.03.14/displaychannelview.c skinnopacity_mod/displaychannelview.c
+--- skinnopacity-2017.03.14/displaychannelview.c	2014-05-24 17:17:27.000000000 +0200
++++ skinnopacity_mod/displaychannelview.c	2017-03-24 10:26:16.000000000 +0100
+@@ -779,9 +779,10 @@
+
+ std::string cNopacityDisplayChannelView::GetChannelSep(const cChannel *channel, bool prev) {
+     std::string sepName = "";
+-    const cChannel *sep = prev ? Channels.Prev(channel) :
+-                                 Channels.Next(channel);
+-    for (; sep; (prev)?(sep = Channels.Prev(sep)):(sep = Channels.Next(sep))) {
++    LOCK_CHANNELS_READ;
++	const cChannel *sep = prev ? Channels->Prev(channel) :
++                                 Channels->Next(channel);
++    for (; sep; (prev)?(sep = Channels->Prev(sep)):(sep = Channels->Next(sep))) {
+         if (sep->GroupSep()) {
+             sepName = sep->Name();
+             break;
+@@ -798,7 +799,8 @@
+         channelInfo = cString::sprintf("%s #%d", source->Description(), cDevice::ActualDevice()->DeviceNumber());
+     }
+     if (cRecordControls::Active()) {
+-        cSortedTimers SortedTimers;
++        LOCK_TIMERS_READ;
++		cSortedTimers SortedTimers(Timers);
+         bool first = true;
+         int truncPos = 0;
+         for (int i = 0; i < SortedTimers.Size(); i++)
+diff -Nur skinnopacity-2017.03.14/displaymenu.c skinnopacity_mod/displaymenu.c
+--- skinnopacity-2017.03.14/displaymenu.c	2014-05-24 17:17:27.000000000 +0200
++++ skinnopacity_mod/displaymenu.c	2017-03-24 10:24:44.000000000 +0100
+@@ -100,7 +100,8 @@
+                 drawRemoteTimers = pRemoteTimers->Service("RemoteTimers::RefreshTimers-v1.0", &errorMsg);
+             }
+             timers.Clear();
+-            cSortedTimers SortedTimers;
++			LOCK_TIMERS_READ;
++            cSortedTimers SortedTimers(Timers);
+             //if remotetimers plugin is available, take timers also from him
+             if (drawRemoteTimers) {
+                 cTimer* remoteTimer = NULL;
+@@ -705,7 +706,7 @@
+     if (MenuCategory() == mcMain) {
+         if (config.GetValue("showDiscUsage"))
+             DrawDisk();
+-        bool timersChanged = Timers.Modified(lastTimersState);
++        bool timersChanged = true;
+         int numConflicts = 0;
+         if (config.GetValue("checkTimerConflict"))
+             numConflicts = CheckTimerConflict(timersChanged);
+diff -Nur skinnopacity-2017.03.14/imagecache.c skinnopacity_mod/imagecache.c
+--- skinnopacity-2017.03.14/imagecache.c	2014-05-24 17:17:27.000000000 +0200
++++ skinnopacity_mod/imagecache.c	2017-03-24 10:27:02.000000000 +0100
+@@ -43,7 +43,8 @@
+     //Channel Logos
+     if (config.GetValue("numLogosInitial") > 0) {
+         int channelsCached = 0;
+-        for (const cChannel *channel = Channels.First(); channel; channel = Channels.Next(channel)) {
++		LOCK_CHANNELS_READ;
++        for (const cChannel *channel = Channels->First(); channel; channel = Channels->Next(channel)) {
+             if (channelsCached >= config.GetValue("numLogosInitial"))
+                 break;
+             if (!channel->GroupSep()) {
+diff -Nur skinnopacity-2017.03.14/menudetailview.c skinnopacity_mod/menudetailview.c
+--- skinnopacity-2017.03.14/menudetailview.c	2014-05-24 17:17:27.000000000 +0200
++++ skinnopacity_mod/menudetailview.c	2017-03-24 10:30:45.000000000 +0100
+@@ -66,7 +66,8 @@
+                 dateTime = cString::sprintf("%s  %s - %s (%d %s)", *ev->GetDateString(), *ev->GetTimeString(), *ev->GetEndTimeString(), ev->Duration()/60, tr("min"));
+             }
+             view->SetDateTime(*dateTime);
+-            view->SetChannel(Channels.GetByChannelID(ev->ChannelID(), true));
++            LOCK_CHANNELS_READ;
++			view->SetChannel(Channels->GetByChannelID(ev->ChannelID(), true));
+             view->SetEventID(ev->EventID());
+             break; }
+         case dvRecording: {
+@@ -89,7 +90,8 @@
+                 view->SetTitle(info->Title());
+                 view->SetSubTitle(info->ShortText());
+                 view->SetInfoText(info->Description());
+-                view->SetChannel(Channels.GetByChannelID(info->ChannelID(), true));
++                LOCK_CHANNELS_READ;
++				view->SetChannel(Channels->GetByChannelID(info->ChannelID(), true));
+             } else {
+                 view->SetTitle(rec->Name());
+             }
+@@ -176,7 +178,8 @@
+                     continue;
+                 i++;
+                 sstrReruns  << *DayDateTime(r->event->StartTime());
+-                cChannel *channel = Channels.GetByChannelID(r->event->ChannelID(), true, true);
++                LOCK_CHANNELS_READ;
++				const cChannel *channel = Channels->GetByChannelID(r->event->ChannelID(), true, true);
+                 if (channel) {
+                     sstrReruns << ", " << trVDR("Channel") << " " << channel->Number() << ":";
+                     sstrReruns << " " << channel->ShortName(true);
+@@ -262,7 +265,8 @@
+
+     std::stringstream sstrInfo;
+
+-    cChannel *channel = Channels.GetByChannelID(Info->ChannelID());
++	LOCK_CHANNELS_READ;
++    const cChannel *channel = Channels->GetByChannelID(Info->ChannelID());
+     if (channel)
+         sstrInfo << trVDR("Channel") << ": " << channel->Number() << " - " << channel->Name() << std::endl;
+     if (nRecSize < 0) {
+diff -Nur skinnopacity-2017.03.14/menuitem.c skinnopacity_mod/menuitem.c
+--- skinnopacity-2017.03.14/menuitem.c	2014-05-24 17:17:27.000000000 +0200
++++ skinnopacity_mod/menuitem.c	2017-03-24 10:32:09.000000000 +0100
+@@ -832,10 +832,8 @@
+ }
+
+ void cNopacityChannelMenuItem::readCurrentEPG(void) {
+-    cSchedulesLock schedulesLock;
+-    const cSchedules *schedules = cSchedules::Schedules(schedulesLock);
+-    const cSchedule *Schedule = NULL;
+-	Schedule = schedules->GetSchedule(Channel);
++	LOCK_SCHEDULES_READ;
++    const cSchedule *Schedule = Schedules->GetSchedule(Channel);
+ 	if (!Schedule) {
+ 		strEpgInfo = tr("No EPG Information found");
+         strTimeInfo = "";
+@@ -853,10 +851,8 @@
+
+ std::string cNopacityChannelMenuItem::readEPG(void) {
+     std::stringstream sstrText;
+-    cSchedulesLock schedulesLock;
+-    const cSchedules *schedules = cSchedules::Schedules(schedulesLock);
+-    const cSchedule *Schedule = NULL;
+-	Schedule = schedules->GetSchedule(Channel);
++	LOCK_SCHEDULES_READ;
++    const cSchedule *Schedule = Schedules->GetSchedule(Channel);
+ 	if (!Schedule) {
+ 		sstrText << tr("No EPG Information found");
+ 	} else {
