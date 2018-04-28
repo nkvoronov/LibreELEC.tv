@@ -1,0 +1,9 @@
+#!/bin/bash
+
+OUTPUTFLDR="/tmp/skinflatplus/widgets/command_output"
+mkdir -p ${OUTPUTFLDR}
+
+echo "MyTitle" > ${OUTPUTFLDR}/title
+
+echo "output line 1" > ${OUTPUTFLDR}/output
+echo "output line 2" >> ${OUTPUTFLDR}/output

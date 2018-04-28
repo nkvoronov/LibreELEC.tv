@@ -1,0 +1,10 @@
+This Widget provide information about the system temperatures.
+
+You must manually create a link to the corresponding script, for example:
+ln -s temperatures.default temperatures
+
+The command "temperatures" will be executed every time the widget is drawn, so please keep it short and fast.
+The command can provide three temperatures: cpu, pc case and gpu temperature
+The command can also be called from system information widget. So the output files must also begin with 01_ - 99_ for sort/position. 
+
+Please install lm-sensors and configure it for your system. See the default script for an example.

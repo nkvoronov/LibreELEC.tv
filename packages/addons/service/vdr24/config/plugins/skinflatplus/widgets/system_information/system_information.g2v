@@ -1,0 +1,185 @@
+#!/bin/bash
+
+# this script will be executed when the widget will be drawn
+# so make it short and fast
+
+OUTPUTFLDR="/tmp/skinflatplus/widgets/system_information"
+mkdir -p "$OUTPUTFLDR"
+
+OUTPUTFLDRTEMP="/tmp/skinflatplus/widgets/temperatures"
+OUTPUTFLDRSUPD="/tmp/skinflatplus/widgets/system_updatestatus"
+
+
+# enable/disable items
+SHOW_SYS_VERSION=1
+SHOW_KERNEL_VERSION=0
+SHOW_UPTIME=1
+SHOW_LOAD=1
+SHOW_PROCESSES=1
+SHOW_MEM_USAGE=1
+SHOW_SWAP_USAGE=1
+SHOW_ROOT_USAGE=1
+SHOW_VIDEO_USAGE=0
+SHOW_VDR_CPU_USAGE=1
+SHOW_VDR_MEM_USAGE=1
+
+SHOW_TEMPERATURES=0
+SHOW_SYSUPDATES=0
+
+# Position of items
+# sys_version & kernel_version are drawn in one line
+# all others will be drawn in two column
+# for example
+# System Version: Ubuntu 14.04.1 LTS
+# Uptime: 1:20 5m       Load: 0.41
+
+# must begin with 01
+SYS_VERSION_POS="01"
+KERNEL_VERSION_POS="02"
+UPTIME_POS="03"
+LOAD_POS="04"
+PROCESSES_POS="05"
+MEM_USAGE_POS="06"
+SWAP_USAGE_POS="07"
+ROOT_USAGE_POS="08"
+VIDEO_USAGE_POS="09"
+VDR_CPU_USAGE_POS="10"
+VDR_MEM_USAGE_POS="11"
+
+TEMP_CPU_POS=15
+TEMP_PCCASE_POS=16
+TEMP_GPU_POS=17
+
+SYSUPD_POS=20
+SYSSECUPD_POS=21
+
+# mount point of vdr video disk
+VIDEO_MOUNT="/video"
+
+# force english output for filters
+LANG=en_EN
+
+# Release-File (PRETTY_NAME & VERSION)
+REL_FILE="/etc/g2v-release"
+
+# delete all files
+rm -f ${OUTPUTFLDR}/[0-99]*
+
+if [[ "$SHOW_SYS_VERSION" == "1" ]] ; then
+  if [[ -e "$REL_FILE" ]] ; then
+    while IFS= read -r ; do
+      [[ "$REPLY" =~ PRETTY_NAME ]] && PRETTY_NAME="${REPLY/PRETTY_NAME=/}" # locale Variable
+      [[ "$REPLY" =~ VERSION ]] && VERSION="${REPLY/VERSION=/}"             # locale Variable
+      [[ -n "$VERSION" && -n "$PRETTY_NAME" ]] && break
+    done < "$REL_FILE"
+    [[ -n "$PRETTY_NAME" ]] && echo "${PRETTY_NAME//\"/} ${VERSION//\"/}" > "${OUTPUTFLDR}/${SYS_VERSION_POS}_sys_version"
+  fi
+fi
+
+if [[ "$SHOW_KERNEL_VERSION" == "1" ]] ; then
+    uname -r > "${OUTPUTFLDR}/${KERNEL_VERSION_POS}_kernel_version"
+fi
+
+if [[ "$SHOW_UPTIME" == "1" ]] ; then
+  UPTIME=($(</proc/uptime))     # UpTime in Array
+  UPTIME[0]="${UPTIME[0]%.*}"   # .* entfernen (UpTime in Sekunden)
+  TAGE=$((UPTIME[0] / 86400)) ; STD=$((UPTIME[0] % 86400 / 3600))
+  MIN=$((UPTIME[0] % 3600 / 60)) ; SEK=$((UPTIME[0] % 60))
+  if [[ $TAGE -ge 1 ]] ; then
+    echo "${TAGE}T ${STD}S ${MIN}M" > "${OUTPUTFLDR}/${UPTIME_POS}_uptime"
+  else
+    if [[ $STD -ge 1 ]] ; then
+      [[ $MIN -ge 1 ]] && echo "${STD} Std. ${MIN} Min." > "${OUTPUTFLDR}/${UPTIME_POS}_uptime"
+      [[ $MIN -lt 1 ]] && echo "${STD} Stunde(n)" > "${OUTPUTFLDR}/${UPTIME_POS}_uptime"
+    else
+      [[ $MIN -ge 1 ]] && echo "${MIN} Minute(n)" > "${OUTPUTFLDR}/${UPTIME_POS}_uptime"
+    fi
+  fi
+  [[ ${UPTIME[0]} -le 59 ]] && echo "${SEK} Sekunden" > "${OUTPUTFLDR}/${UPTIME_POS}_uptime"
+fi
+
+if [[ "$SHOW_LOAD" == "1" ]] ; then
+  LOADAVG=($(</proc/loadavg))   # Zeile in Array
+  echo "${LOADAVG[0]//./,} (1M) ${LOADAVG[1]//./,} (5M)" > "${OUTPUTFLDR}/${LOAD_POS}_load"
+fi
+
+if [[ "$SHOW_PROCESSES" == "1" ]] ; then
+  PROCS=($(ls -d /proc/[0-9]*/))
+  echo "${#PROCS[@]}" > "${OUTPUTFLDR}/${PROCESSES_POS}_processes"
+fi
+
+if [[ "$SHOW_MEM_USAGE" == "1" || "$SHOW_SWAP_USAGE" == "1" ]] ; then
+  mapfile -t </proc/meminfo    # Ausgabe in Array
+  MEMTOTAL=(${MAPFILE[0]}) ; MEMAVAIL=(${MAPFILE[2]})
+  SWAPTOTAL=(${MAPFILE[14]}) ; SWAPFREE=(${MAPFILE[15]})
+fi
+
+if [[ "$SHOW_MEM_USAGE" == "1" ]] ; then
+  MEMUSED=$((${MEMTOTAL[1]} - ${MEMAVAIL[1]}))
+  MU=$(($MEMUSED * 1000 / ${MEMTOTAL[1]}))
+  [[ $MU -lt 10 ]] && MU="0${MU}"
+  MU_DEC="${MU: -1}" ; MEM_USAGE="${MU:0: -1},${MU_DEC}"
+  echo "${MEM_USAGE}%" > "${OUTPUTFLDR}/${MEM_USAGE_POS}_mem_usage"
+fi
+
+if [[ "$SHOW_SWAP_USAGE" == "1" ]] ; then
+  if [[ ${SWAPTOTAL[1]} -eq ${SWAPFREE[1]} ]] ; then
+    echo "0,0%" > "${OUTPUTFLDR}/${SWAP_USAGE_POS}_swap_usage"
+  else
+    SWPUSED=$((${SWAPTOTAL[1]} - ${SWAPFREE[1]}))
+    SU=$(($SWPUSED * 1000 / ${SWAPFREE[1]}))
+    [[ $SU -lt 10 ]] && SU="0${SU}"
+    SU_DEC="${SU: -1}" ; SWAP_USAGE="${SU:0: -1},${SU_DEC}"
+    echo "${SWAP_USAGE}%" > "${OUTPUTFLDR}/${SWAP_USAGE_POS}_swap_usage"
+  fi
+fi
+
+if [[ "$SHOW_ROOT_USAGE" == "1" ]] ; then
+  mapfile -t < <(df -Ph /)    # Ausgabe von df in Array (Zwei Zeilen)
+  ROOTUSAGE=(${MAPFILE[1]})   # 2. Zeile in Array
+  # Beispiel 2. Zeile: tmpfs  128M  30M  99M  23%  /root
+  echo "${ROOTUSAGE[4]}" > "${OUTPUTFLDR}/${ROOT_USAGE_POS}_root_usage"
+fi
+
+if [[ "$SHOW_VIDEO_USAGE" == "1" && -d "$VIDEO_MOUNT" ]] ; then
+  mapfile -t < <(df -Ph "$VIDEO_MOUNT")    # Ausgabe von df in Array (Zwei Zeilen)
+  VIDEOUSAGE=(${MAPFILE[1]})               # 2. Zeile in Array
+  # Beispiel 2. Zeile: tmpfs  128M  30M  99M  23%  /root
+  echo "${VIDEOUSAGE[4]}" > "${OUTPUTFLDR}/${VIDEO_USAGE_POS}_video_usage"
+fi
+
+if [[ "$SHOW_VDR_CPU_USAGE" == "1" || "$SHOW_VDR_MEM_USAGE" == "1" ]] ; then
+  mapfile -t < <(ps -C vdr -o %cpu=,%mem=)
+fi
+
+if [[ "$SHOW_VDR_CPU_USAGE" == "1" ]] ; then
+  CPUTMP=(${MAPFILE[0]}) ; CPU_USAGE=${CPUTMP[0]/./,}  # 24.2 -> 24,2
+  echo "${CPU_USAGE//[[:space:]]/}%" > "${OUTPUTFLDR}/${VDR_CPU_USAGE_POS}_vdr_cpu_usage"
+fi
+
+if [[ "$SHOW_VDR_MEM_USAGE" == "1" ]] ; then
+  MEMTMP=(${MAPFILE[0]}) ; VDR_MEM_USAGE=${MEMTMP[1]/./,}  # 24.2 -> 24,2
+  echo "${VDR_MEM_USAGE//[[:space:]]/}%" > "${OUTPUTFLDR}/${VDR_MEM_USAGE_POS}_vdr_mem_usage"
+fi
+
+if [[ "$SHOW_TEMPERATURES" == "1" ]] ; then
+    ./../temperatures/temperatures
+    if [[ -f "${OUTPUTFLDRTEMP}/cpu" ]] ; then
+        cp "${OUTPUTFLDRTEMP}/cpu" "${OUTPUTFLDR}/${TEMP_CPU_POS}_cpu"
+    fi
+    if [[ -f "${OUTPUTFLDRTEMP}/pccase" ]] ; then
+        cp "${OUTPUTFLDRTEMP}/pccase" "${OUTPUTFLDR}/${TEMP_PCCASE_POS}_pccase"
+    fi
+    if [[ -f "${OUTPUTFLDRTEMP}/gpu" ]] ; then
+        cp "${OUTPUTFLDRTEMP}/gpu" "${OUTPUTFLDR}/${TEMP_GPU_POS}_gpu"
+    fi
+fi
+
+if [[ "$SHOW_SYSUPDATES" == "1" ]] ; then
+    if [[ -f "${OUTPUTFLDRSUPD}/updates" ]] ; then
+        cp "${OUTPUTFLDRSUPD}/updates" "${OUTPUTFLDR}/${SYSUPD_POS}_updates"
+    fi
+    if [[ -f "${OUTPUTFLDRSUPD}/security_updates" ]] ; then
+        cp "${OUTPUTFLDRSUPD}/security_updates" "${OUTPUTFLDR}/${SYSSECUPD_POS}_security_updates"
+    fi
+fi

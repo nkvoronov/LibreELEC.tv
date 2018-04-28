@@ -1,0 +1,48 @@
+# -----------------------------------------------------------------------------
+# This is just a template based on your current epg.data. Please edit!
+# Perhaps a category or its value list should be removed. Also the
+# 'name in menu' should be adjusted to your language.
+# The order of items determines the order listed in epgsearch. It does not
+# depend on the ID, which is used by epgsearch.
+# Format:
+# ID|category name|name in menu|values separated by ',' (option)|searchmode (option)
+# - 'ID' should be a unique positive integer
+#   (changing the id later on will force you to reedit your search timers!)
+# - 'category name' is the name in your epg.data
+# - 'name in menu' is the name displayed in epgsearch.
+# - 'values' is an optional list of possible values
+# - 'searchmode' is an optional parameter specifying the mode of search:
+#     text comparison:
+#     0 - the whole term must appear as substring
+#     1 - all single words (delimiters are ',', ';', '|' or '~')
+#         must exist as substrings. This is the default search mode.
+#     2 - at least one word (delimiters are ',', ';', '|' or '~')
+#         must exist as substring.
+#     3 - matches exactly
+#     4 - regular expression
+#     numerical comparison:
+#     10 - less
+#     11 - less or equal
+#     12 - greater
+#     13 - greater or equal
+#     14 - equal
+#     15 - not equal
+# -----------------------------------------------------------------------------
+
+1|Category|Category|Film,Kultur,Serie,Show,Spielfilm,Sport|2
+
+2|Genre|Genre|Abenteuer,Abenteuerkomödie,Action,Actiondrama,Action-Fantasy,Actionkomödie,Actionkrimi,Actionthriller,Animations,Anime,Ansprache,Arzt,Auslandsmagazin,Auslandsreportage,Automagazin,Ballett,Bericht,Bibelverfilmung,Bildungsprogramm,Biographie,Boulevardmagazin,Boxen,Büchermagazin,Bürgersendung,Chart,Chronik,Clip,Clips,Comedy,Daily Soap,Dauerwerbesendung,Detektiv,Diskussion,Doku,Dokudrama,Doku-Drama,Dokumentar,Dokumentation,Doku-Soap,Drama,Dramedy,Ehedrama,Ehekomödie,Erotik,Erotikthriller,Familien,Familienchronik,Familiendrama,Familienkomödie,Fantasy,Fantasyabenteuer,Fantasykomödie,Fernseh,Festakt,Frauenmagazin,Frühmagazin,Fußball,Gala,Gehörlosenmagazin,Gerichts,Gesellschaftsdrama,Gesellschaftskomödie,Gesellschaftssatire,Gespräch,Gesundheitsmagazin,Gottesdienst,Groteske,Gruselkomödie,Heimat,Heimatmelodram,Historien,Historiendrama,Horror,Horrorkomödie,Horrorthriller,Impressionen,Informationen,Interview,Jazz,Jugend,Jugenddrama,Jugendmagazin,Jugendmemoiren,Justizdrama,Kabarett,Kammermusik,Katastrophen,Kinder,Kinderabenteuer,Kinderâ<80><94>Magazin,Kinderkomödie,Kinderkrimi,Kindermagazin,Kinder-Magazin,Kinomagazin,Klassik,Koch,Komödie,Konzert,Kriegs,Kriegsdrama,Krimi,Krimiabenteuer,Krimidrama,Krimikomödie,Kriminalmagazin,Kriminal-Magazin,Kulinarisches,Kulturmagazin,Kurz,Liebes,Liebeskomödie,Lifestylemagazin,Literaturverfilmung,Lotterie,Lustspiel,Magazin,Märchen,Medienmagazin,Melodram,Militärsatire,Mittagsmagazin,Motorsport,Musical,Musicalverfilmung,Musik,Musikkomödie,Musikmagazin,Mystery,Mythen-Doku,Nachrichten,Nachrichtenmagazin,Naturdokumentation,nn,Ökokrimi,Oper,Politdrama,Politmagazin,Polit-Report,Politthriller,Polizei,Porträt,Präsentation,Predigt,Preisverleihung,Programminformation,Psychothriller,Puppen,Puppentrick,Quiz,Ratgeber,Reisedokumentation,Reisemagazin,Reisereportage,Reitsport,Religion,Reportage,Rock,Romanze,Sammelsendung,Satire,Satiremagazin,Schwank,schwarze Komödie,Science-fiction,Science-fiction-Film,Science-Fiction-Horror,Science-fiction-Komödie,Sitcom,Sitzung,Sketch,Slapstickkomödie,Sonstiges,Spiel,Sport,Sportmagazin,Sportsendung,Sprachkurs,Talk,Teenagerkomödie,Telenovela,Tennis,Theater,Thriller,Tier,Tier-doku,Tierdokumentation,Tiermagazin,Tragikomödie,Trick,Turnen,Umzug,Unterhaltung,Unterhaltungs,Unterhaltungsmusik,Verkaufs,Verkehrsmagazin,Volksmusik,Volkstheater,Vortrag,Weltmusik,Werbung,Western,Westerndrama,Wetter,Wirtschaftsmagazin,Wissenschaftsmagazin,Wochenmagazin,Zeichentrick,Zusammenfassung|2
+
+3|Format|Format|4:3,16:9|3
+
+4|Audio|Audio|Dolby,DolbyDigital, - O-Ton,Stereo,Stereo - O-Ton,Surround,Zweikanal|3
+
+5|Year|Jahr||0
+
+6|Cast|Darsteller||2
+
+7|Director|Regisseur||2
+
+8|Rating|Bewertung|TagesTipp,Tipp,TopTipp|2
+
+9|FSK|FSK|3,4,5,6,7,8,9,12,16,18|3

@@ -69,7 +69,7 @@ init_vdr_plugins() {
     LIRC_PATH="/run/lirc/lircd"
 
     if [ "$VDR_FRONT" != "none" ]; then
-        VDR_ARG="$VDR_ARG -s /usr/bin/vdrpoweroff --vfat --watchdog=60 --lirc=$LIRC_PATH"
+        VDR_ARG="$VDR_ARG -s /usr/bin/vdr-poweroff --vfat --watchdog=60 --lirc=$LIRC_PATH"
     else
         VDR_ARG="$VDR_ARG --no-kbd"
     fi

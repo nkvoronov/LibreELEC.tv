@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>RESTFULAPI Documentation</title>
+
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        ul {
+            padding-left: 40px;
+            margin-bottom: 8px;
+        }
+
+
+        html, body {
+            background-color: rgb(231, 231, 231);
+        }
+
+        body {
+            padding: 1.5em;
+            line-height: 1.25;
+        }
+
+        div.main {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        section, header, nav {
+            margin-bottom: 48px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+        }
+        nav ul {
+            list-style-type: none;
+            padding-left: 10px;
+            margin: 0;
+        }
+
+        nav > ul > li {
+            margin-bottom: 4px;
+        }
+
+        nav li a {
+            display: inline-block;
+            padding: 0 2px;
+        }
+        nav li a:hover {
+            background: rgb(187, 187, 187);
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 8px;
+            border: 1px none #696969;
+            border-bottom-style: solid;
+            border-radius: 0;
+            margin-bottom: 16px;
+        }
+
+        *[data-header] {
+            position: relative;
+        }
+
+        *[data-header]:before {
+            content: attr(data-header);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: calc(100% - 24px);
+            padding: 12px;
+            border-radius: 12px 12px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        section[data-header] {
+            padding-top: 96px;
+        }
+        section[data-header]:before {
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            border-width: 1px;
+            border-color: #696969;
+            border-style: solid none;
+            border-radius: 0;
+        }
+
+        p.description {
+            background: #CACACA;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 20px;
+        }
+
+        p.method:before {
+            font-weight: bold;
+        }
+
+        p.method:before {
+            content: 'Method: '
+        }
+
+        .code,
+        .param-desc {
+            border-radius: 12px;
+            color: white;
+            margin: 12px 0 24px;
+            line-height: 1.25;
+        }
+
+        .code {
+            background-color: #0A1324;
+            padding: 4px 12px 24px;
+            white-space: pre-line;
+        }
+        .code[data-header] {
+            padding-top: 42px;
+        }
+        .code[data-header]:before {
+            background: #214A73;
+            color: white;
+        }
+
+        .param-desc {
+            background-color: #0A2419;
+            padding: 24px;
+        }
+
+        ul.param-desc {
+            padding-left: 40px;
+        }
+
+        div.param-desc {
+            white-space: pre-line;
+        }
+
+        .param-desc[data-header] {
+            padding-top: 52px;
+        }
+
+        .param-desc[data-header]:before {
+            background: #21735A;
+            color: white;
+        }
+
+        .param-desc tbody tr:nth-child(odd) {
+            background-color: #143225;
+        }
+        td {
+            padding: 2px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>RESTFULAPI-Plugin for VDR</h1><br/>
+        <b>Version 0.2.3.7</b><br/>
+        Copyright &copy; 2015 yavdr-Team, Michael Eiler<br/><br/>
+        Organization/Community: <a href="mailto:team@yavdr.org">team@yavdr.org</a><br/>
+        Developer: <a href="mailto:eiler.mike@gmail.com">eiler.mike@gmail.com</a> or <a href="mailto:aelo@yavdr.org">aelo@yavdr.org</a><br/>
+        <a href="http://www.yavdr.org">www.yavdr.org</a><br/>
+        <a href="http://github.com/yavdr/vdr-plugin-restfulapi">www.github.com/yavdr/vdr-plugin-restfulapi</a><br/>
+    </header>
+
+    <div class="main">
+        <nav>
+            <h2>Table Of Contents</h2>
+            <ul>
+                <li><a href="#Preface">Preface</a>
+                <li><a href="#Requirements">Requirements</a>
+                <li><a href="#Configuration">Configuration</a>
+                <li><a href="#Channels">Channels</a>
+                    <ul>
+                        <li><a href="#ChannelGroups">Groups</a>
+                        <li><a href="#ChannelImages">Images / Channel-Logos</a>
+                    </ul>
+                <li><a href="#Events">Events / EPG</a>
+                    <ul>
+                        <li><a href="#EventImages">Images</a>
+                        <li><a href="#EventSearch">Search (EPGSEARCH)</a>
+                        <li><a href="#ContentDescriptors">Get Contentdescriptors</a>
+                    </ul>
+                <li><a href="#Info">Info</a>
+                <li><a href="#Osd">Osd</a>
+                <li><a href="#Recordings">Recordings</a>
+                    <ul>
+                        <li><a href="#RecordingCut">Cut</a>
+                        <li><a href="#RecordingsMarks">Marks</a>
+                        <li><a href="#RecordingPlay">Play</a>
+                    </ul>
+                <li><a href="#Remote">Remote</a>
+                <li><a href="#Timers">Timers</a>
+                    <ul>
+                        <li><a href="#ReadingTimers">Reading/Deleting Timers</a>
+                        <li><a href="#BulkDeleteTimers">Bulk Delete Timers</a>
+                        <li><a href="#CreatingTimers">Creating Timers</a>
+                        <li><a href="#UpdatingTimers">Updating Timers</a>
+                    </ul>
+                <li><a href="#SearchTimers">SearchTimers (EPGSEARCH)</a>
+                    <ul>
+                        <li><a href="#SearchTimersCreate">Create</a>
+                        <li><a href="#SearchTimersDelete">Delete</a>
+                        <li><a href="#SearchTimersSearch">Search</a>
+                        <li><a href="#SearchTimersBlacklists">Get blacklists</a>
+                        <li><a href="#SearchTimersRecordingdirs">Get recording dirs</a>
+                        <li><a href="#SearchTimersChannelgroups">Get channel groups</a>
+                        <li><a href="#SearchTimersExtEPGInfo">Fetch ext EPG info (epgsearchcats.conf)</a>
+                        <li><a href="#SearchTimersConflicts">Check timer conflicts</a>
+                    </ul>
+                <li><a href="#ScraperImages">ScraperImages</a></li>
+                <li><a href="#Wirbelscan">Control the Wirbelscan plugin</a>
+                    <ul>
+                        <li><a href="#WirbelscanGetState">Get the current state</a>
+                        <li><a href="#WirbelscanGetCountries">Get the list of countries</a>
+                        <li><a href="#WirbelscanGetSatellites">Get the list of satellites</a>
+                        <li><a href="#WirbelscanGetSetup">Get the current setup</a>
+                        <li><a href="#WirbelscanSetSetup">Changes the current setup</a>
+                        <li><a href="#WirbelscanDoCommand">Launches a command</a>
+                    </ul>
+                <li><a href="#Webapp">Webapp</a></li>
+                <li><a href="#Femon">Femon</a></li>
+                <li><a href="#JSDoc">JSDoc</a></li>
+            </ul>
+        </nav>
+
+        <article>
+            <a id="Preface"></a>
+            <section data-header="Preface">
+                <p>This plugin has been developed to offer a modern API for other developers to communicate with the VDR.<br>
+                <p>The plugin supports the following outputs formats: xml, json and html.<br>
+                <p>It also supports the following input formats: json and html.</p>
+                <p>It would not exist without the help of the following people:</p>
+
+                <ul>
+                    <li>Klaus Schmidinger: Of course because of the VDR itself. Thank you also for the nice and clean layout for the
+                        API-Documentation which I "borrowed" from your PLUGINS.html.
+                    <li>Gerald Dachs: Thank you for the intial idea and the initial jsonapi-Plugin.
+                    <li>Volker Richert: Thank you for fixing the UTF8-Support.
+                    <li>Tommi Mäkitalo: Thank you for implementing the Regex-Support in cxxtools which allows RESTful web services.
+                    <li>Holger Schvestka: Thank you for improving the package structure.
+                    <li>All other yaVDR-Members who I haven't already mentioned, just because you are who you are and do your best to
+                        improve the VDR experience.
+                    <li>The developers of the live and vnsisserver Plugins which helped me to learn a lot about the API of VDR.
+                    <li>The developers of the live plugin where I borrowed parts of the epgsearch-implementation :-)
+                    <li>Daniel Kuschny: Thank you for fixing my broken regular expressions. Will pay you a beer! :-)
+                    <li>Keine_Ahnung@vdr-portal for the VDR 1.6 compatibility patch
+                </ul>
+
+                <b>This document describes the API and how to use it. It contains a lot of examples for the different formats and
+                    services but there is still a lot more to discover if you simply try to make a few simple requests.</b>
+            </section>
+
+            <a id="Requirements"></a>
+            <section data-header="Requirements">
+
+                <p>Someone who wants to install the plugin on his/her VDR needs following applications and libraries:</p>
+                <ul>
+                    <li>VDR 1.7.18
+                    <li>libcxxtools Rev. &gt;= 1231, which is available as package for Ubuntu in the yavdr-PPA's
+                </ul>
+
+                <p>Someone who wants to develop an application which uses this API:</p>
+                <ul>
+                    <li>XML or JSON Parser (Depends on which format you want to use! - You can also use the html-format, but that one is
+                        more a proof for the restful concept and does not show all information!)
+                    <li>URL Decoder or JSON Serializer (to send data to the webservice, required e.g. to create timers, searchtimers
+                        etc...) e.g. POSTMan REST Client. There is a wide variety of REST clients available on the web.
+                </ul>
+            </section>
+
+            <a id="Configuration"></a>
+            <section data-header="Configuration">
+
+                Create a new file called plugin.restfulapi.conf in /etc/vdr/plugins/ respectively /etc/vdr/conf.avail (don't forget to create a symlink in /etc/vdr/conf.d/).
+
+                <div class="code">
+                    #
+                    # Command line parameters for vdr-plugin-restfulapi
+                    #
+
+                    --port=8002
+                    --ip=0.0.0.0
+                    --epgimages=/var/cache/vdr/epgimages
+                    --channellogos=/usr/share/vdr/channel-logos
+                    --webapp=/var/lib/vdr/plugins/restfulapi/webapp,/var/lib/vdr/plugins/restfulapi/a-second-webapp
+                </div>
+            </section>
+
+            <a id="Channels"></a>
+            <section data-header="Channels">
+                <p class="description">This service returns a list of channels.</p>
+                <p class="method">GET</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/.&lt;format&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/&lt;channelid&gt;.&lt;format&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/.&lt;format&gt;?start=&lt;int&gt;&amp;limit=&lt;int&gt;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;format&gt; - The requested format: json, xml or html.
+                    <li>&lt;channelid&gt; - Id of the requested channel.
+                    <li>start, limit - These values are used to control the whole list. Start ist the first element you want to
+                        retrieve. Limit...
+                </ul>
+
+                <div class="code" data-header="Example Result (XML):">
+                    GET http://127.0.0.1:8002/channels.xml?start=0&amp;limit=1
+
+                    &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                    &lt;channels xmlns="http://www.domain.org/restfulapi/2011/channels-xml"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;channel&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="name"&lt;ORF1 HD&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="number"&gt;1&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="channel_id"&gt;C-71-71-61920&lt;/param&lt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="image"&gt;true&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="group"&gt;hd&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="transponder"&gt;330&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="stream"&gt;C-71-71-61920.ts&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_atsc"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_cable"&gt;true&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_sat"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_terr"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_radio"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/channel&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;count&gt;1&lt;/count&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;total&gt;259&lt;/total&gt;
+                    &lt;/channels&gt;
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    GET http://127.0.0.1:8002/channels.json?start=0&amp;limit=1
+
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"channels": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name":"ORF1 HD",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number":1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_id":"C-71-71-61920",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image":true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"group":"hd",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"transponder":330,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream":"C-71-71-61920.ts",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_atsc":false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_cable":true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_terr":false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_sat":false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_radio": false
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count":1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total":259
+                    }
+                </div>
+
+                <h3><a id="ChannelGroups">Groups</a></h3>
+
+                <p class="description">This service will return a list containing all channel groups.</p>
+                <p class="method">GET</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/groups.&lt;format&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/groups.&lt;format&gt;?start=&lt;int&gt;&amp;limit=&lt;int&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels.&lt;format&gt;?group=&lt;group&gt;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;group&gt; - returns the channels of the requested group
+                    <li>&lt;format&gt; - json | xml | html
+                </ul>
+                <div class="code" data-header="Example Result (XML):">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/groups.xml?start=0&amp;limit=3
+
+                    &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                    &lt;groups xmlns="http://www.domain.org/restfulapi/2011/groups-xml"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;group&gt;hd&lt;/group&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;group&gt;main&lt;/group&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;group&gt;stuff&lt;/group&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;count&gt;3&lt;/count&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;total&gt;3&lt;/total&gt;
+                    &lt;/groups&gt;
+                </div>
+                <div class="code" data-header="Example Result (JSON):">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/groups.json?start=0&amp;limit=3
+
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"groups": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hd",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"main",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stuff"
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count":3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total":3
+                    }
+                </div>
+
+                <h3><a id="ChannelImages">Images / Channel-Logos</a></h3>
+                <p class="description">This service returns the requested channel-logo.</p>
+                <p class="method">GET</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/channels/image/&lt;channelid&gt;
+                </div>
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;channelid&gt; - id of channel
+                </ul>
+
+            </section>
+
+            <a id="Events"></a>
+            <section data-header="Events / EPG">
+
+                <p class="description">This service returns the epg information.</p>
+                <p>
+                    Since Version 0.2.0 the API returns additional media if a scraper plugin is available.<br>
+                    The data is available within additional_media node and contains additional information about the event such as actors etc.<br>
+                    Images can be retrieved using <a href="#ScraperImages">ScraperImages</a> service.
+                </p>
+                <p class="method">GET</p>
+
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events.&lt;format&gt;?chevents=1
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/&lt;channelid&gt;.&lt;format&gt;?chevents=1&amp;from=&lt;from&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/&lt;channelid&gt;.&lt;format&gt;?timespan=&lt;timespan&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/&lt;channelid&gt;/&lt;eventid&gt;.&lt;format&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/&lt;channelid&gt;.&lt;format&gt;?timespan=&lt;timespan&gt;&amp;from=&lt;from&gt;&amp;start=&lt;int&gt;&amp;limit=&lt;int&gt;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;format&gt; - The requested format: json, xml or html.
+                    <li>&lt;channelid&gt; - (optional) id of the channel, if not set the plugin will return the whole epg sorted by your
+                        channel list
+                    <li>&lt;timespan&gt; - the timespan from which you want to know the event-details, if set to 0 - all events in the
+                        future will be returned
+                    <li>&lt;from&gt; - (optional) time in the future when the requested events should end/start (default-value: now)
+                    <li>&lt;eventid&gt; - (optional) if you only want the details of a specific event
+                    <li>&lt;chevents&gt; - (optional) the count of events for each channel
+                    <li>&lt;chfrom&gt; - (optional) start number of the channel, from where events will be returned
+                    <li>&lt;chto&gt; - (optional) end number of the channel, through events will be returned
+                    <li>&lt;only_count&gt; - (optional) if you just want to know the amount of available epg items
+                    <li>&lt;format&gt; - The requested format: json, xml or html.
+                </ul>
+
+                <div class="code" data-header="Example Result (XML):">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/C-1-1079-11110.xml?chevents=1&amp;from=1432577700
+
+                    &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                    &lt;events xmlns="http://www.domain.org/restfulapi/2011/events-xml"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;event&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="id"&gt;588333&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="title"&gt;Title&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="short_text"&gt;Humor (D 2010)&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="description"&gt;Description Text&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="channel"&gt;C-1-1079-11110&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="channel_name"&gt;ZDF HD&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="start_time"&gt;1432577700&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="duration"&gt;5400&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="table_id"&gt;80&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="version"&gt;25&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="parental_rating"&gt;0&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="vps"&gt;1432577700&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="details"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="images"&gt;3&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="components"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;component stream="2" type="3" language="deu" description="Stereo" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;component stream="2" type="3" language="mis" description="Audiodeskription" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;component stream="2" type="3" language="mul" description="ohne Originalton" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;component stream="3" type="32" language="deu" description="DVB-Untertitel" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;component stream="4" type="66" language="deu" description="Dolby Digital 2.0" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;component stream="5" type="11" language="deu" description="HDTV" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="contents"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="raw_contents"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="timer_exists"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="timer_active"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="timer_id"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="additional_media" type="movie"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;movie_id&gt;329933&lt;/movie_id&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Title&lt;/title&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;original_title&gt;Original Title&lt;/original_title&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;overview&gt;Overview Text&lt;/overview&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;adult&gt;false&lt;/adult&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;genres&gt;Komödie , Lovestory&lt;/genres&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;release_date&gt;2010-06-01&lt;/release_date&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;runtime&gt;90&lt;/runtime&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;poster path="movies/329933/poster.jpg" width="500" height="750" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fanart path="movies/329933/fanart.jpg" width="1280" height="720" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;actor name="Name" role="Role" thumb="movies/actors/actor_49104.jpg"/&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/event&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;count&gt;1&lt;/count&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;total&gt;257&lt;/total&gt;
+                    &lt;/events&gt;
+                </div>
+                <div class="code" data-header="Example Result (JSON):">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/C-1-1079-11110.json?chevents=1&amp;from=1432577700
+
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"events": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": 588333,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "Title",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"short_text": "Short Title",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "Description Text",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"start_time": 1432577700,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel": "C-1-1079-11110",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_name": "ZDF HD",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"duration": 5400,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"table_id": 80,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 25,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"images": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"timer_exists": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"timer_active": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"timer_id": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"parental_rating": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"vps": 1432577700,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"components": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"language": "deu",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "Stereo"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"language": "mis",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "Audiodeskription"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"language": "mul",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "ohne Originalton"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": 32,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"language": "deu",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "DVB-Untertitel"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream": 4,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": 66,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"language": "deu",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "Dolby Digital 2.0"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stream": 5,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": 11,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"language": "deu",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "HDTV"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"contents": [],
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"raw_contents": [],
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"details": [],
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"additional_media": {
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "movie",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"movie_id": 329933,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "Title",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"original_title": "Original Title",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"tagline": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"overview": "Overview Text",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"adult": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"collection_name": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"budget": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"revenue": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"genres": "Komödie , Lovestory",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"homepage": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"release_date": "2010-06-01",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"runtime": 90,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"popularity": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"vote_average": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"poster": "movies/329933/poster.jpg",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"fanart": "movies/329933/fanart.jpg",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"collection_poster": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"collection_fanart": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"actors": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Name",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"role": "Role",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"thumb": "movies/actors/actor_49104.jpg"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total": 257
+                    }
+                </div>
+
+                <h3><a id="EventImages">Images</a></h3>
+                <p class="description">This service returns the requested epg image.</p>
+                <p class="method">GET</p>
+
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/image/&lt;eventid&gt;/&lt;imagenumber&gt;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;eventid&gt; - Id of the event
+                    <li>&lt;imagenumber&gt; - the number of the image, in the above mentioned examples it would be 0,1 or 2
+                </ul>
+
+                <h3><a id="EventSearch">Search</a></h3>
+
+                <p class="description">This service allows you to search for events.</p>
+                <p>
+                  Since Version 0.2.4.0 it is possible to perform a search similar to Searchtimers.
+                </p>
+                <p class="method">POST</p>
+                <div class="code" data-header="Example URL (searchtimer search):">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/events/search.&lt;format&gt;?limit=5&amp;start=0;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters (searchtimer search):">
+                    <li>&lt;limit&gt; - (optional) number of searchresults
+                    <li>&lt;start&gt; - (required if limit is set) start at result
+                    <li>&lt;date_limit&gt; - (optional) UNIX timestamp until events are returned (since 0.2.4.1)
+                </ul>
+
+                <table class="param-desc" data-header="HTTP-Body-Parameters (searchtimer search):">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Value Range / Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>search</td>
+                        <td>string</td>
+                        <td>yes</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>mode</td>
+                        <td>int</td>
+                        <td>yes</td>
+                        <td>0=phrase, 1=all words, 2=at least one word, 3=match exactly, 4=regex, 5=fuzzy</td>
+                    </tr>
+                    <tr>
+                        <td>tolerance</td>
+                        <td>int</td>
+                        <td>if mode == 5</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>match_case</td>
+                        <td>boolean</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_title</td>
+                        <td>boolean</td>
+                        <td>at least one of use_title, use_subtitle, use_description</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_subtitle</td>
+                        <td>boolean</td>
+                        <td>at least one of use_title, use_subtitle, use_description</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_description</td>
+                        <td>boolean</td>
+                        <td>at least one of use_title, use_subtitle, use_description</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>content_descriptors</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>concatted string of content descriptor ids</td>
+                    </tr>
+                    <tr>
+                        <td>use_ext_epg_info</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ext_epg_info</td>
+                        <td>array</td>
+                        <td></td>
+                        <td>[1#2,2#test]</td>
+                    </tr>
+                    <tr>
+                        <td>use_time</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>start_time</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>stop_time</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_channel</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td>0=no, 1=interval, 2=channel group, 3=only FTA</td>
+                    </tr>
+                    <tr>
+                        <td>channel_min</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>channel id</td>
+                    </tr>
+                    <tr>
+                        <td>channel_max</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>channel id</td>
+                    </tr>
+                    <tr>
+                        <td>channels</td>
+                        <td>string</td>
+                        <td>if use_channel > 0</td>
+                        <td>channel group name</td>
+                    </tr>
+                    <tr>
+                        <td>use_duration</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>duration_min</td>
+                        <td>int</td>
+                        <td>if use_duration == true</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>duration_max</td>
+                        <td>int</td>
+                        <td>if use_duration == true</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_dayofweek</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>dayofweek</td>
+                        <td>int</td>
+                        <td>if use_dayofweek == true</td>
+                        <td>-127 - 6</td>
+                    </tr>
+                    <tr>
+                        <td>blacklist_mode</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>0=global, 1=Selection, 2=all, 3=none</td>
+                    </tr>
+                    <tr>
+                        <td>blacklist_ids</td>
+                        <td>array</td>
+                        <td>if blacklist_mode == 1</td>
+                        <td>array of blacklist ids</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="code" data-header="Example URL (simple search):">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/events/search.&lt;format&gt;?limit=5&amp;start=0;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters (simple search):">
+                    <li>&lt;limit&gt; - (optional) number of searchresults
+                    <li>&lt;start&gt; - (required if limit is set) start at result
+                </ul>
+
+                <ul class="param-desc" data-header="HTTP-Body-Parameters (simple search):">
+                    <li>query - (required)
+                    <li>mode - (required) 0=phrase, 1=and, 2=or, 3=exact, 4=regex, 5=fuzzy
+                    <li>channelid - (optional) if id invalid, the plugin will search on every channel
+                    <li>use_title - (optional, default) search in the title
+                    <li>use_subtitle - (optional)
+                    <li>use_description - (optional)
+                </ul>
+                <div class="code" data-header="Example:">
+                    {"query":"Asterix", "mode":0, "channelid":0,"use_title":true}
+                </div>
+
+                <h3><a id="ContentDescriptors">Fetch content descriptors</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/events/contentdescriptors.&lt;format&gt;
+                </div>
+                <div class="code" data-header="Example Result (JSON):">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"content_descriptors": [
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "10",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Film/Drama",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_group": true
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "11",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Detektiv/Thriller",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_group": false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "12",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Abenteuer/Western/Krieg",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_group": false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.
+                     &nbsp;&nbsp;&nbsp;&nbsp;],
+                     &nbsp;&nbsp;&nbsp;&nbsp;"count": 79,
+                     &nbsp;&nbsp;&nbsp;&nbsp;"total": 79
+                    }
+                </div>
+            </section>
+
+            <a id="Info"></a>
+            <section data-header="Info">
+
+                <p class="description">
+                	General Information about the plugin and vdr.
+                </p>
+                <p>
+                	Since version 0.2.6.0 basic femon data is available.
+                	SNR, STR, BER, UNC and Status.
+                	The status field contains a colon seperated list of available status in following order:
+                </p>
+               	<ul>
+               		<li>Locked</li>
+               		<li>Signal</li>
+               		<li>Carrier</li>
+               		<li>Viterbi</li>
+               		<li>Sync</li>
+               	</ul>
+               	<p>
+                	If a status is false the list contains a minus sign instead.
+                </p>
+
+                <p class="method">GET</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/info.&lt;format&gt;
+                </div>
+
+                <div class="code" data-header="Example Results:">
+                    &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                    &lt;info xmlns="http://www.domain.org/restfulapi/2011/info-xml"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;version&gt;0.0.1&lt;/version&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;time&gt;1432551206&lt;/time&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;services&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/info"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/channels"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/channels/groups"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/channels/image"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/events"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/events/image"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/events/search"  version="1" internal="false" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/recordings"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/recordings/cut"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/recordings/marks"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/remote"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/timers"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/osd"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/searchtimers"  version="1" internal="false" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/scraper"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/wirbelscan"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/wirbelscan/countries"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/webapp"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;service path="/femon"  version="1" internal="true" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/services&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;channel&gt;C-61441-10009-10331&lt;/channel&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;diskusage&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;free_mb&gt;3491143&lt;/free_mb&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;free_minutes&gt;98218&lt;/free_minutes&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;used_percent&gt;67&lt;/used_percent&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;description_localized&gt;Disk 67%  -  1636:58 frei&lt;/description_localized&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/diskusage&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;vdr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugins&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="dvbapi" version="2.2.0-GIT-5fdb21e" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="wirbelscan" version="0.0.9" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="svdrposd" version="1.0.0" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="vnsiserver" version="1.3.0" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="epgsearchonly" version="0.0.1" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="femon" version="2.2.1" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="markad" version="0.1.5pre" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="svdrpservice" version="1.0.0" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="restfulapi" version="0.2.3.1" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="epgsearch" version="1.0.1.beta5" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="conflictcheckonly" version="0.0.1" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="scraper2vdr" version="0.1.13" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="epg2vdr" version="0.1.12" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="quickepgsearch" version="0.0.1" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="live" version="0.3.0" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;plugin name="streamdev-server" version="0.6.1-git" /&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/plugins&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/vdr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;devices&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;device&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_c&gt;true&lt;/dvb_c&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_s&gt;false&lt;/dvb_s&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_t&gt;false&lt;/dvb_t&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;atsc&gt;false&lt;/atsc&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;primary&gt;false&lt;/primary&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;has_decoder&gt;false&lt;/has_decoder&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;Philips TDA10023 DVB-C&lt;/name&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;number&gt;0&lt;/number&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_id&gt;C-61441-10011-50059&lt;/channel_id&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_name&gt;n-tv HD&lt;/channel_name&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_nr&gt;17&lt;/channel_nr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;live&gt;false&lt;/live&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;has_ci&gt;true&lt;/has_ci&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_strength&gt;63&lt;/signal_strength&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_quality&gt;5&lt;/signal_quality&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_str&gt;65535&lt;/signal_str&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_snr&gt;380&lt;/signal_snr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_ber&gt;0&lt;/signal_ber&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_unc&gt;0&lt;/signal_unc&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_status&gt;LOCKED:SIGNAL:CARRIER:VITERBI:SYNC&lt;/signal_status&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;adapter&gt;0&lt;/adapter&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;frontend&gt;0&lt;/frontend&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;DVB-C&lt;/type&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/device&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;device&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_c&gt;true&lt;/dvb_c&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_s&gt;false&lt;/dvb_s&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_t&gt;true&lt;/dvb_t&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;atsc&gt;false&lt;/atsc&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;primary&gt;false&lt;/primary&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;has_decoder&gt;false&lt;/has_decoder&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;DRXK DVB-C DVB-T&lt;/name&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;number&gt;1&lt;/number&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_id&gt;C-61441-10003-53604&lt;/channel_id&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_name&gt;VOX&lt;/channel_name&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_nr&gt;1011&lt;/channel_nr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;live&gt;false&lt;/live&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;has_ci&gt;false&lt;/has_ci&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_strength&gt;0&lt;/signal_strength&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_quality&gt;5&lt;/signal_quality&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_str&gt;65535&lt;/signal_str&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_snr&gt;380&lt;/signal_snr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_ber&gt;0&lt;/signal_ber&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_unc&gt;0&lt;/signal_unc&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_status&gt;LOCKED:SIGNAL:CARRIER:VITERBI:SYNC&lt;/signal_status&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;adapter&gt;1&lt;/adapter&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;frontend&gt;0&lt;/frontend&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;DVB-C&lt;/type&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/device&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;device&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_c&gt;true&lt;/dvb_c&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_s&gt;false&lt;/dvb_s&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dvb_t&gt;true&lt;/dvb_t&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;atsc&gt;false&lt;/atsc&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;primary&gt;false&lt;/primary&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;has_decoder&gt;false&lt;/has_decoder&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;DRXK DVB-C DVB-T&lt;/name&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;number&gt;2&lt;/number&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_id&gt;C-61441-10011-50059&lt;/channel_id&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_name&gt;n-tv HD&lt;/channel_name&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;channel_nr&gt;17&lt;/channel_nr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;live&gt;false&lt;/live&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;has_ci&gt;false&lt;/has_ci&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_strength&gt;0&lt;/signal_strength&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_quality&gt;5&lt;/signal_quality&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_str&gt;65535&lt;/signal_str&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_snr&gt;380&lt;/signal_snr&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_ber&gt;0&lt;/signal_ber&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_unc&gt;0&lt;/signal_unc&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;signal_status&gt;LOCKED:SIGNAL:CARRIER:VITERBI:SYNC&lt;/signal_status&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;adapter&gt;2&lt;/adapter&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;frontend&gt;0&lt;/frontend&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;type&gt;DVB-C&lt;/type&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/device&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/devices&gt;
+                    &lt;/info&gt;
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.1",
+                    &nbsp;&nbsp;&nbsp;&nbsp;"time": 1432551355,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"services": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/info",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/channels",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/channels/groups",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/channels/image",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/events",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/events/image",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/events/search",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/recordings",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/recordings/cut",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/recordings/marks",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/remote",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/timers",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/osd",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/searchtimers",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/scraper",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/wirbelscan",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/wirbelscan/countries",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/webapp",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path": "/femon",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"channel": "C-61441-10009-10331",
+                    &nbsp;&nbsp;&nbsp;&nbsp;"eventid": -1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"start_time": -1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"duration": -1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"title": "",
+                    &nbsp;&nbsp;&nbsp;&nbsp;"diskusage": {
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"free_mb": 3491143,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"used_percent": 67,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"free_minutes": 98218,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description_localized": "Disk 67%  -  1636:58 frei"
+                    &nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;"vdr": {
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"plugins": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "wirbelscan",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.9"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "svdrposd",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "1.0.0"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "vnsiserver",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "1.3.0"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "epgsearchonly",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.1"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "femon",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "2.2.1"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "markad",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.1.5pre"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "svdrpservice",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "1.0.0"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "restfulapi",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.2.3.1"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "epgsearch",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "1.0.1.beta5"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "conflictcheckonly",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.1"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "scraper2vdr",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.1.13"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "epg2vdr",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.1.12"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "quickepgsearch",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.1"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "live",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.3.0"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "streamdev-server",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"version": "0.6.1-git"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"devices": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Philips TDA10023 DVB-C",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_c": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_s": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_t": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"atsc": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"primary": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has_decoder": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_id": "C-1-1051-11100",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_name": "Das Erste HD",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_nr": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"live": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has_ci": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"signal_strength": 81,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"signal_quality": 5,
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"str": 65535
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"snr": 378
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ber": 0
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"unc": 0
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status": "LOCKED:SIGNAL:CARRIER:VITERBI:SYNC"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"adapter": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frontend": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "DVB-C"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"adapter": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frontend": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "DVB-C"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "DRXK DVB-C DVB-T",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_c": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_s": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_t": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"atsc": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"primary": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has_decoder": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_id": "C-61441-10011-50059",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_name": "n-tv HD",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_nr": 17,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"live": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has_ci": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"signal_strength": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"signal_quality": 5,
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"str": 65535
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"snr": 378
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ber": 0
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"unc": 0
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status": "LOCKED:SIGNAL:CARRIER:VITERBI:SYNC"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"adapter": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frontend": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "DVB-C"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"adapter": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frontend": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "DVB-C"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "DRXK DVB-C DVB-T",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_c": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_s": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dvb_t": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"atsc": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"primary": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has_decoder": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_id": "C-61441-10011-50059",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_name": "n-tv HD",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_nr": 17,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"live": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"has_ci": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"signal_strength": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"signal_quality": 5,
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"str": 65535
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"snr": 378
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ber": 0
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"unc": 0
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status": "LOCKED:SIGNAL:CARRIER:VITERBI:SYNC"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"adapter": 2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frontend": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "DVB-C"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                    &nbsp;&nbsp;&nbsp;&nbsp;}
+                    }
+                </div>
+
+                <p>
+                    Instead of the channel it can also contain the currently playing video file:
+                </p>
+
+                <div class="code">
+                    &lt;video name="Asterix in Amerika"&gt;/var/lib/video.00/Asterix_in_Amerika/2011-06-19.12.40.1-0.rec&lt;/video&gt;
+                </div>
+
+                <p>
+                    Since Version 0.2.2.2 node "vdr" also contains info about the TV-Cards attached to the system
+                </p>
+            </section>
+
+            <a id="Osd"></a>
+            <section data-header="Osd">
+                <p class="description">This Service delivers current OSD contents</p>
+
+                <p class="method">GET</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/osd.&lt;format&gt;
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    {
+                     &nbsp;&nbsp;&nbsp;&nbsp;"TextOsd" : {
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type" : "TextOsd",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title" : "VDR - Disk 68% - 57:53 free",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"message" : "",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"red" : "",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"green" : "Audio",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"yellow" : "",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"blue" : "Stop",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"items" : [
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content" : " 1 Schedule",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":true
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 2 Channels",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 3 Timers",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 4 Recordings",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 5 Search",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 6 Media Player",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 7 Program guide",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 8 Quick search",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 9 Timer conflicts",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 10 Setup",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" 11 Commands",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":" Stop replaying",
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_selected":false
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                     &nbsp;&nbsp;&nbsp;&nbsp;}
+                    }
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"ProgrammeOsd" : {
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"present_time":1311710264,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"present_title":"Der letzte Bulle",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"present_subtitle":"Ich hab sie alle gehabt",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"following_time":1311713161,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"following_title":"direkt - das magazin",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"following_subtitle":""
+                    &nbsp;&nbsp;&nbsp;&nbsp;}
+                    }
+                </div>
+            </section>
+
+
+            <a id="Recordings"></a>
+            <section data-header="Recordings">
+
+                <p class="description">This service can move/delete recordings and can also return all the recordings as a list.</p>
+                <p>
+                    Since Verions 0.2.0 the API returns additional media if a scraper plugin is available.
+                    The data is available within leaf additional_media and contains additional information about the event such as actors etc.<br>
+                    Please have a look at the data or the <a href="#JSDoc">JSDoc Examples</a> to get an idea about the additional structure.
+                    Images can be retrieved using <a href="#ScraperImages">ScraperImages</a> service.
+                </p>
+                <p>
+                	Since Version 0.2.5 one can fetch Recordings either by its full file name or by number.
+                	It is not safe to use the recording number for e.g. deleting recordings because it is not guaranteed that the numbers don't change during runtime.
+                	Hence it is recommended to use the &lt;file_name&gt; as parameter. Due to backwards compatibility reasons the recording number is still supported
+                	but may be removed in future versions.<br>
+                	To use the file name as parameter it could be necessary to url encode the path parts.<br>
+                </p>
+                <div class="code" data-header="Example request by file name:">
+                	http://&lt;ip&gt;:&lt;port&gt;/recordings/path/to/videodir/my_recording/YYYY-MM-DD.hh.mm.ss-0.rec.&lt;format&gt;
+                </div>
+                <p>
+                	Since Version 0.2.5 it is also possible to request restfulapi to write a sync file in its cache directory.
+                	Simply add the <em>&lt;syncId&gt;</em> parameter with a value of of your choice to the url whithin a request to the full recording list.
+                	This sync file can be checked against the current recordings or a list of recordings sent by the client.
+                </p>
+                	
+                <p>	
+                	Future requests to the /recordings/updates service with the same id can fetch a list of new, deleted or updated recordings since the last full or updates request.
+                	Don't forget to add the syncId parameter to delete requests aswell. Restfulapi can than delete it from your clients sync list.
+                </p>
+                <p>
+                	Additionally the /recordings/sync service has been added. You can send an array named recordings with each member containing a comma seperated
+                	file_name, hash pair. The hash is a new property of each recording that will be added if the full recording list was requested.
+                	Restfulapi will then respond with a list of recordings that have been added, deleted or changed
+                </p>
+                <p>
+                	The updates response contains a list of recordings with a &lt;sync_action&gt; property that contains either add, delete or update.<br>
+                	One can use this feature to store the recordings in a client side database and keep it in sync without requesting the full list every time.
+                </p>
+                <p class="method">GET, DELETE, POST</p>
+
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/recordings/.&lt;format&gt;?syncId=my-client-id
+                    GET http://&lt;ip&gt;:&lt;port&gt;/recordings/&lt;file_name|<del>recordingnumber</del>&gt;.&lt;format&gt;?marks=true
+                    GET http://&lt;ip&gt;:&lt;port&gt;/recordings/updates.&lt;format&gt;?syncId=my-client-id
+                    POST http://&lt;ip&gt;:&lt;port&gt;/recordings/sync.&lt;format&gt;?syncId=my-client-id
+                    DELETE http://&lt;ip&gt;:&lt;port&gt;/recordings/&lt;file_name|<del>recordingnumber</del>&gt;?syncId=my-client-id
+                    POST http://&lt;ip&gt;:&lt;port&gt;/recordings/move.&lt;format&gt;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;format&gt; - The requested format: json, xml or html.
+                    <li>&lt;number&gt; - The number of the recording which you want to delete. (The first recordings has the number 0.)
+                    <li>&lt;file_name&gt; - The full file system path of the recording. Everything url encoded except slashes (directory seperator)
+                    <li>&lt;recordingnumber&gt; - The number of the recording you want to retrieve.
+                    <li>&lt;source&gt; - The full (url encoded) source path of the recording.
+                    <li>&lt;target&gt; - The relative (url encoded) target path of the recording.
+                    <li>&lt;syncId&gt; - (optional) client id for sync map file name
+                    <li>&lt;recordings[]&gt; - &lt;file_name&gt;,&lt;hash&gt; (Form Data)
+                    <li>marks=true - add the cutting marks by reading the marks file from the recording directory
+                    <li>start, limit - These values are used to control the whole list. Start ist the first element you want to
+                        retrieve. Limit...
+                </ul>
+
+                <div class="code" data-header="Example Result (XML):">
+                    GET http://127.0.0.1:8002/recordings.xml?start=0&amp;limit=1
+
+                    &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                    &lt;recordings xmlns="http://www.domain.org/restfulapi/2011/recordings-xml"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;recording&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="number"&gt;0&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="name"&gt;Asterix in Amerika&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="filename"&gt;/var/lib/video.00/Asterix_in_Amerika/2011-06-19.12.40.1-0.rec&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_new"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_edited"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_pes_recording"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="duration"&gt;-1&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="frames_per_second"&gt;50&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="marks"&gt;&lt;0:03:17.10&gt;&lt;1:43:07.24&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="event_title"&gt;Asterix in Amerika&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="event_short_text"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="event_description"&gt;(Zeichentrickfilm, DEU 1994)&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="event_start_time"&gt;1308480705&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="event_duration"&gt;4611&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="sync_action"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="hash"&gt;&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/recording&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;count&gt;2&lt;/count&gt;&lt;total&gt;2&lt;/total&gt;
+                    &lt;/recordings&gt;
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    GET http://127.0.0.1:8002/recordings.json?start=0&amp;limit=1&amp;marks=true
+
+                    {
+                        &nbsp;&nbsp;&nbsp;&nbsp;"recordings": [
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number":0,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name":"Asterix in Amerika",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file_name":"\/var\/lib\/video.00\/Asterix_in_Amerika\/2011-06-19.12.40.1-0.rec",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_new":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_edited":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_pes_recording":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"duration":-1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frames_per_second":50,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"marks":[
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"0:03:17.10",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"1:43:07.24"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_title":"Asterix in Amerika",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_short_text":"",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_description":"(Zeichentrickfilm, DEU 1994)",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_start_time":1308480705,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_duration":4611
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sync_action":""
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hash":""
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                        &nbsp;&nbsp;&nbsp;&nbsp;],
+                        &nbsp;&nbsp;&nbsp;&nbsp;"count":1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;"total":2
+                    }
+                </div>
+
+                <div class="code" data-header="Move Recording:">
+                    POST "http://127.0.0.1:8002/recordings/move.json"
+                </div>
+
+                <ul class="param-desc" data-header="Required Body Parameters:">
+                    <li>source=/path/to/videodir/my_recording/YYYY-MM-DD.hh.mm.ss-0.rec
+                    <li>target=relative/path/to/renamed%20recording
+                </ul>
+
+                <div class="code" data-header="Fetch Updates:">
+                    GET "http://127.0.0.1:8002/recordings/updates.json"
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    GET http://127.0.0.1:8002/recordings/updates.json?syncId=a-string-identifying-my-client
+
+                    {
+                        &nbsp;&nbsp;&nbsp;&nbsp;"recordings": [
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number":0,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name":"Asterix in Amerika",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file_name":"\/var\/lib\/video.00\/Asterix_in_Amerika\/2011-06-19.12.40.1-0.rec",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_new":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_edited":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_pes_recording":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"duration":-1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frames_per_second":50,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"marks":[
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"0:03:17.10",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"1:43:07.24"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_title":"Asterix in Amerika",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_short_text":"",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_description":"(Zeichentrickfilm, DEU 1994)",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_start_time":1308480705,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_duration":4611
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sync_action":"add"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hash":"8324fe9b80873947c9d0963d83378232"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                        &nbsp;&nbsp;&nbsp;&nbsp;],
+                        &nbsp;&nbsp;&nbsp;&nbsp;"count":1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;"total":2
+                    }
+                </div>
+
+                <div class="code" data-header="Synchronize:">
+                    POST "http://127.0.0.1:8002/recordings/sync.json?syncId=a-string-identifying-my-client"
+                </div>
+
+                <ul class="param-desc" data-header="Required Body Parameters:">
+                    <li>recordings[]=/path/to/videodir/my_recording/YYYY-MM-DD.hh.mm.ss-0.rec,8324fe9b80873947c9d0963d83378232
+                    <li>recordings[]=/path/to/videodir/my_recording/YYYY-MM-DD.hh.mm.ss-0.rec,d4da05b1e99df60d3cd0ef72b6093db3
+                    <li>recordings[]=/path/to/videodir/my_recording/YYYY-MM-DD.hh.mm.ss-0.rec,e3f29839c38c74bab63ab02d0dffd6a6
+                    <li>&vellip;
+                    <li>recordings[]=/path/to/videodir/my_recording/YYYY-MM-DD.hh.mm.ss-0.rec,46a26b76f5c8c7361d33367dcc86ced0
+                </ul>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    POST http://127.0.0.1:8002/recordings/updates.json?syncId=a-string-identifying-my-client
+
+                    {
+                        &nbsp;&nbsp;&nbsp;&nbsp;"recordings": [
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"number":0,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name":"Asterix in Amerika",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"file_name":"\/var\/lib\/video.00\/Asterix_in_Amerika\/2011-06-19.12.40.1-0.rec",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_new":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_edited":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_pes_recording":false,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"duration":-1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"frames_per_second":50,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"marks":[
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"0:03:17.10",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"1:43:07.24"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_title":"Asterix in Amerika",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_short_text":"",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_description":"(Zeichentrickfilm, DEU 1994)",
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_start_time":1308480705,
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_duration":4611
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sync_action":"add"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hash":"8324fe9b80873947c9d0963d83378232"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                        &nbsp;&nbsp;&nbsp;&nbsp;],
+                        &nbsp;&nbsp;&nbsp;&nbsp;"count":1,
+                        &nbsp;&nbsp;&nbsp;&nbsp;"total":2
+                    }
+                </div>
+            </section>
+
+
+            <a id="RecordingCut"></a>
+            <section data-header="Cut">
+                <p class="description">
+                    This service tells your VDR to cut a recording or can tell the client if the vdr cutter is currently cutting a recording:
+                </p>
+                <p class="method">GET, POST</p>
+                <div class="code" data-header="Examples:">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/recordings/cut/&lt;file_name|<del>recordingnumber</del>&gt; # do it! (cut the recording)
+                    GET http://&lt;ip&gt;:&lt;port&gt;/recordings/cut.&lt;format&gt; # this will return the status of the VDR Cutter
+                </div>
+            </section>
+
+            <a id="RecordingsMarks"></a>
+            <section data-header="Marks">
+
+                <p class="description">
+                    This service can save and delete marks. To retrieve them use the parameter "marks=true" in the request url for the recordings.
+                </p>
+                <h3>Delete Cutting Marks: </h3>
+                <p class="method">DELETE</p>
+                <div class="code" data-header="Examples:">
+                    DELETE http://&lt;ip&gt;:&lt;port&gt;/recordings/marks/&lt;file_name|<del>recordingnumber</del>&gt;
+                </div>
+                <h3>Create new Cutting Marks: </h3>
+                <p class="method">POST</p>
+                <div class="code" data-header="Examples:">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/recordings/marks/&lt;file_name|<del>recordingnumber</del>&gt;
+                </div>
+
+                <div class="code" data-header="Example Body-Content (required, Only JSON supported):">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;'marks' : [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'0:02:18.10',
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'0:34:08.24'
+                    &nbsp;&nbsp;&nbsp;&nbsp;]
+                    }
+                </div>
+            </section>
+
+
+            <a id="RecordingPlay"></a>
+            <section data-header="Play">
+
+                <p class="description">This service tells your VDR to play or rewind a recording:</p>
+                <p class="method">GET, POST</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/recordings/play/&lt;file_name|<del>recordingnumber</del>&gt;
+                    POST http://&lt;ip&gt;:&lt;port&gt;/recordings/play/&lt;file_name|<del>recordingnumber</del>&gt;
+                </div>
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;file_name&gt; - (recommended) The full file name of the recording.
+                    <li>&lt;number&gt; - (deprecated) The number of the recording.
+                </ul>
+            </section>
+
+            <a id="Remote"></a>
+            <section data-header="Remote">
+                <p class="description">This service retrieves remote commands and sends them to VDR:</p>
+                <p class="method">POST</p>
+
+                <div class="code" data-header="Examples:">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/remote/&lt;key&gt;
+                    POST http://&lt;ip&gt;:&lt;port&gt;/remote/switch/&lt;channelid&gt;
+                    POST http://&lt;ip&gt;:&lt;port&gt;/remote/kbd
+                </div>
+                <ul class="param-desc" data-header="The parameter &lt;key&gt; can be set to the following remote control commands:">
+                    <li>
+                        Up, Down, Menu, Ok, Back, Left, Right, Red, Green, Yellow, Blue, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, Info, Play, Pause, Stop,
+                        Record, FastFwd, FastRew, Next, Prev, Power, ChanUp, ChanDn, ChanPrev, VolUp, VolDn, Mute, Audio, Subtitles, Schedule,
+                        Channels, Timers, Recordings, Setup, Commands, User0, User1, User2, User3, User4, User5, User6, User7, User8, User9,
+                        None, Kbd
+                    </li>
+                </ul>
+                <p>
+                    The second address allows to directly switch to a specific channel.<br/>
+                    The third address allows to send strings that are interpreted as keyboard input for e.g. usage in search<br/>
+                    The fourth address allows to send to send a sequence of keypresses
+                </p>
+                <h3>Send keyboard input:</h3>
+                <p class="method">POST</p>
+                <div class="code" data-header="Example:">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/remote/kbd
+                </div>
+
+                <div class="code" data-header="Example Body-Content (required, Only JSON supported):">
+                    {'kbd':'Asterix'}
+                </div>
+
+                <h3>Send sequence of keypresses:</h3>
+                <p class="method">POST</p>
+
+                <div class="code" data-header="Example:">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/remote/seq
+                </div>
+
+                <div class="code" data-header="Example Body-Content (required, Only JSON supported):">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;'seq': [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Down',
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Down',
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Right'
+                    &nbsp;&nbsp;&nbsp;&nbsp;]
+                    }
+                </div>
+            </section>
+
+
+            <a id="Timers"></a>
+            <section data-header="Timers">
+                <h3><a id="ReadingTimers">Reading/Deleting Timers</a></h3>
+                <p class="description">This service returns a list of timers.</p>
+                <p class="method">GET, DELETE</p>
+                <div class="code" data-header="Examples:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/timers.&lt;format&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/timers/&lt;timerid&gt;.&lt;format&gt;
+                    GET http://&lt;ip&gt;:&lt;port&gt;/timers.&lt;format&gt;?start=&lt;int&gt;&amp;limit=&lt;int&gt;
+                    DELETE http://&lt;ip&gt;:&lt;port&gt;/timers/&lt;timerid&gt;
+                </div>
+
+                <ul class="param-desc" data-header="Description of the Parameters:">
+                    <li>&lt;format&gt; - The requested format: json, xml or html.
+                    <li>&lt;timerid&gt; - Id of the timer if you want to delete one.
+                    <li>start, limit - These values are used to control the whole list. Start ist the first element you want to retrieve. Limit...
+                </ul>
+
+                <div class="code" data-header="Example Result (XML):">
+                    GET http://127.0.0.1:8002/timers.xml?start=0&amp;limit=1
+
+                    &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                    &lt;timers xmlns="http://www.domain.org/restfulapi/2011/timers-xml"&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;timer&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="id"&gt;C-71-71-61920:0:1309039200:2013:2200&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="start"&gt;2013&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="stop"&gt;2200&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="start_timestamp"&gt;2011-12-24 19:00:00&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="stop_timestamp"&gt;2011-12-24 20:00:00&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="priority"&gt;50&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="lifetime"&gt;99&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="event_id"&gt;27312&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="weekdays"&gt;-------&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="day"&gt;2011-06-26&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="channel"&gt;C-71-71-61920&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_recording"&gt;false&lt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_pending"&gt;false&gt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="filename"&gt;Mad Money&gt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="channel_name"&gt;ORF1 HD&gt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param name="is_active"&gt;true&gt;/param&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/timer&gt;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;count&gt;1&lt;/count&gt;&lt;total&gt;2&lt;/total&gt;
+                    &lt;/timers&gt;
+                </div>
+
+                <div class="code" data-header="Example Result (JSON):">
+                    GET http://127.0.0.1:8002/timers.json?start=0&amp;limit=1
+
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"timers": [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "C-61441-10011-50059:0:1432504800:1108:1210",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"flags": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"start": 1108,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"start_timestamp": "2015-05-25 11:08:00",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stop_timestamp": "2015-05-25 12:10:00",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stop": 1210,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"priority": 50,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"lifetime": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"event_id": -1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"weekdays": "-------",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"day": "2015-05-25",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel": "C-61441-10011-50059",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"filename": "Serie~Das Universum: Planeten~Mo. 25.05.15 11:10",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"channel_name": "n-tv HD",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_pending": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_recording": false,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"is_active": true,
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"aux": "&lt;epgsearch&gt;&lt;channel&gt;17 - n-tv HD&lt;/channel&gt;&lt;searchtimer&gt;das universum&lt;/searchtimer&gt;&lt;start&gt;1432544880&lt;/start&gt;&lt;stop&gt;1432548600&lt;/stop&gt;&lt;s-id&gt;79&lt;/s-id&gt;&lt;eventid&gt;5938&lt;/eventid&gt;&lt;/epgsearch&gt;"
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"index": 1
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total": 20
+                    }
+                </div>
+
+                <h3><a id="BulkDeleteTimers"></a>Bulk delete Timers</h3>
+                <p class="description">Deletes multiple Timers at once</p>
+                <p class="method">DELETE</p>
+
+                <div class="code" data-header="Example:">
+                    DELETE http:/&lt;ip&gt;:&lt;port&gt;/timers/bulkdelete.json
+                </div>
+                <div class="param-desc" data-header="Example Body Parameter:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"timers" : [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"C-61441-10004-50101:0:1432504800:1923:2025",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"C-61441-10013-50001:0:1432504800:2013:2110",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"C-61441-10012-50008:0:1432591200:2013:2230"
+                    &nbsp;&nbsp;&nbsp;&nbsp;]
+                    }
+                </div>
+                <div class="code " data-header="Example Result:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"timers" : [
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : "C-61441-10004-50101:0:1432504800:1923:2025",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"deleted" : true
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : "C-61441-10013-50001:0:1432504800:2013:2110",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"deleted" : true
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : "C-61441-10012-50008:0:1432591200:2013:2230",
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"deleted" : true
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count" : 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total" : 3
+                    }
+                </div>
+
+                <h3><a id="CreatingTimers">Creating Timers</a></h3>
+                <p class="description">This service can create new timers.</p>
+                <p class="method">POST</p>
+
+                <div class="code" data-header="Example:">
+                    POST http:/&lt;ip&gt;:&lt;ip&gt;/timers
+                </div>
+
+                <ul class="param-desc" data-header="Required Body Parameters:">
+                    <li>flags - set it to 1 for an active timer
+                    <li>file - name of the recording (use an url-encoder for this text if you special characters)
+                    <li>stop - the time when the recording should be start - in the 24 hour system, f.e. 2015 means quarter past ten in
+                        the evening
+                    <li>start - the time when the recording sholud be stoped, f.e. 2230 (half past ten in the evening)
+                    <li>day - YYYY-MM-DD, f.e. 2011-12-24 -&gt; christmas :-)
+                    <li>channel - ID of the channel
+                    <li>weekdays - MTWTFSS, used for repeating timers -&gt; just use '-' if you don't want the timer to run on the
+                        specific day
+                    <li>minpre, minpost can be used together with a channel and eventid to create a timer without giving the other
+                        information to the api
+                </ul>
+
+                <div class="code" data-header="Example Request (including HTTP-Header):">
+                    POST /timers HTTP/1.1
+                    Content-Length: 98
+                    Connection: close
+
+                    file=Ein%20Film&amp;flags=1&amp;start=1400&amp;stop=1615&amp;day=2011-12-24&amp;channel=C-71-71-61920&amp;weekdays=-------
+                </div>
+                <div class="code" data-header="Example Response (including HTTP-Header):">
+                    HTTP/1.1 200 OK
+                    Content-Length: 0
+                    Server: cxxtools-Http-Server 2.0
+                    Connection: close
+                    Date: Sun, 26 Jun 2011 19:03:48 GMT
+                </div>
+
+                <h3><a id="UpdatingTimers">Updating Timers</a></h3>
+                <p class="description">This service can update the previously created timers.</p>
+                <p class="method">PUT</p>
+                <div class="code" data-header="Example:">
+                    PUT http://&lt;ip&gt;:&lt;port&gt;/timers
+                </div>
+                <ul class="param-desc" data-header="Required Body Parameters:">
+                    <li>timer_id - the id of the timer
+                </ul>
+
+                <p>Optional Body Parameters are the ones you use to create the timer and now want to update.</p>
+
+                <div class="code" data-header="Example Request (including HTTP-Header):">
+                    PUT /timers HTTP/1.1
+                    Content-Length: 81
+                    Connection: close
+
+                    timer_id=C-71-71-61920:0:1324681200:1400:1615&amp;start=2015&amp;stop=2230
+                </div>
+
+                <div class="code" data-header="Example Response (including HTTP-Header):">
+                    HTTP/1.1 200 OK
+                    Content-Length: 0
+                    Server: cxxtools-Http-Server 2.0
+                    Connection: close
+                    Date: Sun, 26 Jun 2011 19:20:03 GMT
+                </div>
+            </section>
+
+            <a id="SearchTimers"></a>
+            <section data-header="SearchTimers">
+                <p class="description">This Service returns SearchTimers and can create, delete or update them. It's also possible to perform a search.</p>
+                <h3><a id="SearchTimersCreate">Create a SearchTimer</a></h3>
+                <p class="method">POST</p>
+                <div class="code">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/searchtimers
+                </div>
+
+                <table class="param-desc" data-header="Possible parameters:">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Value Range / Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>search</td>
+                        <td>string</td>
+                        <td>yes</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>mode</td>
+                        <td>int</td>
+                        <td>yes</td>
+                        <td>0=phrase, 1=all words, 2=at least one word, 3=match exactly, 4=regex, 5=fuzzy</td>
+                    </tr>
+                    <tr>
+                        <td>tolerance</td>
+                        <td>int</td>
+                        <td>if mode == 5</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>match_case</td>
+                        <td>boolean</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_title</td>
+                        <td>boolean</td>
+                        <td>at least one of use_title, use_subtitle, use_description</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_subtitle</td>
+                        <td>boolean</td>
+                        <td>at least one of use_title, use_subtitle, use_description</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_description</td>
+                        <td>boolean</td>
+                        <td>at least one of use_title, use_subtitle, use_description</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>content_descriptors</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>concatted string of content descriptor ids</td>
+                    </tr>
+                    <tr>
+                        <td>use_ext_epg_info</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ext_epg_info</td>
+                        <td>array</td>
+                        <td></td>
+                        <td>[1#2,2#test]</td>
+                    </tr>
+                    <tr>
+                        <td>use_in_favorites</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_time</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>start_time</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>stop_time</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_channel</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td>0=no, 1=interval, 2=channel group, 3=only FTA</td>
+                    </tr>
+                    <tr>
+                        <td>channel_min</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>channel id</td>
+                    </tr>
+                    <tr>
+                        <td>channel_max</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>channel id</td>
+                    </tr>
+                    <tr>
+                        <td>channels</td>
+                        <td>string</td>
+                        <td>if use_channel > 0</td>
+                        <td>channel group name</td>
+                    </tr>
+                    <tr>
+                        <td>use_duration</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>duration_min</td>
+                        <td>int</td>
+                        <td>if use_duration == true</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>duration_max</td>
+                        <td>int</td>
+                        <td>if use_duration == true</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_dayofweek</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>dayofweek</td>
+                        <td>int</td>
+                        <td>if use_dayofweek == true</td>
+                        <td>-127 - 6</td>
+                    </tr>
+                    <tr>
+                        <td>use_as_searchtimer</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>0=no, 1=yes, 2=user defined</td>
+                    </tr>
+                    <tr>
+                        <td>use_as_searchtimer_from</td>
+                        <td>int</td>
+                        <td>if use_as_searchtimer == 2</td>
+                        <td>unix timestamp</td>
+                    </tr>
+                    <tr>
+                        <td>use_as_searchtimer_til</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>unix timestamp</td>
+                    </tr>
+                    <tr>
+                        <td>search_timer_action</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_series_recording</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>directory</td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>del_recs_after_days</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>keep_recs</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>pause_on_recs</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>blacklist_mode</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>0=global, 1=Selection, 2=all, 3=none</td>
+                    </tr>
+                    <tr>
+                        <td>blacklist_ids</td>
+                        <td>array</td>
+                        <td>if blacklist_mode == 1</td>
+                        <td>array of blacklist ids</td>
+                    </tr>
+                    <tr>
+                        <td>switch_min_before</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>avoid_repeats</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>allowed_repeats</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>repeats_within_days</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>compare_title</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>compare_subtitle</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>compare_summary</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>compare_categories</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>priority</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>lifetime</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>margin_start</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>margin_stop</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>use_vps</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>del_mode</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>0 = no, 1 = recordings count, 2 = days count</td>
+                    </tr>
+                    <tr>
+                        <td>del_after_count_recs</td>
+                        <td>int</td>
+                        <td>if del_mode == 1</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>del_after_days_of_first_rec</td>
+                        <td>int</td>
+                        <td>id del_mode == 2</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ignore_missing_epg_cats</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>unmute_sound_on_switch</td>
+                        <td>boolean</td>
+                        <td>no</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>summary_match</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>0 - 100, default 90</td>
+                    </tr>
+                    <tr>
+                        <td>compare_time</td>
+                        <td>int</td>
+                        <td>no</td>
+                        <td>0 = no, 1 = same day, 2 = same week, 3 = same month</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3><a id="SearchTimersDelete">Delete a SearchTimer</a></h3>
+                <p class="method">DELETE</p>
+                <div class="code">
+                    DELETE http://&lt;ip&gt;:&lt;port&gt;/searchtimers/&lt;id&gt;
+                </div>
+
+                <h3><a id="SearchTimersSearch">Search Events of a SearchTimer</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/searchtimers/search/&lt;id&gt;.&lt;format&gt;
+                </div>
+
+                <h3><a id="SearchTimersBlacklists">Fetch searchtimer blacklists</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/searchtimers/blacklists.&lt;format&gt;
+                </div>
+
+                <h3><a id="SearchTimersRecordingdirs">Fetch searchtimer recording dirs</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/searchtimers/recordingdirs.&lt;format&gt;
+                </div>
+
+                <h3><a id="SearchTimersChannelgroups">Fetch searchtimer channel groups</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/searchtimers/channelgroups.&lt;format&gt;
+                </div>
+
+                <h3><a id="SearchTimersExtEPGInfo">Fetch searchtimer ext EPG info defined in epgsearchcats.conf</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/searchtimers/extepginfo.&lt;format&gt;
+                </div>
+
+                <h3><a id="SearchTimersConflicts">Check timer conflicts</a></h3>
+                <p class="method">GET</p>
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/searchtimers/conflicts.&lt;(json|xml|html)&gt;
+                </div>
+            </section>
+
+
+            <a id="ScraperImages"></a>
+            <section data-header="ScraperImage">
+                <p class="description">Retrieve Images from additional media.</p>
+                <p class="method">GET</p>
+                <div class="code" data-header="Images in original size:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/scraper/image/&lt;path&gt;/&lt;provided&gt;/&lt;within&gt;/&lt;additional&gt;/&lt;media&gt;.jpg
+                </div>
+                <div class="code" data-header="Resized Images:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/scraper/image/size/360/240/&lt;path&gt;/&lt;provided&gt;/&lt;within&gt;/&lt;additional/&lt;media&gt;.jpg
+                    GET http://&lt;ip&gt;:&lt;port&gt;/scraper/image/width/360/&lt;path&gt;/&lt;provided&gt;/&lt;within&gt;/&lt;additional/&lt;media&gt;.jpg
+                    GET http://&lt;ip&gt;:&lt;port&gt;/scraper/image/heigh/240/&lt;path&gt;/&lt;provided&gt;/&lt;within&gt;/&lt;additional/&lt;media&gt;.jpg
+                </div>
+            </section>
+
+
+            <a id="Wirbelscan"></a>
+            <section data-header="Control the Wirbelscan plugin">
+                <h3><a id="WirbelscanGetState">Get the state of the Wirbelscan plugin</a></h3>
+                <p class="description">This service gets the state of the Wirbelscan plugin.</p>
+                <p class="method">GET</p>
+
+                <div class="code" data-header="Example:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/wirbelscan/getStatus.json
+                </div>
+
+                <div class="code" data-header="Example Body-Content:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"status":2
+                    }
+                </div>
+                <div class="code" data-header="Example Body-Content during scan:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"status":1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"currentDevice":"CXD2837 DVB-C DVB-T/T2",
+                    &nbsp;&nbsp;&nbsp;&nbsp;"progress":1,"strength":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"transponder":"DVB-C 113.000MHz M2 SR6900",
+                    &nbsp;&nbsp;&nbsp;&nbsp;"numChannels":552,"newChannels":0,"nextTransponder":0
+                    }
+                </div>
+
+                <ul class="param-desc" data-header="Description of the status values:">
+                    <li>0 = no status information available, try again later.
+                    <li>1 = scan in progress.
+                    <li>2 = no scan in progress (not started, finished or stopped).
+                    <li>3 = plugin is busy, try again later.
+                </ul>
+
+                <h3><a id="WirbelscanGetCountries">Retrieve the list of countries from the Wirbelscan plugin</a></h3>
+                <p class="description">This service retrieves the list of countries from the Wirbelscan plugin.</p>
+                <p class="method">GET</p>
+
+                <div class="code" data-header="Example:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/wirbelscan/countries.json
+                </div>
+
+                <div class="code" data-header="Example Body-Content:">
+                    {"countries":
+                    &nbsp;&nbsp;&nbsp;&nbsp;[
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":0,"shortName":"AF","fullName":"AFGHANISTAN"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":1,"shortName":"AX","fullName":"\ufffdLAND ISLANDS"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":2,"shortName":"AL","fullName":"ALBANIA"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":3,"shortName":"DZ","fullName":"ALGERIA"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":246,"shortName":"ZM","fullName":"ZAMBIA"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":247,"shortName":"ZW","fullName":"ZIMBABWE"}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total":248
+                    }
+                </div>
+
+                <h3><a id="WirbelscanGetSatellites">Retrieve the list of satellites from the Wirbelscan plugin</a></h3>
+                <p class="description">This service retrieves the list of satellites from the Wirbelscan plugin.</p>
+                <p class="method">GET</p>
+
+                <div class="code" data-header="Example:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/wirbelscan/satellites.json
+                </div>
+
+                <div class="code" data-header="Example Body-Content:">
+                    {"satellites":
+                    &nbsp;&nbsp;&nbsp;&nbsp;[
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":0,"shortName":"S180E0","fullName":"180.0 east Intelsat 18"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":1,"shortName":"S172E0","fullName":"172.0 east GE 23"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":2,"shortName":"S169E0","fullName":"169.0 east Intelsat 5"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":3,"shortName":"S166E0","fullName":"166.0 east Intelsat 8"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":131,"shortName":"S139W0","fullName":"135.0 west AMC 8"},
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":132,"shortName":"S177W0","fullName":"177.0 west NSS 9"}
+                    &nbsp;&nbsp;&nbsp;&nbsp;],
+                    &nbsp;&nbsp;&nbsp;&nbsp;"count":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"total":133
+                    }
+                </div>
+
+                <h3><a id="WirbelscanGetSetup">Retrieve the current setup of the Wirbelscan plugin</a></h3>
+                <p class="description">This service retrieves the current setup of the Wirbelscan plugin.</p>
+                <p class="method">GET</p>
+
+                <div class="code" data-header="Example:">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/wirbelscan/getSetup.json
+                </div>
+
+                <div class="code" data-header="Example Body-Content:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"verbosity":5,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"logFile":2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVB_Type":2,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBT_Inversion":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBC_Inversion":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBC_Symbolrate":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBC_QAM":0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"CountryId":82,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"SatId":6,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"scanflags":31,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"ATSC_type":0
+                    }
+                </div>
+
+                <ul class="param-desc" data-header="Description of the setup values:">
+                    <li>verbosity - 0 (errors only) .. 5 (extended debug); default = 3 (messages)
+                    <li>logFile - 0 = off, 1 = stdout, 2 = syslog
+                    <li>DVB_Type - DVB-T = 0, DVB-C = 1, DVB-S/S2 = 2, PVRINPUT = 3, PVRINPUT(FM Radio) = 4, ATSC = 5, TRANSPONDER = 999
+                    <li>DVBT_Inversion - AUTO/OFF = 0, AUTO/ON = 1
+                    <li>DVBC_Inversion - AUTO/OFF = 0, AUTO/ON = 1
+                    <li>DVBC_Symbolrate - careful here - may change. AUTO = 0, 6900 = 1, 6875 = 2 (...) 14 = 5483, 15 = ALL
+                    <li>DVBC_QAM - AUTO = 0,QAM64 = 1, QAM128 = 2, QAM256 = 3, ALL = 4
+                    <li>CountryId - the id according to country, found in country list, see wirbelscan_GetCountry
+                    <li>SatId - the id according to satellite, found in list, see wirbelscan_GetSat
+                    <li>scanflags - bitwise flag of TV=1, RADIO=2, FTA=4, SCRAMBLED=8, HDTV=16 (default 31 -> TV + Radio, SD + HDTV, FTA
+                        + Scrambled)
+                    <li>ATSC_type - VSB = 0, QAM = 1, both VSB+QAM = 2
+                </ul>
+
+                <h3><a id="WirbelscanSetSetup">Changes the current setup of the Wirbelscan plugin</a></h3>
+                <p class="description">This service changes the current setup of the Wirbelscan plugin and returns the updated setup.</p>
+                <p class="method">PUT</p>
+
+                <div class="code" data-header="Example:">
+                    PUT http://&lt;ip&gt;:&lt;port&gt;/wirbelscan/setSetup.json
+                </div>
+                <p>For a description of the setup values see <a href="#WirbelscanGetSetup">Get the current setup</a></p>
+
+                <div class="code" data-header="Example Body-Content:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"verbosity": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"logFile": 1,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVB_Type": 3,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBT_Inversion": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBC_Inversion": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBC_Symbolrate": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"DVBC_QAM": 0,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"CountryId": 82,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"SatId": 67,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"scanflags": 31,
+                    &nbsp;&nbsp;&nbsp;&nbsp;"ATSC_type": 0
+                    }
+                </div>
+
+                <h3><a id="WirbelscanDoCommand">Launch a command with the Wirbelscan plugin</a></h3>
+                <p class="description">This service launches a command with the Wirbelscan plugin.</p>
+                <p class="method">POST</p>
+                <div class="code" data-header="Example:">
+                    POST http://&lt;ip&gt;:&lt;port&gt;/wirbelscan/doCommand.json
+                </div>
+
+                <ul class="param-desc" data-header="Required Body Parameters:">
+                    <li>command
+                </ul>
+
+                <ul class="param-desc" data-header="Description of the command values:">
+                    <li>0 = start scanning
+                    <li>1 = stop scanning
+                    <li>2 = store current setup
+                </ul>
+
+                <div class="code" data-header="Example Body-Content:">
+                    {
+                    &nbsp;&nbsp;&nbsp;&nbsp;"replycode":true
+                    }
+                </div>
+            </section>
+
+            <a id="Webapp"></a>
+            <section data-header="Webapp">
+                <p class="description">This service can deliver files from configured folders. Multiple webapps can be defined within config file. Seperate paths with a comma. Specified paths must exist for the service to be initialized.</p>
+                <p>
+                  Known file types are defined in &lt;plugin_conf_dir&gt;/webapp_file_types.conf<br>
+                </p>
+                <p class="method">GET</p>
+
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/&lt;webapp&gt;/&lt;path&gt;/&lt;to&gt;/&lt;file&gt;
+                </div>
+                <p>Specify folder in plugin settings file (--webapp=/var/lib/vdr/plugins/restfulapi/webapp,/var/lib/vdr/plugins/restfulapi/a-second-webapp)</p>
+            </section>
+
+
+            <a id="Femon"></a>
+            <section data-header="Femon">
+
+                <p class="description">Retrieve Femon data</p>
+                <p class="method">GET</p>
+
+                <div class="code">
+                    GET http://&lt;ip&gt;:&lt;port&gt;/femon.json
+                </div>
+            </section>
+            
+            <a id="JSDoc"></a>
+            <section data-header="JSDoc typedef">
+				<div class="code" data-header="Recording Data">
+					/**
+					&nbsp;* @typedef {{}} recordingData
+					&nbsp;* @property {number} number
+					&nbsp;* @property {string} name
+					&nbsp;* @property {string} file_name
+					&nbsp;* @property {string} relative_file_name
+					&nbsp;* @property {string} inode
+					&nbsp;* @property {boolean} is_new
+					&nbsp;* @property {boolean} is_edited
+					&nbsp;* @property {boolean} is_pes_recording
+					&nbsp;* @property {number} duration
+					&nbsp;* @property {number} filesize_mb
+					&nbsp;* @property {string} channel_id
+					&nbsp;* @property {number} frames_per_second
+					&nbsp;* @property {Array.&lt;string&gt;} marks
+					&nbsp;* @property {string} event_title
+					&nbsp;* @property {string} event_short_text
+					&nbsp;* @property {string} event_description
+					&nbsp;* @property {number} event_start_time
+					&nbsp;* @property {number} event_duration
+					&nbsp;* @property {additionalMediaMovie|additionalMediaEpisode} additional_media
+					&nbsp;* @property {string} sync_action
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Event Data">
+					/**
+					&nbsp;* @typedef {{}} broadcastData
+					&nbsp;* @property {string} channel
+					&nbsp;* @property {string} channel_name
+					&nbsp;* @property {Array.&lt;component&gt;} components
+					&nbsp;* @property {Array} contents
+					&nbsp;* @property {string} description
+					&nbsp;* @property {Array} details
+					&nbsp;* @property {Number} duration
+					&nbsp;* @property {Number} id
+					&nbsp;* @property {Number} images
+					&nbsp;* @property {Number} parental_rating
+					&nbsp;* @property {Array} raw_contents
+					&nbsp;* @property {string} short_text
+					&nbsp;* @property {Number} table_id
+					&nbsp;* @property {boolean} timer_active
+					&nbsp;* @property {boolean} timer_exists
+					&nbsp;* @property {Number} timer_id
+					&nbsp;* @property {string} title
+					&nbsp;* @property {Number} version
+					&nbsp;* @property {Number} vps
+					&nbsp;* @property {Number} start_time
+					&nbsp;* @property {Number} end_time
+					&nbsp;* @property {Date} start_date
+					&nbsp;* @property {Date} end_date
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Component">
+					/**
+					&nbsp;* @typedef {{}} component
+					&nbsp;* @property {String} description
+					&nbsp;* @property {String} language
+					&nbsp;* @property {Number} stream
+					&nbsp;* @property {Number} type
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Actor">
+					/**
+					&nbsp;* @typedef {{}} actor
+					&nbsp;* @property {String} name
+					&nbsp;* @property {String} role
+					&nbsp;* @property {String} thumb
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Banners">
+					/**
+					&nbsp;* @typedef {{}} banners
+					&nbsp;* @property {Number} width
+					&nbsp;* @property {Number} height
+					&nbsp;* @property {String} path
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Fanarts">
+					/**
+					&nbsp;* @typedef {{}} fanarts
+					&nbsp;* @property {Number} width
+					&nbsp;* @property {Number} height
+					&nbsp;* @property {String} path
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Posters">
+					/**
+					&nbsp;* @typedef {{}} posters
+					&nbsp;* @property {Number} width
+					&nbsp;* @property {Number} height
+					&nbsp;* @property {String} path
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Additional media movie">
+					/**
+					&nbsp;* @typedef {{}} additionalMediaMovie
+					&nbsp;* @property {Array.&lt;actor&gt;} actors
+					&nbsp;* @property {Boolean} adult
+					&nbsp;* @property {String} collection_fanart
+					&nbsp;* @property {String} collection_name
+					&nbsp;* @property {String} collection_poster
+					&nbsp;* @property {String} fanart
+					&nbsp;* @property {String} genres
+					&nbsp;* @property {String} homepage
+					&nbsp;* @property {Number} movie_id
+					&nbsp;* @property {String} original_title
+					&nbsp;* @property {String} overview
+					&nbsp;* @property {Number} popularity
+					&nbsp;* @property {String} poster
+					&nbsp;* @property {String} release_date
+					&nbsp;* @property {Number} revenue
+					&nbsp;* @property {Number} runtime
+					&nbsp;* @property {String} tagline
+					&nbsp;* @property {String} title
+					&nbsp;* @property {String} type
+					&nbsp;* @property {Number} vote_average
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Additional media episode">
+					/**
+					&nbsp;* @typedef {{}} additionalMediaEpisode
+					&nbsp;* @property {Array.&lt;banners&gt;} banners
+					&nbsp;* @property {String} episode_first_aired
+					&nbsp;* @property {String} episode_guest_stars
+					&nbsp;* @property {Number} episode_id
+					&nbsp;* @property {String} episode_image
+					&nbsp;* @property {String} episode_name
+					&nbsp;* @property {Number} episode_number
+					&nbsp;* @property {String} episode_overview
+					&nbsp;* @property {Number} episode_rating
+					&nbsp;* @property {Number} episode_season
+					&nbsp;* @property {Array.&lt;fanarts&gt;} fanarts
+					&nbsp;* @property {String} first_aired
+					&nbsp;* @property {String} genre
+					&nbsp;* @property {String} name
+					&nbsp;* @property {String} network
+					&nbsp;* @property {String} overview
+					&nbsp;* @property {Array.&lt;posters&gt;} posters
+					&nbsp;* @property {Number} rating
+					&nbsp;* @property {Number} series_id
+					&nbsp;* @property {String} status
+					&nbsp;* @property {String} type
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="VDR Infodata">
+					/**
+					&nbsp;* @typedef {{}} infoData
+					&nbsp;* @property {infoDiskUsage} diskusage
+					&nbsp;* @property {infoService[]} services
+					&nbsp;* @property {number} time
+					&nbsp;* @property {infoVDR} vdr
+					&nbsp;* @property {string} version
+					&nbsp;*
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="VDR Info">
+					/**
+					&nbsp;* @typedef {{}} infoVDR
+					&nbsp;* @property {infoPlugin[]} plugins
+					&nbsp;* @property {infoDevice[]} devices
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="VDR Info Devices">
+					/**
+					&nbsp;* @typedef {{}} infoDevice
+					&nbsp;* @property {number} adapter
+					&nbsp;* @property {boolean} atsc
+					&nbsp;* @property {string} channel_id
+					&nbsp;* @property {string} channel_name
+					&nbsp;* @property {number} channel_nr
+					&nbsp;* @property {boolean} dvb_c
+					&nbsp;* @property {boolean} dvb_s
+					&nbsp;* @property {boolean} dvb_t
+					&nbsp;* @property {number} frontend
+					&nbsp;* @property {boolean} has_ci
+					&nbsp;* @property {boolean} has_decoder
+					&nbsp;* @property {boolean} live
+					&nbsp;* @property {string} name
+					&nbsp;* @property {number} number
+					&nbsp;* @property {boolean} primary
+					&nbsp;* @property {number} signal_quality
+					&nbsp;* @property {number} signal_strength
+					&nbsp;* @property {number} snr
+					&nbsp;* @property {number} str
+					&nbsp;* @property {number} ber
+					&nbsp;* @property {number} unc
+					&nbsp;* @property {string} status
+					&nbsp;* @property {string} type
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="VDR Info Plugin">
+					/**
+					&nbsp;* @typedef {{}} infoPlugin
+					&nbsp;* @property {string} name
+					&nbsp;* @property {string} version
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="VDR Info Service">
+					/**
+					&nbsp;* @typedef {{}} infoService
+					&nbsp;* @property {string} name
+					&nbsp;* @property {number} version
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="VDR Info diskusage">
+					/**
+					&nbsp;* @typedef {{}} infoDiskUsage
+					&nbsp;* @property {string} description_localized
+					&nbsp;* @property {number} free_mb
+					&nbsp;* @property {number} free_minutes
+					&nbsp;* @property {number} used_percent
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Timerconflict check">
+					/**
+					&nbsp;* @typedef {{}} conflictResult
+					&nbsp;* @property {number} count
+					&nbsp;* @property {number} total
+					&nbsp;* @property {Array.&lt;timerConflict|string&gt;} conflicts
+					&nbsp;* @property {boolean} check_advised
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Searchtimer Data">
+					/**
+					&nbsp;* @typedef {{}} searchTimerData
+					&nbsp;* @property {number} id
+					&nbsp;* @property {string} search
+					&nbsp;* @property {number} mode
+					&nbsp;* @property {number} tolerance
+					&nbsp;* @property {boolean} match_case
+					&nbsp;* @property {boolean} use_title
+					&nbsp;* @property {boolean} use_subtitle
+					&nbsp;* @property {boolean} use_description
+					&nbsp;* @property {string} content_descriptors
+					&nbsp;* @property {boolean} use_ext_epg_info
+					&nbsp;* @property {Array.&lt;string&gt;} ext_epg_info
+					&nbsp;* @property {boolean} use_in_favorites
+					&nbsp;* @property {boolean} use_time
+					&nbsp;* @property {number} start_time
+					&nbsp;* @property {number} stop_time
+					&nbsp;* @property {number} use_channel
+					&nbsp;* @property {string} channel_min
+					&nbsp;* @property {string} channel_max
+					&nbsp;* @property {string} channels
+					&nbsp;* @property {boolean} use_duration
+					&nbsp;* @property {number} duration_min
+					&nbsp;* @property {number} duration_max
+					&nbsp;* @property {boolean} use_dayofweek
+					&nbsp;* @property {number} dayofweek
+					&nbsp;* @property {number} use_as_searchtimer
+					&nbsp;* @property {number} use_as_searchtimer_from
+					&nbsp;* @property {number} use_as_searchtimer_til
+					&nbsp;* @property {number} searchtimer_action
+					&nbsp;* @property {boolean} use_series_recording
+					&nbsp;* @property {string} directory
+					&nbsp;* @property {number} del_recs_after_days
+					&nbsp;* @property {number} keep_recs
+					&nbsp;* @property {number} pause_on_recs
+					&nbsp;* @property {number} blacklist_mode
+					&nbsp;* @property {Array.&lt;number&gt;} blacklist_ids
+					&nbsp;* @property {number} switch_min_before
+					&nbsp;* @property {boolean} avoid_repeats
+					&nbsp;* @property {number} allowed_repeats
+					&nbsp;* @property {number} repeats_within_days
+					&nbsp;* @property {boolean} compare_title
+					&nbsp;* @property {number} compare_subtitle
+					&nbsp;* @property {boolean} compare_summary
+					&nbsp;* @property {number} compare_categories
+					&nbsp;* @property {number} priority
+					&nbsp;* @property {number} lifetime
+					&nbsp;* @property {number} margin_start
+					&nbsp;* @property {number} margin_stop
+					&nbsp;* @property {boolean} use_vps
+					&nbsp;* @property {number} del_mode
+					&nbsp;* @property {number} del_after_count_recs
+					&nbsp;* @property {number} del_after_days_of_first_rec
+					&nbsp;* @property {boolean} ignore_missing_epg_cats
+					&nbsp;* @property {boolean} unmute_sound_on_switch
+					&nbsp;* @property {number} summary_match
+					&nbsp;* @property {number} compare_time
+					&nbsp;*/
+				</div>
+				<div class="code" data-header="Timer">
+					/**
+					&nbsp;* @typedef {{}} timerData
+					&nbsp;* @property {number} event_id
+					&nbsp;* @property {number} flags
+					&nbsp;* @property {number} index
+					&nbsp;* @property {number} lifetime
+					&nbsp;* @property {number} priority
+					&nbsp;* @property {number} start
+					&nbsp;* @property {number} stop
+					&nbsp;* @property {boolean} is_active
+					&nbsp;* @property {boolean} is_pending
+					&nbsp;* @property {boolean} is_recording
+					&nbsp;* @property {string} aux
+					&nbsp;* @property {string} channel
+					&nbsp;* @property {string} day
+					&nbsp;* @property {string} filename
+					&nbsp;* @property {string} id
+					&nbsp;* @property {string} start_timestamp
+					&nbsp;* @property {string} stop_timestamp
+					&nbsp;* @property {string} weekdays
+					&nbsp;* @property {string} channel_name
+					&nbsp;*/
+				</div>
+            </section>
+        </article>
+    </div>
+</body>
+</html>

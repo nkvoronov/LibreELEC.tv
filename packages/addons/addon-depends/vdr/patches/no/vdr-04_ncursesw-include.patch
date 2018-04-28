@@ -1,0 +1,14 @@
+Description: Use ncursesw header file
+Author: Tobias Grimm <tg@e-tobi.net>
+
+--- a/PLUGINS/src/skincurses/skincurses.c
++++ b/PLUGINS/src/skincurses/skincurses.c
+@@ -6,7 +6,7 @@
+  * $Id: skincurses.c 4.3 2018/04/10 13:01:00 kls Exp $
+  */
+ 
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ #include <vdr/osd.h>
+ #include <vdr/plugin.h>
+ #include <vdr/skins.h>

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# please update this script to fit your needs
+# this script is call every time the widget will be drawn, so keep it short and fast ;)
+
+OUTPUTFLDR="/tmp/skinflatplus/widgets/temperatures"
+mkdir -p "$OUTPUTFLDR"
+
+# if the script is executed from system_information script set the locale back for "°C"
+LANG=de_DE.UTF-8
+
+# there can be 4 files, cpu, gpu, pccase, motherboard
+
+rm -f "${OUTPUTFLDR}/cpu" "${OUTPUTFLDR}/gpu" \
+      "${OUTPUTFLDR}/pccase" "${OUTPUTFLDR}/motherboard"
+
+# intel core-i cpu temp
+#sensors -A coretemp-isa-0000 | grep "Core 0" | awk '{print $3}' | tr -d "+" > "${OUTPUTFLDR}/cpu"
+
+# read sensors data
+mapfile -t < <(sensors -A)
+
+# cpu temp and motherboard temp
+for i in "${!MAPFILE[@]}" ; do
+  [[ "${MAPFILE[$i]}" =~ "CPU Temperature" ]] && CPUTEMP=(${MAPFILE[$i]})
+  [[ "${MAPFILE[$i]}" =~ "MB Temperature" ]] && MBTEMP=(${MAPFILE[$i]})
+  [[ -n "$CPUTEMP" && -n "$MBTEMP" ]] && break  # both values found
+done
+
+# cpu temp
+#CPUTEMP=($(sensors -A | grep "CPU Temperature"))  # no need for grep
+CPUTEMP[2]="${CPUTEMP[2]/+}"                       # +36.0°C -> 36.0°C
+#echo "${CPUTEMP[2]/./,}" > "${OUTPUTFLDR}/cpu"    # 36,0°C
+echo "${CPUTEMP[2]%.*}°C" > "${OUTPUTFLDR}/cpu"    # 36°C
+
+# pc case temp
+#sensors -A acpitz-virtual-0 | grep "temp1" | awk '{print $2}' | tr -d "+" > "${OUTPUTFLDR}/pccase"
+
+# motherboard temp
+MBTEMP[2]="${MBTEMP[2]/+}"                              # +36.0°C -> 36.0°C
+#echo "${MBTEMP[2]/./,}" > "${OUTPUTFLDR}/motherboard"  # 36,0°C
+echo "${MBTEMP[2]%.*}°C" > "${OUTPUTFLDR}/motherboard"  # 36°C
+
+# nvidia gpu temp
+# nvidia-settings must be run as the user of the x server
+#GPU=$(nvidia-settings -c :0 -t -query GPUCoreTemp | head -n 1)   # slow
+#GPU=$(nvidia-smi -q -d TEMPERATURE | grep -Pow "[[:digit:]]+(?=\sC)" | head -n1) # faster
+GPU="$(/opt/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)"    # fastest
+echo "${GPU}°C" > "${OUTPUTFLDR}/gpu"
+

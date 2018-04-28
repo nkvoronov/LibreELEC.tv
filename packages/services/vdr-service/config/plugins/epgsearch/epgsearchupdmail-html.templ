@@ -1,0 +1,210 @@
+#########################################################################
+# This is a sample template for email notifications about timer changes
+# (NOTE: This is a sample for a HTML mail, but you could use only text
+# as well)
+#
+# There are 3 sections that have to be defined:
+#  - "subject" to be used as mail subject
+#  - "mailbody" the body of the mail:
+#    put %update.newtimers% in the place where the list of new timers should
+#    appear. The same for %update.modtimers%, %update.deltimers% and
+#    %update.newevents& for the list of changed or deleted timers and event
+#    announcements.
+#  - "timer" the description of one timer and "event" with the description of
+#    one event. This section is used to display one timer within a timer list,
+#    e.g. in %update.newtimers%. The same for "event".
+#
+# All sections are optional, e.g. if you don't use event announcements you
+# can drop "%update.newevents%" in the mailbody and the "event" section. But
+# of course you should have at least a mailbody ;-)
+#
+# close each section with the correspondig end tag!
+# Please have a look at the MANUAL for the available variables.
+#########################################################################
+#
+# Version: 0.4    Date: 20.09.2009
+#
+#  Author: Mike Constabel      <vejoun @ vdrportal>
+#          Christian Wieninger <winni  @ vdrportal>
+#
+#########################################################################
+
+#########################################################################
+# here's the mail's subject definition (no CR!)
+#########################################################################
+<subject>[epgsearch] update info: %update.countnewtimers% new / %update.countmodtimers% modified / %update.countdeltimers% deleted timers / %update.countnewevents% new events /</subject>
+
+
+#########################################################################
+# here's the mail's body definition
+#########################################################################
+<mailbody>
+<html>
+<head>
+<title>Information about search timer update</title>
+<style type="text/css">
+/* global design */
+body {
+	font-family: Bitstream Vera Sans;
+	background-color: white;
+	}
+table {
+	background-color: #ccebff;
+	border: solid;
+	border-width: 1px;
+	max-width: 100%;
+	empty-cells: show;
+	}
+th, td {
+	border: solid;
+	border-width: 1px;
+	word-wrap: break-word;
+	padding: 5px;
+	}
+th {
+	text-align: left;
+	background-color: #99b4ff;
+	font-weight: bold;
+	}
+
+/* design of the info table */
+table.info {
+	}
+
+/* width of the three main tables */
+table.main {
+	width: 100%;
+	}
+
+/* design of each timer table inside the main tables */
+table.timer {
+	width: 100%;
+	}
+table.timer, tr.timer {
+	border-style: none;
+	}
+th.timer {
+	background-color: #ffb3a4;
+	font-weight: normal;
+	}
+
+/* design of each event table inside the main tables */
+table.event {
+	width: 100%;
+	}
+table.event, tr.event {
+	border-style: none;
+	}
+th.event {
+	background-color: #ffb3a4;
+	font-weight: normal;
+	}
+
+/* space between the timer tables */
+p.smallspace {
+	line-height: 20px;
+	}
+
+/* space between the main tables */
+p.bigspace {
+	line-height: 40px;
+	}
+
+/* space between "Top" and the table name */
+a.rightspace {
+	margin-right: 20px;
+	}
+</style>
+</head>
+<body>
+<a name="info"></a>
+
+<table class="info">
+<tr><th colspan="2">Information about search timer update</th></tr>
+<tr><td>update at:</a></td><td>%datenow% %timenow%</td></tr>
+<tr><td><a href="#new">new timers:</a></td><td>%update.countnewtimers%</td></tr>
+<tr><td><a href="#mod">modified timers:</a></td><td>%update.countmodtimers%</td></tr>
+<tr><td><a href="#del">deleted timers:</a></td><td>%update.countdeltimers%</td></tr>
+<tr><td><a href="#events">new events to report:</a></td><td>%update.countnewevents%</td></tr>
+</table>
+
+<p class="bigspace"></p>
+
+<table class="main">
+<tr><th colspan="2"><a href="#info" class="rightspace">Top</a> <a name="new"></a>New timers</th></tr>
+<tr><td>%update.newtimers%</td></tr>
+</table>
+
+<p class="bigspace"></p>
+
+<table class="main">
+<tr><th colspan="2"><a href="#info" class="rightspace">Top</a> <a name="mod"></a>Modified timers</th></tr>
+<tr><td>%update.modtimers%</td></tr>
+</table>
+
+<p class="bigspace"></p>
+
+<table class="main">
+<tr><th colspan="2"><a href="#info" class="rightspace">Top</a> <a name="del"></a>Deleted timers</th></tr>
+<tr><td>%update.deltimers%</td></tr>
+</table>
+
+<p class="bigspace"></p>
+
+<table class="main">
+<tr><th colspan="2"><a href="#info" class="rightspace">Top</a> <a name="events"></a>New events to report</th></tr>
+<tr><td>%update.newevents%</td></tr>
+</table>
+
+<p class="bigspace"></p>
+
+<p>Have fun!</p>
+</body>
+</html></mailbody>
+
+##############################################################################
+# here's the timer definition, which is used to display information about
+# a timer within one of the timer lists. You can use any variables that refer
+# to an event or timer. (Please note, that a timer may have no event assigned
+# to it, resulting in an empty variable substitution!). You can also use 'user
+# defined' variables from epgsearchuservars.conf.
+##############################################################################
+<timer>
+<table class="timer">
+<tr class="timer"><th class="timer">Title:</th><th class="timer">
+    <div style='float:left'><a href="http://localhost:8008/edit_timer.html?timerid=%timer.liveid%">%title%</a></div>
+    <div style='float:right'><a href="http://akas.imdb.com/Tsearch?title=%title%">IMDb</a></div>
+    </th>
+</tr>
+<tr class="timer"><td>Subtitle:</td><td>%subtitle%</td></tr>
+<tr class="timer"><td>Start/End:</td><td>%time_w% %date% %time%-%timeend% (Timer: %timer.start%-%timer.stop%)</td></tr>
+<tr class="timer"><td>Channel:</td><td>%timer.chlng% (%timer.chnr%)</td></tr>
+<tr class="timer"><td>File:</td><td>%timer.file%</td></tr>
+<tr class="timer"><td>Search:</td><td>%timer.search% (%timer.searchid%)</td></tr>
+<tr class="timer"><td>Modification:</td><td>%timer.modreason%</td></tr>
+<tr class="timer"><td valign="top">Summary:</td><td>%htmlsummary%</td></tr>
+</table>
+<p class="smallspace"></p>
+</timer>
+
+##############################################################################
+# here's the event definition, which is used to display information about
+# an event in the announcement list. You can use any variables that refer
+# to an event. You can also use 'user defined' variables from
+# epgsearchuservars.conf.
+##############################################################################
+<event>
+<table class="event">
+<tr class="event"><th class="timer">Title:</th><th class="timer">
+    <div style='float:left'><a href="http://localhost:8008/edit_timer.html?epgid=%liveeventid%">%title%</a></div>
+    <div style='float:right'><a href="http://akas.imdb.com/Tsearch?title=%title%">IMDb</a></div>
+    </th>
+</tr>
+<tr class="event"><td>Subtitle:</td><td>%subtitle%</td></tr>
+<tr class="event"><td>Start/End:</td><td>%time_w% %date% %time%-%timeend%</td></tr>
+<tr class="event"><td>Channel:</td><td>%chlng% (%chnr%)</td></tr>
+<tr class="timer"><td>Search:</td><td>%search% (%searchid%)</td></tr>
+<tr class="timer"><td valign="top">Summary:</td><td>%htmlsummary%</td></tr>
+</table>
+<p class="smallspace"></p>
+</event>

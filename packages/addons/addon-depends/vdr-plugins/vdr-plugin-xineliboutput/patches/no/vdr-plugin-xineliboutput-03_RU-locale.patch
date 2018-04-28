@@ -1,0 +1,716 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	2015-04-22 17:25:49.000000000 +0300
++++ b/po/ru_RU.po	2015-04-22 18:57:57.000000000 +0300
+@@ -17,58 +17,58 @@
+ "Content-Transfer-Encoding: 8bit\n"
+ 
+ msgid "Play movie title"
+-msgstr ""
++msgstr "Проиграть видео"
+ 
+ msgid "Play disc"
+-msgstr ""
++msgstr "Проиграть диск"
+ 
+ msgid "Images"
+ msgstr "Изображения"
+ 
+ msgid "Play music"
+-msgstr ""
++msgstr "Проиграть музыку"
+ 
+ msgid "Add to playlist"
+-msgstr ""
++msgstr "Добавить в плейлист"
+ 
+ msgid "Play file"
+ msgstr "Проиграть файл"
+ 
+ msgid "Button$Queue"
+-msgstr ""
++msgstr "Очередь"
+ 
+ msgid "Media"
+-msgstr ""
++msgstr "Медиа"
+ 
+ msgid "View images"
+ msgstr "Просмотреть изображения"
+ 
+ msgid "Play DVD disc"
+-msgstr ""
++msgstr "Проиграть DVD диск"
+ 
+ msgid "Play BluRay disc"
+-msgstr ""
++msgstr "Проиграть BluRay диск"
+ 
+ msgid "Play audio CD"
+-msgstr ""
++msgstr "Проиграть аудио CD"
+ 
+ msgid "Video settings"
+-msgstr ""
++msgstr "Настройки видео"
+ 
+ msgid "Play only audio"
+-msgstr ""
++msgstr "Проиграть только аудио"
+ 
+ msgid "Crop letterbox 4:3 to 16:9"
+-msgstr ""
++msgstr "4:3 растянуть до 16:9"
+ 
+ msgid "Overscan (crop image borders)"
+-msgstr ""
++msgstr "Обрезка границ изображения"
+ 
+ msgid "Off"
+-msgstr ""
++msgstr "Выкл."
+ 
+ msgid "Audio settings"
+-msgstr ""
++msgstr "Настройки аудио"
+ 
+ msgid "Audio Compression"
+ msgstr "Аудио компрессия"
+@@ -80,16 +80,16 @@
+ msgstr "Локальный фронтенд"
+ 
+ msgid "Aspect ratio"
+-msgstr ""
++msgstr "Соотношение сторон"
+ 
+ msgid "Video aspect ratio"
+-msgstr ""
++msgstr "Соотношение сторон видео"
+ 
+ msgid "automatic"
+ msgstr "Автоматически"
+ 
+ msgid "On"
+-msgstr ""
++msgstr "Вкл."
+ 
+ msgid "Deinterlacing"
+ msgstr "Деинтерлейсинг"
+@@ -98,22 +98,22 @@
+ msgstr "Преобразовать стерео в 5.1"
+ 
+ msgid "Downmix AC3 to surround"
+-msgstr ""
++msgstr "Преобразовывать AC3 в окружающий"
+ 
+ msgid "Default playlist not found"
+-msgstr ""
++msgstr "Плейлист по умолчанию не найден"
+ 
+ msgid "Default playlist is not symlink"
+-msgstr ""
++msgstr "Плейлист по умолчанию не символ. ссылка"
+ 
+ msgid "Default playlist not defined"
+-msgstr ""
++msgstr "Плейлист по умолчанию не определен"
+ 
+ msgid "Delay"
+ msgstr "Задержка"
+ 
+ msgid "ms"
+-msgstr "ms"
++msgstr "мс"
+ 
+ #, c-format
+ msgid "xineliboutput: hotkey %s not binded"
+@@ -123,76 +123,76 @@
+ msgstr "Аудио"
+ 
+ msgid "Volume control"
+-msgstr ""
++msgstr "Контроль громкости"
+ 
+ msgid "Hardware"
+-msgstr ""
++msgstr "Аппарат."
+ 
+ msgid "Software"
+-msgstr ""
++msgstr "Програм."
+ 
+ msgid "Mix to headphones"
+-msgstr ""
++msgstr "Смешать в наушниках"
+ 
+ msgid "Visualization"
+ msgstr "Визуализация"
+ 
+ msgid "Width"
+-msgstr ""
++msgstr "Ширина"
+ 
+ msgid "px"
+ msgstr "пикселей"
+ 
+ msgid "Height"
+-msgstr ""
++msgstr "Высота"
+ 
+ msgid "Speed"
+-msgstr ""
++msgstr "Скорость"
+ 
+ msgid "fps"
+-msgstr ""
++msgstr "fps"
+ 
+ msgid "Background image MRL"
+-msgstr ""
++msgstr "Фоновое изображение MRL"
+ 
+ msgid "Audio Equalizer"
+ msgstr "Аудио эквалайзер"
+ 
+ msgid "Use Video-Out Driver"
+-msgstr ""
++msgstr "Использовать видео драйвер"
+ 
+ msgid "none"
+-msgstr ""
++msgstr "нет"
+ 
+ msgid "vector"
+-msgstr ""
++msgstr "вектор"
+ 
+ msgid "full"
+-msgstr ""
++msgstr "полный"
+ 
+ msgid "half (top)"
+-msgstr ""
++msgstr "часть(вверху)"
+ 
+ msgid "half (bottom)"
+-msgstr ""
++msgstr "часть(внизу)"
+ 
+ msgid "Video"
+ msgstr "Видео"
+ 
+ msgid "Use driver crop"
+-msgstr ""
++msgstr "Исп. обрезку драйвера"
+ 
+ msgid "Autodetect letterbox"
+ msgstr ""
+ 
+ msgid "Crop to"
+-msgstr ""
++msgstr "Обрезать до"
+ 
+ msgid "Autodetect rate"
+-msgstr ""
++msgstr "Автоопределение скорости"
+ 
+ msgid "Stabilize time"
+-msgstr ""
++msgstr "Стабилизировать время"
+ 
+ msgid "Maximum logo width [%]"
+ msgstr ""
+@@ -222,49 +222,49 @@
+ msgstr ""
+ 
+ msgid "Software scaling"
+-msgstr ""
++msgstr "Программное масштабирование"
+ 
+ msgid "Change aspect ratio"
+-msgstr ""
++msgstr "Изменить соотношение сторон"
+ 
+ msgid "Change video size"
+-msgstr ""
++msgstr "Изменить размер видео"
+ 
+ msgid "Allow downscaling"
+ msgstr "Масштабировать с падением качества"
+ 
+ msgid "Post processing (ffmpeg)"
+-msgstr ""
++msgstr "Последующая обработка (FFmpeg)"
+ 
+ msgid "Quality"
+-msgstr ""
++msgstr "Качество"
+ 
+ msgid "Mode"
+-msgstr ""
++msgstr "Режим"
+ 
+ msgid "Method"
+-msgstr ""
++msgstr "Метод"
+ 
+ msgid "Cheap mode"
+-msgstr ""
++msgstr "Легкий режим"
+ 
+ msgid "Pulldown"
+-msgstr ""
++msgstr "Тянуть вниз"
+ 
+ msgid "Frame rate"
+-msgstr ""
++msgstr "Частота кадров"
+ 
+ msgid "Judder Correction"
+-msgstr ""
++msgstr "Коррекция вибрации"
+ 
+ msgid "Use progressive frame flag"
+-msgstr ""
++msgstr "Использовать флаг прогрессивного кадра"
+ 
+ msgid "Chroma Filter"
+-msgstr ""
++msgstr "Фильтр цветности"
+ 
+ msgid "Sharpen / Blur"
+-msgstr ""
++msgstr "Резкость / Размытие"
+ 
+ msgid "Width of the luma matrix"
+ msgstr ""
+@@ -309,16 +309,16 @@
+ msgstr "Яркость"
+ 
+ msgid "Sharpness"
+-msgstr ""
++msgstr "Четкость"
+ 
+ msgid "Noise Reduction"
+-msgstr ""
++msgstr "Подавление шума"
+ 
+ msgid "Smooth fast forward"
+-msgstr ""
++msgstr "Быстрая перемотка вперед"
+ 
+ msgid "Fastest trick speed"
+-msgstr ""
++msgstr "Максимальная скорость трик"
+ 
+ msgid "On-Screen Display"
+ msgstr "Экранное меню"
+@@ -327,25 +327,25 @@
+ msgstr "Скрыть основное меню"
+ 
+ msgid "Resolution"
+-msgstr ""
++msgstr "Разрешение"
+ 
+ msgid "Color depth"
+-msgstr ""
++msgstr "Глубина цвета"
+ 
+ msgid "Blending method"
+-msgstr ""
++msgstr "Метод смешивания"
+ 
+ msgid "Use hardware for low-res video"
+-msgstr ""
++msgstr "Использовать апп. средства при низком разрешении видео"
+ 
+ msgid "Scaling method"
+-msgstr ""
++msgstr "Метод масштабирования"
+ 
+ msgid "Scale subtitles"
+-msgstr ""
++msgstr "Масштаб субтитров"
+ 
+ msgid "Show all layers"
+-msgstr ""
++msgstr "Показывать все слои"
+ 
+ msgid "Dynamic transparency correction"
+ msgstr "Динамическая коррекция прозрачности"
+@@ -354,10 +354,10 @@
+ msgstr "Статическая коррекция прозрачности"
+ 
+ msgid "External subtitle size"
+-msgstr ""
++msgstr "Размер внешних субтитров"
+ 
+ msgid "DVB subtitle decoder"
+-msgstr ""
++msgstr "Декодер субтитров DVB"
+ 
+ msgid "Decoder"
+ msgstr "Декодер"
+@@ -402,7 +402,7 @@
+ msgstr "Порт"
+ 
+ msgid "Speakers"
+-msgstr ""
++msgstr "Громкоговорители"
+ 
+ msgid "Remote Clients"
+ msgstr "Удаленные клиенты"
+@@ -414,13 +414,13 @@
+ msgstr "Порт (TCP и широковешательный)"
+ 
+ msgid "Listen address"
+-msgstr ""
++msgstr "Слушать адрес"
+ 
+ msgid "Remote keyboard"
+ msgstr "Удаленная клавиатура"
+ 
+ msgid "Max number of clients"
+-msgstr ""
++msgstr "Макс. количество клиентов"
+ 
+ msgid "PIPE transport"
+ msgstr "PIPE транспорт"
+@@ -435,70 +435,70 @@
+ msgstr "RTP (широковещательный) транспорт"
+ 
+ msgid "Address"
+-msgstr ""
++msgstr "Адрес"
+ 
+ msgid "TTL"
+-msgstr ""
++msgstr "TTL"
+ 
+ msgid "Transmit always on"
+-msgstr ""
++msgstr "Передовать всегда"
+ 
+ msgid "SAP announcements"
+-msgstr ""
++msgstr "Объявления SAP"
+ 
+ msgid "Server announce broadcasts"
+ msgstr "Сервер использует широковещание"
+ 
+ msgid "HTTP transport for media files"
+-msgstr ""
++msgstr "HTTP транспорт для медиа-файлов"
+ 
+ msgid "Additional network services"
+-msgstr ""
++msgstr "Дополнительные сетевые сервисы"
+ 
+ msgid "HTTP server"
+-msgstr ""
++msgstr "HTTP сервер"
+ 
+ msgid "HTTP clients can control VDR"
+-msgstr ""
++msgstr "HTTP клиенты могут контролировать VDR"
+ 
+ msgid "RTSP server"
+-msgstr ""
++msgstr "RTSP сервер"
+ 
+ msgid "RTSP clients can control VDR"
+-msgstr ""
++msgstr "RTSP клиенты могут контролировать VDR"
+ 
+ msgid "Playlist settings"
+-msgstr ""
++msgstr "Настройки плейлиста"
+ 
+ msgid "Show the track number"
+-msgstr ""
++msgstr "Показывать номер трека"
+ 
+ msgid "Show the name of the artist"
+-msgstr ""
++msgstr "Показывать имя исполнителя"
+ 
+ msgid "Show the name of the album"
+-msgstr ""
++msgstr "Показывать название альбома"
+ 
+ msgid "Scan for metainfo"
+-msgstr ""
++msgstr "Сканировать для метаинфо"
+ 
+ msgid "Cache metainfo"
+-msgstr ""
++msgstr "Кеш метаинфо"
+ 
+ msgid "Arrow keys control DVD playback"
+-msgstr ""
++msgstr "Клавиши со стрелками управляют восп. DVD"
+ 
+ msgid "Show hidden files"
+-msgstr ""
++msgstr "Показывать скрытые файлы"
+ 
+ msgid "Allow removing files"
+-msgstr ""
++msgstr "Разрешить удаление файлов"
+ 
+ msgid "Remember last playback position"
+-msgstr ""
++msgstr "Помнить последнюю позицию воспроизведения"
+ 
+ msgid "Media Player"
+-msgstr "Xine-lib"
++msgstr "Медиа плейер"
+ 
+ msgid "Grayscale"
+ msgstr "Оттенки серого"
+@@ -507,7 +507,7 @@
+ msgstr "Битовая карта"
+ 
+ msgid "OSD"
+-msgstr ""
++msgstr "OSD"
+ 
+ msgid "Test Images"
+ msgstr "Тестовые изображения"
+@@ -516,70 +516,70 @@
+ msgstr "X11/xine-lib видео модуль"
+ 
+ msgid "Frontend initialization failed"
+-msgstr ""
++msgstr "Инициализация Frontend не удалась"
+ 
+ msgid "Server initialization failed"
+-msgstr ""
++msgstr "Инициализации сервера не удалось"
+ 
+ msgid "Playlist"
+-msgstr ""
++msgstr "Плейлист"
+ 
+ msgid "Button$Random"
+-msgstr ""
++msgstr "Случайно"
+ 
+ msgid "Button$Normal"
+-msgstr ""
++msgstr "Нормально"
+ 
+ msgid "Button$Add files"
+-msgstr ""
++msgstr "Добавить файлы"
+ 
+ msgid "Button$Remove"
+-msgstr ""
++msgstr "Удалить"
+ 
+ msgid "Button$Mark"
+-msgstr ""
++msgstr "Отметить"
+ 
+ msgid "Queued to playlist"
+-msgstr ""
++msgstr "В очередь плейлиста"
+ 
+ msgid "Random play"
+-msgstr ""
++msgstr "Проиграть случайно"
+ 
+ msgid "Normal play"
+-msgstr ""
++msgstr "Проиграть нормально"
+ 
+ msgid "DVD Menu"
+-msgstr ""
++msgstr "DVD меню"
+ 
+ msgid "Exit DVD menu"
+-msgstr ""
++msgstr "Выйти из DVD меню"
+ 
+ msgid "DVD Root menu"
+-msgstr ""
++msgstr "DVD корневое меню"
+ 
+ msgid "DVD Title menu"
+-msgstr ""
++msgstr "DVD меню заголовки"
+ 
+ msgid "DVD SPU menu"
+-msgstr ""
++msgstr "DVD SPU меню"
+ 
+ msgid "DVD Audio menu"
+-msgstr ""
++msgstr "DVD аудио меню"
+ 
+ msgid "Close menu"
+-msgstr ""
++msgstr "Закрыть меню"
+ 
+ msgid "BluRay Top menu"
+-msgstr ""
++msgstr "BluRay Top меню"
+ 
+ msgid "Toggle Pop-Up menu"
+-msgstr ""
++msgstr "Переключить Pop-Up меню"
+ 
+ msgid "Next title"
+-msgstr ""
++msgstr "След. заголовок"
+ 
+ msgid "Previous title"
+-msgstr ""
++msgstr "Пред. заголовок"
+ 
+ msgid "Delete image ?"
+ msgstr "Удалить картинку ?"
+@@ -600,7 +600,7 @@
+ msgstr "Большой"
+ 
+ msgid "huge"
+-msgstr "Очень больной"
++msgstr "Очень большой"
+ 
+ msgid "default"
+ msgstr "По умолчанию"
+@@ -612,13 +612,13 @@
+ msgstr ""
+ 
+ msgid "square"
+-msgstr ""
++msgstr "квадрат"
+ 
+ msgid "anamorphic"
+-msgstr ""
++msgstr "анаморфное"
+ 
+ msgid "DVB"
+-msgstr ""
++msgstr "DVB"
+ 
+ msgid "off"
+ msgstr "Выкл."
+@@ -630,76 +630,76 @@
+ msgstr "Нет видео"
+ 
+ msgid "Goom"
+-msgstr ""
++msgstr "Goom"
+ 
+ msgid "Oscilloscope"
+-msgstr ""
++msgstr "Oscilloscope"
+ 
+ msgid "FFT Scope"
+-msgstr ""
++msgstr "FFT Сфера"
+ 
+ msgid "FFT Graph"
+-msgstr ""
++msgstr "FFT Граф"
+ 
+ msgid "Image"
+-msgstr ""
++msgstr "Изображение"
+ 
+ msgid "Mono 1.0"
+-msgstr ""
++msgstr "Моно 1.0"
+ 
+ msgid "Stereo 2.0"
+-msgstr ""
++msgstr "Стерео 2.0"
+ 
+ msgid "Headphones 2.0"
+-msgstr ""
++msgstr "Наушники 2.0"
+ 
+ msgid "Stereo 2.1"
+-msgstr ""
++msgstr "Стерео 2.1"
+ 
+ msgid "Surround 3.0"
+-msgstr ""
++msgstr "Окружающий 3.0"
+ 
+ msgid "Surround 4.0"
+-msgstr ""
++msgstr "Окружающий 4.0"
+ 
+ msgid "Surround 4.1"
+-msgstr ""
++msgstr "Окружающий 4.1"
+ 
+ msgid "Surround 5.0"
+-msgstr ""
++msgstr "Окружающий 5.0"
+ 
+ msgid "Surround 5.1"
+-msgstr ""
++msgstr "Окружающий 5.1"
+ 
+ msgid "Surround 6.0"
+-msgstr ""
++msgstr "Окружающий 6.0"
+ 
+ msgid "Surround 6.1"
+-msgstr ""
++msgstr "Окружающий 6.1"
+ 
+ msgid "Surround 7.1"
+-msgstr ""
++msgstr "Окружающий 7.1"
+ 
+ msgid "Pass Through"
+-msgstr ""
++msgstr "Пропускать сквозь"
+ 
+ msgid "very large"
+-msgstr ""
++msgstr "очень большой"
+ 
+ msgid "no"
+-msgstr ""
++msgstr "нет"
+ 
+ msgid "grayscale"
+-msgstr ""
++msgstr "оттенки серого"
+ 
+ msgid "transparent"
+-msgstr ""
++msgstr "прозрачный"
+ 
+ msgid "transparent grayscale"
+-msgstr ""
++msgstr "прозрачный оттенки серого"
+ 
+ msgid "yes"
+-msgstr ""
++msgstr "да"
+ 
+ msgid "nearest"
+ msgstr ""
+@@ -714,7 +714,7 @@
+ msgstr ""
+ 
+ msgid "video stream"
+-msgstr ""
++msgstr "видео поток"
+ 
+ msgid "nonref"
+ msgstr ""
+@@ -726,7 +726,7 @@
+ msgstr ""
+ 
+ msgid "all"
+-msgstr ""
++msgstr "все"
+ 
+ #~ msgid "normal"
+ #~ msgstr "Нормальный"
