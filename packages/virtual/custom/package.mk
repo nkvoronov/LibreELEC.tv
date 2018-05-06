@@ -59,7 +59,7 @@ if [ "$DVB_TOOLS_ENABLED" = yes ]; then
 fi
 
 if [ "$PERL_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET perl Date-Manip"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET perl"
 fi
 
 post_install() {

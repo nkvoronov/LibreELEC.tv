@@ -292,7 +292,7 @@ post_install() {
   fi
   # htop
   if [ "$ENABLE_HTOP" = yes ]; then
-    cp -P $(get_build_dir htop)/htop $INSTALL/usr/bin
+    cp -P $(get_build_dir htop)/.install_pkg/usr/bin/htop $INSTALL/usr/bin
   fi
   # mrxvt
   if [ "$ENABLE_MRXVT" = yes ]; then

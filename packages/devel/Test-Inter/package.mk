@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="Test-Inter"
-PKG_VERSION="1.06"
+PKG_VERSION="1.07"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://cpansearch.perl.org/"

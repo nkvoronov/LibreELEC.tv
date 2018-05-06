@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="Date-Manip"
-PKG_VERSION="6.58"
+PKG_VERSION="6.70"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://cpansearch.perl.org/"

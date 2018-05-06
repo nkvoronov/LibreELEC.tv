@@ -283,7 +283,7 @@ addon() {
   fi
   # htop
   if [ "$ENABLE_HTOP" = yes ]; then
-    cp -P $(get_build_dir htop)/htop $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $(get_build_dir htop)/.install_pkg/usr/bin/htop $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
   # mrxvt
   if [ "$ENABLE_MRXVT" = yes ]; then

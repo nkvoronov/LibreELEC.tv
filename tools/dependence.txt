@@ -13,7 +13,7 @@ libencode-locale-perl
 libfile-listing-perl
 libfont-afm-perl
 libgconf2-4
-libgif4
+libgif7
 libhtml-form-perl
 libhtml-format-perl
 libhtml-parser-perl
@@ -41,10 +41,9 @@ libxml-parser-perl
 libxml-sax-base-perl
 libxml-sax-expat-perl
 libxml-sax-perl
-openjdk-7-jre
-openjdk-7-jre-headless
+openjdk-8-jre
+openjdk-8-jre-headless
 texinfo
-tzdata-java
 xsltproc
 libproc-processtable-perl
 libtest-inter-perl
