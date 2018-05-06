@@ -16,7 +16,7 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="ncurses"
+PKG_NAME="ncursesw"
 PKG_VERSION="6.0"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"

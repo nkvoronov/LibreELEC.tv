@@ -52,7 +52,7 @@ addon() {
   LIB_EBML=$(get_build_dir libebml)
   LIB_MATROSKA=$(get_build_dir libmatroska)
   LIB_CHROMA=$(get_build_dir chromaprint)
-  LIB_NCURSESW=$(get_build_dir ncurses)
+  LIB_NCURSESW=$(get_build_dir ncursesw)
   LIB_ICE=$(get_build_dir libICE)
   LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
