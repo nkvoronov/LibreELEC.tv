@@ -19,7 +19,7 @@
 
 PKG_NAME="docker"
 PKG_VERSION="18.03.1"
-PKG_REV="121"
+PKG_REV="122"
 PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
