@@ -49,3 +49,4 @@ libproc-processtable-perl
 libtest-inter-perl
 xmlstarlet
 md5deep
+libreadline6-dev

@@ -17,11 +17,14 @@
 ################################################################################
 
 PKG_NAME="ncursesw"
-PKG_VERSION="6.0"
+#PKG_VERSION="6.0"
+PKG_VERSION="6.1-20180203"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/ncurses/"
-PKG_URL="http://ftp.gnu.org/pub/gnu/ncurses/$PKG_NAME-$PKG_VERSION.tar.gz"
+#PKG_URL="http://ftp.gnu.org/pub/gnu/ncurses/ncurses-$PKG_VERSION.tar.gz"
+PKG_URL="http://invisible-mirror.net/archives/ncurses/current/ncurses-$PKG_VERSION.tgz"
+PKG_SOURCE_DIR="ncurses-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain zlib"
 PKG_SECTION="devel"
 PKG_SHORTDESC="ncurses: The ncurses (new curses) library"

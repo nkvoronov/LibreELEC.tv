@@ -18,7 +18,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.1"
-PKG_REV="39"
+PKG_REV="40"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -93,7 +93,7 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/plugins
     cp -R $VLC_DIR/.install_pkg/usr/lib/vlc/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/vlc/plugins
 
-    cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5.3
+    #cp -P $LUA/src/liblua.so.5.3.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblua.so.5.3
     cp -P $QT5/qtbase/lib/libQt5Concurrent.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Concurrent.so.5
     cp -P $QT5/qtbase/lib/libQt5Core.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5Core.so.5
     cp -P $QT5/qtbase/lib/libQt5DBus.so.$QT5VWER $ADDON_BUILD/$PKG_ADDON_ID/lib/libQt5DBus.so.5
@@ -119,11 +119,11 @@ addon() {
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libebml.so.4
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmatroska.so.6
     cp -P $LIB_CHROMA/.install_pkg/usr/lib/libchromaprint.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libchromaprint.so.1
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libformw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libmenuw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libpanelw.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpanelw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libtinfo.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libformw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libmenuw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libpanelw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpanelw.so.6
+    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libtinfo.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XPM/.install_pkg/usr/lib/libXpm.so.4.11.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXpm.so.4
