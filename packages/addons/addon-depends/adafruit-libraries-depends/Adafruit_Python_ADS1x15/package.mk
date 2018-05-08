@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="Adafruit_Python_ADS1x15"
-PKG_VERSION="733d179"
+PKG_VERSION="a963cc0"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/adafruit/${PKG_NAME}"

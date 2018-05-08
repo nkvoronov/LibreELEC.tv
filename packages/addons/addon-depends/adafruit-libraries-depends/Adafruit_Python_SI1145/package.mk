@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="Adafruit_Python_SI1145"
-PKG_VERSION="cbc6c62"
+PKG_VERSION="18c4006"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/THP-JOE/Python_SI1145"

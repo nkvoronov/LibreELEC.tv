@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="Adafruit_Python_GPIO"
-PKG_VERSION="fdf0fca"
+PKG_VERSION="c543d1d"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/adafruit/${PKG_NAME}"
