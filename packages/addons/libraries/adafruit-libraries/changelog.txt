@@ -17,9 +17,9 @@
   - Adafruit Python VCNL40xx Library
   - Adafruit Python WS2801 Library
 
-8.0.101
+101
 - include SI1145 library
 - compile DHT driver
 
-8.0.100
+100
 - Initial Release
