@@ -20,7 +20,7 @@
 
 . /etc/profile
 
-oe_setup_addon service.vdr-addon
+oe_setup_addon service.vdr24
 
 VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
 VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
@@ -84,8 +84,8 @@ MYDATA
 
 stop_tv_backend() {
 
-    if systemctl is-active service.tvheadend-addon.service &>/dev/null ; then
-        systemctl stop service.tvheadend-addon.service
+    if systemctl is-active service.tvheadend43.service &>/dev/null ; then
+        systemctl stop service.tvheadend43.service
     fi
 
     if [ "$VDR_TYPE" == "frontend" ]; then

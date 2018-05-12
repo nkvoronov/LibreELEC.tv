@@ -22,9 +22,9 @@
 
 . /etc/profile
 
-oe_setup_addon service.softcam.oscam-addon
+oe_setup_addon service.oscam12
 
-SERVICE="service.softcam.oscam-addon.service"
+SERVICE="service.oscam12.service"
 
 if [ "$OSCAM_RESTART_ON_RESUME" == "true" ] ; then
   case "$1" in

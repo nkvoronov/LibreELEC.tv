@@ -27,9 +27,10 @@ PKG_DEPENDS_TARGET="toolchain transmission"
 PKG_SECTION="service"
 PKG_SHORTDESC="transmission: a fast, easy and free BitTorrent client"
 PKG_LONGDESC="transmission is a fast, easy and free BitTorrent client"
-PKG_AUTORECONF="no"
 
+PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
+
 PKG_ADDON_NAME="Transmission"
 PKG_ADDON_TYPE="xbmc.service"
 

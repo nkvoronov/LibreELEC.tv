@@ -1,0 +1,82 @@
+diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
+--- a/Makefile.ffmpeg	2018-01-16 14:04:01.000000000 +0200
++++ b/Makefile.ffmpeg	2018-01-17 11:00:10.060128352 +0200
+@@ -24,6 +24,9 @@
+ FFMPEG_TARGET := x86-linux-gcc
+ endif
+ 
++FFMPEG_HOST   := $(ARCH)-libreelec-linux-gnu
++FFMPEG_TARGET := $(ARCH)-libreelec-linux-gnu
++
+ unexport CFLAGS
+ unexport LDFLAGS
+ 
+@@ -168,7 +171,7 @@
+ 
+ $(LIB_ROOT)/$(YASM)/.tvh_build: \
+ 		$(LIB_ROOT)/$(YASM)/.tvh_download
+-	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE_PI) \
++	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) CC=$(HOST_CC) \
+ 		--libdir=/$(EPREFIX0)/lib
+ 	DESTDIR=$(EBUILDIR) \
+ 		$(MAKE) -C $(LIB_ROOT)/$(YASM) install
+@@ -263,6 +266,7 @@
+ 	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
+ 		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
+ 		-DENABLE_SHARED:BOOL=OFF \
++		-DEXTRA_LINK_FLAGS="-ldl" \
+ 		../../source
+ 	DESTDIR=$(EBUILDIR) \
+ 		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
+@@ -296,7 +300,7 @@
+ ifeq (yes,$(CONFIG_LIBVPX_STATIC))
+ 
+ ifneq (,$(FFMPEG_TARGET))
+-LIBVPX_TARGET := --target=$(FFMPEG_TARGET)
++LIBVPX_TARGET := --target=generic-gnu
+ endif
+ 
+ $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
+@@ -308,7 +312,7 @@
+ 		$(LIB_ROOT)/$(YASM)/.tvh_build \
+ 		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
+ 	cd $(LIB_ROOT)/$(LIBVPX) && \
+-		ASFLAGS="-DENABLE_PIC=1 -DPIC=1" $(CONFIGURE) \
++		ASFLAGS="-DENABLE_PIC=1 -DPIC=1" CROSS=$(FFMPEG_TARGET)- $(CONFIGURE) \
+ 		--extra-cflags="$(CFLAGS_PI)" \
+ 		--disable-examples \
+ 		--disable-docs \
+@@ -387,7 +391,8 @@
+ 	cd $(LIB_ROOT)/$(LIBTHEORA) && \
+ 		$(CONFIGURE_PI) \
+ 		--libdir=/$(EPREFIX0)/lib \
+-		--with-ogg=$(EPREFIX) \
++		OGG_CFLAGS=-I$(EPREFIX)/include \
++		OGG_LIBS=-L$(EPREFIX)/lib \
+ 		--disable-examples \
+ 		--disable-spec \
+ 		$(LIBTHEORA_HOST)
+@@ -435,7 +440,8 @@
+ 	cd $(LIB_ROOT)/$(LIBVORBIS) && \
+ 		$(CONFIGURE_PI) \
+ 		--libdir=/$(EPREFIX0)/lib \
+-		--with-ogg=$(EPREFIX)
++		OGG_CFLAGS=-I$(EPREFIX)/include \
++		OGG_LIBS=-L$(EPREFIX)/lib
+ 	DESTDIR=$(EBUILDIR) \
+ 		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
+ 	@touch $@
+@@ -633,10 +639,12 @@
+ 		$(LIB_ROOT)/$(LIBOPUS)/.tvh_build \
+ 		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
+ 	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
++		--cc=$(FFMPEG_HOST)-gcc \
++		--cxx=$(FFMPEG_HOST)-g++ \
+ 		--disable-all \
+ 		--enable-gpl \
+ 		--enable-nonfree \
+-		--extra-cflags="$(ECFLAGS)" \
++		--extra-cflags="$(ECFLAGS) -I$(EPREFIX)/include/opus" \
+ 		--extra-libs="$(ELIBS)" \
+ 		--pkg-config="$(ROOTDIR)/support/pkg-config.ffmpeg" \
+ 		--enable-openssl --enable-protocol=tls_openssl \

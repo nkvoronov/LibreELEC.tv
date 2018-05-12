@@ -22,25 +22,4 @@
 
 . /etc/profile
 
-oe_setup_addon service.vdr24
-
-VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
-VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
-
-if [ "$VDR_TYPE" != "service" ]; then
-
-    if [ -f $VDR_RUN_FILE ]; then
-        systemctl stop service.vdr24.service
-    fi
-
-    touch $VDR_FRONT_RUN_FILE
-
-    systemctl start service.vdr24.service
-
-    systemctl stop kodi.service
-
-    sleep 4
-
-    systemctl restart service.vdr24.service
-
-fi
+/storage/.kodi/addons/service.vdr24/bin/vdr-power -p

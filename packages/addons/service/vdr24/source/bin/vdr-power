@@ -27,20 +27,31 @@ oe_setup_addon service.vdr24
 VDR_FRONT_RUN_FILE="$ADDON_HOME/vdr-front.run"
 VDR_RUN_FILE="$ADDON_HOME/vdr.enable"
 
-if [ "$VDR_TYPE" != "service" ]; then
+if [ -f "$VDR_FRONT_RUN_FILE" ]; then
 
-    if [ -f $VDR_RUN_FILE ]; then
-        systemctl stop service.vdr24.service
-    fi
+    echo "Stop VDR ..."
 
-    touch $VDR_FRONT_RUN_FILE
+    rm -f $VDR_FRONT_RUN_FILE
 
-    systemctl start service.vdr24.service
+    case "$1" in
+        -p) # poweroff
+            poweroff -f
+        ;;
+        -r) # reboot
+            reboot
+        ;;
+        -s) # sleep
+            pm-suspend suspend
+        ;;
+        -e) # exit to XBMC
 
-    systemctl stop kodi.service
+            if systemctl is-enabled service.tvheadend43.service &>/dev/null ; then
+                systemctl start service.tvheadend43.service
+            fi
 
-    sleep 4
+            sleep 4
 
-    systemctl restart service.vdr24.service
-
+            systemctl restart kodi.service
+        ;;
+    esac
 fi

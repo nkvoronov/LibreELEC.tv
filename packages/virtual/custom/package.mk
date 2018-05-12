@@ -35,15 +35,15 @@ if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
 fi
 
 if [ "$TRANSMISSION_SERVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET transmission-service"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET transmission"
 fi
 
 if [ "$OSCAM_SERVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET ccid oscam-service"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET ccid oscam"
 fi
 
 if [ "$TVHEADEND_SERVICE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tvheadend-service"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tvheadend"
 fi
 
 if [ "$VDR_SERVICE" = yes ]; then

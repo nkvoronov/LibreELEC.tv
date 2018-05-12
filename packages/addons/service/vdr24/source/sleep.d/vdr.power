@@ -20,9 +20,9 @@
 
 . /etc/profile
 
-oe_setup_addon service.vdr-addon
+oe_setup_addon service.vdr24
 
-SERVICE="service.vdr-addon.service"
+SERVICE="service.vdr24.service"
 
 case "$1" in
   pre)

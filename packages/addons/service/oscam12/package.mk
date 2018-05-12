@@ -24,13 +24,14 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain oscam pcsc-lite"
-PKG_SECTION="service.softcam"
+PKG_SECTION="service"
 PKG_SHORTDESC="oscam (Version: $PKG_VERSION): OSCam is Open Source Conditional Access Modul."
 PKG_LONGDESC="oscam (Version: $PKG_VERSION): OSCam is Open Source Conditional Access Modul."
 PKG_DISCLAIMER="using oscam may be illegal in your country. if in doubt, do not install"
-PKG_AUTORECONF="no"
 
+PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
+
 PKG_ADDON_NAME="OSCam"
 PKG_ADDON_TYPE="xbmc.service"
 

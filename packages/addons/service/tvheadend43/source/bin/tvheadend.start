@@ -20,7 +20,7 @@
 
 . /etc/profile
 
-oe_setup_addon service.tvheadend-addon
+oe_setup_addon service.tvheadend43
 
 TVHEADEND_CONF="$ADDON_HOME/config"
 DVR_DIR="$HOME/recordings"
