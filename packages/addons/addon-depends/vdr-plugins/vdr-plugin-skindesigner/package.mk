@@ -45,7 +45,8 @@ make_target() {
   make subprojects VDRDIR=$VDR_DIR
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \
-  LOCALEDIR="./locale"
+  LOCDIR="./locale" \
+  all install-i18n
 
   mkdir -p $PKG_BUILD/installs
     cp -PR $PKG_DIR/configs/* $PKG_BUILD/installs
@@ -61,6 +62,15 @@ make_target() {
     cp -PR $PKG_BUILD/libskindesignerapi/libskindesignerapi.pc $SYSROOT_PREFIX/usr/lib/pkgconfig
 
   mv $TOOLCHAIN/bin/xml2-config $SYSROOT_PREFIX/usr/bin
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

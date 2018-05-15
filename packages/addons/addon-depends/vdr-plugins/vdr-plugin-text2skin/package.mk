@@ -25,8 +25,8 @@ PKG_URL="https://github.com/vdr-projects/vdr-plugin-text2skin.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr ImageMagick"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr text2skin"
-PKG_LONGDESC="vdr text2skin"
+PKG_SHORTDESC="Plugin to vdr that loads and views skins."
+PKG_LONGDESC="Plugin to vdr that loads and views skins. This plugin is designed to load and interpret a set of files describing the layout of the On Screen Display and to make this "Skin" available to VDR via Setup -> OSD in the main menu. Of course it is possible to load more than one text-based skin this way and to choose between them while running VDR. All skins may be themeable (you can create your own color-theme) and translateable as the author of the skin wishes."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -41,10 +41,23 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  #export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  #export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \
   LOCALEDIR="./locale" \
-  IMAGELIB=$IMAGELIB
+  IMAGELIB=$IMAGELIB \
+  all
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

@@ -25,7 +25,7 @@ PKG_URL="https://github.com/vdr-projects/vdr-plugin-eepg.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-plugin-eepg"
+PKG_SHORTDESC="Plugin parses the Extended (2 to 10 day) EPG data."
 PKG_LONGDESC="This plugin parses the Extended (2 to 10 day) EPG data which is send by providers on their portal channels. This EEPG data is transmitted in a non-standard format on a non-standard PID."
 
 PKG_IS_ADDON="no"

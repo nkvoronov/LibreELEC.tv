@@ -25,8 +25,8 @@ PKG_URL="http://opensource.holgerbrunn.net/vdr/filebrowser/vdr-filebrowser-$PKG_
 PKG_SOURCE_DIR="filebrowser-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-filebrowser"
-PKG_LONGDESC="vdr-filebrowser"
+PKG_SHORTDESC="VDR plugin for file browsing and executing shell commands."
+PKG_LONGDESC="VDR plugin for file browsing and executing shell commands. With this plugin it's possible to browse the file system in VDR's OSD. It's possible to define commands, that can be executed with the currently selected files. The commands will be executed asynchronously in background."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -39,9 +39,22 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
-  LIBDIR="." \
-  LOCALEDIR="./locale"
+    LIBDIR="." \
+    LOCALEDIR="./locale" \
+    all
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

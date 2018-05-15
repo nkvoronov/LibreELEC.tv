@@ -1,6 +1,7 @@
---- a/Makefile
-+++ b/Makefile
-@@ -11,7 +11,7 @@ PLUGIN := live
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2017-06-24 02:42:39.000000000 +0300
++++ b/Makefile	2018-05-15 21:52:44.611230847 +0300
+@@ -11,7 +11,7 @@
  VERSION := $(shell grep '\#define LIVEVERSION ' setup.h | awk '{ print $$3 }' | sed -e 's/[";]//g')
  
  ### Check for libpcre c++ wrapper
@@ -9,7 +10,7 @@
  
  ### The directory environment:
  # Use package data if installed...otherwise assume we're under the VDR source directory:
-@@ -37,18 +37,18 @@ APIVERSION := $(call PKGCFG,apiversion)
+@@ -37,18 +37,18 @@
  include global.mk
  
  ### Determine tntnet and cxxtools versions:

@@ -145,6 +145,14 @@ init_vdr_plugins() {
 	    VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
 	fi
 
+	if [ "$VDR_ENABLE_DDCI2" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P ddci2"
+	fi
+
+	if [ "$VDR_ENABLE_DYNAMITE" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P dynamite"
+	fi
+
 	if [ "$VDR_ENABLE_IPTV" == "true" ]; then
 	    VDR_ARG="$VDR_ARG -P 'iptv -d $VDR_IPTV_NUM_DEVICES'"
 	fi
@@ -224,6 +232,18 @@ init_vdr_plugins() {
 
 	if [ "$VDR_ENABLE_WIRBELSCAN_F" == "true" ]; then
 	    VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
+	fi
+
+	if [ "$VDR_ENABLE_CHANNELLISTS_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P channellists"
+	fi
+
+	if [ "$VDR_ENABLE_DDCI2_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P ddci2"
+	fi
+
+	if [ "$VDR_ENABLE_DYNAMITE_F" == "true" ]; then
+	    VDR_ARG="$VDR_ARG -P dynamite"
 	fi
 
 	if [ "$VDR_ENABLE_IPTV_F" == "true" ]; then

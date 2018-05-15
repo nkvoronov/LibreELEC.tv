@@ -30,36 +30,51 @@ PKG_LONGDESC="This project describes how to build your own digital satellite rec
 PKG_AUTORECONF="no"
 PKG_IS_ADDON="no"
 
+ENABLE_VDR_PLUGIN_CHANNELLISTS="yes"
+ENABLE_VDR_PLUGIN_DDCI2="yes"
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_DVBAPI="yes"
+ENABLE_VDR_PLUGIN_DYNAMITE="yes"
 ENABLE_VDR_PLUGIN_EEPG="no"
 ENABLE_VDR_PLUGIN_EPGFIXER="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
 ENABLE_VDR_PLUGIN_FAVORITES="yes"
 ENABLE_VDR_PLUGIN_FEMON="yes"
 ENABLE_VDR_PLUGIN_FILEBROWSER="yes"
+ENABLE_VDR_PLUGIN_IMONLCD="yes"
 ENABLE_VDR_PLUGIN_IPTV="yes"
 ENABLE_VDR_PLUGIN_LCDPROC="yes"
-ENABLE_VDR_PLUGIN_LIVE="no"
+ENABLE_VDR_PLUGIN_LIVE="yes"
 ENABLE_VDR_PLUGIN_MENUORG="yes"
+ENABLE_VDR_PLUGIN_PIN="yes"
 ENABLE_VDR_PLUGIN_RESTFULAPI="yes"
+ENABLE_VDR_PLUGIN_ROBOTV="yes"
 ENABLE_VDR_PLUGIN_SATIP="yes"
 ENABLE_VDR_PLUGIN_SKINDESIGNER="yes"
 ENABLE_VDR_PLUGIN_SKINFLAT="yes"
 ENABLE_VDR_PLUGIN_SKINFLATPLUS="yes"
 ENABLE_VDR_PLUGIN_SKINNOPACITY="yes"
-ENABLE_VDR_PLUGIN_SLEEPTIMER="yes"
-ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
-ENABLE_VDR_PLUGIN_STREAMDEV="yes"
-ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
+ENABLE_VDR_PLUGIN_SLEEPTIMER="no"
+ENABLE_VDR_PLUGIN_SOFTHDDEVICE="no"
+ENABLE_VDR_PLUGIN_STREAMDEV="no"
+ENABLE_VDR_PLUGIN_SYSTEMINFO="no"
 ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
 ENABLE_VDR_PLUGIN_TVGUIDE="no"
-ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
-ENABLE_VDR_PLUGIN_VNSISERVER="yes"
+ENABLE_VDR_PLUGIN_TVGUIDENG="no"
+ENABLE_VDR_PLUGIN_TVSCRAPER="no"
+ENABLE_VDR_PLUGIN_VNSISERVER="no"
 ENABLE_VDR_PLUGIN_WEATHERFORECAST="yes"
-ENABLE_VDR_PLUGIN_WIRBELSCAN="yes"
-ENABLE_VDR_PLUGIN_XINELIBOUTPUT="yes"
-ENABLE_VDR_PLUGIN_XMLTV2VDR="yes"
+ENABLE_VDR_PLUGIN_WIRBELSCAN="no"
+ENABLE_VDR_PLUGIN_XINELIBOUTPUT="no"
+ENABLE_VDR_PLUGIN_XMLTV2VDR="no"
+
+if [ "$ENABLE_VDR_PLUGIN_CHANNELLISTS" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-channellists"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_DDCI2" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-ddci2"
+fi
 
 if [ "$ENABLE_VDR_PLUGIN_DUMMYDEVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dummydevice"
@@ -67,6 +82,10 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_DVBAPI" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dvbapi"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_DYNAMITE" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dynamite"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_EEPG" = yes ]; then
@@ -93,6 +112,10 @@ if [ "$ENABLE_VDR_PLUGIN_FILEBROWSER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-filebrowser"
 fi
 
+if [ "$ENABLE_VDR_PLUGIN_IMONLCD" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-imonlcd"
+fi
+
 if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-iptv"
 fi
@@ -109,8 +132,16 @@ if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-menuorg"
 fi
 
+if [ "$ENABLE_VDR_PLUGIN_PIN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-pin"
+fi
+
 if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-restfulapi"
+fi
+
+if [ "$ENABLE_VDR_PLUGIN_ROBOTV" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-robotv"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_SATIP" = yes ]; then
@@ -157,6 +188,10 @@ if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguide"
 fi
 
+if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguideng"
+fi
+
 if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvscraper"
 fi
@@ -191,32 +226,50 @@ makeinstall_target() {
 
 post_install() {
 
-  API_VERSION="2.2.0"
   VDR_DIR=$(get_build_dir vdr)
+  VDR_PKG=$(get_pkg_directory vdr)
 
+  #dirs
+  mkdir -p $INSTALL/usr/config/vdr/plugins
+  mkdir -p $INSTALL/usr/config/vdr/themes
+  mkdir -p $INSTALL/usr/share/locale
+  mkdir -p $INSTALL/usr/lib
+  mkdir -p $INSTALL/usr/lib/vdr
+
+  #bin
   mkdir -p $INSTALL/usr/bin
     cp -P $VDR_DIR/vdr $INSTALL/usr/bin/vdr.bin
     cp -P $VDR_DIR/svdrpsend $INSTALL/usr/bin/svdrpsend
     cp -P $PKG_DIR/scripts/* $INSTALL/usr/bin
 
+  #config
   mkdir -p $INSTALL/usr/config/vdr
-    cp $VDR_DIR/scr.conf $INSTALL/usr/config/vdr
-    cp $VDR_DIR/sources.conf $INSTALL/usr/config/vdr
-    cp $VDR_DIR/svdrphosts.conf $INSTALL/usr/config/vdr
+    cp -PR $VDR_DIR/*.conf $INSTALL/usr/config/vdr
+    cp -PR $VDR_PKG/themes/* $INSTALL/usr/config/vdr/themes
     echo '0.0.0.0/0' >> $INSTALL/usr/config/vdr/svdrphosts.conf
-    cp -PR $PKG_DIR/config/* $INSTALL/usr/config/vdr
+    #cp -PR $PKG_DIR/config/* $INSTALL/usr/config/vdr
 
-  mkdir -p $INSTALL/usr/config/vdr/plugins
-  mkdir -p $INSTALL/usr/share/locale
-  mkdir -p $INSTALL/usr/lib
-  mkdir -p $INSTALL/usr/lib/vdr
-
+  #locale
   for fmo in `ls $VDR_DIR/po/*.mo`;do
     fname=`basename $fmo .mo`
     mkdir -p $INSTALL/usr/share/locale/$fname
     mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
       cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr.mo
   done
+
+  #plugin channellists
+  if [ "$ENABLE_VDR_PLUGIN_CHANNELLISTS" = yes ]; then
+
+    VDR_PLUGIN_CHANNELLISTS_DIR=$(get_build_dir vdr-plugin-channellists)
+
+	#libs
+    cp -PR $VDR_PLUGIN_CHANNELLISTS_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_DDCI2" = yes ]; then
+    VDR_PLUGIN_DDCI2_DIR=$(get_build_dir vdr-plugin-ddci2)
+    cp -PR $VDR_PLUGIN_DDCI2_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+  fi
 
   if [ "$ENABLE_VDR_PLUGIN_DUMMYDEVICE" = yes ]; then
     VDR_PLUGIN_DUMMYDEVICE_DIR=$(get_build_dir vdr-plugin-dummydevice)
@@ -232,6 +285,11 @@ post_install() {
       mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
         cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-dvbapi.mo
     done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_DYNAMITE" = yes ]; then
+    VDR_PLUGIN_DYNAMITE_DIR=$(get_build_dir vdr-plugin-dynamite)
+    cp -PR $VDR_PLUGIN_DYNAMITE_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_EEPG" = yes ]; then
@@ -302,6 +360,11 @@ post_install() {
     cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/locale/* $INSTALL/usr/share/locale
   fi
 
+  if [ "$ENABLE_VDR_PLUGIN_IMONLCD" = yes ]; then
+    VDR_PLUGIN_IMONLCD_DIR=$(get_build_dir vdr-plugin-imonlcd)
+    cp -PR $VDR_PLUGIN_IMONLCD_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+  fi
+
   if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
     VDR_PLUGIN_IPTV_DIR=$(get_build_dir vdr-plugin-iptv)
     cp -PR $VDR_PLUGIN_IPTV_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
@@ -352,6 +415,11 @@ post_install() {
     done
   fi
 
+  if [ "$ENABLE_VDR_PLUGIN_PIN" = yes ]; then
+    VDR_PLUGIN_PIN_DIR=$(get_build_dir vdr-plugin-pin)
+    cp -PR $VDR_PLUGIN_PIN_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+  fi
+
   if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes ]; then
     VDR_PLUGIN_RESTFULAPI_DIR=$(get_build_dir vdr-plugin-restfulapi)
     cp -PR $VDR_PLUGIN_RESTFULAPI_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
@@ -364,7 +432,12 @@ post_install() {
       mkdir -p $INSTALL/usr/share/locale/$fname
       mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
         cp -p $fmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vdr-restfulapi.mo
-    done 
+    done
+  fi
+
+  if [ "$ENABLE_VDR_PLUGIN_ROBOTV" = yes ]; then
+    VDR_PLUGIN_ROBOTV_DIR=$(get_build_dir vdr-plugin-robotv)
+    cp -PR $VDR_PLUGIN_ROBOTV_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
   fi
 
   if [ "$ENABLE_VDR_PLUGIN_SATIP" = yes ]; then
@@ -545,6 +618,11 @@ post_install() {
     done
   fi
 
+  if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
+    VDR_PLUGIN_TVGUIDENG_DIR=$(get_build_dir vdr-plugin-tvguideng)
+    cp -PR $VDR_PLUGIN_TVGUIDENG_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
+  fi
+
   if [ "$ENABLE_VDR_PLUGIN_TVSCRAPER" = yes ]; then
     VDR_PLUGIN_TVSCRAPER_DIR=$(get_build_dir vdr-plugin-tvscraper)
     cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
@@ -569,7 +647,7 @@ post_install() {
     VDR_PLUGIN_WIRBELSCAN_DIR=$(get_build_dir vdr-plugin-wirbelscan)
     VDR_PLUGIN_WIRBELSCANCONTROL_DIR=$(get_build_dir vdr-plugin-wirbelscancontrol)
     cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-    cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr 
+    cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
     cp -PR $VDR_PLUGIN_WIRBELSCAN_DIR/locale/* $INSTALL/usr/share/locale
     cp -PR $VDR_PLUGIN_WIRBELSCANCONTROL_DIR/locale/* $INSTALL/usr/share/locale
   fi

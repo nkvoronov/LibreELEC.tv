@@ -16,17 +16,17 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="vdr-plugin-epgsearch"
-PKG_VERSION="84b59b8"
+PKG_NAME="vdr-plugin-dynamite"
+PKG_VERSION="8081711"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://winni.vdr-developer.org/epgsearch/"
-PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch.git"
+PKG_SITE="https://github.com/flensrocker/vdr-plugin-dynamite"
+PKG_URL="https://github.com/flensrocker/vdr-plugin-dynamite.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="VDR plugin that provides extensive EPG searching capabilities."
-PKG_LONGDESC="VDR plugin that provides extensive EPG searching capabilities. This plugin for the Linux Video Disc Recorder (VDR) allows searching the EPG (electronic programme guide) data by defining search terms that can permanently be stored in a list for later reuse. It supports regular expressions and is capable of doing fuzzy searches. EPG-Search scans the EPG in background and can automatically create timers for matching search terms. Besides this it supports searching for repetitions, detection of timer conflicts, sending emails on timer events and much more. Search terms can also be added and modified with vdradmin-am, a web frontend for VDR."
+PKG_SHORTDESC="A VDR plugin add hotplug functionality to the vdr."
+PKG_LONGDESC="A VDR plugin add hotplug functionality to the vdr. The goal of this plugin is to add hotplug functionality to the vdr. This is achieved by wrapping a helper device around cDvbDevice which checks if the hardware is available."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -47,10 +47,7 @@ post_make_target() {
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
 
-  cp --remove-destination $PKG_BUILD/libvdr-conflictcheckonly.so $PKG_BUILD/libvdr-conflictcheckonly.so.${VDR_APIVERSION}
   cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
-  cp --remove-destination $PKG_BUILD/libvdr-epgsearchonly.so $PKG_BUILD/libvdr-epgsearchonly.so.${VDR_APIVERSION}
-  cp --remove-destination $PKG_BUILD/libvdr-quickepgsearch.so $PKG_BUILD/libvdr-quickepgsearch.so.${VDR_APIVERSION}
   $STRIP libvdr-*.so*
 }
 

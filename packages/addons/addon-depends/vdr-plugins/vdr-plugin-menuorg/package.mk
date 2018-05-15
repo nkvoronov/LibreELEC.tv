@@ -25,8 +25,8 @@ PKG_URL="https://github.com/vdr-projects/vdr-plugin-menuorg.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr glibmm libxml++"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr menuorg"
-PKG_LONGDESC="vdr menuorg"
+PKG_SHORTDESC="VDR plug-in to reorganize the OSD main menu."
+PKG_LONGDESC="VDR plug-in to reorganize the OSD main menu. This plug-in for the Linux Video Disc Recorder VDR allows the main menu in VDR's On Screen Display to be reorganized. The order of the displayed menu items can be changed and sub menus can be created. Besides this additional "command" menu items can be added, which will execute any system commands."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -39,9 +39,22 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
-  make VDRDIR=$VDR_DIR \
-  LIBDIR="." \
-  LOCALEDIR="./locale"
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
+  make \
+    LIBDIR="." \
+    LOCDIR="./locale" \
+    all install-i18n
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

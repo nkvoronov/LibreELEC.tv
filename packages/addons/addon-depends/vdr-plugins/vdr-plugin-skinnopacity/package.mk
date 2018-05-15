@@ -25,8 +25,8 @@ PKG_URL="https://github.com/vdr-projects/vdr-plugin-skinnopacity.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr ImageMagick"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr skinnopacity"
-PKG_LONGDESC="vdr skinnopacity"
+PKG_SHORTDESC="nOpacity skin for VDR."
+PKG_LONGDESC="nOpacity skin for VDR. nOpacity is a highly customizable true color skin for the on-screen-display (OSD) of the Linux Video Disc Recorder VDR."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -41,10 +41,23 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \
-  LOCALEDIR="./locale" \
-  IMAGELIB=$IMAGELIB
+  LOCDIR="./locale" \
+  IMAGELIB=$IMAGELIB \
+  all install-i18n
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

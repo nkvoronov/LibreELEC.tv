@@ -25,8 +25,8 @@ PKG_URL="http://www.saunalahti.fi/~rahrenbe/vdr/femon/files/vdr-femon-$PKG_VERSI
 PKG_SOURCE_DIR="femon-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr femon"
-PKG_LONGDESC="vdr femon"
+PKG_SHORTDESC="DVB frontend status monitor plugin for VDR."
+PKG_LONGDESC="DVB frontend status monitor plugin for VDR. DVB Frontend Status Monitor (femon) is a VDR plugin that displays signal quality parameters of the tuned channel on the OSD."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -39,9 +39,22 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
-  make VDRDIR=$VDR_DIR \
-  LIBDIR="." \
-  LOCALEDIR="./locale"
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
+  make \
+    LIBDIR="." \
+    LOCDIR="./locale" \
+    all install-i18n
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

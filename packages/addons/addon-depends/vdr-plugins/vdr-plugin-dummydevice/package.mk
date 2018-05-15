@@ -25,8 +25,8 @@ PKG_URL="http://phivdr.dyndns.org/vdr/vdr-dummydevice/${PKG_NAME/-plugin/}-$PKG_
 PKG_SOURCE_DIR="dummydevice-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr dummydevice plugin"
-PKG_LONGDESC="vdr dummydevice plugin"
+PKG_SHORTDESC="VDR plugin that emulates a dvb output device."
+PKG_LONGDESC="VDR plugin that emulates a dvb output device. This plugin emulates an output device, that does nothing. All data is silently discarded. That is useful if you just run vdr as recording server orR for streaming and would like to overcome some limitions regarding the handling of a  primary device."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -39,7 +39,7 @@ make_target() {
   make \
     LIBDIR="." \
     LOCDIR="./locale" \
-    all install-i18n
+    all
 }
 
 post_make_target() {
