@@ -1,7 +1,7 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2014-07-24 21:01:51.000000000 +0300
-+++ b/Makefile	2014-07-24 23:26:47.916105932 +0300
-@@ -16,22 +16,13 @@
+--- a/Makefile	2017-05-11 02:03:03.000000000 +0300
++++ b/Makefile	2018-05-16 17:31:28.171814444 +0300
+@@ -16,22 +16,15 @@
  ### The directory environment:
  
  # Use package data if installed...otherwise assume we're under the VDR source directory:
@@ -14,19 +14,19 @@ diff -Naur a/Makefile b/Makefile
  TMPDIR ?= /tmp
  
  ### The compiler options:
--
+ 
 -export CFLAGS   = $(call PKGCFG,cflags)
 -export CXXFLAGS = $(call PKGCFG,cxxflags)
 +include $(VDRDIR)/Make.global
  
  ### The version number of VDR's plugin API:
--
+ 
 -APIVERSION = $(call PKGCFG,apiversion)
 +APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
  
  ### Allow user defined options to overwrite defaults:
  
-@@ -48,7 +39,7 @@
+@@ -48,12 +41,12 @@
  
  ### Includes and Defines (add further entries here):
  
@@ -34,8 +34,15 @@ diff -Naur a/Makefile b/Makefile
 +INCLUDES += -I$(VDRDIR)/include
  
  DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
- DEFINES += $(shell xml2-config --cflags)
-@@ -110,6 +101,7 @@
+-DEFINES += $(shell xml2-config --cflags)
++DEFINES += $(shell pkg-config --cflags libxml-2.0)
+ 
+-LIBS += $(shell xml2-config --libs)
++LIBS += $(shell pkg-config --libs libxml-2.0)
+ LIBS += $(shell pkg-config --libs libcurl)
+ LIBS += $(shell pkg-config --libs sqlite3)
+ LIBS += $(shell pkg-config --cflags --libs jansson)
+@@ -110,6 +103,7 @@
  
  $(SOFILE): $(OBJS)
  	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) $(LIBS) -o $@

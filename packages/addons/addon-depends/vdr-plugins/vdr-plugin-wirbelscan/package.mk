@@ -25,8 +25,8 @@ PKG_URL="http://wirbel.htpc-forum.de/wirbelscan/${PKG_NAME/-plugin/}-dev-$PKG_VE
 PKG_SOURCE_DIR="wirbelscan-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="TV"
-PKG_LONGDESC="TV"
+PKG_SHORTDESC="Channelscan plugin for VDR."
+PKG_LONGDESC="Channelscan plugin for VDR. This plugin allows you to scan for new channels. DVB-T and DVB-C are supported as well as DVB-S and pvrinput/ptv (analog) scan."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -39,10 +39,22 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
-  cp backup/Makefile.old Makefile
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
     LIBDIR="." \
-    LOCALEDIR="./locale"
+    LOCDIR="./locale" \
+    all
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

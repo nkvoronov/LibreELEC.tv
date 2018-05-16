@@ -27,9 +27,10 @@ PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="service"
 PKG_SHORTDESC="vdr: A powerful DVB TV application"
 PKG_LONGDESC="This project describes how to build your own digital satellite receiver and video disk recorder. It is based mainly on the DVB-S digital satellite receiver card, which used to be available from Fujitsu Siemens and the driver software developed by the LinuxTV project."
-PKG_AUTORECONF="no"
 
+PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
+
 PKG_ADDON_NAME="VDR"
 PKG_ADDON_TYPE="xbmc.service"
 
@@ -67,9 +68,9 @@ ENABLE_VDR_PLUGIN_TVGUIDENG="yes"
 ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
 ENABLE_VDR_PLUGIN_VNSISERVER="yes"
 ENABLE_VDR_PLUGIN_WEATHERFORECAST="yes"
-ENABLE_VDR_PLUGIN_WIRBELSCAN="no"
-ENABLE_VDR_PLUGIN_XINELIBOUTPUT="no"
-ENABLE_VDR_PLUGIN_XMLTV2VDR="no"
+ENABLE_VDR_PLUGIN_WIRBELSCAN="yes"
+ENABLE_VDR_PLUGIN_XINELIBOUTPUT="yes"
+ENABLE_VDR_PLUGIN_XMLTV2VDR="yes"
 
 if [ "$ENABLE_VDR_PLUGIN_CHANNELLISTS" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-channellists"
@@ -249,15 +250,10 @@ addon() {
     cp -PR $VDR_DIR/*.conf $ADDON_BUILD/$PKG_ADDON_ID/config
     echo '0.0.0.0/0' >> $ADDON_BUILD/$PKG_ADDON_ID/config/svdrphosts.conf
     cp -PR $VDR_PKG/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-    #cp -PR $PKG_DIR/config/* $ADDON_BUILD/$PKG_ADDON_ID/config
+    #cp -PR $PKG_DIR/config/*.conf $ADDON_BUILD/$PKG_ADDON_ID/config
 
   #locale
-  for fmo in `ls $VDR_DIR/po/*.mo`;do
-    fname=`basename $fmo .mo`
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-      cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr.mo
-  done
+  cp -PR $VDR_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
 
   #plugin channellists
   if [ "$ENABLE_VDR_PLUGIN_CHANNELLISTS" = yes ]; then
@@ -265,7 +261,6 @@ addon() {
     VDR_PLUGIN_CHANNELLISTS_DIR=$(get_build_dir vdr-plugin-channellists)
 
     #config
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/channellists
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/channellists/scripts
       cp -PR $VDR_PLUGIN_CHANNELLISTS_DIR/scripts/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/channellists/scripts
 
@@ -406,6 +401,7 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/filebrowser
       cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/examples/filebrowser/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/filebrowser
+      cp -PR $PKG_DIR/config/plugins/filebrowser/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/filebrowser
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/filebrowser/scripts
       cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/examples/scripts/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/filebrowser/scripts
 
@@ -436,6 +432,7 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/iptv/scripts
       cp -PR $VDR_PLUGIN_IPTV_DIR/iptv/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/iptv/scripts
+      cp -PR $PKG_DIR/config/plugins/iptv/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/iptv
 
     #locale
     cp -PR $VDR_PLUGIN_IPTV_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -473,6 +470,7 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/live
       cp -PR $VDR_PLUGIN_LIVE_DIR/live/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/live
+      cp -PR $PKG_DIR/config/plugins/live/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/live
 
     #locale
     cp -PR $VDR_PLUGIN_LIVE_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -494,6 +492,7 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/menuorg
       cp -PR $VDR_PLUGIN_MENUORG_DIR/menuorg.* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/menuorg
+      cp -PR $PKG_DIR/config/plugins/menuorg.xml $ADDON_BUILD/$PKG_ADDON_ID/config/plugins
 
     #locale
     cp -PR $VDR_PLUGIN_MENUORG_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -586,12 +585,12 @@ addon() {
     cp -P $VDR_PLUGIN_SKINDESINGER_DIR/libskindesignerapi/libskindesignerapi.so.0.1.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libskindesignerapi.so.0
 
     #config
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fontconfig/conf.avail
-      cp -P $VDR_PLUGIN_SKINDESINGER_DIR/installs/99-skindesigner.conf $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fontconfig/conf.avail
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/installs/TTF/* $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-    mkfontdir $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
-    mkfontscale $ADDON_BUILD/$PKG_ADDON_ID/usr/share/fonts/TTF
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/fontconfig/conf.avail
+      cp -P $VDR_PLUGIN_SKINDESINGER_DIR/installs/99-skindesigner.conf $ADDON_BUILD/$PKG_ADDON_ID/share/fontconfig/conf.avail
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/fonts/TTF
+      cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/installs/TTF/* $ADDON_BUILD/$PKG_ADDON_ID/share/fonts/TTF
+    mkfontdir $ADDON_BUILD/$PKG_ADDON_ID/share/fonts/TTF
+    mkfontscale $ADDON_BUILD/$PKG_ADDON_ID/share/fonts/TTF
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/themes
       cp -PR $VDR_PLUGIN_SKINDESINGER_DIR/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skindesigner
@@ -760,6 +759,7 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
       cp -PR $VDR_PLUGIN_STREAMDEV_DIR/streamdev-server/streamdevhosts.conf $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
+      cp -PR $PKG_DIR/config/plugins/streamdev-server/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/streamdev-server
 
     #locale
     for fmo in `ls $VDR_PLUGIN_STREAMDEV_DIR/server/po/*.mo`;do
@@ -787,6 +787,7 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
       cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/scripts/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
+      cp -PR $PKG_DIR/config/plugins/systeminfo/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
 
     #locale
     cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -804,6 +805,8 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/themes
       cp -PR $VDR_PLUGIN_TEXT2SKIN_PKG/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/text2skin
+      cp -PR $VDR_PLUGIN_TEXT2SKIN_PKG/skins/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/text2skin
 
     #locale
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -874,7 +877,7 @@ addon() {
     #locale
     cp -PR $VDR_PLUGIN_VNSISERVER_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
-  
+
   #plugin weatherforecast
   if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
 
@@ -910,7 +913,7 @@ addon() {
   if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
 
     VDR_PLUGIN_XINEOUTPUT_DIR=$(get_build_dir vdr-plugin-xineliboutput)
-    XINE_VERSION="2.5"
+    XINE_VERSION="2.6"
 
     #bin
     cp -P $VDR_PLUGIN_XINEOUTPUT_DIR/vdr-fbfe $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -924,19 +927,13 @@ addon() {
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION/post
       cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/xineplug_post_*.so $ADDON_BUILD/$PKG_ADDON_ID/lib/xine/plugins/$XINE_VERSION/post
 
-    config
+    #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
       cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/examples/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/xine
-      cp -PR $PKG_DIR/config-xine/* $ADDON_BUILD/$PKG_ADDON_ID/config/xine
+      cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/*.mpg $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/xineliboutput
 
     #locale
-    for fmo in `ls $VDR_PLUGIN_XINEOUTPUT_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr-xineliboutput.mo
-    done
+    cp -PR $VDR_PLUGIN_XINEOUTPUT_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
 
     #libs dep
     XINELIB_DIR=$(get_build_dir xine-lib)

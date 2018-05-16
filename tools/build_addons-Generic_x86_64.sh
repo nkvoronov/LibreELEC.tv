@@ -2,10 +2,10 @@
 
 cd ..
 
-#PROJECT=Generic ARCH=x86_64 ./scripts/create_addon oscam12
-#PROJECT=Generic ARCH=x86_64 ./scripts/create_addon transmission2
-#PROJECT=Generic ARCH=x86_64 ./scripts/create_addon tvheadend43
-#PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vdr24
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon oscam12
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon transmission2
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon tvheadend43
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vdr24
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon docker
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon acestream31
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon mono

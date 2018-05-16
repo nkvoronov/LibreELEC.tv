@@ -30,7 +30,7 @@ case "$1" in
 
 	2)	# distribution release (static)
 		if test -f /etc/distribution; then
-			DISTRI="OpenELEC("$(head -n 1 /etc/build)")"
+			DISTRI="LibreELEC("$(head -n 1 /etc/build)")"
 			RELEASE=$(head -n 1 /etc/version)
 			ARCH=$(head -n 1 /etc/arch)
 		else

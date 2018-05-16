@@ -1,6 +1,6 @@
 diff -Naur a/libskindesignerapi/Makefile b/libskindesignerapi/Makefile
---- a/libskindesignerapi/Makefile	2016-02-04 00:00:13.000000000 +0200
-+++ b/libskindesignerapi/Makefile	2016-02-04 17:29:07.913769811 +0200
+--- a/libskindesignerapi/Makefile	2018-03-03 10:03:00.000000000 +0200
++++ b/libskindesignerapi/Makefile	2018-05-16 17:44:45.627814444 +0300
 @@ -9,7 +9,7 @@
  SONAME = $(LIBNAME).so.$(MAJOR)
  TARGET_LIB = $(SONAME).$(MINOR)
@@ -27,9 +27,9 @@ diff -Naur a/libskindesignerapi/Makefile b/libskindesignerapi/Makefile
  SRCS = $(wildcard *.c)
  OBJS = $(SRCS:.c=.o)
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2016-02-04 00:00:13.000000000 +0200
-+++ b/Makefile	2016-02-04 17:27:42.133773511 +0200
-@@ -15,25 +15,15 @@
+--- a/Makefile	2018-03-03 10:03:00.000000000 +0200
++++ b/Makefile	2018-05-16 17:43:16.495814444 +0300
+@@ -16,25 +16,15 @@
  ### The directory environment:
  
  # Use package data if installed...otherwise assume we're under the VDR source directory:
@@ -58,7 +58,12 @@ diff -Naur a/Makefile b/Makefile
  
  ### The name of the distribution archive:
  ARCHIVE = $(PLUGIN)-$(VERSION)
-@@ -48,6 +38,7 @@
+@@ -45,15 +35,16 @@
+ 
+ ### Includes and Defines and Dependencies:
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"' $(CONFIG)
+-DEFINES += $(shell xml2-config --cflags)
++DEFINES += $(shell pkg-config --cflags libxml-2.0)
  DEFINES += -DSCRIPTFOLDER='"$(SKINDESIGNER_SCRIPTDIR)"'
  DEFINES += -D__STL_CONFIG_H
  
@@ -66,7 +71,13 @@ diff -Naur a/Makefile b/Makefile
  INCLUDES += $(shell pkg-config --cflags freetype2 fontconfig)
  INCLUDES += $(shell pkg-config --cflags librsvg-2.0 cairo-png) -ljpeg
  
-@@ -112,7 +103,7 @@
+ LIBS += $(shell pkg-config --libs librsvg-2.0 cairo-png) -ljpeg
+-LIBS += $(shell xml2-config --libs)
++LIBS += $(shell pkg-config --libs libxml-2.0)
+ LIBS += $(shell pkg-config --libs libcurl)
+ 
+ ### The object files:
+@@ -113,7 +104,7 @@
  
  ### The main target:
  
@@ -75,7 +86,7 @@ diff -Naur a/Makefile b/Makefile
  
  ### subprojects:
  
-@@ -178,6 +169,7 @@
+@@ -179,6 +170,7 @@
  
  $(SOFILE): $(OBJS)
  	$(CXX) $(CXXFLAGS) -std=c++11  $(LDFLAGS) -shared $(OBJS) $(LIBS) $(SUB_LIBS) -o $@

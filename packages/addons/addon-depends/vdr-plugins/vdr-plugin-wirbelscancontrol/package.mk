@@ -25,8 +25,8 @@ PKG_URL="http://wirbel.htpc-forum.de/wirbelscancontrol/${PKG_NAME/-plugin/}-$PKG
 PKG_SOURCE_DIR="wirbelscancontrol-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-wirbelscan"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="TV"
-PKG_LONGDESC="TV"
+PKG_SHORTDESC="Control channelscan plugin for VDR."
+PKG_LONGDESC="Control channelscan plugin for VDR."
 
 PKG_IS_ADDON="no"
 
@@ -45,9 +45,22 @@ pre_build_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
     LIBDIR="." \
-    LOCALEDIR="./locale"
+    LOCDIR="./locale" \
+    all
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

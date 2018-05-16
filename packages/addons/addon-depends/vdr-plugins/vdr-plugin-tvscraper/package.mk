@@ -35,8 +35,6 @@ pre_configure_target() {
   export CFLAGS="$CFLAGS -fPIC"
   export CXXFLAGS="$CXXFLAGS -fPIC"
   export LDFLAGS="$LDFLAGS -fPIC"
-
-  mv $SYSROOT_PREFIX/usr/bin/xml2-config $TOOLCHAIN/bin
 }
 
 make_target() {
@@ -48,8 +46,6 @@ make_target() {
   LIBDIR="." \
   LOCDIR="./locale" \
   all install-i18n
-
-  mv $TOOLCHAIN/bin/xml2-config $SYSROOT_PREFIX/usr/bin
 }
 
 post_make_target() {

@@ -1,8 +1,7 @@
-Index: b/xine_frontend.c
-===================================================================
---- a/xine_frontend.c
-+++ b/xine_frontend.c
-@@ -1437,6 +1437,41 @@
+diff -Naur a/xine_frontend.c b/xine_frontend.c
+--- a/xine_frontend.c	2018-02-26 18:42:18.000000000 +0200
++++ b/xine_frontend.c	2018-05-16 13:13:31.732974957 +0300
+@@ -1515,6 +1515,41 @@
    } else if (!strcmp(data, "POWER_OFF")) {
      shutdown_system(this->shutdown_cmd, 1);
  
@@ -44,27 +43,10 @@ Index: b/xine_frontend.c
    } else {
  
      LOGDBG("Event: %s", data);
-Index: b/xine_frontend_main.c
-===================================================================
---- a/xine_frontend_main.c
-+++ b/xine_frontend_main.c
-@@ -455,9 +455,11 @@
-                      "  mapping keyboard f,F     -> fullscreen toggle\n"
-                      "          keyboard d,D     -> deinterlace toggle\n"
-                      "          keyboard p,P     -> power off\n"
-+                     "          keyboard a,A     -> DFAtmo enabled toggle\n"
-                      "          LIRC Deinterlace -> deinterlace toggle\n"
-                      "          LIRC Fullscreen  -> fullscreen toggle\n"
-                      "          LIRC PowerOff    -> power off\n"
-+                     "          LIRC KEY_BRIGHTNESS_CYCLE -> DFAtmo enabled toggle\n"
-                      "          LIRC Quit        -> exit\n");
-               break;
-     case 'U': touchscreen = 1;
-Index: b/xine_frontend_kbd.c
-===================================================================
---- a/xine_frontend_kbd.c
-+++ b/xine_frontend_kbd.c
-@@ -223,6 +223,10 @@
+diff -Naur a/xine_frontend_kbd.c b/xine_frontend_kbd.c
+--- a/xine_frontend_kbd.c	2018-02-26 18:42:18.000000000 +0200
++++ b/xine_frontend_kbd.c	2018-05-16 13:13:31.732974957 +0300
+@@ -226,6 +226,10 @@
          fe->send_event(fe, "TOGGLE_DEINTERLACE");
          continue;
        }
@@ -75,7 +57,7 @@ Index: b/xine_frontend_kbd.c
      }
  
      snprintf(str, sizeof(str), "%016" PRIX64, code);
-@@ -296,6 +300,10 @@
+@@ -303,6 +307,10 @@
        fe->send_input_event(fe, NULL, str+5, 0, 0);
        continue;
      }
@@ -86,11 +68,10 @@ Index: b/xine_frontend_kbd.c
  
      LOGMSG("Unknown slave mode command: %s", str);
  
-Index: b/xine_frontend_lirc.c
-===================================================================
---- a/xine_frontend_lirc.c
-+++ b/xine_frontend_lirc.c
-@@ -218,6 +218,11 @@
+diff -Naur a/xine_frontend_lirc.c b/xine_frontend_lirc.c
+--- a/xine_frontend_lirc.c	2018-02-26 18:42:18.000000000 +0200
++++ b/xine_frontend_lirc.c	2018-05-16 13:13:31.732974957 +0300
+@@ -240,6 +240,11 @@
                fe->send_event(fe, "TOGGLE_DEINTERLACE");
              continue;
            }
@@ -102,3 +83,18 @@ Index: b/xine_frontend_lirc.c
          }
  
          alarm(3);
+diff -Naur a/xine_frontend_main.c b/xine_frontend_main.c
+--- a/xine_frontend_main.c	2018-02-26 18:42:18.000000000 +0200
++++ b/xine_frontend_main.c	2018-05-16 13:13:31.732974957 +0300
+@@ -482,9 +482,11 @@
+                      "  mapping keyboard f,F     -> fullscreen toggle\n"
+                      "          keyboard d,D     -> deinterlace toggle\n"
+                      "          keyboard p,P     -> power off\n"
++                     "          keyboard a,A     -> DFAtmo enabled toggle\n"
+                      "          LIRC Deinterlace -> deinterlace toggle\n"
+                      "          LIRC Fullscreen  -> fullscreen toggle\n"
+                      "          LIRC PowerOff    -> power off\n"
++                     "          LIRC KEY_BRIGHTNESS_CYCLE -> DFAtmo enabled toggle\n"
+                      "          LIRC Quit        -> exit\n");
+               break;
+     case 'U': touchscreen = 1;

@@ -46,7 +46,7 @@ make_target() {
 
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \
-  LOCALEDIR="./locale" \
+  LOCDIR="./locale" \
   IMAGELIB=$IMAGELIB \
   all
 }

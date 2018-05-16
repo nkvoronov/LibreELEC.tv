@@ -1,8 +1,0 @@
-This widget provide information about available updates of the system.
-
-Since the command usually needs long time to execute this is not called from skin flatPlus.
-You have to call the command from the system via cron or at system start.
-For example call the command from cron.daily.
-
-The command can provide to output files: "updates" and "security_updates". The file "security_updates" is optional.
-

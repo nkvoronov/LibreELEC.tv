@@ -25,11 +25,10 @@ PKG_URL="https://github.com/vdr-projects/vdr-plugin-xmltv2vdr.git"
 PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr sqlite curl libzip libxml2 libxslt enca pcre"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-xmltv2vdr"
-PKG_LONGDESC="vdr-xmltv2vdr"
+PKG_SHORTDESC="Plugin for VDR to add epg info from epg sources into vdr."
+PKG_LONGDESC="Plugin for VDR to add epg info from epg sources into vdr. This plugin for the Linux Video Disc Recorder VDR will add epg info  from epg sources into vdr."
 
 PKG_IS_ADDON="no"
-
 PKG_AUTORECONF="no"
 
 pre_configure_target() {
@@ -41,9 +40,13 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
     LIBDIR="." \
-    LOCALEDIR="./locale"
+    LOCDIR="./locale" \
+    all
 }
 
 post_make_target() {
@@ -51,6 +54,12 @@ post_make_target() {
   make -j1
   cd -
   $STRIP dist/epgdata2xmltv/epgdata2xmltv
+
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
   $STRIP libvdr-*.so*
 }
 

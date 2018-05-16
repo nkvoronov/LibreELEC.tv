@@ -29,14 +29,12 @@ PKG_DEPENDS_TARGET="toolchain vdr xine-lib"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="xine-lib based software output device for VDR."
 PKG_LONGDESC="xine-lib based software output device for VDR."
+
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-VDR_DIR=$(get_build_dir vdr)
-
-export PKG_CONFIG_PATH="${PKG_CONFIG_SYSROOT_DIR}/usr/lib/pkgconfig:${PKG_CONFIG_SYSROOT_DIR}buildd/lib/pkgconfig"
-
 pre_configure_target() {
+  export PKG_CONFIG_PATH="${PKG_CONFIG_SYSROOT_DIR}/usr/lib/pkgconfig:${PKG_CONFIG_SYSROOT_DIR}buildd/lib/pkgconfig"
   export CFLAGS="$CFLAGS -fPIC"
   export CXXFLAGS="$CXXFLAGS -fPIC"
   export LDFLAGS="$LDFLAGS -fPIC"
@@ -48,24 +46,30 @@ configure_target() {
               --enable-vdr \
               --enable-libxine \
               --disable-dbus-glib-1 \
-              --disable-libcec \
+              --enable-libcec \
               --cc=$CC \
               --cxx=$CXX \
               --add-cflags="$CFLAGS"
 }
 
 make_target() {
-  make mpg2c \
-  CC="$HOST_CC" \
-  CFLAGS="$HOST_CFLAGS" \
-  LDFLAGS="$HOST_LDFLAGS" \
-  VDRDIR=$VDR_DIR \
-  LIBDIR="." \
-  LOCALEDIR="./locale"
+  VDR_DIR=$(get_build_dir vdr)
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
 
-  make -i VDRDIR=$VDR_DIR \
-  LIBDIR="." \
-  LOCALEDIR="./locale"
+  make VDRDIR=$VDR_DIR \
+    LIBDIR="." \
+    LOCDIR="./locale" \
+    all install-i18n
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  #cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

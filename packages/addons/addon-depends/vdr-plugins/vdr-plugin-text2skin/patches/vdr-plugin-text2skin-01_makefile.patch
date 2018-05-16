@@ -1,8 +1,15 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2014-07-24 21:01:45.000000000 +0300
-+++ b/Makefile	2014-07-25 01:10:16.407963974 +0300
-@@ -33,22 +33,15 @@
+--- a/Makefile	2017-07-02 13:17:25.000000000 +0300
++++ b/Makefile	2018-05-16 15:28:30.487737260 +0300
+@@ -26,16 +26,9 @@
  
+ VERSION = $(shell grep 'const char \*cText2SkinPlugin::VERSION *=' $(PLUGIN).c | awk '{ print $$5 }' | sed -e 's/[";]//g')
+ 
+-### The C++ compiler and options:
+-
+-CXX      ?= g++
+-CXXFLAGS ?= -fPIC -Wall -Werror=overloaded-virtual
+-
  ### The directory environment:
  
 -VDRDIR = ../../..
@@ -12,10 +19,10 @@ diff -Naur a/Makefile b/Makefile
  
  ### Make sure that necessary options are included (VDR >= 1.7.13):
  
---include $(VDRDIR)/Make.global
--
--### Allow user defined options to overwrite defaults:
--
+@@ -43,12 +36,11 @@
+ 
+ ### Allow user defined options to overwrite defaults:
+ 
 --include $(VDRDIR)/Make.config
 +include $(VDRDIR)/Make.global
  
@@ -26,4 +33,13 @@ diff -Naur a/Makefile b/Makefile
 +APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
  
  ### The name of the distribution archive:
+ 
+@@ -117,7 +109,7 @@
+ ### Internationalization (I18N):
+ 
+ PODIR     = po
+-LOCALEDIR = $(VDRDIR)/locale
++LOCALEDIR = $(LOCDIR)
+ I18Npo    = $(notdir $(wildcard $(PODIR)/*.po))
+ I18Npot   = $(PODIR)/$(PLUGIN).pot
  

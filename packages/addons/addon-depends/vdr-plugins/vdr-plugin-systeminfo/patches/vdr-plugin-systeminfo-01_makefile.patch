@@ -1,7 +1,7 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2013-02-10 18:38:05.000000000 +0300
-+++ b/Makefile	2014-04-12 16:55:15.252855009 +0300
-@@ -17,25 +17,12 @@
+--- a/Makefile	2013-02-10 17:38:05.000000000 +0200
++++ b/Makefile	2018-05-16 16:01:18.251737260 +0300
+@@ -17,47 +17,24 @@
  VERSION = $(shell grep 'static const char \*VERSION *=' $(PLUGIN).c | awk '{ print $$6 }' | sed -e 's/[";]//g')
  
  ### The directory environment:
@@ -28,7 +28,8 @@ diff -Naur a/Makefile b/Makefile
  
  ### Backward compatibility stuff
  ifeq ($(LOCDIR),)
-@@ -44,15 +31,6 @@
+-### The C++ compiler and options:
+ 
  CXX      ?= g++
  CXXFLAGS ?= -fPIC -g -O2 -Wall -Woverloaded-virtual -Wno-parentheses
  
@@ -44,11 +45,9 @@ diff -Naur a/Makefile b/Makefile
  ### The version number of VDR's plugin API (taken from VDR's "config.h"):
  
  APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
-@@ -146,6 +124,7 @@
  
- $(SOFILE): $(OBJS)
- 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -o $@
-+	@cp --remove-destination $@ $(LIBDIR)/$@.$(APIVERSION)
+-LOCDIR = $(VDRDIR)/locale
++LOCDIR = $(LOCDIR)
  
- install-lib: $(SOFILE)
- 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)
+ ### Includes and Defines (add further entries here):
+ 
