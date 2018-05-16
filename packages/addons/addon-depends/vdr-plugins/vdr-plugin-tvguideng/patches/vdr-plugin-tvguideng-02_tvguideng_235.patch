@@ -1,0 +1,48 @@
+Description: compatibilit patch for VDR 2.3.5
+Author: rfehr (vdr-portal.de)
+Origin: http://www.vdr-portal.de/board17-developer/board97-vdr-core/p1292622-produktive-problem-und-pluginl%C3%B6sungen-f%C3%BCr-vdr-2-3-2-und-h%C3%B6her/#post1292622
+--- tvguideng/channelgroups.h.org	2016-03-13 16:08:13.000000000 +0100
++++ tvguideng/channelgroups.h	2017-06-01 22:05:01.000000000 +0200
+@@ -16,6 +16,19 @@
+     int channelStop;
+     string name;
+ public:
++    cChannelGroup(const cChannelGroup &ChannelGroup)
++	{
++    	*this = ChannelGroup;
++	};
++    cChannelGroup& operator= (const cChannelGroup &ChannelGroup)
++    {
++    	this->id = ChannelGroup.id;
++    	this->channelStart = ChannelGroup.channelStart;
++    	this->channelStop = ChannelGroup.channelStop;
++    	this->name = ChannelGroup.name;
++
++    	return *this;
++    };
+     cChannelGroup(string name, int id);
+     virtual ~cChannelGroup(void);
+     int GetId(void) { return id; };
+--- tvguideng/switchtimer.h.org	2016-03-13 16:08:13.000000000 +0100
++++ tvguideng/switchtimer.h	2017-06-01 22:14:44.000000000 +0200
+@@ -11,6 +11,20 @@
+     tChannelID channelID;
+     int switchMinsBefore;
+     int announceOnly;
++    cSwitchTimer(const cSwitchTimer &SwitchTimer)
++	{
++    	*this = SwitchTimer;
++	};
++    cSwitchTimer& operator= (const cSwitchTimer &SwitchTimer)
++    {
++    	this->eventID = SwitchTimer.eventID;
++    	this->startTime = SwitchTimer.startTime;
++    	this->channelID = SwitchTimer.channelID;
++    	this->switchMinsBefore = SwitchTimer.switchMinsBefore;
++    	this->announceOnly = SwitchTimer.announceOnly;
++
++    	return *this;
++    };
+     cSwitchTimer(void);
+     cSwitchTimer(const cEvent* Event);
+     bool Parse(const char *s);

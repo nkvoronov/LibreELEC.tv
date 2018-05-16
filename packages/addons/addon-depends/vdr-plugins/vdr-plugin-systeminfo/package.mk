@@ -25,8 +25,8 @@ PKG_URL="http://firefly.vdr-developer.org/systeminfo/vdr-systeminfo-$PKG_VERSION
 PKG_SOURCE_DIR="systeminfo-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr systeminfo"
-PKG_LONGDESC="vdr systeminfo"
+PKG_SHORTDESC="This VDR-plugin displays system informations."
+PKG_LONGDESC="This VDR-plugin displays system informations. This plugin for VDR displays system informations like CPU type and speed, disk and swap space etc. "
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
@@ -39,9 +39,22 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \
-  LOCALEDIR="./locale"
+  LOCDIR="./locale" \
+  all install-i18n
+}
+
+post_make_target() {
+  VDR_DIR=$(get_build_dir vdr)
+  VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
+  LIB_NAME=lib${PKG_NAME/-plugin/}
+
+  cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
 
 makeinstall_target() {

@@ -16,20 +16,22 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="vdr-plugin-epgfixer"
-PKG_VERSION="354f28b"
+PKG_NAME="vdr-plugin-tvguideng"
+PKG_VERSION="65248ba"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="http://projects.vdr-developer.org/projects/plg-epgfixer"
-PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgfixer.git"
+PKG_SITE="https://github.com/vdr-projects/vdr-plugin-tvguideng"
+PKG_URL="https://github.com/vdr-projects/vdr-plugin-tvguideng.git"
 PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain vdr pcre"
+PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-skindesigner"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-plugin-epgfixer"
-PKG_LONGDESC="Plugin for modifying EPG data using regular expressions."
+PKG_SHORTDESC="TvGuideNG is a highly customizable 2D EPG viewer plugin for Skindesigner Skins."
+PKG_LONGDESC="TvGuideNG is a highly customizable 2D EPG viewer plugin for Skindesigner Skins."
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
+
+IMAGELIB=imagemagick
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
@@ -39,6 +41,7 @@ make_target() {
   make \
     LIBDIR="." \
     LOCDIR="./locale" \
+    IMAGELIB=$IMAGELIB \
     all install-i18n
 }
 

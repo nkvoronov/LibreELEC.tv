@@ -1,0 +1,188 @@
+diff -ruN vdr-plugin-tvguideng-0.3.0.orig/channelepg.c vdr-plugin-tvguideng-0.3.0/channelepg.c
+--- vdr-plugin-tvguideng-0.3.0.orig/channelepg.c	2018-03-26 08:59:59.461144936 +0200
++++ vdr-plugin-tvguideng-0.3.0/channelepg.c	2018-03-26 03:22:10.000000000 +0200
+@@ -466,11 +466,21 @@
+     }
+ }
+ 
+-void cChannelEpg::SetTimer() 
+-{ 
++void cChannelEpg::SetTimer() {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
++    const cSchedule *Schedule = NULL;
++    LOCK_SCHEDULES_READ;
++    const cSchedules* schedules = Schedules;
++    if (!schedules)
++        hasTimer = false;
++    else {
++        Schedule = schedules->GetSchedule(channel);
++        if (!Schedule)
++           hasTimer = false;
++        else
++           hasTimer = Schedule->HasTimer();
++    }
+ #else
+-   hasTimer = channel->HasTimer(); 
++    hasTimer = channel->HasTimer();
+ #endif
+-   
+-};
++}
+diff -ruN vdr-plugin-tvguideng-0.3.0.orig/recmanager.c vdr-plugin-tvguideng-0.3.0/recmanager.c
+--- vdr-plugin-tvguideng-0.3.0.orig/recmanager.c	2018-03-26 08:59:59.465144917 +0200
++++ vdr-plugin-tvguideng-0.3.0/recmanager.c	2018-03-26 11:03:02.000000000 +0200
+@@ -169,15 +169,25 @@
+ 
+ void cRecManager::DeleteTimer(int timerID) {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+-   LOCK_TIMERS_READ;
+-   const cTimer *t = Timers->Get(timerID);
+-#else
+-   const cTimer *t = Timers.Get(timerID);
+-#endif
++    LOCK_TIMERS_WRITE;
++    cTimer *t = Timers->Get(timerID);
++
++    if (!t)
++        return;
+ 
++    if (t->Recording()) {
++        t->Skip();
++        cRecordControls::Process(Timers, time(NULL));
++    }
++    
++    isyslog("deleting timer %s", *t->ToDescr());
++    Timers->Del(t, true);
++#else
++    cTimer *t = Timers.Get(timerID);
+     if (!t)
+         return;
+     DeleteTimer(t);
++#endif
+ }
+ 
+ void cRecManager::DeleteTimer(const cEvent *event) {
+@@ -192,39 +202,50 @@
+ 
+ void cRecManager::DeleteLocalTimer(const cEvent *event) {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+-   LOCK_TIMERS_READ;
+-   const cTimer *t = Timers->GetMatch(event);
+-#else
+-   const cTimer *t = Timers.GetMatch(event);
+-#endif
++    LOCK_TIMERS_WRITE;
++    cTimer *t = Timers->GetMatch(event);
+ 
+     if (!t)
+         return;
+-    DeleteTimer(t);
+-}
+ 
+-
+-void cRecManager::DeleteTimer(const cTimer *timer) {
+-#if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+-   LOCK_TIMERS_WRITE;
+-   cTimers* timers = Timers;
++    if (t->Recording()) {
++        t->Skip();
++        cRecordControls::Process(Timers, time(NULL));
++    }
++    
++    isyslog("deleting timer %s", *t->ToDescr());
++    Timers->Del(t, true);
+ #else
+-   cTimers* timers = &Timers;
++    cTimer *t = Timers.GetMatch(event);
++    if (!t)
++        return;
++    DeleteTimer(t);
+ #endif
++}
+ 
+-   cTimer* t = timers->GetTimer((cTimer*)timer);  // #TODO dirty cast
+-   
+-   if (t->Recording()) {
+-      t->Skip();
++void cRecManager::DeleteTimer(const cTimer *timer) {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+-      cRecordControls::Process(timers, time(NULL));
++    LOCK_TIMERS_WRITE;
++    cTimer *t = Timers->GetTimer(timer);
++    if (!t)
++        return;
++    
++    if (t->Recording()) {
++        t->Skip();
++        cRecordControls::Process(Timers, time(NULL));
++    }
++    
++    isyslog("deleting timer %s", *t->ToDescr());
++    Timers->Del(t, true);
+ #else
+-      cRecordControls::Process(time(NULL));
+-#endif
+-   }
++    if (timer->Recording()) {
++        timer->Skip();
++        cRecordControls::Process(time(NULL));
++    }
+     isyslog("timer %s deleted", *timer->ToDescr());
+-    timers->Del(t, true);
+-    timers->SetModified();
++    Timers.Del(timer, true);
++    Timers.SetModified();
++#endif
+ }
+ 
+ void cRecManager::DeleteRemoteTimer(const cEvent *event) {
+@@ -275,10 +296,10 @@
+         RefreshRemoteTimers();
+     } else {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+-   LOCK_TIMERS_WRITE;
+-   Timers->SetModified();
++        LOCK_TIMERS_WRITE;
++        Timers->SetModified();
+ #else
+-   Timers.SetModified();
++        Timers.SetModified();
+ #endif
+     }          
+ }
+@@ -287,6 +308,7 @@
+ bool cRecManager::IsRecorded(const cEvent *event) {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+    LOCK_TIMERS_WRITE;
++   Timers->SetExplicitModify();
+    cTimers* timers = Timers;
+ #else
+    cTimers* timers = &Timers;
+@@ -326,14 +348,13 @@
+         RefreshRemoteTimers();
+     } else {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+-       LOCK_TIMERS_WRITE;
+-       cTimers* timers = Timers;
++        LOCK_TIMERS_WRITE;
++        cTimers* timers = Timers;
++        timers->Add(seriesTimer);
+ #else
+-       cTimers* timers = &Timers;
++        Timers.Add(seriesTimer);
++        Timers.SetModified();
+ #endif
+-       
+-       timers->Add(seriesTimer);
+-       timers->SetModified();
+     }
+ }
+ 
+@@ -515,6 +536,7 @@
+     if (delTimers) {
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
+        LOCK_TIMERS_WRITE;
++       Timers->SetExplicitModify();
+        cTimers* timers = Timers;
+ #else
+        cTimers* timers = &Timers;

@@ -1,0 +1,15 @@
+Author: Saman (vdr-portal.de)
+Description: Show timers of other VDRs when using SVDRPPeering
+Origin: https://www.vdr-portal.de/forum/index.php?thread/131618-tvguideng-mit-svdrppeering/
+--- a/recmanager.c    2016-03-13 16:08:13.000000000 +0100
++++ b/recmanager.c    2018-02-23 17:56:16.000000000 +0100
+@@ -86,6 +86,9 @@
+    cTimer *timer = new cTimer(event);
+ 
+ #if defined (APIVERSNUM) && (APIVERSNUM >= 20301)
++    if (Setup.SVDRPPeering && *Setup.SVDRPDefaultHost)
++        ((cTimer*)timer)->SetRemote(Setup.SVDRPDefaultHost);
++
+     LOCK_TIMERS_WRITE;
+     cTimers* timers = Timers;
+ #else

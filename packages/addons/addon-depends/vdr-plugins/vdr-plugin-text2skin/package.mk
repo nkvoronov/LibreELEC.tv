@@ -41,8 +41,8 @@ pre_configure_target() {
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
-  #export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
-  #export CPLUS_INCLUDE_PATH=$VDR_DIR/include
+  export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
+  export CPLUS_INCLUDE_PATH=$VDR_DIR/include
 
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \

@@ -57,15 +57,15 @@ ENABLE_VDR_PLUGIN_SKINDESIGNER="yes"
 ENABLE_VDR_PLUGIN_SKINFLAT="yes"
 ENABLE_VDR_PLUGIN_SKINFLATPLUS="yes"
 ENABLE_VDR_PLUGIN_SKINNOPACITY="yes"
-ENABLE_VDR_PLUGIN_SLEEPTIMER="no"
-ENABLE_VDR_PLUGIN_SOFTHDDEVICE="no"
-ENABLE_VDR_PLUGIN_STREAMDEV="no"
-ENABLE_VDR_PLUGIN_SYSTEMINFO="no"
+ENABLE_VDR_PLUGIN_SLEEPTIMER="yes"
+ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
+ENABLE_VDR_PLUGIN_STREAMDEV="yes"
+ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
 ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
 ENABLE_VDR_PLUGIN_TVGUIDE="no"
-ENABLE_VDR_PLUGIN_TVGUIDENG="no"
-ENABLE_VDR_PLUGIN_TVSCRAPER="no"
-ENABLE_VDR_PLUGIN_VNSISERVER="no"
+ENABLE_VDR_PLUGIN_TVGUIDENG="yes"
+ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
+ENABLE_VDR_PLUGIN_VNSISERVER="yes"
 ENABLE_VDR_PLUGIN_WEATHERFORECAST="yes"
 ENABLE_VDR_PLUGIN_WIRBELSCAN="no"
 ENABLE_VDR_PLUGIN_XINELIBOUTPUT="no"
@@ -191,7 +191,7 @@ if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguide"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
+if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguideng"
 fi
 
@@ -203,7 +203,7 @@ if [ "$ENABLE_VDR_PLUGIN_VNSISERVER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-vnsiserver"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes ]; then
+if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-weatherforecast"
 fi
 
@@ -254,9 +254,9 @@ addon() {
   #locale
   for fmo in `ls $VDR_DIR/po/*.mo`;do
     fname=`basename $fmo .mo`
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES
-      cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/locale/$fname/LC_MESSAGES/vdr.mo
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
+      cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr.mo
   done
 
   #plugin channellists
@@ -625,22 +625,6 @@ addon() {
       cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
       cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
-
-    #plugin weatherforecast
-    if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes ]; then
-
-      VDR_PLUGIN_WEATHERFORECAST_DIR=$(get_build_dir vdr-plugin-weatherforecast)
-
-      #libs
-      cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-      #config
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
-        cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/templates $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
-
-      #locale
-      cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-    fi
   fi
 
   #plugin skinflat
@@ -658,7 +642,7 @@ addon() {
       cp -PR $VDR_PLUGIN_SKINFLAT_DIR/icons $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skinflat
 
     #locale
-	cp -PR $VDR_PLUGIN_SKINFLAT_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
+    cp -PR $VDR_PLUGIN_SKINFLAT_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin skinflatplus
@@ -679,7 +663,7 @@ addon() {
       cp -PR $VDR_PLUGIN_SKINFLATPLUS_DIR/widgets $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skinflatplus
 
     #locale
-	cp -PR $VDR_PLUGIN_SKINFLATPLUS_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
+    cp -PR $VDR_PLUGIN_SKINFLATPLUS_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin skinnopacity
@@ -699,7 +683,7 @@ addon() {
       cp -PR $VDR_PLUGIN_SKINNOPACITY_DIR/icons $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/skinnopacity
 
     #locale
-	cp -PR $VDR_PLUGIN_SKINNOPACITY_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
+    cp -PR $VDR_PLUGIN_SKINNOPACITY_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin sleeptimer
@@ -711,12 +695,7 @@ addon() {
     cp -PR $VDR_PLUGIN_SLEEPTIMER_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
 
     #locale
-    for fmo in `ls $VDR_PLUGIN_SLEEPTIMER_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr-sleeptimer.mo
-    done
+    cp -PR $VDR_PLUGIN_SLEEPTIMER_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin softhddevice
@@ -728,12 +707,7 @@ addon() {
     cp -PR $VDR_PLUGIN_SOFTHDDEVICE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
 
     #locale
-    for fmo in `ls $VDR_PLUGIN_SOFTHDDEVICE_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr-softhddevice.mo
-    done
+    cp -PR $VDR_PLUGIN_SOFTHDDEVICE_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
 
     #libs dep
     LIBXCB_DIR=$(get_build_dir libxcb)
@@ -811,25 +785,25 @@ addon() {
     cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
 
     #config
-    #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
-      #cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/scripts/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
+      cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/scripts/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/systeminfo
 
     #locale
-    for fmo in `ls $VDR_PLUGIN_SYSTEMINFO_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr-systeminfo.mo
-    done
+    cp -PR $VDR_PLUGIN_SYSTEMINFO_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin text2skin
   if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
 
     VDR_PLUGIN_TEXT2SKIN_DIR=$(get_build_dir vdr-plugin-text2skin)
+    VDR_PLUGIN_TEXT2SKIN_PKG=$(get_pkg_directory vdr-plugin-text2skin)
 
     #libs
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+
+    #config
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/themes
+      cp -PR $VDR_PLUGIN_TEXT2SKIN_PKG/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
 
     #locale
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -850,21 +824,20 @@ addon() {
       cp -PR $VDR_PLUGIN_TVGUIDE_DIR/icons $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
 
     #locale
-    for fmo in `ls $VDR_PLUGIN_TVGUIDE_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr-tvguide.mo
-    done
+    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin tvguideng
-  if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
+  if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
 
     VDR_PLUGIN_TVGUIDENG_DIR=$(get_build_dir vdr-plugin-tvguideng)
 
     #libs
     cp -PR $VDR_PLUGIN_TVGUIDENG_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+
+    #config
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguideng/templates
+      cp -PR $VDR_PLUGIN_TVGUIDENG_DIR/templates/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguideng/templates
 
     #locale
     cp -PR $VDR_PLUGIN_TVGUIDENG_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -883,12 +856,7 @@ addon() {
       cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/conf/* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvscraper
 
     #locale
-    for fmo in `ls $VDR_PLUGIN_TVSCRAPER_DIR/po/*.mo`;do
-      fname=`basename $fmo .mo`
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname
-      mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES
-        cp -p $fmo $ADDON_BUILD/$PKG_ADDON_ID/share/locale/$fname/LC_MESSAGES/vdr-tvscraper.mo
-    done
+    cp -PR $VDR_PLUGIN_TVSCRAPER_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin vnsiserver
@@ -902,6 +870,25 @@ addon() {
     #config
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/vnsiserver
       cp -PR $VDR_PLUGIN_VNSISERVER_DIR/vnsiserver/allowed_hosts.conf $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/vnsiserver
+
+    #locale
+    cp -PR $VDR_PLUGIN_VNSISERVER_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
+  fi
+  
+  #plugin weatherforecast
+  if [ "$ENABLE_VDR_PLUGIN_WEATHERFORECAST" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
+
+    VDR_PLUGIN_WEATHERFORECAST_DIR=$(get_build_dir vdr-plugin-weatherforecast)
+
+    #libs
+    cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
+
+    #config
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
+      cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/templates $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/weatherforecast
+
+    #locale
+    cp -PR $VDR_PLUGIN_WEATHERFORECAST_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin wirbelscan and wirbelscancontrol
