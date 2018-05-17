@@ -22,35 +22,38 @@
 
 . /etc/profile
 
-if [ -f /storage/.cache/services/vdr-front.run ]; then
-
-    systemctl stop vdr-front.service
-
-    mv /storage/.cache/services/vdr-front.run /storage/.cache/services/vdr-front.conf
-
-    case "$1" in
-        -p) # poweroff
-            poweroff -f
-        ;;
-        -r) # reboot
-            reboot
-        ;;
-        -s) # sleep
-            pm-suspend suspend
-        ;;
-        -e) # exit to XBMC
-
-            if [ -f /storage/.cache/services/vdr.conf ]; then
-                systemctl start vdr.service
-            fi
-
-            if [ -f /storage/.cache/services/tvheadend.conf ]; then
-                systemctl start tvheadend.service
-            fi
-
-            sleep 4
-
-            systemctl restart kodi.service
-        ;;
-    esac
+if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
+  . $CONFIG_CACHE/services/dvb.conf
 fi
+
+systemctl stop vdr-front.service
+
+for module in $DVB_REMOVE_MODULES ; do
+  rmmod $module
+done
+
+case "$1" in
+  -p) # poweroff
+    poweroff -f
+  ;;
+  -r) # reboot
+    reboot
+  ;;
+  -s) # sleep
+    pm-suspend suspend
+  ;;
+  -e) # exit to XBMC
+
+    if [ -f $CONFIG_CACHE/services/vdr.conf ]; then
+      systemctl start vdr.service
+    fi
+
+    if [ -f $CONFIG_CACHE/services/tvheadend.conf ]; then
+      systemctl start tvheadend.service
+    fi
+
+    sleep 4
+
+    systemctl restart kodi.service
+  ;;
+esac
