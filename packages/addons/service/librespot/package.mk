@@ -18,8 +18,8 @@
 ################################################################################
 
 PKG_NAME="librespot"
-PKG_VERSION="685fb4e"
-PKG_REV="110"
+PKG_VERSION="431be9e"
+PKG_REV="111"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/librespot-org/$PKG_NAME/"
