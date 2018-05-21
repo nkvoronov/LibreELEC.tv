@@ -17,11 +17,12 @@
 ################################################################################
 
 PKG_NAME="asio"
-PKG_VERSION="9229964"
+PKG_VERSION="1-12-0"
 PKG_ARCH="any"
 PKG_LICENSE="BSL"
 PKG_SITE="http://think-async.com/Asio"
-PKG_URL="https://github.com/chriskohlhoff/asio/archive/$PKG_VERSION.zip"
+PKG_URL="https://github.com/chriskohlhoff/asio/archive/asio-$PKG_VERSION.zip"
+PKG_SOURCE_DIR="asio-asio-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_LONGDESC="Asio C++ Library"
