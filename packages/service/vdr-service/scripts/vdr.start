@@ -337,7 +337,7 @@ if [ -f $CONF_FILE ]; then
   if [ "$VDR_TYPE" != "none" ]; then
     init_vdr_front_plugins
 
-	if [ "$VDR_FRONT" == "soft" ]; then
+    if [ "$VDR_FRONT" == "soft" ]; then
       init_vdr_soft
     elif [ "$VDR_FRONT" == "xine" ]; then
       init_vdr_xine
@@ -349,12 +349,9 @@ if [ -f $CONF_FILE ]; then
   # start userspace DVB driver/addon
   for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
     driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
-    logger -t VDR "### Loading userspace DVB driver: $driver_dvb_name ###"
-    # use ". " because of variable export
     . $driver_dvb
   done
 
-  # (wait for) at least 1 adapter (xbmc allows to set 0)
   [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
   [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
 
