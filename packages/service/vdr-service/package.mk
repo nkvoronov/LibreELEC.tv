@@ -247,6 +247,7 @@ post_install() {
     cp -PR $VDR_DIR/*.conf $INSTALL/usr/config/vdr
     echo '0.0.0.0/0' >> $INSTALL/usr/config/vdr/svdrphosts.conf
     cp -PR $VDR_PKG/themes/* $INSTALL/usr/config/vdr/themes
+    cp -PR $PKG_DIR/config/*.conf* $INSTALL/usr/config/vdr
 
   #locale
   cp -PR $VDR_DIR/locale/* $INSTALL/usr/share/locale
@@ -409,7 +410,7 @@ post_install() {
   fi
 
   #plugin iptv
-  if [ "$ENABLE_PLUGIN_VDR_IPTV" = yes ]; then
+  if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
 
     VDR_PLUGIN_IPTV_DIR=$(get_build_dir vdr-plugin-iptv)
 

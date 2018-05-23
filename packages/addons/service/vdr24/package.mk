@@ -250,7 +250,7 @@ addon() {
     cp -PR $VDR_DIR/*.conf $ADDON_BUILD/$PKG_ADDON_ID/config
     echo '0.0.0.0/0' >> $ADDON_BUILD/$PKG_ADDON_ID/config/svdrphosts.conf
     cp -PR $VDR_PKG/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-    #cp -PR $PKG_DIR/config/*.conf $ADDON_BUILD/$PKG_ADDON_ID/config
+    cp -PR $PKG_DIR/config/*.conf* $ADDON_BUILD/$PKG_ADDON_ID/config
 
   #locale
   cp -PR $VDR_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
@@ -422,7 +422,7 @@ addon() {
   fi
 
   #plugin iptv
-  if [ "$ENABLE_PLUGIN_VDR_IPTV" = yes ]; then
+  if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
 
     VDR_PLUGIN_IPTV_DIR=$(get_build_dir vdr-plugin-iptv)
 
