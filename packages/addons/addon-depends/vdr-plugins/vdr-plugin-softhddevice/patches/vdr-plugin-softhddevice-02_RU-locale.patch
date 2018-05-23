@@ -1416,7 +1416,7 @@ diff -Naur a/softhddevice.cpp b/softhddevice.cpp
 @@ -53,9 +53,9 @@
      /// Makefile extracts the version number for generating the file name
      /// for the distribution archive.
- static const char *const VERSION = "0.6.1rc1"
+ static const char *const VERSION = "0.7.0"
 -#ifdef GIT_REV
 -    "-GIT" GIT_REV
 -#endif

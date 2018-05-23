@@ -17,12 +17,14 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-softhddevice"
-PKG_VERSION="6dfa88a"
+PKG_VERSION="41a75cc"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-softhddevice"
-PKG_URL="https://github.com/vdr-projects/vdr-plugin-softhddevice.git"
+#PKG_URL="https://github.com/vdr-projects/vdr-plugin-softhddevice.git"
+PKG_URL="https://github.com/ua0lnj/vdr-plugin-softhddevice.git"
 PKG_TYPE="git"
+PKG_BRANCH="vdpau+vaapi"
 PKG_DEPENDS_TARGET="toolchain vdr ffmpeg libxcb xcb-proto xcb-util xcb-util-keysyms xcb-util-wm xcb-util-renderutil xcb-util-image"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="Plugin for VDR. A software and GPU emulated HD device."

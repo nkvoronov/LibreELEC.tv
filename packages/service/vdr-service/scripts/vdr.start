@@ -22,6 +22,7 @@
 
 . /etc/profile
 
+CONFIG_CACHE="/storage/.cache"
 VDR_TYPE="none"
 VDR_ARG=""
 CONF_FILE=$CONFIG_CACHE/services/vdr.conf
@@ -31,29 +32,6 @@ if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
 fi
 
 ################################################################################
-
-vdr_init() {
-
-  LOG_VDR="/var/log/vdr.log"
-  VDR_HOME="$HOME/.config/vdr"
-  VDR_PLUGIN_DIR="/usr/lib/vdr"
-  VDR_CACHE_DIR="$HOME/.cache/vdr"
-
-  if [ "$1" != "" ]; then
-    VDR_TYPE=$1
-    CONF_FILE=$CONFIG_CACHE/services/vdr-front.conf
-  fi
-
-  if [ ! -f "$VDR_CACHE_DIR" ]; then
-    mkdir -p $VDR_CACHE_DIR
-  fi
-
-  mkdir -p $VDR_HOME
-  mkdir -p "$VDR_VIDEO_DIR"
-
-  VDR_ARG="-g /tmp"
-
-}
 
 fix_config() {
 
@@ -324,11 +302,29 @@ init_vdr_xine() {
 
 ################################################################################
 
-vdr_init
+LOG_VDR="/var/log/vdr.log"
+VDR_HOME="$HOME/.config/vdr"
+VDR_PLUGIN_DIR="/usr/lib/vdr"
+VDR_CACHE_DIR="$HOME/.cache/vdr"
+
+if [ "$1" != "" ]; then
+  VDR_TYPE=$1
+  CONF_FILE=$CONFIG_CACHE/services/vdr-front.conf
+fi
+
+if [ ! -f "$VDR_CACHE_DIR" ]; then
+  mkdir -p $VDR_CACHE_DIR
+fi
+
+mkdir -p $VDR_HOME
+
+VDR_ARG="-g /tmp"
 
 if [ -f $CONF_FILE ]; then
 
   . $CONF_FILE
+
+  mkdir -p "$VDR_VIDEO_DIR"
 
   echo  "Starting vdr service ..."
 
