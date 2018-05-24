@@ -29,6 +29,10 @@ CONF_FILE=$CONFIG_CACHE/services/vdr.conf
 
 if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
   . $CONFIG_CACHE/services/dvb.conf
+
+  for module in $DVB_REMOVE_MODULES ; do
+    modprobe $module
+  done
 fi
 
 ################################################################################
@@ -50,6 +54,11 @@ MYDATA
 }
 
 stop_tv_backend() {
+
+  systemctl stop kodi.service
+  while systemctl is-active kodi.service &>/dev/null ; do
+    sleep 1
+  done
 
   if [ -f $CONFIG_CACHE/services/vdr.conf ]; then
     systemctl stop vdr.service

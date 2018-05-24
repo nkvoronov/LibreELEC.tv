@@ -24,16 +24,15 @@
 
 CONFIG_CACHE="/storage/.cache"
 
+systemctl stop vdr-front.service
+
 if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
   . $CONFIG_CACHE/services/dvb.conf
+
+  for module in $DVB_REMOVE_MODULES ; do
+    rmmod $module
+  done
 fi
-
-systemctl stop vdr-front.service
-#killall -9 vdr.bin
-
-for module in $DVB_REMOVE_MODULES ; do
-  rmmod $module
-done
 
 case "$1" in
   -p) # poweroff
@@ -57,6 +56,6 @@ case "$1" in
 
     sleep 4
 
-    systemctl restart kodi.service
+    systemctl start kodi.service
   ;;
 esac

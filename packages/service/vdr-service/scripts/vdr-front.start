@@ -24,22 +24,8 @@
 
 CONFIG_CACHE="/storage/.cache"
 
-if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
-  . $CONFIG_CACHE/services/dvb.conf
-fi
-
 if [ -f $CONFIG_CACHE/services/vdr-front.conf ]; then
 
-  for module in $DVB_REMOVE_MODULES ; do
-    modprobe $module
-  done
-
   systemctl start vdr-front.service
-
-  systemctl stop kodi.service
-
-  sleep 4
-
-  systemctl restart vdr-front.service
 
 fi
