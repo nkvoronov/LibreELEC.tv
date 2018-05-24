@@ -1,0 +1,4 @@
+Выход               : /storage/.kodi/addons/service.vdr24/bin/vdr-power -e 2>&1
+Сон                 : /storage/.kodi/addons/service.vdr24/bin/vdr-power -s 2>&1
+Перегрузка          : /storage/.kodi/addons/service.vdr24/bin/vdr-power -r 2>&1
+Выключить           : /storage/.kodi/addons/service.vdr24/bin/vdr-power -p 2>&1

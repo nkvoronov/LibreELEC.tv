@@ -30,22 +30,16 @@ fi
 
 if [ -f $CONFIG_CACHE/services/vdr-front.conf ]; then
 
-  systemctl stop kodi.service
-
-  if systemctl is-active vdr.service &>/dev/null ; then
-    systemctl stop vdr.service
-  fi
-
-  if systemctl is-active tvheadend.service &>/dev/null ; then
-    systemctl stop tvheadend.service
-  fi
-
-  sleep 4
-
   for module in $DVB_REMOVE_MODULES ; do
     modprobe $module
   done
 
   systemctl start vdr-front.service
+
+  systemctl stop kodi.service
+
+  sleep 4
+
+  systemctl restart vdr-front.service
 
 fi

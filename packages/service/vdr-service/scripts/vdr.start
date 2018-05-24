@@ -49,6 +49,24 @@ MYDATA
 
 }
 
+stop_tv_backend() {
+
+  if [ -f $CONFIG_CACHE/services/vdr.conf ]; then
+    systemctl stop vdr.service
+    while systemctl is-active vdr.service &>/dev/null ; do
+      sleep 1
+    done
+  fi
+
+  if [ -f $CONFIG_CACHE/services/tvheadend.conf ]; then
+    systemctl stop tvheadend.service
+    while systemctl is-active tvheadend.service &>/dev/null ; do
+      sleep 1
+    done
+  fi
+
+}
+
 init_vdr_plugins() {
 
   if [ "$VDR_DEBUG" == "true" ]; then
@@ -323,6 +341,10 @@ VDR_ARG="-g /tmp"
 if [ -f $CONF_FILE ]; then
 
   . $CONF_FILE
+
+  if [ "$VDR_TYPE" != "none" ]; then
+    stop_tv_backend
+  fi
 
   mkdir -p "$VDR_VIDEO_DIR"
 

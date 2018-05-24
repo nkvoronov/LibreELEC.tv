@@ -29,6 +29,7 @@ if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
 fi
 
 systemctl stop vdr-front.service
+#killall -9 vdr.bin
 
 for module in $DVB_REMOVE_MODULES ; do
   rmmod $module
