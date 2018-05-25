@@ -155,12 +155,6 @@ init_vdr_plugins() {
       VDR_ARG="$VDR_ARG -P 'live -i $VDR_LIVE_IP -p $VDR_LIVE_PORT'"
     fi
 
-    VDR_ENABLE_EEPG="false"
-
-    if [ "$VDR_ENABLE_EEPG" == "true" ]; then
-      VDR_ARG="$VDR_ARG -P eepg"
-    fi
-
     if [ "$VDR_ENABLE_EPGFIXER" == "true" ]; then
         VDR_ARG="$VDR_ARG -P epgfixer"
     fi
@@ -378,12 +372,6 @@ init_vdr_front_plugins() {
 
   if [ "$VDR_ENABLE_TEXT2SKIN" == "true" ]; then
     VDR_ARG="$VDR_ARG -P text2skin"
-  fi
-
-  VDR_ENABLE_TVGUIDE="false"
-
-  if [ "$VDR_ENABLE_TVGUIDE" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P tvguide"
   fi
 
   if [ "$VDR_ENABLE_TVGUIDENG" == "true" -a "$VDR_ENABLE_SKINDESIGNER" == "true" ]; then

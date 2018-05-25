@@ -23,15 +23,24 @@
 . /etc/profile
 
 CONFIG_CACHE="/storage/.cache"
+VDR_HOME="$HOME/.config/vdr"
 
 systemctl stop vdr-front.service
 
+# dvb
 if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
   . $CONFIG_CACHE/services/dvb.conf
 
   for module in $DVB_REMOVE_MODULES ; do
     rmmod $module
   done
+fi
+
+# post
+if [ -f $VDR_HOME/scripts.conf ]; then
+  . $VDR_HOME/scripts.conf
+
+  vdr_post
 fi
 
 case "$1" in

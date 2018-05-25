@@ -18,7 +18,7 @@
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.0"
-PKG_REV="150"
+PKG_REV="151"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -39,7 +39,6 @@ ENABLE_VDR_PLUGIN_DDCI2="yes"
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_DVBAPI="yes"
 ENABLE_VDR_PLUGIN_DYNAMITE="yes"
-ENABLE_VDR_PLUGIN_EEPG="no"
 ENABLE_VDR_PLUGIN_EPGFIXER="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
 ENABLE_VDR_PLUGIN_FAVORITES="yes"
@@ -63,7 +62,6 @@ ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
 ENABLE_VDR_PLUGIN_STREAMDEV="yes"
 ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
 ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
-ENABLE_VDR_PLUGIN_TVGUIDE="no"
 ENABLE_VDR_PLUGIN_TVGUIDENG="yes"
 ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
 ENABLE_VDR_PLUGIN_VNSISERVER="yes"
@@ -90,10 +88,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_DYNAMITE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dynamite"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_EEPG" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-eepg"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_EPGFIXER" = yes ]; then
@@ -186,10 +180,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-text2skin"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguide"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
@@ -311,18 +301,6 @@ addon() {
 
     #locale
     cp -PR $VDR_PLUGIN_DYNAMITE_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-  fi
-
-  #plugin eepg
-  if [ "$ENABLE_VDR_PLUGIN_EEPG" = yes ]; then
-
-    VDR_PLUGIN_EEPG_DIR=$(get_build_dir vdr-plugin-eepg)
-
-    #libs
-    cp -PR $VDR_PLUGIN_EEPG_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-    #locale
-    cp -PR $VDR_PLUGIN_EEPG_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #libs dep fo plugins
@@ -522,7 +500,7 @@ addon() {
   fi
 
   #libs dep fo plugins
-  if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes -o "$ENABLE_VDR_PLUGIN_SKINFLAT" = yes -o "$ENABLE_VDR_PLUGIN_SKINFLATPLUS" = yes -o "$ENABLE_VDR_PLUGIN_SKINNOPACITY" = yes -o "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes -o "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes -o "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
+  if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes -o "$ENABLE_VDR_PLUGIN_SKINFLAT" = yes -o "$ENABLE_VDR_PLUGIN_SKINFLATPLUS" = yes -o "$ENABLE_VDR_PLUGIN_SKINNOPACITY" = yes -o "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes -o "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
 
     IM_DIR=$(get_build_dir ImageMagick)
 
@@ -810,24 +788,6 @@ addon() {
 
     #locale
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-  fi
-
-  #plugin tvguide
-  if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
-
-    VDR_PLUGIN_TVGUIDE_DIR=$(get_build_dir vdr-plugin-tvguide)
-
-    #libs
-    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-    #config
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/themes/* $ADDON_BUILD/$PKG_ADDON_ID/config/themes
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
-      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/icons $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/tvguide
-
-    #locale
-    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #plugin tvguideng

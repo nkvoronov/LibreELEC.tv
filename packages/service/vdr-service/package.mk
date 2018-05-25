@@ -22,7 +22,7 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
 PKG_URL=""
-PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_DEPENDS_TARGET="toolchain vdr script.vdrfront.run"
 PKG_SECTION="service"
 PKG_SHORTDESC="vdr: A powerful DVB TV application"
 PKG_LONGDESC="This project describes how to build your own digital satellite receiver and video disk recorder. It is based mainly on the DVB-S digital satellite receiver card, which used to be available from Fujitsu Siemens and the driver software developed by the LinuxTV project."
@@ -35,7 +35,6 @@ ENABLE_VDR_PLUGIN_DDCI2="yes"
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_DVBAPI="yes"
 ENABLE_VDR_PLUGIN_DYNAMITE="yes"
-ENABLE_VDR_PLUGIN_EEPG="no"
 ENABLE_VDR_PLUGIN_EPGFIXER="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
 ENABLE_VDR_PLUGIN_FAVORITES="yes"
@@ -59,7 +58,6 @@ ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
 ENABLE_VDR_PLUGIN_STREAMDEV="yes"
 ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
 ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
-ENABLE_VDR_PLUGIN_TVGUIDE="no"
 ENABLE_VDR_PLUGIN_TVGUIDENG="yes"
 ENABLE_VDR_PLUGIN_TVSCRAPER="yes"
 ENABLE_VDR_PLUGIN_VNSISERVER="yes"
@@ -86,10 +84,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_DYNAMITE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dynamite"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_EEPG" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-eepg"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_EPGFIXER" = yes ]; then
@@ -182,10 +176,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-text2skin"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-tvguide"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes -a "$ENABLE_VDR_PLUGIN_SKINDESIGNER" = yes ]; then
@@ -308,18 +298,6 @@ post_install() {
 
     #locale
     cp -PR $VDR_PLUGIN_DYNAMITE_DIR/locale/* $INSTALL/usr/share/locale
-  fi
-
-  #plugin eepg
-  if [ "$ENABLE_VDR_PLUGIN_EEPG" = yes ]; then
-
-    VDR_PLUGIN_EEPG_DIR=$(get_build_dir vdr-plugin-eepg)
-
-    #libs
-    cp -PR $VDR_PLUGIN_EEPG_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-
-    #locale
-    cp -PR $VDR_PLUGIN_EEPG_DIR/locale/* $INSTALL/usr/share/locale
   fi
 
   #plugin epgfixer
@@ -700,24 +678,6 @@ post_install() {
 
     #locale
     cp -PR $VDR_PLUGIN_TEXT2SKIN_DIR/locale/* $INSTALL/usr/share/locale
-  fi
-
-  #plugin tvguide
-  if [ "$ENABLE_VDR_PLUGIN_TVGUIDE" = yes ]; then
-
-    VDR_PLUGIN_TVGUIDE_DIR=$(get_build_dir vdr-plugin-tvguide)
-
-    #libs
-    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/libvdr*.so.* $INSTALL/usr/lib/vdr
-
-    #config
-    mkdir -p $INSTALL/usr/config/vdr/themes
-      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/themes/* $INSTALL/usr/config/vdr/themes
-    mkdir -p $INSTALL/usr/config/vdr/plugins/tvguide
-      cp -PR $VDR_PLUGIN_TVGUIDE_DIR/icons $INSTALL/usr/config/vdr/plugins/tvguide
-
-    #locale
-    cp -PR $VDR_PLUGIN_TVGUIDE_DIR/locale/* $INSTALL/usr/share/locale
   fi
 
   #plugin tvguideng

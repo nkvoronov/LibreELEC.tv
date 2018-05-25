@@ -100,10 +100,6 @@ msgctxt "#2112"
 msgid "Enable plugin: xmltv2vdr"
 msgstr ""
 
-msgctxt "#2113"
-msgid "Enable plugin: extended EPG"
-msgstr ""
-
 msgctxt "#2114"
 msgid "Enable plugin: dummydevice"
 msgstr ""
@@ -214,10 +210,6 @@ msgstr ""
 
 msgctxt "#4113"
 msgid "Enable plugin: menuorg"
-msgstr ""
-
-msgctxt "#4114"
-msgid "Enable plugin: tvguide"
 msgstr ""
 
 msgctxt "#4115"

@@ -100,10 +100,6 @@ msgctxt "#2112"
 msgid "Enable plugin: xmltv2vdr"
 msgstr "Разрешить плагин: xmltv2vdr"
 
-msgctxt "#2113"
-msgid "Enable plugin: extended EPG"
-msgstr "Разрешить плагин: extended EPG"
-
 msgctxt "#2114"
 msgid "Enable plugin: dummydevice"
 msgstr "Разрешить плагин: dummydevice"
@@ -215,10 +211,6 @@ msgstr "Разрешить плагин: skindesigner"
 msgctxt "#4113"
 msgid "Enable plugin: menuorg"
 msgstr "Разрешить плагин: menuorg"
-
-msgctxt "#4114"
-msgid "Enable plugin: tvguide"
-msgstr "Разрешить плагин: tvguide"
 
 msgctxt "#4115"
 msgid "Enable plugin: tvscraper"

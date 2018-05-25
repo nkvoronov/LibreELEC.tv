@@ -28,7 +28,6 @@
 		<setting id="VDR_LIVE_PORT" type="number" label="2108" values="" visible="!eq(-2,false)"  default="8008"/>
 		<setting id="VDR_ENABLE_EPGSEARCH" type="bool" label="2111" default="false" />
 		<setting id="VDR_ENABLE_XMLTV2VDR" type="bool" label="2112" default="false" />
-		<setting id="VDR_ENABLE_EEPG" type="bool" label="2113" default="false" />
 		<setting id="VDR_ENABLE_DUMMYDEVICE" type="bool" label="2114" default="false" />
 		<setting id="VDR_ENABLE_SATIP" type="bool" label="2115" default="false" />
 		<setting id="VDR_ENABLE_EPGFIXER" type="bool" label="2116" default="false" />
@@ -52,7 +51,6 @@
 		<setting id="VDR_LIVE_PORT_F" type="number" label="2108" values="" visible="!eq(-2,false)"  default="8008"/>
 		<setting id="VDR_ENABLE_EPGSEARCH_F" type="bool" label="2111" default="false" />
 		<setting id="VDR_ENABLE_XMLTV2VDR_F" type="bool" label="2112" default="false" />
-		<setting id="VDR_ENABLE_EEPG_F" type="bool" label="2113" default="false" />
 		<setting id="VDR_ENABLE_DUMMYDEVICE_F" type="bool" label="2114" default="false" />
 		<setting id="VDR_ENABLE_SATIP_F" type="bool" label="2115" default="false" />
 		<setting id="VDR_ENABLE_EPGFIXER_F" type="bool" label="2116" default="false" />
@@ -76,7 +74,6 @@
 		<setting id="VDR_ENABLE_SKINFLATPLUS" type="bool" label="4111" default="false" />
 		<setting id="VDR_ENABLE_SKINDESIGNER" type="bool" label="4112" default="false" />
 		<setting id="VDR_ENABLE_MENUORG" type="bool" label="4113" default="false" />
-		<setting id="VDR_ENABLE_TVGUIDE" type="bool" label="4114" default="false" />
 		<setting id="VDR_ENABLE_TVSCRAPER" type="bool" label="4115" default="false" />
 		<setting id="VDR_ENABLE_WEATHERFORECAST" type="bool" label="4116" default="false" />
 		<setting id="VDR_FRONT" type="labelenum" label="4117" values="soft|xine" default="soft" />" />

@@ -14,7 +14,6 @@
     <setting id="VDR_ENABLE_LIVE" value="true" />
     <setting id="VDR_LIVE_IP" value="0.0.0.0"/>
     <setting id="VDR_LIVE_PORT" value="8008"/>
-    <setting id="VDR_ENABLE_EEPG" value="false" />
     <setting id="VDR_ENABLE_EPGSEARCH" value="true" />
     <setting id="VDR_ENABLE_XMLTV2VDR" value="false" />
     <setting id="VDR_ENABLE_DUMMYDEVICE" value="false" />
@@ -33,7 +32,6 @@
     <setting id="VDR_ENABLE_LIVE_F" value="true" />
     <setting id="VDR_LIVE_IP_F" value="0.0.0.0"/>
     <setting id="VDR_LIVE_PORT_F" value="8008"/>
-    <setting id="VDR_ENABLE_EEPG_F" value="false" />
     <setting id="VDR_ENABLE_EPGSEARCH_F" value="true" />
     <setting id="VDR_ENABLE_XMLTV2VDR_F" value="false" />
     <setting id="VDR_ENABLE_DUMMYDEVICE_F" value="false" />
@@ -57,7 +55,6 @@
     <setting id="VDR_ENABLE_SKINFLATPLUS" value="false" />
     <setting id="VDR_ENABLE_SKINDESIGNER" value="false" />
     <setting id="VDR_ENABLE_MENUORG" value="false" />
-    <setting id="VDR_ENABLE_TVGUIDE" value="false" />
     <setting id="VDR_ENABLE_TVSCRAPER" value="false" />
     <setting id="VDR_ENABLE_WEATHERFORECAST" value="false" />
     <setting id="VDR_FRONT" value="soft" />" />

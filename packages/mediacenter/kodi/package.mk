@@ -356,6 +356,7 @@ post_makeinstall_target() {
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" $ADDON_MANIFEST
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" $ADDON_MANIFEST
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.vdrfront.run" $ADDON_MANIFEST
   fi
   if [ "$PROJECT" = "Slice" -o "$PROJECT" = "Slice3" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.slice" $ADDON_MANIFEST

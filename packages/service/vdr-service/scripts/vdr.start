@@ -27,14 +27,6 @@ VDR_TYPE="none"
 VDR_ARG=""
 CONF_FILE=$CONFIG_CACHE/services/vdr.conf
 
-if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
-  . $CONFIG_CACHE/services/dvb.conf
-
-  for module in $DVB_REMOVE_MODULES ; do
-    modprobe $module
-  done
-fi
-
 ################################################################################
 
 fix_config() {
@@ -142,12 +134,6 @@ init_vdr_plugins() {
     VDR_ARG="$VDR_ARG -P 'live -i $VDR_LIVE_IP -p $VDR_LIVE_PORT'"
   fi
 
-  VDR_ENABLE_EEPG="false"
-
-  if [ "$VDR_ENABLE_EEPG" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P eepg"
-  fi
-
   if [ "$VDR_ENABLE_EPGFIXER" == "true" ]; then
     VDR_ARG="$VDR_ARG -P epgfixer"
   fi
@@ -209,7 +195,7 @@ init_vdr_plugins() {
 
   # vnsi last
   if [ "$VDR_TYPE" == "none" ]; then
-    VDR_ARG="$VDR_ARG -P $PVR_PLUGIN"
+    VDR_ARG="$VDR_ARG -P $VDR_PVR_PLUGIN"
   fi
 }
 
@@ -259,7 +245,7 @@ init_vdr_front_plugins() {
     VDR_ARG="$VDR_ARG -P skinnopacity"
   fi
 
-  if [ "$VDR_ENABLE_SKINFLAT_PLUS" == "true" ]; then
+  if [ "$VDR_ENABLE_SKINFLATPLUS" == "true" ]; then
     VDR_ARG="$VDR_ARG -P skinflatplus"
   fi
 
@@ -274,12 +260,6 @@ init_vdr_front_plugins() {
 
   if [ "$VDR_ENABLE_TEXT2SKIN" == "true" ]; then
     VDR_ARG="$VDR_ARG -P text2skin"
-  fi
-
-  VDR_ENABLE_TVGUIDE="false"
-
-  if [ "$VDR_ENABLE_TVGUIDE" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P tvguide"
   fi
 
   if [ "$VDR_ENABLE_TVGUIDENG" == "true" -a "$VDR_ENABLE_SKINDESIGNER" == "true" ]; then
@@ -345,11 +325,26 @@ fi
 
 mkdir -p $VDR_HOME
 
+# pre
+if [ -f $VDR_HOME/scripts.conf ]; then
+  . $VDR_HOME/scripts.conf
+
+  vdr_pre
+fi
+
 VDR_ARG="-g /tmp"
 
 if [ -f $CONF_FILE ]; then
 
   . $CONF_FILE
+
+  if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
+    . $CONFIG_CACHE/services/dvb.conf
+
+    for module in $DVB_REMOVE_MODULES ; do
+      modprobe $module
+    done
+  fi
 
   if [ "$VDR_TYPE" != "none" ]; then
     stop_tv_backend
@@ -371,6 +366,10 @@ if [ -f $CONF_FILE ]; then
     else
       exit
     fi
+  fi
+
+  if [ "$VDR_OTHER" != "" ]; then
+    VDR_ARG="$VDR_ARG $VDR_OTHER"
   fi
 
   # start userspace DVB driver/addon

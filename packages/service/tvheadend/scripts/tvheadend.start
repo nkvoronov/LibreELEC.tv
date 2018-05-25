@@ -25,59 +25,65 @@
 
 . /etc/profile
 
+CONFIG_CACHE="/storage/.cache"
 LOG_TVHEADEND="/var/log/tvheadend.log"
 TVHEADEND_HOME="$HOME/.config/tvheadend"
 
-if [ -f /storage/.cache/services/tvheadend.conf ]; then
-    . /storage/.cache/services/tvheadend.conf
+if [ -f $CONFIG_CACHE/services/tvheadend.conf ]; then
 
-    if [ -f /storage/.cache/services/dvb.conf ]; then
-       . /storage/.cache/services/dvb.conf
-    fi
+  . $CONFIG_CACHE/services/tvheadend.conf
 
-    echo  "Starting HTS TVHeadend server ..."
-    
-    if [ "$TVHEADEND_ADAPTERS" != "" ]; then
-       TVHEADEND_ARG="-a $TVHEADEND_ADAPTERS"
-    else
-       TVHEADEND_ARG=""
-    fi
+  if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
+    . $CONFIG_CACHE/services/dvb.conf
 
-    if [ "$TVHEADEND_BACKUP" != "true" ] ; then
-        TVHEADEND_ARG="$TVHEADEND_ARG -B"
-    fi
-
-    if [ "$TVHEADEND_DEBUG" == "true" ]; then
-       TVHEADEND_ARG="$TVHEADEND_ARG -C -s -u root -g video -c $TVHEADEND_HOME"
-    else
-       TVHEADEND_ARG="$TVHEADEND_ARG -C -u root -g video -c $TVHEADEND_HOME"
-    fi
-
-    # start userspace DVB driver/addon
-    for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
-        driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
-        logger -t VDR "### Loading userspace DVB driver: $driver_dvb_name ###"
-        # use ". " because of variable export
-        . $driver_dvb
+    for module in $DVB_REMOVE_MODULES ; do
+      modprobe $module
     done
+  fi
 
-    # (wait for) at least 1 adapter (xbmc allows to set 0)
-    [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
-    [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+  echo  "Starting HTS TVHeadend server ..."
 
-    if [ "$DVB_WAIT_FOR_FEINIT" == "true" ] ; then
-        while [ true ] ; do
-            if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ] ; then
-                break
-            fi
-            sleep 1
-        done
-    fi
+  if [ "$TVHEADEND_ADAPTERS" != "" ]; then
+    TVHEADEND_ARG="-a $TVHEADEND_ADAPTERS"
+  else
+    TVHEADEND_ARG=""
+  fi
 
-    if [ "$TVHEADEND_PRELOAD_CAPMT_CA" == "true" ] ; then
-	logger -t Tvheadend "### Preloading capmt_ca.so library ###"
-	LD_PRELOAD="usr/lib/capmt_ca.so $LD_PRELOAD" exec tvheadend $TVHEADEND_ARG &>$LOG_TVHEADEND
-    else
-	exec tvheadend $TVHEADEND_ARG &>$LOG_TVHEADEND
-    fi
+  if [ "$TVHEADEND_BACKUP" != "true" ] ; then
+    TVHEADEND_ARG="$TVHEADEND_ARG -B"
+  fi
+
+  if [ "$TVHEADEND_DEBUG" == "true" ]; then
+    TVHEADEND_ARG="$TVHEADEND_ARG -C -s -u root -g video -c $TVHEADEND_HOME"
+  else
+    TVHEADEND_ARG="$TVHEADEND_ARG -C -u root -g video -c $TVHEADEND_HOME"
+  fi
+
+  if [ "$TVHEADEND_OTHER" != "" ]; then
+    TVHEADEND_ARG="$TVHEADEND_ARG $TVHEADEND_OTHER"
+  fi
+
+  # start userspace DVB driver/addon
+  for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
+    driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
+    . $driver_dvb
+  done
+
+  [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
+  [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+
+  if [ "$DVB_WAIT_FOR_FEINIT" == "true" ] ; then
+    while [ true ] ; do
+      if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ] ; then
+        break
+      fi
+      sleep 1
+    done
+  fi
+
+  if [ "$TVHEADEND_PRELOAD_CAPMT_CA" == "true" ] ; then
+    LD_PRELOAD="usr/lib/capmt_ca.so $LD_PRELOAD" exec tvheadend $TVHEADEND_ARG &>$LOG_TVHEADEND
+  else
+    exec tvheadend $TVHEADEND_ARG &>$LOG_TVHEADEND
+  fi
 fi

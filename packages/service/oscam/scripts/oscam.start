@@ -25,6 +25,8 @@
 # ensure that environment is sane
 . /etc/profile
 
+CONFIG_CACHE="/storage/.cache"
+
 # Set debug level mask used for logging:
 # 0 - No extra debugging (default).
 # 1 - Detailed error messages.
@@ -40,49 +42,51 @@
 # 1024 - Client ECM logging.
 # 65535 - Debug all.
 
-if [ -f /storage/.cache/services/oscam.conf ]; then
-    . /storage/.cache/services/oscam.conf
+if [ -f $CONFIG_CACHE/services/oscam.conf ]; then
 
-    if [ -f /storage/.cache/services/dvb.conf ]; then
-    . /storage/.cache/services/dvb.conf
-    fi
+  . $CONFIG_CACHE/services/oscam.conf
 
-    if [ "$OSCAM_DEBUG" == "" ] ; then
-        DEBUG_LEVEL="1"
-    fi
+  if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
+    . $CONFIG_CACHE/services/dvb.conf
 
-    OSCAM_LOG="/var/log/oscam"
-    OSCAM_HOME="$HOME/.config/oscam"
-
-    mkdir -p $OSCAM_HOME
-    OSCAM_ARG="-d $OSCAM_DEBUG -r 2 -u -c $OSCAM_HOME"
-
-    echo "Starting OScam server ..."
-
-    # start userspace DVB driver/addon
-    for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
-        driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
-        logger -t VDR "### Loading userspace DVB driver: $driver_dvb_name ###"
-        # use ". " because of variable export
-        . $driver_dvb
+    for module in $DVB_REMOVE_MODULES ; do
+      modprobe $module
     done
+  fi
 
-    # (wait for) at least 1 adapter (xbmc allows to set 0)
-    [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
-    [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+  if [ "$OSCAM_DEBUG" == "" ] ; then
+    DEBUG_LEVEL="1"
+  fi
 
-    if [ "$DVB_WAIT_FOR_FEINIT" == "true" ] ; then
-        while [ true ] ; do
-            if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ] ; then
-                break
-            fi
-            sleep 1
-        done
-    fi
+  OSCAM_LOG="/var/log/oscam"
+  OSCAM_HOME="$HOME/.config/oscam"
 
-    mkdir -p $OSCAM_LOG
-    mkdir -p $OSCAM_LOG/cw
-    mkdir -p $OSCAM_LOG/emm
-    exec oscam $OSCAM_ARG > /dev/null 2>&1
+  mkdir -p $OSCAM_HOME
+  OSCAM_ARG="-d $OSCAM_DEBUG -r 2 -u -c $OSCAM_HOME"
+
+  echo "Starting OScam server ..."
+
+  # start userspace DVB driver/addon
+  for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
+    driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
+    . $driver_dvb
+  done
+
+  [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
+  [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+
+  if [ "$DVB_WAIT_FOR_FEINIT" == "true" ] ; then
+    while [ true ] ; do
+      if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ] ; then
+        break
+      fi
+      sleep 1
+    done
+  fi
+
+  mkdir -p $OSCAM_LOG
+  mkdir -p $OSCAM_LOG/cw
+  mkdir -p $OSCAM_LOG/emm
+  exec oscam $OSCAM_ARG > /dev/null 2>&1
 
 fi
