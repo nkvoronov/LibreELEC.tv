@@ -31,8 +31,6 @@ PKG_LONGDESC="TvGuideNG is a highly customizable 2D EPG viewer plugin for Skinde
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-IMAGELIB=imagemagick
-
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
   export PKG_CONFIG_PATH=$VDR_DIR:$PKG_CONFIG_PATH
@@ -41,7 +39,6 @@ make_target() {
   make \
     LIBDIR="." \
     LOCDIR="./locale" \
-    IMAGELIB=$IMAGELIB \
     all install-i18n
 }
 
