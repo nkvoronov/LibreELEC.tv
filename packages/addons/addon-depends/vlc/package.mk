@@ -92,8 +92,6 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/storage/.kodi/addons/tools.vlc3 \
               --enable-fribidi \
               --enable-harfbuzz \
               --enable-fontconfig \
-              --enable-svg \
-              --enable-svgdec \
               --disable-aa \
               --disable-caca \
               --enable-pulse \
@@ -127,6 +125,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/storage/.kodi/addons/tools.vlc3 \
               --enable-vlc"
 
 pre_configure_target() {
+
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
   export LUAC=$SYSROOT_PREFIX/usr/bin/luac
   export LUA_LIBS="-L$SYSROOT_PREFIX/usr/lib -llua -lm"

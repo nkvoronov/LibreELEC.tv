@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="oscam12"
-PKG_VERSION="11420"
-PKG_REV="130"
+PKG_VERSION="11424"
+PKG_REV="131"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
