@@ -1,6 +1,6 @@
 diff -Naur a/config.sh b/config.sh
---- a/config.sh	2018-01-10 19:34:19.000000000 +0200
-+++ b/config.sh	2018-01-10 19:57:02.629604000 +0200
+--- a/config.sh	2018-06-28 16:26:37.000000000 +0300
++++ b/config.sh	2018-06-28 16:56:00.936517999 +0300
 @@ -689,12 +689,7 @@
  		break
  	;;
@@ -8,7 +8,7 @@ diff -Naur a/config.sh b/config.sh
 -		revision=`(svnversion -n . 2>/dev/null || printf 0) | sed 's/.*://; s/[^0-9]*$//; s/^$/0/'`
 -		if [ "$revision" = "0" ] 
 -		then
--			which git > /dev/null 2>&1 && revision=`git log -1 --pretty=%B | grep git-svn-id | sed -n -e 's/^.*trunk@\([0-9]*\) .*$/\1/p'`
+-			which git > /dev/null 2>&1 && revision=`git log -10 --pretty=%B | grep git-svn-id | head -n 1 | sed -n -e 's/^.*trunk@\([0-9]*\) .*$/\1/p'`
 -		fi
 -		echo $revision
 +		echo "$OSCAM_VERSION"
