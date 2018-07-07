@@ -20,7 +20,7 @@
 if [ -f /storage/.cache/services/lcdd.conf ]; then
   . /storage/.cache/services/lcdd.conf
 
-  if [ "$LCD_DRIVER" == "none" ]; then
+  if [ -z "$LCD_DRIVER" -o "$LCD_DRIVER" == "none" ]; then
     exit 0
   fi
 
@@ -28,5 +28,5 @@ if [ -f /storage/.cache/services/lcdd.conf ]; then
   if [ -f /storage/.config/LCDd.conf ]; then
     LCDCONF=/storage/.config/LCDd.conf
   fi
-  exec /usr/sbin/LCDd -f -c $LCDCONF -d $LCD_DRIVER
+  LCDd -f -c $LCDCONF -d $LCD_DRIVER
 fi
