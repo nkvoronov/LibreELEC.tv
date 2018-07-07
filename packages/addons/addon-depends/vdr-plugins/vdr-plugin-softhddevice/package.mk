@@ -17,11 +17,10 @@
 ################################################################################
 
 PKG_NAME="vdr-plugin-softhddevice"
-PKG_VERSION="6dfa88a"
+PKG_VERSION="b95cc87"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-softhddevice"
-#PKG_URL="https://github.com/vdr-projects/vdr-plugin-softhddevice.git"
 PKG_URL="https://github.com/ua0lnj/vdr-plugin-softhddevice.git"
 PKG_TYPE="git"
 PKG_BRANCH="vdpau+vaapi"
