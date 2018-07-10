@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="shairport-sync"
-PKG_VERSION="3.1.7"
+PKG_VERSION="3.2"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="https://github.com/mikebrady/shairport-sync"
