@@ -1,6 +1,7 @@
 ################################################################################
 #      This file is part of LibreELEC - https://libreelec.tv
 #      Copyright (C) 2018-present Team LibreELEC
+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -16,34 +17,20 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="snapserver"
-PKG_VERSION="0.15.0"
-PKG_REV="102"
+PKG_NAME="alsa-plugins"
+PKG_VERSION="1.1.6"
 PKG_ARCH="any"
-PKG_LICENSE="GPLv3"
-PKG_DEPENDS_TARGET="toolchain shairport-sync snapcast"
-PKG_SECTION="service"
-PKG_SHORTDESC="Snapserver: Synchronous multi-room audio server"
-PKG_LONGDESC="Snapclient ($PKG_VERSION) is a Snapcast server. Snapcast is a multi-room client-server audio system, where all clients are time synchronized with the server to play perfectly synced audioplays."
-PKG_AUTORECONF="no"
+PKG_LICENSE="GPL"
+PKG_SITE="http://www.alsa-project.org/"
+PKG_URL="ftp://ftp.alsa-project.org/pub/plugins/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_DEPENDS_TARGET="toolchain alsa-lib"
+PKG_LONGDESC="Alsa plugins"
 
-PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="Snapserver"
-PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="service.librespot:0.0.0"
-PKG_MAINTAINER="Anton Voyl (awiouy)"
+if [ "$PULSEAUDIO_SUPPORT" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET pulseaudio"
+  SUBDIR_PULSEAUDIO="pulse"
+fi
 
-make_target() {
-  :
-}
-
-makeinstall_target() {
-  :
-}
-
-addon() {
-  mkdir -p "$ADDON_BUILD/$PKG_ADDON_ID/bin"
-  cp "$(get_build_dir shairport-sync)/.$TARGET_NAME/shairport-sync" \
-     "$(get_build_dir snapcast)/server/snapserver" \
-     "$ADDON_BUILD/$PKG_ADDON_ID/bin"
-}
+PKG_CONFIGURE_OPTS_TARGET="--with-plugindir=/usr/lib/alsa"
+PKG_MAKE_OPTS_TARGET="SUBDIRS=$SUBDIR_PULSEAUDIO"
+PKG_MAKEINSTALL_OPTS_TARGET="SUBDIRS=$SUBDIR_PULSEAUDIO"

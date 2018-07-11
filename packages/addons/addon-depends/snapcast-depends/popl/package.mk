@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="popl"
-PKG_VERSION="1.0.0"
+PKG_VERSION="1.2.0"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/badaix/popl"
