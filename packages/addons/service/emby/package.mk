@@ -17,8 +17,8 @@
 ################################################################################
 
 PKG_NAME="emby"
-PKG_VERSION="3.4.1.0"
-PKG_REV="120"
+PKG_VERSION="3.5.0.0"
+PKG_REV="122"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"

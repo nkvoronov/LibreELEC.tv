@@ -18,12 +18,12 @@
 ################################################################################
 
 PKG_NAME="docker"
-PKG_VERSION="18.05.0"
+PKG_VERSION="18.06.0"
 PKG_REV="123"
 PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
-PKG_URL="https://download.docker.com/linux/static/edge/x86_64/${PKG_NAME}-${PKG_VERSION}-ce.tgz"
+PKG_URL="https://download.docker.com/linux/static/stable/x86_64/${PKG_NAME}-${PKG_VERSION}-ce.tgz"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain systemd"
 PKG_SECTION="service/system"
