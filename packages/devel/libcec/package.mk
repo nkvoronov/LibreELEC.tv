@@ -1,53 +1,31 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libcec"
-PKG_VERSION="2fc92b5"
+PKG_VERSION="8adc786"
+PKG_SHA256="742efcc24e8949d822effdd06cfebfd0d62babab826be33c1686c7bfea52f455"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://libcec.pulse-eight.com/"
-PKG_URL="https://github.com/Pulse-Eight/libcec.git"
-PKG_TYPE="git"
-[ "$PROJECT" = "imx6" ] && PKG_PATCH_DIRS="${LINUX#imx6-}"
-PKG_DEPENDS_TARGET="toolchain systemd lockdev p8-platform"
+PKG_URL="https://github.com/Pulse-Eight/libcec/archive/$PKG_VERSION.tar.gz"
+PKG_DEPENDS_TARGET="toolchain systemd lockdev p8-platform swig:host"
 PKG_SECTION="system"
 PKG_SHORTDESC="libCEC is an open-source dual licensed library designed for communicating with the Pulse-Eight USB - CEC Adaptor"
 PKG_LONGDESC="libCEC is an open-source dual licensed library designed for communicating with the Pulse-Eight USB - CEC Adaptor."
 
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
 PKG_CMAKE_OPTS_TARGET="-DBUILD_SHARED_LIBS=1 \
                        -DCMAKE_INSTALL_LIBDIR:STRING=lib \
-                       -DCMAKE_INSTALL_LIBDIR_NOARCH:STRING=lib"
+                       -DCMAKE_INSTALL_LIBDIR_NOARCH:STRING=lib \
+                       -DHAVE_IMX_API=0 \
+                       -DHAVE_GIT_BIN=0"
 
-if [ "$KODIPLAYER_DRIVER" = "bcm2835-firmware" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bcm2835-firmware"
-fi
-
-if [ "$KODIPLAYER_DRIVER" = "libfslvpuwrap" ]; then
-  PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DHAVE_IMX_API=1"
-else
-  PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DHAVE_IMX_API=0"
+if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bcm2835-driver"
 fi
 
 if [ "$KODIPLAYER_DRIVER" = "libamcodec" ]; then
-  if [ "$TARGET_ARCH" = "aarch64" ]; then
+  if [ "$TARGET_KERNEL_ARCH" = "arm64" ]; then
     PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DHAVE_AOCEC_API=1"
   else
     PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DHAVE_AMLOGIC_API=1"
@@ -56,8 +34,13 @@ else
   PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DHAVE_AOCEC_API=0 -DHAVE_AMLOGIC_API=0"
 fi
 
+if [ "$CEC_FRAMEWORK_SUPPORT" = "yes" ]; then
+  PKG_PATCH_DIRS="cec-framework"
+  PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DHAVE_LINUX_API=1"
+fi
+
 pre_configure_target() {
-  if [ "$KODIPLAYER_DRIVER" = "bcm2835-firmware" ]; then
+  if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
     export CXXFLAGS="$CXXFLAGS \
       -I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads/ \
       -I$SYSROOT_PREFIX/usr/include/interface/vmcs_host/linux"
@@ -68,7 +51,8 @@ pre_configure_target() {
 }
 
 post_makeinstall_target() {
-  if [ -d $INSTALL/usr/lib/python2.7/dist-packages ]; then 
-    mv $INSTALL/usr/lib/python2.7/dist-packages $INSTALL/usr/lib/python2.7/site-packages
+  PYTHON_DIR=$INSTALL/usr/lib/$PKG_PYTHON_VERSION
+  if [ -d $PYTHON_DIR/dist-packages ]; then
+    mv $PYTHON_DIR/dist-packages $PYTHON_DIR/site-packages
   fi
 }

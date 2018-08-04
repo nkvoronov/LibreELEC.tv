@@ -1,20 +1,5 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="opengl-meson"
 PKG_ARCH="arm aarch64"
@@ -26,23 +11,22 @@ case $MESON_FAMILY in
     ;;
   6)
     PKG_VERSION="6-r5p1-01rel0-armhf"
+    PKG_SHA256="21a8376668c84bf1b9e64a917fcfa1cf74689035fed8e4630833c9cde28d40c1"
     ;;
   gxbb)
-    PKG_VERSION="gxbb-r5p1-01rel0"
-    ;;
+    if [ "$TARGET_ARCH" = "arm" ]; then
+      PKG_VERSION="8-r5p1-01rel0-armhf"
+    else
+      PKG_VERSION="gxbb-r5p1-01rel0"
+    fi
+;;
 esac
 PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="graphics"
 PKG_SHORTDESC="opengl-meson: OpenGL ES pre-compiled libraries for Mali GPUs found in Amlogic Meson SoCs"
 PKG_LONGDESC="opengl-meson: OpenGL ES pre-compiled libraries for Mali GPUs found in Amlogic Meson SoCs. The libraries could be found in a Linux buildroot released by Amlogic at http://openlinux.amlogic.com:8000/download/ARM/filesystem/. See the opengl package."
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
-make_target() {
- : # nothing todo
-}
+PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
   mkdir -p $SYSROOT_PREFIX/usr/include

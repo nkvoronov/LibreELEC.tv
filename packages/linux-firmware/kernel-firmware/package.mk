@@ -1,51 +1,30 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="kernel-firmware"
-PKG_VERSION="df40d15"
+PKG_VERSION="7518922"
+PKG_SHA256="5881bca940037eb33af6c5010eb3584173cca04cb8ed8eedeec6feea259c72e9"
 PKG_ARCH="any"
 PKG_LICENSE="other"
 PKG_SITE="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/"
 PKG_URL="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="$PKG_VERSION"
+PKG_NEED_UNPACK="${PROJECT_DIR}/${PROJECT}/packages/${PKG_NAME} ${PROJECT_DIR}/${PROJECT}/devices/${DEVICE}/packages/${PKG_NAME}"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="linux-firmware"
 PKG_SHORTDESC="kernel-firmware: kernel related firmware"
 PKG_LONGDESC="kernel-firmware: kernel related firmware"
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
-configure_target() {
-  :
-}
-
-make_target() {
-  :
-}
+PKG_TOOLCHAIN="manual"
 
 # Install additional miscellaneous drivers
 makeinstall_target() {
-  FW_TARGET_DIR=$INSTALL/usr/lib/firmware
+  FW_TARGET_DIR=$INSTALL/$(get_full_firmware_dir)
 
-  FW_LISTS="${PKG_DIR}/firmwares/any.dat ${PKG_DIR}/firmwares/${TARGET_ARCH}.dat"
-  FW_LISTS+=" ${PROJECT_DIR}/${PROJECT}/${PKG_NAME}/firmwares/any.dat"
-  [ -n "${DEVICE}" ] && FW_LISTS+=" ${PROJECT_DIR}/${PROJECT}/devices/${DEVICE}/${PKG_NAME}/firmwares/any.dat"
+  if find_file_path firmwares/kernel-firmware.dat; then
+    FW_LISTS="${FOUND_PATH}"
+  else
+    FW_LISTS="${PKG_DIR}/firmwares/any.dat ${PKG_DIR}/firmwares/${TARGET_ARCH}.dat"
+  fi
 
   for fwlist in ${FW_LISTS}; do
     [ -f ${fwlist} ] || continue
@@ -68,7 +47,10 @@ makeinstall_target() {
     done < ${fwlist}
   done
 
-  # The following file is installed by brcmfmac_sdio-firmware-rpi
+  # The following files are RPi specific and installed by brcmfmac_sdio-firmware-rpi instead
   rm -fr $FW_TARGET_DIR/brcm/brcmfmac43430*-sdio.bin
   rm -fr $FW_TARGET_DIR/brcm/brcmfmac43455*-sdio.bin
+
+  # Cleanup - which may be project or device specific
+  find_file_path scripts/cleanup.sh && ${FOUND_PATH} ${FW_TARGET_DIR} || true
 }

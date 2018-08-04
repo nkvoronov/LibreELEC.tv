@@ -1,23 +1,9 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="tntnet"
 PKG_VERSION="2.2.1"
+PKG_SHA256="c83170d08ef04c5868051e1c28c74b9562fe71e9e8263828e755ad5bd3547521"
 PKG_ARCH="any"
 PKG_LICENSE="GPL-2"
 PKG_SITE="http://www.tntnet.org/"
@@ -27,9 +13,6 @@ PKG_DEPENDS_TARGET="toolchain tntnet:host libtool cxxtools"
 PKG_SECTION="python/web"
 PKG_SHORTDESC="tntnet: C++ Dynamite for the Web"
 PKG_LONGDESC="Tntnet is a modular, multithreaded, high performance webapplicationserver for C++"
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
 
 PKG_CONFIGURE_OPTS_HOST="--disable-unittest \
                          --with-server=no \

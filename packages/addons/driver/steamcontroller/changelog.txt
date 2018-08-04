@@ -1,6 +1,6 @@
-101
+8.1.101
 - Update to 60499dc
 - Fix cpu usage due to high polling rate
 
-100
+8.0.100
 - Initial add-on

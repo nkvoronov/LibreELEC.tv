@@ -1,3 +1,14 @@
+115
+- update to 4.2.6-7
+
+114
+- update to 4.2.5-31
+- addded manual Scan-Table update
+
+113
+- update to 4.2.4-23
+- full transcoding support
+
 112
 - update to 4.2.3-20
 - changed name

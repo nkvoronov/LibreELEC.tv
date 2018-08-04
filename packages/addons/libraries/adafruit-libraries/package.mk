@@ -1,34 +1,18 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="adafruit-libraries"
 PKG_VERSION=""
-PKG_REV="101"
+PKG_REV="106"
 PKG_ARCH="any"
-PKG_ADDON_PROJECTS="RPi RPi2"
+PKG_ADDON_PROJECTS="RPi"
 PKG_LICENSE="MIT"
 PKG_SITE=""
 PKG_URL=""
-PKG_DEPENDS_TARGET="Adafruit_Python_ADS1x15 Adafruit_Python_ADXL345 Adafruit_Python_BMP Adafruit_Python_CharLCD Adafruit_Python_DHT Adafruit_Python_GPIO Adafruit_Python_LED_Backpack Adafruit_Python_LSM303 Adafruit_Python_MCP3008 Adafruit_Python_MCP4725 Adafruit_Python_PCA9685 Adafruit_Python_PureIO Adafruit_Python_SI1145 Adafruit_Python_TCS34725 Adafruit_Python_VCNL40xx Adafruit_Python_WS2801"
+PKG_DEPENDS_TARGET="Adafruit_Python_ADS1x15 Adafruit_Python_ADXL345 Adafruit_Python_BMP Adafruit_Python_CharLCD Adafruit_Python_DHT Adafruit_Python_GPIO Adafruit_Python_LED_Backpack Adafruit_Python_LSM303 Adafruit_Python_MCP3008 Adafruit_Python_MCP4725 Adafruit_Python_PCA9685 Adafruit_Python_PureIO Adafruit_Python_SI1145 Adafruit_Python_SSD1306 Adafruit_Python_TCS34725 Adafruit_Python_VCNL40xx Adafruit_Python_WS2801"
 PKG_SECTION="virtual"
 PKG_SHORTDESC="A bundle of libraries from Adafruit"
-PKG_LONGDESC="This bundle currently includes Adafruit_ADS1x15, Adafruit_ADXL345, Adafruit_BMP, Adafruit_CharLCD, Adafruit_DHT, Adafruit_GPIO, Adafruit_LED_Backpack, Adafruit_LSM303, Adafruit_MCP3008, Adafruit_MCP4725, Adafruit_PCA9685, Adafruit_PureIO, Adafruit_SI1145 Adafruit_TCS34725, Adafruit_VCNL40xx and Adafruit_WS2801 python modules"
-PKG_AUTORECONF="no"
+PKG_LONGDESC="This is a bundle of various Adafruit Python libraries. Included are: ADS1x15, ADXL345, BMP, CharLCD, DHT, GPIO, LED_Backpack, LSM303, MCP3008, MCP4725, PCA9685, PureIO, SI1145, SSD1306, TCS34725, VCNL40xx, WS2801"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Adafruit Libraries"
@@ -50,6 +34,7 @@ addon() {
     cp -PR $(get_build_dir Adafruit_Python_PCA9685)/Adafruit_PCA9685           $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -PR $(get_build_dir Adafruit_Python_PureIO)/Adafruit_PureIO             $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -PR $(get_build_dir Adafruit_Python_SI1145)/SI1145                      $ADDON_BUILD/$PKG_ADDON_ID/lib/
+    cp -PR $(get_build_dir Adafruit_Python_SSD1306)/Adafruit_SSD1306           $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -PR $(get_build_dir Adafruit_Python_TCS34725)/Adafruit_TCS34725         $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -PR $(get_build_dir Adafruit_Python_VCNL40xx)/Adafruit_VCNL40xx         $ADDON_BUILD/$PKG_ADDON_ID/lib/
     cp -PR $(get_build_dir Adafruit_Python_WS2801)/Adafruit_WS2801             $ADDON_BUILD/$PKG_ADDON_ID/lib/

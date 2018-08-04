@@ -1,0 +1,38 @@
+commit 698041d707425226afd2398d0761abb6e7db1215
+Author: Lukas Rusak <lorusak@gmail.com>
+Date:   Sun Feb 5 18:51:55 2017 -0800
+
+    fix cross compile
+
+diff --git a/Makefile b/Makefile
+index 888f368..2b31967 100644
+--- a/Makefile
++++ b/Makefile
+@@ -132,15 +132,15 @@ ifneq (,$(findstring unix,$(platform)))
+       LIBS += -lGL
+    endif
+    LDFLAGS +=  $(fpic) $(SHARED)
+-   REALCC ?= gcc
+-   NATIVECC ?= g++
++   REALCC ?= $(CC)
++   NATIVECC ?= $(CXX)
+    NATIVECFLAGS ?= -std=gnu99
+    BASELIBS += -lpthread
+    CC ?= g++
+    AR ?= @ar
+    LD ?= g++
+    LIBS += -lstdc++ -lpthread -ldl
+-   ifeq ($(firstword $(filter x86_64,$(UNAME))),x86_64)
++   ifeq ($(firstword $(filter x86_64,$(ARCH))),x86_64)
+       PTR64 = 1
+    endif
+    ifeq ($(firstword $(filter amd64,$(UNAME))),amd64)
+@@ -485,7 +485,7 @@ endif
+ # utilities
+ MD = -mkdir$(EXE_EXT)
+ RM = @rm -f
+-OBJDUMP = @objdump
++OBJDUMP ?= @objdump
+ PYTHON ?= @python2
+ 
+ #-------------------------------------------------

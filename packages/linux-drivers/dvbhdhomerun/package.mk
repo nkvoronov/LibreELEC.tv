@@ -1,23 +1,9 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="dvbhdhomerun"
 PKG_VERSION="20130704"
+PKG_SHA256="1af817b85b163f3c6c3a9a07410f54875e74513c197709638b4922165e894f54"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://sourceforge.net/projects/dvbhdhomerun/"
@@ -29,9 +15,7 @@ PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_SECTION="driver/dvb"
 PKG_SHORTDESC="A linux DVB driver for the HDHomeRun TV tuner (http://www.silicondust.com)."
 PKG_LONGDESC="A linux DVB driver for the HDHomeRun TV tuner (http://www.silicondust.com)."
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_IS_KERNEL_PKG="yes"
 
 PKG_CMAKE_SCRIPT="userhdhomerun/CMakeLists.txt"
 
@@ -56,8 +40,8 @@ pre_configure_target() {
 
 makeinstall_target() {
   cd $PKG_BUILD
-    mkdir -p $INSTALL/usr/lib/modules/$(get_module_dir)/hdhomerun
-      cp kernel/*.ko $INSTALL/usr/lib/modules/$(get_module_dir)/hdhomerun/
+    mkdir -p $INSTALL/$(get_full_module_dir)/hdhomerun
+      cp kernel/*.ko $INSTALL/$(get_full_module_dir)/hdhomerun/
 
     mkdir -p $INSTALL/usr/bin
       cp -PR .$TARGET_NAME/userhdhomerun $INSTALL/usr/bin

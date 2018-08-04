@@ -1,51 +1,40 @@
 #!/bin/sh
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
 
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
+
+KODI_ROOT=$HOME/.kodi
+
+BOOT_STATE="$(cat $HOME/.config/boot.status 2>/dev/null)"
 
 # hack: make addon-bins executable
 # done in kodi on addon install. but just in case..
-chmod +x /storage/.kodi/addons/*/bin/*
-
-# hack: update RSSnews.xml in userdata
-if [ -f /storage/.kodi/userdata/RssFeeds.xml ]; then
-  sed -e "s,http://libreelec.tv/news?format=feed&type=rss,https://feeds.libreelec.tv/news,g" \
-      -i /storage/.kodi/userdata/RssFeeds.xml
-fi
+chmod +x $KODI_ROOT/addons/*/bin/* 2>/dev/null
 
 # setup Kodi sources
-if [ ! -f $HOME/.kodi/userdata/sources.xml ]; then
+if [ ! -f $KODI_ROOT/userdata/sources.xml ]; then
   if [ -f /usr/share/kodi/config/sources.xml ]; then
-    cp /usr/share/kodi/config/sources.xml $HOME/.kodi/userdata
+    cp /usr/share/kodi/config/sources.xml $KODI_ROOT/userdata
   fi
 fi
 
 # common setup guisettings
-if [ ! -f $HOME/.kodi/userdata/guisettings.xml ] ; then
+if [ ! -f $KODI_ROOT/userdata/guisettings.xml ] ; then
   if [ -f /usr/share/kodi/config/guisettings.xml ]; then
-    cp /usr/share/kodi/config/guisettings.xml $HOME/.kodi/userdata
+    cp /usr/share/kodi/config/guisettings.xml $KODI_ROOT/userdata
+  fi
+  if [ "$BOOT_STATE" = "SAFE" ]; then
+    [ ! -f $KODI_ROOT/userdata/guisettings.xml ] && echo '<settings version="2"></settings>' > $KODI_ROOT/userdata/guisettings.xml
+    xmlstarlet ed --omit-decl --inplace -s settings -t elem -n setting -v "maroon" -i settings/setting -t attr -n id -v lookandfeel.skincolors $KODI_ROOT/userdata/guisettings.xml
   fi
 fi
 
-KODI_ARGS="--lircdev /run/lirc/lircd"
+KODI_ARGS=""
 
 echo "KODI_ARGS=\"$KODI_ARGS\"" > /run/libreelec/kodi.conf
 
 if [ "$(uname -m)" = "x86_64" -o "$(uname -m)" = "aarch64" ]; then
   echo "MALLOC_MMAP_THRESHOLD_=524288" >> /run/libreelec/kodi.conf
+else #arm
+  echo "MALLOC_MMAP_THRESHOLD_=8192" >> /run/libreelec/kodi.conf
 fi

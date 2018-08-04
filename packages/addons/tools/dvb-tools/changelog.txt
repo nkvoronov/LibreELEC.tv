@@ -1,10 +1,15 @@
+104
+- remove dvb-fe-tool, it's already included in the image
+- updated MuMuDVB to a09373d
+- update dvblast to 77cfaa8
+
 103
 - added blindscan-s2
 - added dvbsnoop
 - added szap-s2
 - added tune-s2
 - updated dvb-fe-tool to 1.12.5
-- updated MuMuDVB to b3c9ae7
+- updated MuMuDVB to 596f7db
 
 102
 - added MuMuDVB

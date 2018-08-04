@@ -1,22 +1,7 @@
 #!/bin/bash
 
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 . config/options $1
 
@@ -26,7 +11,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ ! -f $PKG_DIR/package.mk ]; then
-  printf "${boldred}$1: no package.mk file found${endcolor}\n"
+  printf "$(print_color CLR_ERROR "$1: no package.mk file found")\n"
   exit 1
 fi
 
@@ -36,17 +21,14 @@ STAMP=$PKG_BUILD/.libreelec-unpack
 
 mkdir -p $BUILD
 
-STAMP_DEPENDS="$PKG_DIR $PKG_NEED_UNPACK $PROJECT_DIR/$PROJECT/patches/$PKG_NAME"
-[ -n "$DEVICE" ] && STAMP_DEPENDS="$STAMP_DEPENDS $PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME"
-
 # Perform a wildcard match on the package to ensure old versions are cleaned too
-PKG_DEEPMD5=
+PKG_DEEPHASH=
 for i in $BUILD/$1-*; do
   if [ -d $i -a -f "$i/.libreelec-unpack" ] ; then
     . "$i/.libreelec-unpack"
     if [ "$STAMP_PKG_NAME" = "$1" ]; then
-      [ -z "${PKG_DEEPMD5}" ] && PKG_DEEPMD5=$(find $STAMP_DEPENDS -exec md5sum {} \; 2>/dev/null | sort | md5sum | cut -d" " -f1)
-      if [ ! "$PKG_DEEPMD5" = "$STAMP_PKG_DEEPMD5" ] ; then
+      [ -z "${PKG_DEEPHASH}" ] && PKG_DEEPHASH=$(calculate_stamp)
+      if [ ! "$PKG_DEEPHASH" = "$STAMP_PKG_DEEPHASH" ] ; then
         $SCRIPTS/clean $1
       fi
     fi
@@ -61,7 +43,7 @@ fi
 [ -f "$STAMP" ] && exit 0
 
 if [ -d "$SOURCES/$1" -o -d "$PKG_DIR/sources" ]; then
-  printf "%${BUILD_INDENT}c ${boldcyan}UNPACK${endcolor}   $1\n" ' '>&$SILENT_OUT
+  printf "%${BUILD_INDENT}c $(print_color CLR_UNPACK "UNPACK")   $1\n" ' '>&$SILENT_OUT
   export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
 
   # unset functions
@@ -106,81 +88,86 @@ if [ -d "$SOURCES/$1" -o -d "$PKG_DIR/sources" ]; then
     post_unpack
   fi
 
-  if [ "$(type -t pre_patch)" = "function" ]; then
-    pre_patch
-  fi
+  if [ "${PKG_SKIP_PATCHES}" != "yes" ]; then
+    if [ "$(type -t pre_patch)" = "function" ]; then
+      pre_patch
+    fi
 
-  if [ "$TARGET_ARCH" = "x86_64" ]; then
-    PATCH_ARCH="x86"
-  else
-    PATCH_ARCH="$TARGET_ARCH"
-  fi
-
-  PATCH_DIRS_PKG=""
-  PATCH_DIRS_PRJ=""
-  if [ -n "$PKG_PATCH_DIRS" ]; then
-    for patch_dir in $PKG_PATCH_DIRS; do
-      [ -d $PKG_DIR/patches/$patch_dir ] && PATCH_DIRS_PKG="$PATCH_DIRS_PKG $PKG_DIR/patches/$patch_dir/*.patch"
-      [ -d $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$patch_dir ] && PATCH_DIRS_PRJ="$PATCH_DIRS_PRJ $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$patch_dir/*.patch"
-    done
-  fi
-
-  for i in $PKG_DIR/patches/$PKG_NAME-*.patch \
-           $PKG_DIR/patches/$PATCH_ARCH/$PKG_NAME-*.patch \
-           $PATCH_DIRS_PKG \
-           $PKG_DIR/patches/$PKG_VERSION/*.patch \
-           $PKG_DIR/patches/$PKG_VERSION/$PATCH_ARCH/*.patch \
-           $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/*.patch \
-           $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PATCH_ARCH/*.patch \
-           $PATCH_DIRS_PRJ \
-           $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PKG_VERSION/*.patch \
-           $PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME/*.patch; do
-
-    thisdir="$(dirname "$i")"
-
-    if [ "$thisdir" = "$PKG_DIR/patches" ]; then
-      PATCH_DESC="(common)"
-    elif [ "$thisdir" = "$PKG_DIR/patches/$PATCH_ARCH" ]; then
-      PATCH_DESC="(common - $PATCH_ARCH)"
-    elif [ "$thisdir" = "$PKG_DIR/patches/$PKG_VERSION" ]; then
-      PATCH_DESC="(common - $PKG_VERSION)"
-    elif [ "$thisdir" = "$PKG_DIR/patches/$PKG_VERSION/$PATCH_ARCH" ]; then
-      PATCH_DESC="($PKG_VERSION - $PATCH_ARCH)"
-    elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME" ]; then
-      PATCH_DESC="(project)"
-    elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PATCH_ARCH" ]; then
-      PATCH_DESC="(project - $PATCH_ARCH)"
-    elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PKG_VERSION" ]; then
-      PATCH_DESC="(project - $PKG_VERSION)"
-    elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME" ]; then
-      PATCH_DESC="(device)"
+    if [ "$TARGET_ARCH" = "x86_64" ]; then
+      PATCH_ARCH="x86"
     else
-      if [[ "$thisdir" =~ ^$PKG_DIR/.* ]]; then
-        PATCH_DESC="(common - $(basename "$thisdir"))"
-      elif [[ "$thisdir" =~ ^$PROJECT_DIR/.* ]]; then
-        PATCH_DESC="(project - $(basename "$thisdir"))"
-      else
-        PATCH_DESC="(unknown - $(basename "$thisdir"))"
-      fi
+      PATCH_ARCH="${TARGET_PATCH_ARCH:-$TARGET_ARCH}"
     fi
 
-    if [ -f "$i" ]; then
-      printf "%${BUILD_INDENT}c ${boldgreen}APPLY PATCH${endcolor} ${boldwhite}${PATCH_DESC}${endcolor}   ${i#$ROOT/}\n" ' '>&$SILENT_OUT
-      if [ -n "$(grep -E '^GIT binary patch$' $i)" ]; then
-        cat $i | git apply --directory=`echo "$PKG_BUILD" | cut -f1 -d\ ` -p1 --verbose --whitespace=nowarn --unsafe-paths >&$VERBOSE_OUT
-      else
-        cat $i | patch -d `echo "$PKG_BUILD" | cut -f1 -d\ ` -p1 >&$VERBOSE_OUT
-      fi
+    PATCH_DIRS_PKG=""
+    PATCH_DIRS_PRJ=""
+    if [ -n "$PKG_PATCH_DIRS" ]; then
+      for patch_dir in $PKG_PATCH_DIRS; do
+        [ -d $PKG_DIR/patches/$patch_dir ] && PATCH_DIRS_PKG="$PATCH_DIRS_PKG $PKG_DIR/patches/$patch_dir/*.patch"
+        [ -d $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$patch_dir ] && PATCH_DIRS_PRJ="$PATCH_DIRS_PRJ $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$patch_dir/*.patch"
+        [ -d $PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME/$patch_dir ] && PATCH_DIRS_PRJ="$PATCH_DIRS_PRJ $PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME/$patch_dir/*.patch"
+      done
     fi
-  done
 
-  if [ "$(type -t post_patch)" = "function" ]; then
-    post_patch
+    for i in $PKG_DIR/patches/*.patch \
+             $PKG_DIR/patches/$PATCH_ARCH/*.patch \
+             $PATCH_DIRS_PKG \
+             $PKG_DIR/patches/$PKG_VERSION/*.patch \
+             $PKG_DIR/patches/$PKG_VERSION/$PATCH_ARCH/*.patch \
+             $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/*.patch \
+             $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PATCH_ARCH/*.patch \
+             $PATCH_DIRS_PRJ \
+             $PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PKG_VERSION/*.patch \
+             $PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME/*.patch; do
+
+      thisdir="$(dirname "$i")"
+
+      if [ "$thisdir" = "$PKG_DIR/patches" ]; then
+        PATCH_DESC="(common)"
+      elif [ "$thisdir" = "$PKG_DIR/patches/$PATCH_ARCH" ]; then
+        PATCH_DESC="(common - $PATCH_ARCH)"
+      elif [ "$thisdir" = "$PKG_DIR/patches/$PKG_VERSION" ]; then
+        PATCH_DESC="(common - $PKG_VERSION)"
+      elif [ "$thisdir" = "$PKG_DIR/patches/$PKG_VERSION/$PATCH_ARCH" ]; then
+        PATCH_DESC="($PKG_VERSION - $PATCH_ARCH)"
+      elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME" ]; then
+        PATCH_DESC="(project)"
+      elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PATCH_ARCH" ]; then
+        PATCH_DESC="(project - $PATCH_ARCH)"
+      elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/patches/$PKG_NAME/$PKG_VERSION" ]; then
+        PATCH_DESC="(project - $PKG_VERSION)"
+      elif [ "$thisdir" = "$PROJECT_DIR/$PROJECT/devices/$DEVICE/patches/$PKG_NAME" ]; then
+        PATCH_DESC="(device)"
+      else
+        if [[ "$thisdir" =~ ^$PKG_DIR/.* ]]; then
+          PATCH_DESC="(common - $(basename "$thisdir"))"
+        elif [[ "$thisdir" =~ ^$PROJECT_DIR/.*/devices/.* ]]; then
+          PATCH_DESC="(device - $(basename "$thisdir"))"
+        elif [[ "$thisdir" =~ ^$PROJECT_DIR/.* ]]; then
+          PATCH_DESC="(project - $(basename "$thisdir"))"
+        else
+          PATCH_DESC="(unknown - $(basename "$thisdir"))"
+        fi
+      fi
+
+      if [ -f "$i" ]; then
+        printf "%${BUILD_INDENT}c $(print_color CLR_APPLY_PATCH "APPLY PATCH") $(print_color CLR_PATCH_DESC "${PATCH_DESC}")   ${i#$ROOT/}\n" ' '>&$SILENT_OUT
+        if grep -qE '^GIT binary patch$|^rename from|^rename to' $i; then
+          cat $i | git apply --directory=`echo "$PKG_BUILD" | cut -f1 -d\ ` -p1 --verbose --whitespace=nowarn --unsafe-paths >&$VERBOSE_OUT
+        else
+          cat $i | patch -d `echo "$PKG_BUILD" | cut -f1 -d\ ` -p1 >&$VERBOSE_OUT
+        fi
+      fi
+    done
+
+    if [ "$(type -t post_patch)" = "function" ]; then
+      post_patch
+    fi
   fi
 
-  if [ ! "$PKG_NAME" == "configtools" ] ; then
+  if [ ! "$PKG_NAME" = "configtools" ] ; then
     for config in `find $PKG_BUILD -name config.guess | sed 's/config.guess//'`; do
-      printf "%${BUILD_INDENT}c ${boldyellow}FIXCONFIG${endcolor}   $config\n" ' '
+      printf "%${BUILD_INDENT}c $(print_color CLR_FIXCONFIG "FIXCONFIG")   $config\n" ' '
 
       [ -f "$config/config.guess" -a -f $TOOLCHAIN/configtools/config.guess ] && \
         cp -f $TOOLCHAIN/configtools/config.guess $config
@@ -195,8 +182,8 @@ if [ "$PKG_SECTION" != "virtual" ]; then
 
   rm -f $STAMPS/$1/build_*
 
-  PKG_DEEPMD5=$(find $STAMP_DEPENDS -exec md5sum {} \; 2>/dev/null | sort | md5sum | cut -d" " -f1)
-  for i in PKG_NAME PKG_DEEPMD5; do
+  PKG_DEEPHASH=$(calculate_stamp)
+  for i in PKG_NAME PKG_DEEPHASH; do
     echo "STAMP_$i=\"${!i}\"" >> $STAMP
   done
 fi

@@ -1,20 +1,6 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
 import xbmc
 import xbmcvfs
 import xbmcaddon
@@ -45,10 +31,12 @@ def writeconfig():
     location = __addon__.getSetting("LOCATION")
     contact = __addon__.getSetting("CONTACT")
     snmpversion = __addon__.getSetting("SNMPVERSION")
-    
+    cputemp = __addon__.getSetting("CPUTEMP")
+    gputemp = __addon__.getSetting("GPUTEMP")
+
     if xbmcvfs.exists(persistent):
-            xbmcvfs.delete(persistent)
-    
+        xbmcvfs.delete(persistent)
+
     file = xbmcvfs.File(config, 'w')
     file.write('com2sec local default {}\n'.format(community))
     file.write('group localgroup {} local\n'.format(snmpversion))
@@ -57,13 +45,20 @@ def writeconfig():
     file.write('syslocation {}\n'.format(location))
     file.write('syscontact {}\n'.format(contact))
     file.write('dontLogTCPWrappersConnects yes\n')
-    file.close()
-    
+
+    if cputemp == "true":
+        file.write('extend cputemp "/usr/bin/cputemp"\n')
+
+    if gputemp == "true":
+        file.write('extend gputemp "/usr/bin/gputemp"\n')
+
     if snmpversion == "v3":
+        file.write('includeFile ../../snmpd.conf\n')
         snmppassword = __addon__.getSetting("SNMPPASSWORD")
         snmpuser = __addon__.getSetting("SNMPUSER")
-        system("net-snmp-config --create-snmpv3-user -a {0} {1}".format(snmppassword,snmpuser))
-    
+        system("net-snmp-config --create-snmpv3-user -a MD5 -A {0} {1}".format(snmppassword,snmpuser))
+
+    file.close()
     system("systemctl start service.net-snmp.service")
 
 

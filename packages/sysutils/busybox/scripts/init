@@ -1,24 +1,10 @@
 #!/bin/sh
 
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
-#      Copyright (C) 2010-2011 Roman Weber (roman@openelec.tv)
-#      Copyright (C) 2012 Yann Cézard (eesprit@free.fr)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2010-2011 Roman Weber (roman@openelec.tv)
+# Copyright (C) 2012 Yann Cézard (eesprit@free.fr)
+# Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
   # create directories
   /usr/bin/busybox mkdir -p /dev
@@ -45,7 +31,7 @@
 
   UPDATE_KERNEL="KERNEL"
   UPDATE_SYSTEM="SYSTEM"
-  IMAGE_KERNEL="KERNEL"
+  IMAGE_KERNEL="@KERNEL_NAME@"
   IMAGE_SYSTEM="SYSTEM"
 
   BOOT_STEP="start"
@@ -53,14 +39,17 @@
   RUN_FSCK="yes"
   RUN_FSCK_DISKS=""
   SYSLINUX_DEFAULT=""
+  GRUB_DEFAULT=""
 
   NBD_DEVS="0"
   FLASH_FREE_MIN="5"
 
-  INSTALLED_MEMORY=`cat /proc/meminfo | grep 'MemTotal:' | awk '{print $2}'`
+  INSTALLED_MEMORY=$(cat /proc/meminfo | grep 'MemTotal:' | awk '{print $2}')
   SYSTEM_TORAM_LIMIT=1024000
 
   LIVE="no"
+
+  BREAK_TRIPPED="no"
 
   # Get a serial number if present (eg. RPi) otherwise use MAC address from eth0
   MACHINE_UID="$(cat /proc/cpuinfo | awk '/^Serial/{s=$3; gsub ("^0*","",s); print s}')"
@@ -88,9 +77,11 @@
     case $arg in
       BOOT_IMAGE=*)
         IMAGE_KERNEL="${arg#*=}"
+        [ "${IMAGE_KERNEL:0:1}" = "/" ] && IMAGE_KERNEL="${IMAGE_KERNEL:1}"
         ;;
       SYSTEM_IMAGE=*)
         IMAGE_SYSTEM="${arg#*=}"
+        [ "${IMAGE_SYSTEM:0:1}" = "/" ] && IMAGE_SYSTEM="${IMAGE_SYSTEM:1}"
         ;;
       boot=*)
         boot="${arg#*=}"
@@ -144,12 +135,22 @@
       noram)
         SYSTEM_TORAM=no
         ;;
+      ramlimit=*)
+        SYSTEM_TORAM_LIMIT="${arg#*=}"
+        ;;
       live)
         LIVE=yes
         SYSLINUX_DEFAULT="live"
         ;;
       portable)
         SYSLINUX_DEFAULT="run"
+        ;;
+      grub_live)
+        LIVE=yes
+        GRUB_DEFAULT="Live"
+        ;;
+      grub_portable)
+        GRUB_DEFAULT="Run"
         ;;
       overlay)
         OVERLAY=yes
@@ -182,11 +183,11 @@
   }
 
   debug_shell() {
-    echo "### Starting debugging shell... type  exit  to quit ###"
+    echo "### Starting debugging shell for boot step: $BOOT_STEP... type  exit  to quit ###"
 
     showcursor
 
-    sh </dev/tty1 >/dev/tty1 2>&1
+    setsid cttyhack sh
   }
 
   error() {
@@ -200,12 +201,17 @@
   }
 
   break_after() {
-    # Start debug shell after boot step $1
-    case $BREAK in
-      all|*$1*)
-        debug_shell
-        ;;
-    esac
+    # Start debug shell after boot step $1, and all subsequent steps
+    if [ $BREAK_TRIPPED == yes ]; then
+      debug_shell
+    else
+      case $BREAK in
+        all|*$1*)
+          BREAK_TRIPPED=yes
+          debug_shell
+          ;;
+      esac
+    fi
   }
 
   # Mount handlers
@@ -305,7 +311,7 @@
 
     mount_common "$NBD_DEV" "$2" "$3" "$4"
 
-    NBD_DEVS=$(( ${NBD_DEVS} + 1 ))
+    NBD_DEVS=$(( NBD_DEVS + 1 ))
   }
 
   mount_nfs() {
@@ -461,7 +467,7 @@
     mount_part "/flash/$IMAGE_SYSTEM" "/sysroot" "ro,loop"
 
     if [ -f $SYSTEM_ROOT/usr/share/bootloader/update.sh ]; then
-      StartProgress spinner "Updating Bootloader... "
+      StartProgress spinner "Updating Boot Files... "
         result="$(sh $SYSTEM_ROOT/usr/share/bootloader/update.sh 2>&1)"
         sync
         StopProgress "done"
@@ -655,6 +661,10 @@
     wakeonlan
 
     mount_part "$boot" "/flash" "ro,noatime"
+
+    if [ -f /flash/post-flash.sh ] ; then
+      . /flash/post-flash.sh
+    fi
   }
 
   mount_storage() {
@@ -670,7 +680,7 @@
 
     if [ -n "$disk" ]; then
       if [ -n "$OVERLAY" ]; then
-        OVERLAY_DIR=`cat /sys/class/net/eth0/address | tr -d :`
+        OVERLAY_DIR=$(cat /sys/class/net/eth0/address | tr -d :)
 
         mount_part "$disk" "/storage" "rw,noatime"
         mkdir -p /storage/$OVERLAY_DIR
@@ -685,7 +695,12 @@
           disk="$target/$OVERLAY_DIR,$options"
         fi
       fi
-      mount_part "$disk" "/storage" "rw,noatime"
+
+      if [ -f /flash/mount-storage.sh ] ; then
+        . /flash/mount-storage.sh
+      else
+        mount_part "$disk" "/storage" "rw,noatime"
+      fi
     else
       # /storage should always be writable
       mount -t tmpfs none /storage
@@ -693,7 +708,7 @@
   }
 
   # Make last bootloader label (installer, live, run etc.) as the new default
-  update_syslinux() {
+  update_bootmenu() {
     local crnt_default
 
     if [ -n "$SYSLINUX_DEFAULT" -a -f /flash/syslinux.cfg ]; then
@@ -704,7 +719,21 @@
 
           mount -o remount,rw /flash
           sed -i "s/^DEFAULT .*/DEFAULT $SYSLINUX_DEFAULT/" /flash/syslinux.cfg
-          [ -f /flash/EFI/BOOT/syslinux.cfg ] && cp /flash/syslinux.cfg /flash/EFI/BOOT/syslinux.cfg
+          rm -f /flash/EFI/BOOT/syslinux.cfg
+          mount -o remount,ro /flash
+        fi
+      fi
+    fi
+
+    if [ -n "$GRUB_DEFAULT" -a -f /flash/EFI/BOOT/grub.cfg ]; then
+      if grep -q "^menuentry \"$GRUB_DEFAULT\"" /flash/EFI/BOOT/grub.cfg; then
+        crnt_default="$(awk '/^set default/ {print substr($2,9,19)}' /flash/EFI/BOOT/grub.cfg)"
+        if [ ! "$crnt_default" = "\"$GRUB_DEFAULT\"" ]; then
+          progress "Updating /flash/EFI/BOOT/grub.cfg [$crnt_default -> \"$GRUB_DEFAULT\"]"
+
+          mount -o remount,rw /flash
+          sed -i "s/^set default=.*/set default=\"$GRUB_DEFAULT\"/" /flash/EFI/BOOT/grub.cfg
+          rm -f /flash/grub.cfg
           mount -o remount,ro /flash
         fi
       fi
@@ -756,9 +785,9 @@
 
   check_update() {
     progress "Checking for updates"
-    UPDATE_TAR=`ls -1 "$UPDATE_DIR"/*.tar 2>/dev/null | head -n 1`
-    UPDATE_IMG_GZ=`ls -1 "$UPDATE_DIR"/*.img.gz 2>/dev/null | head -n 1`
-    UPDATE_IMG=`ls -1 "$UPDATE_DIR"/*.img 2>/dev/null | head -n 1`
+    UPDATE_TAR=$(ls -1 "$UPDATE_DIR"/*.tar 2>/dev/null | head -n 1)
+    UPDATE_IMG_GZ=$(ls -1 "$UPDATE_DIR"/*.img.gz 2>/dev/null | head -n 1)
+    UPDATE_IMG=$(ls -1 "$UPDATE_DIR"/*.img 2>/dev/null | head -n 1)
 
     if ! [ -f "$UPDATE_DIR/$UPDATE_KERNEL" -a -f "$UPDATE_DIR/$UPDATE_SYSTEM" ] &&
        ! [ -f "$UPDATE_TAR" -o -f "$UPDATE_IMG_GZ" -o -f "$UPDATE_IMG" ]; then
@@ -847,7 +876,7 @@
       losetup $LOOP $IMG_FILE
 
       # check for MBR partititon
-      OFFSET=$(fdisk -u -l $LOOP 2>/dev/null | awk '/^[ ]*Device/{part=1; next}; part{if ($2 == "*") {print $3} else {print $2} ; exit}')
+      OFFSET=$(fdisk -u -l $LOOP 2>/dev/null | awk '/^[ ]*Device/{part=1; next}; part{if ($2 == "*") {print $5} else {print $4} ; exit}')
       if [ -z "$OFFSET" ]; then
         # check for GPT partititon
         OFFSET=$(fdisk -u -l $LOOP 2>/dev/null | awk '/^Number/{part=1; next}; part{print $2; exit}')
@@ -873,21 +902,24 @@
       # don't make temporary files but instead copy
       # directly from mountpoint to /flash
       UPDATE_DIR=$UPDATE_ROOT/.tmp/mnt
-      if [ ! -b $IMAGE_KERNEL -o -z "@KERNEL_NAME@" ]; then
-        UPDATE_KERNEL=$(basename $IMAGE_KERNEL)
-      else
-        UPDATE_KERNEL="@KERNEL_NAME@"
-      fi
+      UPDATE_KERNEL="@KERNEL_NAME@"
     else
       UPDATE_FILENAME="$UPDATE_DIR/$UPDATE_SYSTEM"
     fi
 
     sync
 
-    if [ ! -f "$UPDATE_DIR/$UPDATE_KERNEL" -o ! -f "$UPDATE_DIR/$UPDATE_SYSTEM" ] ; then
-      echo "Missing ${UPDATE_KERNEL} or ${UPDATE_SYSTEM}!"
+    if [ ! -b "/$IMAGE_KERNEL" -a ! -f "/flash/$IMAGE_KERNEL" ] || [ ! -f "/flash/$IMAGE_SYSTEM" ]; then
+      echo "Missing (target) ${IMAGE_KERNEL} or ${IMAGE_SYSTEM}!"
       do_cleanup
-      StartProgress countdown "Normal startup in 10s... " 10 "NOW"
+      StartProgress countdown "Normal startup in 30s... " 30 "NOW"
+      return 0
+    fi
+
+    if [ ! -f "$UPDATE_DIR/$UPDATE_KERNEL" -o ! -f "$UPDATE_DIR/$UPDATE_SYSTEM" ] ; then
+      echo "Missing (source) ${UPDATE_KERNEL} or ${UPDATE_SYSTEM}!"
+      do_cleanup
+      StartProgress countdown "Normal startup in 30s... " 30 "NOW"
       return 0
     fi
 
@@ -946,7 +978,7 @@
     FLASH_FREE=$(( $FLASH_FREE * 1024 ))
 
     # Disregard kernel size if it's a a block device, which is the case on Amlogic/WeTek devices
-    if [ ! -b $IMAGE_KERNEL ]; then
+    if [ ! -b "/$IMAGE_KERNEL" ]; then
       OLD_KERNEL=$(stat -t "/flash/$IMAGE_KERNEL" | awk '{print $2}')
     else
       OLD_KERNEL="0"
@@ -959,8 +991,8 @@
     # old KERNEL+SYSTEM+free space - new KERNEL+SYSTEM must be higher than 5MB
     # at least 5MB free after update
 
-    TMP_SIZE=$(($OLD_KERNEL+$OLD_SYSTEM+$FLASH_FREE-$NEW_KERNEL-$NEW_SYSTEM))
-    FLASH_FREE_MIN=$(($FLASH_FREE_MIN*1024*1024))
+    TMP_SIZE=$((OLD_KERNEL + OLD_SYSTEM + FLASH_FREE - NEW_KERNEL - NEW_SYSTEM))
+    FLASH_FREE_MIN=$((FLASH_FREE_MIN * 1024 * 1024))
 
     if [ $TMP_SIZE -ge $FLASH_FREE_MIN ]; then
       echo "Checking size: OK"
@@ -980,8 +1012,8 @@
     fi
 
     # all ok, update
-    if [ -b $IMAGE_KERNEL ]; then
-      update_partition "Kernel" "$UPDATE_KERNEL" "$IMAGE_KERNEL"
+    if [ -b "/$IMAGE_KERNEL" ]; then
+      update_partition "Kernel" "$UPDATE_KERNEL" "/$IMAGE_KERNEL"
     else
       update_file "Kernel" "$UPDATE_KERNEL" "/flash/$IMAGE_KERNEL"
     fi
@@ -1004,9 +1036,9 @@
     mount --move /flash /sysroot/flash
     mount --move /storage /sysroot/storage
 
-    if [ ! -d "/sysroot/usr/lib/modules/$(uname -r)/" -a -f "/sysroot/usr/lib/systemd/systemd" ]; then
+    if [ ! -d "/sysroot/usr/lib/kernel-overlays/base/lib/modules/$(uname -r)/" -a -f "/sysroot/usr/lib/systemd/systemd" ]; then
       echo ""
-      echo "NEVER TOUCH boot= in extlinux.conf / cmdline.txt!"
+      echo "NEVER TOUCH boot= in syslinux.conf / cmdline.txt!"
       echo "If you don't know what you are doing,"
       echo "your installation is now broken."
       echo ""
@@ -1031,7 +1063,7 @@
       load_modules \
       check_disks \
       mount_flash \
-      update_syslinux \
+      update_bootmenu \
       load_splash \
       mount_storage \
       check_update \
@@ -1066,6 +1098,11 @@
   if [ "$UPDATE_DISABLED" = "yes" ] ; then
     echo "" > /sysroot/dev/.update_disabled
   fi
+
+  if [ "$FLASH_NETBOOT" = "yes" ] ; then
+    echo "" > /sysroot/dev/.flash_netboot
+  fi
+
   # swap can not be used over nfs.(see scripts/mount-swap)
   if [ "$STORAGE_NETBOOT" = "yes" ] ; then
     echo "" > /sysroot/dev/.storage_netboot
@@ -1075,7 +1112,7 @@
     INIT_UNIT="--unit=fs-resize.target"
   fi
 
-  BACKUP_FILE=`ls -1 /sysroot/storage/.restore/??????????????.tar 2>/dev/null | head -n 1`
+  BACKUP_FILE=$(ls -1 /sysroot/storage/.restore/??????????????.tar 2>/dev/null | head -n 1)
   if [ -f "$BACKUP_FILE" ] ; then
     INIT_UNIT="--unit=backup-restore.target"
   fi

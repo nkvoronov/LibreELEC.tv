@@ -1,27 +1,12 @@
 #!/bin/bash
 
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 . config/options $1
 
 clean_package() {
-  printf "%${BUILD_INDENT}c ${boldred}CLEAN${endcolor}    $1\n" ' '>&$SILENT_OUT
+  printf "%${BUILD_INDENT}c $(print_color CLR_CLEAN "CLEAN")    $1\n" ' '>&$SILENT_OUT
   export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
 
   if [ "$CLEAN_SOURCES" = true ]; then
@@ -34,7 +19,7 @@ clean_package() {
     if [ -d $i -a -f "$i/.libreelec-unpack" ] ; then
       . "$i/.libreelec-unpack"
       if [ "$STAMP_PKG_NAME" = "$1" ]; then
-        printf "%${BUILD_INDENT}c ${boldred}*${endcolor} ${red}Removing $i ...${endcolor}\n" ' '>&$SILENT_OUT
+        printf "%${BUILD_INDENT}c $(print_color CLR_WARNING "*") $(print_color CLR_WARNING_DIM "Removing $i ...")\n" ' '>&$SILENT_OUT
         rm -rf $i
       fi
     else
@@ -48,14 +33,8 @@ clean_package() {
 
 if [ "$1" = "--all" ]; then
   if [ ! -z "$2" ]; then
-    for PROJECT in $(ls -1 projects); do
-      for archfile in projects/$PROJECT/linux/linux.*.conf; do
-        if [ ! -f "$archfile" ]; then
-          archfile="$(ls -1 projects/$PROJECT/linux/*/linux.*.conf | head -1)"
-        fi
-        ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
-        PROJECT=$PROJECT ARCH=$ARCH ./scripts/clean $2
-      done
+    for build_dir in $(ls -1d ${ROOT}/build.*); do
+      load_build_config "${build_dir}" && ./scripts/clean $2
     done
   fi
 else

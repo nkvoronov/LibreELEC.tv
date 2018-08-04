@@ -1,35 +1,18 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mysql"
-PKG_VERSION="5.7.17"
+PKG_VERSION="5.7.20"
+PKG_SHA256="5397549bb7c238f396c123db2df4cad2191b11adf8986de7fe63bff8e2786487"
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://www.mysql.com"
 PKG_URL="http://ftp.gwdg.de/pub/misc/$PKG_NAME/Downloads/MySQL-5.7/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_HOST="zlib:host"
-PKG_DEPENDS_TARGET="toolchain zlib netbsd-curses openssl boost mysql:host"
+PKG_DEPENDS_HOST="toolchain zlib:host"
+PKG_DEPENDS_TARGET="toolchain zlib ncurses openssl boost mysql:host"
 PKG_SECTION="database"
 PKG_SHORTDESC="mysql: A database server"
 PKG_LONGDESC="MySQL is a SQL (Structured Query Language) database server. SQL is the most popular database language in the world. MySQL is a client server implementation that consists of a server daemon mysqld and many different client programs/libraries."
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
 
 post_unpack() {
   sed -i 's|GET_TARGET_PROPERTY(LIBMYSQL_OS_OUTPUT_NAME libmysql OUTPUT_NAME)|SET(LIBMYSQL_OS_OUTPUT_NAME "mysqlclient")|' $PKG_BUILD/scripts/CMakeLists.txt
@@ -58,9 +41,9 @@ PKG_CMAKE_OPTS_HOST="-DCMAKE_BUILD_TYPE=Release \
                      -DWITH_ZLIB=bundled"
 
 make_host() {
-  make comp_err
-  make gen_lex_hash
-  make comp_sql
+  ninja comp_err
+  ninja gen_lex_hash
+  ninja comp_sql
 }
 
 post_make_host() {

@@ -32,6 +32,10 @@
         # vfpv3xd vfpv3xd-fp16 neon neon-fp16 vfpv4 vfpv4-d16 fpv4-sp-d16
         # neon-vfpv4.
         TARGET_FPU="neon-fp16"
+        TARGET_FEATURES="32bit"
+
+        # Use linaro toolchain to build kernel
+        KERNEL_LINARO_TOOLCHAIN="arm-linux-gnueabihf"
         ;;
     esac
 
@@ -39,7 +43,7 @@
     BOOTLOADER="u-boot"
 
   # u-boot version to use (default)
-    UBOOT_VERSION=""
+    UBOOT_VERSION="vendor"
 
   # Configuration for u-boot
     UBOOT_CONFIG=""
@@ -56,11 +60,11 @@
   # Build Android kernel image using mkbootimg
     BUILD_ANDROID_BOOTIMG="yes"
 
-  # Additional options to be passed to Android mkbootimg
-    ANDROID_BOOTIMG_OPTIONS="--second arch/arm/boot/dts/amlogic/meson8m2_wetek_core.dtb"
-
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD=""
+
+  # Additional kernel dependencies
+    KERNEL_EXTRA_DEPENDS_TARGET=""
 
   # Kernel to use. values can be:
   # default:  default mainline kernel
@@ -122,7 +126,7 @@
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
   # e.g. FIRMWARE="dvb-firmware misc-firmware wlan-firmware"
-    FIRMWARE="misc-firmware wlan-firmware dvb-firmware brcmfmac_sdio-firmware-aml"
+    FIRMWARE="misc-firmware wlan-firmware wlan-firmware-aml dvb-firmware brcmfmac_sdio-firmware-aml"
 
   # build and install ATV IR remote support (yes / no)
     ATVCLIENT_SUPPORT="no"
@@ -133,9 +137,13 @@
   # build with installer (yes / no)
     INSTALLER_SUPPORT="no"
 
-  # extra build dependeices
-    EXTRA_DEPS="mkimage"
-    EXTRA_DEPS_PKG="u-boot-tools"
-
   # kernel image name
     KERNEL_NAME="kernel.img"
+
+  # build and install driver addons (yes / no)
+    DRIVER_ADDONS_SUPPORT="yes"
+
+  # driver addons to install:
+  # for a list of additinoal drivers see packages/linux-driver-addons
+  # Space separated list is supported,
+    DRIVER_ADDONS="crazycat"

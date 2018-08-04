@@ -1,5 +1,19 @@
+108
+- Update alsamixer to 1.1.6
+- Update mediainfo to 18.05
+- Update mpg123 to 1.25.10
+- Update squeezelite to b2ed99e
+- Update tstools to db1f79f
+
+107
+- squeezelite: support all possible media formats
+
+106
+- Update squeezelite to 33cca7e
+- Update Mediainfo to 17.10
+
 105
-- squeezelite: update to e92c09c and support all possible media formats
+- rebuild
 
 104
 - squeezelite: update to a3d95ec and link audio libraries

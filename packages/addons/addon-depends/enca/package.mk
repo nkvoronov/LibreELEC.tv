@@ -1,23 +1,9 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="enca"
 PKG_VERSION="1.19"
+PKG_SHA256="3a487eca40b41021e2e4b7a6440b97d822e6532db5464471f572ecf77295e8b8"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://freshmeat.net/projects/enca/"
@@ -26,9 +12,7 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="devel"
 PKG_SHORTDESC="enca: detects the encoding of text files, on the basis of knowledge of their language."
 PKG_LONGDESC="Enca detects the encoding of text files, on the basis of knowledge of their language. It can also convert them to other encodings, allowing you to recode files without knowing their current encoding. It supports most of Central and East European languages, and a few Unicode variants, independently on language."
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_BUILD_FLAGS="+pic"
 
 PKG_MAKEINSTALL_OPTS_TARGET="-C lib"
 PKG_CONFIGURE_OPTS_TARGET="ac_cv_file__dev_random=yes \
@@ -42,10 +26,6 @@ PKG_CONFIGURE_OPTS_TARGET="ac_cv_file__dev_random=yes \
                            --without-librecode \
                            --disable-rpath \
                            --with-gnu-ld"
-
-pre_configure_target() {
-  export CFLAGS="$CFLAGS -fPIC -DPIC"
-}
 
 pre_make_target() {
   make CC="$HOST_CC" \

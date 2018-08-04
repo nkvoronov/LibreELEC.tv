@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
+
+echo "getting sources..."
+  if [ ! -d libretro-ppsspp.git ]; then
+    git clone --depth=1 --recursive https://github.com/hrydgard/ppsspp libretro-ppsspp.git
+  fi
+
+  cd libretro-ppsspp.git
+    git pull
+    GIT_REV=`git log -n1 --format=%h`
+  cd ..
+
+echo "copying sources..."
+  rm -rf libretro-ppsspp-$GIT_REV
+  cp -R libretro-ppsspp.git libretro-ppsspp-$GIT_REV
+
+echo "cleaning sources..."
+  rm -rf libretro-ppsspp-$GIT_REV/.git
+  rm -rf libretro-ppsspp-$GIT_REV/ffmpeg/android
+  rm -rf libretro-ppsspp-$GIT_REV/ffmpeg/blackberry
+  rm -rf libretro-ppsspp-$GIT_REV/ffmpeg/ios
+  rm -rf libretro-ppsspp-$GIT_REV/ffmpeg/macosx
+  rm -rf libretro-ppsspp-$GIT_REV/ffmpeg/symbian
+  rm -rf libretro-ppsspp-$GIT_REV/ffmpeg/Windows*
+
+echo "packing sources..."
+  tar cvJf libretro-ppsspp-$GIT_REV.tar.xz libretro-ppsspp-$GIT_REV
+
+echo "remove temporary sourcedir..."
+  rm -rf libretro-ppsspp-$GIT_REV

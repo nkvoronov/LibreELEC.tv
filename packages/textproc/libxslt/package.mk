@@ -1,37 +1,21 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="libxslt"
 PKG_VERSION="1.1.29"
+PKG_SHA256="b5976e3857837e7617b29f2249ebb5eeac34e249208d31f1fbf7a6ba7a4090ce"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://xmlsoft.org/xslt/"
 PKG_URL="ftp://xmlsoft.org/libxml2/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_HOST="toolchain libxml2:host"
+PKG_DEPENDS_HOST="libxml2:host"
 PKG_DEPENDS_TARGET="toolchain libxml2"
 PKG_SECTION="textproc"
 PKG_SHORTDESC="libxslt"
 PKG_LONGDESC="libxslt"
 
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
 PKG_CONFIGURE_OPTS_HOST="  ac_cv_header_ansidecl_h=no \
+                           ac_cv_header_xlocale_h=no \
                            --enable-static \
                            --disable-shared \
                            --without-python \
@@ -39,6 +23,7 @@ PKG_CONFIGURE_OPTS_HOST="  ac_cv_header_ansidecl_h=no \
                            --without-crypto"
 
 PKG_CONFIGURE_OPTS_TARGET="ac_cv_header_ansidecl_h=no \
+                           ac_cv_header_xlocale_h=no \
                            --enable-static \
                            --disable-shared \
                            --without-python \

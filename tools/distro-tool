@@ -1,27 +1,14 @@
 #!/bin/bash
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
 set -e
 
 [ -z "${DEBUG_LOG}" ] && DEBUG_LOG=/tmp/distro-tool.log
 
 LIBREELEC_DIR=$HOME/LibreELEC.tv
-TARGET_DIR=/community/sources
+TARGET_DIR=$HOME/sources
 DOWNLOAD_DIR=$HOME/download
 REVISION=
 PACKAGE=
@@ -307,8 +294,11 @@ class MyUtility(object):
     # A content_type of "text/html" indicates we were served an error page of
     # some kind (eg. iperf) and not the requested file, which would be "application/<something>".
     # "text/plain" indicates a misconfigured server (eg. libgcrypt, libgpg-error) so accept this.
+    # Some servers (eg. files.pythonhosted.org) will respond with "binary/octet-stream".
     if http_code in ["200", "206"] or MyUtility.search_HTTP_OK.search(headers):
-      result = True if (content_type.startswith("application/") or content_type.startswith("text/plain")) else False
+      result = True if (content_type.startswith("application/") or \
+                        content_type.startswith("text/plain") or \
+                        content_type.startswith("binary/octet-stream")) else False
     elif http_code == "350" and url.startswith("ftp:"):
       result = True
     else:
@@ -691,7 +681,7 @@ Usage: $(basename $0) -d|--download <path> [-t|--target <path>] [-l|--libreelec 
 
 Options:
   -d, --download:     Directory path into which new package files will be downloaded - default is $HOME/download[1]
-  -t, --target:       Directory path for existing packages that are to be refreshed, default is /community/sources[2]
+  -t, --target:       Directory path for existing packages that are to be refreshed, default is $HOME/sources[2]
   -l, --libreelec:    LibreELEC.tv repo, default is ${HOME}/LibreELEC.tv
   -m, --mirror:       Target is mirror not source - mirror uses a hierarchical per-package folder structure
   -s, --source:       Target is source not mirror - source uses a flattened file structure. Default is mirror
@@ -726,7 +716,7 @@ get_libreelec_branch() {
 get_libreelec_option() {
   local variable="$1"
   cd $LIBREELEC_DIR
-  . config/options
+  source config/options ""
   echo "${!variable}"
 }
 
@@ -759,13 +749,18 @@ generate_work() {
   # Generate workload using multiple threads
   init_progress
 
-  tcount=0
-  while [ : ]; do
-    tcount=$((tcount + 1))
-    [ ${tcount} -gt ${WORKER_MAX} ] && break
-    generate_work_worker ${pcount} ${tcount} ${revision} &
-  done
-  wait
+  (
+    cd $LIBREELEC_DIR
+    source config/options ""
+
+    tcount=0
+    while [ : ]; do
+      tcount=$((tcount + 1))
+      [ ${tcount} -gt ${WORKER_MAX} ] && break
+      generate_work_worker ${pcount} ${tcount} ${revision} &
+    done
+    wait
+  )
 
   end_progress
 
@@ -792,7 +787,7 @@ generate_work_worker() {
   local pcount=$1 worker="$2" revision="$3"
   local workfile_i="$(printf "%s.%02d" "${WORKFILES_I}" ${worker})"
   local workfile_o="$(printf "%s.%02d" "${WORKFILES_O}" ${worker})"
-  local wanted_vars="PKG_NAME PKG_VERSION PKG_URL PKG_SHA256 PKG_SECTION PKG_IS_ADDON PKG_SOURCE_NAME"
+  local wanted_vars="PKG_NAME PKG_VERSION PKG_URL PKG_SHA256 PKG_DIR PKG_SECTION PKG_IS_ADDON PKG_SOURCE_NAME"
   local package_name var comma PKG_URL PKG_SOURCE_NAME PKG_VERSION PKG_IS_ADDON
 
   [ -f "${workfile_i}" ] || return 0
@@ -808,12 +803,14 @@ generate_work_worker() {
     while read -r package_name; do
       [ ${PROGRESS} == yes ] && progress ${pcount}
 
-      source config/options ${package_name} 2>/dev/null || true
+      source config/options ${package_name} &>/dev/null || true
+      [ -z "${PKG_DIR}" ] && continue
 
       if [ -n "${revision}" ]; then
         PKG_URL="${PKG_URL/${PKG_VERSION}/${revision}}"
         PKG_SOURCE_NAME="${PKG_SOURCE_NAME/${PKG_VERSION}/${revision}}"
         PKG_VERSION="${revision}"
+        PKG_SHA256=
       fi
 
       PKG_IS_ADDON=No
@@ -858,9 +855,9 @@ get_packages() {
   cd $LIBREELEC_DIR
 
   if [ -n "${package_name}" ]; then
-    basename $(dirname $(find packages -path "*/${package_name}/*" -name package.mk) 2>/dev/null) 2>/dev/null
+    basename $(dirname $(find packages projects/${PROJECT} -path "*/${package_name}/*" -name package.mk) 2>/dev/null | head -1) 2>/dev/null
   else
-    find packages -name package.mk -exec bash -c get_package_path "{}" \; | sort -k1 | cut -d' ' -f1
+    find packages projects/${PROJECT} -name package.mk -exec bash -c get_package_path "{}" \; | cut -d' ' -f1 | sort -u
   fi
   return 0
 }
@@ -886,10 +883,10 @@ end_progress() {
 
 exec_worker_prog() {
   echo "${PYTHON_PROG}" >/tmp/distro-tool.py
-  python /tmp/distro-tool.py "${DOWNLOAD_DIR}" "${TARGET_DIR}" "${DISTRO_SOURCE}" "${DISTRO_MIRROR}" \
-                             "${IS_MIRROR}" "${IGNORE_ERRORS}" "${DRY_RUN}" "${CHECK_NEWER}" \
-                             "${PROGRESS}" "${WORKER_THREADS}" "${GIT_USERNAME}" "${GIT_PASSWORD}" \
-                             "${CHECK_FILTER_CLASS}" "${CHECK_FILTER_TYPE}" "${VERBOSE}"
+  python3 /tmp/distro-tool.py "${DOWNLOAD_DIR}" "${TARGET_DIR}" "${DISTRO_SOURCE}" "${DISTRO_MIRROR}" \
+                              "${IS_MIRROR}" "${IGNORE_ERRORS}" "${DRY_RUN}" "${CHECK_NEWER}" \
+                              "${PROGRESS}" "${WORKER_THREADS}" "${GIT_USERNAME}" "${GIT_PASSWORD}" \
+                              "${CHECK_FILTER_CLASS}" "${CHECK_FILTER_TYPE}" "${VERBOSE}"
   rm -f /tmp/distro-tool.py
 }
 

@@ -1,7 +1,7 @@
-From 66fa8d82238e001dc81b0a266e323c6a2f8b11b2 Mon Sep 17 00:00:00 2001
-From: Stefan Saraev <stefan@saraev.ca>
-Date: Mon, 15 Dec 2014 21:28:54 +0200
-Subject: [PATCH 10/13] handle SIGTERM
+From 006bcc66f7bc25f0df8aa52efa3b151766f9a5ec Mon Sep 17 00:00:00 2001
+From: MilhouseVH <milhouseVH.github@nmacleod.com>
+Date: Wed, 20 Dec 2017 07:26:55 +0000
+Subject: [PATCH] handle SIGTERM
 
 0. CApplication::Stop cant be trusted. (deadlocks crashes and boo)
 
@@ -15,39 +15,39 @@ so, when shutdown/reboot is requested:
 6. addons / pvrmanager / cec / everything else.. are free to deadlock / crash now, we dont care
 7. KILL
 ---
- xbmc/Application.cpp     | 17 ++++++++++++-----
- xbmc/Application.h       |  1 +
- xbmc/XBApplicationEx.cpp |  1 +
- xbmc/XBApplicationEx.h   |  1 +
- xbmc/main/main.cpp       | 15 +++++++++++++++
- 5 files changed, 30 insertions(+), 5 deletions(-)
+ xbmc/Application.cpp         | 21 ++++++++++++++++-----
+ xbmc/Application.h           |  1 +
+ xbmc/XBApplicationEx.cpp     |  1 +
+ xbmc/XBApplicationEx.h       |  1 +
+ xbmc/platform/posix/main.cpp |  2 +-
+ 5 files changed, 20 insertions(+), 6 deletions(-)
 
 diff --git a/xbmc/Application.cpp b/xbmc/Application.cpp
-index 1c906a2..99ca567 100644
+index 334ecec..e3101ff 100644
 --- a/xbmc/Application.cpp
 +++ b/xbmc/Application.cpp
-@@ -2490,12 +2490,12 @@ void CApplication::OnApplicationMessage(ThreadMessage* pMsg)
-   switch (pMsg->dwMessage)
+@@ -2373,12 +2373,12 @@ void CApplication::OnApplicationMessage(ThreadMessage* pMsg)
+   switch (msg)
    {
    case TMSG_POWERDOWN:
 -    Stop(EXITCODE_POWERDOWN);
 +    SetExitCode(EXITCODE_POWERDOWN);
-     g_powerManager.Powerdown();
+     CServiceBroker::GetPowerManager().Powerdown();
      break;
  
    case TMSG_QUIT:
 -    Stop(EXITCODE_QUIT);
 +    SetExitCode(EXITCODE_QUIT);
      break;
-   
+ 
    case TMSG_SHUTDOWN:
-@@ -2539,12 +2539,13 @@ void CApplication::OnApplicationMessage(ThreadMessage* pMsg)
+@@ -2399,12 +2399,13 @@ void CApplication::OnApplicationMessage(ThreadMessage* pMsg)
  
    case TMSG_RESTART:
    case TMSG_RESET:
 -    Stop(EXITCODE_REBOOT);
 +    SetExitCode(EXITCODE_REBOOT);
-     g_powerManager.Reboot();
+     CServiceBroker::GetPowerManager().Reboot();
      break;
  
    case TMSG_RESTARTAPP:
@@ -56,54 +56,58 @@ index 1c906a2..99ca567 100644
      Stop(EXITCODE_RESTARTAPP);
  #endif
      break;
-@@ -2890,14 +2891,21 @@ bool CApplication::Cleanup()
+@@ -2821,6 +2822,17 @@ bool CApplication::Cleanup()
    }
  }
  
 +void CApplication::SetExitCode(int exitCode)
 +{
-+  // save it for CEC
-+  m_ExitCode = exitCode;
-+  m_ExitCodeSet = true;
++  if (!m_ExitCodeSet)
++  {
++    CLog::Log(LOGINFO, "Saving exitCode %d", exitCode);
++    // save it for CEC
++    m_ExitCode = exitCode;
++    m_ExitCodeSet = true;
++  }
 +}
 +
  void CApplication::Stop(int exitCode)
  {
    try
-   {
+@@ -2828,7 +2840,7 @@ void CApplication::Stop(int exitCode)
      m_frameMoveGuard.unlock();
-
+ 
      CVariant vExitCode(CVariant::VariantTypeObject);
 -    vExitCode["exitcode"] = exitCode;
 +    vExitCode["exitcode"] = m_ExitCode;
      CAnnouncementManager::GetInstance().Announce(System, "xbmc", "OnQuit", vExitCode);
  
      // Abort any active screensaver
-@@ -2922,7 +2930,6 @@ void CApplication::Stop(int exitCode)
- 
-     m_bStop = true;
+@@ -2860,7 +2872,6 @@ void CApplication::Stop(int exitCode)
+     // Needs cleaning up
+     CApplicationMessenger::GetInstance().Stop();
      m_AppFocused = false;
 -    m_ExitCode = exitCode;
      CLog::Log(LOGNOTICE, "stop all");
  
      // cancel any jobs from the jobmanager
 diff --git a/xbmc/Application.h b/xbmc/Application.h
-index f1dfe0d..200abee 100644
+index 9d0b2d4..7b0e18b 100644
 --- a/xbmc/Application.h
 +++ b/xbmc/Application.h
-@@ -154,6 +154,7 @@ public:
-   void StartPVRManager();
-   void StopPVRManager();
+@@ -153,6 +153,7 @@ public:
+   bool StartServer(enum ESERVERS eServer, bool bStart, bool bWait = false);
+ 
    bool IsCurrentThread() const;
 +  void SetExitCode(int exitCode);
    void Stop(int exitCode);
-   void RestartApp();
    void UnloadSkin(bool forReload = false);
+   bool LoadCustomWindows();
 diff --git a/xbmc/XBApplicationEx.cpp b/xbmc/XBApplicationEx.cpp
-index 048a6c1..fa99ac1 100644
+index edfea4f..96f245f 100644
 --- a/xbmc/XBApplicationEx.cpp
 +++ b/xbmc/XBApplicationEx.cpp
-@@ -40,6 +40,7 @@ CXBApplicationEx::CXBApplicationEx()
+@@ -42,6 +42,7 @@ CXBApplicationEx::CXBApplicationEx()
    m_bStop = false;
    m_AppFocused = true;
    m_ExitCode = EXITCODE_QUIT;
@@ -112,10 +116,10 @@ index 048a6c1..fa99ac1 100644
  }
  
 diff --git a/xbmc/XBApplicationEx.h b/xbmc/XBApplicationEx.h
-index c46cba1..ed3f35f 100644
+index 6fb2f6c..4bc11fc 100644
 --- a/xbmc/XBApplicationEx.h
 +++ b/xbmc/XBApplicationEx.h
-@@ -40,6 +40,7 @@ public:
+@@ -42,6 +42,7 @@ public:
    // Variables for timing
    bool m_bStop;
    int  m_ExitCode;
@@ -124,37 +128,18 @@ index c46cba1..ed3f35f 100644
    bool m_renderGUI;
  
 diff --git a/xbmc/platform/posix/main.cpp b/xbmc/platform/posix/main.cpp
-index 01027f8..4cfb04e 100644
+index fccef84..88e928f 100644
 --- a/xbmc/platform/posix/main.cpp
 +++ b/xbmc/platform/posix/main.cpp
-@@ -41,12 +41,27 @@
- #include "input/linux/LIRC.h"
- #endif
- #include "platform/XbmcContext.h"
-+#include "Application.h"
-+
-+void xbmc_term_handler(int signum)
-+{
-+  CLog::Log(LOGINFO, "Received SIGTERM...");
-+  if (!g_application.m_ExitCodeSet)
-+    g_application.SetExitCode(EXITCODE_RESTARTAPP);
-+  g_application.Stop(EXITCODE_RESTARTAPP);
-+}
- 
- #ifdef __cplusplus
- extern "C"
- #endif
- int main(int argc, char* argv[])
- {
-+  // SIGTERM handler
-+  struct sigaction action;
-+  memset(&action, 0, sizeof(struct sigaction));
-+  action.sa_handler = xbmc_term_handler;
-+  sigaction(SIGTERM, &action, NULL);
-+
-   // set up some xbmc specific relationships
-   XBMC::Context context;
+@@ -63,7 +63,7 @@ protected:
+   void Process() override
+   {
+     CMessagePrinter::DisplayMessage("Exiting application");
+-    KODI::MESSAGING::CApplicationMessenger::GetInstance().PostMsg(TMSG_QUIT);
++    KODI::MESSAGING::CApplicationMessenger::GetInstance().PostMsg(TMSG_RESTARTAPP);
+   }
+ };
  
 -- 
-2.5.0
+2.14.1
 

@@ -1,24 +1,10 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="sapphire"
-PKG_VERSION="6.6"
-PKG_REV="102"
+PKG_VERSION="6.9"
+PKG_SHA256="191661e8186712fe4a08a7555dbca36676338c630536a48373048afbbb3ad2ff"
+PKG_REV="104"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="https://libreelec.tv"
@@ -27,11 +13,12 @@ PKG_DEPENDS_TARGET="toolchain linux bash"
 PKG_SECTION="driver.remote"
 PKG_SHORTDESC="A Linux driver to add support for sapphire remotes"
 PKG_LONGDESC="A Linux driver to add support for sapphire remotes"
-PKG_AUTORECONF="no"
+PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Sapphire Remote Driver"
 PKG_ADDON_TYPE="xbmc.service"
+PKG_IS_KERNEL_PKG="yes"
 
 if [ -f $SYSROOT_PREFIX/usr/include/linux/input-event-codes.h ]; then
   INPUT_H="$SYSROOT_PREFIX/usr/include/linux/input-event-codes.h"
@@ -44,10 +31,10 @@ pre_make_target() {
 }
 
 make_target() {
-  make V=1 \
-       KVER=$(kernel_version) \
-       KDIR=$(kernel_path) \
-       INPUT_H=$INPUT_H
+  kernel_make -C $(kernel_path) M=$(pwd) modules
+
+  make INPUT_H=$INPUT_H \
+       sapphire_keymap.sh
 }
 
 post_make_target() {
@@ -59,10 +46,6 @@ post_make_target() {
 
   sed -i -e 's|\#\!/bin/bash|\#\!/storage/.kodi/addons/driver.remote.sapphire/bin/bash|' \
          sapphire_startup.sh sapphire_keymap.sh
-}
-
-makeinstall_target() {
-  :
 }
 
 addon() {

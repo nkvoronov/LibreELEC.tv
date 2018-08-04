@@ -32,6 +32,10 @@
         # vfpv3xd vfpv3xd-fp16 neon neon-fp16 vfpv4 vfpv4-d16 fpv4-sp-d16
         # neon-vfpv4.
         TARGET_FPU="neon-fp16"
+        TARGET_FEATURES="32bit"
+
+        # Use linaro toolchain to build kernel
+        KERNEL_LINARO_TOOLCHAIN="arm-linux-gnueabihf"
         ;;
     esac
 
@@ -39,7 +43,7 @@
     BOOTLOADER="u-boot"
 
   # u-boot version to use (default)
-    UBOOT_VERSION=""
+    UBOOT_VERSION="vendor"
 
   # Configuration for u-boot
     UBOOT_CONFIG=""
@@ -55,6 +59,9 @@
 
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD=""
+
+  # additional kernel dependencies
+    KERNEL_EXTRA_DEPENDS_TARGET=""
 
   # Kernel to use. values can be:
   # default:  default mainline kernel
@@ -116,7 +123,7 @@
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
   # e.g. FIRMWARE="dvb-firmware misc-firmware wlan-firmware"
-    FIRMWARE="misc-firmware wlan-firmware dvb-firmware brcmfmac_sdio-firmware-aml"
+    FIRMWARE="misc-firmware wlan-firmware wlan-firmware-aml dvb-firmware brcmfmac_sdio-firmware-aml"
 
   # build and install ATV IR remote support (yes / no)
     ATVCLIENT_SUPPORT="no"
@@ -126,10 +133,6 @@
 
   # build with installer (yes / no)
     INSTALLER_SUPPORT="no"
-
-  # extra build dependeices
-    EXTRA_DEPS="mkimage"
-    EXTRA_DEPS_PKG="u-boot-tools"
 
   # kernel image name
     KERNEL_NAME="kernel.img"

@@ -1,23 +1,9 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="zip"
 PKG_VERSION="30"
+PKG_SHA256="f0e8bb1f9b7eb0b01285495a2699df3a4b766784c1765a8f1aeedf63c0806369"
 PKG_ARCH="any"
 PKG_LICENSE="Info-ZIP"
 PKG_SITE="http://www.info-zip.org/pub/infozip/"
@@ -27,9 +13,7 @@ PKG_DEPENDS_TARGET="toolchain bzip2"
 PKG_SECTION="compress"
 PKG_SHORTDESC="zip: PKUNZIP compatible compression utility"
 PKG_LONGDESC="zip is a compression and file packaging utility for Unix, VMS, MSDOS, OS/2, Windows 9x/NT/XP, Minix, Atari, Macintosh, MVS, z/OS, Amiga, Acorn RISC, and other OS. It is analogous to a combination of the Unix commands tar(1) and compress(1) (or tar(1) and gzip(1)) and is compatible with PKZIP (Phil Katz's ZIP for MSDOS systems) and other major zip utilities."
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_TOOLCHAIN="manual"
 
 make_target() {
   make CC=$CC CPP=$CPP RANLIB=$RANLIB AR=$AR STRIP=$STRIP LOCAL_ZIP="$CFLAGS" \

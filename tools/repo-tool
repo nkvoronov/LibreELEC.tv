@@ -1,22 +1,7 @@
 #!/bin/bash
 
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2009-2016 Lukas Rusak (lrusak@libreelec.tv)
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Lukas Rusak (lrusak@libreelec.tv)
 
 . config/options
 
@@ -69,15 +54,29 @@ update_addons_xml() {
 
 touch_addons_xml() {
   for PROJECT in $(ls -1 projects); do
-    for archfile in projects/$PROJECT/linux/linux.*.conf ; do
-      ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
-      if [ ! -d target/addons/$ADDON_VERSION/$PROJECT/$ARCH ]; then
-        break
-      fi
-      if [ ! -f target/addons/$ADDON_VERSION/$PROJECT/$ARCH/addons.xml ]; then
-        touch target/addons/$ADDON_VERSION/$PROJECT/$ARCH/addons.xml
-      fi
-    done
+    if [ -d "projects/$PROJECT/devices" ]; then
+      for DEVICE in $(ls -1 projects/$PROJECT/devices); do
+        for archfile in projects/$PROJECT/devices/$DEVICE/linux/linux.*.conf; do
+          ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
+          if [ ! -d target/addons/$ADDON_VERSION/$DEVICE/$ARCH ]; then
+            break
+          fi
+          if [ ! -f target/addons/$ADDON_VERSION/$DEVICE/$ARCH/addons.xml ]; then
+            touch target/addons/$ADDON_VERSION/$DEVICE/$ARCH/addons.xml
+          fi
+        done
+      done
+    else
+      for archfile in projects/$PROJECT/linux/linux.*.conf; do
+        ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
+        if [ ! -d target/addons/$ADDON_VERSION/$PROJECT/$ARCH ]; then
+          break
+        fi
+        if [ ! -f target/addons/$ADDON_VERSION/$PROJECT/$ARCH/addons.xml ]; then
+          touch target/addons/$ADDON_VERSION/$PROJECT/$ARCH/addons.xml
+        fi
+      done
+    fi
   done
 }
 
@@ -91,28 +90,38 @@ upload() {
   fi
   touch_addons_xml
   update_addons_xml
-  rsync -av --progress --delete target/addons/$ADDON_VERSION $RSYNC_REPO
+  rsync -av --progress --delete "$RSYNC_SHELL" target/addons/$ADDON_VERSION $RSYNC_REPO
 }
 
 build() {
+  [ -n "$3" ] && DEVICE="$3" || DEVICE=""
+
   for PROJECT in $2; do
-    for archfile in projects/$PROJECT/linux/linux.*.conf ; do
-      ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
-      for package in $(find $1 -iname package.mk) ; do
-        (
-        . $package
-        if [ "$PKG_IS_ADDON" = "yes" ] ; then
-          ADDON=$PKG_NAME
-          PROJECT=$PROJECT ARCH=$ARCH ./scripts/create_addon $ADDON
-        fi
-        )
+    if [ -n "$DEVICE" ]; then
+      for archfile in projects/$PROJECT/devices/$DEVICE/linux/linux.*.conf; do
+        ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
       done
+    else
+      for archfile in projects/$PROJECT/linux/linux.*.conf; do
+        ARCH=`echo $archfile | sed -n '$s/\.conf//;$s/.*\.//p'`
+      done
+    fi
+
+    for package in $(find $1 -iname package.mk) ; do
+      (
+      . $package
+      if [ "$PKG_IS_ADDON" = "yes" ] ; then
+        ADDON=$PKG_NAME
+        PROJECT=$PROJECT DEVICE=$DEVICE ARCH=$ARCH ./scripts/create_addon $ADDON
+      fi
+      )
     done
   done
 }
 
 update_revision() {
-  for package in $(find packages/addons -iname package.mk) ; do
+  for package in $(find $1 -iname package.mk) ; do
+    [[ "$2" == "Y" && $package =~ .*/game.libretro.* ]] && continue
     (
     . $package
     if [ "$PKG_IS_ADDON" = "yes" ] ; then
@@ -137,20 +146,29 @@ update_repo_version() {
 }
 
 usage() {
-  echo "  usage: $0 -u                                      to upload"
-  echo "         $0 -b   binary|official|all [project-name] to build [for a single project]"
-  echo "         $0 -ru                                     to update PKG_REV"
-  echo "         $0 -rv                                     to update PKG_ADDON_REPOVERSION"
-  echo "         $0 -xml                                    to update the addons.xml"
+  echo "  usage: $0 -u                                                  to upload"
+  echo "         $0 -b   binary|retroplayer|official|all [project-name] to build [for a single project]"
+  echo "         $0 -ru  binary|retroplayer|official|all                to update PKG_REV"
+  echo "         $0 -rv                                                 to update PKG_ADDON_REPOVERSION"
+  echo "         $0 -xml                                                to update the addons.xml"
 }
 
-if [ "$1" = "-b" -a -z "$2" ]; then
-  usage
-  exit 0
-elif [ "$1" = "-b" -a -n "$2" ]; then
+if [ "$1" = "-b" -o "$1" = "-ru" ]; then
+  if [ -z "$2" ]; then
+    usage
+    exit 0
+  fi
+fi
+
+if [ "$1" = "-b" -o "$1" = "-ru" ]; then
+  exclude_games=N
   case $2 in
     binary)
       repo="packages/mediacenter/kodi-binary-addons"
+      exclude_games=Y
+      ;;
+    retroplayer)
+      repo="packages/mediacenter/kodi-binary-addons/game.libretro.*"
       ;;
     official)
       repo="packages/addons"
@@ -164,22 +182,27 @@ elif [ "$1" = "-b" -a -n "$2" ]; then
       ;;
   esac
 
-  project="$(ls -1 projects)"
-  if [ -n "$3" ]; then
-    project="$3"
+  if [ "$1" = "-b" ]; then
+    [ -n "$3" ] && project="$3" || project="$(ls -1 projects)"
+    if [ "$3" == "RPi" ]; then
+      project="RPi"
+      device="RPi"
+    elif [ "$3" == "RPi2" ]; then
+      project="RPi"
+      device="RPi2"
+    fi
   fi
-
 fi
 
 case $1 in
   -b)
-    build "$repo" "$project"
+    build "$repo" "$project" "$device"
     ;;
   -u)
     upload
     ;;
   -ru)
-    update_revision
+    update_revision "$repo" "$exclude_games"
     ;;
   -rv)
      update_repo_version

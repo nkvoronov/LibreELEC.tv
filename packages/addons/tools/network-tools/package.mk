@@ -1,39 +1,21 @@
-################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="network-tools"
-PKG_VERSION=""
-PKG_REV="100"
+PKG_VERSION="1.0"
+PKG_REV="102"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
+PKG_SITE="https://libreelec.tv"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="tools"
+PKG_SECTION="virtual"
 PKG_SHORTDESC="A bundle of network tools and programs"
 PKG_LONGDESC="This bundle currently includes bwm-ng, iftop, iperf, irssi, iw, lftp, ncftp, ngrep, nmap, rsync, sshfs, tcpdump, udpxy and wireless_tools."
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Network Tools"
 PKG_ADDON_TYPE="xbmc.python.script"
-PKG_ADDON_PROVIDES=""
-
-PKG_AUTORECONF="no"
 
 PKG_DEPENDS_TARGET="toolchain \
                     bwm-ng \
@@ -104,6 +86,4 @@ addon() {
     ln -s iwmulticall $ADDON_BUILD/$PKG_ADDON_ID/bin/iwlist
     ln -s iwmulticall $ADDON_BUILD/$PKG_ADDON_ID/bin/iwspy
     ln -s iwmulticall $ADDON_BUILD/$PKG_ADDON_ID/bin/iwpriv
-
-  debug_strip $ADDON_BUILD/$PKG_ADDON_ID/bin
 }

@@ -1,27 +1,13 @@
 #!/bin/sh
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016-2017 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 # set media_build version you want to use
 if [ -z "$1" ]; then
   MEDIA_BUILD_HASH="master"
 else
-  MEDIA_BUILD_HASH="$1"  
+  MEDIA_BUILD_HASH="$1"
 fi
 
 # name of the package
@@ -60,7 +46,7 @@ cd media_tree/
   git pull
   GIT_LOG_MEDIA_TREE=`git log --pretty=oneline -n1`
   GIT_REV=`git log -n1 --pretty=format:"%ad" --date=short`
-  
+
 cd $DVB_MKPKG_FOLDER/
 
 ################################################################################
@@ -70,10 +56,10 @@ echo "create media_tree tar"
 cd media_build/linux
 make tar DIR="$DVB_MKPKG_FOLDER/media_tree/"
 
-cd $DVB_MKPKG_FOLDER 
+cd $DVB_MKPKG_FOLDER
 
 # cleanup
-rm -rf media_tree/ 
+rm -rf media_tree/
 rm -rf media_build/.git/
 
 # log used versions into LE_versions

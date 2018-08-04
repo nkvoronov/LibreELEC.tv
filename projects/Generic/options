@@ -11,6 +11,7 @@
         # (Intel CPUs)  atom core2 nocona
         #
         TARGET_CPU="x86-64"
+        TARGET_FEATURES="64bit"
         ;;
     esac
 
@@ -34,6 +35,9 @@
 
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD=""
+
+  # Additional kernel dependencies
+    KERNEL_EXTRA_DEPENDS_TARGET=""
 
   # Kernel to use. values can be:
   # default:  default mainline kernel
@@ -86,3 +90,11 @@
   # Space separated list is supported,
   # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
     ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS bcm_sta intel_nuc_led"
+
+  # build and install driver addons (yes / no)
+    DRIVER_ADDONS_SUPPORT="NO"
+
+  # driver addons to install:
+  # for a list of additinoal drivers see packages/linux-driver-addons
+  # Space separated list is supported,
+    DRIVER_ADDONS="crazycat digital_devices hauppauge"

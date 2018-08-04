@@ -1,35 +1,19 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="LibreELEC-settings"
-PKG_VERSION="0768930"
+PKG_VERSION="659afa8"
+PKG_SHA256="f01e6e2f0b9db3ca0addd6f00b93b192596fd1640ba8cd88197a4c3c1a4719fb"
 PKG_ARCH="any"
-PKG_LICENSE="prop."
+PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
 PKG_URL="https://github.com/LibreELEC/service.libreelec.settings/archive/$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="service.libreelec.settings-$PKG_VERSION*"
-PKG_DEPENDS_TARGET="toolchain Python connman pygobject dbus-python"
+PKG_DEPENDS_TARGET="toolchain Python2 connman pygobject dbus-python"
 PKG_SECTION=""
 PKG_SHORTDESC="LibreELEC-settings: Settings dialog for LibreELEC"
 PKG_LONGDESC="LibreELEC-settings: is a settings dialog for LibreELEC"
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
 
 PKG_MAKE_OPTS_TARGET="DISTRONAME=$DISTRONAME ROOT_PASSWORD=$ROOT_PASSWORD"
 
@@ -39,26 +23,22 @@ else
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bkeymaps"
 fi
 
-post_unpack() {
-  if [ "$CUSTOM_SUPPORT" = "yes" ]; then
-    for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
-      cat $patch | patch -d \
-      `echo $BUILD/$PKG_NAME-$PKG_VERSION | cut -f1 -d\ ` -p1
-    done
-  fi
-}
-
 post_makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libreelec
     cp $PKG_DIR/scripts/* $INSTALL/usr/lib/libreelec
 
-  python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/lib/ -f
-  rm -rf `find $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/lib/ -name "*.py"`
+#  # bluetooth is optional
+#    if [ ! "$BLUETOOTH_SUPPORT" = yes ]; then
+#      rm -f resources/lib/modules/bluetooth.py
+#    fi
 
-  python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/service.libreelec.settings/oe.py -f
-  rm -rf $INSTALL/usr/share/kodi/addons/service.libreelec.settings/oe.py
+  ADDON_INSTALL_DIR=$INSTALL/usr/share/kodi/addons/service.libreelec.settings
 
-  rm -f $INSTALL/usr/share/kodi/addons/service.libreelec.settings/resources/fanart.png
+  $TOOLCHAIN/bin/python -Wi -t -B $TOOLCHAIN/lib/$PKG_PYTHON_VERSION/compileall.py $ADDON_INSTALL_DIR/resources/lib/ -f
+  rm -rf $(find $ADDON_INSTALL_DIR/resources/lib/ -name "*.py")
+
+  $TOOLCHAIN/bin/python -Wi -t -B $TOOLCHAIN/lib/$PKG_PYTHON_VERSION/compileall.py $ADDON_INSTALL_DIR/oe.py -f
+  rm -rf $ADDON_INSTALL_DIR/oe.py
 }
 
 post_install() {

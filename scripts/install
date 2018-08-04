@@ -1,23 +1,8 @@
 #!/bin/bash
 
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#      Copyright (C) 2010-2011 Roman Weber (roman@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2010-2011 Roman Weber (roman@openelec.tv)
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 . config/options $1
 
@@ -32,30 +17,33 @@ if [ -z "$INSTALL" ] ; then
 fi
 
 # set defaults
-PACKAGE_NAME=$(echo $1 | awk -F : '{print $1}')
-TARGET=$(echo $1 | awk -F : '{print $2}')
-if [ -z "$TARGET" ]; then
-  TARGET="target"
+if [ "${1//:/}" != "${1}" ]; then
+  PACKAGE_NAME="${1%:*}"
+  TARGET="${1#*:}"
+else
+  PACKAGE_NAME=$1
+  TARGET=
 fi
+[ -z "$TARGET" ] && TARGET="target"
 
 STAMP=$STAMPS_INSTALL/$PACKAGE_NAME/install_$TARGET
 mkdir -p $STAMPS_INSTALL/$PACKAGE_NAME
 
 [ -f $STAMP ] && exit 0
 
-if [ -n "$PKG_ARCH" -a ! "$PKG_ARCH" = "any" ]; then
-  echo "$PKG_ARCH" | grep -q "$TARGET_ARCH" || exit 0
-  echo "$PKG_ARCH" | grep -q "\-$TARGET_ARCH" && exit 0
+if [ -n "$PKG_ARCH" ]; then
+  listcontains "$PKG_ARCH" "!$TARGET_ARCH" && exit 0
+  listcontains "$PKG_ARCH" "$TARGET_ARCH" || listcontains "$PKG_ARCH" "any" || exit 0
 fi
 
 if [ ! -f $PKG_DIR/package.mk ]; then
-  printf "${boldred}${PACKAGE_NAME}: no package.mk file found${endcolor}\n"
+  printf "$(print_color CLR_ERROR "${PACKAGE_NAME}: no package.mk file found")\n"
   exit 1
 fi
 
 $SCRIPTS/build $@
 
-printf "%${BUILD_INDENT}c ${boldgreen}INSTALL${endcolor}    $PACKAGE_NAME ${boldwhite}($TARGET)${endcolor}\n" ' '>&$SILENT_OUT
+printf "%${BUILD_INDENT}c $(print_color CLR_INSTALL "INSTALL")    $PACKAGE_NAME $(print_color CLR_TARGET "($TARGET)")\n" ' '>&$SILENT_OUT
 export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
 
 if [ "$TARGET" = target ] ; then

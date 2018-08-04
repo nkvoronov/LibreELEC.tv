@@ -1,23 +1,9 @@
-################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-#
-#  OpenELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  OpenELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="keyutils"
-PKG_VERSION="1.5.9"
+PKG_VERSION="1.5.10"
+PKG_SHA256="115c3deae7f181778fd0e0ffaa2dad1bf1fe2f5677cf2e0e348cdb7a1c93afb6"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://people.redhat.com/~dhowells/keyutils/"
@@ -26,15 +12,13 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="system"
 PKG_SHORTDESC="keyutils: Linux Key Management Utilities"
 PKG_LONGDESC="Keyutils is a set of utilities for managing the key retention facility in the kernel."
+PKG_BUILD_FLAGS="+pic"
 
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
 PKG_MAKE_OPTS_TARGET="NO_ARLIB=0 NO_SOLIB=1 BINDIR=/usr/bin SBINDIR=/usr/sbin LIBDIR=/usr/lib USRLIBDIR=/usr/lib"
 PKG_MAKEINSTALL_OPTS_TARGET="$PKG_MAKE_OPTS_TARGET"
 
 post_makeinstall_target() {
-	rm -rf $INSTALL/usr/share
-	rmdir $INSTALL/etc/request-key.d
-	ln -sf /storage/.config/request-key.d $INSTALL/etc/request-key.d
+  rm -rf $INSTALL/usr/share
+  rmdir $INSTALL/etc/request-key.d
+  ln -sf /storage/.config/request-key.d $INSTALL/etc/request-key.d
 }
-

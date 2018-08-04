@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
+PKG_NAME="libretro-virtualjaguar"
+PKG_VERSION="2ce1ec0"
+PKG_SHA256="76d2f869f129de249cd8b89054f0c4e2d6c1c2a7bff7bf3691bfce317fa6b921"
+PKG_ARCH="any"
+PKG_LICENSE="GPLv3"
+PKG_SITE="https://github.com/libretro/virtualjaguar-libretro"
+PKG_URL="https://github.com/libretro/virtualjaguar-libretro/archive/$PKG_VERSION.tar.gz"
+PKG_SOURCE_DIR="virtualjaguar-libretro-$PKG_VERSION*"
+PKG_DEPENDS_TARGET="toolchain kodi-platform"
+PKG_SECTION="emulation"
+PKG_SHORTDESC="Port of Virtual Jaguar to Libretro"
+PKG_LONGDESC="Port of Virtual Jaguar to Libretro"
+
+PKG_LIBNAME="virtualjaguar_libretro.so"
+PKG_LIBPATH="$PKG_LIBNAME"
+PKG_LIBVAR="VIRTUALJAGUAR_LIB"
+
+makeinstall_target() {
+  mkdir -p $SYSROOT_PREFIX/usr/lib/cmake/$PKG_NAME
+  cp $PKG_LIBPATH $SYSROOT_PREFIX/usr/lib/$PKG_LIBNAME
+  echo "set($PKG_LIBVAR $SYSROOT_PREFIX/usr/lib/$PKG_LIBNAME)" > $SYSROOT_PREFIX/usr/lib/cmake/$PKG_NAME/$PKG_NAME-config.cmake
+}
