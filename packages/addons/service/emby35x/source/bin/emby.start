@@ -1,6 +1,7 @@
+#!/bin/sh
 ################################################################################
 #      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2018-present Team LibreELEC
+#      Copyright (C) 2016-present Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -16,30 +17,20 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="ffmpeg-tools"
-PKG_VERSION="1.0"
-PKG_REV="105"
-PKG_ARCH="any"
-PKG_LICENSE="GPL"
-PKG_SITE="https://libreelec.tv"
-PKG_URL=""
-PKG_DEPENDS_TARGET="toolchain ffmpegx"
-PKG_SECTION="tools"
-PKG_SHORTDESC="FFmpeg binary for transcoding and audio/video manipulating."
+. /etc/profile
+oe_setup_addon service.emby
 
-PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="FFmpeg Tools"
-PKG_ADDON_TYPE="xbmc.python.script"
+chmod +x $ADDON_DIR/bin/*
+mkdir -p $ADDON_HOME
 
-make_target() {
-  : # nop
-}
+export FONTCONFIG_PATH=$ADDON_DIR/etc/fonts
+export ICU_DATA=$ADDON_DIR/share/icu/61.1
+export LD_LIBRARY_PATH=$ADDON_DIR/lib:$ADDON_DIR/lib/samba
+export LIBVA_DRIVERS_PATH=$ADDON_DIR/lib/dri
+export SSL_CERT_FILE=$ADDON_DIR/etc/ssl/certs/ca-certificates.crt
 
-makeinstall_target() {
-  : # nop
-}
-
-addon() {
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin/
-  cp -L $(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/bin/* $ADDON_BUILD/$PKG_ADDON_ID/bin
-}
+exec $ADDON_DIR/system/EmbyServer \
+  -programdata $ADDON_HOME \
+  -ffmpeg $ADDON_DIR/bin/ffmpeg \
+  -ffprobe $ADDON_DIR/bin/ffprobe \
+  -restartexitcode 3

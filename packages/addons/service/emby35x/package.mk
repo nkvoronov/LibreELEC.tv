@@ -16,13 +16,13 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="emby"
-PKG_VERSION="3.5.0.0"
-PKG_REV="125"
+PKG_NAME="emby35x"
+PKG_VERSION="3.5.2.0"
+PKG_REV="352"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
-PKG_URL="https://github.com/MediaBrowser/Emby/releases/download/$PKG_VERSION/Emby.Mono.zip"
+PKG_URL="https://github.com/MediaBrowser/Emby.Releases/releases/download/${PKG_VERSION}/emby-server-deb_${PKG_VERSION}_amd64.deb"
 PKG_DEPENDS_TARGET="toolchain imagemagickx"
 PKG_SECTION="service"
 PKG_SHORTDESC="Emby Server: a personal media server"
@@ -31,11 +31,11 @@ PKG_LONGDESC="Emby Server ($PKG_VERSION) brings your home videos, music, and pho
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Emby Server"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="tools.ffmpeg-tools:0.0.0 tools.mono:0.0.0"
-PKG_MAINTAINER="Anton Voyl (awiouy)"
+PKG_MAINTAINER="ubuntu"
 
 unpack() {
   mkdir -p $PKG_BUILD
+  dpkg -x $SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION.deb $PKG_BUILD
 }
 
 make_target() {
@@ -47,18 +47,20 @@ makeinstall_target() {
 }
 
 addon() {
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/Emby.Mono
-  unzip -q $SOURCES/$PKG_NAME/$PKG_SOURCE_NAME \
-        -d $ADDON_BUILD/$PKG_ADDON_ID/Emby.Mono
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp $PKG_BUILD/opt/emby-server/bin/ffmpeg $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp $PKG_BUILD/opt/emby-server/bin/ffprobe $ADDON_BUILD/$PKG_ADDON_ID/bin
 
-  sed -i 's/libMagickWand-6./libMagickWand-7./g' \
-      $ADDON_BUILD/$PKG_ADDON_ID/Emby.Mono/ImageMagickSharp.dll.config
-
-  sed -i 's/libsqlite3.so/libsqlite3.so.0/g' \
-      $ADDON_BUILD/$PKG_ADDON_ID/Emby.Mono/SQLitePCLRaw.provider.sqlite3.dll.config
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/etc
+    cp -r $PKG_BUILD/opt/emby-server/etc/* $ADDON_BUILD/$PKG_ADDON_ID/etc
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-  cp -L $(get_build_dir imagemagickx)/.install_pkg/usr/lib/libMagickCore-7.Q8.so.? \
-        $(get_build_dir imagemagickx)/.install_pkg/usr/lib/libMagickWand-7.Q8.so   \
-        $ADDON_BUILD/$PKG_ADDON_ID/lib/
+    cp -r $PKG_BUILD/opt/emby-server/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -r $PKG_BUILD/opt/emby-server/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/system
+    cp -r $PKG_BUILD/opt/emby-server/system/* $ADDON_BUILD/$PKG_ADDON_ID/system
+
 }
