@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2018-01-16 14:04:01.000000000 +0200
-+++ b/Makefile.ffmpeg	2018-01-17 11:00:10.060128352 +0200
+--- a/Makefile.ffmpeg	2018-07-26 11:57:06.000000000 +0300
++++ b/Makefile.ffmpeg	2018-08-06 15:22:56.233375057 +0300
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
