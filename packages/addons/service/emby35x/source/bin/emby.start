@@ -21,6 +21,7 @@
 oe_setup_addon service.emby
 
 chmod +x $ADDON_DIR/bin/*
+chmod +x $ADDON_DIR/system/EmbyServer
 mkdir -p $ADDON_HOME
 
 export FONTCONFIG_PATH=$ADDON_DIR/etc/fonts

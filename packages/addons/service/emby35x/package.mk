@@ -18,7 +18,7 @@
 
 PKG_NAME="emby35x"
 PKG_VERSION="3.5.2.0"
-PKG_REV="352"
+PKG_REV="353"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
