@@ -1,0 +1,33 @@
+diff -Naur a/imagemagickwrapper.c b/imagemagickwrapper.c
+--- a/imagemagickwrapper.c	2014-10-18 00:39:12.000000000 +0300
++++ b/imagemagickwrapper.c	2014-10-20 02:30:03.230608164 +0300
+@@ -69,9 +69,28 @@
+ bool cImageMagickWrapper::LoadImage(const char *fullpath) {
+     if ((fullpath == NULL) || (strlen(fullpath) < 5))
+         return false;
+-    try {
++    try {            
++        #ifdef DEBUGIMAGELOADTIME
++            dsyslog("skinflatplus: trying to load: %s", fullpath);
++        #endif
+         buffer.read(fullpath);
++        #ifdef DEBUGIMAGELOADTIME
++            dsyslog("skinflatplus: %s sucessfully loaded", fullpath);
++        #endif
++    } catch( Magick::Warning &warning ) {
++        #ifdef DEBUGIMAGELOADTIME
++            dsyslog("skinflatplus: Magick Warning: %s", warning.what());
++        #endif
++        return true;
++    } catch( Magick::Error &error ) {
++        #ifdef DEBUGIMAGELOADTIME
++            dsyslog("skinflatplus: Magick Error: %s", error.what());
++        #endif
++        return false;
+     } catch(...) {
++        #ifdef DEBUGIMAGELOADTIME
++            dsyslog("skinflatplus: an unknown Magick error occured during image loading");
++        #endif
+         return false;
+     }
+     return true;

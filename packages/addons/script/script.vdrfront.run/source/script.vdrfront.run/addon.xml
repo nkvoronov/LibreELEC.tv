@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon
+	id="script.vdrfront.run"
+	name="Run VDR Fronend"
+	version="1.0.0"
+	provider-name="YLLOW_DRAGON">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.script"  library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Start VDR frontend</summary>
+		<description lang="en">Start VDR frontend</description>	   
+		<summary lang="ru">Старт VDR frontend</summary>
+		<description lang="ru">Старт VDR frontend</description>
+		<platform>linux</platform>
+		<email>nkvoronov@gmail.com</email>
+		<source></source>
+	</extension>
+</addon>

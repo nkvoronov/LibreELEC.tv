@@ -1,0 +1,130 @@
+# German translations for vdr-text2skin-PearlHD skin.
+# Copyright (C) 2009 mapovi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: vdr-text2skin-PearlHD 0.0.4\n"
+"Report-Msgid-Bugs-To: <don_jan@web.de>\n"
+"POT-Creation-Date: 2011-04-12 15:59+0200\n"
+"PO-Revision-Date: 2009-10-03 12:38+0100\n"
+"Last-Translator: don_jan@web.de\n"
+"Language-Team:  don_jan@web.de\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Mute"
+msgstr "Stumm"
+
+msgid "Playing"
+msgstr "Playing"
+
+msgid "Pause"
+msgstr "Pause"
+
+msgid "Fast forward"
+msgstr "Vorlauf"
+
+msgid "Fast rewind"
+msgstr "Zurückspulen"
+
+msgid "Slow forward"
+msgstr "Zeitlupe Vorwärts"
+
+msgid "Slow rewind"
+msgstr "Zeitlupe Rückwärts"
+
+msgid "of"
+msgstr "von"
+
+msgid "Timers"
+msgstr "Timer"
+
+msgid "Recordings"
+msgstr "Aufzeichnungen"
+
+msgid "Edit timer"
+msgstr "Timer editieren"
+
+msgid "Setup"
+msgstr "Setup"
+
+msgid "Channels"
+msgstr "Kanäle"
+
+msgid "Schedule"
+msgstr "Programm"
+
+msgid "Commands"
+msgstr "Befehle"
+
+msgid "Learning Remote Control Keys"
+msgstr ""
+
+msgid "oClock"
+msgstr "Uhr"
+
+msgid "length"
+msgstr "Länge"
+
+msgid "cutted"
+msgstr "geschnitten"
+
+#~ msgid "Volume"
+#~ msgstr "Lautstärke"
+
+#~ msgid "Conflicting Timers"
+#~ msgstr "Timerkonflikte"
+
+#~ msgid "RECTITLEINFOTOP"
+#~ msgstr "NO"
+
+#~ msgid "RECTITLEINFOBOTTOM"
+#~ msgstr "NO"
+
+#~ msgid "RECTITLEINFO"
+#~ msgstr "NO"
+
+#, fuzzy
+#~ msgid "Timer"
+#~ msgstr "Timer"
+
+#~ msgid "BUTTON_1"
+#~ msgstr "Knopf 1"
+
+#~ msgid "BUTTON_2"
+#~ msgstr "Knopf 2"
+
+#~ msgid "BUTTON_3"
+#~ msgstr "Knopf 3"
+
+#~ msgid "BUTTON_4"
+#~ msgstr "Knopf 4"
+
+#~ msgid "Rec:"
+#~ msgstr "Rec:"
+
+#~ msgid "Message"
+#~ msgstr "Nachricht"
+
+#~ msgid "Stop replaying"
+#~ msgstr "Wiedergabe beenden"
+
+#~ msgid "Cancel editing"
+#~ msgstr " Schneiden abbrechen"
+
+#~ msgid "What's on now?"
+#~ msgstr "Was läuft jetzt?"
+
+#~ msgid "What's on next?"
+#~ msgstr "Was läuft als nächstes?"
+
+#~ msgid "Recording commands"
+#~ msgstr "Befehle für Aufzeichnungen"
+
+#~ msgid "Edit channel"
+#~ msgstr "Kanal editieren"
+
+#~ msgid "Audio Channel"
+#~ msgstr "Audiokanal"

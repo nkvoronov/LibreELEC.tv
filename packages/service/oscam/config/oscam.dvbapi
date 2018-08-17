@@ -1,0 +1,42 @@
+# oscam.dvbapi
+# DVBAPI configuration file for OSCam
+# Syntax
+# S: [device] [PMT file name]
+# P: [CAID]:[provider ID]:[service ID]:[ECM PID]:[CHID] continue
+# I: [CAID]:[provider ID]:[service ID]:[ECM PID]:[CHID] ignore
+# J: [CAID]:[provider ID]:[service ID]:[ECM PID] join
+# A: ::[service ID]:[PMT PID]:[provider ID]:[ECM PID] dummy
+# X: [CAID]:[provider ID]:[service ID]:[ECM PID] demux
+# D: [CAID]:[provider ID]:[service ID]:[ECM PID] delay
+# L: [CAID]:[provider ID]:[service ID]:[ECM PID] ECM length (hexa)
+# M: [CAID]:[provider ID]:[service ID]:[ECM PID] target CAID:[target provider ID]
+# S = set DVB API device name and PMT File name (valid for STAPI only!)
+# P = set priority, recommended for pay-per-view services/EMMs (use carefull!)
+# [continue] = 1  # proceed with priority, recomended for pay-per-view services
+#            =    # [blank] none (default)
+# I = set ignore
+# J = joined CAID[:]joined provider ID[:]joined ECM PID join to another ECM PID
+# A = set a dummy ECM request with CAID FFFF for services with a constant CW shown as unencrypted service
+# X = add decoding on an extra demux index on the same CA device (Multi ECM) (not support on all STBs)
+# D = set delay in milli seconds writing CWs
+# L = set ECM length in hexa
+# M = mapping
+#
+# examples
+# P: 0100:123456       # prioritise CAID 0100 with provider 123456
+# P: :1234             # prioritise ECM with provider ID 1234 on on any service
+# P: 0200              # prioritise CAID 0200
+# P: 0300::9ABC        # prioritise CAID 0300 on service 9ABC only
+# I: :654321           # ignore provider ID 654321 for every service
+# I: 0                 # ignore every CAID that was not handled before
+# D: 0600 200          # wait 200 ms before writing CW for CAID 0600
+# L: 0700 8e           # ECM length for CAID 0700 to 8e (hexa)
+# M: 0400 0500:123456  # map CAID 0400 to provider ID 123456 with CAID 0500 always
+#
+
+# D: 4AE1:000002 400
+# D: 4AE1:000011 600
+
+P: 0B0F:000000 1 # XtraTV
+P: 0B00:000000 1 # Volia Digital
+P: 2600:000000 1 # BISS

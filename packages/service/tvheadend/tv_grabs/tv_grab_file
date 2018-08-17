@@ -1,0 +1,83 @@
+#!/bin/sh
+
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2012 Stephan Raue (stephan@openelec.tv)
+#
+#  This Program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This Program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.tv; see the file COPYING.  If not, write to
+#  the Free Software Foundation, 51 Franklin Street, Suite 500, Boston, MA 02110, USA.
+#  http://www.gnu.org/copyleft/gpl.html
+################################################################################
+
+. /etc/profile
+
+if [ -f /storage/.cache/services/tvheadend.conf ]; then
+    . /storage/.cache/services/tvheadend.conf
+fi
+
+dflag=
+vflag=
+cflag=
+
+if [[ $# -lt 1 ]]; then
+  if [ "$TVHEADEND_XMLTV_TYPE" = "file" ]; then
+    cat "$TVHEADEND_XMLTV_LOCATION_FILE"
+    exit 0
+  elif [ "$TVHEADEND_XMLTV_TYPE" = "script" ]; then
+    if [ -e "$TVHEADEND_XMLTV_LOCATION_SCRIPT" ] ; then
+      exec "$TVHEADEND_XMLTV_LOCATION_SCRIPT"
+    fi
+  elif [ "$TVHEADEND_XMLTV_TYPE" = "web" ]; then
+    wget -qO - "$TVHEADEND_XMLTV_LOCATION_WEB"
+    exit 0
+  fi
+fi
+
+for arg; do
+    delim=""
+    case "$arg" in
+    #translate --gnu-long-options to -g (short options)
+       --description) args="${args}-d ";;
+       --version) args="${args}-v ";;
+       --capabilities) args="${args}-c ";;
+       #pass through anything else
+       *) [[ "${arg:0:1}" == "-" ]] || delim="\""
+           args="${args}${delim}${arg}${delim} ";;
+    esac
+done
+
+#Reset the positional parameters to the short options
+eval set -- $args
+
+while getopts "dvc" option; do
+    case $option in
+        d)  dflag=1;;
+        v)  vflag=1;;
+        c)  cflag=1;;
+        \?) printf "unknown option: -%s\n" $OPTARG
+            printf "Usage: %s: [--description] [--version] [--capabilities] \n" $(basename $0)
+            exit 2
+            ;;
+    esac >&2
+done
+
+if [ "$dflag" ]; then
+   printf "tv_grab_file is a simple grabber that just read the local or web XMLTV formated file\n"
+fi
+if [ "$vflag" ]; then
+   printf "0.1\n"
+fi
+if [ "$cflag" ]; then
+   printf "baseline\n"
+fi

@@ -1,0 +1,12 @@
+# oscam.ratelimit
+# ECMs ratelimit for OScam
+# limit rate of ECMs allowed for an interval
+#
+# CAID:provider ID:service ID:ChID::ratelimitecm:ratelimitseconds:srvidholdseconds
+# ratelimitecm = number of different SIDs in ECMs allowed for an interval
+# ratelimitseconds = interval in seconds for ratelimit
+# srvidholdseconds = extra time in seconds this service ID is kept in a slot before another servive ID can take its place
+#
+# example
+# 0100:00002A:3A3A:4A00:0002:0010:0004
+#

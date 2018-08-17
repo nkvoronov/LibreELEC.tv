@@ -1,0 +1,12 @@
+diff -Naur a/drivers/media/rc/ir-mce_kbd-decoder.c b/drivers/media/rc/ir-mce_kbd-decoder.c
+--- a/drivers/media/rc/ir-mce_kbd-decoder.c	2018-04-04 03:48:07.000000000 +0300
++++ b/drivers/media/rc/ir-mce_kbd-decoder.c	2018-04-16 14:45:23.620632642 +0300
+@@ -130,6 +130,8 @@
+ 
+ 	for (i = 0; i < MCIR2_MASK_KEYS_START; i++)
+ 		input_report_key(raw->mce_kbd.idev, kbd_keycodes[i], 0);
++
++	input_sync(mce_kbd->idev);
+ }
+ 
+ static enum mce_kbd_mode mce_kbd_mode(struct mce_kbd_dec *data)

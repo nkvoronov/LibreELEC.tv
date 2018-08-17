@@ -1,0 +1,12 @@
+diff -Naur a/vdr.c b/vdr.c
+--- a/vdr.c	2018-04-10 16:24:43.000000000 +0300
++++ b/vdr.c	2018-04-17 20:36:03.842495610 +0300
+@@ -80,7 +80,7 @@
+ #define SHUTDOWNCANCELPROMPT   5 // seconds to wait in user prompt to allow canceling shutdown
+ #define RESTARTCANCELPROMPT    5 // seconds to wait in user prompt before restarting on SIGHUP
+ #define MANUALSTART          600 // seconds the next timer must be in the future to assume manual start
+-#define CHANNELSAVEDELTA     600 // seconds before saving channels.conf after automatic modifications
++#define CHANNELSAVEDELTA     120 // seconds before saving channels.conf after automatic modifications
+ #define DEVICEREADYTIMEOUT    30 // seconds to wait until all devices are ready
+ #define MENUTIMEOUT          120 // seconds of user inactivity after which an OSD display is closed
+ #define TIMERCHECKDELTA       10 // seconds between checks for timers that need to see their channel

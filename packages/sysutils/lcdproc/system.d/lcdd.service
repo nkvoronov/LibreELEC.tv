@@ -1,0 +1,16 @@
+[Unit]
+Description=LCDProc
+ConditionPathExists=|/storage/.cache/services/lcdd.conf
+After=multi-user.target
+
+[Service]
+EnvironmentFile=-/storage/.cache/services/lcdd.conf
+ExecStart=/bin/sh /usr/lib/lcdproc/lcdd.start
+TimeoutStopSec=1s
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=30
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,179 @@
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	2011-03-25 18:23:49.000000000 +0200
++++ b/po/ru_RU.po	2014-07-27 22:10:14.650337324 +0300
+@@ -9,118 +9,122 @@
+ "POT-Creation-Date: 2011-03-25 17:19+0100\n"
+ "PO-Revision-Date: 2011-03-24 17:12+0100\n"
+ "Last-Translator: wk <handygewinnspiel@gmx.de>\n"
+-"Language-Team:  <vdr@linuxtv.org>\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: ru\n"
+ "MIME-Version: 1.0\n"
+-"Content-Type: text/plain; charset=ISO-8859-5\n"
++"Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ 
++msgid "scan channels using wirbelscan"
++msgstr "сканирование каналов используя wirbelscan"
++
+ msgid "Channel Scan"
+-msgstr ""
++msgstr "Сканирование каналов"
+ 
+ msgid "wirbelscan was not found - pls install."
+-msgstr ""
++msgstr "wirbelscan не найден - Пожалусто установите."
+ 
+ msgid "Your wirbelscan version doesnt"
+-msgstr ""
++msgstr "Вашей wirbelscan версии нет"
+ 
+ msgid "support services - Please upgrade."
+-msgstr ""
++msgstr "поддержка сервиса - Пожалусто обновите."
+ 
+ msgid "Your wirbelscan version is"
+-msgstr ""
++msgstr "Ваш wirbelscan версии"
+ 
+ msgid "too old - Please upgrade."
+-msgstr ""
++msgstr "очень старый - Пожалусто обновите."
+ 
+ msgid "Scan"
+-msgstr ""
++msgstr "Скан"
+ 
+ msgid "Store"
+-msgstr ""
++msgstr "Сохранить"
+ 
+ msgid "Stop"
+-msgstr ""
++msgstr "Стоп"
+ 
+ msgid "Start"
+-msgstr ""
++msgstr "Старт"
+ 
+ msgid "Source Type"
+-msgstr ""
++msgstr "Тип источника"
+ 
+ msgid "Country"
+-msgstr ""
++msgstr "Страна"
+ 
+ msgid "Inversion"
+-msgstr ""
++msgstr "Инверсия"
+ 
+ msgid "Scan mode"
+-msgstr ""
++msgstr "Режим сканирования"
+ 
+ msgid "Frequency"
+-msgstr ""
++msgstr "Частота"
+ 
+ msgid "Modulation"
+-msgstr ""
++msgstr "Модуляция"
+ 
+ msgid "FEC HP"
+-msgstr ""
++msgstr "FEC HP"
+ 
+ msgid "FEC LP"
+-msgstr ""
++msgstr "FEC LP"
+ 
+ msgid "Bandwidth"
+-msgstr ""
++msgstr "Пропускная способность"
+ 
+ msgid "Guard Interval"
+-msgstr ""
++msgstr "Защитный интервал"
+ 
+ msgid "Hierarchy"
+-msgstr ""
++msgstr "Иерархия"
+ 
+ msgid "Trans. Mode"
+-msgstr ""
++msgstr "Режим Транс."
+ 
+ msgid "use NIT"
+-msgstr ""
++msgstr "использовать NIT"
+ 
+ msgid "Symbol Rate"
+-msgstr ""
++msgstr "Символная скорость"
+ 
+ msgid "Satellite"
+-msgstr ""
++msgstr "Спутник"
+ 
+ msgid "System"
+-msgstr ""
++msgstr "Система"
+ 
+ msgid "Polarisation"
+-msgstr ""
++msgstr "Поляризация"
+ 
+ msgid "FEC"
+-msgstr ""
++msgstr "FEC"
+ 
+ msgid "Rolloff"
+-msgstr ""
++msgstr "Rolloff"
+ 
+ msgid "Type"
+-msgstr ""
++msgstr "Тип"
+ 
+ msgid "Unknown Source ???"
+-msgstr ""
++msgstr "Неизвестный источник ???"
+ 
+ msgid "Scan in progress"
+-msgstr ""
++msgstr "Прогресс сканирования"
+ 
+ msgid "Running: 0h 00m 00s"
+-msgstr ""
++msgstr "Запущен: 0ч 00м 00с"
+ 
+ msgid "New channels: 0"
+-msgstr ""
++msgstr "Новые каналы: 0"
+ 
+ msgid "Running:"
+-msgstr ""
++msgstr "Запущен:"
+ 
+ msgid "Scan finished"
+-msgstr ""
++msgstr "Сканирование закончено"
+ 
+ msgid "New channels: "
+-msgstr ""
++msgstr "Новые каналы: "
+diff -Naur a/wirbelscancontrol.c b/wirbelscancontrol.c
+--- a/wirbelscancontrol.c	2011-03-25 17:52:54.000000000 +0200
++++ b/wirbelscancontrol.c	2014-07-26 22:17:13.293155935 +0300
+@@ -10,8 +10,8 @@
+ #include "scanmenu.h"
+ 
+ static const char *VERSION        = "0.0.2";
+-static const char *DESCRIPTION    = "scan channels using wirbelscan";
+-static const char *MAINMENUENTRY  = "Channel Scan";
++static const char *DESCRIPTION    = tr("scan channels using wirbelscan");
++static const char *MAINMENUENTRY  = tr("Channel Scan");
+ 
+ class cPluginWirbelscancontrol : public cPlugin {
+ private:

@@ -1,20 +1,35 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+################################################################################
+#      This file is part of OpenELEC - http://www.openelec.tv
+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+#
+#  OpenELEC is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  OpenELEC is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
+################################################################################
 
 PKG_NAME="vdr-plugin-epgsearch"
 PKG_VERSION="84b59b8"
-PKG_SHA256="d6c4a9136588a7cdf2eb43b6b9643a5bb81a44c542c6e6fcf7448b2383901914"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://winni.vdr-developer.org/epgsearch/"
-PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch.git"
+PKG_TYPE="git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_SECTION="multimedia"
-PKG_SHORTDESC="EPGSearch is a plugin for the Video-Disc-Recorder (VDR)."
-PKG_LONGDESC="EPGSearch is a plugin for the Video-Disc-Recorder (VDR)."
-PKG_TOOLCHAIN="manual"
+PKG_SHORTDESC="VDR plugin that provides extensive EPG searching capabilities."
+PKG_LONGDESC="VDR plugin that provides extensive EPG searching capabilities. This plugin for the Linux Video Disc Recorder (VDR) allows searching the EPG (electronic programme guide) data by defining search terms that can permanently be stored in a list for later reuse. It supports regular expressions and is capable of doing fuzzy searches. EPG-Search scans the EPG in background and can automatically create timers for matching search terms. Besides this it supports searching for repetitions, detection of timer conflicts, sending emails on timer events and much more. Search terms can also be added and modified with vdradmin-am, a web frontend for VDR."
+
+PKG_IS_ADDON="no"
+PKG_AUTORECONF="no"
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
@@ -32,5 +47,13 @@ post_make_target() {
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
 
+  cp --remove-destination $PKG_BUILD/libvdr-conflictcheckonly.so $PKG_BUILD/libvdr-conflictcheckonly.so.${VDR_APIVERSION}
   cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  cp --remove-destination $PKG_BUILD/libvdr-epgsearchonly.so $PKG_BUILD/libvdr-epgsearchonly.so.${VDR_APIVERSION}
+  cp --remove-destination $PKG_BUILD/libvdr-quickepgsearch.so $PKG_BUILD/libvdr-quickepgsearch.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
+}
+
+makeinstall_target() {
+  : # installation not needed, done by create-addon script
 }

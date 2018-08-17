@@ -1,0 +1,9 @@
+{
+	"enabled": 1,
+	"ondemand": 1,
+	"path": "/storage/videos",
+	"unlimited_period": 1,
+	"max_period": 60,
+	"unlimited_size": 1,
+	"max_size": 10000
+}

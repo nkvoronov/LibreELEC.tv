@@ -14,12 +14,14 @@ PKG_SHORTDESC="libxcb: X C-language Bindings library"
 PKG_LONGDESC="X C-language Bindings library."
 PKG_BUILD_FLAGS="+pic"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared \
-                           --disable-screensaver \
-                           --disable-xprint \
-                           --disable-selinux \
-                           --disable-xvmc"
+if [ "$LIBXCB_EXT" != yes ]; then
+  PKG_CONFIGURE_OPTS_TARGET="--enable-static \
+                             --disable-shared \
+                             --disable-screensaver \
+                             --disable-xprint \
+                             --disable-selinux \
+                             --disable-xvmc"
+fi
 
 pre_configure_target() {
   PYTHON_LIBDIR=$SYSROOT_PREFIX/usr/lib/$PKG_PYTHON_VERSION

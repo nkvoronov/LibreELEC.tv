@@ -1,0 +1,40 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2017-04-02 21:06:39.000000000 +0300
++++ b/Makefile	2018-05-15 22:49:59.932567994 +0300
+@@ -24,21 +24,15 @@
+ ### The directory environment:
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+-PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
+-LIBDIR = $(DESTDIR)$(call PKGCFG,libdir)
+-LOCDIR = $(DESTDIR)$(call PKGCFG,locdir)
+-PLGCFG = $(call PKGCFG,plgcfg)
+-#
+ TMPDIR ?= /tmp
+ 
+ ### The compiler options:
+ 
+-export CFLAGS   = $(call PKGCFG,cflags)
+-export CXXFLAGS = $(call PKGCFG,cxxflags)
++include $(VDRDIR)/Make.global
+ 
+ ### The version number of VDR's plugin API:
+ 
+-APIVERSION = $(call PKGCFG,apiversion)
++APIVERSION = $(shell sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$$/\1/p' $(VDRDIR)/config.h)
+ 
+ ### Allow user defined options to overwrite defaults:
+ 
+@@ -54,9 +48,10 @@
+ SOFILE = libvdr-$(PLUGIN).so
+ 
+ ### Includes and Defines (add further entries here):
++INCLUDES += -I$(VDRDIR)/include
+ 
+-INCLUDES += $(shell freetype-config --cflags)
+-LIBS += $(shell freetype-config --libs)
++INCLUDES += $(shell pkg-config --cflags freetype2)
++LIBS += $(shell pkg-config --libs freetype2)
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
+ 

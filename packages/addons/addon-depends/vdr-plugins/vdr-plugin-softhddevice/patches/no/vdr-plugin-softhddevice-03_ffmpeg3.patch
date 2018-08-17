@@ -1,0 +1,672 @@
+diff -Naur a/codec.c b/codec.c
+--- a/codec.c	2016-05-09 13:52:48.000000000 +0300
++++ b/codec.c	2016-05-09 16:52:48.591615813 +0300
+@@ -17,7 +17,7 @@
+ ///	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ///	GNU Affero General Public License for more details.
+ ///
+-///	$Id: 80e63bf6670616eafd90f139ba497cee6cbbf683 $
++///	$Id: d285eb28485bea02cd205fc8be47320dfe0376cf $
+ //////////////////////////////////////////////////////////////////////////////
+ 
+ ///
+@@ -159,8 +159,8 @@
+ **				valid format, the formats are ordered by
+ **				quality.
+ */
+-static enum PixelFormat Codec_get_format(AVCodecContext * video_ctx,
+-    const enum PixelFormat *fmt)
++static enum AVPixelFormat Codec_get_format(AVCodecContext * video_ctx,
++    const enum AVPixelFormat *fmt)
+ {
+     VideoDecoder *decoder;
+ 
+@@ -187,6 +187,8 @@
+     return Video_get_format(decoder->HwDecoder, video_ctx, fmt);
+ }
+ 
++static void Codec_free_buffer(void *opaque, uint8_t *data);
++
+ /**
+ **	Video buffer management, get buffer for frame.
+ **
+@@ -195,7 +197,7 @@
+ **	@param video_ctx	Codec context
+ **	@param frame		Get buffer for this frame
+ */
+-static int Codec_get_buffer(AVCodecContext * video_ctx, AVFrame * frame)
++static int Codec_get_buffer2(AVCodecContext * video_ctx, AVFrame * frame, int flags)
+ {
+     VideoDecoder *decoder;
+ 
+@@ -205,19 +207,19 @@
+     // libav 0.8.5 53.35.0 still needs this
+ #endif
+     if (!decoder->GetFormatDone) {	// get_format missing
+-	enum PixelFormat fmts[2];
++	enum AVPixelFormat fmts[2];
+ 
+ 	fprintf(stderr, "codec: buggy libav, use ffmpeg\n");
+ 	Warning(_("codec: buggy libav, use ffmpeg\n"));
+ 	fmts[0] = video_ctx->pix_fmt;
+-	fmts[1] = PIX_FMT_NONE;
++	fmts[1] = AV_PIX_FMT_NONE;
+ 	Codec_get_format(video_ctx, fmts);
+     }
+ #ifdef USE_VDPAU
+-    // VDPAU: PIX_FMT_VDPAU_H264 .. PIX_FMT_VDPAU_VC1 PIX_FMT_VDPAU_MPEG4
+-    if ((PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
+-	    && video_ctx->pix_fmt <= PIX_FMT_VDPAU_VC1)
+-	|| video_ctx->pix_fmt == PIX_FMT_VDPAU_MPEG4) {
++    // VDPAU: AV_PIX_FMT_VDPAU_H264 .. AV_PIX_FMT_VDPAU_VC1 AV_PIX_FMT_VDPAU_MPEG4
++    if ((AV_PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
++	    && video_ctx->pix_fmt <= AV_PIX_FMT_VDPAU_VC1)
++	|| video_ctx->pix_fmt == AV_PIX_FMT_VDPAU_MPEG4) {
+ 	unsigned surface;
+ 	struct vdpau_render_state *vrs;
+ 
+@@ -234,7 +236,8 @@
+ 	frame->age = 256 * 256 * 256 * 64;
+ #endif
+ 	// render
+-	frame->data[0] = (void *)vrs;
++	frame->buf[0] = av_buffer_create((uint8_t*)vrs, 0, Codec_free_buffer, video_ctx, 0);
++	frame->data[0] = frame->buf[0]->data;
+ 	frame->data[1] = NULL;
+ 	frame->data[2] = NULL;
+ 	frame->data[3] = NULL;
+@@ -265,8 +268,9 @@
+ 	frame->age = 256 * 256 * 256 * 64;
+ #endif
+ 	// vaapi needs both fields set
+-	frame->data[0] = (void *)(size_t) surface;
+-	frame->data[3] = (void *)(size_t) surface;
++	frame->buf[0] = av_buffer_create((uint8_t*)(size_t)surface, 0, Codec_free_buffer, video_ctx, 0);
++	frame->data[0] = frame->buf[0]->data;
++	frame->data[3] = frame->data[0];
+ 
+ #if LIBAVUTIL_VERSION_INT < AV_VERSION_INT(52,66,100)
+ 	// reordered frames
+@@ -279,29 +283,30 @@
+ 	return 0;
+     }
+     //Debug(3, "codec: fallback to default get_buffer\n");
+-    return avcodec_default_get_buffer(video_ctx, frame);
++    return avcodec_default_get_buffer2(video_ctx, frame, flags);
+ }
+ 
+ /**
+ **	Video buffer management, release buffer for frame.
+ **	Called to release buffers which were allocated with get_buffer.
+ **
+-**	@param video_ctx	Codec context
+-**	@param frame		Release buffer for this frame
++**	@param opaque	opaque data
++**	@param data		buffer data
+ */
+-static void Codec_release_buffer(AVCodecContext * video_ctx, AVFrame * frame)
++static void Codec_free_buffer(void *opaque, uint8_t *data)
+ {
++    AVCodecContext *video_ctx = (AVCodecContext *)opaque;
+ #ifdef USE_VDPAU
+-    // VDPAU: PIX_FMT_VDPAU_H264 .. PIX_FMT_VDPAU_VC1 PIX_FMT_VDPAU_MPEG4
+-    if ((PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
+-	    && video_ctx->pix_fmt <= PIX_FMT_VDPAU_VC1)
+-	|| video_ctx->pix_fmt == PIX_FMT_VDPAU_MPEG4) {
++    // VDPAU: AV_PIX_FMT_VDPAU_H264 .. AV_PIX_FMT_VDPAU_VC1 AV_PIX_FMT_VDPAU_MPEG4
++    if ((AV_PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
++	    && video_ctx->pix_fmt <= AV_PIX_FMT_VDPAU_VC1)
++	|| video_ctx->pix_fmt == AV_PIX_FMT_VDPAU_MPEG4) {
+ 	VideoDecoder *decoder;
+ 	struct vdpau_render_state *vrs;
+ 	unsigned surface;
+ 
+ 	decoder = video_ctx->opaque;
+-	vrs = (struct vdpau_render_state *)frame->data[0];
++	vrs = (struct vdpau_render_state *)data;
+ 	surface = vrs->surface;
+ 
+ 	//Debug(3, "codec: release surface %#010x\n", surface);
+@@ -309,7 +314,7 @@
+ 
+ 	av_freep(&vrs->bitstream_buffers);
+ 	vrs->bitstream_buffers_allocated = 0;
+-	av_freep(&frame->data[0]);
++	av_freep(&data);
+ 
+ 	return;
+     }
+@@ -320,18 +325,13 @@
+ 	unsigned surface;
+ 
+ 	decoder = video_ctx->opaque;
+-	surface = (unsigned)(size_t) frame->data[3];
++	surface = (unsigned)(size_t) data;
+ 
+ 	//Debug(3, "codec: release surface %#010x\n", surface);
+ 	VideoReleaseSurface(decoder->HwDecoder, surface);
+ 
+-	frame->data[0] = NULL;
+-	frame->data[3] = NULL;
+-
+ 	return;
+     }
+-    //Debug(3, "codec: fallback to default release_buffer\n");
+-    return avcodec_default_release_buffer(video_ctx, frame);
+ }
+ 
+ /// libav: compatibility hack
+@@ -358,10 +358,10 @@
+     int height)
+ {
+ #ifdef USE_VDPAU
+-    // VDPAU: PIX_FMT_VDPAU_H264 .. PIX_FMT_VDPAU_VC1 PIX_FMT_VDPAU_MPEG4
+-    if ((PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
+-	    && video_ctx->pix_fmt <= PIX_FMT_VDPAU_VC1)
+-	|| video_ctx->pix_fmt == PIX_FMT_VDPAU_MPEG4) {
++    // VDPAU: AV_PIX_FMT_VDPAU_H264 .. AV_PIX_FMT_VDPAU_VC1 AV_PIX_FMT_VDPAU_MPEG4
++    if ((AV_PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
++	    && video_ctx->pix_fmt <= AV_PIX_FMT_VDPAU_VC1)
++	|| video_ctx->pix_fmt == AV_PIX_FMT_VDPAU_MPEG4) {
+ 	VideoDecoder *decoder;
+ 	struct vdpau_render_state *vrs;
+ 
+@@ -523,9 +523,7 @@
+     if (video_codec->capabilities & CODEC_CAP_HWACCEL_VDPAU) {
+ 	// FIXME: get_format never called.
+ 	decoder->VideoCtx->get_format = Codec_get_format;
+-	decoder->VideoCtx->get_buffer = Codec_get_buffer;
+-	decoder->VideoCtx->release_buffer = Codec_release_buffer;
+-	decoder->VideoCtx->reget_buffer = Codec_get_buffer;
++	decoder->VideoCtx->get_buffer2 = Codec_get_buffer2;
+ 	decoder->VideoCtx->draw_horiz_band = Codec_draw_horiz_band;
+ 	decoder->VideoCtx->slice_flags =
+ 	    SLICE_FLAG_CODED_ORDER | SLICE_FLAG_ALLOW_FIELD;
+@@ -540,9 +538,7 @@
+     // our pixel format video hardware decoder hook
+     if (decoder->VideoCtx->hwaccel_context) {
+ 	decoder->VideoCtx->get_format = Codec_get_format;
+-	decoder->VideoCtx->get_buffer = Codec_get_buffer;
+-	decoder->VideoCtx->release_buffer = Codec_release_buffer;
+-	decoder->VideoCtx->reget_buffer = Codec_get_buffer;
++	decoder->VideoCtx->get_buffer2 = Codec_get_buffer2;
+ #if 0
+ 	decoder->VideoCtx->thread_count = 1;
+ 	decoder->VideoCtx->draw_horiz_band = NULL;
+diff -Naur a/ffmpeg3_buffer.patch b/ffmpeg3_buffer.patch
+--- a/ffmpeg3_buffer.patch	1970-01-01 03:00:00.000000000 +0300
++++ b/ffmpeg3_buffer.patch	2016-05-09 16:30:50.000000000 +0300
+@@ -0,0 +1,131 @@
++Description: Replace deprecated FFmpeg API
++ Updated buffer handling
++Author: Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>
++Last-Update: <2016-04-17>
++
++--- a/codec.c
+++++ b/codec.c
++@@ -187,6 +187,8 @@
++     return Video_get_format(decoder->HwDecoder, video_ctx, fmt);
++ }
++ 
+++static void Codec_free_buffer(void *opaque, uint8_t *data);
+++
++ /**
++ **	Video buffer management, get buffer for frame.
++ **
++@@ -195,7 +197,7 @@
++ **	@param video_ctx	Codec context
++ **	@param frame		Get buffer for this frame
++ */
++-static int Codec_get_buffer(AVCodecContext * video_ctx, AVFrame * frame)
+++static int Codec_get_buffer2(AVCodecContext * video_ctx, AVFrame * frame, int flags)
++ {
++     VideoDecoder *decoder;
++ 
++@@ -234,7 +236,8 @@
++ 	frame->age = 256 * 256 * 256 * 64;
++ #endif
++ 	// render
++-	frame->data[0] = (void *)vrs;
+++	frame->buf[0] = av_buffer_create((uint8_t*)vrs, 0, Codec_free_buffer, video_ctx, 0);
+++	frame->data[0] = frame->buf[0]->data;
++ 	frame->data[1] = NULL;
++ 	frame->data[2] = NULL;
++ 	frame->data[3] = NULL;
++@@ -265,8 +268,9 @@
++ 	frame->age = 256 * 256 * 256 * 64;
++ #endif
++ 	// vaapi needs both fields set
++-	frame->data[0] = (void *)(size_t) surface;
++-	frame->data[3] = (void *)(size_t) surface;
+++	frame->buf[0] = av_buffer_create((uint8_t*)(size_t)surface, 0, Codec_free_buffer, video_ctx, 0);
+++	frame->data[0] = frame->buf[0]->data;
+++	frame->data[3] = frame->data[0];
++ 
++ #if LIBAVUTIL_VERSION_INT < AV_VERSION_INT(52,66,100)
++ 	// reordered frames
++@@ -279,18 +283,19 @@
++ 	return 0;
++     }
++     //Debug(3, "codec: fallback to default get_buffer\n");
++-    return avcodec_default_get_buffer(video_ctx, frame);
+++    return avcodec_default_get_buffer2(video_ctx, frame, flags);
++ }
++ 
++ /**
++ **	Video buffer management, release buffer for frame.
++ **	Called to release buffers which were allocated with get_buffer.
++ **
++-**	@param video_ctx	Codec context
++-**	@param frame		Release buffer for this frame
+++**	@param opaque	opaque data
+++**	@param data		buffer data
++ */
++-static void Codec_release_buffer(AVCodecContext * video_ctx, AVFrame * frame)
+++static void Codec_free_buffer(void *opaque, uint8_t *data)
++ {
+++    AVCodecContext *video_ctx = (AVCodecContext *)opaque;
++ #ifdef USE_VDPAU
++     // VDPAU: AV_PIX_FMT_VDPAU_H264 .. AV_PIX_FMT_VDPAU_VC1 AV_PIX_FMT_VDPAU_MPEG4
++     if ((AV_PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
++@@ -301,7 +306,7 @@
++ 	unsigned surface;
++ 
++ 	decoder = video_ctx->opaque;
++-	vrs = (struct vdpau_render_state *)frame->data[0];
+++	vrs = (struct vdpau_render_state *)data;
++ 	surface = vrs->surface;
++ 
++ 	//Debug(3, "codec: release surface %#010x\n", surface);
++@@ -309,7 +314,7 @@
++ 
++ 	av_freep(&vrs->bitstream_buffers);
++ 	vrs->bitstream_buffers_allocated = 0;
++-	av_freep(&frame->data[0]);
+++	av_freep(&data);
++ 
++ 	return;
++     }
++@@ -320,18 +325,13 @@
++ 	unsigned surface;
++ 
++ 	decoder = video_ctx->opaque;
++-	surface = (unsigned)(size_t) frame->data[3];
+++	surface = (unsigned)(size_t) data;
++ 
++ 	//Debug(3, "codec: release surface %#010x\n", surface);
++ 	VideoReleaseSurface(decoder->HwDecoder, surface);
++ 
++-	frame->data[0] = NULL;
++-	frame->data[3] = NULL;
++-
++ 	return;
++     }
++-    //Debug(3, "codec: fallback to default release_buffer\n");
++-    return avcodec_default_release_buffer(video_ctx, frame);
++ }
++ 
++ /// libav: compatibility hack
++@@ -523,9 +523,7 @@
++     if (video_codec->capabilities & CODEC_CAP_HWACCEL_VDPAU) {
++ 	// FIXME: get_format never called.
++ 	decoder->VideoCtx->get_format = Codec_get_format;
++-	decoder->VideoCtx->get_buffer = Codec_get_buffer;
++-	decoder->VideoCtx->release_buffer = Codec_release_buffer;
++-	decoder->VideoCtx->reget_buffer = Codec_get_buffer;
+++	decoder->VideoCtx->get_buffer2 = Codec_get_buffer2;
++ 	decoder->VideoCtx->draw_horiz_band = Codec_draw_horiz_band;
++ 	decoder->VideoCtx->slice_flags =
++ 	    SLICE_FLAG_CODED_ORDER | SLICE_FLAG_ALLOW_FIELD;
++@@ -540,9 +538,7 @@
++     // our pixel format video hardware decoder hook
++     if (decoder->VideoCtx->hwaccel_context) {
++ 	decoder->VideoCtx->get_format = Codec_get_format;
++-	decoder->VideoCtx->get_buffer = Codec_get_buffer;
++-	decoder->VideoCtx->release_buffer = Codec_release_buffer;
++-	decoder->VideoCtx->reget_buffer = Codec_get_buffer;
+++	decoder->VideoCtx->get_buffer2 = Codec_get_buffer2;
++ #if 0
++ 	decoder->VideoCtx->thread_count = 1;
++ 	decoder->VideoCtx->draw_horiz_band = NULL;
+diff -Naur a/video.c b/video.c
+--- a/video.c	2016-05-09 13:52:48.000000000 +0300
++++ b/video.c	2016-05-09 16:45:10.041608149 +0300
+@@ -17,7 +17,7 @@
+ ///	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ///	GNU Affero General Public License for more details.
+ ///
+-///	$Id: d9534b488d56e3efa4d92a0af07e715a05766e2e $
++///	$Id: bacf89f24503be74d113a83139a277ff2290014a $
+ //////////////////////////////////////////////////////////////////////////////
+ 
+ ///
+@@ -259,8 +259,8 @@
+     void (*const DelHwDecoder) (VideoHwDecoder *);
+     unsigned (*const GetSurface) (VideoHwDecoder *, const AVCodecContext *);
+     void (*const ReleaseSurface) (VideoHwDecoder *, unsigned);
+-    enum PixelFormat (*const get_format) (VideoHwDecoder *, AVCodecContext *,
+-	const enum PixelFormat *);
++    enum AVPixelFormat (*const get_format) (VideoHwDecoder *, AVCodecContext *,
++	const enum AVPixelFormat *);
+     void (*const RenderFrame) (VideoHwDecoder *, const AVCodecContext *,
+ 	const AVFrame *);
+     void *(*const GetHwAccelContext)(VideoHwDecoder *);
+@@ -1552,7 +1552,7 @@
+     /// flags for put surface for different resolutions groups
+     unsigned SurfaceFlagsTable[VideoResolutionMax];
+ 
+-    enum PixelFormat PixFmt;		///< ffmpeg frame pixfmt
++    enum AVPixelFormat PixFmt;		///< ffmpeg frame pixfmt
+     int WrongInterlacedWarned;		///< warning about interlace flag issued
+     int Interlaced;			///< ffmpeg interlaced flag
+     int TopFieldFirst;			///< ffmpeg top field displayed first
+@@ -2056,7 +2056,7 @@
+     decoder->OutputWidth = VideoWindowWidth;
+     decoder->OutputHeight = VideoWindowHeight;
+ 
+-    decoder->PixFmt = PIX_FMT_NONE;
++    decoder->PixFmt = AV_PIX_FMT_NONE;
+ 
+     decoder->Stream = stream;
+     if (!VaapiDecoderN) {		// FIXME: hack sync on audio
+@@ -2546,7 +2546,7 @@
+ ///	FIXME: must check if put/get with this format is supported (see intel)
+ ///
+ static int VaapiFindImageFormat(VaapiDecoder * decoder,
+-    enum PixelFormat pix_fmt, VAImageFormat * format)
++    enum AVPixelFormat pix_fmt, VAImageFormat * format)
+ {
+     VAImageFormat *imgfrmts;
+     int imgfrmt_n;
+@@ -2557,12 +2557,12 @@
+ 	    // NV12, YV12, I420, BGRA
+ 	    // intel: I420 is native format for MPEG-2 decoded surfaces
+ 	    // intel: NV12 is native format for H.264 decoded surfaces
+-	case PIX_FMT_YUV420P:
+-	case PIX_FMT_YUVJ420P:
++	case AV_PIX_FMT_YUV420P:
++	case AV_PIX_FMT_YUVJ420P:
+ 	    // fourcc = VA_FOURCC_YV12; // YVU
+ 	    fourcc = VA_FOURCC('I', '4', '2', '0');	// YUV
+ 	    break;
+-	case PIX_FMT_NV12:
++	case AV_PIX_FMT_NV12:
+ 	    fourcc = VA_FOURCC_NV12;
+ 	    break;
+ 	default:
+@@ -2631,7 +2631,7 @@
+ #endif
+     // FIXME: PixFmt not set!
+     //VaapiFindImageFormat(decoder, decoder->PixFmt, format);
+-    VaapiFindImageFormat(decoder, PIX_FMT_NV12, format);
++    VaapiFindImageFormat(decoder, AV_PIX_FMT_NV12, format);
+ 
+     // FIXME: this image is only needed for software decoder and auto-crop
+     if (decoder->GetPutImage
+@@ -2909,10 +2909,10 @@
+ ///
+ ///	@note + 2 surface for software deinterlace
+ ///
+-static enum PixelFormat Vaapi_get_format(VaapiDecoder * decoder,
+-    AVCodecContext * video_ctx, const enum PixelFormat *fmt)
++static enum AVPixelFormat Vaapi_get_format(VaapiDecoder * decoder,
++    AVCodecContext * video_ctx, const enum AVPixelFormat *fmt)
+ {
+-    const enum PixelFormat *fmt_idx;
++    const enum AVPixelFormat *fmt_idx;
+     VAProfile profiles[vaMaxNumProfiles(VaDisplay)];
+     int profile_n;
+     VAEntrypoint entrypoints[vaMaxNumEntrypoints(VaDisplay)];
+@@ -2996,16 +2996,16 @@
+     }
+     Debug(3, "codec: %d entrypoints\n", entrypoint_n);
+     //	look through formats
+-    for (fmt_idx = fmt; *fmt_idx != PIX_FMT_NONE; fmt_idx++) {
++    for (fmt_idx = fmt; *fmt_idx != AV_PIX_FMT_NONE; fmt_idx++) {
+ 	Debug(3, "\t%#010x %s\n", *fmt_idx, av_get_pix_fmt_name(*fmt_idx));
+ 	// check supported pixel format with entry point
+ 	switch (*fmt_idx) {
+-	    case PIX_FMT_VAAPI_VLD:
++	    case AV_PIX_FMT_VAAPI_VLD:
+ 		e = VaapiFindEntrypoint(entrypoints, entrypoint_n,
+ 		    VAEntrypointVLD);
+ 		break;
+-	    case PIX_FMT_VAAPI_MOCO:
+-	    case PIX_FMT_VAAPI_IDCT:
++	    case AV_PIX_FMT_VAAPI_MOCO:
++	    case AV_PIX_FMT_VAAPI_IDCT:
+ 		Debug(3, "codec: this VA-API pixel format is not supported\n");
+ 	    default:
+ 		continue;
+@@ -3090,7 +3090,7 @@
+     decoder->Entrypoint = VA_INVALID_ID;
+     decoder->VaapiContext->config_id = VA_INVALID_ID;
+     decoder->SurfacesNeeded = VIDEO_SURFACES_MAX + 2;
+-    decoder->PixFmt = PIX_FMT_NONE;
++    decoder->PixFmt = AV_PIX_FMT_NONE;
+ 
+     decoder->InputWidth = 0;
+     decoder->InputHeight = 0;
+@@ -3291,8 +3291,8 @@
+ 
+ 	// FIXME: PixFmt not set!
+ 	//VaapiFindImageFormat(decoder, decoder->PixFmt, format);
+-	VaapiFindImageFormat(decoder, PIX_FMT_NV12, format);
+-	//VaapiFindImageFormat(decoder, PIX_FMT_YUV420P, format);
++	VaapiFindImageFormat(decoder, AV_PIX_FMT_NV12, format);
++	//VaapiFindImageFormat(decoder, AV_PIX_FMT_YUV420P, format);
+ 	if (vaCreateImage(VaDisplay, format, width, height,
+ 		decoder->Image) != VA_STATUS_SUCCESS) {
+ 	    Error(_("video/vaapi: can't create image!\n"));
+@@ -3647,7 +3647,7 @@
+ 	if (decoder->Image->image_id == VA_INVALID_ID) {
+ 	    VAImageFormat format[1];
+ 
+-	    VaapiFindImageFormat(decoder, PIX_FMT_NV12, format);
++	    VaapiFindImageFormat(decoder, AV_PIX_FMT_NV12, format);
+ 	    status =
+ 		vaCreateImage(VaDisplay, format, VideoWindowWidth,
+ 		VideoWindowHeight, decoder->Image);
+@@ -4292,8 +4292,8 @@
+     // I420 Y U V 2x2
+ 
+     // Intel needs NV12
+-    VaapiFindImageFormat(decoder, PIX_FMT_NV12, format);
+-    //VaapiFindImageFormat(decoder, PIX_FMT_YUV420P, format);
++    VaapiFindImageFormat(decoder, AV_PIX_FMT_NV12, format);
++    //VaapiFindImageFormat(decoder, AV_PIX_FMT_YUV420P, format);
+     for (i = 0; i < 5; ++i) {
+ 	if (vaCreateImage(decoder->VaDisplay, format, decoder->InputWidth,
+ 		decoder->InputHeight,
+@@ -4365,7 +4365,7 @@
+     if (decoder->Image->image_id == VA_INVALID_ID) {
+ 	VAImageFormat format[1];
+ 
+-	VaapiFindImageFormat(decoder, PIX_FMT_NV12, format);
++	VaapiFindImageFormat(decoder, AV_PIX_FMT_NV12, format);
+ 	if (vaCreateImage(VaDisplay, format, decoder->InputWidth,
+ 		decoder->InputHeight, decoder->Image) != VA_STATUS_SUCCESS) {
+ 	    Error(_("video/vaapi: can't create image!\n"));
+@@ -5706,8 +5706,8 @@
+ 	    const AVCodecContext *))VaapiGetSurface,
+     .ReleaseSurface =
+ 	(void (*const) (VideoHwDecoder *, unsigned))VaapiReleaseSurface,
+-    .get_format = (enum PixelFormat(*const) (VideoHwDecoder *,
+-	    AVCodecContext *, const enum PixelFormat *))Vaapi_get_format,
++    .get_format = (enum AVPixelFormat(*const) (VideoHwDecoder *,
++	    AVCodecContext *, const enum AVPixelFormat *))Vaapi_get_format,
+     .RenderFrame = (void (*const) (VideoHwDecoder *,
+ 	    const AVCodecContext *, const AVFrame *))VaapiSyncRenderFrame,
+     .GetHwAccelContext = (void *(*const)(VideoHwDecoder *))
+@@ -5748,8 +5748,8 @@
+ 	    const AVCodecContext *))VaapiGetSurface,
+     .ReleaseSurface =
+ 	(void (*const) (VideoHwDecoder *, unsigned))VaapiReleaseSurface,
+-    .get_format = (enum PixelFormat(*const) (VideoHwDecoder *,
+-	    AVCodecContext *, const enum PixelFormat *))Vaapi_get_format,
++    .get_format = (enum AVPixelFormat(*const) (VideoHwDecoder *,
++	    AVCodecContext *, const enum AVPixelFormat *))Vaapi_get_format,
+     .RenderFrame = (void (*const) (VideoHwDecoder *,
+ 	    const AVCodecContext *, const AVFrame *))VaapiSyncRenderFrame,
+     .GetHwAccelContext = (void *(*const)(VideoHwDecoder *))
+@@ -5804,7 +5804,7 @@
+     int OutputWidth;			///< real video output width
+     int OutputHeight;			///< real video output height
+ 
+-    enum PixelFormat PixFmt;		///< ffmpeg frame pixfmt
++    enum AVPixelFormat PixFmt;		///< ffmpeg frame pixfmt
+     int WrongInterlacedWarned;		///< warning about interlace flag issued
+     int Interlaced;			///< ffmpeg interlaced flag
+     int TopFieldFirst;			///< ffmpeg top field displayed first
+@@ -6534,7 +6534,7 @@
+     decoder->OutputWidth = VideoWindowWidth;
+     decoder->OutputHeight = VideoWindowHeight;
+ 
+-    decoder->PixFmt = PIX_FMT_NONE;
++    decoder->PixFmt = AV_PIX_FMT_NONE;
+ 
+ #ifdef USE_AUTOCROP
+     //decoder->AutoCropBuffer = NULL;	// done by calloc
+@@ -7385,10 +7385,10 @@
+ ///			it is terminated by -1 as 0 is a valid format, the
+ ///			formats are ordered by quality.
+ ///
+-static enum PixelFormat Vdpau_get_format(VdpauDecoder * decoder,
+-    AVCodecContext * video_ctx, const enum PixelFormat *fmt)
++static enum AVPixelFormat Vdpau_get_format(VdpauDecoder * decoder,
++    AVCodecContext * video_ctx, const enum AVPixelFormat *fmt)
+ {
+-    const enum PixelFormat *fmt_idx;
++    const enum AVPixelFormat *fmt_idx;
+     VdpDecoderProfile profile;
+     int max_refs;
+ 
+@@ -7402,16 +7402,16 @@
+     //	look through formats
+     //
+     Debug(3, "%s: codec %d fmts:\n", __FUNCTION__, video_ctx->codec_id);
+-    for (fmt_idx = fmt; *fmt_idx != PIX_FMT_NONE; fmt_idx++) {
++    for (fmt_idx = fmt; *fmt_idx != AV_PIX_FMT_NONE; fmt_idx++) {
+ 	Debug(3, "\t%#010x %s\n", *fmt_idx, av_get_pix_fmt_name(*fmt_idx));
+ 	// check supported pixel format with entry point
+ 	switch (*fmt_idx) {
+-	    case PIX_FMT_VDPAU_H264:
+-	    case PIX_FMT_VDPAU_MPEG1:
+-	    case PIX_FMT_VDPAU_MPEG2:
+-	    case PIX_FMT_VDPAU_WMV3:
+-	    case PIX_FMT_VDPAU_VC1:
+-	    case PIX_FMT_VDPAU_MPEG4:
++	    case AV_PIX_FMT_VDPAU_H264:
++	    case AV_PIX_FMT_VDPAU_MPEG1:
++	    case AV_PIX_FMT_VDPAU_MPEG2:
++	    case AV_PIX_FMT_VDPAU_WMV3:
++	    case AV_PIX_FMT_VDPAU_VC1:
++	    case AV_PIX_FMT_VDPAU_MPEG4:
+ 		break;
+ 	    default:
+ 		continue;
+@@ -7419,7 +7419,7 @@
+ 	break;
+     }
+ 
+-    if (*fmt_idx == PIX_FMT_NONE) {
++    if (*fmt_idx == AV_PIX_FMT_NONE) {
+ 	Error(_("video/vdpau: no valid vdpau pixfmt found\n"));
+ 	goto slow_path;
+     }
+@@ -7533,7 +7533,7 @@
+     // no accelerated format found
+     decoder->Profile = VDP_INVALID_HANDLE;
+     decoder->SurfacesNeeded = VIDEO_SURFACES_MAX + 2;
+-    decoder->PixFmt = PIX_FMT_NONE;
++    decoder->PixFmt = AV_PIX_FMT_NONE;
+ 
+     decoder->InputWidth = 0;
+     decoder->InputHeight = 0;
+@@ -8119,10 +8119,10 @@
+     //
+     // Hardware render
+     //
+-    // VDPAU: PIX_FMT_VDPAU_H264 .. PIX_FMT_VDPAU_VC1 PIX_FMT_VDPAU_MPEG4
+-    if ((PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
+-	    && video_ctx->pix_fmt <= PIX_FMT_VDPAU_VC1)
+-	|| video_ctx->pix_fmt == PIX_FMT_VDPAU_MPEG4) {
++    // VDPAU: AV_PIX_FMT_VDPAU_H264 .. AV_PIX_FMT_VDPAU_VC1 AV_PIX_FMT_VDPAU_MPEG4
++    if ((AV_PIX_FMT_VDPAU_H264 <= video_ctx->pix_fmt
++	    && video_ctx->pix_fmt <= AV_PIX_FMT_VDPAU_VC1)
++	|| video_ctx->pix_fmt == AV_PIX_FMT_VDPAU_MPEG4) {
+ 	struct vdpau_render_state *vrs;
+ 
+ 	vrs = (struct vdpau_render_state *)frame->data[0];
+@@ -8165,11 +8165,11 @@
+ 	//	Copy data from frame to image
+ 	//
+ 	switch (video_ctx->pix_fmt) {
+-	    case PIX_FMT_YUV420P:
+-	    case PIX_FMT_YUVJ420P:	// some streams produce this
++	    case AV_PIX_FMT_YUV420P:
++	    case AV_PIX_FMT_YUVJ420P:	// some streams produce this
+ 		break;
+-	    case PIX_FMT_YUV422P:
+-	    case PIX_FMT_YUV444P:
++	    case AV_PIX_FMT_YUV422P:
++	    case AV_PIX_FMT_YUV444P:
+ 	    default:
+ 		Fatal(_("video/vdpau: pixel format %d not supported\n"),
+ 		    video_ctx->pix_fmt);
+@@ -9545,8 +9545,8 @@
+ 	    const AVCodecContext *))VdpauGetSurface,
+     .ReleaseSurface =
+ 	(void (*const) (VideoHwDecoder *, unsigned))VdpauReleaseSurface,
+-    .get_format = (enum PixelFormat(*const) (VideoHwDecoder *,
+-	    AVCodecContext *, const enum PixelFormat *))Vdpau_get_format,
++    .get_format = (enum AVPixelFormat(*const) (VideoHwDecoder *,
++	    AVCodecContext *, const enum AVPixelFormat *))Vdpau_get_format,
+     .RenderFrame = (void (*const) (VideoHwDecoder *,
+ 	    const AVCodecContext *, const AVFrame *))VdpauSyncRenderFrame,
+     .GetHwAccelContext = (void *(*const)(VideoHwDecoder *))
+@@ -9712,8 +9712,8 @@
+ #endif
+     .ReleaseSurface = NoopReleaseSurface,
+ #if 0
+-    .get_format = (enum PixelFormat(*const) (VideoHwDecoder *,
+-	    AVCodecContext *, const enum PixelFormat *))Noop_get_format,
++    .get_format = (enum AVPixelFormat(*const) (VideoHwDecoder *,
++	    AVCodecContext *, const enum AVPixelFormat *))Noop_get_format,
+     .RenderFrame = (void (*const) (VideoHwDecoder *,
+ 	    const AVCodecContext *, const AVFrame *))NoopSyncRenderFrame,
+     .GetHwAccelContext = (void *(*const)(VideoHwDecoder *))
+@@ -10293,8 +10293,8 @@
+ ///				valid format, the formats are ordered by
+ ///				quality.
+ ///
+-enum PixelFormat Video_get_format(VideoHwDecoder * hw_decoder,
+-    AVCodecContext * video_ctx, const enum PixelFormat *fmt)
++enum AVPixelFormat Video_get_format(VideoHwDecoder * hw_decoder,
++    AVCodecContext * video_ctx, const enum AVPixelFormat *fmt)
+ {
+ #ifdef DEBUG
+     int ms_delay;
+diff -Naur a/video.h b/video.h
+--- a/video.h	2016-05-09 13:52:48.000000000 +0300
++++ b/video.h	2016-05-09 16:42:26.411605414 +0300
+@@ -17,7 +17,7 @@
+ ///	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ///	GNU Affero General Public License for more details.
+ ///
+-///	$Id: 7b676db0db3e7773e753356b9a94a1a369ce20bb $
++///	$Id: 83cd827a8744e8c80c8adba6cb87653b0ad58c45 $
+ //////////////////////////////////////////////////////////////////////////////
+ 
+ /// @addtogroup Video
+@@ -60,8 +60,8 @@
+ extern void VideoReleaseSurface(VideoHwDecoder *, unsigned);
+ 
+     /// Callback to negotiate the PixelFormat.
+-extern enum PixelFormat Video_get_format(VideoHwDecoder *, AVCodecContext *,
+-    const enum PixelFormat *);
++extern enum AVPixelFormat Video_get_format(VideoHwDecoder *, AVCodecContext *,
++    const enum AVPixelFormat *);
+ 
+     /// Render a ffmpeg frame.
+ extern void VideoRenderFrame(VideoHwDecoder *, const AVCodecContext *,

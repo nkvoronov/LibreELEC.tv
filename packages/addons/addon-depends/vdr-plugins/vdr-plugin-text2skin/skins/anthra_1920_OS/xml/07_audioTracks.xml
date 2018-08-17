@@ -1,0 +1,14 @@
+<display id="audioTracks">
+	<window x1="0" x2="1920" y1="0" y2="1080" bpp="8"/>
+		<list x1="1250" x2="1920" y1="760" y2="970">
+			<item height="65"/>
+			<ellipse x1="0" x2="52" y1="6" y2="58"   arc="0" color="Background"/>
+			<rectangle x1="26" x2="670" y1="6" y2="58"  color="Background" />
+			<image x1="0" x2="670" y1="6" y2="58" condition="{IsMenuCurrent}"  path="images/audio.png" />
+			<ellipse x1="0" x2="26" y1="6" y2="32"  condition="{IsMenuCurrent}" arc="-2" color="#0000000"/>
+			<ellipse x1="0" x2="26" y1="32" y2="58"  condition="{IsMenuCurrent}" arc="-3" color="#0000000"/>
+			<text x1="40" x2="190" y1="15" y2="50" condition="{MenuCurrent}" color="TextHigh" font="VDRSymbols Sans:Book@32" align="left"> {MenuTitle}:</text>
+			<text x1="200" x2="510" y1="15" y2="50" color="TextButton" font="VDRSymbols Sans:Book@32" align="right">{MenuItem}</text>
+			<text x1="200" x2="510" y1="15" y2="50" color="TextHigh" font="VDRSymbols Sans:Book@32" align="left"> {MenuCurrent}</text>
+		</list>
+</display>

@@ -1,0 +1,144 @@
+diff -Naur a/po/de_DE.po b/po/de_DE.po
+--- a/po/de_DE.po	2016-02-04 00:00:18.000000000 +0200
++++ b/po/de_DE.po	2016-02-04 17:12:58.449811631 +0200
+@@ -113,3 +113,6 @@
+ 
+ msgid "Maximum Temperature"
+ msgstr "Maximale Temperatur"
++
++msgid "Weatherforecast based on forecast.io"
++msgstr ""
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2016-02-04 17:12:58.449811631 +0200
+@@ -0,0 +1,118 @@
++# Copyright (C) 2015 
++# This file is distributed under the same license as the PACKAGE package.
++# iFIRST AUTHOR <louis.braun@gmx.de>, 2015.
++#
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr-weatherforecast 0.0.1\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2015-01-23 16:53+0100\n"
++"PO-Revision-Date: 2015-01-12 11:46+0100\n"
++"Last-Translator: Louis Braun <louis.braun@gmx.de>\n"
++"Language-Team: \n"
++"Language: ru_RU \n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=utf-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "City"
++msgstr "Город"
++
++msgid "Latitude"
++msgstr "Широта"
++
++msgid "Longitude"
++msgstr "Долгота"
++
++msgid "API Key"
++msgstr "API ключ"
++
++msgid "Update Frequency in hours"
++msgstr "Частота обновления в часах"
++
++msgid "WeatherForecast"
++msgstr "Прогноз Погоды"
++
++msgid "Weather Forecast"
++msgstr "Прогноз Погоды"
++
++msgid "Current Weather"
++msgstr "Текущая погода"
++
++msgid "Next 48 Hours"
++msgstr "Следующие 48 часов"
++
++msgid "Next 7 Days"
++msgstr "Следующие 7 дней"
++
++msgid "Weather for"
++msgstr "Погода для"
++
++msgid "Current Temperature"
++msgstr "Текущая температура"
++
++msgid "Apparent Temperature"
++msgstr "Кажущаяся температура"
++
++msgid "Minimum Temperature today"
++msgstr "Минимальная температура сегодня"
++
++msgid "Maximum Temperature today"
++msgstr "Максимальная температура сегодня"
++
++msgid "Precipitation Probability"
++msgstr "Вероятность осадков"
++
++msgid "Precipitation Intensity"
++msgstr "Интенсивность осадков"
++
++msgid "Humidity"
++msgstr "Влажность"
++
++msgid "Wind Speed"
++msgstr "Скорость ветра"
++
++msgid "Wind Bearing"
++msgstr "Направление ветра"
++
++msgid "Visibility"
++msgstr "Видимость"
++
++msgid "Cloud Cover"
++msgstr "Облачный покров"
++
++msgid "Pressure"
++msgstr "Давление"
++
++msgid "Ozone"
++msgstr "Озон"
++
++msgid "Weather in the next 48 Hours"
++msgstr "Погода в ближайшие 48 часов"
++
++msgid "Temperature"
++msgstr "Температура"
++
++msgid "felt"
++msgstr "ощущается"
++
++msgid "Intensity"
++msgstr "Интенсивность"
++
++msgid "Wind"
++msgstr "Ветер"
++
++msgid "Weather the next 7 days"
++msgstr "Погода в ближайшие 7 дней"
++
++msgid "Minimum Temperature"
++msgstr "Минимальная температура"
++
++msgid "at"
++msgstr "на"
++
++msgid "Maximum Temperature"
++msgstr "Максимальная температура"
++
++msgid "Weatherforecast based on forecast.io"
++msgstr "Прогноз погоды основанный на forecast.io"
+diff -Naur a/weatherforecast.c b/weatherforecast.c
+--- a/weatherforecast.c	2016-02-04 00:00:18.000000000 +0200
++++ b/weatherforecast.c	2016-02-04 17:15:49.281804262 +0200
+@@ -19,7 +19,7 @@
+ // Constants
+ //***************************************************************************
+ static const char *VERSION        = "0.2.0";
+-static const char *DESCRIPTION    = "Weatherforecast based on forecast.io";
++static const char *DESCRIPTION    = tr("Weatherforecast based on forecast.io");
+ 
+ //***************************************************************************
+ // Globals

@@ -1,6 +1,7 @@
---- a/Makefile
-+++ b/Makefile
-@@ -156,7 +156,7 @@ libdvbapi-dvbufs9xx.so: device-ufs9xx.o
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2017-11-25 19:58:28.000000000 +0200
++++ b/Makefile	2018-04-17 21:17:38.714902149 +0300
+@@ -130,7 +130,7 @@
  
  ifndef LIBDVBCSA
  $(FFDECSA): $(FFDECSADIR)/*.c $(FFDECSADIR)/*.h

@@ -1,0 +1,62 @@
+diff -Naur a/po/de_DE.po b/po/de_DE.po
+--- a/po/de_DE.po	2014-07-24 21:01:51.000000000 +0300
++++ b/po/de_DE.po	2014-07-24 23:34:16.788095669 +0300
+@@ -11,6 +11,9 @@
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ 
++msgid "Scraping movie and series info"
++msgstr ""
++
+ msgid "Configure channels to be scraped"
+ msgstr "Kanäle zum scrapen festlegen"
+ 
+diff -Naur a/po/ru_RU.po b/po/ru_RU.po
+--- a/po/ru_RU.po	1970-01-01 03:00:00.000000000 +0300
++++ b/po/ru_RU.po	2014-07-24 23:36:47.284092228 +0300
+@@ -0,0 +1,33 @@
++msgid ""
++msgstr ""
++"Project-Id-Version: vdr-tvscrapper 0.0.1\n"
++"Report-Msgid-Bugs-To: <see README>\n"
++"POT-Creation-Date: 2013-08-24 09:03+0200\n"
++"PO-Revision-Date: 2013-08-20 08:27+0200\n"
++"Last-Translator: Stefan Braun <louis.braun@gmx.de>\n"
++"Language-Team: Russian <vdr@linuxtv.org>\n"
++"Language: ru\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=utf-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++
++msgid "Scraping movie and series info"
++msgstr "Получение информации для фильмов и сериалов"
++
++msgid "Configure channels to be scraped"
++msgstr "Настройка каналы для скраблирования"
++
++msgid "Trigger scraping Video Directory"
++msgstr "Тригер скраблирования Видео директории"
++
++msgid "Trigger EPG scraping"
++msgstr "Тригер скраблирования EPG"
++
++msgid "Enable Debug Logging"
++msgstr "Включить отладку"
++
++msgid "don't scrap"
++msgstr "нет"
++
++msgid "scrap"
++msgstr "да"
+diff -Naur a/tvscraper.c b/tvscraper.c
+--- a/tvscraper.c	2014-07-24 21:01:51.000000000 +0300
++++ b/tvscraper.c	2014-07-24 23:37:58.572090598 +0300
+@@ -30,7 +30,7 @@
+ #include "setup.c"
+ 
+ static const char *VERSION        = "0.2.0";
+-static const char *DESCRIPTION    = "Scraping movie and series info";
++static const char *DESCRIPTION    = tr("Scraping movie and series info");
+ // static const char *MAINMENUENTRY  = "TV Scraper";
+ 
+ 

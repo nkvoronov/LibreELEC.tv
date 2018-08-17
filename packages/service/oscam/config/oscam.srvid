@@ -1,0 +1,86 @@
+# oscam.srvid
+# This file is only needed if operating monitor and webinterface!
+# Mapping between CAID, service ID, provider, name, type and description of service. Logging and the ads in webinterface will get a better explanatory power. Dependencies between server, reader and client are more evident.
+# You only need the oscam.srvid when using the monitor or the web interface. For saving memory consumption only insert the service IDs you really need. Some external programs use their own oscam.srvid and do not need the oscam.srvid of OSCam.
+# Please use Unix text file format only.
+#
+# Format:
+# CAID[,CAID...]:service ID|[provider]|[name]|[type]|[description]
+#
+# Example:
+# 0001,0002,0003:000a|my provider 1|tv name|tv|my tv package
+# 0004,0005,0006:000a|my provider 2|radio name 2|radio|my radio package
+# 0006:000b|my provider 3|tv name 3|
+#
+
+0B00:2B5D|VoliaDigital|Первый национальный|Volia Cable
+0B00:2F47|VoliaDigital|1+1|Volia Cable
+0B00:2265|VoliaDigital|Интер|Volia Cable
+0B00:26AE|VoliaDigital|Новый канал|Volia Cable
+0B00:2776|VoliaDigital|СТБ|Volia Cable
+0B00:2779|VoliaDigital|ICTV|Volia Cable
+0B00:2B5F|VoliaDigital|НТН|Volia Cable
+0B00:26B0|VoliaDigital|Украина|Volia Cable
+0B00:26B1|VoliaDigital|5 канал|Volia Cable
+0B00:2F49|VoliaDigital|2+2|Volia Cable
+0B00:2F4A|VoliaDigital|К1|Volia Cable
+0B00:2F4B|VoliaDigital|К2|Volia Cable
+0B00:2F46|VoliaDigital|Мега|Volia Cable
+
+0B0F:03F0|XtraTV|Наше кино|Amos 1,2 4.0W
+0B0F:03F1|XtraTV|Наше новое кино|Amos 1,2 4.0W
+0B0F:03F2|XtraTV|КИНО ПЛЮС|Amos 1,2 4.0W
+0B0F:03F6|XtraTV|КИНО ЛЮКС|Amos 1,2 4.0W
+0B0F:03F3|XtraTV|Иллюзион+|Amos 1,2 4.0W
+0B0F:03F5|XtraTV|MGM|Amos 1,2 4.0W
+0B0F:03F7|XtraTV|Universal|Amos 1,2 4.0W
+0B0F:03EE|XtraTV|Sony Sci-Fi|Amos 1,2 4.0W
+0B0F:07DA|XtraTV|National Geographic|Amos 1,2 4.0W
+0B0F:07DB|XtraTV|Nat Geo Wild|Amos 1,2 4.0W
+0B0F:07DC|XtraTV|Discovery|Amos 1,2 4.0W
+0B0F:07DE|XtraTV|Discovery World|Amos 1,2 4.0W
+0B0F:07DD|XtraTV|Discovery Science|Amos 1,2 4.0W
+0B0F:07DF|XtraTV|Investigation|Amos 1,2 4.0W
+0B0F:07E1|XtraTV|Animal Planet|Amos 1,2 4.0W
+0B0F:07E0|XtraTV|TLC|Amos 1,2 4.0W
+0B0F:03E9|XtraTV|Моя планета|Amos 1,2 4.0W
+0B0F:03EA|XtraTV|Наука 2.0|Amos 1,2 4.0W
+0B0F:07E4|XtraTV|Индия ТВ|Amos 1,2 4.0W
+0B0F:07E3|XtraTV|Еврокино|Amos 1,2 4.0W
+0B0F:03EB|XtraTV|Охота и рибалка|Amos 1,2 4.0W
+0B0F:03EC|XtraTV|Усадьба|Amos 1,2 4.0W
+0B0F:03ED|XtraTV|FOX|Amos 1,2 4.0W
+0B0F:0009|XtraTV|DaVinci Learning|Amos 1,2 4.0W
+0B0F:011F|XtraTV|Travel|Astra 4A 4.8E
+0B0F:07D1|XtraTV|Eurosport|Amos 1,2 4.0W
+0B0F:07D2|XtraTV|Eurosport 2|Amos 1,2 4.0W
+0B0F:07D6|XtraTV|Eurosport News|Amos 1,2 4.0W
+0B0F:07D4|XtraTV|Extreme Sports|Amos 1,2 4.0W
+0B0F:07D5|XtraTV|Боец|Amos 1,2 4.0W
+0B0F:07D8|XtraTV|Наш футбол|Amos 1,2 4.0W
+0B0F:07D7|XtraTV|Outdoor|Amos 1,2 4.0W
+0B0F:07D3|XtraTV|Русский Екстрим|Amos 1,2 4.0W
+0B0F:19E6|XtraTV|Футбол 1|Astra 4A 4.8E
+0B0F:1A04|XtraTV|Футбол 2|Astra 4A 4.8E
+0B0F:03F9|XtraTV|Nickelodeon|Amos 1,2 4.0W
+0B0F:03FA|XtraTV|Nickelodeon Junior|Amos 1,2 4.0W
+0B0F:03F8|XtraTV|Детский мир - Телеклуб|Amos 1,2 4.0W
+0B0F:03FC|XtraTV|Cartoon Network|Amos 1,2 4.0W
+0B0F:03FD|XtraTV|Jim Jam|Amos 1,2 4.0W
+0B0F:03FE|XtraTV|Baby TV|Amos 1,2 4.0W
+
+2600:000D|BISS|Первый национальный|Amos 1,2 4.0W
+2600:0000|BISS|ЭРА|Amos 1,2 4.0W
+2600:0001|BISS|Интер|Amos 1,2 4.0W
+2600:1B4E|BISS|Интер +|Astra 4A 4.8E
+2600:0003|BISS|1+1|Amos 1,2 4.0W
+2600:17ED|BISS|1+1 Международный|Astra 4A 4.8E
+2600:17E8|BISS|2+2|Astra 4A 4.8E
+2600:17DE|BISS|TET|Astra 4A 4.8E
+2600:0004|BISS|Киев ТВ|Amos 1,2 4.0W
+2600:000B|BISS|XSPORT|Amos 1,2 4.0W
+2600:19D2|BISS|Украина|Astra 4A 4.8E
+2600:1B03|BISS|Надія|Astra 4A 4.8E
+2600:1A18|BISS|НЛО ТВ|Astra 4A 4.8E
+2600:000C|BISS|РТР Россия|Hotbird 1,2,3,4 13.0E
+2600:1D33|BISS|СТС|Hotbird 1,2,3,4 13.0E

@@ -1,0 +1,10 @@
+--- a/lcd.c
++++ b/lcd.c
+@@ -549,6 +549,7 @@
+ 
+ void cLcd::SetCardStat(unsigned int card, unsigned int stat) {
+   if (!connected) return;
++  if (card >= LCDMAXCARDS) return;
+   BeginMutualExclusion();
+     ThreadStateData.CardStat[card]=stat;
+   EndMutualExclusion();

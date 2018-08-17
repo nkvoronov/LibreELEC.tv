@@ -1,0 +1,1085 @@
+<!--
+ 
+    PearlHD skin for text2skin for vdr
+    http://www.vdr-wiki.de/wiki/index.php/PearlHD
+    Copyright (C) 2010  don_jan at web.de (mapovi - vdrportal.de) 
+
+    This program is free software; you can redistribute it and/or modify it under the terms of 
+    the GNU General Public License as published by the Free Software Foundation; either 
+    version 2 of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+    See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along with this program; 
+    if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, 
+    MA 02110, USA
+
+-->
+<?xml version="1.0"?>
+<skin version="1.1" name="PearlHD" screenBase="relative" >
+ 
+<!--###############################################################################################
+#   VOLUME                                                                                        #
+################################################################################################-->
+
+ <display id="volume" >
+<!-- TOP WINDOW-->
+  <window x1="-360" x2="-1" y1="0" y2="70" bpp="4" />
+   <rectangle x1="-360" x2="-1" y1="0" y2="20" refresh="all" color="MainLight" />
+   <ellipse   x1="-360" x2="-310" y1="20" y2="70" arc="3" refresh="all" color="MainLight" />
+   <rectangle x1="-310" x2="-1" y1="20" y2="70" refresh="all" color="MainLight" />
+   <text x1="-300" x2="-20" y1="20" y2="60" refresh="all" color="FontColor" bgColor="MainLight" align="left" condition="not({IsMute})" font="Sml" >Volume</text>
+   <!-- trans('Volume') -->
+   <text x1="-100" x2="-20" y1="20" y2="60" refresh="all,update" color="FontColor" bgColor="MainLight" align="right" condition="not({IsMute})" font="Sml" >{VolumeCurrent}</text>
+   <text x1="-100" x2="-20" y1="20" y2="60" refresh="all,update" color="FontColor" bgColor="MainLight" align="right" condition="{IsMute}"    font="Sml" >Mute</text>
+   <!-- trans('Mute') -->
+<!-- TOP WINDOW END-->
+<!-- BOTTOM WINDOW-->
+   <window x1="0" x2="-1" y1="-40" y2="-1" bpp="4" />
+    <progress   x1="0" x2="-1" y1="-40" y2="-1" bgColor="Bar" color="BarFill" current="{VolumeCurrent}" total="{VolumeTotal}" />
+    <rectangle  x1="0" x2="-1" y1="-40" y2="-1" color="BarBlock" condition="{IsMute}" />
+<!-- BOTTOM WINDOW END-->
+ </display>
+ 
+<!--###############################################################################################
+#   MESSAGE                                                                                       #
+################################################################################################-->
+
+ <display id="message" >
+  <window x1="1" x2="-1" y1="-80" y2="-1" bpp="4" />
+   <rectangle x1="-1390" x2="-1" y1="-70" y2="-20" refresh="all"  color="MainLight" />
+   <ellipse    x1="-1440" x2="-1390" y1="-70" y2="-20" refresh="all"  arc="2" color="MainLight" />
+   <rectangle  x1="-1440" x2="-1" y1="-20" y2="-1" refresh="all"  condition="{MessageInfo}" color="MainSolid" />
+   <rectangle  x1="-1440" x2="-1" y1="-20" y2="-1" refresh="all"  condition="{MessageStatus}" color="Status" />
+   <rectangle  x1="-1440" x2="-1" y1="-20" y2="-1" refresh="all"  condition="{MessageWarning}" color="Warning" />
+   <rectangle  x1="-1440" x2="-1" y1="-20" y2="-1" refresh="all"  condition="{MessageError}" color="Error" />
+   <text       x1="-1390" x2="-30" y1="-55" y2="-20" refresh="all"  color="FontColor" align="right" font="Sml" >{MessageInfo}</text>
+   <text      x1="-1390" x2="-30" y1="-55" y2="-20" refresh="all"  color="FontColor" align="right" font="Sml" >{MessageStatus}</text>
+   <text       x1="-1390" x2="-30" y1="-55" y2="-20" refresh="all"  color="FontColor" align="right" font="Sml" >{MessageWarning}</text>
+   <text      x1="-1390" x2="-30" y1="-55" y2="-20" refresh="all"  color="FontColor" align="right" font="Sml" >{MessageError}</text>
+ </display>
+ 
+<!--###############################################################################################
+#   REPLAY                                                                                        #
+################################################################################################-->
+ 
+ <display id="replayInfo" >
+<!-- TOP WINDOW-->
+  <window x1="-360" x2="-1" y1="0" y2="70" bpp="4" />
+   <rectangle refresh="all" x1="-360" x2="-1" y1="0" y2="19" color="MainLight" />
+   
+   <ellipse   refresh="all" x1="-360" x2="-310" y1="20" y2="70" arc="3" color="MainLight" />
+   <rectangle refresh="all" x1="-310" x2="-1" y1="20" y2="70" color="MainLight" />
+   
+   <text condition="{IsPlaying}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Playing</text>
+   <!-- trans('Playing') -->
+   <text  condition="{IsPausing}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Pause</text>
+   <!-- trans('Pause') -->
+   <text    condition="{IsFastForward:0}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight"  font="Sml" >Fast forward</text>
+   <!-- trans('Fast forward') -->
+   <text    condition="{IsFastForward:1}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast forward x1 </text>
+   <!-- trans('Fast forward') -->
+   <text    condition="{IsFastForward:2}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast forward x2</text>
+   <!-- trans('Fast forward') -->
+   <text    condition="{IsFastForward:3}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast forward x3</text>
+   <!-- trans('Fast forward') -->
+   <text    condition="{IsFastRewind:0}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast rewind</text>
+   <!-- trans('Fast rewind') -->
+   <text    condition="{IsFastRewind:1}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast rewind x1 </text>
+   <!-- trans('Fast rewind') -->
+   <text    condition="{IsFastRewind:2}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast rewind x2</text>
+   <!-- trans('Fast rewind') -->
+   <text    condition="{IsFastRewind:3}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Fast rewind x3</text>
+   <!-- trans('Fast rewind') -->
+   <text    condition="{IsSlowForward:0}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow forward</text>
+   <!-- trans('Slow forward') -->
+   <text    condition="{IsSlowForward:1}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow forward x1 </text>
+   <!-- trans('Slow forward') -->
+   <text    condition="{IsSlowForward:2}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow forward x2</text>
+   <!-- trans('Slow forward') -->
+   <text    condition="{IsSlowForward:3}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow forward x3</text>
+   <!-- trans('Slow forward') -->
+   <text    condition="{IsSlowRewind:0}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow rewind</text>
+   <!-- trans('Slow rewind') -->
+   <text    condition="{IsSlowRewind:1}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow rewind x1 </text>
+   <!-- trans('Slow rewind') -->
+   <text    condition="{IsSlowRewind:2}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow rewind x2</text>
+   <!-- trans('Slow rewind') -->
+   <text    condition="{IsSlowRewind:3}" x1="-310" x2="-20" y1="20" y2="60" align="right" color="FontColor" bgColor="MainLight" font="Sml" >Slow rewind x3</text>
+   <!-- trans('Slow rewind') -->
+<!-- TOP WINDOW END-->
+       
+<!-- BOTTOM WINDOW-->
+  <window x1="0" x2="-1" y1="-160" y2="-1" bpp="4" />
+   <ellipse  x1="0" x2="50" y1="-110" y2="-60" arc="2" color="MainLight" />
+   <rectangle x1="51" x2="-1" y1="-110" y2="-60" color="MainLight" />
+   <rectangle x1="0" x2="-1" y1="-60" y2="-40" color="MainSolid" />
+   <text x1="240" x2="-320" y1="-95" y2="-40" color="FontColor" font="Sml" >{ReplayTitle}</text>
+   <text x1="240" x2="-30" y1="-95" y2="-40" color="FontColor" align="right" font="Sml" >{ReplayPosition} of {ReplayDuration}</text>
+   <!-- trans('of') -->
+   <progress x1="0" x2="-1" y1="-40" y2="-1" color="BarFill" mark="Mark" keep="Keep" bgColor="Bar" current="{ReplayPositionIndex}" total="{ReplayDurationIndex}" />
+   <ellipse x1="-360" x2="-310" y1="-160" y2="-111" arc="2" condition="{ReplayPrompt}" color="MainLight" />
+   <rectangle x1="-310" x2="-1" y1="-160" y2="-111"  condition="{ReplayPrompt}" color="MainLight" />
+   <text x1="-250" x2="-30" y1="-150" y2="-111" color="FontColor" align="right" font="Sml" >{ReplayPrompt}</text>
+<!-- BOTTOM WINDOW END-->
+ </display>
+  
+<!--###############################################################################################
+#   CHANNEL INFO                                                                                  #
+################################################################################################-->
+ 
+ <display id="channelInfo" >
+<!-- TOP WINDOW-->
+  <window x1="-460" x2="-1" y1="0" y2="70" bpp="4" />
+   <rectangle x1="-460" x2="-1" y1="0" y2="20" color="MainLight" />
+   <ellipse  x1="-460" x2="-410" y1="20" y2="70" arc="3" color="MainLight" />
+   <rectangle x1="-410" x2="-1" y1="20" y2="70" color="MainLight" />
+   <text x1="-430" x2="-20" y1="20" y2="60" color="FontColor" align="right" font="Sml" >{DateTime:%A %e.%m. %H\:%M}</text>
+<!-- TOP WINDOW END--> 
+
+<!-- LOWER WINDOW-->
+  <window x1="240" x2="-240" y1="-340" y2="-20" bpp="8" />
+<!-- HEAD -->   
+   <block>
+    <ellipse x1="240" x2="290" y1="-340" y2="-290" arc="2" color="MainLight" />
+    <rectangle x1="290" x2="-240" y1="-340" y2="-290" color="MainLight" />
+    <rectangle x1="240" x2="-240" y1="-290" y2="-270" color="Bar" />
+    <progress x1="240" x2="-240" y1="-290" y2="-270" color="BarFill" bgColor="Bar" current="{PresentProgress}" total="{PresentDuration}" />
+   </block>
+<!-- HEAD END-->
+   
+<!-- BODY -->
+<!-- SYMBOLS --> 
+   <block>
+    <rectangle x1="240" x2="-240" y1="-270" y2="-55" color="MainSolid" />
+
+<!-- NOCHANNELLOGO -->    <text x1="360" x2="480" y1="-327" y2="-250" color="FontColor" font="Sml" >{ChannelNumber}</text>
+<!-- NOCHANNELLOGO -->    <text x1="480" x2="-460" y1="-335" y2="-250" color="FontColor" font="Osd" >{ChannelName}</text>
+    <block x1="-445" x2="-485" y1="-325" y2="-345" condition="not({HasTeletext})" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Divider" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <rectangle x1="5" x2="20" y1="5" y2="7" color="Divider" />
+     <rectangle x1="5" x2="20" y1="9" y2="11" color="Divider" />
+     <rectangle x1="5" x2="20" y1="13" y2="15" color="Divider" />
+    </block>
+    <block x1="-445" x2="-485" y1="-325" y2="-345" condition="{HasTeletext}" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <rectangle x1="5" x2="20" y1="5" y2="7" color="Green" />
+     <rectangle x1="5" x2="20" y1="9" y2="11" color="Green" />
+     <rectangle x1="5" x2="20" y1="13" y2="15" color="Green" />
+    </block>
+    <block x1="-405" x2="-445" y1="-325" y2="-345" condition="not({HasDolby})" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Divider" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <rectangle x1="12" x2="13" y1="3" y2="17" color="Divider" />
+     <ellipse x1="5" x2="10" y1="5" y2="15" arc="5"  color="Divider" />
+     <ellipse x1="15" x2="20" y1="5" y2="15" arc="7"  color="Divider" />
+    </block>
+    <block x1="-405" x2="-445" y1="-325" y2="-345" condition="{HasDolby}" >
+     <block >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="Yellow" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <rectangle x1="12" x2="13" y1="3" y2="17" color="Yellow" />
+      <ellipse x1="5" x2="10" y1="5" y2="15" arc="5"  color="Yellow" />
+      <ellipse x1="15" x2="20" y1="5" y2="15" arc="7"  color="Yellow" />
+     </block> 
+     <block condition="equal({Language},'deuDD')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <rectangle x1="12" x2="13" y1="3" y2="17" color="Green" />
+      <ellipse x1="5" x2="10" y1="5" y2="15" arc="5"  color="Green" />
+      <ellipse x1="15" x2="20" y1="5" y2="15" arc="7"  color="Green" />
+     </block>
+     <block condition="equal({Language},'ddDD')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <rectangle x1="12" x2="13" y1="3" y2="17" color="Green" />
+      <ellipse x1="5" x2="10" y1="5" y2="15" arc="5"  color="Green" />
+      <ellipse x1="15" x2="20" y1="5" y2="15" arc="7"  color="Green" />
+     </block>
+     
+    </block>
+    <block x1="-365" x2="-405" y1="-325" y2="-345" condition="not({HasMultilang})" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Divider" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <ellipse x1="5" x2="13" y1="6" y2="14" color="Divider" />
+     <ellipse x1="6" x2="12" y1="7" y2="13" color="Divider" />
+     <ellipse x1="12" x2="20" y1="6" y2="14" color="Divider" />
+     <ellipse x1="13" x2="19" y1="7" y2="13" color="MainLight" />
+    </block>
+    <block x1="-365" x2="-405" y1="-325" y2="-345" condition="{HasMultilang}" >
+     
+    
+    
+     <block condition="equal({AudioChannel},'stereo')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <ellipse x1="5" x2="13" y1="6" y2="14" color="Green" />
+      <ellipse x1="6" x2="14" y1="7" y2="13" color="Green" />
+      <ellipse x1="12" x2="20" y1="6" y2="14" color="Green" />
+      <ellipse x1="13" x2="19" y1="7" y2="13" color="Green" />
+     </block>
+     <block condition="equal({AudioChannel},'left')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <ellipse x1="5" x2="13" y1="6" y2="14" color="Green" />
+      <ellipse x1="6" x2="14" y1="7" y2="13" color="Green" />
+      <ellipse x1="12" x2="20" y1="6" y2="14" color="Green" />
+      <ellipse x1="13" x2="19" y1="7" y2="13" color="MainLight" />
+     </block>
+     <block condition="equal({AudioChannel},'right')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <ellipse x1="5" x2="13" y1="6" y2="14" color="Green" />
+      <ellipse x1="6" x2="14" y1="7" y2="13" color="MainLight" />
+      <ellipse x1="12" x2="20" y1="6" y2="14" color="Green" />
+      <ellipse x1="13" x2="19" y1="7" y2="13" color="Green" />
+     </block>
+     
+    </block>
+    <block x1="-325" x2="-365" y1="-325" y2="-345" condition="not({IsEncrypted})" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Divider" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <ellipse x1="13" x2="21" y1="5" y2="15" color="Divider" />
+     <ellipse x1="15" x2="19" y1="7" y2="13" color="MainLight" />
+     <rectangle x1="4" x2="14" y1="9" y2="10" color="Divider" />
+     <rectangle x1="4" x2="6" y1="10" y2="13" color="Divider" />
+     <rectangle x1="7" x2="9" y1="10" y2="12" color="Divider" />
+    </block>
+    <block x1="-325" x2="-365" y1="-325" y2="-345" condition="{IsEncrypted}" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Green" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <ellipse x1="13" x2="21" y1="5" y2="15" color="Green" />
+     <ellipse x1="15" x2="19" y1="7" y2="13" color="MainLight" />
+     <rectangle x1="4" x2="14" y1="9" y2="10" color="Green" />
+     <rectangle x1="4" x2="6" y1="10" y2="13" color="Green" />
+     <rectangle x1="7" x2="9" y1="10" y2="12" color="Green" />
+    </block>
+    <block x1="-285" x2="-325" y1="-325" y2="-345" condition="not({IsRecording})" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Divider" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     <blink x1="5" x2="25" y1="4" y2="20" color="Warning" delay="400" condition="{TimerConflicts}"  font="VDRSymbols Sans:Bold@9" >rec</blink>
+     <text x1="5" x2="25" y1="4" y2="20" color="Divider" condition="not({TimerConflicts})"  font="VDRSymbols Sans:Bold@9" >rec</text>
+    </block>
+    <block x1="-285" x2="-325" y1="-325" y2="-345" condition="{IsRecording}" >
+     <rectangle x1="2" x2="23" y1="2" y2="18" color="Red" />
+     <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+     
+     <blink x1="5" x2="25" y1="4" y2="20" color="Warning" delay="800" condition="{TimerConflicts}"  font="VDRSymbols Sans:Bold@9" >rec</blink>
+     <text x1="5" x2="25" y1="4" y2="20" color="Red" condition="not({TimerConflicts})" font="VDRSymbols Sans:Bold@9" >rec</text>
+    </block>
+<!-- SYMBOLS END --> 
+
+<!-- PRESENT-->
+    <text x1="360" x2="480" y1="-242" y2="-205" color="FontColor" font="Sml" >{PresentStartDateTime:%H\:%M} </text>
+    <text x1="480" x2="-360" y1="-250" y2="-205" color="FontColor" font="Osd" condition="not({HasTimer})" >{PresentTitle}</text>
+    <text x1="480" x2="-360" y1="-250" y2="-205" color="FontColor" font="Osd" condition="{HasTimer}" >{PresentTitle} *</text>
+<!-- NORCHANNELLOGO -->    <text x1="-360" x2="-285" y1="-245" y2="-205" color="FontColor" align="right" font="Sml" condition="{PresentRemaining}" >{PresentRemaining:%m}</text>
+<!-- NORCHANNELLOGO -->    <text x1="-360" x2="-265" y1="-245" y2="-205" color="FontColor" align="right" font="VDRSymbols Sans:Book@15" condition="{PresentRemaining}" >m</text>
+    <text x1="480" x2="-360" y1="-205" y2="-145" color="FontColor" font="Sml" >{PresentShortText}</text>
+<!-- PRESENT END-->
+<!-- NEXT  -->
+    <text x1="360" x2="480" y1="-147" y2="-110" color="FontColor" font="Sml" >{FollowingStartDateTime:%H\:%M}</text>
+    <text x1="480" x2="-360" y1="-155" y2="-110" color="FontColor" font="Osd" condition="not({FollowingHasTimer})" >{FollowingTitle}</text>
+    <text x1="480" x2="-360" y1="-155" y2="-110" color="FontColor" font="Osd" condition="{FollowingHasTimer}" >{FollowingTitle} *</text>
+<!-- NORCHANNELLOGO -->    <text x1="-360" x2="-285" y1="-150" y2="-110" color="FontColor" align="right" font="Sml" condition="{FollowingDuration}" >{FollowingDuration:%m} </text>
+<!-- NORCHANNELLOGO -->    <text x1="-360" x2="-265" y1="-150" y2="-110" color="FontColor" align="right" font="VDRSymbols Sans:Book@15" condition="{FollowingDuration}" >m</text>
+    <text x1="480" x2="-360" y1="-110" y2="-20" color="FontColor" font="Sml" >{FollowingShortText}</text>
+<!-- NEXT END  -->
+    
+   </block>
+<!-- BODY END -->
+<!-- BUTTONS-->
+   <block refresh="all,update,full" changed="{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" >
+    <block x1="-1197" x2="-237" y1="-55" y2="-20" >
+     <rectangle x1="0" x2="237" y1="0" y2="4" color="#b4690000" />
+     <rectangle x1="0" x2="237" y1="4" y2="6" color="#b4740000" />
+     <rectangle x1="0" x2="237" y1="6" y2="8" color="#b47c0000" />
+     <rectangle x1="0" x2="237" y1="8" y2="11" color="#b4860000" />
+     <rectangle x1="0" x2="237" y1="11" y2="14" color="#b4960000" />
+     <rectangle x1="0" x2="237" y1="14" y2="16" color="#b4a60000" />
+     <rectangle x1="0" x2="237" y1="16" y2="17" color="#b4ac0000" />
+     <rectangle x1="0" x2="237" y1="17" y2="19" color="#b4b70000" />
+     <rectangle x1="0" x2="237" y1="19" y2="20" color="#b4bd0000" />
+     <rectangle x1="0" x2="237" y1="20" y2="21" color="#b4c20000" />
+     <rectangle x1="0" x2="237" y1="21" y2="23" color="#b4cd0000" />
+     <rectangle x1="1" x2="237" y1="23" y2="24" color="#b4d80000" />
+     <rectangle x1="1" x2="236" y1="24" y2="25" color="#b4d80000" />
+     <rectangle x1="1" x2="236" y1="25" y2="26" color="#b4d80000" />
+     <rectangle x1="2" x2="235" y1="26" y2="27" color="#b4e20000" />
+     <rectangle x1="3" x2="235" y1="27" y2="28" color="#b4e20000" />
+     <rectangle x1="3" x2="234" y1="28" y2="29" color="#b4ef0000" />
+     <rectangle x1="4" x2="233" y1="29" y2="30" color="#b4ef0000" />
+     <rectangle x1="5" x2="232" y1="30" y2="31" color="#b4ef0000" />
+     <rectangle x1="6" x2="231" y1="31" y2="32" color="#b4f80000" />
+     <rectangle x1="8" x2="229" y1="32" y2="33" color="#b4f80000" />
+     <rectangle x1="10" x2="227" y1="33" y2="34" color="#b4f80000" />
+    </block>
+    <block x1="-957" x2="-477" y1="-55" y2="-20" >
+     <rectangle x1="0" x2="238" y1="0" y2="2" color="#b4006400" />
+     <rectangle x1="0" x2="237" y1="2" y2="5" color="#b4006d00" />
+     <rectangle x1="0" x2="237" y1="5" y2="6" color="#b4007400" />
+     <rectangle x1="0" x2="237" y1="6" y2="8" color="#b4007c00" />
+     <rectangle x1="0" x2="237" y1="8" y2="9" color="#b4008100" />
+     <rectangle x1="0" x2="237" y1="9" y2="10" color="#b4008600" />
+     <rectangle x1="0" x2="237" y1="10" y2="11" color="#b4008b00" />
+     <rectangle x1="0" x2="237" y1="11" y2="12" color="#b4009000" />
+     <rectangle x1="0" x2="237" y1="12" y2="13" color="#b4009600" />
+     <rectangle x1="0" x2="237" y1="13" y2="14" color="#b4009b00" />
+     <rectangle x1="0" x2="237" y1="14" y2="15" color="#b400a100" />
+     <rectangle x1="0" x2="237" y1="15" y2="16" color="#b400a600" />
+     <rectangle x1="0" x2="237" y1="16" y2="17" color="#b400ac00" />
+     <rectangle x1="0" x2="237" y1="17" y2="18" color="#b400b200" />
+     <rectangle x1="0" x2="237" y1="18" y2="19" color="#b400b700" />
+     <rectangle x1="0" x2="237" y1="19" y2="20" color="#b400bd00" />
+     <rectangle x1="0" x2="237" y1="20" y2="21" color="#b400c200" />
+     <rectangle x1="0" x2="237" y1="21" y2="22" color="#b400c800" />
+     <rectangle x1="0" x2="237" y1="22" y2="23" color="#b400cd00" />
+     <rectangle x1="1" x2="237" y1="23" y2="24" color="#b400d300" />
+     <rectangle x1="1" x2="236" y1="24" y2="25" color="#b400d800" />
+     <rectangle x1="1" x2="236" y1="25" y2="26" color="#b400dd00" />
+     <rectangle x1="2" x2="235" y1="26" y2="27" color="#b400e200" />
+     <rectangle x1="3" x2="235" y1="27" y2="28" color="#b400e200" />
+     <rectangle x1="3" x2="234" y1="28" y2="29" color="#b400ef00" />
+     <rectangle x1="4" x2="233" y1="29" y2="30" color="#b400ef00" />
+     <rectangle x1="5" x2="232" y1="30" y2="31" color="#b400ef00" />
+     <rectangle x1="6" x2="231" y1="31" y2="32" color="#b400f800" />
+     <rectangle x1="8" x2="229" y1="32" y2="33" color="#b400f800" />
+     <rectangle x1="10" x2="227" y1="33" y2="34" color="#b400f800" />
+    </block>
+    <block x1="-717" x2="-477" y1="-55" y2="-20" >
+     <rectangle x1="0" x2="237" y1="0" y2="3" color="#b4666600" />
+     <rectangle x1="0" x2="237" y1="3" y2="4" color="#b46d6d00" />
+     <rectangle x1="0" x2="237" y1="4" y2="6" color="#b4707000" />
+     <rectangle x1="0" x2="237" y1="6" y2="8" color="#b47c7c00" />
+     <rectangle x1="0" x2="237" y1="8" y2="10" color="#b4868600" />
+     <rectangle x1="0" x2="237" y1="10" y2="11" color="#b48b8b00" />
+     <rectangle x1="0" x2="237" y1="11" y2="12" color="#b4909000" />
+     <rectangle x1="0" x2="237" y1="12" y2="14" color="#b49b9b00" />
+     <rectangle x1="0" x2="237" y1="14" y2="16" color="#b4a6a600" />
+     <rectangle x1="0" x2="237" y1="16" y2="17" color="#b4acac00" />
+     <rectangle x1="0" x2="237" y1="17" y2="19" color="#b4b7b700" />
+     <rectangle x1="0" x2="237" y1="19" y2="20" color="#b4bdbd00" />
+     <rectangle x1="0" x2="237" y1="20" y2="21" color="#b4c2c200" />
+     <rectangle x1="0" x2="237" y1="21" y2="23" color="#b4cdcd00" />
+     <rectangle x1="1" x2="237" y1="23" y2="24" color="#b4d3d300" />
+     <rectangle x1="1" x2="236" y1="24" y2="25" color="#b4d8d800" />
+     <rectangle x1="1" x2="236" y1="25" y2="26" color="#b4dddd00" />
+     <rectangle x1="2" x2="235" y1="26" y2="27" color="#b4e2e200" />
+     <rectangle x1="3" x2="235" y1="27" y2="28" color="#b4e2e200" />
+     <rectangle x1="3" x2="234" y1="28" y2="29" color="#b4efef00" />
+     <rectangle x1="4" x2="233" y1="29" y2="30" color="#b4efef00" />
+     <rectangle x1="5" x2="232" y1="30" y2="31" color="#b4efef00" />
+     <rectangle x1="6" x2="231" y1="31" y2="32" color="#b4f8f800" />
+     <rectangle x1="8" x2="229" y1="32" y2="33" color="#b4f8f800" />
+     <rectangle x1="10" x2="227" y1="33" y2="34" color="#b4f8f800" />
+    </block>
+    <block x1="-477" x2="-237" y1="-55" y2="-20" >
+     <rectangle x1="0" x2="237" y1="0" y2="4" color="#b4000068" />
+     <rectangle x1="0" x2="237" y1="4" y2="6" color="#b4000072" />
+     <rectangle x1="0" x2="237" y1="6" y2="8" color="#b400007a" />
+     <rectangle x1="0" x2="237" y1="8" y2="11" color="#b4000086" />
+     <rectangle x1="0" x2="237" y1="11" y2="14" color="#b4000096" />
+     <rectangle x1="0" x2="237" y1="14" y2="16" color="#b40000a4" />
+     <rectangle x1="0" x2="237" y1="16" y2="17" color="#b40000ac" />
+     <rectangle x1="0" x2="237" y1="17" y2="19" color="#b40000b5" />
+     <rectangle x1="0" x2="237" y1="19" y2="20" color="#b40000bd" />
+     <rectangle x1="0" x2="237" y1="20" y2="21" color="#b40000c2" />
+     <rectangle x1="0" x2="237" y1="21" y2="23" color="#b40000cb" />
+     <rectangle x1="1" x2="237" y1="23" y2="24" color="#b40000d8" />
+     <rectangle x1="1" x2="236" y1="24" y2="25" color="#b40000d8" />
+     <rectangle x1="1" x2="236" y1="25" y2="26" color="#b40000d8" />
+     <rectangle x1="2" x2="235" y1="26" y2="27" color="#b40000e4" />
+     <rectangle x1="3" x2="235" y1="27" y2="28" color="#b40000e4" />
+     <rectangle x1="3" x2="234" y1="28" y2="29" color="#b40000ee" />
+     <rectangle x1="4" x2="233" y1="29" y2="30" color="#b40000ee" />
+     <rectangle x1="5" x2="232" y1="30" y2="31" color="#b40000ee" />
+     <rectangle x1="6" x2="231" y1="31" y2="32" color="#b40000f8" />
+     <rectangle x1="8" x2="229" y1="32" y2="33" color="#b40000f8" />
+     <rectangle x1="10" x2="227" y1="33" y2="34" color="#b40000f8" />
+    </block>
+    <text x1="-1197" x2="-958" y1="-55" y2="-20" color="White" align="center" font="Sml" >Запись</text>
+    <text  x1="-957" x2="-720" y1="-55" y2="-20" color="Black" align="center" font="Sml" >Таймер</text>
+    <text x1="-719" x2="-478" y1="-55" y2="-20" color="Black" align="center" font="Sml" >Записи</text>
+    <text x1="-477" x2="-240" y1="-55" y2="-20" color="White" align="center" font="Sml" >Телетекст</text>
+   </block>
+<!-- BUTTONS END-->
+<!-- LOWER WINDOW END-->
+ </display>
+
+<!--###############################################################################################
+#   REPLAY SMALL                                                                                  #
+################################################################################################-->
+ 
+ <display id="replaySmall" >
+  <window x1="0" x2="-1" y1="0" y2="-1" bpp="8" />
+   <!--Background-->
+   <ellipse x1="15" x2="95" y1="15" y2="95" color="TRW" />
+   <ellipse x1="20" x2="90" y1="20" y2="90" color="OPA" />
+   
+   <!--PLAY-->
+   <block  x1="46" x2="95" y1="31" y2="95" condition="{IsPlaying}" >
+    <rectangle x1="0" x2="1" y1="0" y2="47" color="TRW" />
+    <rectangle x1="1" x2="2" y1="1" y2="46" color="TRW" />
+    <rectangle x1="2" x2="3" y1="2" y2="45" color="TRW" />
+    <rectangle x1="3" x2="4" y1="3" y2="44" color="TRW" />
+    <rectangle x1="4" x2="5" y1="4" y2="43" color="TRW" />
+    <rectangle x1="5" x2="6" y1="5" y2="42" color="TRW" />
+    <rectangle x1="6" x2="7" y1="6" y2="41" color="TRW" />
+    <rectangle x1="7" x2="8" y1="7" y2="40" color="TRW" />
+    <rectangle x1="8" x2="9" y1="8" y2="39" color="TRW" />
+    <rectangle x1="9" x2="10" y1="9" y2="38" color="TRW" />
+    <rectangle x1="10" x2="11" y1="10" y2="37" color="TRW" />
+    <rectangle x1="11" x2="12" y1="11" y2="36" color="TRW" />
+    <rectangle x1="12" x2="13" y1="12" y2="35" color="TRW" />
+    <rectangle x1="13" x2="14" y1="13" y2="34" color="TRW" />
+    <rectangle x1="14" x2="15" y1="14" y2="33" color="TRW" />
+    <rectangle x1="15" x2="16" y1="15" y2="32" color="TRW" />
+    <rectangle x1="16" x2="17" y1="16" y2="31" color="TRW" />
+    <rectangle x1="17" x2="18" y1="17" y2="30" color="TRW" />
+    <rectangle x1="18" x2="19" y1="18" y2="29" color="TRW" />
+    <rectangle x1="19" x2="20" y1="19" y2="28" color="TRW" />
+    <rectangle x1="20" x2="21" y1="20" y2="27" color="TRW" />
+    <rectangle x1="21" x2="22" y1="21" y2="26" color="TRW" />
+    <rectangle x1="22" x2="23" y1="22" y2="25" color="TRW" />
+    <rectangle x1="23" x2="24" y1="23" y2="24" color="TRW" />
+   </block>
+   <!--PAUSE-->
+   <block  x1="15" x2="95" y1="13" y2="95" condition="{IsPausing}" >
+    <rectangle x1="26" x2="35" y1="19" y2="65" color="TRW" />
+    <rectangle x1="45" x2="54" y1="19" y2="65" color="TRW" />
+   </block>
+   <!--FF-->
+   <block  x1="0" x2="95" y1="0" y2="95" condition="or(or({IsFastForward:0},{IsFastForward:1}),or({IsFastForward:3},{IsFastForward:2}))" >
+    <block  x1="35" x2="59" y1="31" y2="95" >
+     <rectangle x1="0" x2="1" y1="0" y2="47" color="TRW" />
+     <rectangle x1="1" x2="2" y1="1" y2="46" color="TRW" />
+     <rectangle x1="2" x2="3" y1="2" y2="45" color="TRW" />
+     <rectangle x1="3" x2="4" y1="3" y2="44" color="TRW" />
+     <rectangle x1="4" x2="5" y1="4" y2="43" color="TRW" />
+     <rectangle x1="5" x2="6" y1="5" y2="42" color="TRW" />
+     <rectangle x1="6" x2="7" y1="6" y2="41" color="TRW" />
+     <rectangle x1="7" x2="8" y1="7" y2="40" color="TRW" />
+     <rectangle x1="8" x2="9" y1="8" y2="39" color="TRW" />
+     <rectangle x1="9" x2="10" y1="9" y2="38" color="TRW" />
+     <rectangle x1="10" x2="11" y1="10" y2="37" color="TRW" />
+     <rectangle x1="11" x2="12" y1="11" y2="36" color="TRW" />
+     <rectangle x1="12" x2="13" y1="12" y2="35" color="TRW" />
+     <rectangle x1="13" x2="14" y1="13" y2="34" color="TRW" />
+     <rectangle x1="14" x2="15" y1="14" y2="33" color="TRW" />
+     <rectangle x1="15" x2="16" y1="15" y2="32" color="TRW" />
+     <rectangle x1="16" x2="17" y1="16" y2="31" color="TRW" />
+     <rectangle x1="17" x2="18" y1="17" y2="30" color="TRW" />
+     <rectangle x1="18" x2="19" y1="18" y2="29" color="TRW" />
+     <rectangle x1="19" x2="20" y1="19" y2="28" color="TRW" />
+     <rectangle x1="20" x2="21" y1="20" y2="27" color="TRW" />
+     <rectangle x1="21" x2="22" y1="21" y2="26" color="TRW" />
+     <rectangle x1="22" x2="23" y1="22" y2="25" color="TRW" />
+     <rectangle x1="23" x2="24" y1="23" y2="24" color="TRW" />
+    </block>
+    <block  x1="59" x2="95" y1="31" y2="95" >
+     <rectangle x1="0" x2="1" y1="0" y2="47" color="TRW" />
+     <rectangle x1="1" x2="2" y1="1" y2="46" color="TRW" />
+     <rectangle x1="2" x2="3" y1="2" y2="45" color="TRW" />
+     <rectangle x1="3" x2="4" y1="3" y2="44" color="TRW" />
+     <rectangle x1="4" x2="5" y1="4" y2="43" color="TRW" />
+     <rectangle x1="5" x2="6" y1="5" y2="42" color="TRW" />
+     <rectangle x1="6" x2="7" y1="6" y2="41" color="TRW" />
+     <rectangle x1="7" x2="8" y1="7" y2="40" color="TRW" />
+     <rectangle x1="8" x2="9" y1="8" y2="39" color="TRW" />
+     <rectangle x1="9" x2="10" y1="9" y2="38" color="TRW" />
+     <rectangle x1="10" x2="11" y1="10" y2="37" color="TRW" />
+     <rectangle x1="11" x2="12" y1="11" y2="36" color="TRW" />
+     <rectangle x1="12" x2="13" y1="12" y2="35" color="TRW" />
+     <rectangle x1="13" x2="14" y1="13" y2="34" color="TRW" />
+     <rectangle x1="14" x2="15" y1="14" y2="33" color="TRW" />
+     <rectangle x1="15" x2="16" y1="15" y2="32" color="TRW" />
+     <rectangle x1="16" x2="17" y1="16" y2="31" color="TRW" />
+     <rectangle x1="17" x2="18" y1="17" y2="30" color="TRW" />
+     <rectangle x1="18" x2="19" y1="18" y2="29" color="TRW" />
+     <rectangle x1="19" x2="20" y1="19" y2="28" color="TRW" />
+     <rectangle x1="20" x2="21" y1="20" y2="27" color="TRW" />
+     <rectangle x1="21" x2="22" y1="21" y2="26" color="TRW" />
+     <rectangle x1="22" x2="23" y1="22" y2="25" color="TRW" />
+     <rectangle x1="23" x2="24" y1="23" y2="24" color="TRW" />
+    </block> 
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000"  condition="{IsFastForward:1}"  font="VDRSymbols Sans:Bold@14" >1</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000"  condition="{IsFastForward:2}"  font="VDRSymbols Sans:Bold@14" >2</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000"  condition="{IsFastForward:3}"  font="VDRSymbols Sans:Bold@14" >3</text>
+   </block>
+   <!--RW-->
+   <block  x1="0" x2="95" y1="0" y2="95" condition="or(or({IsFastRewind:0},{IsFastRewind:1}),or({IsFastRewind:3},{IsFastRewind:2}))" >
+    <block  x1="26" x2="50" y1="31" y2="95" >
+     <rectangle x1="0" x2="1" y1="23" y2="24" color="TRW" />
+     <rectangle x1="1" x2="2" y1="22" y2="25" color="TRW" />
+     <rectangle x1="2" x2="3" y1="21" y2="26" color="TRW" />
+     <rectangle x1="3" x2="4" y1="20" y2="27" color="TRW" />
+     <rectangle x1="4" x2="5" y1="19" y2="28" color="TRW" />
+     <rectangle x1="5" x2="6" y1="18" y2="29" color="TRW" />
+     <rectangle x1="6" x2="7" y1="17" y2="30" color="TRW" />
+     <rectangle x1="7" x2="8" y1="16" y2="31" color="TRW" />
+     <rectangle x1="8" x2="9" y1="15" y2="32" color="TRW" />
+     <rectangle x1="9" x2="10" y1="14" y2="33" color="TRW" />
+     <rectangle x1="10" x2="11" y1="13" y2="34" color="TRW" />
+     <rectangle x1="11" x2="12" y1="12" y2="35" color="TRW" />
+     <rectangle x1="12" x2="13" y1="11" y2="36" color="TRW" />
+     <rectangle x1="13" x2="14" y1="10" y2="37" color="TRW" />
+     <rectangle x1="14" x2="15" y1="9" y2="38" color="TRW" />
+     <rectangle x1="15" x2="16" y1="8" y2="39" color="TRW" />
+     <rectangle x1="16" x2="17" y1="7" y2="40" color="TRW" />
+     <rectangle x1="17" x2="18" y1="6" y2="41" color="TRW" />
+     <rectangle x1="18" x2="19" y1="5" y2="42" color="TRW" />
+     <rectangle x1="19" x2="20" y1="4" y2="43" color="TRW" />
+     <rectangle x1="20" x2="21" y1="3" y2="44" color="TRW" />
+     <rectangle x1="21" x2="22" y1="2" y2="45" color="TRW" />
+     <rectangle x1="22" x2="23" y1="1" y2="46" color="TRW" />
+     <rectangle x1="23" x2="24" y1="0" y2="47" color="TRW" />
+    </block>
+    <block x1="50" x2="95" y1="31" y2="95" >
+     <rectangle x1="0" x2="1" y1="23" y2="24" color="TRW" />
+     <rectangle x1="1" x2="2" y1="22" y2="25" color="TRW" />
+     <rectangle x1="2" x2="3" y1="21" y2="26" color="TRW" />
+     <rectangle x1="3" x2="4" y1="20" y2="27" color="TRW" />
+     <rectangle x1="4" x2="5" y1="19" y2="28" color="TRW" />
+     <rectangle x1="5" x2="6" y1="18" y2="29" color="TRW" />
+     <rectangle x1="6" x2="7" y1="17" y2="30" color="TRW" />
+     <rectangle x1="7" x2="8" y1="16" y2="31" color="TRW" />
+     <rectangle x1="8" x2="9" y1="15" y2="32" color="TRW" />
+     <rectangle x1="9" x2="10" y1="14" y2="33" color="TRW" />
+     <rectangle x1="10" x2="11" y1="13" y2="34" color="TRW" />
+     <rectangle x1="11" x2="12" y1="12" y2="35" color="TRW" />
+     <rectangle x1="12" x2="13" y1="11" y2="36" color="TRW" />
+     <rectangle x1="13" x2="14" y1="10" y2="37" color="TRW" />
+     <rectangle x1="14" x2="15" y1="9" y2="38" color="TRW" />
+     <rectangle x1="15" x2="16" y1="8" y2="39" color="TRW" />
+     <rectangle x1="16" x2="17" y1="7" y2="40" color="TRW" />
+     <rectangle x1="17" x2="18" y1="6" y2="41" color="TRW" />
+     <rectangle x1="18" x2="19" y1="5" y2="42" color="TRW" />
+     <rectangle x1="19" x2="20" y1="4" y2="43" color="TRW" />
+     <rectangle x1="20" x2="21" y1="3" y2="44" color="TRW" />
+     <rectangle x1="21" x2="22" y1="2" y2="45" color="TRW" />
+     <rectangle x1="22" x2="23" y1="1" y2="46" color="TRW" />
+     <rectangle x1="23" x2="24" y1="0" y2="47" color="TRW" />
+    </block>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000"  condition="{IsFastRewind:1}"  font="VDRSymbols Sans:Bold@14" >1</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000"  condition="{IsFastRewind:2}"  font="VDRSymbols Sans:Bold@14" >2</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000"  condition="{IsFastRewind:3}"  font="VDRSymbols Sans:Bold@14" >3</text>
+   </block>
+   <!--SFF-->
+   <block  x1="0" x2="95" y1="0" y2="95" condition="or(or({IsSlowForward:0},{IsSlowForward:1}),or({IsSlowForward:3},{IsSlowForward:2}))" >
+    <rectangle x1="37" x2="49" y1="31" y2="79" color="TRW" /> 
+    <block  x1="59" x2="95" y1="31" y2="95" >
+     <rectangle x1="0" x2="1" y1="0" y2="47" color="TRW" />
+     <rectangle x1="1" x2="2" y1="1" y2="46" color="TRW" />
+     <rectangle x1="2" x2="3" y1="2" y2="45" color="TRW" />
+     <rectangle x1="3" x2="4" y1="3" y2="44" color="TRW" />
+     <rectangle x1="4" x2="5" y1="4" y2="43" color="TRW" />
+     <rectangle x1="5" x2="6" y1="5" y2="42" color="TRW" />
+     <rectangle x1="6" x2="7" y1="6" y2="41" color="TRW" />
+     <rectangle x1="7" x2="8" y1="7" y2="40" color="TRW" />
+     <rectangle x1="8" x2="9" y1="8" y2="39" color="TRW" />
+     <rectangle x1="9" x2="10" y1="9" y2="38" color="TRW" />
+     <rectangle x1="10" x2="11" y1="10" y2="37" color="TRW" />
+     <rectangle x1="11" x2="12" y1="11" y2="36" color="TRW" />
+     <rectangle x1="12" x2="13" y1="12" y2="35" color="TRW" />
+     <rectangle x1="13" x2="14" y1="13" y2="34" color="TRW" />
+     <rectangle x1="14" x2="15" y1="14" y2="33" color="TRW" />
+     <rectangle x1="15" x2="16" y1="15" y2="32" color="TRW" />
+     <rectangle x1="16" x2="17" y1="16" y2="31" color="TRW" />
+     <rectangle x1="17" x2="18" y1="17" y2="30" color="TRW" />
+     <rectangle x1="18" x2="19" y1="18" y2="29" color="TRW" />
+     <rectangle x1="19" x2="20" y1="19" y2="28" color="TRW" />
+     <rectangle x1="20" x2="21" y1="20" y2="27" color="TRW" />
+     <rectangle x1="21" x2="22" y1="21" y2="26" color="TRW" />
+     <rectangle x1="22" x2="23" y1="22" y2="25" color="TRW" />
+     <rectangle x1="23" x2="24" y1="23" y2="24" color="TRW" />
+    </block>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000" condition="{IsSlowForward:1}" font="VDRSymbols Sans:Bold@14" >1</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000" condition="{IsSlowForward:2}" font="VDRSymbols Sans:Bold@14" >2</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000" condition="{IsSlowForward:3}" font="VDRSymbols Sans:Bold@14" >3</text>
+   </block>
+   <!--SRW-->
+   <block  x1="0" x2="95" y1="0" y2="95" condition="or(or({IsSlowRewind:0},{IsSlowRewind:1}),or({IsSlowRewind:3},{IsSlowRewind:2}))"  >
+    <block  x1="26" x2="50" y1="31" y2="95" >
+     <rectangle x1="0" x2="1" y1="23" y2="24" color="TRW" />
+     <rectangle x1="1" x2="2" y1="22" y2="25" color="TRW" />
+     <rectangle x1="2" x2="3" y1="21" y2="26" color="TRW" />
+     <rectangle x1="3" x2="4" y1="20" y2="27" color="TRW" />
+     <rectangle x1="4" x2="5" y1="19" y2="28" color="TRW" />
+     <rectangle x1="5" x2="6" y1="18" y2="29" color="TRW" />
+     <rectangle x1="6" x2="7" y1="17" y2="30" color="TRW" />
+     <rectangle x1="7" x2="8" y1="16" y2="31" color="TRW" />
+     <rectangle x1="8" x2="9" y1="15" y2="32" color="TRW" />
+     <rectangle x1="9" x2="10" y1="14" y2="33" color="TRW" />
+     <rectangle x1="10" x2="11" y1="13" y2="34" color="TRW" />
+     <rectangle x1="11" x2="12" y1="12" y2="35" color="TRW" />
+     <rectangle x1="12" x2="13" y1="11" y2="36" color="TRW" />
+     <rectangle x1="13" x2="14" y1="10" y2="37" color="TRW" />
+     <rectangle x1="14" x2="15" y1="9" y2="38" color="TRW" />
+     <rectangle x1="15" x2="16" y1="8" y2="39" color="TRW" />
+     <rectangle x1="16" x2="17" y1="7" y2="40" color="TRW" />
+     <rectangle x1="17" x2="18" y1="6" y2="41" color="TRW" />
+     <rectangle x1="18" x2="19" y1="5" y2="42" color="TRW" />
+     <rectangle x1="19" x2="20" y1="4" y2="43" color="TRW" />
+     <rectangle x1="20" x2="21" y1="3" y2="44" color="TRW" />
+     <rectangle x1="21" x2="22" y1="2" y2="45" color="TRW" />
+     <rectangle x1="22" x2="23" y1="1" y2="46" color="TRW" />
+     <rectangle x1="23" x2="24" y1="0" y2="47" color="TRW" />
+    </block>
+    <rectangle x1="60" x2="72" y1="31" y2="79" color="TRW" /> 
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000" condition="{IsSlowRewind:1}"   font="VDRSymbols Sans:Bold@14" >1</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000" condition="{IsSlowRewind:2}"   font="VDRSymbols Sans:Bold@14" >2</text>
+    <text x1="39" x2="80" y1="47" y2="80" color="#00000000" condition="{IsSlowRewind:3}"   font="VDRSymbols Sans:Bold@14" >3</text>
+   </block>
+ </display>
+ 
+<!--###############################################################################################
+#   MENU                                                                                          #
+################################################################################################-->
+
+ <display id="menu" refresh="all,list,timeout" >
+<!-- TOP WINDOW-->
+<!-- EPGIMAGES -->  <window x1="240" x2="-240" y1="135" y2="-136" bpp="8" />
+<!--HEAD-->
+   <ellipse refresh="all" x1="240" x2="290" y1="135" y2="185" arc="2" color="MainSolid" />
+   <rectangle refresh="all,timeout" x1="290" x2="-240" y1="135" y2="185" color="MainSolid" />
+   <rectangle refresh="all,timeout" x1="240" x2="-240" y1="185" y2="250" color="MainSolid" />
+   <text refresh="all,timeout"  x1="-540" x2="-308" y1="178" align="right" y2="-780" color="FontColor" font="VDRSymbols Sans:Book@57" >VDR</text>
+   <text refresh="all,timeout"  x1="-540" x2="-270" y1="185" y2="-780" align="right" color="FontColor" font="Sml" >HD</text>
+   <rectangle refresh="all" x1="240" x2="-240" y1="250" y2="252" color="Divider" />
+<!--HEAD END-->   
+  
+<!-- SUBMENU: Default -->
+   <!-- Background -->
+   <block refresh="all,update,timeout,full,scroll" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}{ButtonYellow}"  condition="and(and(and(and(and(not(equal({MenuTitle:clean},trans('Timers'))),not(equal({MenuTitle:clean},trans('Recordings')))),and(not(equal({MenuTitle:clean},trans('Edit timer'))),not(equal({MenuTitle:clean},trans('Setup'))))),and(and(not(equal({MenuTitle:clean},trans('Channels'))),not(equal({MenuTitle:clean},trans('Schedule')))),and(not(equal({MenuTitle:clean},trans('Commands'))),not(equal({MenuTitle:clean},'VDR'))))),not({RecordingTitle})),not({PresentTitle}))" >
+    <rectangle x1="240" x2="-240" y1="252" y2="-135" color="MainLight" />
+    <text x1="315" x2="-750" y1="195" y2="-830" color="FontColor" font="Osd" >{MenuTitle:clean}</text>
+   </block>
+<block refresh="all,update,timeout,full,scroll,list" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}{ButtonYellow}{MenuText}" condition="or(equal({MenuTitle:clean},trans('Learning Remote Control Keys')),equal({MenuTitle:clean},'Fernbedienung anlernen'))" >
+    <rectangle x1="240" x2="-240" y1="252" y2="-135" color="MainLight" />
+    <text x1="315" x2="-750" y1="195" y2="-830" color="FontColor" font="Osd" >{MenuTitle:clean}</text>
+   </block>
+   <!-- Content -->
+   <list refresh="all,list,update,timeout" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}{ButtonYellow}"  x1="240" x2="-240" y1="310" y2="-220" condition="and(and(and(and(and(not(equal({MenuTitle:clean},trans('Timers'))),not(equal({MenuTitle:clean},trans('Recordings')))),and(not(equal({MenuTitle:clean},trans('Edit timer'))),not(equal({MenuTitle:clean},trans('Setup'))))),and(and(not(equal({MenuTitle:clean},trans('Channels'))),not(equal({MenuTitle:clean},trans('Schedule')))),and(not(equal({MenuTitle:clean},trans('Commands'))),not(equal({MenuTitle:clean},'VDR'))))),not({RecordingTitle})),not({PresentTitle}))" >
+    <item height="50" />
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuItem}" color="Lolight" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="0" y2="15" condition="{IsMenuItem}" color="Lolight"  arc="2" /> 
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuItem}" color="Lolight" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuItem}" color="Lolight"  arc="3" /> 
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuCurrent}" color="MainSolid" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="0" y2="15" condition="{IsMenuCurrent}" color="MainSolid" arc="2" /> 
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuCurrent}" color="MainSolid" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuCurrent}" color="MainSolid" arc="3" /> 
+    <text refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}"  x1="75" x2="-21" y1="4" y2="22" color="FontColorInactive" font="Sml" >{MenuGroup}</text>
+    <text refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="75" x2="-21" y1="6" y2="22" color="FontColorInactive" font="Sml" >{MenuItem}</text>
+    <text refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="75" x2="-21" y1="6" y2="20" color="FontColor" font="Sml" >{MenuCurrent}</text>
+   </list> 
+   
+   <!-- Messages -->
+   <block refresh="all,update,timeout,full" changed="{MessageInfo}{MessageStatus}{MessageWarning}{MessageError}" condition="and(and(and({Message},and(and(and(not(equal({MenuTitle:clean},trans('Timers'))),not(equal({MenuTitle:clean},trans('Recordings')))),and(not(equal({MenuTitle:clean},trans('Edit timer'))),not(equal({MenuTitle:clean},trans('Setup'))))),and(and(not(equal({MenuTitle:clean},trans('Channels'))),not(equal({MenuTitle:clean},trans('Schedule')))),and(not(equal({MenuTitle:clean},trans('Commands'))),not(equal({MenuTitle:clean},'VDR'))))) ),not({RecordingTitle})),not({PresentTitle}))" >
+    <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageInfo}" color="MainSolid" />
+    <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageStatus}" color="Status" />
+    <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageWarning}" color="Warning" />
+    <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageError}" color="Error" />
+    <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageInfo}</text>
+    <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageStatus}</text>
+    <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageWarning}</text>
+    <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageError}</text>
+   </block>
+  <!-- TIMERSWATCH -->     <block condition="and(and(and(and(and(not(equal({MenuTitle:clean},trans('Timers'))),not(equal({MenuTitle:clean},trans('Recordings')))),and(not(equal({MenuTitle:clean},trans('Edit timer'))),not(equal({MenuTitle:clean},trans('Setup'))))),and(and(not(equal({MenuTitle:clean},trans('Channels'))),not(equal({MenuTitle:clean},trans('Schedule')))),and(not(equal({MenuTitle:clean},trans('Commands'))),not(equal({MenuTitle:clean},'VDR'))))),not({RecordingTitle})),not({PresentTitle}))" >    
+  <!-- TIMERSWATCH OCLOCKTIME -->   <text  x1="-540" x2="-330" y1="-190" y2="-150" color="FontColor" align="right" bgColor="MainLight" font="Sml" >{DateTime:%H\:%M} </text>
+  <!-- TIMERSWATCH OCLOCKTEXT-->    <text  x1="-330" x2="-270" y1="-190" y2="-150" color="FontColor" align="right" font="Sml" >oClock</text>
+  <!-- trans('oClock') -->
+  <!-- TIMERSWATCH -->   </block>
+<!-- SUBMENU END: Default -->
+
+<!-- SUBMENU: VDR, Commands -->
+   <!-- Background left-->
+   <block refresh="all,update,timeout,full" changed="{MenuTitle}{DateTime}" condition="or(equal({MenuTitle:clean},'VDR'),equal({MenuTitle:clean},trans('Commands')))" >
+    <rectangle x1="240" x2="-720" y1="252" y2="-135" color="MainLight" />
+   </block>
+   
+   <!-- Content -->
+   <list refresh="all,list,timeout" x1="240" x2="-720" y1="310" y2="-219" condition="or(equal({MenuTitle:clean},'VDR'),equal({MenuTitle:clean},trans('Commands')))" >
+    <item height="50" />
+    
+    <rectangle refresh="all,list,timeout" x1="74" x2="-1" y1="0" y2="-6" color="Lolight" /> 
+    <ellipse   refresh="all,list,timeout" x1="60" x2="74" y1="0" y2="15" color="Lolight" arc="2" /> 
+    <rectangle refresh="all,list,timeout" x1="60" x2="74" y1="14" y2="-21" color="Lolight" /> 
+    <ellipse   refresh="all,list,timeout" x1="60" x2="74" y1="-21" y2="-6" color="Lolight" arc="3" /> 
+    
+    <rectangle refresh="all,list,timeout" x1="74" x2="-1" y1="0" condition="{IsMenuCurrent}" y2="-6" color="MainSolid" /> 
+    <ellipse   refresh="all,list,timeout" x1="60" x2="74" condition="{IsMenuCurrent}" y1="0" y2="15" color="MainSolid" arc="2" /> 
+    <rectangle refresh="all,list,timeout" x1="60" x2="74" condition="{IsMenuCurrent}" y1="14" y2="-21" color="MainSolid" /> 
+    <ellipse   refresh="all,list,timeout" x1="60" x2="74" condition="{IsMenuCurrent}" y1="-21" y2="-6" color="MainSolid" arc="3" /> 
+    <text  refresh="all,list,timeout" x1="75" x2="-21" y1="4" y2="22" color="FontColorInactive" font="Sml" >{MenuGroup}</text>
+    <text  refresh="all,list,timeout" x1="75" x2="-21" y1="6" y2="22" color="FontColorInactive" font="Sml" >{MenuItem}</text>
+    <text  refresh="all,list,timeout" x1="75" x2="-21" y1="6" y2="20" color="FontColor" font="Sml" >{MenuCurrent}</text>
+   </list>
+   <!-- Background right-->
+   <block refresh="all,update,timeout,full" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}" condition="or(equal({MenuTitle:clean},'VDR'),equal({MenuTitle:clean},trans('Commands')))" >
+    <rectangle x1="-719" x2="-240" y1="252" y2="-135" color="MainSolid" />
+    <!-- OCLOCKTIME -->    <text  x1="-719" x2="-330" y1="271" y2="-780" color="FontColor" align="right" font="Osd" >{DateTime:%H\:%M}</text>
+    <!-- OCLOCKTEXT -->    <text  x1="-719" x2="-270" y1="281" y2="-770" color="FontColor" align="right" font="Sml" >oClock</text>
+    <!-- trans('oClock') -->
+    <text  x1="-719" x2="-270" y1="322" y2="-737" color="FontColor" align="right" font="Sml" >{DateTime:%A}</text>
+    <text  x1="-719" x2="-270" y1="360" y2="-700" color="FontColor" align="right" font="VDRSymbols Sans:Book@20" >{DateTime:%x}</text>
+        
+    <!-- Next timer-->
+
+
+
+    
+    <text  x1="-719" x2="-270" y1="-190" y2="-150" color="FontColor" align="right" font="Sml" >{MenuTitle:rest} </text>
+   </block>
+   <!-- Messages -->
+   <block refresh="all,update,timeout,full" changed="{MessageInfo}{MessageStatus}{MessageWarning}{MessageError}" condition="and({Message},or(equal({MenuTitle:clean},'VDR'),equal({MenuTitle:clean},trans('Commands'))) )" >
+    <rectangle x1="240" x2="-719" y1="252" y2="293" condition="{MessageInfo}" color="MainSolid" />
+    <rectangle x1="240" x2="-719" y1="252" y2="293" condition="{MessageStatus}" color="Status" />
+    <rectangle x1="240" x2="-719" y1="252" y2="293" condition="{MessageWarning}" color="Warning" />
+    <rectangle x1="240" x2="-719" y1="252" y2="293" condition="{MessageError}" color="Error" />
+    <text x1="315" x2="-719" y1="257" y2="293" color="White" font="Sml" >{MessageInfo}</text>
+    <text x1="315" x2="-719" y1="257" y2="293" color="White" font="Sml" >{MessageStatus}</text>
+    <text x1="315" x2="-719" y1="257" y2="293" color="White" font="Sml" >{MessageWarning}</text>
+    <text x1="315" x2="-719" y1="257" y2="293" color="White" font="Sml" >{MessageError}</text>
+   </block>
+<!-- SUBMENU END: VDR, Commands -->
+
+<!-- SUBMENU: Schedule, Channels, Setup, Edit timer -->
+   <!-- Background left-->
+   <block refresh="all,update,timeout,full" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}{ButtonBlue}" condition="or(or(or(equal({MenuTitle:clean},trans('Schedule')),equal({MenuTitle:clean},trans('Channels'))),equal({MenuTitle:clean},trans('Setup'))),equal({MenuTitle:clean},trans('Edit timer')))" >
+    <rectangle x1="240" x2="-600" y1="252" y2="-135" color="MainLight" />
+    
+   </block>
+   <!-- Content -->
+   <list refresh="all,list,timeout,update"  changed="{MenuTitle}{DateTime}{ButtonBlue}" x1="240" x2="-600" y1="310" y2="-220" condition="or(or(or(equal({MenuTitle:clean},trans('Schedule')),equal({MenuTitle:clean},trans('Channels'))),equal({MenuTitle:clean},trans('Setup'))),equal({MenuTitle:clean},trans('Edit timer')))" >
+    <item height="50" />
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuItem}" color="Lolight" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="0" y2="15" condition="{IsMenuItem}" color="Lolight"  arc="2" /> 
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuItem}" color="Lolight" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuItem}" color="Lolight"  arc="3" /> 
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuCurrent}" color="MainSolid" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="0" y2="15" condition="{IsMenuCurrent}" color="MainSolid" arc="2" /> 
+    <rectangle refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuCurrent}" color="MainSolid" /> 
+    <ellipse   refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuCurrent}" color="MainSolid" arc="3" /> 
+    <text refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="75" x2="-21" y1="4" y2="22" color="FontColorInactive" font="Sml" >{MenuGroup}</text>
+    <text refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="75" x2="-21" y1="6" y2="22" color="FontColorInactive" font="Sml" >{MenuItem}</text>
+    <text refresh="all,list,timeout,update" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" x1="75" x2="-21" y1="6" y2="20" color="FontColor" font="Sml" >{MenuCurrent}</text>
+   </list>
+   <!-- Background right-->
+   <block refresh="all,update,timeout,full" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" condition="or(or(or(equal({MenuTitle:clean},trans('Schedule')),equal({MenuTitle:clean},trans('Channels'))),equal({MenuTitle:clean},trans('Setup'))),equal({MenuTitle:clean},trans('Edit timer')))" >
+    <rectangle x1="-600" x2="-240" y1="252" y2="-135" color="MainSolid" />
+    <!-- OCLOCKTIME -->   <text  x1="-600" x2="-330" y1="271" y2="-780" color="FontColor" align="right" font="Osd" >{DateTime:%H\:%M}</text>
+    <!-- OCLOCKTEXT -->   <text  x1="-600" x2="-270" y1="281" y2="-770" color="FontColor" align="right" font="Sml" >oClock</text>
+    <!-- trans('oClock') -->
+    <text  x1="-600" x2="-270" y1="322" y2="-737" color="FontColor" align="right" font="Sml" >{DateTime:%A}</text>
+    <text  x1="-600" x2="-270" y1="360" y2="-700" color="FontColor" align="right" font="VDRSymbols Sans:Book@20" >{DateTime:%e.%m.%Y}</text>
+    <text  x1="-600" x2="-270" y1="-190" y2="-150" color="FontColor" align="right" font="Sml" >{MenuTitle:rest} </text>
+    <text x1="315" x2="-750" y1="195" y2="-830" color="FontColor" font="Osd" >{MenuTitle}</text>
+    
+   </block>
+   <!-- Messages -->
+   <block refresh="all,update,timeout,full" changed="{MessageInfo}{MessageStatus}{MessageWarning}{MessageError}" condition="and({Message},or(or(or(equal({MenuTitle:clean},trans('Schedule')),equal({MenuTitle:clean},trans('Channels'))),equal({MenuTitle:clean},trans('Setup'))),equal({MenuTitle:clean},trans('Edit timer'))) )" >
+    <rectangle x1="240" x2="-600" y1="252" y2="293" condition="{MessageInfo}" color="MainSolid" />
+    <rectangle x1="240" x2="-600" y1="252" y2="293" condition="{MessageStatus}" color="Status" />
+    <rectangle x1="240" x2="-600" y1="252" y2="293" condition="{MessageWarning}" color="Warning" />
+    <rectangle x1="240" x2="-600" y1="252" y2="293" condition="{MessageError}" color="Error" />
+    <text x1="315" x2="-600" y1="257" y2="293" color="White" font="Sml" >{MessageInfo}</text>
+    <text x1="315" x2="-600" y1="257" y2="293" color="White" font="Sml" >{MessageStatus}</text>
+    <text x1="315" x2="-600" y1="257" y2="293" color="White" font="Sml" >{MessageWarning}</text>
+    <text x1="315" x2="-600" y1="257" y2="293" color="White" font="Sml" >{MessageError}</text>
+   </block>
+<!-- SUBMENU END: Schedule, Channels, Setup, Edit timer -->
+
+<!-- SUBMENU: Recordings, Timers -->
+   <!-- Background-->
+   <block refresh="all,update,timeout,full" changed="{MenuTitle}{DateTime}{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" condition="or(equal({MenuTitle:clean},trans('Recordings')),equal({MenuTitle:clean},trans('Timers')))" >
+    <rectangle x1="240" x2="-240" y1="252" y2="-135" color="MainLight" />
+    <text x1="315" x2="-750" y1="195" y2="-830" color="FontColor" font="Osd" >{MenuTitle:clean}</text>
+    </block>
+    <!-- Content -->
+    <list refresh="all,list,update,timeout" changed="{MenuTitle}{DateTime}{ChannelName}{PresentTitle}{ButtonYellow}"  x1="240" x2="-240" y1="310" y2="-220" condition="or(equal({MenuTitle:clean},trans('Recordings')),equal({MenuTitle:clean},trans('Timers')))" >
+      <item height="50" />
+     <rectangle refresh="all,list,timeout" x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuItem}" color="Lolight" /> 
+     <ellipse   refresh="all,list,timeout" x1="60" x2="74" y1="0" y2="15" condition="{IsMenuItem}" color="Lolight"  arc="2" /> 
+     <rectangle refresh="all,list,timeout" x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuItem}" color="Lolight" /> 
+     <ellipse   refresh="all,list,timeout" x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuItem}" color="Lolight"  arc="3" /> 
+     <rectangle refresh="all,list,timeout" x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuCurrent}" color="MainSolid" /> 
+     <ellipse   refresh="all,list,timeout" x1="60" x2="74" y1="0" y2="15" condition="{IsMenuCurrent}" color="MainSolid" arc="2" /> 
+     <rectangle refresh="all,list,timeout" x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuCurrent}" color="MainSolid" /> 
+     <ellipse   refresh="all,list,timeout" x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuCurrent}" color="MainSolid" arc="3" /> 
+     <text refresh="all,list,timeout" x1="75" x2="-21" y1="4" y2="22" color="FontColorInactive" font="Sml" >{MenuGroup}</text>
+     <text refresh="all,list,timeout" x1="75" x2="-21" y1="6" y2="22" color="FontColorInactive" font="Sml" >{MenuItem}</text>
+     <text refresh="all,list,timeout" x1="75" x2="-21" y1="6" y2="20" color="FontColor" font="Sml" >{MenuCurrent}</text>
+    </list>
+    <!-- Messages -->
+    <block refresh="all,update,timeout,full" changed="{MessageInfo}{MessageStatus}{MessageWarning}{MessageError}" condition="and({Message},or(equal({MenuTitle:clean},trans('Recordings')),equal({MenuTitle:clean},trans('Timers'))) )" >
+     <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageInfo}" color="MainSolid" />
+     <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageStatus}" color="Status" />
+     <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageWarning}" color="Warning" />
+     <rectangle x1="240" x2="-240" y1="252" y2="293" condition="{MessageError}" color="Error" />
+     <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageInfo}</text>
+     <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageStatus}</text>
+     <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageWarning}</text>
+     <text x1="315" x2="-240" y1="257" y2="293" color="White" font="Sml" >{MessageError}</text>
+    </block>
+    <!-- TIMERSWATCH --><block condition="or(equal({MenuTitle:clean},trans('Recordings')),equal({MenuTitle:clean},trans('Timers')))" >    
+    <!-- TIMERSWATCH OCLOCKTIME -->   <text  x1="-540" x2="-330" y1="-190" y2="-150" color="FontColor" align="right" bgColor="MainLight" font="Sml" >{DateTime:%H\:%M} </text>
+    <!-- TIMERSWATCH OCLOCKTEXT -->   <text  x1="-330" x2="-270" y1="-190" y2="-150" color="FontColor" align="right" font="Sml" >oClock</text>
+    <!-- trans('oClock') -->
+    <!-- TIMERSWATCH --> </block>
+    
+<!-- SUBMENU END: Recordings, Timers -->
+
+<!-- SUBMENU: EPG -->
+   <block condition="{PresentTitle}" refresh="all,scroll" >
+    <rectangle x1="240" x2="-600" y1="252" y2="-135" color="MainLightMR" />
+    
+<!-- EPGIMAGES -->    <rectangle x1="-600" x2="-241" y1="252" y2="-420" color="MainSolid" />
+<!-- EPGIMAGES -->    <image x1="-570" x2="-270" y1="-420" y2="-195" alpha="255" condition="file('/etc/vdr/plugins/tvm2vdr/epgimages/{PresentEventID}.png')" path="/etc/vdr/plugins/tvm2vdr/epgimages/{PresentEventID}.png" />    
+<!-- EPGIMAGES -->    <rectangle x1="-570" x2="-270" y1="-420" y2="-195" color="MainSolid" condition="not(file('/etc/vdr/plugins/tvm2vdr/epgimages/{PresentEventID}.png'))" />
+<!-- EPGIMAGES -->    <rectangle x1="-600" x2="-570" y1="-420" y2="-195" color="MainSolid" />
+<!-- EPGIMAGES -->    <rectangle x1="-270" x2="-241" y1="-420" y2="-195" color="MainSolid" />
+<!-- EPGIMAGES -->    <rectangle x1="-600" x2="-241" y1="-195" y2="-135" color="MainSolid" />
+    
+    
+    <!-- OCLOCKTIME -->    <text  x1="-600" x2="-330" y1="271" y2="-780" color="FontColor" align="right" font="Osd" >{DateTime:%H\:%M}</text>
+    <!-- OCLOCKTEXT -->    <text  x1="-600" x2="-270" y1="281" y2="-770" color="FontColor" align="right" font="Sml" >oClock</text>
+    <!-- trans('oClock') -->
+    <text  x1="-600" x2="-270" y1="322" y2="-737" color="FontColor" align="right" font="Sml" >{DateTime:%A}</text>
+    <text  x1="-600" x2="-270" y1="360" y2="-700" color="FontColor" align="right" font="VDRSymbols Sans:Book@20" >{DateTime:%e.%m.%Y}</text>
+    <text x1="315" x2="-750" y1="195" y2="-830" color="FontColor" font="VDRSymbols Sans:Bold@37" >{PresentTitle}</text>
+    <text x1="315" x2="-750" y1="310" y2="-730" color="FontColor" font="Sml" >{PresentStartDateTime:%a %d.%m.%y  %H\:%M} - {PresentEndDateTime:%H\:%M}  </text>
+    <text x1="315" x2="-750" y1="350" y2="-750" color="FontColor" font="VDRSymbols Sans:Book@20"  condition="{PresentVPSDateTime}" >{PresentDuration:%m} min | VPS: {PresentVPSDateTime:%H\:%M}</text>
+    <text x1="315" x2="-750" y1="370" y2="-750" color="FontColor" font="VDRSymbols Sans:Book@20"  condition="not({PresentVPSDateTime})" >{PresentDuration:%m} min </text>
+     <!-- trans('length') -->
+    <block  condition="not({PresentDescription})" >
+     <scrolltext x1="315" x2="-750" y1="405" y2="-136" color="FontColor" font="VDRSymbols Sans:Bold@27" >{PresentShortText}</scrolltext>
+    </block>
+    
+    
+    <block  condition="{PresentDescription}" >
+     <text x1="315" x2="-750"  y1="425" y2="-630" color="FontColor" font="VDRSymbols Sans:Bold@27" >{PresentShortText}</text>
+     <scrolltext x1="315" x2="-750"  y1="482" y2="-176" color="FontColor" font="Sml" >{PresentDescription}</scrolltext>
+    </block>
+    <scrollbar x1="-620" x2="-600" y1="252" y2="-136" condition="or({CanScrollUp},{CanScrollDown})" color="BarFill" bgColor="Bar" />
+   
+
+   </block>
+<!-- SUBMENU END: EPG -->
+
+<!-- SUBMENU: Recording Info -->
+   <block condition="{RecordingName}" refresh="all,scroll" >
+    <rectangle x1="240" x2="-600" y1="252" y2="-135" color="MainLightMR" />
+    <rectangle x1="-600" x2="-241" y1="252" y2="-135" color="MainSolid" />
+    <!-- OCLOCKTIME -->   <text  x1="-600" x2="-330" y1="271" y2="-780" color="FontColor" align="right" font="Osd" >{DateTime:%H\:%M}</text>
+    <!-- OCLOCKTEXT -->   <text  x1="-600" x2="-270" y1="281" y2="-770" color="FontColor" align="right" font="Sml" >oClock</text>
+    <!-- trans('oClock') -->
+    <text  x1="-600" x2="-270" y1="322" y2="-737" color="FontColor" align="right" font="Sml" >{DateTime:%A}</text>
+    <text  x1="-600" x2="-270" y1="360" y2="-700" color="FontColor" align="right" font="VDRSymbols Sans:Book@20" >{DateTime:%e.%m.%Y}</text>
+    <text x1="315" x2="-750" y1="195" y2="-830" color="FontColor" font="VDRSymbols Sans:Bold@37" >{RecordingTitle}</text>
+    <text x1="315" x2="-750" y1="310" y2="-730" color="FontColor" font="Sml" >{RecordingDateTime:%a %d.%m.%y  %H\:%M} </text>
+    <text x1="315" x2="-750" y1="350" y2="-750" color="FontColor" font="VDRSymbols Sans:Book@20" >{RecordingLength} min | cutted: {RecordingCuttedLength} min</text>
+    <!-- trans('cutted') -->
+    <block  condition="not({RecordingDescription})" >
+     <scrolltext x1="315" x2="-750" y1="405" y2="-136" color="FontColor" font="VDRSymbols Sans:Bold@27" >{RecordingShortText}</scrolltext>
+    </block>
+    <block  condition="not({RecordingShortText})" >
+     <text x1="315" x2="-750" y1="425" y2="-630" color="FontColor" font="VDRSymbols Sans:Bold@27" >{RecordingTitle}</text>
+    </block>
+    <block  condition="{RecordingDescription}" >
+     <text x1="315" x2="-750" y1="425" y2="-630" color="FontColor" font="VDRSymbols Sans:Bold@27" >{RecordingShortText}</text>
+     <scrolltext x1="315" x2="-750" y1="482" y2="-176" color="FontColor" font="Sml" >{RecordingDescription}</scrolltext>
+    </block>
+    <scrollbar x1="-620" x2="-600" y1="252" y2="-136" condition="or({CanScrollUp},{CanScrollDown})" color="BarFill" bgColor="Bar" />
+   </block>
+<!-- SUBMENU END: Recording Info --> 
+
+<!-- SUBMENU CONTENT: MenuText (Plugins w/o list) -->  
+    <block condition="{MenuText}" refresh="all,update,timeout,full,scroll" changed="{MenuText}">
+    <scrolltext  x1="315" x2="-280" y1="310" y2="-190" font="Sml" color="FontColor" >{MenuText}</scrolltext>
+    <scrollbar  x1="-260" x2="-240" y1="252" y2="-136" condition="or({CanScrollUp},{CanScrollDown})" color="BarFill" bgColor="Bar" />
+   </block>
+<!-- SUBMENU CONTENT END: MenuText (Plugins w/o list) -->  
+
+<!-- TOP WINDOW END-->
+
+<!-- LOWER WINDOW-->
+<!-- BUTTONS   -->
+  <window x1="-1200" x2="-237" y1="-135" y2="-100" bpp="8" />
+   <block refresh="all,update,full" changed="{ButtonRed}{ButtonGreen}{ButtonYellow}{ButtonBlue}" >
+   <block x1="-1197" x2="-237" y1="-135" y2="-100" >
+    <rectangle x1="0" x2="237" y1="0" y2="4" color="#b4690000" />
+    <rectangle x1="0" x2="237" y1="4" y2="6" color="#b4740000" />
+    <rectangle x1="0" x2="237" y1="6" y2="8" color="#b47c0000" />
+    <rectangle x1="0" x2="237" y1="8" y2="11" color="#b4860000" />
+    <rectangle x1="0" x2="237" y1="11" y2="14" color="#b4960000" />
+    <rectangle x1="0" x2="237" y1="14" y2="16" color="#b4a60000" />
+    <rectangle x1="0" x2="237" y1="16" y2="17" color="#b4ac0000" />
+    <rectangle x1="0" x2="237" y1="17" y2="19" color="#b4b70000" />
+    <rectangle x1="0" x2="237" y1="19" y2="20" color="#b4bd0000" />
+    <rectangle x1="0" x2="237" y1="20" y2="21" color="#b4c20000" />
+    <rectangle x1="0" x2="237" y1="21" y2="23" color="#b4cd0000" />
+    <rectangle x1="1" x2="237" y1="23" y2="24" color="#b4d80000" />
+    <rectangle x1="1" x2="236" y1="24" y2="25" color="#b4d80000" />
+    <rectangle x1="1" x2="236" y1="25" y2="26" color="#b4d80000" />
+    <rectangle x1="2" x2="235" y1="26" y2="27" color="#b4e20000" />
+    <rectangle x1="3" x2="235" y1="27" y2="28" color="#b4e20000" />
+    <rectangle x1="3" x2="234" y1="28" y2="29" color="#b4ef0000" />
+    <rectangle x1="4" x2="233" y1="29" y2="30" color="#b4ef0000" />
+    <rectangle x1="5" x2="232" y1="30" y2="31" color="#b4ef0000" />
+    <rectangle x1="6" x2="231" y1="31" y2="32" color="#b4f80000" />
+    <rectangle x1="8" x2="229" y1="32" y2="33" color="#b4f80000" />
+    <rectangle x1="10" x2="227" y1="33" y2="34" color="#b4f80000" />
+   </block>
+   <block x1="-957" x2="-477" y1="-135" y2="-100" >
+    <rectangle x1="0" x2="237" y1="0" y2="2" color="#b4006400" />
+    <rectangle x1="0" x2="237" y1="2" y2="5" color="#b4006d00" />
+    <rectangle x1="0" x2="237" y1="5" y2="6" color="#b4007400" />
+    <rectangle x1="0" x2="237" y1="6" y2="8" color="#b4007c00" />
+    <rectangle x1="0" x2="237" y1="8" y2="9" color="#b4008100" />
+    <rectangle x1="0" x2="237" y1="9" y2="10" color="#b4008600" />
+    <rectangle x1="0" x2="237" y1="10" y2="11" color="#b4008b00" />
+    <rectangle x1="0" x2="237" y1="11" y2="12" color="#b4009000" />
+    <rectangle x1="0" x2="237" y1="12" y2="13" color="#b4009600" />
+    <rectangle x1="0" x2="237" y1="13" y2="14" color="#b4009b00" />
+    <rectangle x1="0" x2="237" y1="14" y2="15" color="#b400a100" />
+    <rectangle x1="0" x2="237" y1="15" y2="16" color="#b400a600" />
+    <rectangle x1="0" x2="237" y1="16" y2="17" color="#b400ac00" />
+    <rectangle x1="0" x2="237" y1="17" y2="18" color="#b400b200" />
+    <rectangle x1="0" x2="237" y1="18" y2="19" color="#b400b700" />
+    <rectangle x1="0" x2="237" y1="19" y2="20" color="#b400bd00" />
+    <rectangle x1="0" x2="237" y1="20" y2="21" color="#b400c200" />
+    <rectangle x1="0" x2="237" y1="21" y2="22" color="#b400c800" />
+    <rectangle x1="0" x2="237" y1="22" y2="23" color="#b400cd00" />
+    <rectangle x1="1" x2="237" y1="23" y2="24" color="#b400d300" />
+    <rectangle x1="1" x2="236" y1="24" y2="25" color="#b400d800" />
+    <rectangle x1="1" x2="236" y1="25" y2="26" color="#b400dd00" />
+    <rectangle x1="2" x2="235" y1="26" y2="27" color="#b400e200" />
+    <rectangle x1="3" x2="235" y1="27" y2="28" color="#b400e200" />
+    <rectangle x1="3" x2="234" y1="28" y2="29" color="#b400ef00" />
+    <rectangle x1="4" x2="233" y1="29" y2="30" color="#b400ef00" />
+    <rectangle x1="5" x2="232" y1="30" y2="31" color="#b400ef00" />
+    <rectangle x1="6" x2="231" y1="31" y2="32" color="#b400f800" />
+    <rectangle x1="8" x2="229" y1="32" y2="33" color="#b400f800" />
+    <rectangle x1="10" x2="227" y1="33" y2="34" color="#b400f800" />
+   </block>
+   <block x1="-717" x2="-477" y1="-135" y2="-100" >
+    <rectangle x1="0" x2="237" y1="0" y2="3" color="#b4666600" />
+    <rectangle x1="0" x2="237" y1="3" y2="4" color="#b46d6d00" />
+    <rectangle x1="0" x2="237" y1="4" y2="6" color="#b4707000" />
+    <rectangle x1="0" x2="237" y1="6" y2="8" color="#b47c7c00" />
+    <rectangle x1="0" x2="237" y1="8" y2="10" color="#b4868600" />
+    <rectangle x1="0" x2="237" y1="10" y2="11" color="#b48b8b00" />
+    <rectangle x1="0" x2="237" y1="11" y2="12" color="#b4909000" />
+    <rectangle x1="0" x2="237" y1="12" y2="14" color="#b49b9b00" />
+    <rectangle x1="0" x2="237" y1="14" y2="16" color="#b4a6a600" />
+    <rectangle x1="0" x2="237" y1="16" y2="17" color="#b4acac00" />
+    <rectangle x1="0" x2="237" y1="17" y2="19" color="#b4b7b700" />
+    <rectangle x1="0" x2="237" y1="19" y2="20" color="#b4bdbd00" />
+    <rectangle x1="0" x2="237" y1="20" y2="21" color="#b4c2c200" />
+    <rectangle x1="0" x2="237" y1="21" y2="23" color="#b4cdcd00" />
+    <rectangle x1="1" x2="237" y1="23" y2="24" color="#b4d3d300" />
+    <rectangle x1="1" x2="236" y1="24" y2="25" color="#b4d8d800" />
+    <rectangle x1="1" x2="236" y1="25" y2="26" color="#b4dddd00" />
+    <rectangle x1="2" x2="235" y1="26" y2="27" color="#b4e2e200" />
+    <rectangle x1="3" x2="235" y1="27" y2="28" color="#b4e2e200" />
+    <rectangle x1="3" x2="234" y1="28" y2="29" color="#b4efef00" />
+    <rectangle x1="4" x2="233" y1="29" y2="30" color="#b4efef00" />
+    <rectangle x1="5" x2="232" y1="30" y2="31" color="#b4efef00" />
+    <rectangle x1="6" x2="231" y1="31" y2="32" color="#b4f8f800" />
+    <rectangle x1="8" x2="229" y1="32" y2="33" color="#b4f8f800" />
+    <rectangle x1="10" x2="227" y1="33" y2="34" color="#b4f8f800" />
+   </block>
+   <block x1="-477" x2="-237" y1="-135" y2="-100" >
+    <rectangle x1="0" x2="237" y1="0" y2="4" color="#b4000068" />
+    <rectangle x1="0" x2="237" y1="4" y2="6" color="#b4000072" />
+    <rectangle x1="0" x2="237" y1="6" y2="8" color="#b400007a" />
+    <rectangle x1="0" x2="237" y1="8" y2="11" color="#b4000086" />
+    <rectangle x1="0" x2="237" y1="11" y2="14" color="#b4000096" />
+    <rectangle x1="0" x2="237" y1="14" y2="16" color="#b40000a4" />
+    <rectangle x1="0" x2="237" y1="16" y2="17" color="#b40000ac" />
+    <rectangle x1="0" x2="237" y1="17" y2="19" color="#b40000b5" />
+    <rectangle x1="0" x2="237" y1="19" y2="20" color="#b40000bd" />
+    <rectangle x1="0" x2="237" y1="20" y2="21" color="#b40000c2" />
+    <rectangle x1="0" x2="237" y1="21" y2="23" color="#b40000cb" />
+    <rectangle x1="1" x2="237" y1="23" y2="24" color="#b40000d8" />
+    <rectangle x1="1" x2="236" y1="24" y2="25" color="#b40000d8" />
+    <rectangle x1="1" x2="236" y1="25" y2="26" color="#b40000d8" />
+    <rectangle x1="2" x2="235" y1="26" y2="27" color="#b40000e4" />
+    <rectangle x1="3" x2="235" y1="27" y2="28" color="#b40000e4" />
+    <rectangle x1="3" x2="234" y1="28" y2="29" color="#b40000ee" />
+    <rectangle x1="4" x2="233" y1="29" y2="30" color="#b40000ee" />
+    <rectangle x1="5" x2="232" y1="30" y2="31" color="#b40000ee" />
+    <rectangle x1="6" x2="231" y1="31" y2="32" color="#b40000f8" />
+    <rectangle x1="8" x2="229" y1="32" y2="33" color="#b40000f8" />
+    <rectangle x1="10" x2="227" y1="33" y2="34" color="#b40000f8" />
+   </block>
+   <text  x1="-1197" x2="-958" y1="-134" y2="-100" color="White" align="center" font="Sml" >{ButtonRed}</text>
+   <text  x1="-957" x2="-720" y1="-134" y2="-100" color="Black" align="center" font="Sml" >{ButtonGreen}</text>
+   <text  x1="-719" x2="-478" y1="-134" y2="-100" color="Black" align="center" font="Sml" >{ButtonYellow}</text>
+   <text  x1="-477" x2="-240" y1="-134" y2="-100" color="White" align="center" font="Sml" >{ButtonBlue}</text>
+   </block>
+<!-- BUTTONS END   -->
+<!-- LOWER WINDOW END-->
+ </display>
+
+<!--###############################################################################################
+#   AUDIOTRACKS                                                                                   #
+################################################################################################-->
+ 
+ <display id="audioTracks" >
+  <window x1="0" x2="-1" y1="0" y2="-1" bpp="4" />
+   <ellipse x1="480" x2="530" y1="345" y2="395" arc="2" color="MainSolid" />
+   <rectangle x1="531" x2="-480" y1="345" y2="395" color="MainSolid" />
+   <rectangle x1="480" x2="-480" y1="396" y2="444" color="MainSolid" />
+   <rectangle x1="480" x2="-480" y1="444" y2="446" color="Divider" />
+   <rectangle x1="480" x2="-480" y1="446" y2="-406" color="MainLight" />
+   <rectangle x1="480" x2="-530" y1="-405" y2="-355" color="MainLight" />
+   <ellipse x1="-530" x2="-480" y1="-405" y2="-355" arc="4"  color="MainLight" />
+   <text x1="730" x2="-500" y1="380" y2="-630" color="FontColor" align="right" font="Osd" >{MenuTitle}</text>
+   <block x1="555" x2="595" y1="390" y2="430"  >
+     <block condition="equal({AudioChannel},'stereo')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="FontColor" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <ellipse x1="5" x2="13" y1="6" y2="14" color="FontColor" />
+      <ellipse x1="6" x2="14" y1="7" y2="13" color="FontColor" />
+      <ellipse x1="12" x2="20" y1="6" y2="14" color="FontColor" />
+      <ellipse x1="13" x2="19" y1="7" y2="13" color="FontColor" />
+     </block>
+     <block condition="equal({AudioChannel},'left')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="FontColor" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <ellipse x1="5" x2="13" y1="6" y2="14" color="FontColor" />
+      <ellipse x1="6" x2="14" y1="7" y2="13" color="FontColor" />
+      <ellipse x1="12" x2="20" y1="6" y2="14" color="FontColor" />
+      <ellipse x1="13" x2="19" y1="7" y2="13" color="MainLight" />
+     </block>
+     <block condition="equal({AudioChannel},'right')" >
+      <rectangle x1="2" x2="23" y1="2" y2="18" color="FontColor" />
+      <rectangle x1="3" x2="22" y1="3" y2="17" color="MainLight" />
+      <ellipse x1="5" x2="13" y1="6" y2="14" color="FontColor" />
+      <ellipse x1="6" x2="14" y1="7" y2="13" color="MainLight" />
+      <ellipse x1="12" x2="20" y1="6" y2="14" color="FontColor" />
+      <ellipse x1="13" x2="19" y1="7" y2="13" color="FontColor" />
+     </block>
+    </block>
+   
+   <list   x1="480" x2="-480" y1="460" y2="-390" >
+    <item height="50" />
+    <rectangle   x1="74" x2="-1" y1="0" y2="-6" condition="{IsMenuItem}" color="Lolight" /> 
+    <ellipse     x1="60" x2="74" y1="0" y2="15" condition="{IsMenuItem}" color="Lolight"  arc="2" /> 
+    <rectangle   x1="60" x2="74" y1="14" y2="-21" condition="{IsMenuItem}" color="Lolight" /> 
+    <ellipse     x1="60" x2="74" y1="-21" y2="-6" condition="{IsMenuItem}" color="Lolight"  arc="3" /> 
+    <rectangle   x1="74" x2="-1" y1="0" y2="-6" condition="{MenuCurrent}" color="MainSolid" /> 
+    <ellipse     x1="60" x2="74" y1="0" y2="15" condition="{MenuCurrent}" color="MainSolid"  arc="2" /> 
+    <rectangle   x1="60" x2="74" y1="14" y2="-21" condition="{MenuCurrent}" color="MainSolid" /> 
+    <ellipse     x1="60" x2="74" y1="-21" y2="-6" condition="{MenuCurrent}" color="MainSolid"  arc="3" /> 
+    <text   x1="80" x2="-21" y1="5" y2="50" color="FontColorInactive" font="Sml" align="right" >{MenuItem}</text>
+    <text   x1="80" x2="-21" y1="5" y2="50" color="FontColor" font="Sml" align="right" >{MenuCurrent}</text>
+   </list>
+ </display>
+</skin>

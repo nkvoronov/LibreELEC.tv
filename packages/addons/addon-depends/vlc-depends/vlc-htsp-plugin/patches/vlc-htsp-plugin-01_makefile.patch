@@ -1,0 +1,14 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2015-11-12 05:44:29.000000000 +0200
++++ b/Makefile	2015-11-15 20:54:16.305199271 +0200
+@@ -1,7 +1,7 @@
+ PREFIX = /usr
+-LD = ld
+-CC = gcc
+-CXX = g++
++#LD = ld
++#CC = gcc
++#CXX = g++
+ INSTALL = install
+ CFLAGS = -pipe -O2 -Wall -Wextra -std=gnu99 -I. -g
+ CXXFLAGS = -pipe -O2 -Wall -Wextra -std=gnu++0x -I. -g

@@ -1,0 +1,4 @@
+Выход               : /usr/bin/vdr-power -e 2>&1
+Сон                 : /usr/bin/vdr-power -s 2>&1
+Перегрузка          : /usr/bin/vdr-power -r 2>&1
+Выключить           : /usr/bin/vdr-power -p 2>&1

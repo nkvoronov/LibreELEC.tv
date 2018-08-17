@@ -1,0 +1,15 @@
+[Unit]
+Description=vdr
+ConditionPathExists=|/storage/.cache/services/vdr.conf
+After=multi-user.target
+
+[Service]
+EnvironmentFile=-/storage/.cache/services/vdr.conf
+ExecStart=/bin/sh -c 'exec /usr/bin/vdr.start'
+TimeoutStopSec=2
+Restart=always
+RestartSec=2
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
