@@ -28,7 +28,7 @@
   TBS_DRIVERS_CC="no"
 
 # Media build drivers (CrazyCat)
-  MEDIA_BUILD="no"
+  MEDIA_BUILD="yes"
 
 if [ "$TBS_DRIVERS_CC" = yes ]; then
   ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbs-linux-drivers-cc"
@@ -39,10 +39,10 @@ if [ "$MEDIA_BUILD" = yes ]; then
 fi
 
 # Locales
-  LOCALES_SUPPORT="no"
+  LOCALES_SUPPORT="yes"
 
 # Libxcb extention
-  LIBXCB_EXT="no"
+  LIBXCB_EXT="yes"
 
 # Custom packages
   CUSTOM_SUPPORT="no"
