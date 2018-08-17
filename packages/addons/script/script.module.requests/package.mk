@@ -1,35 +1,17 @@
-################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.requests"
-PKG_VERSION="2.18.4"
+PKG_VERSION="2.19.1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
-PKG_URL="http://mirrors.kodi.tv/addons/krypton/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
+PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_DEPENDS_TARGET="toolchain Python kodi script.module.urllib3 script.module.chardet script.module.idna script.module.certifi"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_SECTION=""
 PKG_SHORTDESC="Python HTTP for Humans"
 PKG_LONGDESC="Python HTTP for Humans"
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
 
 make_target() {
   : # nothing
