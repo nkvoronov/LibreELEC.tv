@@ -39,13 +39,10 @@ if [ "$MEDIA_BUILD" = yes ]; then
 fi
 
 # Locales
-  LOCALES_SUPPORT="yes"
+  LOCALES_SUPPORT="no"
 
 # Libxcb extention
-  LIBXCB_EXT="yes"
-
-# boost python support
-  BOOST_PYTHON_SUPPORT="yes"
+  LIBXCB_EXT="no"
 
 # Custom packages
   CUSTOM_SUPPORT="no"
@@ -55,7 +52,7 @@ fi
 
 # Services
   TRANSMISSION_SERVICE="no"
-  OSCAM_SERVICE="no"
+  OSCAM_SERVICE="yes"
 
 # TV Services
   TVHEADEND_SERVICE="no"

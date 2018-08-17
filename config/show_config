@@ -169,7 +169,6 @@ show_config() {
   config_message="$config_message\n - Media build drivers:\t\t\t $MEDIA_BUILD"
   config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
   config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
-  config_message="$config_message\n - Boost python support:\t\t $BOOST_PYTHON_SUPPORT"
   if [ "$CUSTOM_SUPPORT" = "yes" ] ; then
     config_message="$config_message\n - KODI YELLOWDRAGON repositories:\t $KODI_REPOSITORY_YELLOWDRAGON"
     config_message="$config_message\n - Transmission service:\t\t $TRANSMISSION_SERVICE"

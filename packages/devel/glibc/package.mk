@@ -123,21 +123,36 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/lib/*.map
   rm -rf $INSTALL/var
 
+# create locale
+  if [ "$LOCALES_SUPPORT" = yes ]; then
+    cp $PKG_BUILD/.$TARGET_NAME/locale/localedef $INSTALL/usr/bin
+    mkdir -p $INSTALL/usr/share/i18n/locales/
+      cp $PKG_BUILD/localedata/locales/* $INSTALL/usr/share/i18n/locales/
+    mkdir -p $INSTALL/usr/share/i18n/charmaps
+      cp $PKG_BUILD/localedata/charmaps/* $INSTALL/usr/share/i18n/charmaps/
+      cp $PKG_BUILD/localedata/SUPPORTED $INSTALL/usr/share/i18n/
+    ln -s /storage/locale $INSTALL/usr/lib/locale
+    mkdir -p $INSTALL/usr/config
+      cp $PKG_DIR/config/Locale.conf $INSTALL/usr/config
+    mkdir -p $INSTALL/etc/profile.d
+      ln -s /storage/.config/Locale.conf $INSTALL/etc/profile.d/99-locale.conf
+  else
 # remove locales and charmaps
-  rm -rf $INSTALL/usr/share/i18n/charmaps
+    rm -rf $INSTALL/usr/share/i18n/charmaps
 
 # add UTF-8 charmap for Generic (charmap is needed for installer)
-  if [ "$PROJECT" = "Generic" ]; then
-    mkdir -p $INSTALL/usr/share/i18n/charmaps
-    cp -PR $PKG_BUILD/localedata/charmaps/UTF-8 $INSTALL/usr/share/i18n/charmaps
-    gzip $INSTALL/usr/share/i18n/charmaps/UTF-8
-  fi
+    if [ "$PROJECT" = "Generic" ]; then
+      mkdir -p $INSTALL/usr/share/i18n/charmaps
+      cp -PR $PKG_BUILD/localedata/charmaps/UTF-8 $INSTALL/usr/share/i18n/charmaps
+      gzip $INSTALL/usr/share/i18n/charmaps/UTF-8
+    fi
 
-  if [ ! "$GLIBC_LOCALES" = yes ]; then
-    rm -rf $INSTALL/usr/share/i18n/locales
+    if [ ! "$GLIBC_LOCALES" = yes ]; then
+      rm -rf $INSTALL/usr/share/i18n/locales
 
-    mkdir -p $INSTALL/usr/share/i18n/locales
-      cp -PR $PKG_BUILD/localedata/locales/POSIX $INSTALL/usr/share/i18n/locales
+      mkdir -p $INSTALL/usr/share/i18n/locales
+        cp -PR $PKG_BUILD/localedata/locales/POSIX $INSTALL/usr/share/i18n/locales
+    fi
   fi
 
 # create default configs
@@ -148,6 +163,13 @@ post_makeinstall_target() {
 
   if [ "$TARGET_ARCH" = "arm" -a "$TARGET_FLOAT" = "hard" ]; then
     ln -sf ld.so $INSTALL/usr/lib/ld-linux.so.3
+  fi
+}
+
+post_install() {
+  if [ "$LOCALES_SUPPORT" = yes ]; then
+    mkdir -p $INSTALL/usr/bin
+      cp -pR $PKG_DIR/scripts/* $INSTALL/usr/bin
   fi
 }
 
