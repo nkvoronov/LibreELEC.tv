@@ -40,13 +40,6 @@ if [ "$LIBREELEC_VERSION" = "devel" ]; then
     monthly) LIBREELEC_VERSION=monthly-$(date +%Y%m)-$GIT_ABBREV;;
     *)       LIBREELEC_VERSION=devel-$(date +%Y%m%d%H%M%S)-$GIT_ABBREV;;
   esac
-else
-  BUILD_DATE=`date +%Y%m%d%H%M%S`
-  GIT_ABBREV=$(git log -1 --pretty=format:%h)
-  if ! GIT_BUILD=$(git rev-list --count HEAD 2>/dev/null) then
-    GIT_BUILD=$(git rev-list HEAD | wc -l)
-  fi
-  LIBREELEC_VERSION=$LIBREELEC_VERSION-$BUILD_DATE-r$GIT_BUILD-g$GIT_ABBREV
 fi
 
 # Get origin url, fix git:// and git@github.com: urls if necessary
@@ -194,6 +187,9 @@ $SCRIPTS/install misc-packages
 
 # Install gdb in all builds, including releases
 $SCRIPTS/install debug
+
+# LCD support
+[ ! "$LCD_DRIVER" = "none" ] && $SCRIPTS/install lcdproc
 
 # Custom packages
 [ "$CUSTOM_SUPPORT" = "yes" ] && $SCRIPTS/install custom
