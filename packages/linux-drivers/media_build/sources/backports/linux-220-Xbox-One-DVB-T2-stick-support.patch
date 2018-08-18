@@ -1,22 +1,28 @@
-From 34d8ce1e1187ef037202e24a1b24a242fffcfa4c Mon Sep 17 00:00:00 2001
+From b8ca04e7037433d13b6a526123d16493eff74bd0 Mon Sep 17 00:00:00 2001
 From: Olli Salonen <olli.salonen@iki.fi>
-Date: Mon, 31 Jul 2017 14:23:50 +0300
-Subject: [PATCH 1/4] tda18250: support for new silicon tuner
+Date: Thu, 23 Nov 2017 08:36:10 +0200
+Subject: Xbox ONE DVB-C/T/T2 USB Tuner support
 
-NXP TDA18250BHN tuner is used in the Xbox One Digital TV tuner.
----
- drivers/media/tuners/Kconfig         |   7 +
- drivers/media/tuners/Makefile        |   1 +
- drivers/media/tuners/tda18250.c      | 890 +++++++++++++++++++++++++++++++++++
- drivers/media/tuners/tda18250.h      |  51 ++
- drivers/media/tuners/tda18250_priv.h | 145 ++++++
- 5 files changed, 1094 insertions(+)
- create mode 100644 drivers/media/tuners/tda18250.c
- create mode 100644 drivers/media/tuners/tda18250.h
- create mode 100644 drivers/media/tuners/tda18250_priv.h
-
+diff --git a/drivers/media/dvb-core/dvb-usb-ids.h b/drivers/media/dvb-core/dvb-usb-ids.h
+index 7678319..e1a043b 100644
+--- a/drivers/media/dvb-core/dvb-usb-ids.h
++++ b/drivers/media/dvb-core/dvb-usb-ids.h
+@@ -80,6 +80,7 @@
+ #define USB_VID_AZUREWAVE			0x13d3
+ #define USB_VID_TECHNISAT			0x14f7
+ #define USB_VID_HAMA				0x147f
++#define USB_VID_MICROSOFT			0x045e
+ 
+ /* Product IDs */
+ #define USB_PID_ADSTECH_USB2_COLD			0xa333
+@@ -418,4 +419,5 @@
+ #define USB_PID_WINTV_SOLOHD                            0x0264
+ #define USB_PID_EVOLVEO_XTRATV_STICK			0xa115
+ #define USB_PID_HAMA_DVBT_HYBRID			0x2758
++#define USB_PID_XBOX_ONE_TUNER                          0x02d5
+ #endif
 diff --git a/drivers/media/tuners/Kconfig b/drivers/media/tuners/Kconfig
-index 05998f0254c6..6687514df97f 100644
+index 1dc7bb6..0a714ba 100644
 --- a/drivers/media/tuners/Kconfig
 +++ b/drivers/media/tuners/Kconfig
 @@ -26,6 +26,13 @@ config MEDIA_TUNER_SIMPLE
@@ -34,7 +40,7 @@ index 05998f0254c6..6687514df97f 100644
  	tristate "TDA 8290/8295 + 8275(a)/18271 tuner combo"
  	depends on MEDIA_SUPPORT && I2C
 diff --git a/drivers/media/tuners/Makefile b/drivers/media/tuners/Makefile
-index 06a9ab65e5fa..4b9444be8948 100644
+index ba382f9..aee8801 100644
 --- a/drivers/media/tuners/Makefile
 +++ b/drivers/media/tuners/Makefile
 @@ -45,6 +45,7 @@ obj-$(CONFIG_MEDIA_TUNER_M88RS6000T) += m88rs6000t.o
@@ -47,10 +53,10 @@ index 06a9ab65e5fa..4b9444be8948 100644
  ccflags-y += -I$(srctree)/drivers/media/dvb-frontends
 diff --git a/drivers/media/tuners/tda18250.c b/drivers/media/tuners/tda18250.c
 new file mode 100644
-index 000000000000..21180f407ae6
+index 0000000..20d12b0
 --- /dev/null
 +++ b/drivers/media/tuners/tda18250.c
-@@ -0,0 +1,890 @@
+@@ -0,0 +1,902 @@
 +/*
 + * NXP TDA18250 silicon tuner driver
 + *
@@ -94,32 +100,41 @@ index 000000000000..21180f407ae6
 +		break;
 +	case TDA18250_POWER_STANDBY:
 +		if (dev->loopthrough) {
-+			ret = regmap_write_bits(dev->regmap, R25_REF, 0xc0, 0x80);
++			ret = regmap_write_bits(dev->regmap,
++					R25_REF, 0xc0, 0x80);
 +			if (ret)
 +				goto err;
-+			ret = regmap_write_bits(dev->regmap, R06_POWER2, 0x07, 0x02);
++			ret = regmap_write_bits(dev->regmap,
++					R06_POWER2, 0x07, 0x02);
 +			if (ret)
 +				goto err;
-+			ret = regmap_write_bits(dev->regmap, R10_LT1, 0x80, 0x00);
++			ret = regmap_write_bits(dev->regmap,
++					R10_LT1, 0x80, 0x00);
 +			if (ret)
 +				goto err;
 +		} else {
-+			ret = regmap_write_bits(dev->regmap, R25_REF, 0xc0, 0x80);
++			ret = regmap_write_bits(dev->regmap,
++					R25_REF, 0xc0, 0x80);
 +			if (ret)
 +				goto err;
-+			ret = regmap_write_bits(dev->regmap, R06_POWER2, 0x07, 0x01);
++			ret = regmap_write_bits(dev->regmap,
++					R06_POWER2, 0x07, 0x01);
 +			if (ret)
 +				goto err;
-+			ret = regmap_read(dev->regmap, R0D_AGC12, &utmp);
++			ret = regmap_read(dev->regmap,
++					R0D_AGC12, &utmp);
 +			if (ret)
 +				goto err;
-+			ret = regmap_write_bits(dev->regmap, R0D_AGC12, 0x03, 0x03);
++			ret = regmap_write_bits(dev->regmap,
++					R0D_AGC12, 0x03, 0x03);
 +			if (ret)
 +				goto err;
-+			ret = regmap_write_bits(dev->regmap, R10_LT1, 0x80, 0x80);
++			ret = regmap_write_bits(dev->regmap,
++					R10_LT1, 0x80, 0x80);
 +			if (ret)
 +				goto err;
-+			ret = regmap_write_bits(dev->regmap, R0D_AGC12, 0x03, utmp & 0x03);
++			ret = regmap_write_bits(dev->regmap,
++					R0D_AGC12, 0x03, utmp & 0x03);
 +			if (ret)
 +				goto err;
 +		}
@@ -728,7 +743,7 @@ index 000000000000..21180f407ae6
 +		goto err;
 +
 +	/* pll locking */
-+	msleep(5);
++	msleep(20);
 +
 +	ret = regmap_write_bits(dev->regmap, R2B_MSM2, 0x04, 0x04);
 +	if (ret)
@@ -774,6 +789,9 @@ index 000000000000..21180f407ae6
 +	ret = regmap_write_bits(dev->regmap, R0C_AGC11, 0x80, 0x00);
 +	if (ret)
 +		return ret;
++
++	/* set if freq to 0 in order to make sure it's set after wake up */
++	dev->if_frequency = 0;
 +
 +	ret = tda18250_power_control(fe, TDA18250_POWER_STANDBY);
 +	return ret;
@@ -943,7 +961,7 @@ index 000000000000..21180f407ae6
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/tuners/tda18250.h b/drivers/media/tuners/tda18250.h
 new file mode 100644
-index 000000000000..fb569060876f
+index 0000000..fb56906
 --- /dev/null
 +++ b/drivers/media/tuners/tda18250.h
 @@ -0,0 +1,51 @@
@@ -1000,7 +1018,7 @@ index 000000000000..fb569060876f
 +#endif
 diff --git a/drivers/media/tuners/tda18250_priv.h b/drivers/media/tuners/tda18250_priv.h
 new file mode 100644
-index 000000000000..4a6f801701a7
+index 0000000..4a6f801
 --- /dev/null
 +++ b/drivers/media/tuners/tda18250_priv.h
 @@ -0,0 +1,145 @@
@@ -1149,40 +1167,8 @@ index 000000000000..4a6f801701a7
 +};
 +
 +#endif
-
-From c5ac492a9844b0e7029267cbb592c7fd4ab6ef6a Mon Sep 17 00:00:00 2001
-From: Olli Salonen <olli.salonen@iki.fi>
-Date: Mon, 31 Jul 2017 14:26:03 +0300
-Subject: [PATCH 2/4] dib0700: add support for Xbox One Digital TV Tuner
-
----
- drivers/media/dvb-core/dvb-usb-ids.h        |   2 +
- drivers/media/usb/dvb-usb/Kconfig           |   2 +
- drivers/media/usb/dvb-usb/dib0700.h         |   2 +
- drivers/media/usb/dvb-usb/dib0700_core.c    |  26 ++++++-
- drivers/media/usb/dvb-usb/dib0700_devices.c | 109 +++++++++++++++++++++++++++-
- 5 files changed, 139 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/dvb-core/dvb-usb-ids.h b/drivers/media/dvb-core/dvb-usb-ids.h
-index 5b6041d462bc..daf49ec60a44 100644
---- a/drivers/media/dvb-core/dvb-usb-ids.h
-+++ b/drivers/media/dvb-core/dvb-usb-ids.h
-@@ -80,6 +80,7 @@
- #define USB_VID_AZUREWAVE			0x13d3
- #define USB_VID_TECHNISAT			0x14f7
- #define USB_VID_HAMA				0x147f
-+#define USB_VID_MICROSOFT			0x045e
- 
- /* Product IDs */
- #define USB_PID_ADSTECH_USB2_COLD			0xa333
-@@ -417,4 +418,5 @@
- #define USB_PID_WINTV_SOLOHD                            0x0264
- #define USB_PID_EVOLVEO_XTRATV_STICK			0xa115
- #define USB_PID_HAMA_DVBT_HYBRID			0x2758
-+#define USB_PID_XBOX_ONE_TUNER                          0x02d5
- #endif
 diff --git a/drivers/media/usb/dvb-usb/Kconfig b/drivers/media/usb/dvb-usb/Kconfig
-index 959fa09dfd92..2651ae277347 100644
+index f1a8276..1958d9e 100644
 --- a/drivers/media/usb/dvb-usb/Kconfig
 +++ b/drivers/media/usb/dvb-usb/Kconfig
 @@ -86,6 +86,7 @@ config DVB_USB_DIB0700
@@ -1202,7 +1188,7 @@ index 959fa09dfd92..2651ae277347 100644
  	  Support for USB2.0/1.1 DVB receivers based on the DiB0700 USB bridge. The
  	  USB bridge is also present in devices having the DiB7700 DVB-T-USB
 diff --git a/drivers/media/usb/dvb-usb/dib0700.h b/drivers/media/usb/dvb-usb/dib0700.h
-index 8fd8f5b489d2..5f2912848cb9 100644
+index f89ab3b..3a9d4c2 100644
 --- a/drivers/media/usb/dvb-usb/dib0700.h
 +++ b/drivers/media/usb/dvb-usb/dib0700.h
 @@ -51,6 +51,8 @@ struct dib0700_state {
@@ -1215,7 +1201,7 @@ index 8fd8f5b489d2..5f2912848cb9 100644
  
  extern int dib0700_get_version(struct dvb_usb_device *d, u32 *hwversion,
 diff --git a/drivers/media/usb/dvb-usb/dib0700_core.c b/drivers/media/usb/dvb-usb/dib0700_core.c
-index bea1b4764a66..dbd031c688f0 100644
+index 1ee7ec5..94bd176 100644
 --- a/drivers/media/usb/dvb-usb/dib0700_core.c
 +++ b/drivers/media/usb/dvb-usb/dib0700_core.c
 @@ -911,10 +911,34 @@ static int dib0700_probe(struct usb_interface *intf,
@@ -1255,7 +1241,7 @@ index bea1b4764a66..dbd031c688f0 100644
  };
  
 diff --git a/drivers/media/usb/dvb-usb/dib0700_devices.c b/drivers/media/usb/dvb-usb/dib0700_devices.c
-index 6a57fc6d3472..7c0fb184866f 100644
+index 92098c1..8afcd11 100644
 --- a/drivers/media/usb/dvb-usb/dib0700_devices.c
 +++ b/drivers/media/usb/dvb-usb/dib0700_devices.c
 @@ -23,6 +23,9 @@
@@ -1370,7 +1356,7 @@ index 6a57fc6d3472..7c0fb184866f 100644
  };
  MODULE_DEVICE_TABLE(usb, dib0700_usb_id_table);
 @@ -5040,6 +5128,25 @@ struct dvb_usb_device_properties dib0700_devices[] = {
- 				RC_BIT_NEC,
+ 				RC_PROTO_BIT_NEC,
  			.change_protocol  = dib0700_change_protocol,
  		},
 +	}, { DIB0700_DEFAULT_DEVICE_PROPERTIES,
@@ -1395,53 +1381,6 @@ index 6a57fc6d3472..7c0fb184866f 100644
  	},
  };
  
+-- 
+2.14.1
 
-From 03911b0b069385a882c9cf4e60e37e1e66ed7f64 Mon Sep 17 00:00:00 2001
-From: Olli Salonen <olli.salonen@iki.fi>
-Date: Mon, 31 Jul 2017 14:25:05 +0300
-Subject: [PATCH 3/4] mn88472: set PLP reg to 0 if no PLP given
-
----
- drivers/media/dvb-frontends/mn88472.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/media/dvb-frontends/mn88472.c b/drivers/media/dvb-frontends/mn88472.c
-index f6938f9607ac..5e8fd63832e9 100644
---- a/drivers/media/dvb-frontends/mn88472.c
-+++ b/drivers/media/dvb-frontends/mn88472.c
-@@ -377,7 +377,9 @@ static int mn88472_set_frontend(struct dvb_frontend *fe)
- 		ret = regmap_write(dev->regmap[1], 0xf6, 0x05);
- 		if (ret)
- 			goto err;
--		ret = regmap_write(dev->regmap[2], 0x32, c->stream_id);
-+		ret = regmap_write(dev->regmap[2], 0x32,
-+				(c->stream_id == NO_STREAM_ID_FILTER) ? 0 :
-+				c->stream_id );
- 		if (ret)
- 			goto err;
- 		break;
-
-From 4df4b1ea632e7af561f405bc799b3f37cd504c43 Mon Sep 17 00:00:00 2001
-From: Olli Salonen <olli.salonen@iki.fi>
-Date: Mon, 31 Jul 2017 14:25:38 +0300
-Subject: [PATCH 4/4] mn88473: set PLP reg to 0 if no PLP given
-
----
- drivers/media/dvb-frontends/mn88473.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/media/dvb-frontends/mn88473.c b/drivers/media/dvb-frontends/mn88473.c
-index 15874244fd8b..58247432a628 100644
---- a/drivers/media/dvb-frontends/mn88473.c
-+++ b/drivers/media/dvb-frontends/mn88473.c
-@@ -225,7 +225,9 @@ static int mn88473_set_frontend(struct dvb_frontend *fe)
- 
- 	/* PLP */
- 	if (c->delivery_system == SYS_DVBT2) {
--		ret = regmap_write(dev->regmap[2], 0x36, c->stream_id);
-+		ret = regmap_write(dev->regmap[2], 0x36,
-+				(c->stream_id == NO_STREAM_ID_FILTER) ? 0 :
-+				c->stream_id );
- 		if (ret)
- 			goto err;
- 	}
