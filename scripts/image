@@ -197,9 +197,6 @@ $SCRIPTS/install misc-packages
 # Install gdb in all builds, including releases
 $SCRIPTS/install debug
 
-# LCD support
-[ ! "$LCD_DRIVER" = "none" ] && $SCRIPTS/install lcdproc
-
 # Custom packages
 [ "$CUSTOM_SUPPORT" = "yes" ] && $SCRIPTS/install custom
 

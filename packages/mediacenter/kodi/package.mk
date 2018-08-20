@@ -310,6 +310,26 @@ post_makeinstall_target() {
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.openelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.libreelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.libreelec.settings" $ADDON_MANIFEST
+  if [ "$CUSTOM_SUPPORT" = yes -a "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon.libreelec" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.libreelec.devupdate" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.beautifulsoup4" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.requests" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.urllib3" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.chardet" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.idna" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.certifi" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.html2text" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.xbmcbackup" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.httplib2" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.oauth2client" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.uritemplate" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" $ADDON_MANIFEST
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.vdrfront.run" $ADDON_MANIFEST
+  fi
 
   if [ "$DRIVER_ADDONS_SUPPORT" = "yes" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.program.driverselect" $ADDON_MANIFEST
@@ -330,6 +350,25 @@ post_makeinstall_target() {
   fi
 
   debug_strip $INSTALL/usr/lib/kodi/kodi.bin
+  
+  # install skin
+  SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
+  if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
+    cp -PR $PKG_DIR/theme/* $PKG_BUILD/addons/$SKIN_DIR
+    mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp -R $PKG_BUILD/addons/$SKIN_DIR/* $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp $PKG_BUILD/addons/$SKIN_DIR/*.txt $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+      cp $PKG_BUILD/addons/$SKIN_DIR/*.xml $INSTALL/usr/share/kodi/addons/$SKIN_DIR
+        rm -rf $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media
+        rm -rf $INSTALL/usr/share/kodi/addons/$SKIN_DIR/themes
+
+      mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media
+        TexturePacker -input $PKG_BUILD/addons/$SKIN_DIR/media/ -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/Textures.xbt -dupecheck -use_none
+
+        for theme in $PKG_BUILD/addons/$SKIN_DIR/themes/*; do
+          TexturePacker -input $theme -output $INSTALL/usr/share/kodi/addons/$SKIN_DIR/media/$(basename $theme).xbt -dupecheck
+        done
+  fi
 }
 
 post_install() {

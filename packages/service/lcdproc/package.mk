@@ -20,8 +20,7 @@ PKG_CONFIGURE_OPTS_TARGET="--with-ft-prefix=$SYSROOT_PREFIX/usr \
                            --disable-libX11 \
                            --enable-libhid \
                            --disable-libpng \
-                           --enable-drivers=$LCD_DRIVER \
-                           --enable-seamless-hbars"
+                           --enable-drivers=all"
 
 post_makeinstall_target() {
 

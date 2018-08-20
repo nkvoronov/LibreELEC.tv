@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">10</defaultcontrol>
+	<include>Animation_DialogPopupOpenClose</include>
+	<depth>DepthOSD</depth>
+	<controls>
+		<control type="group">
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<height>742</height>
+			<width>1220</width>
+			<include content="DialogBackgroundCommons">
+				<param name="width" value="1220" />
+				<param name="height" value="742" />
+				<param name="header_label" value="$ADDON[script.libreelec.devupdate 32145]" />
+				<param name="header_id" value="1" />
+			</include>
+			<control type="group">
+				<description>Bottom panel</description>
+				<top>940</top>
+				<control type="textbox" id="200">
+					<description>Info area</description>
+					<left>40</left>
+					<top>25</top>
+					<height>130</height>
+					<width>300</width>
+				</control>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<top>80</top>
+				<width>450</width>
+				<height>670</height>
+				<texture border="40">buttons/dialogbutton-nofo.png</texture>
+			</control>
+			<control type="list" id="10">
+				<description>Source list</description>
+				<left>20</left>
+				<top>100</top>
+				<width>450</width>
+				<height>630</height>
+				<onup>300</onup>
+				<onleft>300</onleft>
+				<onright>610</onright>
+				<pagecontrol>610</pagecontrol>
+				<itemlayout height="70" width="400">
+					<control type="label">
+						<visible>String.IsEqual(ListItem.Label2, selected)</visible>
+						<width>400</width>
+						<left>10</left>
+						<aligny>center</aligny>
+						<textcolor>selected</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<visible>!String.IsEqual(ListItem.Label2, selected)</visible>
+						<width>400</width>
+						<left>10</left>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="70" width="400">
+					<control type="image">
+						<width>410</width>
+						<left>0</left>
+						<visible>Control.HasFocus(10)</visible>
+						<texture colordiffuse="button_focus">lists/focus.png</texture>
+					</control>
+					<control type="label">
+						<visible>String.IsEqual(ListItem.Label2, selected)</visible>
+						<width>400</width>
+						<left>10</left>
+						<aligny>center</aligny>
+						<textcolor>selected</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<visible>!String.IsEqual(ListItem.Label2, selected)</visible>
+						<width>400</width>
+						<left>10</left>
+						<aligny>center</aligny>
+						<textcolor>white</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="610">
+				<left>430</left>
+				<top>100</top>
+				<width>12</width>
+				<height>630</height>
+				<onleft>10</onleft>
+				<onright>20</onright>
+				<orientation>vertical</orientation>
+				<showonepage>false</showonepage>
+			</control>
+			<control type="image">
+				<left>435</left>
+				<top>80</top>
+				<width>450</width>
+				<height>670</height>
+				<texture border="40">buttons/dialogbutton-nofo.png</texture>
+			</control>
+			<control type="list" id="20">
+				<description>Build list</description>
+				<left>455</left>
+				<top>100</top>
+				<width>450</width>
+				<height>630</height>
+				<onleft>10</onleft>
+				<onright>620</onright>
+				<pagecontrol>620</pagecontrol>
+				<itemlayout height="70" width="420">
+					<control type="label">
+						<left>0</left>
+						<width>190</width>
+						<aligny>center</aligny>
+						<align>center</align>
+						<textcolor>ff87bde1</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<right>100</right>
+						<aligny>center</aligny>
+						<align>right</align>
+						<textcolor>ffbbbbbb</textcolor>
+						<info>ListItem.Label2</info>
+					</control>
+					<control type="image">
+						<left>340</left>
+						<top>10</top>
+						<height>48</height>
+						<width>48</width>
+						<info>ListItem.Icon</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="70" width="420">
+					<control type="image">
+						<width>410</width>
+						<left>0</left>
+						<visible>Control.HasFocus(20)</visible>
+						<texture colordiffuse="button_focus">lists/focus.png</texture>
+					</control>
+					<control type="label">
+						<left>0</left>
+						<width>190</width>
+						<aligny>center</aligny>
+						<align>center</align>
+						<info>ListItem.Label</info>
+					</control>
+					<control type="label">
+						<right>100</right>
+						<aligny>center</aligny>
+						<align>right</align>
+						<info>ListItem.Label2</info>
+					</control>
+					<control type="image">
+						<left>340</left>
+						<top>10</top>
+						<height>48</height>
+						<width>48</width>
+						<info>ListItem.Icon</info>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="620">
+				<left>865</left>
+				<top>100</top>
+				<width>12</width>
+				<height>630</height>
+				<onleft>20</onleft>
+				<onright>300</onright>
+				<orientation>vertical</orientation>
+				<showonepage>false</showonepage>
+			</control>
+			<control type="group">
+				<description>Right panel</description>
+				<control type="grouplist" id="300">
+					<description>Toolbar</description>
+					<left>880</left>
+					<top>80</top>
+					<onleft>620</onleft>
+					<onright>10</onright>
+					<orientation>vertical</orientation>
+					<itemgap>dialogbuttons_itemgap</itemgap>
+					<include content="DefaultDialogButton">
+						<param name="id" value="30" />
+						<param name="label" value="$ADDON[script.libreelec.devupdate 32146]" />
+						<param name="width" value="340" />
+					</include>
+					<include content="DefaultDialogButton">
+						<param name="id" value="40" />
+						<param name="label" value="$ADDON[script.libreelec.devupdate 32147]" />
+						<param name="width" value="340" />
+					</include>
+					<include content="DefaultDialogButton">
+						<param name="id" value="50" />
+						<param name="label" value="$LOCALIZE[222]" />
+						<param name="width" value="340" />
+					</include>
+				</control>
+				<control type="label" id="100">
+					<description>Build type label</description>
+					<top>690</top>
+					<right>20</right>
+					<align>right</align>
+					<aligny>top</aligny>
+					<textcolor>button_focus</textcolor>
+				</control>
+			</control>
+		</control>  
+	</controls>
+</window>

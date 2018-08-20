@@ -14,7 +14,7 @@ PKG_SHORTDESC="libxcb: X C-language Bindings library"
 PKG_LONGDESC="X C-language Bindings library."
 PKG_BUILD_FLAGS="+pic"
 
-if [ "$LIBXCB_EXT" != yes ]; then
+if [ "$CUSTOM_SUPPORT" != yes -a "$LIBXCB_EXT" != yes ]; then
   PKG_CONFIGURE_OPTS_TARGET="--enable-static \
                              --disable-shared \
                              --disable-screensaver \

@@ -13,8 +13,16 @@ PKG_SECTION="x11/lib"
 PKG_SHORTDESC="libSM: X11 Inter-Client Exchange library"
 PKG_LONGDESC="This package provides the main interface to the X11 Session Management library, which allows for applications to both manage sessions, and make use of session managers to save and restore their state for later use."
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --enable-shared \
-                           --with-libuuid \
-                           --without-xmlto \
-                           --without-fop"
+if [ "$CUSTOM_SUPPORT" = yes -a "$ENABLE_SHARED" = yes ]; then
+  PKG_CONFIGURE_OPTS_TARGET="--enable-static \
+                             --enable-shared \
+                             --with-libuuid \
+                             --without-xmlto \
+                             --without-fop"
+else
+  PKG_CONFIGURE_OPTS_TARGET="--enable-static \
+                             --disable-shared \
+                             --with-libuuid \
+                             --without-xmlto \
+                             --without-fop"
+fi

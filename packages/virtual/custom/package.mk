@@ -16,6 +16,10 @@ if [ "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET repository.yellowdragon repository.yellowdragon.libreelec script.libreelec.devupdate"
 fi
 
+if [ "$LCDPROC_SERVICE" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET lcdproc"
+fi
+
 if [ "$TRANSMISSION_SERVICE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET transmission"
 fi
