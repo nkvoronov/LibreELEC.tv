@@ -124,7 +124,7 @@ post_makeinstall_target() {
   rm -rf $INSTALL/var
 
 # create locale
-  if [ "$CUSTOM_SUPPORT" = yes -a "$LOCALES_SUPPORT" = yes ]; then
+  if [ "$CUSTOM_SUPPORT" = "yes" -a "$LOCALES_SUPPORT" = "yes" ]; then
     cp $PKG_BUILD/.$TARGET_NAME/locale/localedef $INSTALL/usr/bin
     mkdir -p $INSTALL/usr/share/i18n/locales/
       cp $PKG_BUILD/localedata/locales/* $INSTALL/usr/share/i18n/locales/
@@ -167,7 +167,7 @@ post_makeinstall_target() {
 }
 
 post_install() {
-  if [ "$CUSTOM_SUPPORT" = yes -a "$LOCALES_SUPPORT" = yes ]; then
+  if [ "$CUSTOM_SUPPORT" = "yes" -a "$LOCALES_SUPPORT" = "yes" ]; then
     mkdir -p $INSTALL/usr/bin
       cp -pR $PKG_DIR/scripts/* $INSTALL/usr/bin
   fi

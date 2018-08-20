@@ -27,14 +27,14 @@
   TBS_MEDIA_BUILD="no"
 
 # Media build drivers (CrazyCat)
-  CC_MEDIA_BUILD="no"
+  CC_MEDIA_BUILD="yes"
 
 if [ "$TBS_MEDIA_BUILD" = yes ]; then
-  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbs-media-build"
+  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbs-media_build"
 fi
 
 if [ "$CC_MEDIA_BUILD" = yes ]; then
-  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS cc-media-build"
+  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS cc-media_build"
 fi
 
 # KODI addons

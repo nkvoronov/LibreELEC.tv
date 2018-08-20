@@ -310,7 +310,7 @@ post_makeinstall_target() {
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.openelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.libreelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.libreelec.settings" $ADDON_MANIFEST
-  if [ "$CUSTOM_SUPPORT" = yes -a "$KODI_REPOSITORY_YELLOWDRAGON" = yes ]; then
+  if [ "$CUSTOM_SUPPORT" = "yes" -a "$KODI_REPOSITORY_YELLOWDRAGON" = "yes" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon" $ADDON_MANIFEST
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon.libreelec" $ADDON_MANIFEST
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.libreelec.devupdate" $ADDON_MANIFEST
@@ -350,7 +350,7 @@ post_makeinstall_target() {
   fi
 
   debug_strip $INSTALL/usr/lib/kodi/kodi.bin
-  
+
   # install skin
   SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
   if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then

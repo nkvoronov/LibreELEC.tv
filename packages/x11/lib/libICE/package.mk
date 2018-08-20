@@ -13,14 +13,13 @@ PKG_SECTION="x11/lib"
 PKG_SHORTDESC="libICE: X Inter-Client Exchange (ICE) protocol library"
 PKG_LONGDESC="X Inter-Client Exchange (ICE) protocol library."
 
-if [ "$CUSTOM_SUPPORT" = yes -a "$ENABLE_SHARED" = yes ]; then
-  PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                             --enable-shared \
-                             --disable-ipv6 \
-                             --without-xmlto"
+if [ "$CUSTOM_SUPPORT" = "yes" -a "$ENABLE_SHARED" = "yes" ]; then
+  SHARED="--enable-shared"
 else
-  PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                             --disable-shared \
-                             --disable-ipv6 \
-                             --without-xmlto"
+  SHARED="--disable-shared"
 fi
+
+PKG_CONFIGURE_OPTS_TARGET="--enable-static \
+                           $SHARED \
+                           --disable-ipv6 \
+                           --without-xmlto"

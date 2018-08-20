@@ -15,8 +15,11 @@ PKG_SHORTDESC="libxrender: X Rendering Extension client library"
 PKG_LONGDESC="The X Rendering Extension (Render) introduces digital image composition as the foundation of a new rendering model within the X Window System. Rendering geometric figures is accomplished by client-side tesselation into either triangles or trapezoids."
 PKG_BUILD_FLAGS="+pic"
 
-if [ "$CUSTOM_SUPPORT" = yes -a "$ENABLE_SHARED" = yes ]; then
-  PKG_CONFIGURE_OPTS_TARGET="--enable-static --enable-shared --enable-malloc0returnsnull"
+if [ "$CUSTOM_SUPPORT" = "yes" -a "$ENABLE_SHARED" = "yes" ]; then
+  SHARED="--enable-shared"
 else
-  PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared --enable-malloc0returnsnull"
+  SHARED="--disable-shared"
 fi
+
+PKG_CONFIGURE_OPTS_TARGET="--enable-static $SHARED --enable-malloc0returnsnull"
+

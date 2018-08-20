@@ -1,19 +1,14 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2016-present Team LibreELEC
-#
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="media_build"
+PKG_NAME="tbs-media_build"
 PKG_VERSION="835dc72"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/crazycat69/linux_media"
 PKG_URL="https://bitbucket.org/CrazyCat/media_build.git"
 PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain linux media_build_firmware"
+PKG_DEPENDS_TARGET="toolchain linux tbs-media_build-firmware"
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_SECTION="driver"
