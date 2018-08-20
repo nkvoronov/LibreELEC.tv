@@ -5,20 +5,20 @@
 
 # remove default skin included in Kodi (yes/no)
   SKIN_REMOVE_SHIPPED="no"
-  
+
 # Custom packages
-  CUSTOM_SUPPORT="no"
+  CUSTOM_SUPPORT="yes"
 
 # Custom source
   DISTRO_CUSTOM_SRC=""
-  
+
 # Locales
   LOCALES_SUPPORT="yes"
 
 # Libxcb extention
   LIBXCB_EXT="yes"
 
-# Enable shared build  
+# Enable shared build
   ENABLE_SHARED="yes"
 
 # additional drivers (DVB) to install (select one):
@@ -41,7 +41,7 @@ fi
   KODI_REPOSITORY_YELLOWDRAGON="no"
 
 # Services
-  LCDPROC_SERVICE="no"
+  LCDPROC_SERVICE="yes"
   TRANSMISSION_SERVICE="no"
   OSCAM_SERVICE="no"
 
