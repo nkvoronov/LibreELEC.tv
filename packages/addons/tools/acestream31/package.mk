@@ -12,19 +12,10 @@ PKG_DEPENDS_TARGET="toolchain acestream-engine"
 PKG_SECTION="tools"
 PKG_SHORTDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_LONGDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
-PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="ACE stream engine 3.1.x"
 PKG_ADDON_TYPE="xbmc.python.script"
-
-make_target() {
-  : # nothing to make here
-}
-
-makeinstall_target() {
-  : # nothing to install here
-}
 
 addon() {
   ACESTREAM_DIR=$(get_build_dir acestream-engine)

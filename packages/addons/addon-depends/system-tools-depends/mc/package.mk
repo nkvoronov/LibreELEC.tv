@@ -9,15 +9,16 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.midnight-commander.org"
 PKG_URL="http://ftp.midnight-commander.org/mc-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host ncurses pcre"
+PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host slang pcre"
 PKG_SECTION="tools"
 PKG_LONGDESC="Midnight Commander is a text based filemanager that emulates Norton Commander"
 
 PKG_CONFIGURE_OPTS_TARGET=" \
-  --datadir=/storage/.kodi/addons/virtual.system-tools/data \
-  --libdir=/storage/.kodi/addons/virtual.system-tools/mclib \
-  --sysconfdir=/storage/.kodi/addons/virtual.system-tools/etc \
-  --with-screen=ncurses \
+  --host=$TARGET_NAME \
+  --build=$HOST_NAME \
+  --prefix=/usr \
+  --exec-prefix=/usr \
+  --with-screen=slang \
   --with-sysroot=$SYSROOT_PREFIX \
   --disable-aspell \
   --without-diff-viewer \
@@ -38,9 +39,6 @@ PKG_CONFIGURE_OPTS_TARGET=" \
 
 pre_configure_target() {
   LDFLAGS="$LDFLAGS -lcrypto -lssl"
-}
-
-post_makeinstall_target() {
-  rm -rf $INSTALL/storage/.kodi/addons/virtual.system-tools/data/locale
-  rm -rf $INSTALL/storage/.kodi/addons/virtual.system-tools/data/mc/help/mc.hlp.*
+  export CFLAGS="$CFLAGS -I$SYSROOT_PREFIX/usr/include/slang"
+  export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
 }

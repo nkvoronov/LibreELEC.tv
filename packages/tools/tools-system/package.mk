@@ -11,13 +11,14 @@ PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="A bundle of system tools and programs"
-PKG_LONGDESC="This bundle currently includes autossh, diffutils, dtach, efibootmgr, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, i2c-tools, jq, lm_sensors, lshw, mrxvt, mtpfs, nmon, p7zip, patch, pv, screen, strace, unrar and usb-modeswitch."
+PKG_LONGDESC="This bundle currently includes autossh, diffutils, dstat, dtach, efibootmgr, encfs, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, htop, i2c-tools, inotify-tools, jq, lm_sensors, lshw, mc, mrxvt, mtpfs, nmon, p7zip, patch, pv, screen, smartmontools, strace, stress-ng, unrar, usb-modeswitch and vim."
 
 ENABLE_AUTOSSH="no"
 ENABLE_DIFFUTILS="no"
 ENABLE_DSTAT="no"
 ENABLE_DTACH="no"
 ENABLE_EFIBOOTMGR="no"
+ENABLE_ENCFS="no"
 ENABLE_EVTEST="yes"
 ENABLE_FDUPES="no"
 ENABLE_FILE="no"
@@ -25,13 +26,13 @@ ENABLE_GETSCANCODES="no"
 ENABLE_HDDTEMP="yes"
 ENABLE_HD_IDLE="no"
 ENABLE_HID_MAPPER="no"
+ENABLE_HTOP="yes"
 ENABLE_I2C_TOOLS="no"
 ENABLE_INOTIFY_TOOLS="no"
 ENABLE_JQ="no"
 ENABLE_LM_SENSORS="yes"
 ENABLE_LSHW="no"
 ENABLE_MC="yes"
-ENABLE_HTOP="yes"
 ENABLE_MRXVT="no"
 ENABLE_MTPFS="no"
 ENABLE_NMON="no"
@@ -39,10 +40,12 @@ ENABLE_P7ZIP="yes"
 ENABLE_PATCH="no"
 ENABLE_PV="no"
 ENABLE_SCREEN="no"
+ENABLE_SMARTMONTOOLS="no"
 ENABLE_STRACE="no"
+ENABLE_STRACE_NG="no"
 ENABLE_UNRAR="yes"
 ENABLE_USB_MODESWITCH="no"
-ENABLE_VIN="no"
+ENABLE_VIM="no"
 
 if [ "$ENABLE_AUTOSSH" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET autossh"
@@ -62,6 +65,10 @@ fi
 
 if [ "$ENABLE_EFIBOOTMGR" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET efibootmgr"
+fi
+
+if [ "$ENABLE_ENCFS" = "yes" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET encfs"
 fi
 
 if [ "$ENABLE_EVTEST" = "yes" ]; then
@@ -92,6 +99,10 @@ if [ "$ENABLE_HID_MAPPER" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET hid_mapper"
 fi
 
+if [ "$ENABLE_HTOP" = "yes" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET htop"
+fi
+
 if [ "$ENABLE_I2C_TOOLS" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET i2c-tools"
 fi
@@ -114,10 +125,6 @@ fi
 
 if [ "$ENABLE_MC" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mc"
-fi
-
-if [ "$ENABLE_HTOP" = "yes" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET htop"
 fi
 
 if [ "$ENABLE_MRXVT" = "yes" ]; then
@@ -148,8 +155,16 @@ if [ "$ENABLE_SCREEN" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET screen"
 fi
 
+if [ "$ENABLE_SMARTMONTOOLS" = "yes" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET smartmontools"
+fi
+
 if [ "$ENABLE_STRACE" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET strace"
+fi
+
+if [ "$ENABLE_STRACE_NG" = "yes" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET stress-ng"
 fi
 
 if [ "$ENABLE_UNRAR" = "yes" ]; then
@@ -163,14 +178,6 @@ fi
 if [ "$ENABLE_VIM" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vim"
 fi
-
-make_target() {
-  : # nothing to make here
-}
-
-makeinstall_target() {
-  : # nothing to install here
-}
 
 post_install() {
   mkdir -p $INSTALL/
@@ -198,6 +205,11 @@ post_install() {
   # efibootmgr
   if [ "$ENABLE_EFIBOOTMGR" = "yes" ]; then
     cp -P $(get_build_dir efibootmgr)/src/efibootmgr/efibootmgr $INSTALL/usr/bin 2>/dev/null || :
+  fi
+  # encfs
+  if [ "$ENABLE_ENCFS" = "yes" ]; then
+    cp -P $(get_build_dir encfs)/.$TARGET_NAME/encfs $INSTALL/usr/bin
+    cp -P $(get_build_dir encfs)/.$TARGET_NAME/encfsctl $INSTALL/usr/bin
   fi
   # evtest
   if [ "$ENABLE_EVTEST" = "yes" ]; then
@@ -230,6 +242,10 @@ post_install() {
   # hid_mapper
   if [ "$ENABLE_HID_MAPPER" = "yes" ]; then
     cp -P $(get_build_dir hid_mapper)/hid_mapper $INSTALL/usr/bin
+  fi
+  # htop
+  if [ "$ENABLE_HTOP" = "yes" ]; then
+    cp -P $(get_build_dir htop)/.install_pkg/usr/bin/htop $INSTALL/usr/bin
   fi
   # i2c-tools
   if [ "$ENABLE_I2C_TOOLS" = "yes" ]; then
@@ -272,10 +288,6 @@ post_install() {
       cp -p $fgmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/mc.mo
     done
   fi
-  # htop
-  if [ "$ENABLE_HTOP" = "yes" ]; then
-    cp -P $(get_build_dir htop)/.install_pkg/usr/bin/htop $INSTALL/usr/bin
-  fi
   # mrxvt
   if [ "$ENABLE_MRXVT" = "yes" ]; then
     cp -P $(get_build_dir mrxvt)/.$TARGET_NAME/src/mrxvt $INSTALL/usr/bin 2>/dev/null || :
@@ -307,9 +319,17 @@ post_install() {
   if [ "$ENABLE_SCREEN" = "yes" ]; then
     cp -P $(get_build_dir screen)/screen $INSTALL/usr/bin
   fi
+  # smartmontools
+  if [ "$ENABLE_SMARTMONTOOLS" = "yes" ]; then
+    cp -P $(get_build_dir smartmontools)/.$TARGET_NAME/smartctl $INSTALL/usr/bin
+  fi
   # strace
   if [ "$ENABLE_STRACE" = "yes" ]; then
     cp -P $(get_build_dir strace)/.$TARGET_NAME/strace $INSTALL/usr/bin
+  fi
+  # strace-ng
+  if [ "$ENABLE_STRACE_NG" = "yes" ]; then
+    cp -P $(get_build_dir stress-ng)/.install_pkg/usr/bin/stress-ng $INSTALL/usr/bin
   fi
   # unrar
   if [ "$ENABLE_UNRAR" = "yes" ]; then

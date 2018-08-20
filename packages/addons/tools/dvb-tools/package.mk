@@ -17,23 +17,57 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="DVB Tools"
 PKG_ADDON_TYPE="xbmc.python.script"
 
-PKG_DEPENDS_TARGET="toolchain \
-                    blindscan-s2 \
-                    dvb-apps \
-                    dvblast \
-                    dvbsnoop \
-                    mumudvb \
-                    szap-s2 \
-                    tune-s2 \
-                    w_scan"
+ENABLE_BLINDSCAN_S2="no"
+ENABLE_DVB_APPS="no"
+ENABLE_DVBLAST="no"
+ENABLE_DVBSNOOP="no"
+ENABLE_MUMUDVB="no"
+ENABLE_SZAP_S2="yes"
+ENABLE_TUNE_S2="yes"
+ENABLE_WSCAN="yes"
+
+if [ "$ENABLE_BLINDSCAN_S2" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET blindscan-s2"
+fi
+
+if [ "$ENABLE_DVB_APPS" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvb-apps"
+fi
+
+if [ "$ENABLE_DVBLAST" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvblast"
+fi
+
+if [ "$ENABLE_DVBSNOOP" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dvbsnoop"
+fi
+
+if [ "$ENABLE_MUMUDVB" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mumudvb"
+fi
+
+if [ "$ENABLE_SZAP_S2" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET szap-s2"
+fi
+
+if [ "$ENABLE_TUNE_S2" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tune-s2"
+fi
+
+if [ "$ENABLE_WSCAN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET w_scan"
+fi
+
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin/
 
-    # blindscan-s2
+  # blindscan-s2
+  if [ "$ENABLE_BLINDSCAN_S2" = yes ]; then
     cp -P $(get_build_dir blindscan-s2)/blindscan-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # dvb-apps
+  fi
+  # dvb-apps
+  if [ "$ENABLE_DVB_APPS" = yes ]; then
     cp -P $(get_build_dir dvb-apps)/util/dvbdate/dvbdate $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbnet/dvbnet $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/dvbscan/dvbscan $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -45,22 +79,30 @@ addon() {
     cp -P $(get_build_dir dvb-apps)/util/szap/szap $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/szap/tzap $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $(get_build_dir dvb-apps)/util/zap/zap $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # dvblast
+  fi
+  # dvblast
+  if [ "$ENABLE_DVBLAST" = yes ]; then
     cp -P $(get_build_dir dvblast)/dvblast $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # dvbsnoop
+  fi
+  # dvbsnoop
+  if [ "$ENABLE_DVBSNOOP" = yes ]; then
     cp -P $(get_build_dir dvbsnoop)/.$TARGET_NAME/src/dvbsnoop $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # mumudvb
+  fi
+  # mumudvb
+  if [ "$ENABLE_MUMUDVB" = yes ]; then
     cp -P $(get_build_dir mumudvb)/.$TARGET_NAME/src/mumudvb $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # szap-s2
+  fi
+  # szap-s2
+  if [ "$ENABLE_SZAP_S2" = yes ]; then
     cp -P $(get_build_dir szap-s2)/szap-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # tune-s2
+    cp -P $(get_build_dir szap-s2)/tzap-t2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
+  # tune-s2
+  if [ "$ENABLE_TUNE_S2" = yes ]; then
     cp -P $(get_build_dir tune-s2)/tune-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
-
-    # w_scan
+  fi
+  # w_scan
+  if [ "$ENABLE_WSCAN" = yes ]; then
     cp -P $(get_build_dir w_scan)/.$TARGET_NAME/w_scan $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
 }

@@ -6,6 +6,9 @@
 # remove default skin included in Kodi (yes/no)
   SKIN_REMOVE_SHIPPED="no"
 
+# git source index
+  GIT_DEP=2900
+
 # Custom packages
   CUSTOM_SUPPORT="yes"
 
@@ -27,7 +30,7 @@
   TBS_MEDIA_BUILD="no"
 
 # Media build drivers (CrazyCat)
-  CC_MEDIA_BUILD="yes"
+  CC_MEDIA_BUILD="no"
 
 if [ "$TBS_MEDIA_BUILD" = yes ]; then
   ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbs-media_build"
