@@ -16,7 +16,7 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="libssh2"
+PKG_NAME="libssh2_"
 PKG_VERSION="1.4.3"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

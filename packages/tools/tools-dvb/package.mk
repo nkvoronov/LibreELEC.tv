@@ -12,6 +12,7 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="A bundle of dvb tools and programs"
 PKG_LONGDESC="This bundle currently includes blindscan-s2, dvb-apps, dvblast, dvbsnoop, mumudvb, szap-s2, tune-s2 and w_scan."
+PKG_TOOLCHAIN="manual"
 
 ENABLE_BLINDSCAN_S2="no"
 ENABLE_DVB_APPS="no"
