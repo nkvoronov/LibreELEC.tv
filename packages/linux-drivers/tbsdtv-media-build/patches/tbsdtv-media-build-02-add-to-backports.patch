@@ -1,11 +1,12 @@
 diff -Naur a/backports/backports.txt b/backports/backports.txt
---- a/backports/backports.txt	2018-08-18 14:15:20.719392358 +0300
-+++ b/backports/backports.txt	2018-08-19 19:15:34.500878706 +0300
-@@ -25,6 +25,7 @@
+--- a/backports/backports.txt	2018-08-18 13:53:37.000000000 +0300
++++ b/backports/backports.txt	2018-08-21 13:19:26.596702976 +0300
+@@ -25,6 +25,8 @@
  add pr_fmt.patch
  add debug.patch
  add drx39xxj.patch
 +add imon-fix.patch
++add build-fix.patch
  add noretpoline.patch
  
  [4.17.255]

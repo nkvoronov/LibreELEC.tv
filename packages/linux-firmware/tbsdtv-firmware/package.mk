@@ -20,15 +20,9 @@ unpack() {
   tar xvfj $ROOT/sources/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.bz2
 }
 
-make_target() {
-  : # nothing todo
-}
-
 makeinstall_target() {
-  DESTDIR=$INSTALL/usr ./install
-}
+  FW_DIR=$INSTALL/$(get_kernel_overlay_dir)
 
-makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/firmware
-    cp -PR $PKG_BUILD/firmware/* $INSTALL/usr/lib/firmware
+  mkdir -p $FW_DIR
+    cp -a $PKG_BUILD/firmware/* $FW_DIR
 }

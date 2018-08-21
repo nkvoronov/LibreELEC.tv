@@ -16,15 +16,19 @@ PKG_LONGDESC="DVB drivers that replace the version shipped with the kernel"
 PKG_IS_KERNEL_PKG="yes"
 PKG_TOOLCHAIN="manual"
 
+post_unpack() {
+  cd $PKG_BUILD
+  git clone --depth=1 https://github.com/tbsdtv/linux_media.git -b latest ./media
+  make dir DIR=./media
+  #make allyesconfig
+}
+
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
   export LDFLAGS=""
 }
 
 make_target() {
-  make download
-  make untar
-
   # copy config file
   if [ "$PROJECT" = Generic ] || [ "$PROJECT" = Virtual ]; then
     if [ -f $PKG_DIR/config/generic.config ]; then
@@ -37,10 +41,10 @@ make_target() {
   fi
 
   # add menuconfig to edit .config
-  make VER=$KERNEL_VER SRCDIR=$(kernel_path)
+  make -j4 VER=$KERNEL_VER SRCDIR=$(kernel_path)
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/modules/$KERNEL_VER/updates
-  find $PKG_BUILD/v4l/ -name \*.ko -exec cp {} $INSTALL/usr/lib/modules/$KERNEL_VER/updates \;
+  mkdir -p $INSTALL/$(get_full_module_dir)/tbsdtv
+    find $PKG_BUILD/v4l/ -name \*.ko -exec cp {} $INSTALL/$(get_full_module_dir)/tbsdtv \;
 }

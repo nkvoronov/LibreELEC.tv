@@ -168,8 +168,7 @@ show_config() {
     config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
     config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
     config_message="$config_message\n - Enable shared build:\t\t\t $ENABLE_SHARED"
-    config_message="$config_message\n - Media build (TBS)     :\t\t $TBS_MEDIA_BUILD"
-    config_message="$config_message\n - Media build (CrazyCat):\t\t $CC_MEDIA_BUILD"
+    config_message="$config_message\n - Media build type:\t\t\t $MEDIA_BUILD_TYPE"
 
     config_message="$config_message\n - KODI YELLOWDRAGON repositories:\t $KODI_REPOSITORY_YELLOWDRAGON"
     config_message="$config_message\n - Lcdproc service:\t\t\t $LCDPROC_SERVICE"

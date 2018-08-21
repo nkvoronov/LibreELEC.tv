@@ -24,20 +24,15 @@
 # Enable shared build
   ENABLE_SHARED="yes"
 
-# additional drivers (DVB) to install (select one):
+# additional drivers (DVB) to install (crazycat / tbsdtv / no):
+  MEDIA_BUILD_TYPE="tbsdtv"
 
-# Media build drivers (TBS)
-  TBS_MEDIA_BUILD="no"
-
-# Media build drivers (CrazyCat)
-  CC_MEDIA_BUILD="no"
-
-if [ "$TBS_MEDIA_BUILD" = yes ]; then
-  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbsdtv-media-build"
-fi
-
-if [ "$CC_MEDIA_BUILD" = yes ]; then
-  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS crazycat-media-build"
+if [ "$MEDIA_BUILD_TYPE" != "no" ]; then
+  if [ "$MEDIA_BUILD_TYPE" = "crazycat" ]; then
+    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS crazycat-media-build"
+  else
+    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbsdtv-media-build"
+  fi
 fi
 
 # KODI addons
