@@ -1,14 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
-PKG_NAME="cc-media_build"
-PKG_VERSION="835dc72"
+PKG_NAME="tbsdtv-media-build"
+PKG_VERSION="e7037ec"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/crazycat69/linux_media"
-PKG_URL="https://bitbucket.org/CrazyCat/media_build.git"
-PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain linux cc-media_build-firmware"
+PKG_SITE="https://github.com/tbsdtv/linux_media/wiki"
+PKG_URL="https://github.com/tbsdtv/media_build.git"
+PKG_DEPENDS_TARGET="toolchain linux tbsdtv-firmware"
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_SECTION="driver"

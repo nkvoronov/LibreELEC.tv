@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
-PKG_NAME="tbs-media_build"
+PKG_NAME="crazycat-media-build"
 PKG_VERSION="835dc72"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/crazycat69/linux_media"
 PKG_URL="https://bitbucket.org/CrazyCat/media_build.git"
 PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain linux tbs-media_build-firmware"
+PKG_DEPENDS_TARGET="toolchain linux crazycat-firmware"
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_SECTION="driver"

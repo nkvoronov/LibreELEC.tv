@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="cc-media_build-firmware"
+PKG_NAME="crazycat-firmware"
 PKG_VERSION="1.0.0"
 PKG_ARCH="any"
 PKG_LICENSE="Free-to-use"

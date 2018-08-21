@@ -33,11 +33,11 @@
   CC_MEDIA_BUILD="no"
 
 if [ "$TBS_MEDIA_BUILD" = yes ]; then
-  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbs-media_build"
+  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbsdtv-media-build"
 fi
 
 if [ "$CC_MEDIA_BUILD" = yes ]; then
-  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS cc-media_build"
+  ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS crazycat-media-build"
 fi
 
 # KODI addons
