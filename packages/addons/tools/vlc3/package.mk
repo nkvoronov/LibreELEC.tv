@@ -18,14 +18,6 @@ PKG_ADDON_TYPE="xbmc.python.script"
 
 QT5VWER="5.10.1"
 
-make_target() {
-  : # nothing to make here
-}
-
-makeinstall_target() {
-  : # nothing to install here
-}
-
 addon() {
   VLC_DIR=$(get_build_dir vlc)
   VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
@@ -140,8 +132,5 @@ addon() {
     cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
 
   ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
-
-    #cp -PR $VLC_HTSP_DIR/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
-    #cp -PR $GCC_DIR/.install_pkg/usr/lib/libatomic.so.1.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libatomic.so.1
 
 }

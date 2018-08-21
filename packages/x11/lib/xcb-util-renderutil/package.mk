@@ -3,6 +3,7 @@
 
 PKG_NAME="xcb-util-renderutil"
 PKG_VERSION="0.3.9"
+PKG_SHA256="55eee797e3214fe39d0f3f4d9448cc53cffe06706d108824ea37bb79fcedcad5"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://xcb.freedesktop.org"

@@ -2,8 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="tools-dvb"
-PKG_VERSION="1"
-PKG_REV="100"
+PKG_VERSION="1.0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""

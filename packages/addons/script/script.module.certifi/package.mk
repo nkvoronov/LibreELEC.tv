@@ -3,23 +3,16 @@
 
 PKG_NAME="script.module.certifi"
 PKG_VERSION="2017.07.27.1"
+PKG_SHA256="5413cd9f76d754e3001aa642799c9d71de0140a52604cd52123a5aea3d6d9609"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
+PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
-PKG_SECTION=""
+PKG_SECTION="script"
 PKG_SHORTDESC="Python SSL Certificates"
 PKG_LONGDESC="Python SSL Certificates"
-
-make_target() {
-  : # nothing
-}
-
-makeinstall_target() {
-  : # nothing
-}
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

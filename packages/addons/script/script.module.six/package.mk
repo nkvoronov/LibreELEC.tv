@@ -3,23 +3,16 @@
 
 PKG_NAME="script.module.six"
 PKG_VERSION="1.11.0"
+PKG_SHA256="e00aefab95ad860519b467e610b344fc331d6f1d4224da60c58d4e2544a913a0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
+PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
-PKG_SECTION=""
+PKG_SECTION="script"
 PKG_SHORTDESC="Python 2 and 3 compatibility utilities."
 PKG_LONGDESC="Python 2 and 3 compatibility utilities."
-
-make_target() {
-  : # nothing
-}
-
-makeinstall_target() {
-  : # nothing
-}
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

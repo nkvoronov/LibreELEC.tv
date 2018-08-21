@@ -3,26 +3,16 @@
 
 PKG_NAME="script.module.httplib2"
 PKG_VERSION="0.10.3"
+PKG_SHA256="34945719438869d43c780874f2db7fd638f49f0927cc400e2176113a4ec840a1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
+PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
-PKG_SECTION=""
+PKG_SECTION="script"
 PKG_SHORTDESC="httplib2 module"
 PKG_LONGDESC="httplib2 module"
-
-PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
-make_target() {
-  : # nothing
-}
-
-makeinstall_target() {
-  : # nothing
-}
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

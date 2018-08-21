@@ -3,23 +3,16 @@
 
 PKG_NAME="script.module.html2text"
 PKG_VERSION="2015.6.21"
+PKG_SHA256="0f7737c780569d2b8db9a2314c6e916d0fe40fee19010929cd2df225633c2745"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
+PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain Python kodi"
-PKG_SECTION=""
+PKG_SECTION="script"
 PKG_SHORTDESC="Turn HTML into equivalent Markdown-structured text"
 PKG_LONGDESC="Turn HTML into equivalent Markdown-structured text"
-
-make_target() {
-  : # nothing
-}
-
-makeinstall_target() {
-  : # nothing
-}
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

@@ -3,6 +3,7 @@
 
 PKG_NAME="xcb-util-keysyms"
 PKG_VERSION="0.4.0"
+PKG_SHA256="0807cf078fbe38489a41d755095c58239e1b67299f14460dec2ec811e96caa96"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://xcb.freedesktop.org"

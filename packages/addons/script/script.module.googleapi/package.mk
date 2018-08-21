@@ -3,23 +3,16 @@
 
 PKG_NAME="script.module.googleapi"
 PKG_VERSION="1.6.4"
+PKG_SHA256="6efe8c7365567098efd653d7eb8a372f0c46834ae8fcbde2703abc330a2d4957"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE=""
+PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain Python kodi script.module.httplib2 script.module.uritemplate script.module.six script.module.oauth2client"
-PKG_SECTION=""
+PKG_SECTION="script"
 PKG_SHORTDESC="Google API python classes and dependencies"
 PKG_LONGDESC="Google API python classes and dependencies"
-
-make_target() {
-  : # nothing
-}
-
-makeinstall_target() {
-  : # nothing
-}
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

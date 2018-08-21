@@ -7,7 +7,7 @@
   SKIN_REMOVE_SHIPPED="no"
 
 # git source index
-  GIT_DEP=2900
+  GIT_DEP=29000
 
 # Custom packages
   CUSTOM_SUPPORT="yes"

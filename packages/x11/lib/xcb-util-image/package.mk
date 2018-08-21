@@ -3,6 +3,7 @@
 
 PKG_NAME="xcb-util-image"
 PKG_VERSION="0.4.0"
+PKG_SHA256="cb2c86190cf6216260b7357a57d9100811bb6f78c24576a3a5bfef6ad3740a42"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://xcb.freedesktop.org"

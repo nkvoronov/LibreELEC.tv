@@ -4,6 +4,7 @@
 
 PKG_NAME="mc"
 PKG_VERSION="4.8.21"
+PKG_SHA256="8f37e546ac7c31c9c203a03b1c1d6cb2d2f623a300b86badfd367e5559fe148c"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.midnight-commander.org"

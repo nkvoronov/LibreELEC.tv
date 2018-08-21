@@ -3,6 +3,7 @@
 
 PKG_NAME="transmission"
 PKG_VERSION="2.92"
+PKG_SHA256="3a8d045c306ad9acb7bf81126939b9594553a388482efa0ec1bfb67b22acd35f"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"

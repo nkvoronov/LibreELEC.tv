@@ -1,29 +1,14 @@
-################################################################################
-#      This file is part of LibreELEC - https://libreelec.tv
-#      Copyright (C) 2009-2017 Lukas Rusak (lrusak@libreelec.tv)
-#      Copyright (C) 2017-present Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="docker"
 PKG_VERSION="18.06.0"
+PKG_SHA256="1c2fa625496465c68b856db0ba850eaad7a16221ca153661ca718de4a2217705"
 PKG_REV="125"
 PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
-PKG_URL="https://download.docker.com/linux/static/stable/x86_64/${PKG_NAME}-${PKG_VERSION}-ce.tgz"
+PKG_URL="https://download.docker.com/linux/static/stable/x86_64/$PKG_NAME-$PKG_VERSION-ce.tgz"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain systemd"
 PKG_SECTION="service/system"
@@ -33,14 +18,6 @@ PKG_LONGDESC="Docker containers can encapsulate any payload, and will run consis
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Docker"
 PKG_ADDON_TYPE="xbmc.service"
-
-make_target() {
-  : # nothing to do here
-}
-
-makeinstall_target() {
-  : # nothing to do here
-}
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
