@@ -7,7 +7,7 @@
   SKIN_REMOVE_SHIPPED="no"
 
 # git source index
-  GIT_DEP=29000
+  GIT_DEP=28850
 
 # Custom packages
   CUSTOM_SUPPORT="yes"
@@ -40,11 +40,11 @@ fi
 
 # Services
   LCDPROC_SERVICE="yes"
-  TRANSMISSION_SERVICE="no"
+  TRANSMISSION_SERVICE="yes"
   OSCAM_SERVICE="no"
 
 # TV Services
-  TVHEADEND_SERVICE="no"
+  TVHEADEND_SERVICE="yes"
   VDR_SERVICE="no"
 
 # Tools
@@ -56,4 +56,4 @@ fi
   PERL_SUPPORT="no"
 
 # Docker Fix
-  DOCKER_FIX="no"
+  DOCKER_FIX="yes"

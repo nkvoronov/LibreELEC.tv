@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="transmission2"
-PKG_VERSION="2.92"
-PKG_REV="4"
+PKG_VERSION="2.94"
+PKG_REV="5"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"
