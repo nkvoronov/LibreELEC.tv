@@ -9,14 +9,14 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
 PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain curl libdvbcsa libiconv openssl pngquant:host Python:host yasm"
+PKG_DEPENDS_TARGET="toolchain curl libdvbcsa libiconv openssl pngquant:host Python2:host yasm"
 PKG_SECTION="service"
 PKG_SHORTDESC="Tvheadend: a TV streaming server for Linux"
 PKG_LONGDESC="Tvheadend: is a TV streaming server for Linux supporting DVB-S/S2, DVB-C, DVB-T/T2, IPTV, SAT>IP, ATSC and ISDB-T"
 
 # transcoding only for generic
 if [ "$TARGET_ARCH" = x86_64 ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
+  #PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
   TVH_TRANSCODING="--enable-libav --enable-ffmpeg_static"
 else
   TVH_TRANSCODING="--disable-libav --disable-ffmpeg_static"

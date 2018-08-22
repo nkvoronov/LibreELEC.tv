@@ -8,11 +8,12 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
-PKG_DEPENDS_TARGET="toolchain Python kodi script.module.urllib3 script.module.chardet script.module.idna script.module.certifi"
+PKG_DEPENDS_TARGET="toolchain Python2 kodi script.module.urllib3 script.module.chardet script.module.idna script.module.certifi"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_SECTION="script"
 PKG_SHORTDESC="Python HTTP for Humans"
 PKG_LONGDESC="Python HTTP for Humans"
+PKG_TOOLCHAIN="manual"
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

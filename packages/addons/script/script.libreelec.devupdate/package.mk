@@ -7,10 +7,11 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://github.com/nkvoronov/$PKG_NAME.git"
-PKG_DEPENDS_TARGET="toolchain Python kodi script.module.beautifulsoup4 script.module.requests script.module.html2text script.xbmcbackup"
+PKG_DEPENDS_TARGET="toolchain Python2 kodi script.module.beautifulsoup4 script.module.requests script.module.html2text script.xbmcbackup"
 PKG_SECTION="script"
 PKG_SHORTDESC="Unofficial LibreELEC updater"
 PKG_LONGDESC="Unofficial LibreELEC updater"
+PKG_TOOLCHAIN="manual"
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

@@ -9,10 +9,11 @@ PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
 PKG_SOURCE_DIR="$PKG_NAME"
-PKG_DEPENDS_TARGET="toolchain Python kodi"
+PKG_DEPENDS_TARGET="toolchain Python2 kodi"
 PKG_SECTION="script"
 PKG_SHORTDESC="PyYaml library"
 PKG_LONGDESC="PyYaml library"
+PKG_TOOLCHAIN="manual"
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME

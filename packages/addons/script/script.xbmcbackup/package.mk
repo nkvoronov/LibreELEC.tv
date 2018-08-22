@@ -8,11 +8,12 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
-PKG_DEPENDS_TARGET="toolchain Python kodi script.module.httplib2 script.module.oauth2client script.module.uritemplate script.module.yaml script.module.googleapi"
+PKG_DEPENDS_TARGET="toolchain Python2 kodi script.module.httplib2 script.module.oauth2client script.module.uritemplate script.module.yaml script.module.googleapi"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_SECTION="script"
 PKG_SHORTDESC="Backup and restore your XBMC database and configuration files in the event of a crash or file."
 PKG_LONGDESC="Backup and restore your XBMC database and configuration files in the event of a crash or file."
+PKG_TOOLCHAIN="manual"
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME
