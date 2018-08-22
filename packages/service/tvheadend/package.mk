@@ -8,36 +8,60 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
-PKG_TYPE="git"
-PKG_DEPENDS_TARGET="toolchain curl libdvbcsa libiconv openssl pngquant:host Python2:host yasm"
+PKG_DEPENDS_TARGET="toolchain avahi curl dvb-apps ffmpegx libdvbcsa libiconv openssl pngquant:host Python2:host tvh-dtv-scan-tables"
 PKG_SECTION="service"
 PKG_SHORTDESC="Tvheadend: a TV streaming server for Linux"
 PKG_LONGDESC="Tvheadend: is a TV streaming server for Linux supporting DVB-S/S2, DVB-C, DVB-T/T2, IPTV, SAT>IP, ATSC and ISDB-T"
 
-# transcoding only for generic
-if [ "$TARGET_ARCH" = x86_64 ]; then
-  #PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
-  TVH_TRANSCODING="--enable-libav --enable-ffmpeg_static"
-else
-  TVH_TRANSCODING="--disable-libav --disable-ffmpeg_static"
+# basic transcoding options
+PKG_TVH_TRANSCODING="\
+  --disable-ffmpeg_static \
+  --disable-libfdkaac_static \
+  --disable-libopus_static \
+  --disable-libtheora \
+  --disable-libtheora_static \
+  --disable-libvorbis_static \
+  --disable-libvpx_static \
+  --disable-libx264_static \
+  --disable-libx265_static \
+  --enable-libav \
+  --enable-libfdkaac \
+  --enable-libopus \
+  --enable-libvorbis \
+  --enable-libvpx \
+  --enable-libx264 \
+  --enable-libx265"
+
+# specific transcoding options
+if [[ "$TARGET_ARCH" != "x86_64" ]]; then
+  PKG_TVH_TRANSCODING="$PKG_TVH_TRANSCODING \
+    --disable-libvpx \
+    --disable-libx265"
 fi
 
 PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --arch=$TARGET_ARCH \
                            --cpu=$TARGET_CPU \
                            --cc=$CC \
-                           --python=$TOOLCHAIN/bin/python \
-                           --enable-hdhomerun_client \
-                           --disable-avahi \
-                           $TVH_TRANSCODING \
-                           --disable-uriparser \
-                           --enable-dvbcsa \
-                           --disable-dvben50221 \
-                           --enable-tvhcsa \
-                           --disable-dbus_1 \
-                           --enable-pngquant \
+                           $PKG_TVH_TRANSCODING \
+                           --enable-avahi \
                            --enable-bundle \
-                           --nowerror"
+                           --disable-dbus_1 \
+                           --enable-dvbcsa \
+                           --enable-dvben50221 \
+                           --disable-dvbscan \
+                           --enable-hdhomerun_client \
+                           --enable-epoll \
+                           --enable-inotify \
+                           --enable-pngquant \
+                           --disable-libmfx_static \
+                           --disable-nvenc \
+                           --disable-uriparser \
+                           --enable-tvhcsa \
+                           --enable-trace \
+                           --nowerror \
+                           --disable-bintray_cache \
+                           --python=$TOOLCHAIN/bin/python"
 
 post_unpack() {
   sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER'~g'$PKG_VERSION'~libreelec"/g' -i $PKG_BUILD/support/version
@@ -49,14 +73,12 @@ pre_configure_target() {
   cd $PKG_BUILD
   rm -rf .$TARGET_NAME
 
-# transcoding
-  if [ "$TARGET_ARCH" = x86_64 ]; then
-    export AS=$TOOLCHAIN/bin/yasm
-    export LDFLAGS="$LDFLAGS -lX11 -lm -lvdpau -lva -lva-drm -lva-x11 -lbz2"
-    export ARCH=$TARGET_ARCH
-  fi
+# pass ffmpegx to build
+  PKG_CONFIG_PATH="$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib/pkgconfig"
+  CFLAGS="$CFLAGS -I$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/include"
+  LDFLAGS="$LDFLAGS -L$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib"
 
-  export CROSS_COMPILE=$TARGET_PREFIX
+  export CROSS_COMPILE="$TARGET_PREFIX"
   export CFLAGS="$CFLAGS -I$SYSROOT_PREFIX/usr/include/iconv -L$SYSROOT_PREFIX/usr/lib/iconv"
 }
 

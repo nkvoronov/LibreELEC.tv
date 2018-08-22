@@ -27,10 +27,9 @@ PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_SECTION="service"
 PKG_SHORTDESC="vdr: A powerful DVB TV application"
 PKG_LONGDESC="This project describes how to build your own digital satellite receiver and video disk recorder. It is based mainly on the DVB-S digital satellite receiver card, which used to be available from Fujitsu Siemens and the driver software developed by the LinuxTV project."
+PKG_TOOLCHAIN="manual"
 
-PKG_AUTORECONF="no"
 PKG_IS_ADDON="yes"
-
 PKG_ADDON_NAME="VDR"
 PKG_ADDON_TYPE="xbmc.service"
 

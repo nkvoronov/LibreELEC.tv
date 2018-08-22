@@ -13,6 +13,7 @@ PKG_SECTION="service"
 PKG_SHORTDESC="oscam (Version: $PKG_VERSION): OSCam is Open Source Conditional Access Modul."
 PKG_LONGDESC="oscam (Version: $PKG_VERSION): OSCam is Open Source Conditional Access Modul."
 PKG_DISCLAIMER="using oscam may be illegal in your country. if in doubt, do not install"
+PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="OSCam"
