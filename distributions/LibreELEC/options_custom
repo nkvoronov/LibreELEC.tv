@@ -52,8 +52,7 @@ fi
   DVB_TOOLS_ENABLED="yes"
 
 # Perl
-  PERL_VERSION="5.24.0"
-  PERL_SUPPORT="no"
+  PERL_SUPPORT="yes"
 
 # Docker Fix
   DOCKER_FIX="yes"
