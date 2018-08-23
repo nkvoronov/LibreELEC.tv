@@ -36,12 +36,12 @@ if [ "$MEDIA_BUILD_TYPE" != "no" ]; then
 fi
 
 # KODI addons
-  KODI_REPOSITORY_YELLOWDRAGON="no"
+  KODI_REPOSITORY_YELLOWDRAGON="yes"
 
 # Services
   LCDPROC_SERVICE="yes"
   TRANSMISSION_SERVICE="yes"
-  OSCAM_SERVICE="no"
+  OSCAM_SERVICE="yes"
 
 # TV Services
   TVHEADEND_SERVICE="yes"
