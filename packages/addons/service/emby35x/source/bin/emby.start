@@ -18,7 +18,7 @@
 ################################################################################
 
 . /etc/profile
-oe_setup_addon service.emby
+oe_setup_addon service.emby35x
 
 chmod +x $ADDON_DIR/bin/*
 chmod +x $ADDON_DIR/system/EmbyServer
