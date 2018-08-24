@@ -25,7 +25,7 @@
   ENABLE_SHARED="yes"
 
 # additional drivers (DVB) to install (crazycat / tbsdtv / no):
-  MEDIA_BUILD_TYPE="crazycat"
+  MEDIA_BUILD_TYPE="tbsdtv"
 
 if [ "$MEDIA_BUILD_TYPE" != "no" ]; then
   if [ "$MEDIA_BUILD_TYPE" = "crazycat" ]; then
