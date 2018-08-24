@@ -22,7 +22,7 @@ unpack() {
 }
 
 makeinstall_target() {
-  FW_DIR=$INSTALL/$(get_kernel_overlay_dir)
+  FW_DIR=$INSTALL/$(get_full_firmware_dir)
 
   mkdir -p $FW_DIR
     cp -a $PKG_BUILD/firmware/* $FW_DIR

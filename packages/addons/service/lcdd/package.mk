@@ -33,8 +33,10 @@ addon() {
   drivers="none|$(cat $PKG_BUILD/.$TARGET_NAME/config.log | sed -n "s|^DRIVERS=' \(.*\)'|\1|p" | sed "s|.so||g" | tr ' ' '|')"
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
 
   cp -PR $PKG_DIR/resources $ADDON_BUILD/$PKG_ADDON_ID
+  cp -PR $PKG_DIR/fonts $ADDON_BUILD/$PKG_ADDON_ID/share
 
   cp -PR $PKG_BUILD/.install_pkg/etc/LCDd.conf $ADDON_BUILD/$PKG_ADDON_ID/config/
   cp -PR $PKG_BUILD/.install_pkg/usr/lib       $ADDON_BUILD/$PKG_ADDON_ID/lib/
@@ -53,6 +55,7 @@ addon() {
       -e "s|^#GoodBye=\"Thanks for using\"|GoodBye=\"Thanks for using\"|" \
       -e "s|^#GoodBye=\"   LCDproc!\"|GoodBye=\"$DISTRONAME\"|" \
       -e "s|^#normal_font=.*$|normal_font=/usr/share/fonts/liberation/LiberationMono-Bold.ttf|" \
+      -e "s|^Font=/usr/share/lcdproc/fonts/cp1251.fnt|Font=/storage/.kodi/addons/service.lcdd/share/fonts/cp1251.fnt|" \
       -i $ADDON_BUILD/$PKG_ADDON_ID/config/LCDd.conf
 
   sed -e "s/@DRIVERS@/$drivers/" \
