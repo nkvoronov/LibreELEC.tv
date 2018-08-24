@@ -8,7 +8,7 @@ PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/linux_media/wiki"
 PKG_URL="https://github.com/tbsdtv/media_build.git"
 PKG_DEPENDS_TARGET="toolchain linux tbsdtv-firmware"
-PKG_BUILD_DEPENDS_TARGET="toolchain linux"
+PKG_BUILD_DEPENDS_TARGET="toolchain linux tbsdtv-firmware"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_SECTION="driver"
 PKG_SHORTDESC="DVB drivers that replace the version shipped with the kernel"
@@ -20,7 +20,7 @@ post_unpack() {
   cd $PKG_BUILD
   git clone --depth=1 https://github.com/tbsdtv/linux_media.git -b latest ./media
   make dir DIR=./media
-  #make allyesconfig
+  # make allyesconfig
 }
 
 pre_make_target() {
@@ -29,6 +29,7 @@ pre_make_target() {
 }
 
 make_target() {
+
   # copy config file
   if [ "$PROJECT" = Generic ] || [ "$PROJECT" = Virtual ]; then
     if [ -f $PKG_DIR/config/generic.config ]; then
