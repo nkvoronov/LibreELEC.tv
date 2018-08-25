@@ -37,6 +37,9 @@
 # Default Skin (Estuary)
   SKIN_DEFAULT="Estuary"
 
+# Select whether to use default (upstream xbmc/xbmc) repo, or specific vendor repo
+  KODI_VENDOR="default"
+
 # install extra subtitle Fonts for KODI (yes / no)
   KODI_EXTRA_FONTS="yes"
 
@@ -81,9 +84,6 @@
 
 # build with MySQL support (mysql / mariadb / none)
   KODI_MYSQL_SUPPORT="mariadb"
-
-# build xbmc with sshlib support (yes / no)
-  KODI_SSHLIB_SUPPORT="yes"
 
 # build xbmc with optical drive support (yes / no)
   KODI_OPTICAL_SUPPORT="yes"
@@ -193,7 +193,7 @@
   DISTRO_SRC="http://sources.libreelec.tv/$LIBREELEC_VERSION"
 
 # Addon Server Url
-  ADDON_SERVER_URL="http://addons.libreelec.tv"
+  ADDON_SERVER_URL="https://addons.libreelec.tv"
 
 # set the addon dirs
   ADDON_PATH="$ADDON_VERSION/${DEVICE:-$PROJECT}/$TARGET_ARCH"
