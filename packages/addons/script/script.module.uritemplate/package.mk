@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.uritemplate"
 PKG_VERSION="0.6.0"
-PKG_SHA256="3443ad9473b552319955495ab510d2846d5733ba774afb11605e73cce2fea769"
+PKG_SHA256="795e11ca7204bff6a6b9324b9cc567e60d3b7c9e1c0f156faceb2ed4f74f9ce0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"

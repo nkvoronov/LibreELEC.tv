@@ -14,4 +14,10 @@ PKG_SECTION="x11/lib"
 PKG_SHORTDESC="libXinerama: The Xinerama library."
 PKG_LONGDESC="libXinerama is the Xinerama library."
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared --enable-malloc0returnsnull"
+if [ "$CUSTOM_SUPPORT" = "yes" -a "$ENABLE_SHARED" = "yes" ]; then
+  SHARED="--enable-shared"
+else
+  SHARED="--disable-shared"
+fi
+
+PKG_CONFIGURE_OPTS_TARGET="--enable-static $SHARED --enable-malloc0returnsnull"

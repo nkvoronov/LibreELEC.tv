@@ -14,6 +14,10 @@ PKG_LONGDESC="xine-lib based software output device for VDR."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"
 
+pre_configure_target() {
+  export PKG_CONFIG_PATH="${SYSROOT_PREFIX}/usr/lib/pkgconfig"
+}
+
 configure_target() {
   cd $BUILD/$PKG_NAME-$PKG_VERSION
   ./configure --enable-x11 \

@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.urllib3"
 PKG_VERSION="1.22"
-PKG_SHA256="d9ab7559696caed63ea312b5fdf50ccc1e7374f0a24e62a9a36c588f08dfd0c9"
+PKG_SHA256="f89d4733fda5101a17bb59b5abcd6f016a713829565db2465529eacb3447cb4b"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"

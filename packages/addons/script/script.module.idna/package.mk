@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.idna"
 PKG_VERSION="2.6"
-PKG_SHA256="0bd19cf586032eebb842f1d906ec423552affaf4b8c490f91ffac6b996a5ba4c"
+PKG_SHA256="e80facf06fe603098051531cea6a8a88cbfa6b75520d7921d99a4a045177d37d"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"

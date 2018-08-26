@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.googleapi"
 PKG_VERSION="1.6.4"
-PKG_SHA256="6efe8c7365567098efd653d7eb8a372f0c46834ae8fcbde2703abc330a2d4957"
+PKG_SHA256="12a5222602a316ec44d9a0289fd7842fded79cd33a5366e3ed1317618faff3ac"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
