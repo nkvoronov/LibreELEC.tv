@@ -12,6 +12,7 @@ PKG_DEPENDS_TARGET="toolchain acestream-engine"
 PKG_SECTION="tools"
 PKG_SHORTDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_LONGDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
+PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="ACE stream engine 3.1.x"

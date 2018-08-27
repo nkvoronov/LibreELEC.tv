@@ -16,13 +16,19 @@ PKG_LONGDESC="The PCRE library is a set of functions that implement regular expr
 PKG_TOOLCHAIN="configure"
 PKG_BUILD_FLAGS="+pic"
 
+if [ "$CUSTOM_SUPPORT" = "yes" -a "$ENABLE_SHARED" = "yes" ]; then
+  SHARED="--enable-shared"
+else
+  SHARED="--disable-shared"
+fi
+
 PKG_CONFIGURE_OPTS_HOST="--prefix=$TOOLCHAIN \
              --enable-static \
              --enable-utf8 \
              --enable-unicode-properties \
              --with-gnu-ld"
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
+PKG_CONFIGURE_OPTS_TARGET="$SHARED \
              --enable-static \
              --enable-utf8 \
              --enable-pcre16 \

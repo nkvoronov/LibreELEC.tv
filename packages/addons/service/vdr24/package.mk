@@ -1,20 +1,5 @@
-################################################################################
-#      This file is part of LibreELEC - http://www.libreelec.tv
-#      Copyright (C) 2016 Team LibreELEC
-#
-#  LibreELEC is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 2 of the License, or
-#  (at your option) any later version.
-#
-#  LibreELEC is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
-################################################################################
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.0"
@@ -588,17 +573,17 @@ addon() {
     LIBRSVG_DIR=$(get_build_dir librsvg)
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
-      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
-      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10303.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
+      cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
       cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
       cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3400.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
-      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
-      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.6 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
-      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4000.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
+      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
+      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
+      cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
+      cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
       cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
   fi
@@ -896,9 +881,9 @@ addon() {
 
     #libs dep
     XINELIB_DIR=$(get_build_dir xine-lib)
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -PR $XINELIB_DIR/.install_pkg/usr/lib/xine $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $XINELIB_DIR/.install_pkg/usr/lib/libxine.so.2.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxine.so.2
+    #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+      #cp -PR $XINELIB_DIR/.install_pkg/usr/lib/xine $ADDON_BUILD/$PKG_ADDON_ID/lib
+      #cp -P $XINELIB_DIR/.install_pkg/usr/lib/libxine.so.2.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxine.so.2
   fi
 
   #plugin xmltv2vdr

@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="5b74bdc"
+PKG_VERSION="3.1.16"
+PKG_SHA256="516ea5149af565f80199cff4b63bbd6b7210634ab004d8bd01f6f5937e70a86b"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
-PKG_URL="https://github.com/nkvoronov/tools-ace.git"
-PKG_GIT_CLONE_BRANCH="v3.1.16"
+PKG_URL="https://www.dropbox.com/s/n8bv00qehfgvjah/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."

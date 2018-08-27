@@ -27,6 +27,6 @@ addon() {
     cp -P $OSCAM_DIR/.$TARGET_NAME/oscam $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $OSCAM_DIR/.$TARGET_NAME/utils/list_smargo $ADDON_BUILD/$PKG_ADDON_ID/bin
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $PCSCLITE_DIR/.install_pkg/usr/lib/libpcsclite.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpcsclite.so.1
+  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
+    #cp -P $PCSCLITE_DIR/.install_pkg/usr/lib/libpcsclite.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpcsclite.so.1
 }
