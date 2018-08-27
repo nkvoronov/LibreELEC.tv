@@ -2,14 +2,11 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="crazycat-media-build"
-#PKG_VERSION="835dc72"
-#PKG_URL="https://bitbucket.org/CrazyCat/media_build.git"
-PKG_VERSION="3115479"
-PKG_SHA256="3871b9fbe5f352943715c4f71736fce89d456df7fef460b71bad224b6f993372"
+PKG_VERSION="835dc72"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/crazycat69/linux_media"
-PKG_URL="https://www.dropbox.com/s/qy3hnv74fe7pjwy/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="https://bitbucket.org/CrazyCat/media_build.git"
 PKG_DEPENDS_TARGET="toolchain linux crazycat-firmware"
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
@@ -26,8 +23,8 @@ pre_make_target() {
 
 make_target() {
   # for git version
-#  make download
-#  make untar
+  make download
+  make untar
   # get config
 #  make allyesconfig
 
