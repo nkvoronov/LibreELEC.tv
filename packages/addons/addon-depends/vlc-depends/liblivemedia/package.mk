@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="liblivemedia"
-PKG_VERSION="2018.04.25"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_VERSION="2018.08.27"
+PKG_SHA256="fff69d33070e552aa24b081487bcd4fa8d400e79997546a04541cc3adf811b82"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.live555.com/liveMedia"
@@ -13,6 +13,7 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="This code forms a set of C++ libraries for multimedia streaming, using open standard protocols (RTP/RTCP, RTSP, SIP)"
 PKG_LONGDESC="This code forms a set of C++ libraries for multimedia streaming, using open standard protocols (RTP/RTCP, RTSP, SIP)"
+PKG_BUILD_FLAGS="+pic +lto"
 
 pre_build_target() {
   mkdir -p $PKG_BUILD/.$TARGET_NAME
@@ -20,15 +21,7 @@ pre_build_target() {
 }
 
 pre_configure_target() {
-  strip_lto
-  export CFLAGS="$CFLAGS -fPIC -DPIC"
-  export CXXFLAGS="$CXXFLAGS -fPIC -DPIC"
-  export LDFLAGS="$LDFLAGS -fPIC -DPIC"
   ./genMakefiles linux
-}
-
-makeinstall_target() {
-  : # nothing to do here
 }
 
 post_makeinstall_target() {

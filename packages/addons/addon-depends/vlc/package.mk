@@ -16,24 +16,24 @@ PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
 PKG_TOOLCHAIN="autotools"
 
-PKG_CONFIGURE_OPTS_TARGET="--prefix=/storage/.kodi/addons/tools.vlc3 \
+PKG_CONFIGURE_OPTS_TARGET="\
+              --prefix=/storage/.kodi/addons/tools.vlc3 \
               --enable-run-as-root \
               --disable-rpath \
               --enable-nls \
-              --enable-lua \
               --enable-archive \
               --enable-live555 \
-              --enable-dc1394 \
-              --enable-dv1394 \
+              --disable-dc1394 \
+              --disable-dv1394 \
               --enable-dvdread \
               --enable-dvdnav \
               --enable-bluray \
               --disable-opencv \
               --enable-smbclient \
-              --enable-sftp \
-              --enable-nfs \
-              --enable-realrtsp \
-              --enable-dvbpsi \
+              --disable-sftp \
+              --disable-nfs \
+              --disable-realrtsp \
+              --disable-dvbpsi \
               --enable-gme \
               --enable-ogg \
               --enable-shout \
@@ -76,6 +76,8 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/storage/.kodi/addons/tools.vlc3 \
               --enable-fribidi \
               --enable-harfbuzz \
               --enable-fontconfig \
+              --enable-svg \
+              --enable-svgdec \
               --disable-aa \
               --disable-caca \
               --enable-pulse \
@@ -93,12 +95,12 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/storage/.kodi/addons/tools.vlc3 \
               --disable-goom \
               --disable-projectm \
               --enable-avahi \
-              --enable-mtp \
+              --disable-mtp \
               --enable-upnp \
               --enable-microdns \
               --enable-libxml2 \
               --enable-libgcrypt \
-              --enable-gnutls \
+              --disable-gnutls \
               --enable-taglib \
               --disable-secret \
               --disable-kwallet \

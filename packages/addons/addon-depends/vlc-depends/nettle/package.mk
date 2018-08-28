@@ -3,7 +3,8 @@
 
 PKG_NAME="nettle"
 PKG_VERSION="3.1.1"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+#PKG_VERSION="3.4"
+PKG_SHA256="5fd4d25d64d8ddcb85d0d897572af73b05b4d163c6cc49438a5bfbb8ff293d4c"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.lysator.liu.se/~nisse/nettle"

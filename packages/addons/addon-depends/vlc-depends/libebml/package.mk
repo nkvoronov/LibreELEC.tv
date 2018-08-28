@@ -3,7 +3,8 @@
 
 PKG_NAME="libebml"
 PKG_VERSION="1.3.5"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+#PKG_VERSION="1.3.6"
+PKG_SHA256="d818413f60742c2f036ba6f582c5e0320d12bffec1b0fc0fc17a398b6f04aa00"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://dl.matroska.org/downloads/libebml"

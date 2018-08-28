@@ -2,17 +2,18 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="ncursesw"
-PKG_VERSION="6.1-20180203"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_VERSION="6.1"
+PKG_SHA256="aa057eeeb4a14d470101eff4597d5833dcef5965331be3528c08d99cebaa0d17"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/ncurses/"
-PKG_URL="http://invisible-mirror.net/archives/ncurses/current/ncurses-$PKG_VERSION.tgz"
+PKG_URL="http://invisible-mirror.net/archives/ncurses/ncurses-$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="ncurses-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain zlib"
 PKG_SECTION="devel"
 PKG_SHORTDESC="ncurses: The ncurses (new curses) library"
 PKG_LONGDESC="The ncurses (new curses) library is a free software emulation of curses in System V Release 4.0, and more. It uses terminfo format, supports pads and color and multiple highlights and forms characters and function-key mapping, and has all the other SYSV-curses enhancements over BSD curses."
+PKG_BUILD_FLAGS="+lto"
 
 PKG_CONFIGURE_OPTS_TARGET="--with-shared \
                            --with-normal \
@@ -29,12 +30,6 @@ PKG_CONFIGURE_OPTS_TARGET="--with-shared \
                            --with-pkg-config-libdir=/usr/lib/pkgconfig \
                            --enable-ext-colors \
                            --enable-ext-mouse"
-
-pre_configure_target() {
-  # causes some segmentation fault's (dialog) when compiled with gcc's link time optimization.
-  strip_lto
-}
-
 
 makeinstall_target() {
   make install DESTDIR=$PKG_BUILD/.install_tmp $PKG_MAKEINSTALL_OPTS_TARGET

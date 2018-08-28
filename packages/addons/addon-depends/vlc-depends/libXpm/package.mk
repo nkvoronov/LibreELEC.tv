@@ -3,7 +3,7 @@
 
 PKG_NAME="libXpm"
 PKG_VERSION="3.5.12"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_SHA256="fd6a6de3da48de8d1bb738ab6be4ad67f7cb0986c39bd3f7d51dd24f7854bdec"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://xorg.freedesktop.org"

@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libdc1394"
-PKG_VERSION="2.2.1"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_VERSION="2.2.5"
+PKG_SHA256="350cc8d08aee5ffc4e1f3049e2e1c2bc6660642d424595157da97ab5b1263337"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://damien.douxchamps.net/ieee1394/libdc1394"

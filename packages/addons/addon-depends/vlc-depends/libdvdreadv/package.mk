@@ -3,7 +3,7 @@
 
 PKG_NAME="libdvdreadv"
 PKG_VERSION="6.0.0"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_SHA256="b33b1953b4860545b75f6efc06e01d9849e2ea4f797652263b0b4af6dd10f935"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://www.videolan.org/developers/libdvdnav.html"

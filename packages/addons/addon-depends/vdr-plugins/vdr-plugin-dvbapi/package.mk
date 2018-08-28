@@ -12,11 +12,7 @@ PKG_SECTION="multimedia"
 PKG_SHORTDESC="DVBAPI plugin for VDR."
 PKG_LONGDESC="DVBAPI plugin for VDR. This plugin is simplified version of VDR-SC plugin. The main purpose of the plugin is to act as a bridge between VDR and OScam."
 PKG_TOOLCHAIN="manual"
-
-pre_make_target() {
-  # dont build parallel
-  MAKEFLAGS=-j1
-}
+PKG_BUILD_FLAGS="-parallel"
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)

@@ -3,7 +3,7 @@
 
 PKG_NAME="libmicrodns"
 PKG_VERSION="0.0.10"
-#PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_SHA256="623e3077bd940816215d9707c217dc8f957d3dee9b7fd3ea7aaa4de0cd881833"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/videolabs/libmicrodns"
