@@ -19,12 +19,3 @@ PKG_CONFIGURE_OPTS_HOST="--enable-cxx --enable-static --disable-shared"
 pre_configure_host() {
   export CPPFLAGS="$CPPFLAGS -fexceptions"
 }
-
-if [ "$CUSTOM_SUPPORT" = "yes" ]; then
-
-  PKG_CONFIGURE_OPTS_TARGET="--enable-cxx --enable-static --disable-shared"
-
-  pre_configure_target() {
-    export CPPFLAGS="$CPPFLAGS -fexceptions"
-  }
-fi

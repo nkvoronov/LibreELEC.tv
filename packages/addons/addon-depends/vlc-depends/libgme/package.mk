@@ -3,7 +3,7 @@
 
 PKG_NAME="libgme"
 PKG_VERSION="0.6.1"
-#PKG_SHA256="5046cb471d422dbe948b5f5dd4e5552aaef52a0899c4b2688e5a68a556af7342"
+PKG_SHA256="dc11bea098072d540d4d52dfb252e76fc3d3af67ee2807da48fbd8dbda3fd321"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://acoustid.org/chromaprint"

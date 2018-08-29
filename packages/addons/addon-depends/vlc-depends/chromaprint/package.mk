@@ -3,7 +3,7 @@
 
 PKG_NAME="chromaprint"
 PKG_VERSION="1.3.2"
-#PKG_SHA256="989609a7e841dd75b34ee793bd1d049ce99a8f0d444b3cea39d57c3e5d26b4d4"
+PKG_SHA256="c3af900d8e7a42afd74315b51b79ebd2e43bc66630b4ba585a54bf3160439652"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://acoustid.org/chromaprint"

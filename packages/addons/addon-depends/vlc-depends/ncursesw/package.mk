@@ -2,12 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="ncursesw"
-PKG_VERSION="6.1"
-PKG_SHA256="aa057eeeb4a14d470101eff4597d5833dcef5965331be3528c08d99cebaa0d17"
+PKG_VERSION="6.1-20180203"
+PKG_SHA256="fac9db9460f271ee632af386a5b502d43a25d7cf14138e3d3166d4bedc4f6cb0"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/ncurses/"
-PKG_URL="http://invisible-mirror.net/archives/ncurses/ncurses-$PKG_VERSION.tar.gz"
+PKG_URL="http://invisible-mirror.net/archives/ncurses/current/ncurses-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="ncurses-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain zlib"
 PKG_SECTION="devel"

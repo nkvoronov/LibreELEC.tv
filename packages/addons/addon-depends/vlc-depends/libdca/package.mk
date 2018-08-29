@@ -3,7 +3,7 @@
 
 PKG_NAME="libdca"
 PKG_VERSION="0.0.5"
-#PKG_SHA256="98f98a9aa000a26b927c6facd15d18dcf664238adfc5db24f533c5932cdb1f40"
+PKG_SHA256="dba022e022109a5bacbe122d50917769ff27b64a7bba104bd38ced8de8510642"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org/developers/libdca.html"
