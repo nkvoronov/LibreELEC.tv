@@ -1,0 +1,24 @@
+Index: libdc1394-22-2.2.0/examples/Makefile.am
+===================================================================
+--- libdc1394-22-2.2.0.orig/examples/Makefile.am	2012-03-06 08:36:15.000000000 +0100
++++ libdc1394-22-2.2.0/examples/Makefile.am	2012-03-10 16:00:58.173400339 +0100
+@@ -1,5 +1,5 @@
+ MAINTAINERCLEANFILES = Makefile.in
+-dist_man_MANS = dc1394_multiview.1  dc1394_reset_bus.1  dc1394_vloopback.1  grab_color_image.1  grab_gray_image.1  grab_partial_image.1
++dist_man_MANS = dc1394_reset_bus.1 dc1394_vloopback.1
+ AM_CPPFLAGS = -I$(top_srcdir)
+ 
+ A = grab_gray_image grab_partial_image grab_color_image \
+Index: libdc1394-22-2.2.0/examples/Makefile.in
+===================================================================
+--- libdc1394-22-2.2.0.orig/examples/Makefile.in	2012-03-06 08:54:56.000000000 +0100
++++ libdc1394-22-2.2.0/examples/Makefile.in	2012-03-10 16:00:58.185399835 +0100
+@@ -341,7 +341,7 @@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ MAINTAINERCLEANFILES = Makefile.in
+-dist_man_MANS = dc1394_multiview.1  dc1394_reset_bus.1  dc1394_vloopback.1  grab_color_image.1  grab_gray_image.1  grab_partial_image.1
++dist_man_MANS = dc1394_reset_bus.1  dc1394_vloopback.1
+ AM_CPPFLAGS = -I$(top_srcdir)
+ A = grab_gray_image grab_partial_image grab_color_image \
+ 	grab_color_image2 helloworld ladybug grab_partial_pvn \

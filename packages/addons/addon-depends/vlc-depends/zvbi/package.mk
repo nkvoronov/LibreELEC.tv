@@ -13,7 +13,6 @@ PKG_SECTION="multimedia"
 PKG_SHORTDESC="Vertical Blanking Interval decoder (VBI)"
 PKG_LONGDESC="The VBI devices capture the hidden lines on a television picture that carry further information like closed-caption data, Teletext (primarily in Europe), and now Intercast and the ATVEC Internet television encodings."
 PKG_TOOLCHAIN="autotools"
-PKG_BUILD_FLAGS="+pic"
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
 

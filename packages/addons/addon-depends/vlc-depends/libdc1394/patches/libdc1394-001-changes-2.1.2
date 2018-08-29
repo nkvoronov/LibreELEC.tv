@@ -1,0 +1,51 @@
+Description: Upstream changes introduced in version 2.1.2-3ubuntu1
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ libdc1394-22 (2.1.2-3ubuntu1) natty; urgency=low
+ .
+   * Fix FTBFS with gold.
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Matthias Klose <doko@ubuntu.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+Index: libdc1394-22-2.2.0/dc1394/Makefile.in
+===================================================================
+--- libdc1394-22-2.2.0.orig/dc1394/Makefile.in	2012-03-06 08:54:55.000000000 +0100
++++ libdc1394-22-2.2.0/dc1394/Makefile.in	2012-03-10 16:01:09.105398901 +0100
+@@ -325,7 +325,7 @@
+ 	iso.c 		\
+ 	iso.h
+ 
+-@HAVE_LIBRAW1394_TRUE@@HAVE_LINUX_TRUE@LINUX_LIBADD = linux/libdc1394-linux.la
++@HAVE_LIBRAW1394_TRUE@@HAVE_LINUX_TRUE@LINUX_LIBADD = linux/libdc1394-linux.la -lpthread
+ @HAVE_LINUX_TRUE@JUJU_LIBADD = juju/libdc1394-juju.la
+ @HAVE_MACOSX_TRUE@MACOSX_LIBADD = macosx/libdc1394-macosx.la
+ @HAVE_WINDOWS_TRUE@WINDOWS_LIBADD = windows/libdc1394-windows.la
+Index: libdc1394-22-2.2.0/dc1394/Makefile.am
+===================================================================
+--- libdc1394-22-2.2.0.orig/dc1394/Makefile.am	2012-03-01 03:21:55.000000000 +0100
++++ libdc1394-22-2.2.0/dc1394/Makefile.am	2012-03-10 16:01:09.113401592 +0100
+@@ -31,7 +31,7 @@
+ 
+ if HAVE_LINUX
+ if HAVE_LIBRAW1394
+-  LINUX_LIBADD = linux/libdc1394-linux.la
++  LINUX_LIBADD = linux/libdc1394-linux.la -lpthread
+ endif
+   JUJU_LIBADD = juju/libdc1394-juju.la
+ endif

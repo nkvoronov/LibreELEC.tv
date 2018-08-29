@@ -12,8 +12,6 @@ PKG_DEPENDS_TARGET="toolchain openssl"
 PKG_SECTION="libs"
 PKG_LONGDESC="A library implementing the SSH2 protocol"
 
-
 PKG_CMAKE_OPTS_TARGET="-DBUILD_EXAMPLES=OFF \
-                       -DBUILD_TESTING=OFF \
-                       -DBUILD_SHARED_LIBS=ON"
+                       -DBUILD_TESTING=OFF"
 
