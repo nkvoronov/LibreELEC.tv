@@ -1835,8 +1835,8 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
              self.oe.dbg_log('services::exit', 'enter_function', 0)
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
 --- a/src/resources/lib/modules/system.py	2018-08-29 09:54:56.976175939 +0300
-+++ b/src/resources/lib/modules/system.py	2018-08-29 14:36:14.828100721 +0300
-@@ -130,10 +130,33 @@
++++ b/src/resources/lib/modules/system.py	2018-08-30 11:04:51.218214012 +0300
+@@ -130,10 +130,34 @@
                              'values': [],
                              'InfoText': 713,
                              },
@@ -1858,9 +1858,10 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +                    'settings': {
 +                        'Selectlocale': {
 +                            'name': 32403,
-+                            'value': 'none',
++                            'value': 'en_GB',
 +                            'action': 'set_locales',
 +                            'type': 'multivalue',
++                            'values': [],
 +                            'InfoText': 1702,
 +                            'order': 1,
 +                            },
@@ -1871,7 +1872,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                      'name': 32013,
                      'settings': {
                          'AutoUpdate': {
-@@ -141,25 +164,57 @@
+@@ -141,25 +165,57 @@
                              'value': 'auto',
                              'action': 'set_auto_update',
                              'type': 'multivalue',
@@ -1932,7 +1933,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          'ShowCustomChannels': {
                              'name': 32016,
-@@ -171,7 +226,7 @@
+@@ -171,7 +227,7 @@
                                  'value': ['manual'],
                                  },
                              'InfoText': 761,
@@ -1941,7 +1942,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          'CustomChannel1': {
                              'name': 32017,
-@@ -183,7 +238,7 @@
+@@ -183,7 +239,7 @@
                                  'value': ['1'],
                                  },
                              'InfoText': 762,
@@ -1950,7 +1951,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          'CustomChannel2': {
                              'name': 32018,
-@@ -195,7 +250,7 @@
+@@ -195,7 +251,7 @@
                                  'value': ['1'],
                                  },
                              'InfoText': 762,
@@ -1959,7 +1960,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          'CustomChannel3': {
                              'name': 32019,
-@@ -207,7 +262,7 @@
+@@ -207,7 +263,7 @@
                                  'value': ['1'],
                                  },
                              'InfoText': 762,
@@ -1968,7 +1969,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          'Channel': {
                              'name': 32015,
-@@ -220,7 +275,7 @@
+@@ -220,7 +276,7 @@
                                  },
                              'values': [],
                              'InfoText': 760,
@@ -1977,7 +1978,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          'Build': {
                              'name': 32020,
-@@ -233,7 +288,7 @@
+@@ -233,7 +289,7 @@
                                  },
                              'values': [],
                              'InfoText': 770,
@@ -1986,7 +1987,15 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                              },
                          },
                      },
-@@ -421,12 +476,18 @@
+@@ -321,6 +377,7 @@
+             self.set_hostname()
+             self.set_keyboard_layout()
+             self.set_hw_clock()
++            self.set_locales()
+             self.set_auto_update()
+             del self.is_service
+             self.oe.dbg_log('system::start_service', 'exit_function', 0)
+@@ -421,12 +478,18 @@
                  arrLayouts,
                  arrTypes,
                  self.arrVariants,
@@ -2005,7 +2014,23 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if not arrLayouts is None:
                  self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
                  self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
-@@ -544,7 +605,8 @@
+@@ -460,6 +523,15 @@
+             else:
+                 self.struct['ident']['settings']['hostname']['value'] = self.oe.DISTRIBUTION
+ 
++            # Locales
++
++            arrLocales = self.get_locales()
++            if not arrLocales is None:
++                self.struct['locale']['settings']['Selectlocale']['values'] = arrLocales
++                value = self.oe.read_setting('system', 'Locale')
++                if not value is None:
++                    self.struct['locale']['settings']['Selectlocale']['value'] = value
++
+             # AutoUpdate
+ 
+             value = self.oe.read_setting('system', 'AutoUpdate')
+@@ -544,7 +616,8 @@
                          ]['KeyboardLayout2']['value']]
                  self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
                                  + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
@@ -2015,7 +2040,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
                      os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
                  config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
-@@ -553,7 +615,8 @@
+@@ -553,7 +626,8 @@
                                    self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
                  config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
                                    ]['settings']['KeyboardLayout2']['value'] + '"\n')
@@ -2025,7 +2050,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  config_file.close()
                  parameters = [
                      '-display ' + os.environ['DISPLAY'],
-@@ -562,7 +625,7 @@
+@@ -562,7 +636,7 @@
                      '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
                              ]['KeyboardVariant2']['value'],
                      '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
@@ -2034,7 +2059,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                      ]
                  self.oe.execute('setxkbmap ' + ' '.join(parameters))
              elif self.nox_keyboard_layouts == True:
-@@ -623,12 +686,43 @@
+@@ -623,12 +697,54 @@
          except Exception, e:
              self.oe.dbg_log('system::set_auto_update', 'ERROR: (' + repr(e) + ')')
  
@@ -2059,12 +2084,23 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +    def get_locales(self):
 +        try:
 +            self.oe.dbg_log('system::get_locales', 'enter_function', 0)
++            # get list locales
++            # !!!!!!!!!!!!!
++            arrLocales = ['aa_DJ', 'aa_ER', 'aa_ER@saaho', 'aa_ET', 'af_ZA', 'agr_PE', 'ak_GH', 'am_ET', 'an_ES', 'anp_IN', 'ar_AE', 'ar_BH', 'ar_DZ', 'ar_EG', 'ar_IN', 'ar_IQ', 'ar_JO', 'ar_KW', 'ar_LB', 'ar_LY', 'ar_MA', 'ar_OM', 'ar_QA', 'ar_SA', 'ar_SD', 'ar_SS', 'ar_SY', 'ar_TN', 'ar_YE', 'as_IN', 'ast_ES', 'ayc_PE', 'az_AZ', 'az_IR', 'be_BY', 'be_BY@latin', 'bem_ZM', 'ber_DZ', 'ber_MA', 'bg_BG', 'bhb_IN', 'bho_IN', 'bho_NP', 'bi_VU', 'bn_BD', 'bn_IN', 'bo_CN', 'bo_IN', 'br_FR', 'br_FR@euro', 'brx_IN', 'bs_BA', 'byn_ER', 'ca_AD', 'ca_ES', 'ca_ES@euro', 'ca_ES@valencia', 'ca_FR', 'ca_IT', 'ce_RU', 'chr_US', 'cmn_TW', 'cns11643_stroke', 'crh_UA', 'cs_CZ', 'csb_PL', 'cv_RU', 'cy_GB', 'da_DK', 'de_AT', 'de_AT@euro', 'de_BE', 'de_BE@euro', 'de_CH', 'de_DE', 'de_DE@euro', 'de_IT', 'de_LI', 'de_LU', 'de_LU@euro', 'doi_IN', 'dv_MV', 'dz_BT', 'el_CY', 'el_GR', 'el_GR@euro', 'en_AG', 'en_AU', 'en_BW', 'en_CA', 'en_DK', 'en_GB', 'en_HK', 'en_IE', 'en_IE@euro', 'en_IL', 'en_IN', 'en_NG', 'en_NZ', 'en_PH', 'en_SC', 'en_SG', 'en_US', 'en_ZA', 'en_ZM', 'en_ZW', 'eo', 'es_AR', 'es_BO', 'es_CL', 'es_CO', 'es_CR', 'es_CU', 'es_DO', 'es_EC', 'es_ES', 'es_ES@euro', 'es_GT', 'es_HN', 'es_MX', 'es_NI', 'es_PA', 'es_PE', 'es_PR', 'es_PY', 'es_SV', 'es_US', 'es_UY', 'es_VE', 'et_EE', 'eu_ES', 'eu_ES@euro', 'fa_IR', 'ff_SN', 'fi_FI', 'fi_FI@euro', 'fil_PH', 'fo_FO', 'fr_BE', 'fr_BE@euro', 'fr_CA', 'fr_CH', 'fr_FR', 'fr_FR@euro', 'fr_LU', 'fr_LU@euro', 'fur_IT', 'fy_DE', 'fy_NL', 'ga_IE', 'ga_IE@euro', 'gd_GB', 'gez_ER', 'gez_ER@abegede', 'gez_ET', 'gez_ET@abegede', 'gl_ES', 'gl_ES@euro', 'gu_IN', 'gv_GB', 'ha_NG', 'hak_TW', 'he_IL', 'hi_IN', 'hif_FJ', 'hne_IN', 'hr_HR', 'hsb_DE', 'ht_HT', 'hu_HU', 'hy_AM', 'i18n', 'i18n_ctype', 'ia_FR', 'id_ID', 'ig_NG', 'ik_CA', 'is_IS', 'iso14651_t1', 'iso14651_t1_common', 'iso14651_t1_pinyin', 'it_CH', 'it_IT', 'it_IT@euro', 'iu_CA', 'ja_JP', 'ka_GE', 'kab_DZ', 'kk_KZ', 'kl_GL', 'km_KH', 'kn_IN', 'ko_KR', 'kok_IN', 'ks_IN', 'ks_IN@devanagari', 'ku_TR', 'kw_GB', 'ky_KG', 'lb_LU', 'lg_UG', 'li_BE', 'li_NL', 'lij_IT', 'ln_CD', 'lo_LA', 'lt_LT', 'lv_LV', 'lzh_TW', 'mag_IN', 'mai_IN', 'mai_NP', 'mfe_MU', 'mg_MG', 'mhr_RU', 'mi_NZ', 'miq_NI', 'mjw_IN', 'mk_MK', 'ml_IN', 'mn_MN', 'mni_IN', 'mr_IN', 'ms_MY', 'mt_MT', 'my_MM', 'nan_TW', 'nan_TW@latin', 'nb_NO', 'nds_DE', 'nds_NL', 'ne_NP', 'nhn_MX', 'niu_NU', 'niu_NZ', 'nl_AW', 'nl_BE', 'nl_BE@euro', 'nl_NL', 'nl_NL@euro', 'nn_NO', 'nr_ZA', 'nso_ZA', 'oc_FR', 'om_ET', 'om_KE', 'or_IN', 'os_RU', 'pa_IN', 'pa_PK', 'pap_AW', 'pap_CW', 'pl_PL', 'ps_AF', 'pt_BR', 'pt_PT', 'pt_PT@euro', 'quz_PE', 'raj_IN', 'ro_RO', 'ru_RU', 'ru_UA', 'rw_RW', 'sa_IN', 'sat_IN', 'sc_IT', 'sd_IN', 'sd_IN@devanagari', 'se_NO', 'sgs_LT', 'shn_MM', 'shs_CA', 'si_LK', 'sid_ET', 'sk_SK', 'sl_SI', 'sm_WS', 'so_DJ', 'so_ET', 'so_KE', 'so_SO', 'sq_AL', 'sq_MK', 'sr_ME', 'sr_RS', 'sr_RS@latin', 'ss_ZA', 'st_ZA', 'sv_FI', 'sv_FI@euro', 'sv_SE', 'sw_KE', 'sw_TZ', 'szl_PL', 'ta_IN', 'ta_LK', 'tcy_IN', 'te_IN', 'tg_TJ', 'th_TH', 'the_NP', 'ti_ER', 'ti_ET', 'tig_ER', 'tk_TM', 'tl_PH', 'tn_ZA', 'to_TO', 'tpi_PG', 'tr_CY', 'tr_TR', 'translit_circle', 'translit_cjk_compat', 'translit_cjk_variants', 'translit_combining', 'translit_compat', 'translit_font', 'translit_fraction', 'translit_hangul', 'translit_narrow', 'translit_neutral', 'translit_small', 'translit_wide', 'ts_ZA', 'tt_RU', 'tt_RU@iqtelif', 'ug_CN', 'uk_UA', 'unm_US', 'ur_IN', 'ur_PK', 'uz_UZ', 'uz_UZ@cyrillic', 've_ZA', 'vi_VN', 'wa_BE', 'wa_BE@euro', 'wae_CH', 'wal_ET', 'wo_SN', 'xh_ZA', 'yi_US', 'yo_NG', 'yue_HK', 'yuw_PG', 'zh_CN', 'zh_HK', 'zh_SG', 'zh_TW', 'zu_ZA']
++            arrLocales.sort()
++            self.oe.dbg_log('system::get_locales', 'exit_function', 0)
++            return arrLocales
 +        except Exception, e:
 +            self.oe.dbg_log('system::get_locales', 'ERROR: (' + repr(e) + ')')
 +
 +    def set_locales(self, listItem=None):
 +        try:
 +            self.oe.dbg_log('system::set_locales', 'enter_function', 0)
++            if not listItem == None:
++                self.set_value(listItem)
++            # update locales
++            # !!!!!!!!!!!!!
++            self.oe.dbg_log('system::set_locales', 'exit_function', 0)
 +        except Exception, e:
 +            self.oe.dbg_log('system::set_locales', 'ERROR: (' + repr(e) + ')')
 +
@@ -2078,7 +2114,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if os.path.exists(self.NOX_KEYBOARD_INFO):
                  for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
                      if os.path.isfile(layout):
-@@ -676,8 +770,20 @@
+@@ -676,8 +792,20 @@
                                  if subnode_2.nodeName == 'description':
                                      if hasattr(subnode_2.firstChild, 'nodeValue'):
                                          arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
@@ -2099,7 +2135,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              else:
                  self.oe.dbg_log('system::get_keyboard_layouts', 'exit_function (no keyboard layouts found)', 0)
                  return (None, None, None)
-@@ -686,6 +792,7 @@
+@@ -686,6 +814,7 @@
                  arrLayouts,
                  arrTypes,
                  arrVariants,
