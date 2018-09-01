@@ -22,7 +22,7 @@ case "$LINUX" in
     PKG_VERSION="95ba9d626c0fce672caa296f5911ab9190881642"
     PKG_SHA256="df34b086993fd3552efae92d84d28990a61a1ca79a8703a4b64241ab80e3b6db"
     PKG_URL="https://github.com/LibreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_DIR="linux-amlogic-$PKG_VERSION"
+    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host u-boot-tools-aml:host"
     PKG_BUILD_PERF="no"
     ;;
@@ -30,24 +30,25 @@ case "$LINUX" in
     PKG_VERSION="29941550f05282411c00c437b4c18bb5c6319d63"
     PKG_SHA256="c97da3b9cd3d34432e69aeaa740076afee977b9ed7c0d0a8475f3f019288dd36"
     PKG_URL="https://github.com/LibreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_DIR="linux-amlogic-$PKG_VERSION"
+    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
     PKG_BUILD_PERF="no"
     ;;
   rockchip-4.4)
-    PKG_VERSION="eae92ae2b930999857df47c3057327c1c490454b"
-    PKG_SHA256="da453ca6ecefc3719a1165bc7b08fe00fc2b50ab64f6289ef6f3670a9fc1ceca"
+    PKG_VERSION="bca2464422eb8dd734f9218265dae256a82299be"
+    PKG_SHA256="baaea04ca4a1b34e0bfce36bfcf74d65b06ae371e29fa2ef96d26327e55b690d"
     PKG_URL="https://github.com/rockchip-linux/kernel/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_DIR="kernel-$PKG_VERSION"
+    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   raspberrypi)
-    PKG_VERSION="db81c14ce9fbd705c2d3936edecbc6036ace6c05" # 4.14.54
-    PKG_SHA256="ae553b2deb6854646e56369cab57d3018bca2056b2ca2752c5e051093968635e"
+    PKG_VERSION="0f937c8dc3201ebffa6c617c616fd7c65db65959" # 4.14.67
+    PKG_SHA256="2d839aebdeebda096a40180378605ad196c98bf8bf997e55fb831ca8b331bf39"
     PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
+    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="4.17.6"
-    PKG_SHA256="259dd689d19888936005d8dd75946902842b7e5734dc343061f951c9d2996395"
+    PKG_VERSION="4.18.3"
+    PKG_SHA256="81ed3ccef8eb43cba3d2451a963d0bbaf5392af98435d42caee82d019a8443d4"
     PKG_URL="https://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     PKG_PATCH_DIRS="default"
     ;;
@@ -67,7 +68,7 @@ if [ "$PKG_BUILD_PERF" != "no" ] && grep -q ^CONFIG_PERF_EVENTS= $PKG_KERNEL_CFG
 fi
 
 if [ "$TARGET_ARCH" = "x86_64" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-ucode:host kernel-firmware"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-ucode:host kernel-firmware elfutils:host"
 fi
 
 if [ "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
@@ -216,7 +217,10 @@ make_target() {
     done
   fi
 
-  kernel_make $KERNEL_TARGET $KERNEL_MAKE_EXTRACMD
+  # the modules target is required to get a proper Module.symvers
+  # file with symbols from built-in and external modules.
+  # Without that it'll contain only the symbols from the kernel
+  kernel_make $KERNEL_TARGET $KERNEL_MAKE_EXTRACMD modules
 
   if [ "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
     DTB_BLOBS=($(ls arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/*.dtb 2>/dev/null || true))

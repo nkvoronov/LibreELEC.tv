@@ -3,20 +3,31 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="kodi"
-#PKG_VERSION="1c67471"
-PKG_VERSION="269a24c"
-PKG_SHA256="006a4b1ff32af2616f13aba63c86654b32cf9a972516a33e64a032003bb6dd19"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-#PKG_URL="https://github.com/xbmc/xbmc.git"
-#PKG_GIT_CLONE_BRANCH="leia"
-PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
-PKG_SOURCE_DIR="xbmc-$PKG_VERSION*"
-PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun libfmt lirc libfstrcmp"
+PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers"
 PKG_SECTION="mediacenter"
 PKG_SHORTDESC="kodi: Kodi Mediacenter"
 PKG_LONGDESC="Kodi Media Center (which was formerly named Xbox Media Center or XBMC) is a free and open source cross-platform media player and home entertainment system software with a 10-foot user interface designed for the living-room TV. Its graphical user interface allows the user to easily manage video, photos, podcasts, and music from a computer, optical disk, local network, and the internet using a remote control."
+
+PKG_PATCH_DIRS="$KODI_VENDOR"
+ case $KODI_VENDOR in
+  raspberrypi)
+    PKG_VERSION="newclock5_18.0b1v2-Leia"
+    PKG_SHA256="7434263c55aa528f3e3d8f455cffe3148e3707a1c1068f80bd08829094e16576"
+    PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
+    PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
+    ;;
+  *)
+    PKG_VERSION="18.0b1v2-Leia"
+    PKG_SHA256="3808aa97723b710a0774261116e3387f091bc3d8150b9ba49ef36cb30b3d7ba2"
+    PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
+    PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
+# PKG_URL="https://github.com/xbmc/xbmc.git"
+# PKG_GIT_CLONE_BRANCH="leia"
+    ;;
+esac
 
 # Single threaded LTO is very slow so rely on Kodi for parallel LTO support
 if [ "$LTO_SUPPORT" = "yes" ] && ! build_with_debug; then
@@ -142,13 +153,6 @@ else
   KODI_UPNP="-DENABLE_UPNP=OFF"
 fi
 
-if [ "$KODI_SSHLIB_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libssh"
-  KODI_SSH="-DENABLE_SSH=ON"
-else
-  KODI_SSH="-DENABLE_SSH=OFF"
-fi
-
 if target_has_feature neon; then
   KODI_NEON="-DENABLE_NEON=ON"
 else
@@ -184,7 +188,7 @@ if [ ! "$KODIPLAYER_DRIVER" = default ]; then
   if [ "$KODIPLAYER_DRIVER" = bcm2835-driver ]; then
     KODI_PLAYER="-DCORE_PLATFORM_NAME=rbpi"
   elif [ "$KODIPLAYER_DRIVER" = mesa -o "$KODIPLAYER_DRIVER" = rkmpp ]; then
-    KODI_PLAYER="-DCORE_PLATFORM_NAME=gbm"
+    KODI_PLAYER="-DCORE_PLATFORM_NAME=gbm -DGBM_RENDER_SYSTEM=gles"
     CFLAGS="$CFLAGS -DMESA_EGL_NO_X11_HEADERS"
     CXXFLAGS="$CXXFLAGS -DMESA_EGL_NO_X11_HEADERS"
   elif [ "$KODIPLAYER_DRIVER" = libamcodec ]; then
@@ -215,6 +219,7 @@ PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$TOOLCHAIN \
                        -DENABLE_LDGOLD=ON \
                        -DENABLE_DEBUGFISSION=OFF \
                        -DENABLE_APP_AUTONAME=OFF \
+                       -DENABLE_INTERNAL_FLATBUFFERS=OFF \
                        $PKG_KODI_USE_LTO \
                        $KODI_ARCH \
                        $KODI_NEON \
@@ -228,7 +233,6 @@ PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$TOOLCHAIN \
                        $KODI_AVAHI \
                        $KODI_UPNP \
                        $KODI_MYSQL \
-                       $KODI_SSH \
                        $KODI_AIRPLAY \
                        $KODI_AIRTUNES \
                        $KODI_OPTICAL \

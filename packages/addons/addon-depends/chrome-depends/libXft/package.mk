@@ -20,3 +20,7 @@ else
 fi
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-static $SHARED"
+
+makeinstall_target() {
+  :
+}
