@@ -12,5 +12,6 @@ PKG_DEPENDS_TARGET="toolchain libvorbis libpng SDL"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="Theora is an open video codec being developed by the Xiph.org Foundation as part of their Ogg project. Theora is originally derived from On2's VP3 codec, and has improved on it significantly with the merging of code from the Thusnelda branch."
 PKG_LONGDESC="Theora is an open video codec being developed by the Xiph.org Foundation as part of their Ogg project. Theora is originally derived from On2's VP3 codec, and has improved on it significantly with the merging of code from the Thusnelda branch."
+PKG_BUILD_FLAGS="+pic"
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared --with-sdl-prefix=$SYSROOT_PREFIX/usr --disable-examples"

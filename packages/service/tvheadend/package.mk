@@ -64,7 +64,8 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --python=$TOOLCHAIN/bin/python"
 
 post_unpack() {
-  sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER' ~ libreelec v'$PKG_VERSION'"/g' -i $PKG_BUILD/support/version
+  rm -fr $PKG_BUILD/.git
+  sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER' ~ libreelec git'$PKG_VERSION'"/g' -i $PKG_BUILD/support/version
   sed -e 's|'/usr/bin/pngquant'|'$TOOLCHAIN/bin/pngquant'|g' -i $PKG_BUILD/support/mkbundle
 }
 

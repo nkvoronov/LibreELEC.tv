@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SET_LOCALE="ru_RU"
+SET_LOCALE="en_GB"
 SET_CHARSET="UTF-8"
 
 if [ "$1" != "" ]; then

@@ -13,5 +13,6 @@ PKG_SECTION="multimedia"
 PKG_SHORTDESC="library for MPEG TS and DVB PSI tables decoding and generating"
 PKG_LONGDESC="libdvbpsi is a simple library designed for MPEG TS and DVB PSI tables decoding and generating."
 PKG_TOOLCHAIN="autotools"
+PKG_BUILD_FLAGS="+pic"
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
