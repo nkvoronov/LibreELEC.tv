@@ -126,6 +126,7 @@ post_makeinstall_target() {
     cp -P $PKG_DIR/scripts/xorg-configure $INSTALL/usr/lib/xorg
       sed -i -e "s|@NVIDIA_VERSION@|$(get_pkg_version xf86-video-nvidia)|g" $INSTALL/usr/lib/xorg/xorg-configure
       sed -i -e "s|@NVIDIA_LEGACY_VERSION@|$(get_pkg_version xf86-video-nvidia-legacy)|g" $INSTALL/usr/lib/xorg/xorg-configure
+      chmod +x $INSTALL/usr/lib/xorg/xorg-configure
 
   if [ ! "$OPENGL" = "no" ]; then
     if [ -f $INSTALL/usr/lib/xorg/modules/extensions/libglx.so ]; then
