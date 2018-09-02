@@ -18,4 +18,6 @@ PKG_CONFIGURE_OPTS_TARGET="--enable-introspection=no --disable-gtk-doc"
 
 pre_configure_target() {
   export GDK_PIXBUF_QUERYLOADERS=$SYSROOT_PREFIX/usr/bin
+  export PKG_CONFIG_PATH="$(get_build_dir pango)/.$TARGET_NAME"
+  export CFLAGS="$CFLAGS -I$(get_build_dir pango) -L$(get_build_dir pango)/.$TARGET_NAME/pango"
 }
