@@ -47,7 +47,7 @@ else
     GIT_BUILD=$(git rev-list HEAD | wc -l)
   fi
   GIT_BUILD="$(($GIT_BUILD-$GIT_DEP))"
-  GIT_ABBREV=$(git log -1 --pretty=format:%h)
+  GIT_ABBREV=$(git log -1 --pretty=format:%h | cut -c 1-7)
   LIBREELEC_VERSION=$LIBREELEC_VERSION-$BUILD_DATE-r$GIT_BUILD-g$GIT_ABBREV
 fi
 
