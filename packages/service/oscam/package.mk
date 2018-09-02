@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="oscam"
-PKG_VERSION="11420"
-PKG_SHA256="7b6399bae2adaad5fd099853baec92e2e4ad9a11b34100aaf8231a1dee9d2ea3"
+PKG_VERSION="11431"
+#PKG_SHA256="7b6399bae2adaad5fd099853baec92e2e4ad9a11b34100aaf8231a1dee9d2ea3"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
 #PKG_URL="http://www.streamboard.tv/svn/oscam/trunk"
-PKG_URL="https://www.dropbox.com/s/a410q9ywq5yjnbl/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="https://www.dropbox.com/s/o1tdf8b22pljzbp/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain openssl pcsc-lite"
 PKG_SECTION="service.softcam"
 PKG_SHORTDESC="OSCam: an Open Source Conditional Access Modul"
@@ -23,7 +23,8 @@ PKG_CMAKE_OPTS_TARGET="-DLIBUSBDIR=$SYSROOT_PREFIX/usr \
                        -DWITH_DEBUG=0 \
                        -DOPTIONAL_INCLUDE_DIR=$SYSROOT_PREFIX/usr/include \
                        -DSTATIC_LIBUSB=1 \
-                       -DCLOCKFIX=0"
+                       -DCLOCKFIX=0 \
+                       -DCARDREADER_DB2COM=OFF"
 
 pre_configure_target() {
   export OSCAM_VERSION="$PKG_VERSION"
