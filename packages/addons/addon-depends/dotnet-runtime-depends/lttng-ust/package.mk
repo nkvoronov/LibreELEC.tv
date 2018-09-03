@@ -13,3 +13,7 @@ PKG_LONGDESC="LTTng is an open source tracing framework for Linux"
 PKG_TOOLCHAIN="autotools"
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-man-pages"
+
+makeinstall_target() {
+  make install DESTDIR="$INSTALL/../.INSTALL_PKG"
+}
