@@ -27,7 +27,7 @@ PKG_CONFIGURE_OPTS_TARGET="--with-ft-prefix=$SYSROOT_PREFIX/usr \
                            --disable-libX11 \
                            --enable-libhid \
                            --disable-libpng \
-                           --enable-drivers=all"
+                           --enable-drivers=all,!xosd"
 
 addon() {
   drivers="none|$(cat $PKG_BUILD/.$TARGET_NAME/config.log | sed -n "s|^DRIVERS=' \(.*\)'|\1|p" | sed "s|.so||g" | tr ' ' '|')"

@@ -75,7 +75,8 @@ else
   else
     IMAGE_NAME="$DISTRONAME-$TARGET_VERSION"
   fi
-   if [ -n "$UBOOT_SYSTEM" ]; then
+
+  if [ -n "$UBOOT_SYSTEM" ]; then
     IMAGE_NAME="$IMAGE_NAME-$UBOOT_SYSTEM"
   fi
 fi
@@ -108,7 +109,6 @@ ln -sf /usr/sbin $INSTALL/sbin
 
 if [ "$TARGET_ARCH" = "x86_64" ]; then
   ln -s /usr/lib $INSTALL/lib64
-  mkdir -p $INSTALL/usr
   ln -s /usr/lib $INSTALL/usr/lib64
 fi
 

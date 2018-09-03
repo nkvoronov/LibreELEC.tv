@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
+. /etc/profile
+
 SET_LOCALE="en_GB"
 SET_CHARSET="UTF-8"
 
