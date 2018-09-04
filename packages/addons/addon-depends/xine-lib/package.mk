@@ -12,7 +12,6 @@ PKG_DEPENDS_TARGET="toolchain ffmpeg"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="xine is a high-performance, portable and reusable multimedia playback engine."
 PKG_LONGDESC="xine is a high-performance, portable and reusable multimedia playback engine."
-PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="-lto"
 
 pre_build_target() {
@@ -29,9 +28,4 @@ configure_target() {
              --disable-aalib \
              --disable-vcd \
              --disable-musepack
-}
-
-make_target() {
-  make
-  $MAKEINSTALL
 }

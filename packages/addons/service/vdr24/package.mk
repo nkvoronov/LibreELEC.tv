@@ -3,7 +3,7 @@
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.0"
-PKG_REV="159"
+PKG_REV="160"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -857,7 +857,7 @@ addon() {
   if [ "$ENABLE_VDR_PLUGIN_XINELIBOUTPUT" = yes ]; then
 
     VDR_PLUGIN_XINEOUTPUT_DIR=$(get_build_dir vdr-plugin-xineliboutput)
-    XINE_VERSION="2.6"
+    XINE_VERSION="2.7"
 
     #bin
     cp -P $VDR_PLUGIN_XINEOUTPUT_DIR/vdr-fbfe $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -883,7 +883,7 @@ addon() {
     XINELIB_DIR=$(get_build_dir xine-lib)
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -PR $XINELIB_DIR/.install_pkg/usr/lib/xine $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $XINELIB_DIR/.install_pkg/usr/lib/libxine.so.2.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxine.so.2
+      cp -P $XINELIB_DIR/.install_pkg/usr/lib/libxine.so.2.7.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxine.so.2
   fi
 
   #plugin xmltv2vdr
