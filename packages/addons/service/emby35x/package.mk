@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="emby35x"
-PKG_VERSION="3.5.2.0"
-PKG_SHA256="2ed573b4d43904aee4de14b582e25d0f33be7c2f85534f8232ef3b785ccb6b3a"
+PKG_VERSION="3.5.3.0"
+PKG_SHA256="7241e4b19579eef080109dd67ffe50a9fbdbcfd74fd73c2d7723adb442f63151"
 PKG_REV="355"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
