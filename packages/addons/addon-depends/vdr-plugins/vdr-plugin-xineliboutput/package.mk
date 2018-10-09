@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-xineliboutput"
-PKG_VERSION="97b7e78"
+PKG_VERSION="b298178"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://sourceforge.net/projects/xineliboutput/"
