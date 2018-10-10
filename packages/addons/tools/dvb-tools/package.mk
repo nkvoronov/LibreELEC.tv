@@ -24,6 +24,7 @@ ENABLE_DVBSNOOP="no"
 ENABLE_MUMUDVB="no"
 ENABLE_SZAP_S2="yes"
 ENABLE_TUNE_S2="yes"
+ENABLE_T2SCAN="yes"
 ENABLE_WSCAN="yes"
 
 if [ "$ENABLE_BLINDSCAN_S2" = yes ]; then
@@ -52,6 +53,10 @@ fi
 
 if [ "$ENABLE_TUNE_S2" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tune-s2"
+fi
+
+if [ "$ENABLE_T2SCAN" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET t2scan"
 fi
 
 if [ "$ENABLE_WSCAN" = yes ]; then
@@ -100,6 +105,10 @@ addon() {
   # tune-s2
   if [ "$ENABLE_TUNE_S2" = yes ]; then
     cp -P $(get_build_dir tune-s2)/tune-s2 $ADDON_BUILD/$PKG_ADDON_ID/bin
+  fi
+  # t2scan
+  if [ "$ENABLE_T2SCAN" = yes ]; then
+    cp -P $(get_build_dir t2scan)/.$TARGET_NAME/t2scan $ADDON_BUILD/$PKG_ADDON_ID/bin
   fi
   # w_scan
   if [ "$ENABLE_WSCAN" = yes ]; then

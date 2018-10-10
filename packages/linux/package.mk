@@ -35,20 +35,20 @@ case "$LINUX" in
     PKG_BUILD_PERF="no"
     ;;
   rockchip-4.4)
-    PKG_VERSION="bca2464422eb8dd734f9218265dae256a82299be"
-    PKG_SHA256="baaea04ca4a1b34e0bfce36bfcf74d65b06ae371e29fa2ef96d26327e55b690d"
+    PKG_VERSION="aa8bacf821e5c8ae6dd8cae8d64011c741659945"
+    PKG_SHA256="a2760fe89a15aa7be142fd25fb08ebd357c5d855c41f1612cf47c6e89de39bb3"
     PKG_URL="https://github.com/rockchip-linux/kernel/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   raspberrypi)
-    PKG_VERSION="27e84c625ebbdfccf78220f2f90995a050c7b64a" # 4.14.69
-    PKG_SHA256="fd75cc94436ed88133d1e3567473fd0e9a3412497d6b335de6ec953968e22fcc"
+    PKG_VERSION="3a1a31d70660f87ee7ec49ffc3811f633bb0f93d" # 4.18.11
+    PKG_SHA256="7daf570037836bf97ba61ff861a45b987cedf192bf44515dddf695824fa87ed1"
     PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="4.18.3"
-    PKG_SHA256="81ed3ccef8eb43cba3d2451a963d0bbaf5392af98435d42caee82d019a8443d4"
+    PKG_VERSION="4.18.11"
+    PKG_SHA256="36d319f5a6caf5dd6ab2a4802b800799b56ef5963d742f2d147fabadf4822c8c"
     PKG_URL="https://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     PKG_PATCH_DIRS="default"
     ;;
