@@ -2,8 +2,8 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="ImageMagick"
-PKG_VERSION="6.9.10-10"
-#PKG_SHA256="8ea6f3fccf07ba96ceadec845042828315285dbe5625701065d1e7403bf7aea7"
+PKG_VERSION="6.9.10-12"
+PKG_SHA256="bb0224b9a530dc89b792594c5d1f04e568a976b456fd6c738715d2cf80ab8409"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.imagemagick.org"
