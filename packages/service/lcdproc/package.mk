@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="lcdproc"
-PKG_VERSION="79fa538"
+PKG_VERSION="8cbfd82e9fca725facc900bbc539ffd958b35347"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"

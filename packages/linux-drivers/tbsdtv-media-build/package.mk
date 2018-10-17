@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="tbsdtv-media-build"
-PKG_VERSION="2308797"
+PKG_VERSION="4735369fca22122cbc4dffd16c36026747563b0b"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/linux_media/wiki"
