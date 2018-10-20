@@ -2106,9 +2106,9 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +            if not listItem == None:
 +                self.set_value(listItem)
 +            # update locales
-+            newlocale = self.struct['locale']['settings']['SystemLocale']['value']
-+            if oldLocale != newlocale:
-+                subprocess.call(['/usr/bin/generate_locale', locale])
++            newLocale = self.struct['locale']['settings']['SystemLocale']['value']
++            if oldLocale != newLocale:
++                subprocess.call(['/usr/bin/generate_locale', newLocale])
 +            self.oe.dbg_log('system::set_locales', 'exit_function', 0)
 +        except Exception, e:
 +            self.oe.dbg_log('system::set_locales', 'ERROR: (' + repr(e) + ')')
