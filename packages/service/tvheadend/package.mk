@@ -4,13 +4,10 @@
 PKG_NAME="tvheadend"
 PKG_VERSION="1648c7b7b"
 PKG_VERSION_NUMBER="4.3.1520"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
 PKG_DEPENDS_TARGET="toolchain avahi curl dvb-apps ffmpegx libdvbcsa libhdhomerun libiconv openssl pngquant:host Python2:host tvh-dtv-scan-tables"
-PKG_SECTION="service"
-PKG_SHORTDESC="Tvheadend: a TV streaming server for Linux"
 PKG_LONGDESC="Tvheadend: is a TV streaming server for Linux supporting DVB-S/S2, DVB-C, DVB-T/T2, IPTV, SAT>IP, ATSC and ISDB-T"
 
 # basic transcoding options

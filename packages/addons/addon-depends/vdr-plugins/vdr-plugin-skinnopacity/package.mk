@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-skinnopacity"
 PKG_VERSION="f593ad5"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/skin-nopacity"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-skinnopacity.git"
 PKG_DEPENDS_TARGET="toolchain vdr ImageMagick"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="nOpacity skin for VDR."
 PKG_LONGDESC="nOpacity skin for VDR. nOpacity is a highly customizable true color skin for the on-screen-display (OSD) of the Linux Video Disc Recorder VDR."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

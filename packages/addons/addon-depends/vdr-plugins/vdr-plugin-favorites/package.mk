@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-favorites"
 PKG_VERSION="8d3f3a5"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.vdr-wiki.de/wiki/index.php/Favorites-plugin"
 PKG_URL="https://github.com/nkvoronov/vdr-plugin-favorites.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="Favorite Channels Plugin for VDR."
 PKG_LONGDESC="Favorite Channels Plugin for VDR. Favorites is a VDR-Plugin that implements a favorite channels menu. It makes it easy to recall (switch to) your favorite channels."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

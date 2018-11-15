@@ -4,13 +4,10 @@
 PKG_NAME="xine-lib"
 PKG_VERSION="1.2.9"
 PKG_SHA256="32b34e8049feb762d75a551d5d2cdb56c396fdd83e35b9b7de5fd08e498e948d"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.xine-project.org/"
 PKG_URL="https://downloads.sourceforge.net/project/xine/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain ffmpeg"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="xine is a high-performance, portable and reusable multimedia playback engine."
 PKG_LONGDESC="xine is a high-performance, portable and reusable multimedia playback engine."
 PKG_BUILD_FLAGS="-lto"
 

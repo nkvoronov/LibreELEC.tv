@@ -3,13 +3,10 @@
 
 PKG_NAME="custom"
 PKG_VERSION=""
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE=""
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="virtual"
-PKG_SHORTDESC="custom: Metapackage for installing custom package"
 PKG_LONGDESC="custom is a Metapackage for installing custom package"
 
 if [ "$KODI_REPOSITORY_YELLOWDRAGON" = "yes" ]; then

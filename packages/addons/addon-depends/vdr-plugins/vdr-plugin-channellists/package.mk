@@ -4,13 +4,10 @@
 PKG_NAME="vdr-plugin-channellists"
 PKG_VERSION="0.0.6"
 PKG_SHA256="ea753416e83006cd4639526b2d2940947efe6516f8f274c2fed40c7da3a0fc8a"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.zulu-entertainment.de/content.php?f=VDR-Plugins&sub=Channellists"
 PKG_URL="https://www.dropbox.com/s/47fqg8t59zlzsze/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="A VDR Plugin to manage your Channellists"
 PKG_LONGDESC="Channellists - A VDR Plugin to manage your Channellists"
 PKG_TOOLCHAIN="manual"
 

@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-ddci2"
 PKG_VERSION="05dd988"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/jasmin-j/vdr-plugin-ddci2"
 PKG_URL="https://github.com/jasmin-j/vdr-plugin-ddci2.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="Support for stand alone CI by Digital Devices."
 PKG_LONGDESC="Support for stand alone CI by Digital Devices."
 PKG_TOOLCHAIN="manual"
 

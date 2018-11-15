@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-skindesigner"
 PKG_VERSION="5b03953"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-skindesigner"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-skindesigner.git"
 PKG_DEPENDS_TARGET="toolchain vdr librsvg libxml2"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="A VDR skinning engine that displays XML based Skins"
 PKG_LONGDESC="A VDR skinning engine that displays XML based Skins"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

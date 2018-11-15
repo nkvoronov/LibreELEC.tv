@@ -4,13 +4,10 @@
 PKG_NAME="transmission"
 PKG_VERSION="2.94"
 PKG_SHA256="35442cc849f91f8df982c3d0d479d650c6ca19310a994eccdaa79a4af3916b7d"
-PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"
 PKG_URL="https://github.com/transmission/transmission-releases/raw/master/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain zlib openssl curl libevent"
-PKG_SECTION="service"
-PKG_SHORTDESC="transmission: a fast, easy and free BitTorrent client"
 PKG_LONGDESC="transmission is a fast, easy and free BitTorrent client"
 PKG_TOOLCHAIN="autotools"
 

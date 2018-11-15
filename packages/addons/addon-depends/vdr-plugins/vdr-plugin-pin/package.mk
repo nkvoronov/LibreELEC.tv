@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-pin"
 PKG_VERSION="bf558fd"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/vdr-projects/vdr-plugin-pin"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-pin.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="PIN protection plugin for VDR."
 PKG_LONGDESC="PIN protection plugin for VDR. With this plugin, selected recordings, channels, shows or shell scripts can be protected by a single PIN to restrict access for children."
 PKG_TOOLCHAIN="manual"
 

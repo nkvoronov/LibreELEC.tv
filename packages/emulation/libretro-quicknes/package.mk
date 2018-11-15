@@ -2,16 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-quicknes"
-PKG_VERSION="6d50e29"
-PKG_SHA256="fcc9e87fc0f1192dcadf71c316e383f2400c0d29af0ed2b275aafffc14364cb3"
-PKG_ARCH="any"
+PKG_VERSION="264639f12f490db85537a38a06a5df76222cf35a"
+PKG_SHA256="09202bb7a86a238d593f39b7d452bc08b96e9acf209cb31de3240649b2144687"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/QuickNES_Core"
 PKG_URL="https://github.com/libretro/QuickNES_Core/archive/$PKG_VERSION.tar.gz"
-PKG_SOURCE_DIR="QuickNES_Core-$PKG_VERSION*"
 PKG_DEPENDS_TARGET="toolchain kodi-platform"
-PKG_SECTION="emulation"
-PKG_SHORTDESC="game.libretro.quicknes: QuickNES for Kodi"
 PKG_LONGDESC="game.libretro.quicknes: QuickNES for Kodi"
 
 PKG_LIBNAME="quicknes_libretro.so"

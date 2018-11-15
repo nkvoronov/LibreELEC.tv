@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-dynamite"
 PKG_VERSION="8081711"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/flensrocker/vdr-plugin-dynamite"
 PKG_URL="https://github.com/flensrocker/vdr-plugin-dynamite.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="A VDR plugin add hotplug functionality to the vdr."
 PKG_LONGDESC="A VDR plugin add hotplug functionality to the vdr. The goal of this plugin is to add hotplug functionality to the vdr. This is achieved by wrapping a helper device around cDvbDevice which checks if the hardware is available."
 PKG_TOOLCHAIN="manual"
 

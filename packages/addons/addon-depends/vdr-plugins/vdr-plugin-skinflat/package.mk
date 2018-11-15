@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-skinflat"
 PKG_VERSION="1040bb7"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-skinflat"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-skinflat.git"
 PKG_DEPENDS_TARGET="toolchain vdr ImageMagick"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="A VDR plugin, "the" flat skin for VDR."
 PKG_LONGDESC="A VDR plugin, "the" flat skin for VDR. A simple skin for vdr without any configuration."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

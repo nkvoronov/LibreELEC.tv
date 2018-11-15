@@ -2,16 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-beetle-pce-fast"
-PKG_VERSION="f61ab365200b3e3eed56bf3fc27fdc879c5d5269"
-PKG_SHA256="94cca490864984e64074cdd9aa4b1f0b92e7ce24dcb29b5e398035d5905c3861"
-PKG_ARCH="any"
+PKG_VERSION="7f6f0618b96014badaba0545fd68b98656cdceb3"
+PKG_SHA256="cccecf92082de0c7c2ea66b7b043b383098d7443db3b2a58c7186d0752e020bc"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/beetle-pce-fast-libretro"
 PKG_URL="https://github.com/libretro/beetle-pce-fast-libretro/archive/$PKG_VERSION.tar.gz"
-PKG_SOURCE_DIR="beetle-pce-fast-libretro-$PKG_VERSION*"
 PKG_DEPENDS_TARGET="toolchain kodi-platform"
-PKG_SECTION="emulation"
-PKG_SHORTDESC="game.libretro.beetle-pce-fast: Beetle PCE Fast for Kodi"
 PKG_LONGDESC="game.libretro.beetle-pce-fast: Beetle PCE Fast for Kodi"
 
 PKG_LIBNAME="mednafen_pce_fast_libretro.so"

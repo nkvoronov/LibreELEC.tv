@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-live"
 PKG_VERSION="e582514"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://live.vdr-developer.org/en/index.php"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-live.git"
 PKG_DEPENDS_TARGET="toolchain vdr tntnet pcre:host pcre"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-live: the LIVE Interactive VDR Environment/"
 PKG_LONGDESC="vdr-live allows a comfortable operation of VDR and some of its plugins trough a web interface"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-restfulapi"
 PKG_VERSION="96a03b3"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/yavdr/vdr-plugin-restfulapi.git"
 PKG_URL="https://github.com/yavdr/vdr-plugin-restfulapi.git"
 PKG_DEPENDS_TARGET="toolchain vdr cxxtools vdr-plugin-wirbelscan ImageMagick"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-plugin-restfulapi: the restful API for the VDR/"
 PKG_LONGDESC="vdr-plugin-restfulapi allows to access many internals of the VDR via a restful API"
 PKG_TOOLCHAIN="manual"
 

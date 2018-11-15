@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-epgsearch"
 PKG_VERSION="84b59b8"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://winni.vdr-developer.org/epgsearch/"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="VDR plugin that provides extensive EPG searching capabilities."
 PKG_LONGDESC="VDR plugin that provides extensive EPG searching capabilities. This plugin for the Linux Video Disc Recorder (VDR) allows searching the EPG (electronic programme guide) data by defining search terms that can permanently be stored in a list for later reuse. It supports regular expressions and is capable of doing fuzzy searches. EPG-Search scans the EPG in background and can automatically create timers for matching search terms. Besides this it supports searching for repetitions, detection of timer conflicts, sending emails on timer events and much more. Search terms can also be added and modified with vdradmin-am, a web frontend for VDR."
 PKG_TOOLCHAIN="manual"
 

@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-imonlcd"
 PKG_VERSION="c272bcc"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/vdr-projects/vdr-plugin-imonlcd"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-imonlcd.git"
 PKG_DEPENDS_TARGET="toolchain vdr freetype"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="VDR plugin to show information on SoundGraph iMON LCD displays."
 PKG_LONGDESC="VDR plugin to show information on SoundGraph iMON LCD displays. imonlcd is a plugin for the Linux Video Disc Recorder and allows one to show information about the current state of VDR on a SoundGraph iMON LCD display."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

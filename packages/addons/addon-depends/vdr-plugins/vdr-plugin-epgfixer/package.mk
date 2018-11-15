@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-epgfixer"
 PKG_VERSION="354f28b"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-epgfixer"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgfixer.git"
 PKG_DEPENDS_TARGET="toolchain vdr pcre"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="vdr-plugin-epgfixer"
 PKG_LONGDESC="Plugin for modifying EPG data using regular expressions."
 PKG_TOOLCHAIN="manual"
 

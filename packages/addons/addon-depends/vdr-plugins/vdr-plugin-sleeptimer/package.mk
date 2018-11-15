@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-sleeptimer"
 PKG_VERSION="b777501"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-sleeptimer"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-sleeptimer.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="Sleeptimer plugin for vdr."
 PKG_LONGDESC="Sleeptimer plugin for vdr. Allows to set a timer for powering off vdr once."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

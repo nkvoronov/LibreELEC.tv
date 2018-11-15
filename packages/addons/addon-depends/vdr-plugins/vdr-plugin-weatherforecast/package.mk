@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-weatherforecast"
 PKG_VERSION="842b086"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-weatherforecast"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-weatherforecast.git"
 PKG_DEPENDS_TARGET="toolchain vdr jansson vdr-plugin-skindesigner"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="WeatherForecast provides a weather forecast (who'd have thought? ;) ) based on forecast.io data."
 PKG_LONGDESC="WeatherForecast provides a weather forecast (who'd have thought? ;) ) based on forecast.io data."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

@@ -4,13 +4,10 @@
 PKG_NAME="ImageMagick"
 PKG_VERSION="6.9.10-12"
 PKG_SHA256="bb0224b9a530dc89b792594c5d1f04e568a976b456fd6c738715d2cf80ab8409"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.imagemagick.org"
 PKG_URL="http://www.imagemagick.org/download/releases/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="graphics"
-PKG_SHORTDESC="ImageMagick is a graphics library."
 PKG_LONGDESC="ImageMagick is a graphics library for file loading, saving, rendering, manipulation."
 
 pre_build_target() {

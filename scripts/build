@@ -6,7 +6,7 @@
 . config/options $1
 
 if [ "$1" = "--all" ]; then
-  if [ ! -z "$2" ]; then
+  if [ -n "$2" ]; then
     for build_dir in $(ls -1d ${ROOT}/build.*); do
       load_build_config ${build_dir} && ./scripts/build $2
     done
@@ -15,13 +15,11 @@ if [ "$1" = "--all" ]; then
 fi
 
 if [ -z "$1" ]; then
-  echo "usage: $0 package_name[:<host|target|init|bootstrap>]"
-  exit 1
+  die "usage: $0 package_name[:<host|target|init|bootstrap>]"
 fi
 
 if [ ! -f $PKG_DIR/package.mk ]; then
-  printf "$(print_color CLR_ERROR "$1: no package.mk file found")\n"
-  exit 1
+  die "$(print_color CLR_ERROR "$1: no package.mk file found")"
 fi
 
 # set defaults
@@ -36,7 +34,7 @@ else
   PACKAGE_NAME=$1
   TARGET=
 fi
-[ -z "$TARGET" ] && TARGET="target"
+TARGET="${TARGET:-target}"
 
 if [ -n "$PKG_ARCH" ]; then
   listcontains "$PKG_ARCH" "!$TARGET_ARCH" && exit 0
@@ -53,15 +51,11 @@ $SCRIPTS/unpack $PACKAGE_NAME
 if [ -f $STAMP ] ; then
   . $STAMP
   PKG_DEEPHASH=$(calculate_stamp)
-  if [ ! "$PKG_DEEPHASH" = "$STAMP_PKG_DEEPHASH" ] ; then
+  if [ ! "$PKG_DEEPHASH" = "$STAMP_PKG_DEEPHASH" ]; then
     rm -f $STAMP
-  fi
-
-  if [ ! "$BUILD_WITH_DEBUG" = "$STAMP_BUILD_WITH_DEBUG" ]; then
+  elif [ ! "$BUILD_WITH_DEBUG" = "$STAMP_BUILD_WITH_DEBUG" ]; then
     rm -f $STAMP
-  fi
-
-  if [ "$1" = "u-boot" -a ! "$UBOOT_SYSTEM" = "$STAMP_UBOOT_SYSTEM" ]; then
+  elif [ "$1" = "u-boot" -a ! "$UBOOT_SYSTEM" = "$STAMP_UBOOT_SYSTEM" ]; then
     rm -f $STAMP
   fi
 fi
@@ -268,17 +262,15 @@ if [ -z "$PKG_TOOLCHAIN" -o "$PKG_TOOLCHAIN" = "auto" ]; then
     PKG_TOOLCHAIN="cmake"
   elif [ -f "$PKG_CONFIGURE_SCRIPT" ]; then
     PKG_TOOLCHAIN="configure"
-  elif [ -f $PKG_BUILD/Makefile ]; then
+  elif [ -f "$PKG_BUILD/Makefile" ]; then
     PKG_TOOLCHAIN="make"
   else
-    echo "Not possible to detect toolchain automatically. Add PKG_TOOLCHAIN= to package.mk"
-    exit 1
+    die "Not possible to detect toolchain automatically. Add PKG_TOOLCHAIN= to package.mk"
   fi
   _auto_toolchain=" (auto-detect)"
 fi
 if ! listcontains "meson cmake cmake-make configure ninja make autotools manual" "$PKG_TOOLCHAIN"; then
-  printf "$(print_color bold-red "ERROR:") unknown toolchain $PKG_TOOLCHAIN"
-  exit 1
+  die "$(print_color bold-red "ERROR:") unknown toolchain $PKG_TOOLCHAIN"
 fi
 printf "%${BUILD_INDENT}c $(print_color CLR_TOOLCHAIN "TOOLCHAIN")    $PKG_TOOLCHAIN${_auto_toolchain}\n" ' '>&$SILENT_OUT
 
@@ -293,11 +285,11 @@ if [ "$(type -t pre_build_$TARGET)" = "function" ]; then
 fi
 
 # ensure $PKG_BUILD is there. (installer? PKG_URL="")
-if [ ! -d $PKG_BUILD ] ; then
-  mkdir -p $PKG_BUILD
+if [ ! -d "$PKG_BUILD" ] ; then
+  mkdir -p "$PKG_BUILD"
 fi
 
-cd $PKG_BUILD
+cd "$PKG_BUILD"
 
 if [ -f "$PKG_CONFIGURE_SCRIPT" -o -f "$PKG_CMAKE_SCRIPT" -o -f "$PKG_MESON_SCRIPT" ]; then
   case "$TARGET" in
@@ -306,9 +298,9 @@ if [ -f "$PKG_CONFIGURE_SCRIPT" -o -f "$PKG_CMAKE_SCRIPT" -o -f "$PKG_MESON_SCRI
     "init")      PKG_REAL_BUILD="$PKG_BUILD/.$TARGET_NAME-$TARGET" ;;
     "bootstrap") PKG_REAL_BUILD="$PKG_BUILD/.$HOST_NAME-$TARGET" ;;
   esac
-  mkdir -p $PKG_REAL_BUILD
-  cd $PKG_REAL_BUILD
-  
+  mkdir -p "$PKG_REAL_BUILD"
+  cd "$PKG_REAL_BUILD"
+
   MESON_CONF="$PKG_REAL_BUILD/meson.conf"
 fi
 
@@ -494,7 +486,7 @@ if [ "$(type -t post_makeinstall_$TARGET)" = "function" ]; then
 fi
 
 if [ "$TARGET" = "target" -o "$TARGET" = "init" ]; then
-  if [ -d $INSTALL ] ; then
+  if [ -d $INSTALL ]; then
     rm -rf $INSTALL/{usr/,}include
     rm -rf $INSTALL/{usr/,}lib/cmake
     rm -rf $INSTALL/{usr/,}lib/pkgconfig
@@ -520,18 +512,18 @@ if [ "$TARGET" = "target" -o "$TARGET" = "init" ]; then
     find $INSTALL -type d -exec rmdir -p {} \; 2>/dev/null || :
 
     if [ ! "${BUILD_WITH_DEBUG}" = "yes" ]; then
-      $STRIP `find $INSTALL \
+      $STRIP $(find $INSTALL \
         -type f -name "*.so*" \
         ! -name "ld-*.so" \
         ! -name "libc-*.so" \
         ! -name "libpthread-*.so" \
         ! -name "libthread_db-*so" \
-        2>/dev/null` 2>/dev/null || :
+        2>/dev/null) 2>/dev/null || :
         if [ "$TARGET" = "init" ]; then
-          $STRIP `find $INSTALL -type f -name "*.so*" 2>/dev/null` 2>/dev/null || :
+          $STRIP $(find $INSTALL -type f -name "*.so*" 2>/dev/null) 2>/dev/null || :
         fi
-        $STRIP `find $INSTALL/bin $INSTALL/usr/bin $INSTALL/sbin $INSTALL/usr/sbin \
-          -type f -executable 2>/dev/null` 2>/dev/null || :
+        $STRIP $(find $INSTALL/bin $INSTALL/usr/bin $INSTALL/sbin $INSTALL/usr/sbin \
+          -type f -executable 2>/dev/null) 2>/dev/null || :
     fi
   fi
 fi

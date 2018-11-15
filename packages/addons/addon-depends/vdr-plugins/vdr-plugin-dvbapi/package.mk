@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-dvbapi"
 PKG_VERSION="7d51cc4"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/manio/vdr-plugin-dvbapi"
 PKG_URL="https://github.com/manio/vdr-plugin-dvbapi.git"
 PKG_DEPENDS_TARGET="toolchain vdr libdvbcsa"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="DVBAPI plugin for VDR."
 PKG_LONGDESC="DVBAPI plugin for VDR. This plugin is simplified version of VDR-SC plugin. The main purpose of the plugin is to act as a bridge between VDR and OScam."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="-parallel"

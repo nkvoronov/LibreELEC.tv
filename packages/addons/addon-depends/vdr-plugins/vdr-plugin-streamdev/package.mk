@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-streamdev"
 PKG_VERSION="e2a9b97"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-streamdev"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-streamdev.git"
 PKG_DEPENDS_TARGET="toolchain vdr openssl"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="VDR Plugin to stream Live-TV to other VDR's - client part."
 PKG_LONGDESC="VDR Plugin to stream Live-TV to other VDR's - client part. This plugin for vdr lets the software stream videos into the network. You can interconnect several vdrs that way or watch those streams with special client apps like video lan client or mplayer. This is the client part."
 PKG_TOOLCHAIN="manual"
 

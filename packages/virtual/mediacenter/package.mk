@@ -4,19 +4,19 @@
 
 PKG_NAME="mediacenter"
 PKG_VERSION=""
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain $MEDIACENTER"
-PKG_SECTION="virtual"
-PKG_SHORTDESC="Mediacenter: Metapackage"
 PKG_LONGDESC="Mediacenter: Metapackage"
 
 if [ "$MEDIACENTER" = "kodi" ]; then
   for i in $SKINS; do
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $MEDIACENTER-theme-$i"
   done
+
+# python-based tool for kodi management
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET texturecache.py"
 
 # some python stuff needed for various addons
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Pillow \

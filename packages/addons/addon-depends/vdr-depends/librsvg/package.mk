@@ -4,13 +4,10 @@
 PKG_NAME="librsvg"
 PKG_VERSION="2.40.9"
 PKG_SHA256="13964c5d35357552b47d365c34215eee0a63bf0e6059b689f048648c6bf5f43a"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://live.gnome.org/LibRsvg"
 PKG_URL="http://ftp.gnome.org/pub/GNOME/sources/${PKG_NAME}/${PKG_VERSION:0:4}/${PKG_NAME}-${PKG_VERSION}.tar.xz"
 PKG_DEPENDS_TARGET="toolchain cairo pango gdk-pixbuf libcroco"
-PKG_SECTION="graphics"
-PKG_SHORTDESC="librsvg is a free software SVG rendering library written as part of the GNOME project, intended to be lightweight and portable."
 PKG_LONGDESC="librsvg is a free software SVG rendering library written as part of the GNOME project, intended to be lightweight and portable."
 PKG_TOOLCHAIN="autotools"
 

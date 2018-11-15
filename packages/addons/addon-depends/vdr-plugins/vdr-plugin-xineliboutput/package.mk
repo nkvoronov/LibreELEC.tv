@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-xineliboutput"
 PKG_VERSION="b298178"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://sourceforge.net/projects/xineliboutput/"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-xineliboutput.git"
 PKG_DEPENDS_TARGET="toolchain vdr xine-lib"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="xine-lib based software output device for VDR."
 PKG_LONGDESC="xine-lib based software output device for VDR."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

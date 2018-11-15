@@ -10,8 +10,6 @@ PKG_SITE="http://qt-project.org"
 PKG_URL="http://download.qt.io/official_releases/qt/5.10/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
 PKG_SOURCE_DIR="qt-everywhere-src-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain libjpeg-turbo xcb-util xcb-util-keysyms xcb-util-renderutil fontconfig xcb-util-wm libXrender libXi sqlite xcb-util-image icu libinput libSM libxkbcommon alsa-lib"
-PKG_SECTION="devel"
-PKG_SHORTDESC="Qt GUI toolkit"
 PKG_LONGDESC="Qt GUI toolkit"
 
 PKG_CONFIGURE_OPTS_TARGET="-prefix /usr

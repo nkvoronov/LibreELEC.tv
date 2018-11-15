@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-xmltv2vdr"
 PKG_VERSION="ec7bd92"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-xmltv2vdr"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-xmltv2vdr.git"
 PKG_DEPENDS_TARGET="toolchain vdr sqlite curl libzip libxml2 libxslt enca pcre"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="Plugin for VDR to add epg info from epg sources into vdr."
 PKG_LONGDESC="Plugin for VDR to add epg info from epg sources into vdr. This plugin for the Linux Video Disc Recorder VDR will add epg info  from epg sources into vdr."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

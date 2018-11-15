@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-vnsiserver"
 PKG_VERSION="49003f0"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/FernetMenta/vdr-plugin-vnsiserver"
 PKG_URL="https://github.com/FernetMenta/vdr-plugin-vnsiserver.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="VDR-Network-Streaming-Interface"
 PKG_LONGDESC="VDR-Network-Streaming-Interface"
 PKG_TOOLCHAIN="manual"
 

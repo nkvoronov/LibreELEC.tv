@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-tvguideng"
 PKG_VERSION="65248ba"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/vdr-projects/vdr-plugin-tvguideng"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-tvguideng.git"
 PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-skindesigner"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="TvGuideNG is a highly customizable 2D EPG viewer plugin for Skindesigner Skins."
 PKG_LONGDESC="TvGuideNG is a highly customizable 2D EPG viewer plugin for Skindesigner Skins."
 PKG_TOOLCHAIN="manual"
 

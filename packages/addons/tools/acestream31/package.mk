@@ -4,13 +4,10 @@
 PKG_NAME="acestream31"
 PKG_VERSION="3.1.16"
 PKG_REV="7"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain acestream-engine"
-PKG_SECTION="tools"
-PKG_SHORTDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_LONGDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_TOOLCHAIN="manual"
 

@@ -3,13 +3,10 @@
 
 PKG_NAME="vdr-plugin-lcdproc"
 PKG_VERSION="0c54897"
-PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-lcdproc"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-lcdproc.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
-PKG_SECTION="multimedia"
-PKG_SHORTDESC="Plugin to vdr that connects to lcdproc."
 PKG_LONGDESC="Plugin to vdr that connects to lcdproc. This plugin for vdr connect the digital PVR to lcdproc."
 PKG_TOOLCHAIN="manual"
 
