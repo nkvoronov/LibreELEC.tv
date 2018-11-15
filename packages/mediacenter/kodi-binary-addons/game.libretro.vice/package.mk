@@ -2,9 +2,9 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.vice"
-PKG_VERSION="172211295b269bf858fed702b8d5ddf228209371"
-PKG_SHA256="962cad6ee54ad3839c6bea960c27a26b31c0ea8dff90f404670687933028749f"
-PKG_REV="101"
+PKG_VERSION="990115d2c9751044e09a275bbb9be9b6dab60d52"
+PKG_SHA256="116dd2e816335e3e9c6722cdf37f45375cd2787d193a4c0acce6e7ac1a89d55b"
+PKG_REV="103"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/game.libretro.vice"

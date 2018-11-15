@@ -6,9 +6,7 @@ PKG_SITE="https://www.denx.de/wiki/U-Boot"
 PKG_DEPENDS_TARGET="toolchain gcc-linaro-aarch64-elf:host gcc-linaro-arm-eabi:host"
 PKG_ARCH="arm aarch64"
 PKG_LICENSE="GPL"
-PKG_SECTION="tools"
-PKG_SHORTDESC="u-boot: Universal Bootloader project"
-PKG_LONGDESC="Das U-Boot is a cross-platform bootloader for embedded systems, used as the default boot loader by several board vendors. It is intended to be easy to port and to debug, and runs on many supported architectures, including PPC, ARM, MIPS, x86, m68k, NIOS, and Microblaze."
+PKG_LONGDESC="Das U-Boot is a cross-platform bootloader for embedded systems."
 
 case "$DEVICE" in
   "Odroid_C2")
@@ -75,18 +73,4 @@ makeinstall_target() {
         cp -av $PKG_BUILD/fip/u-boot.bin.sd.bin $INSTALL/usr/share/bootloader/u-boot
         ;;
     esac
-
-    # Replace partition names in update.sh
-    if [ -f "$INSTALL/usr/share/bootloader/update.sh" ] ; then
-      sed -e "s/@BOOT_LABEL@/$DISTRO_BOOTLABEL/g" \
-          -e "s/@DISK_LABEL@/$DISTRO_DISKLABEL/g" \
-          -i $INSTALL/usr/share/bootloader/update.sh
-    fi
-
-    # Replace labels in boot.ini
-    if [ -f "$INSTALL/usr/share/bootloader/boot.ini" ] ; then
-      sed -e "s/@BOOT_LABEL@/$DISTRO_BOOTLABEL/g" \
-          -e "s/@DISK_LABEL@/$DISTRO_DISKLABEL/g" \
-          -i $INSTALL/usr/share/bootloader/boot.ini
-    fi
 }

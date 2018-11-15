@@ -2,11 +2,10 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.pcsx-rearmed"
-PKG_VERSION="75208998eb366f70624d427d14353662b07990a2"
-PKG_SHA256="5d99e36d62f1016ebff01a6877a48aa8b01a9c0b88f5c5dd67c0dd710d5ff352"
-PKG_REV="108"
-# neon optimizations make it only useful for arm
-PKG_ARCH="arm"
+PKG_VERSION="faabb235b84bfb924db7758ebb6ce0c2155baa51"
+PKG_SHA256="853258f6b5cf56866dae74518c05ac9359a69d266c1b47f9d26eeb40a8727c84"
+PKG_REV="110"
+PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/game.libretro.pcsx-rearmed"
 PKG_URL="https://github.com/kodi-game/game.libretro.pcsx-rearmed/archive/$PKG_VERSION.tar.gz"
@@ -16,8 +15,3 @@ PKG_LONGDESC="game.libretro.pcsx-rearmed: PCSX Rearmed for Kodi"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="kodi.gameclient"
-
-if ! target_has_feature neon; then
-  echo "${DEVICE:-${PROJECT}} doesn't support neon"
-  exit 0
-fi
