@@ -7,6 +7,7 @@ PKG_LICENSE="GPL"
 PKG_SITE=""
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
+PKG_SECTION="virtual"
 PKG_LONGDESC="custom is a Metapackage for installing custom package"
 
 if [ "$KODI_REPOSITORY_YELLOWDRAGON" = "yes" ]; then
