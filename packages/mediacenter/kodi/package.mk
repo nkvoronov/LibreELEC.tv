@@ -363,7 +363,7 @@ post_makeinstall_target() {
   debug_strip $INSTALL/usr/lib/kodi/kodi.bin
 
   # install skin
-  SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
+  SKIN_DIR="skin.$(tolower $SKIN_DEFAULT)"
   if [ ! "$SKIN_REMOVE_SHIPPED" = "yes" ]; then
     cp -PR $PKG_DIR/theme/* $PKG_BUILD/addons/$SKIN_DIR
     mkdir -p $INSTALL/usr/share/kodi/addons/$SKIN_DIR
