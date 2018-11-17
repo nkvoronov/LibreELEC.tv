@@ -18,7 +18,3 @@ PKG_MESON_OPTS_TARGET="-Denable_docs=false \
 pre_configure_target() {
   export PKG_CONFIG_PATH="$(get_build_dir cairo)/.$TARGET_NAME/src":"$(get_build_dir libXft)/.$TARGET_NAME/src"
 }
-
-makeinstall_target() {
-  :
-}
