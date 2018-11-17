@@ -12,9 +12,10 @@ PKG_DEPENDS_TARGET="toolchain fontconfig freetype libXrender util-macros xorgpro
 PKG_LONGDESC="X FreeType library."
 PKG_BUILD_FLAGS="+pic"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared"
+if [ "$CUSTOM_SUPPORT" = "yes" -a "$ENABLE_SHARED" = "yes" ]; then
+  SHARED="--enable-shared"
+else
+  SHARED="--disable-shared"
+fi
 
-makeinstall_target() {
-  :
-}
+PKG_CONFIGURE_OPTS_TARGET="--enable-static $SHARED"

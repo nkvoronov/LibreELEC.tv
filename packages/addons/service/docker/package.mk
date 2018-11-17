@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="docker"
-PKG_VERSION="18.06.1"
-PKG_SHA256="83be159cf0657df9e1a1a4a127d181725a982714a983b2bdcc0621244df93687"
-PKG_REV="127"
+PKG_VERSION="18.09.0"
+#PKG_SHA256="83be159cf0657df9e1a1a4a127d181725a982714a983b2bdcc0621244df93687"
+PKG_REV="128"
 PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
-PKG_URL="https://download.docker.com/linux/static/stable/x86_64/$PKG_NAME-$PKG_VERSION-ce.tgz"
+PKG_URL="https://download.docker.com/linux/static/stable/x86_64/$PKG_NAME-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="$PKG_NAME"
 PKG_DEPENDS_TARGET="toolchain systemd"
 PKG_SECTION="service/system"
