@@ -4,6 +4,7 @@
 PKG_NAME="acestream31"
 PKG_VERSION="3.1.16"
 PKG_REV="7"
+PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
 PKG_URL=""

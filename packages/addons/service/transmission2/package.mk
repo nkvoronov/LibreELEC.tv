@@ -4,10 +4,13 @@
 PKG_NAME="transmission2"
 PKG_VERSION="2.94"
 PKG_REV="6"
+PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain transmission"
+PKG_SECTION="service"
+PKG_SHORTDESC="transmission: a fast, easy and free BitTorrent client"
 PKG_LONGDESC="transmission is a fast, easy and free BitTorrent client"
 PKG_TOOLCHAIN="manual"
 
