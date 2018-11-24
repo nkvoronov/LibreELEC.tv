@@ -1,9 +1,9 @@
-ftp://ftp.tvdr.de/vdr/Developer/Patches/vdr-2.4/
+Description: This patch fixes a bug in handling the tfRecording flag in the SVDRP commands MODT
+ and UPDT. The tfRecording flag must only be handled by the VDR that actually hosts
+ and processes the timer.
+Author: Klaus Schmidinger, adapted by Alexander Grothe
+Origin: ftp://ftp.tvdr.de/vdr/Developer/Patches/vdr-2.4/vdr-2.4.0-01-fix-svdrp-modt-recflag.diff
 
-# This patch fixes a bug in handling the tfRecording flag in the SVDRP commands MODT
-# and UPDT. The tfRecording flag must only be handled by the VDR that actually hosts
-# and processes the timer.
-#
 --- a/svdrp.c	2018/03/19 12:16:33	5.0
 +++ b/svdrp.c	2018/04/19 09:45:08
 @@ -2036,6 +2036,7 @@
