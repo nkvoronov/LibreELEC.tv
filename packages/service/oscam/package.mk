@@ -2,11 +2,11 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="oscam"
-PKG_VERSION="11438"
-PKG_SHA256="6c1f3d218143a3a17bfa2082be9f0c185cdaf489a543d3e5d84075fb5dd12e6e"
+PKG_VERSION="11439"
+PKG_SHA256="15a84d3239b2bae2641107b4b92a0baa23d8f7cd4e0ba99bc9c94c1b81c7d827"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
-PKG_URL="https://www.dropbox.com/s/b7iwmfa6rlzztxe/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="https://www.dropbox.com/s/5rmeykhr9zw5ru1/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain openssl pcsc-lite"
 PKG_LONGDESC="OSCam: is a software to be used to decrypt digital television channels, as an alternative for a conditional access module."
 
