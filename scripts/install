@@ -41,8 +41,7 @@ fi
 
 $SCRIPTS/build $@
 
-printf "%${BUILD_INDENT}c $(print_color CLR_INSTALL "INSTALL")    $PACKAGE_NAME $(print_color CLR_TARGET "($TARGET)")\n" ' '>&$SILENT_OUT
-export BUILD_INDENT=$((${BUILD_INDENT:-1}+$BUILD_INDENT_SIZE))
+build_msg "CLR_INSTALL" "INSTALL" "${PACKAGE_NAME} $(print_color CLR_TARGET "(${TARGET})")" "indent"
 
 if [ "$TARGET" = target ] ; then
   for p in $PKG_DEPENDS_TARGET; do
@@ -131,9 +130,7 @@ unset -f post_install
 
 # install
 if [ "$TARGET" = target ] ; then
-  if [ "$(type -t pre_install)" = "function" ]; then
-    pre_install
-  fi
+  pkg_call_optional pre_install
 fi
 
 if [ "$TARGET" = "target" -a -d $PKG_BUILD/.install_pkg ]; then
@@ -145,9 +142,7 @@ elif [ "$TARGET" = "init" -a -d $PKG_BUILD/.install_init ]; then
 fi
 
 if [ "$TARGET" = target ] ; then
-  if [ "$(type -t post_install)" = "function" ]; then
-    post_install
-  fi
+  pkg_call_optional post_install
 fi
 
 touch $STAMP
