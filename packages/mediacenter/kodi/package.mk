@@ -28,8 +28,6 @@ case $KODI_VENDOR in
     PKG_SHA256="1d4e954b053478d4fc0e3cb370abd946bb24363e87eb446e292ce56665d48df7"
     PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
-    # PKG_URL="https://github.com/xbmc/xbmc.git"
-    # PKG_GIT_CLONE_BRANCH="leia"
     ;;
 esac
 
@@ -277,7 +275,6 @@ post_makeinstall_target() {
     cp $PKG_DIR/scripts/service-addon-wrapper $INSTALL/usr/sbin
 
   mkdir -p $INSTALL/usr/bin
-
     cp $PKG_DIR/scripts/kodi-remote $INSTALL/usr/bin
     cp $PKG_DIR/scripts/setwakeup.sh $INSTALL/usr/bin
 

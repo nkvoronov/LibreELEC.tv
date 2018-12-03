@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-xmltv2vdr"
 PKG_VERSION="ec7bd92"
@@ -7,7 +8,7 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-xmltv2vdr"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-xmltv2vdr.git"
 PKG_DEPENDS_TARGET="toolchain vdr sqlite curl libzip libxml2 libxslt enca pcre"
-PKG_LONGDESC="Plugin for VDR to add epg info from epg sources into vdr. This plugin for the Linux Video Disc Recorder VDR will add epg info  from epg sources into vdr."
+PKG_LONGDESC="xmltv2vdr imports data in xmltv format"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"
 
@@ -36,5 +37,6 @@ post_make_target() {
   VDR_DIR=$(get_build_dir vdr)
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
+
   cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
 }

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-robotv"
 PKG_VERSION="50d4bdc"
@@ -22,6 +22,7 @@ post_make_target() {
   VDR_DIR=$(get_build_dir vdr)
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
+
   cp --remove-destination $PKG_BUILD/.$TARGET_NAME/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
 }
 

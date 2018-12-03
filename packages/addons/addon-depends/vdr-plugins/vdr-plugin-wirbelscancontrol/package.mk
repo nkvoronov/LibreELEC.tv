@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-wirbelscancontrol"
 PKG_VERSION="0.0.2"
@@ -9,7 +10,7 @@ PKG_SITE="http://wirbel.htpc-forum.de/wirbelscancontrol/index2.html"
 PKG_URL="http://wirbel.htpc-forum.de/wirbelscancontrol/${PKG_NAME/-plugin/}-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="wirbelscancontrol-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-wirbelscan"
-PKG_LONGDESC="Control channelscan plugin for VDR."
+PKG_LONGDESC="Adds menu entry for wirbelscan at VDR."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"
 
@@ -33,5 +34,6 @@ post_make_target() {
   VDR_DIR=$(get_build_dir vdr)
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
+
   cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
 }

@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-streamdev"
 PKG_VERSION="e2a9b97"
@@ -25,6 +26,7 @@ post_make_target() {
   VDR_DIR=$(get_build_dir vdr)
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
+
   cp --remove-destination $PKG_BUILD/server/${LIB_NAME}-server.so $PKG_BUILD/server/${LIB_NAME}-server.so.${VDR_APIVERSION}
   cp --remove-destination $PKG_BUILD/client/${LIB_NAME}-client.so $PKG_BUILD/client/${LIB_NAME}-client.so.${VDR_APIVERSION}
 }
