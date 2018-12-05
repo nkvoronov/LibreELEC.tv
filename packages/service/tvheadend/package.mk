@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tvheadend"
-PKG_VERSION="c075732a1"
-PKG_VERSION_NUMBER="4.3.1593"
+PKG_VERSION="a46a8c967"
+PKG_VERSION_NUMBER="4.3.1624"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
