@@ -14,7 +14,8 @@ die() {
 # return 0 if function executed, 1 if not, die if error
 pkg_call() {
   [ -n "${PKG_NAME}" ] || die "$(print_color CLR_ERROR "FAILURE: Cannot call ${1} package function when package is not known!")"
-   if [ "$(type -t ${1})" = "function" ]; then
+
+  if [ "$(type -t ${1})" = "function" ]; then
     ${1} || die "$(print_color CLR_ERROR "FAILURE: ${1} for package ${PKG_NAME} did not succeed!")"
   else
     return 1

@@ -27,4 +27,5 @@ post_make_target() {
   LIB_NAME=lib${PKG_NAME/-plugin/}
 
   cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
+  $STRIP libvdr-*.so*
 }
