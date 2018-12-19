@@ -16,6 +16,4 @@ else
   PKG_FIXED_POINT="--disable-fixed-point"
 fi
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared \
-                           $PKG_FIXED_POINT"
+PKG_CONFIGURE_OPTS_TARGET="$PKG_FIXED_POINT"

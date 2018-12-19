@@ -2,15 +2,15 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="liblivemedia"
-PKG_VERSION="2018.08.27"
-PKG_SHA256="fff69d33070e552aa24b081487bcd4fa8d400e79997546a04541cc3adf811b82"
+PKG_VERSION="2018.12.14"
+PKG_SHA256="8dc31f76909602c3c07c8f876237e6ab7ac674d00f1bb065eda20e719f772a47"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.live555.com/liveMedia"
 PKG_URL="http://live555.com/liveMedia/public/live.$PKG_VERSION.tar.gz"
 PKG_SOURCE_DIR="live"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="This code forms a set of C++ libraries for multimedia streaming, using open standard protocols (RTP/RTCP, RTSP, SIP)"
-PKG_BUILD_FLAGS="+pic +lto"
+PKG_BUILD_FLAGS="+pic"
 
 pre_build_target() {
   mkdir -p $PKG_BUILD/.$TARGET_NAME

@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="lua"
-PKG_VERSION="5.3.4"
-PKG_SHA256="f681aa518233bc407e23acf0f5887c884f17436f000d453b2491a9f11a52400c"
+PKG_VERSION="5.3.5"
+PKG_SHA256="0c2eed3f960446e1a3e4b9a1ca2f3ff893b6ce41942cf54d5dd59ab4b3b058ac"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.lua.org/"
 PKG_URL="http://www.lua.org/ftp/$PKG_NAME-$PKG_VERSION.tar.gz"
@@ -13,7 +13,7 @@ PKG_LONGDESC="Lua is a powerful light-weight programming language designed for e
 _MAJORVER=${PKG_VERSION%.*}
 
 make_target() {
-  make MYCFLAGS="-DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1" linux
+  make MYCFLAGS="$CFLAGS -fPIC -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1" MYLDFLAGS="$LDFLAGS" linux
 }
 
 makeinstall_target() {

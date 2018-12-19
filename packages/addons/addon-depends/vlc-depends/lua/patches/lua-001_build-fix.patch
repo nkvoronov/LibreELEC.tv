@@ -1,7 +1,14 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2016-01-14 03:13:47.000000000 +0200
-+++ b/Makefile	2016-10-15 12:27:35.352007528 +0300
-@@ -52,7 +52,7 @@
+--- a/Makefile	2018-12-16 16:08:48.728651278 +0200
++++ b/Makefile	2018-12-16 16:13:45.962686650 +0200
+@@ -46,13 +46,13 @@
+ 
+ # Lua version and release.
+ V= 5.3
+-R= $V.4
++R= $V.5
+ 
+ # Targets start here.
  all:	$(PLAT)
  
  $(PLATS) clean:
@@ -11,9 +18,9 @@ diff -Naur a/Makefile b/Makefile
  test:	dummy
  	src/lua -v
 diff -Naur a/src/luaconf.h b/src/luaconf.h
---- a/src/luaconf.h	2016-05-01 23:06:09.000000000 +0300
-+++ b/src/luaconf.h	2016-10-15 12:35:13.275412580 +0300
-@@ -188,7 +188,7 @@
+--- a/src/luaconf.h	2018-12-16 16:08:48.712651168 +0200
++++ b/src/luaconf.h	2018-12-16 16:18:00.380413300 +0200
+@@ -200,7 +200,7 @@
  
  #else			/* }{ */
  
@@ -23,22 +30,13 @@ diff -Naur a/src/luaconf.h b/src/luaconf.h
  #define LUA_CDIR	LUA_ROOT "lib/lua/" LUA_VDIR "/"
  #define LUA_PATH_DEFAULT  \
 diff -Naur a/src/Makefile b/src/Makefile
---- a/src/Makefile	2015-05-27 14:10:11.000000000 +0300
-+++ b/src/Makefile	2016-10-15 12:31:34.017873533 +0300
-@@ -7,7 +7,7 @@
- PLAT= none
- 
- CC= gcc -std=gnu99
--CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_2 $(SYSCFLAGS) $(MYCFLAGS)
-+CFLAGS= -fPIC -O2 -Wall -Wextra -DLUA_COMPAT_5_2 $(SYSCFLAGS) $(MYCFLAGS)
- LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
- LIBS= -lm $(SYSLIBS) $(MYLIBS)
- 
+--- a/src/Makefile	2018-12-16 16:08:48.712651168 +0200
++++ b/src/Makefile	2018-12-16 16:16:57.183985365 +0200
 @@ -29,6 +29,7 @@
  PLATS= aix bsd c89 freebsd generic linux macosx mingw posix solaris
  
  LUA_A=	liblua.a
-+LUA_SO= liblua.so
++LUA_SO=	liblua.so
  CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o \
  	lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o \
  	ltm.o lundump.o lvm.o lzio.o

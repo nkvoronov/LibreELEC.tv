@@ -11,9 +11,7 @@ PKG_URL="https://downloads.sourceforge.net/sourceforge/faac/faad2-$PKG_VERSION.t
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="An MPEG-4 AAC decoder."
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared \
-                           --without-drm \
+PKG_CONFIGURE_OPTS_TARGET="--without-drm \
                            --with-gnu-ld \
                            --without-mpeg4ip \
                            --without-xmms"

@@ -11,9 +11,7 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="A Sample Rate Converter for audio."
 
 # package specific configure options
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
-                           --enable-static \
-                           --datadir=/usr/share \
+PKG_CONFIGURE_OPTS_TARGET="--datadir=/usr/share \
                            --disable-fftw \
                            --disable-sndfile"
 

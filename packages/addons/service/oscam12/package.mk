@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="oscam12"
-PKG_VERSION="11439"
-PKG_REV="144"
+PKG_VERSION="11442"
+PKG_REV="145"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"

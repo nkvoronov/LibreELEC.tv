@@ -2,25 +2,26 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc"
-PKG_VERSION="3.0.3"
-PKG_SHA256="9ba8b04bdb13f7860a2041768ac83b47b397a36549c71c530b94028a3cfd5b51"
+PKG_VERSION="3.0.4"
+PKG_SHA256="01f3db3790714038c01f5e23c709e31ecd6f1c046ac93d19e1dde38b3fc05a9e"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain lua libXpm a52dec libdvbpsi libdca libarchive libmatroska libupnp libmpeg2 xcb-util-keysyms liblivemedia libdc1394 libavc1394 libssh2 libshout libtheora zvbi SDL_image chromaprint ncursesw \
-fdk-aac taglib ffmpeg faad2 libmad libXinerama freetype fribidi harfbuzz fontconfig libxml2 libbluray flac librsvg avahi systemd libmtp libdvdcss samba mesa libnfs mpg123 libogg libmodplug libdvdread libdvdnav libgme \
-twolame fluidsynth libvpx speex opus libpng libjpeg-turbo x265 x264 libass pulseaudio alsa-lib libsamplerate lirc libtar libmicrodns qt5"
+PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libxpm libdca lua libmatroska taglib libmatroska ffmpegx faad2 libmad libmpeg2 xcb-util-keysyms libtar libXinerama libarchive qt5 \
+fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libmicrodns libdvdcss samba \
+libssh2 mesa libnfs mpg123 libdvdread libdvdnav libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
+alsa-lib libsamplerate lirc chromaprint ncursesw"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
 PKG_TOOLCHAIN="autotools"
-PKG_BUILD_FLAGS="-pic"
 
 PKG_CONFIGURE_OPTS_TARGET="\
               --prefix=/storage/.kodi/addons/tools.vlc3 \
               --enable-run-as-root \
+              --disable-nls \
+              --without-gnu-ld \
               --disable-rpath \
-              --enable-nls \
-              --enable-archive \
-              --disable-live555 \
+              --disable-archive \
+              --enable-live555 \
               --enable-dc1394 \
               --enable-dv1394 \
               --disable-dvdread \
@@ -48,7 +49,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-faad \
               --enable-vpx \
               --enable-twolame \
-              --enable-fdkaac \
+              --disable-fdkaac \
               --enable-a52 \
               --enable-dca \
               --enable-flac \
@@ -67,6 +68,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-libass \
               --disable-kate \
               --disable-tiger \
+              --disable-fluidsynth \
               --enable-vdpau \
               --disable-wayland \
               --enable-sdl-image \
@@ -97,7 +99,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-upnp \
               --enable-microdns \
               --enable-libxml2 \
-              --enable-libgcrypt \
+              --disable-libgcrypt \
               --disable-gnutls \
               --enable-taglib \
               --disable-secret \
@@ -105,8 +107,8 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --disable-update-check \
               --disable-notify \
               --disable-libplacebo \
-              --disable-fluidsynth \
-              --enable-vlc"
+              --enable-vlc \
+              --disable-aribsub"
 
 pre_configure_target() {
 
@@ -119,6 +121,10 @@ pre_configure_target() {
   PKG_CONFIG_PATH="$(get_build_dir ncursesw)/.install_tmp/usr/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ncursesw)/.install_tmp/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncursesw)/.install_tmp/usr/lib"
+
+  PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib/pkgconfig"
+  CFLAGS="$CFLAGS -I$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/include"
+  LDFLAGS="$LDFLAGS -L$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib"
 }
 
 post_install() {

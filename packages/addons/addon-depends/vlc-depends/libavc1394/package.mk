@@ -10,9 +10,6 @@ PKG_URL="http://downloads.sourceforge.net/sourceforge/libavc1394/$PKG_NAME-$PKG_
 PKG_DEPENDS_TARGET="toolchain libraw1394"
 PKG_LONGDESC="control IEEE 1394 audio/video devices (development files) libavc1394 is a programming interface for the 1394 Trade Association AV/C (Audio/Video Control) Digital Interface Command Set. It allows you to remote control camcorders and similar devices connected to your computer via an IEEE 1394 (aka Firewire) link."
 PKG_TOOLCHAIN="autotools"
-PKG_BUILD_FLAGS="+pic"
-
-PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
 
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/bin

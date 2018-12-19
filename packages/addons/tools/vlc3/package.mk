@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc3"
-PKG_VERSION="3.0.3"
-PKG_REV="45"
+PKG_VERSION="3.0.4"
+PKG_REV="46"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -11,6 +11,7 @@ PKG_DEPENDS_TARGET="toolchain vlc"
 PKG_SECTION="tools"
 PKG_SHORTDESC="VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
+PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Vlc Player 3"
@@ -33,7 +34,7 @@ addon() {
   LIB_SM=$(get_build_dir libSM)
   LIB_XRENDER=$(get_build_dir libXrender)
   GCC_DIR=$(get_build_dir gcc)
-  LIB_XPM=$(get_build_dir libXpm)
+  LIB_XPM=$(get_build_dir libxpm)
   LIB_DVDREAD=$(get_build_dir libdvdreadv)
   LIB_DVDNAV=$(get_build_dir libdvdnavv)
   LIB_GME=$(get_build_dir libgme)
@@ -91,10 +92,10 @@ addon() {
     cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/plugins
 
     cp -P $LIB_SDL/.install_pkg/usr/lib/libSDL-1.2.so.0.11.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL-1.2.so.0
-    cp -P $LIB_SDL_IMG/.install_pkg/usr/lib/libSDL_image-1.2.so.0.8.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL_image-1.2.so.0
+    cp -P $LIB_SDL_IMG/.install_pkg/usr/lib/libSDL_image.so.0.8.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL_image.so.0
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libebml.so.4
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmatroska.so.6
-    cp -P $LIB_CHROMA/.install_pkg/usr/lib/libchromaprint.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libchromaprint.so.1
+    cp -P $LIB_CHROMA/.install_pkg/usr/lib/libchromaprint.so.1.4.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libchromaprint.so.1
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libformw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
     cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libmenuw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
@@ -104,9 +105,9 @@ addon() {
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XPM/.install_pkg/usr/lib/libXpm.so.4.11.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXpm.so.4
     cp -P $LIB_XRENDER/.install_pkg/usr/lib/libXrender.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXrender.so.1
-    cp -P $LIB_DVDREAD/.install_pkg/usr/lib/libdvdread.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdread.so.4
-    cp -P $LIB_DVDNAV/.install_pkg/usr/lib/libdvdnav.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdnav.so.4
-    cp -P $LIB_GME/.install_pkg/usr/lib/libgme.so.0.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgme.so.0
+    #cp -P $LIB_DVDREAD/.install_pkg/usr/lib/libdvdread.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdread.so.4
+    #cp -P $LIB_DVDNAV/.install_pkg/usr/lib/libdvdnav.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdnav.so.4
+    cp -P $LIB_GME/.install_pkg/usr/lib/libgme.so.0.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgme.so.0
     cp -P $LIB_MDN/.install_pkg/usr/lib/libmicrodns.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmicrodns.so.0
     cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2.so.0.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2.so.0
     cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2convert.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2convert.so.0
@@ -115,10 +116,9 @@ addon() {
     cp -P $LIB_UPNP/.install_pkg/usr/lib/libthreadutil.so.6.0.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libthreadutil.so.6
     cp -P $LIB_UPNP/.install_pkg/usr/lib/libupnp.so.6.4.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libupnp.so.6
     cp -P $LIB_TAR/.install_pkg/usr/lib/libtar.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtar.so.0
-    cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
-    cp -P $LIB_XZ/.install_pkg/usr/lib/liblzma.so.5.2.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblzma.so.5
-    cp -P $LIB_FDKAAC/.install_pkg/usr/lib/libfdk-aac.so.1.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfdk-aac.so.1
-    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-9.0.so $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-9.0.so
+    #cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
+    #cp -P $LIB_XZ/.install_pkg/usr/lib/liblzma.so.5.2.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblzma.so.5
+    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-12.2.so $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-9.0.so
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon.so.0
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon-x11.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon-x11.so.0
 
@@ -128,8 +128,8 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-    cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
+  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
+    #cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
 
   ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
 

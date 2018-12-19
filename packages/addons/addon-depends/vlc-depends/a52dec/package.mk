@@ -11,8 +11,6 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="library for decoding ATSC A/52 streams liba52 is a free library for decoding ATSC A/52 streams. The A/52 standard is used in a variety of applications, including digital television and DVD. It is also known as AC-3."
 PKG_TOOLCHAIN="autotools"
 
-PKG_CONFIGURE_OPTS_TARGET="--disable-shared --enable-static"
-
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/bin
 }

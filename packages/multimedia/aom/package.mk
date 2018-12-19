@@ -10,7 +10,8 @@ PKG_URL="http://repo.or.cz/aom.git/snapshot/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="AV1 Codec Library"
 
-PKG_CMAKE_OPTS_TARGET="-DENABLE_CCACHE=1 \
+PKG_CMAKE_OPTS_TARGET="-DBUILD_SHARED_LIBS=1 \
+                       -DENABLE_CCACHE=1 \
                        -DENABLE_DOCS=0 \
                        -DENABLE_EXAMPLES=0 \
                        -DENABLE_TESTS=0 \
