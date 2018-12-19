@@ -15,7 +15,6 @@ PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, 
 PKG_TOOLCHAIN="autotools"
 
 PKG_CONFIGURE_OPTS_TARGET="\
-              --prefix=/storage/.kodi/addons/tools.vlc3 \
               --enable-run-as-root \
               --disable-nls \
               --without-gnu-ld \
