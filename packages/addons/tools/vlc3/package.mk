@@ -126,10 +126,10 @@ addon() {
     cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
-    cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
+    cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
 
   #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-    #cp -R $VLC_DIR/.install_pkg/storage/.kodi/addons/tools.vlc3/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
+    #cp -R $VLC_DIR/.install_pkg/usr/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
 
   ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
 
