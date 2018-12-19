@@ -3,7 +3,7 @@
 
 PKG_NAME="oscam"
 PKG_VERSION="11442"
-#PKG_SHA256="15a84d3239b2bae2641107b4b92a0baa23d8f7cd4e0ba99bc9c94c1b81c7d827"
+PKG_SHA256="230cc9a59f411115d612dc6d736dbb1cee47385924c6e6b9e53e5b9c3f82cb11"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
 PKG_URL="https://www.dropbox.com/s/93i3orl012nnv54/$PKG_NAME-$PKG_VERSION.tar.gz"
