@@ -30,6 +30,10 @@ if [ "$TVHEADEND_SERVICE" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tvheadend"
 fi
 
+if [ "$LIBXCB_EXT" = "yes" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libxcb xcb-proto xcb-util xcb-util-keysyms xcb-util-wm xcb-util-renderutil xcb-util-image"
+fi
+
 if [ "$VDR_SERVICE" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-service"
 fi

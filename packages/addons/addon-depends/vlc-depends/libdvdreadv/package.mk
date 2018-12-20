@@ -14,3 +14,7 @@ PKG_TOOLCHAIN="autotools"
 
 PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
 
+makeinstall_target() {
+  make install DESTDIR=$PKG_BUILD/.INSTALL_PKG $PKG_MAKEINSTALL_OPTS_TARGET
+}
+

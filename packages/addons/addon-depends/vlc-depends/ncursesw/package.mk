@@ -3,7 +3,7 @@
 
 PKG_NAME="ncursesw"
 PKG_VERSION="6.1"
-#PKG_SHA256="fac9db9460f271ee632af386a5b502d43a25d7cf14138e3d3166d4bedc4f6cb0"
+PKG_SHA256="aa057eeeb4a14d470101eff4597d5833dcef5965331be3528c08d99cebaa0d17"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/ncurses/"
 PKG_URL="http://invisible-mirror.net/archives/ncurses/ncurses-$PKG_VERSION.tar.gz"
@@ -29,7 +29,7 @@ PKG_CONFIGURE_OPTS_TARGET="--with-shared \
                            --enable-ext-mouse"
 
 makeinstall_target() {
-  make install DESTDIR=$PKG_BUILD/.install_tmp $PKG_MAKEINSTALL_OPTS_TARGET
+  make install DESTDIR=$PKG_BUILD/.INSTALL_PKG $PKG_MAKEINSTALL_OPTS_TARGET
 }
 
 post_install() {

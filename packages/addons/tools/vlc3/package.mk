@@ -96,11 +96,11 @@ addon() {
     cp -P $LIB_EBML/.install_pkg/usr/lib/libebml.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libebml.so.4
     cp -P $LIB_MATROSKA/.install_pkg/usr/lib/libmatroska.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmatroska.so.6
     cp -P $LIB_CHROMA/.install_pkg/usr/lib/libchromaprint.so.1.4.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libchromaprint.so.1
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libncursesw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libformw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libmenuw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libpanelw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpanelw.so.6
-    cp -P $LIB_NCURSESW/.install_tmp/usr/lib/libtinfo.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
+    cp -P $LIB_NCURSESW/.INSTALL_PKG/usr/lib/libncursesw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libncursesw.so.6
+    cp -P $LIB_NCURSESW/.INSTALL_PKG/usr/lib/libformw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libformw.so.6
+    cp -P $LIB_NCURSESW/.INSTALL_PKG/usr/lib/libmenuw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmenuw.so.6
+    cp -P $LIB_NCURSESW/.INSTALL_PKG/usr/lib/libpanelw.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpanelw.so.6
+    cp -P $LIB_NCURSESW/.INSTALL_PKG/usr/lib/libtinfo.so.6.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtinfo.so.6
     cp -P $LIB_ICE/.install_pkg/usr/lib/libICE.so.6.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libICE.so.6
     cp -P $LIB_SM/.install_pkg/usr/lib/libSM.so.6.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSM.so.6
     cp -P $LIB_XPM/.install_pkg/usr/lib/libXpm.so.4.11.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXpm.so.4
@@ -118,12 +118,12 @@ addon() {
     cp -P $LIB_TAR/.install_pkg/usr/lib/libtar.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtar.so.0
     #cp -P $LIB_ARCHIVE/.install_pkg/usr/lib/libarchive.so.16 $ADDON_BUILD/$PKG_ADDON_ID/lib/libarchive.so.16
     #cp -P $LIB_XZ/.install_pkg/usr/lib/liblzma.so.5.2.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblzma.so.5
-    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-12.2.so $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-9.0.so
+    cp -P $LIB_PULS/.install_pkg/usr/lib/pulseaudio/libpulsecommon-12.2.so $ADDON_BUILD/$PKG_ADDON_ID/lib/libpulsecommon-12.2.so
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon.so.0
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon-x11.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon-x11.so.0
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
-    cp -R $LIB_NCURSESW/.install_tmp/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
