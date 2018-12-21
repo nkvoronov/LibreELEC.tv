@@ -20,7 +20,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --disable-nls \
               --without-gnu-ld \
               --disable-rpath \
-              --disable-archive \
+              --enable-archive \
               --enable-live555 \
               --enable-dc1394 \
               --enable-dv1394 \
@@ -29,7 +29,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-bluray \
               --disable-opencv \
               --enable-smbclient \
-              --disable-sftp \
+              --enable-sftp \
               --enable-nfs \
               --disable-realrtsp \
               --enable-dvbpsi \
@@ -95,7 +95,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --disable-goom \
               --disable-projectm \
               --enable-avahi \
-              --disable-mtp \
+              --enable-mtp \
               --enable-upnp \
               --enable-microdns \
               --enable-libxml2 \

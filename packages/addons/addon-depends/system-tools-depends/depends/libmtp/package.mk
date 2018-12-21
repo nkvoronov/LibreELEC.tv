@@ -12,6 +12,4 @@ PKG_LONGDESC="An Initiator implementation of the Media Transfer Protocol (MTP)."
 PKG_TOOLCHAIN="autotools"
 
 PKG_CONFIGURE_OPTS_TARGET="ac_cv_func_malloc_0_nonnull=yes \
-                           --disable-shared \
-                           --enable-static \
                            --disable-mtpz"
