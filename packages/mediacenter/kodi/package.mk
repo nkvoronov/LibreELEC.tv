@@ -5,7 +5,7 @@
 PKG_NAME="kodi"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers"
+PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnavx libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers"
 PKG_LONGDESC="A free and open source cross-platform media player."
 
 PKG_PATCH_DIRS="$KODI_VENDOR"
@@ -91,7 +91,7 @@ fi
 
 if [ "$KODI_DVDCSS_SUPPORT" = yes ]; then
   KODI_DVDCSS="-DENABLE_DVDCSS=ON \
-               -DLIBDVDCSS_URL=$SOURCES/libdvdcss/libdvdcss-$(get_pkg_version libdvdcss).tar.gz"
+               -DLIBDVDCSS_URL=$SOURCES/libdvdcssx/libdvdcssx-$(get_pkg_version libdvdcssx).tar.gz"
 else
   KODI_DVDCSS="-DENABLE_DVDCSS=OFF"
 fi
@@ -199,8 +199,8 @@ if [ ! "$KODIPLAYER_DRIVER" = default ]; then
 fi
 
 KODI_LIBDVD="$KODI_DVDCSS \
-             -DLIBDVDNAV_URL=$SOURCES/libdvdnav/libdvdnav-$(get_pkg_version libdvdnav).tar.gz \
-             -DLIBDVDREAD_URL=$SOURCES/libdvdread/libdvdread-$(get_pkg_version libdvdread).tar.gz"
+             -DLIBDVDNAV_URL=$SOURCES/libdvdnavx/libdvdnavx-$(get_pkg_version libdvdnavx).tar.gz \
+             -DLIBDVDREAD_URL=$SOURCES/libdvdreadx/libdvdreadx-$(get_pkg_version libdvdreadx).tar.gz"
 
 PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$TOOLCHAIN \
                        -DWITH_TEXTUREPACKER=$TOOLCHAIN/bin/TexturePacker \

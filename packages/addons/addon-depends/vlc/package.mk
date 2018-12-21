@@ -9,7 +9,7 @@ PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libxpm libdca lua libmatroska taglib libmatroska ffmpegx faad2 libmad libmpeg2 xcb-util-keysyms libtar libXinerama libarchive qt5 \
 fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libmicrodns libdvdcss samba \
-libssh2 mesa libnfs mpg123 libdvdreadv libdvdnavv libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
+libssh2 mesa libnfs mpg123 libdvdread libdvdnav libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
 alsa-lib libsamplerate lirc chromaprint ncursesw"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
 PKG_TOOLCHAIN="autotools"
@@ -121,14 +121,6 @@ pre_configure_target() {
   PKG_CONFIG_PATH="$(get_build_dir ncursesw)/.INSTALL_PKG/usr/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ncursesw)/.INSTALL_PKG/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ncursesw)/.INSTALL_PKG/usr/lib"
-
-  PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(get_build_dir libdvdreadv)/.INSTALL_PKG/usr/lib/pkgconfig"
-  CFLAGS="$CFLAGS -I$(get_build_dir libdvdreadv)/.INSTALL_PKG/usr/include"
-  LDFLAGS="$LDFLAGS -L$(get_build_dir libdvdreadv)/.INSTALL_PKG/usr/lib"
-
-  PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(get_build_dir libdvdnavv)/.INSTALL_PKG/usr/lib/pkgconfig"
-  CFLAGS="$CFLAGS -I$(get_build_dir libdvdnavv)/.INSTALL_PKG/usr/include"
-  LDFLAGS="$LDFLAGS -L$(get_build_dir libdvdnavv)/.INSTALL_PKG/usr/lib"
 
   PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/include"
