@@ -8,14 +8,16 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libxpm libdca lua libmatroska taglib libmatroska ffmpegx faad2 libmad libmpeg2 xcb-util-keysyms libtar libXinerama libarchive qt5 \
-fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libmicrodns libdvdcss samba \
+fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libmicrodns libdvdcss samba fluidsynth \
 libssh2 mesa libnfs mpg123 libdvdread libdvdnav libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
 alsa-lib libsamplerate lirc chromaprint ncursesw"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
 PKG_TOOLCHAIN="autotools"
 
+VLC_PREFIX="/storage/.kodi/addons/tools.vlc3"
+
 PKG_CONFIGURE_OPTS_TARGET="\
-              --prefix=/usr \
+              --prefix=$VLC_PREFIX \
               --enable-run-as-root \
               --disable-nls \
               --without-gnu-ld \
@@ -68,7 +70,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-libass \
               --disable-kate \
               --disable-tiger \
-              --disable-fluidsynth \
+              --enable-fluidsynth \
               --enable-vdpau \
               --disable-wayland \
               --enable-sdl-image \
@@ -127,14 +129,7 @@ pre_configure_target() {
   LDFLAGS="$LDFLAGS -L$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib"
 }
 
-post_install() {
-  rm -fR $INSTALL/usr/share/applications
-  rm -fR $INSTALL/usr/share/icons
-  rm -fR $INSTALL/usr/share/kde4
-
-  mkdir -p $INSTALL/usr/bin
-    mv $INSTALL/usr/bin/vlc $INSTALL/usr/bin/vlc.bin
-    cp -pR $PKG_DIR/scripts/* $INSTALL/usr/bin
+post_makeinstall_target() {
 
   mkdir -p $INSTALL/usr/share/locale
   for fgmo in `ls $PKG_BUILD/po/*.gmo`;do
@@ -143,4 +138,9 @@ post_install() {
     mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
     cp -p $fgmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vlc.mo
   done
+
+  mkdir -p $INSTALL/usr/share
+    mv $INSTALL/$VLC_PREFIX/share/vlc $INSTALL/usr/share
+
+  rm -fR $INSTALL/$VLC_PREFIX
 }

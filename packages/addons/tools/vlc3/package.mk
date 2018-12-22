@@ -128,8 +128,8 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
 
-  #mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-    #cp -R $VLC_DIR/.install_pkg/usr/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
+    cp -R $VLC_DIR/.install_pkg/usr/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
 
   ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
 
