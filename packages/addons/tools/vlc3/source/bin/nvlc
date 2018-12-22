@@ -24,5 +24,8 @@
 . /etc/profile
 . /storage/.kodi/addons/tools.vlc3/etc/vlc.conf
 
+export TERMINFO=/storage/.kodi/addons/tools.vlc3/share/terminfo
+export TERM=linux
+
 eval `dbus-launch --sh-syntax`
 LD_LIBRARY_PATH=$VLIBS exec $ADDON_DIR/bin/vlc.bin --no-plugins-cache -I "ncurses" "$@"

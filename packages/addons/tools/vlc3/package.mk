@@ -3,7 +3,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.4"
-PKG_REV="46"
+PKG_REV="47"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -18,11 +18,9 @@ PKG_ADDON_NAME="Vlc Player 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
 QT5VWER="5.10.1"
-#QT5VWER="5.12.0"
 
 addon() {
   VLC_DIR=$(get_build_dir vlc)
-  VLC_HTSP_DIR=$(get_build_dir vlc-htsp-plugin)
   QT5=$(get_build_dir qt5)
   LUA=$(get_build_dir lua)
   LIB_SDL=$(get_build_dir SDL)
@@ -45,10 +43,23 @@ addon() {
   LIB_UPNP=$(get_build_dir libupnp)
   LIB_TAR=$(get_build_dir libtar)
   LIB_ARCHIVE=$(get_build_dir libarchive)
-  LIB_XZ=$(get_build_dir xz)
-  LIB_FDKAAC=$(get_build_dir fdk-aac)
   LIB_PULS=$(get_build_dir pulseaudio)
   LIB_XKBC=$(get_build_dir libxkbcommon)
+  LIB_A52=$(get_build_dir a52dec)
+  LIB_AVC1394=$(get_build_dir libavc1394)
+  LIB_DC1394=$(get_build_dir libdc1394)
+  LIB_RAW1394=$(get_build_dir libraw1394)
+  LIB_DCA=$(get_build_dir libdca)
+  LIB_MAD=$(get_build_dir libmad)
+  LIB_MTP=$(get_build_dir libmtp)
+  LIB_MPG123=$(get_build_dir mpg123)
+  LIB_SAMPLERATE=$(get_build_dir libsamplerate)
+  LIB_THEORA=$(get_build_dir libtheora)
+  LIB_ZVBI=$(get_build_dir zvbi)
+  LIB_FAAD2=$(get_build_dir faad2)
+  LIB_FLUID=$(get_build_dir fluidsynth)
+  LIB_SHOUT=$(get_build_dir libshout)
+  LIB_DVBPSI=$(get_build_dir libdvbpsi)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -122,6 +133,25 @@ addon() {
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon.so.0
     cp -P $LIB_XKBC/.install_pkg/usr/lib/libxkbcommon-x11.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxkbcommon-x11.so.0
 
+    cp -P $LIB_A52/.install_pkg/usr/lib/liba52.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/liba52.so.0
+    cp -P $LIB_AVC1394/.install_pkg/usr/lib/libavc1394.so.0.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libavc1394.so.0
+    cp -P $LIB_AVC1394/.install_pkg/usr/lib/librom1394.so.0.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/librom1394.so.0
+    cp -P $LIB_DC1394/.install_pkg/usr/lib/libdc1394.so.22.2.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdc1394.so.22
+    cp -P $LIB_RAW1394/.install_pkg/usr/lib/libraw1394.so.11.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libraw1394.so.11
+    cp -P $LIB_DCA/.install_pkg/usr/lib/libdca.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdca.so.0
+    cp -P $LIB_MAD/.install_pkg/usr/lib/libmad.so.0.2.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmad.so.0
+    cp -P $LIB_MTP/.install_pkg/usr/lib/libmtp.so.9.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmtp.so.9
+    cp -P $LIB_MPG123/.install_pkg/usr/lib/libmpg123.so.0.44.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpg123.so.0
+    cp -P $LIB_SAMPLERATE/.install_pkg/usr/lib/libsamplerate.so.0.1.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/libsamplerate.so.0
+    cp -P $LIB_THEORA/.install_pkg/usr/lib/libtheora.so.0.3.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtheora.so.0
+    cp -P $LIB_THEORA/.install_pkg/usr/lib/libtheoradec.so.1.1.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtheoradec.so.1
+    cp -P $LIB_THEORA/.install_pkg/usr/lib/libtheoraenc.so.1.1.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtheoraenc.so.1
+    cp -P $LIB_ZVBI/.install_pkg/usr/lib/libzvbi.so.0.13.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzvbi.so.0
+    cp -P $LIB_FAAD2/.install_pkg/usr/lib/libfaad.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfaad.so.2
+    cp -P $LIB_FLUID/.install_pkg/usr/lib/libfluidsynth.so.1.5.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzvbi.so.1
+    cp -P $LIB_SHOUT/.install_pkg/usr/lib/libshout.so.3.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libshout.so.3
+    cp -P $LIB_DVBPSI/.install_pkg/usr/lib/libdvbpsi.so.10.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvbpsi.so.10
+
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
 
@@ -130,7 +160,5 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/locale
     cp -R $VLC_DIR/.install_pkg/usr/share/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale/
-
-  ln -sf ../share/terminfo $ADDON_BUILD/$PKG_ADDON_ID/lib/terminfo
 
 }

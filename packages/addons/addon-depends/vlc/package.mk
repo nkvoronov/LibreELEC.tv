@@ -18,6 +18,8 @@ VLC_PREFIX="/storage/.kodi/addons/tools.vlc3"
 
 PKG_CONFIGURE_OPTS_TARGET="\
               --prefix=$VLC_PREFIX \
+              --datarootdir=$VLC_PREFIX/share \
+              --localedir=$VLC_PREFIX/share/locale \
               --enable-run-as-root \
               --disable-nls \
               --without-gnu-ld \
