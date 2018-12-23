@@ -3,7 +3,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.4"
-PKG_REV="47"
+PKG_REV="48"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -148,7 +148,7 @@ addon() {
     cp -P $LIB_THEORA/.install_pkg/usr/lib/libtheoraenc.so.1.1.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtheoraenc.so.1
     cp -P $LIB_ZVBI/.install_pkg/usr/lib/libzvbi.so.0.13.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzvbi.so.0
     cp -P $LIB_FAAD2/.install_pkg/usr/lib/libfaad.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfaad.so.2
-    cp -P $LIB_FLUID/.install_pkg/usr/lib/libfluidsynth.so.1.5.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzvbi.so.1
+    cp -P $LIB_FLUID/.install_pkg/usr/lib/libfluidsynth.so.1.5.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfluidsynth.so.1
     cp -P $LIB_SHOUT/.install_pkg/usr/lib/libshout.so.3.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libshout.so.3
     cp -P $LIB_DVBPSI/.install_pkg/usr/lib/libdvbpsi.so.10.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvbpsi.so.10
 
