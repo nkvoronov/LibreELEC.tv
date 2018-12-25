@@ -1,7 +1,7 @@
-diff -Naur a/language/English/strings.po b/language/English/strings.po
---- a/language/English/strings.po	2018-08-29 09:54:56.928175597 +0300
-+++ b/language/English/strings.po	2018-08-29 13:32:25.058336607 +0300
-@@ -100,6 +100,10 @@
+diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.language.en_gb/strings.po
+--- a/language/resource.language.en_gb/strings.po	2018-12-24 23:40:36.236502505 +0200
++++ b/language/resource.language.en_gb/strings.po	2018-12-25 00:05:15.864559867 +0200
+@@ -104,6 +104,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
  
@@ -12,8 +12,8 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
  msgctxt "#718"
  msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to http://ix.io, and display the short URL"
  msgstr ""
-@@ -272,6 +276,14 @@
- msgid "Interface"
+@@ -284,6 +288,14 @@
+ msgid "Updates"
  msgstr ""
  
 +msgctxt "#32007"
@@ -27,7 +27,7 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr ""
-@@ -867,3 +879,754 @@
+@@ -919,3 +931,754 @@
  msgctxt "#32399"
  msgid "Public"
  msgstr ""
@@ -726,7 +726,7 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +
 +##########################################################
 +## Oscam
-++
++
 +msgctxt "#41000"
 +msgid "Oscam Configuration"
 +msgstr ""
@@ -782,11 +782,11 @@ diff -Naur a/language/English/strings.po b/language/English/strings.po
 +msgctxt "#1701"
 +msgid "Updates"
 +msgstr ""
-diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
---- a/language/Russian/strings.po	2018-08-29 09:54:56.964175853 +0300
-+++ b/language/Russian/strings.po	2018-08-29 13:56:58.315212730 +0300
-@@ -108,6 +108,10 @@
- msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
+diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.language.ru_RU/strings.po
+--- a/language/resource.language.ru_RU/strings.po	2018-12-24 23:40:36.240502536 +0200
++++ b/language/resource.language.ru_RU/strings.po	2018-12-25 00:16:46.026118940 +0200
+@@ -126,6 +126,10 @@
+ "is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
  
 +msgctxt "#717"
@@ -794,11 +794,11 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе @DISTRONAME@ - Вы должны сконфигурировать правильный драйвер дисплея"
 +
  msgctxt "#718"
- msgid "Send config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log to http://ix.io and display the short URL"
- msgstr "Отправить config.txt, cmdline.txt, shutdown.sh, autostart.sh, and kodi.log на сайт http://ix.io и показать короткую URL ссылку"
-@@ -264,6 +268,14 @@
- msgid "Interface"
- msgstr "Интерфейс"
+ msgid ""
+ "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
+@@ -347,6 +351,14 @@
+ msgid "Updates"
+ msgstr "Oбновления"
  
 +msgctxt "#32007"
 +msgid "Driver"
@@ -811,10 +811,11 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
-@@ -811,3 +823,754 @@
- msgctxt "#32390"
- msgid "Settings addon is not yet ready, please try again later."
- msgstr "Настройки дополнения ещё не готовы. Повторите попытку позже."
+@@ -1026,3 +1038,755 @@
+ msgctxt "#32399"
+ msgid "Public"
+ msgstr "Общественные"
++
 +
 +msgctxt "#32400"
 +msgid "Enable LCD Driver Support"
@@ -1567,8 +1568,8 @@ diff -Naur a/language/Russian/strings.po b/language/Russian/strings.po
 +msgid "Updates"
 +msgstr "Обновления"
 diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2018-08-29 09:54:56.972175911 +0300
-+++ b/src/defaults.py	2018-08-29 11:23:09.654568542 +0300
+--- a/src/defaults.py	2018-12-24 23:40:36.244502567 +0200
++++ b/src/defaults.py	2018-12-25 00:26:17.950629895 +0200
 @@ -57,6 +57,143 @@
      }
  
@@ -1722,7 +1723,7 @@ diff -Naur a/src/defaults.py b/src/defaults.py
      }
  
  system = {
-@@ -113,4 +252,9 @@
+@@ -117,4 +256,9 @@
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
      'iptables': ['iptables.service'],
@@ -1733,18 +1734,18 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'oscam': ['oscam.service'],
      }
 diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/services.py
---- a/src/resources/lib/modules/services.py	2018-08-29 09:54:56.976175939 +0300
-+++ b/src/resources/lib/modules/services.py	2018-09-01 19:00:51.543936173 +0300
-@@ -47,6 +47,8 @@
+--- a/src/resources/lib/modules/services.py	2018-12-24 23:40:36.248502597 +0200
++++ b/src/resources/lib/modules/services.py	2018-12-25 00:32:19.793469150 +0200
+@@ -56,6 +56,8 @@
      OPT_SSH_NOPASSWD = None
      AVAHI_DAEMON = None
      CRON_DAEMON = None
 +    LCD_DRIVER_DIR = None
 +    D_LCD_DRIVER = None
-     menu = {'4': {
+     menu = {'7': {
          'name': 32001,
          'menuLoader': 'load_menu',
-@@ -220,6 +222,33 @@
+@@ -241,6 +243,33 @@
                          'InfoText': 745,
                          }},
                      },
@@ -1778,7 +1779,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
                  'bluez': {
                      'order': 6,
                      'name': 32331,
-@@ -314,6 +343,13 @@
+@@ -335,6 +364,13 @@
          try:
              self.oe.dbg_log('services::load_values', 'enter_function', 0)
  
@@ -1792,7 +1793,7 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
              # SAMBA
  
              if os.path.isfile(self.SAMBA_NMDB) and os.path.isfile(self.SAMBA_SMDB):
-@@ -527,6 +563,40 @@
+@@ -548,6 +584,40 @@
              self.oe.set_busy(0)
              self.oe.dbg_log('services::init_obex', 'ERROR: (' + repr(e) + ')', 4)
  
@@ -1834,9 +1835,9 @@ diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/s
          try:
              self.oe.dbg_log('services::exit', 'enter_function', 0)
 diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
---- a/src/resources/lib/modules/system.py	2018-08-29 09:54:56.976175939 +0300
-+++ b/src/resources/lib/modules/system.py	2018-09-01 19:03:23.436981103 +0300
-@@ -130,10 +130,34 @@
+--- a/src/resources/lib/modules/system.py	2018-12-24 23:40:36.248502597 +0200
++++ b/src/resources/lib/modules/system.py	2018-12-25 01:54:40.654840556 +0200
+@@ -127,6 +127,30 @@
                              'values': [],
                              'InfoText': 713,
                              },
@@ -1849,11 +1850,10 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +                            'values': [],
 +                            'InfoText': 799,
 +                            },
-                         },
-                     },
--                'update': {
++                        },
++                    },
 +                'locale': {
-                     'order': 3,
++                     'order': 3,
 +                    'name': 32402,
 +                    'settings': {
 +                        'SystemLocale': {
@@ -1865,137 +1865,18 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +                            'InfoText': 1702,
 +                            'order': 1,
 +                            },
-+                        },
-+                    },
-+                'update': {
-+                    'order': 4,
-                     'name': 32013,
-                     'settings': {
-                         'AutoUpdate': {
-@@ -141,25 +165,57 @@
-                             'value': 'auto',
-                             'action': 'set_auto_update',
-                             'type': 'multivalue',
--                            'values': ['auto', 'manual'],
-+                            'values': ['auto', 'manual', 'custom'],
-                             'InfoText': 714,
-                             'order': 1,
-                             },
-+                        'CustomUpdateSettings': {
-+                            'name': 43000,
-+                            'value': '0',
-+                            'action': 'do_update_settings',
-+                            'type': 'button',
-+                            'parent': {
-+                                'entry': 'AutoUpdate',
-+                                'value': ['custom'],
-+                                },
-+                            'InfoText': 1700,
-+                            'order': 2,
-+                            },
-+                        'CustomUpdateDialog': {
-+                            'name': 43001,
-+                            'value': '0',
-+                            'action': 'do_update_dialog',
-+                            'type': 'button',
-+                            'parent': {
-+                                'entry': 'AutoUpdate',
-+                                'value': ['custom'],
-+                                },
-+                            'InfoText': 1701,
-+                            'order': 3,
-+                            },
-                         'SubmitStats': {
-                             'name': 32021,
-                             'value': '1',
-                             'action': 'set_value',
-                             'type': 'bool',
-+                            'parent': {
-+                                'entry': 'AutoUpdate',
-+                                'value': ['auto', 'manual'],
-+                                },
-                             'InfoText': 772,
--                            'order': 2,
-+                            'order': 3,
-                             },
-                         'UpdateNotify': {
-                             'name': 32365,
-                             'value': '1',
-                             'action': 'set_value',
-                             'type': 'bool',
-+                            'parent': {
-+                                'entry': 'AutoUpdate',
-+                                'value': ['auto', 'manual'],
-+                                },
-                             'InfoText': 715,
--                            'order': 3,
-+                            'order': 4,
-                             },
-                         'ShowCustomChannels': {
-                             'name': 32016,
-@@ -171,7 +227,7 @@
-                                 'value': ['manual'],
-                                 },
-                             'InfoText': 761,
--                            'order': 4,
-+                            'order': 5,
-                             },
-                         'CustomChannel1': {
-                             'name': 32017,
-@@ -183,7 +239,7 @@
-                                 'value': ['1'],
-                                 },
-                             'InfoText': 762,
--                            'order': 5,
-+                            'order': 6,
-                             },
-                         'CustomChannel2': {
-                             'name': 32018,
-@@ -195,7 +251,7 @@
-                                 'value': ['1'],
-                                 },
-                             'InfoText': 762,
--                            'order': 6,
-+                            'order': 7,
-                             },
-                         'CustomChannel3': {
-                             'name': 32019,
-@@ -207,7 +263,7 @@
-                                 'value': ['1'],
-                                 },
-                             'InfoText': 762,
--                            'order': 7,
-+                            'order': 8,
-                             },
-                         'Channel': {
-                             'name': 32015,
-@@ -220,7 +276,7 @@
-                                 },
-                             'values': [],
-                             'InfoText': 760,
--                            'order': 8,
-+                            'order': 9,
-                             },
-                         'Build': {
-                             'name': 32020,
-@@ -233,7 +289,7 @@
-                                 },
-                             'values': [],
-                             'InfoText': 770,
--                            'order': 9,
-+                            'order': 10,
-                             },
                          },
                      },
-@@ -321,6 +377,7 @@
+                 'backup': {
+@@ -212,6 +236,7 @@
              self.set_hostname()
              self.set_keyboard_layout()
              self.set_hw_clock()
 +            self.set_locales()
-             self.set_auto_update()
              del self.is_service
              self.oe.dbg_log('system::start_service', 'exit_function', 0)
-@@ -421,12 +478,18 @@
+         except Exception, e:
+@@ -311,12 +336,18 @@
                  arrLayouts,
                  arrTypes,
                  self.arrVariants,
@@ -2015,10 +1896,11 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if not arrLayouts is None:
                  self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
                  self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
-@@ -460,6 +523,15 @@
+@@ -349,6 +380,16 @@
+                 self.struct['ident']['settings']['hostname']['value'] = value
              else:
                  self.struct['ident']['settings']['hostname']['value'] = self.oe.DISTRIBUTION
- 
++
 +            # Locales
 +
 +            arrLocales = self.get_locales()
@@ -2028,10 +1910,10 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
 +                if not value is None:
 +                    self.struct['locale']['settings']['SystemLocale']['value'] = value
 +
-             # AutoUpdate
+         except Exception, e:
+             self.oe.dbg_log('system::load_values', 'ERROR: (' + repr(e) + ')')
  
-             value = self.oe.read_setting('system', 'AutoUpdate')
-@@ -544,7 +616,8 @@
+@@ -387,7 +428,8 @@
                          ]['KeyboardLayout2']['value']]
                  self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
                                  + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
@@ -2041,7 +1923,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
                      os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
                  config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
-@@ -553,7 +626,9 @@
+@@ -396,7 +438,9 @@
                                    self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
                  config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
                                    ]['settings']['KeyboardLayout2']['value'] + '"\n')
@@ -2052,7 +1934,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                  config_file.close()
                  parameters = [
                      '-display ' + os.environ['DISPLAY'],
-@@ -562,7 +637,7 @@
+@@ -405,7 +449,7 @@
                      '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
                              ]['KeyboardVariant2']['value'],
                      '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
@@ -2061,28 +1943,10 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
                      ]
                  self.oe.execute('setxkbmap ' + ' '.join(parameters))
              elif self.nox_keyboard_layouts == True:
-@@ -623,12 +698,61 @@
-         except Exception, e:
-             self.oe.dbg_log('system::set_auto_update', 'ERROR: (' + repr(e) + ')')
+@@ -450,12 +494,43 @@
+             self.oe.set_busy(0)
+             self.oe.dbg_log('system::set_hostname', 'ERROR: (' + repr(e) + ')')
  
-+    def do_update_settings(self, listItem=None):
-+        try:
-+            self.oe.dbg_log('system::do_update_settings', 'enter_function', 0)
-+            if xbmc.getCondVisibility('System.HasAddon(script.libreelec.devupdate)'):
-+                xbmc.executebuiltin('Addon.OpenSettings(script.libreelec.devupdate)')
-+            self.oe.dbg_log('system::do_update_settings', 'exit_function', 0)
-+        except Exception, e:
-+            self.oe.dbg_log('system::do_update_settings', 'ERROR: (' + repr(e) + ')')
-+
-+    def do_update_dialog(self, listItem=None):
-+        try:
-+            self.oe.dbg_log('system::do_update_dialog', 'enter_function', 0)
-+            if xbmc.getCondVisibility('System.HasAddon(script.libreelec.devupdate)'):
-+                xbmc.executebuiltin('RunAddon(script.libreelec.devupdate)')
-+            self.oe.dbg_log('system::do_update_dialog', 'exit_function', 0)
-+        except Exception, e:
-+            self.oe.dbg_log('system::do_update_dialog', 'ERROR: (' + repr(e) + ')')
-+
 +    def get_locales(self):
 +        try:
 +            self.oe.dbg_log('system::get_locales', 'enter_function', 0)
@@ -2123,7 +1987,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              if os.path.exists(self.NOX_KEYBOARD_INFO):
                  for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
                      if os.path.isfile(layout):
-@@ -676,8 +800,21 @@
+@@ -503,8 +578,21 @@
                                  if subnode_2.nodeName == 'description':
                                      if hasattr(subnode_2.firstChild, 'nodeValue'):
                                          arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
@@ -2145,7 +2009,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              else:
                  self.oe.dbg_log('system::get_keyboard_layouts', 'exit_function (no keyboard layouts found)', 0)
                  return (None, None, None)
-@@ -686,6 +823,7 @@
+@@ -513,6 +601,7 @@
                  arrLayouts,
                  arrTypes,
                  arrVariants,
@@ -2155,7 +2019,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2018-09-01 19:00:51.595936529 +0300
++++ b/src/resources/lib/modules/transmission.py	2018-12-25 01:57:12.931801580 +0200
 @@ -0,0 +1,328 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -2487,7 +2351,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2018-09-01 19:00:51.599936556 +0300
++++ b/src/resources/lib/modules/tvservers.py	2018-12-25 01:57:12.935801605 +0200
 @@ -0,0 +1,2203 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -4692,3 +4556,146 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +        except Exception, e:
 +            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'ERROR: (%s)' % repr(e))
 +
+diff -Naur a/src/resources/lib/modules/updates.py b/src/resources/lib/modules/updates.py
+--- a/src/resources/lib/modules/updates.py	2018-12-24 23:40:36.248502597 +0200
++++ b/src/resources/lib/modules/updates.py	2018-12-25 01:53:40.770456912 +0200
+@@ -69,25 +69,57 @@
+                             'value': 'auto',
+                             'action': 'set_auto_update',
+                             'type': 'multivalue',
+-                            'values': ['auto', 'manual'],
++                            'values': ['auto', 'manual', 'custom'],
+                             'InfoText': 714,
+                             'order': 1,
+                             },
++                        'CustomUpdateSettings': {
++                            'name': 43000,
++                            'value': '0',
++                            'action': 'do_update_settings',
++                            'type': 'button',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['custom'],
++                                },
++                            'InfoText': 1700,
++                            'order': 2,
++                            },
++                        'CustomUpdateDialog': {
++                            'name': 43001,
++                            'value': '0',
++                            'action': 'do_update_dialog',
++                            'type': 'button',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['custom'],
++                                },
++                            'InfoText': 1701,
++                            'order': 3,
++                            },
+                         'SubmitStats': {
+                             'name': 32021,
+                             'value': '1',
+                             'action': 'set_value',
+                             'type': 'bool',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['auto', 'manual'],
++                                },
+                             'InfoText': 772,
+-                            'order': 2,
++                            'order': 4,
+                             },
+                         'UpdateNotify': {
+                             'name': 32365,
+                             'value': '1',
+                             'action': 'set_value',
+                             'type': 'bool',
++                            'parent': {
++                                'entry': 'AutoUpdate',
++                                'value': ['auto', 'manual'],
++                                },
+                             'InfoText': 715,
+-                            'order': 3,
++                            'order': 5,
+                             },
+                         'ShowCustomChannels': {
+                             'name': 32016,
+@@ -99,7 +131,7 @@
+                                 'value': ['manual'],
+                                 },
+                             'InfoText': 761,
+-                            'order': 4,
++                            'order': 6,
+                             },
+                         'CustomChannel1': {
+                             'name': 32017,
+@@ -111,7 +143,7 @@
+                                 'value': ['1'],
+                                 },
+                             'InfoText': 762,
+-                            'order': 5,
++                            'order': 7,
+                             },
+                         'CustomChannel2': {
+                             'name': 32018,
+@@ -123,7 +155,7 @@
+                                 'value': ['1'],
+                                 },
+                             'InfoText': 762,
+-                            'order': 6,
++                            'order': 8,
+                             },
+                         'CustomChannel3': {
+                             'name': 32019,
+@@ -135,7 +167,7 @@
+                                 'value': ['1'],
+                                 },
+                             'InfoText': 762,
+-                            'order': 7,
++                            'order': 9,
+                             },
+                         'Channel': {
+                             'name': 32015,
+@@ -148,7 +180,7 @@
+                                 },
+                             'values': [],
+                             'InfoText': 760,
+-                            'order': 8,
++                            'order': 10,
+                             },
+                         'Build': {
+                             'name': 32020,
+@@ -161,7 +193,7 @@
+                                 },
+                             'values': [],
+                             'InfoText': 770,
+-                            'order': 9,
++                            'order': 11,
+                             },
+                         }
+                     }
+@@ -207,6 +239,24 @@
+         self.oe.dbg_log('updates::exit', 'exit_function', 0)
+         pass
+ 
++    def do_update_settings(self, listItem=None):
++        try:
++            self.oe.dbg_log('updates::do_update_settings', 'enter_function', 0)
++            if xbmc.getCondVisibility('System.HasAddon(script.libreelec.devupdate)'):
++                xbmc.executebuiltin('Addon.OpenSettings(script.libreelec.devupdate)')
++            self.oe.dbg_log('updates::do_update_settings', 'exit_function', 0)
++        except Exception, e:
++            self.oe.dbg_log('updates::do_update_settings', 'ERROR: (' + repr(e) + ')')
++
++    def do_update_dialog(self, listItem=None):
++        try:
++            self.oe.dbg_log('updates::do_update_dialog', 'enter_function', 0)
++            if xbmc.getCondVisibility('System.HasAddon(script.libreelec.devupdate)'):
++                xbmc.executebuiltin('RunAddon(script.libreelec.devupdate)')
++            self.oe.dbg_log('updates::do_update_dialog', 'exit_function', 0)
++        except Exception, e:
++            self.oe.dbg_log('updates::do_update_dialog', 'ERROR: (' + repr(e) + ')')
++
+     # Identify connected GPU card (card0, card1 etc.)
+     def get_gpu_card(self):
+         for root, dirs, files in os.walk("/sys/class/drm", followlinks=False):
