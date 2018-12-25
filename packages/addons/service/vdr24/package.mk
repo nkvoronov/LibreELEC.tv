@@ -42,7 +42,7 @@ ENABLE_VDR_PLUGIN_SKINFLAT="yes"
 ENABLE_VDR_PLUGIN_SKINFLATPLUS="yes"
 ENABLE_VDR_PLUGIN_SKINNOPACITY="yes"
 ENABLE_VDR_PLUGIN_SLEEPTIMER="yes"
-ENABLE_VDR_PLUGIN_SOFTHDDEVICE="no"
+ENABLE_VDR_PLUGIN_SOFTHDDEVICE="yes"
 ENABLE_VDR_PLUGIN_STREAMDEV="yes"
 ENABLE_VDR_PLUGIN_SYSTEMINFO="yes"
 ENABLE_VDR_PLUGIN_TEXT2SKIN="yes"
@@ -677,6 +677,7 @@ addon() {
     LIBXCBUTILKEYSYMS_DIR=$(get_build_dir xcb-util-keysyms)
     LIBXCBUTILRENDERUTIL_DIR=$(get_build_dir xcb-util-renderutil)
     LIBXCBUTILWM_DIR=$(get_build_dir xcb-util-wm)
+    FFMPEG34_DIR=$(get_build_dir ffmpeg34)
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb.so.1.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb.so.1
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-composite.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-composite.so.0
@@ -707,6 +708,14 @@ addon() {
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xtest.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xtest.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xv.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xv.so.0
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-xvmc.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-xvmc.so.0
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libavcodec.so.57.107.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libavcodec.so.57
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libavdevice.so.57.10.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libavdevice.so.57
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libavfilter.so.6.107.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libavfilter.so.6
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libavformat.so.57.83.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libavformat.so.57
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libavutil.so.55.78.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libavutil.so.55
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libpostproc.so.54.7.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpostproc.so.54
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libswresample.so.2.9.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libswresample.so.2
+      cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libswscale.so.4.8.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libswscale.so.4
   fi
 
   #plugin streamdev

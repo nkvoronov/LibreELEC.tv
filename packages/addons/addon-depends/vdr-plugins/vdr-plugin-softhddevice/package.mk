@@ -7,10 +7,16 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-softhddevice"
 PKG_URL="https://github.com/ua0lnj/vdr-plugin-softhddevice.git"
 PKG_GIT_CLONE_BRANCH="vdpau+vaapi"
-PKG_DEPENDS_TARGET="toolchain vdr ffmpeg libxcb xcb-proto xcb-util xcb-util-keysyms xcb-util-wm xcb-util-renderutil xcb-util-image"
+PKG_DEPENDS_TARGET="toolchain vdr ffmpeg34 libxcb xcb-proto xcb-util xcb-util-keysyms xcb-util-wm xcb-util-renderutil xcb-util-image"
 PKG_LONGDESC="Plugin for VDR. A software and GPU emulated HD device. This plugin for the Linux Video Disc Recorder VDR. A software and GPU emulated HD device"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"
+
+pre_configure_target() {
+  PKG_CONFIG_PATH="$(get_build_dir ffmpeg34)/.INSTALL_PKG/usr/local/lib/pkgconfig"
+  CFLAGS="$CFLAGS -I$(get_build_dir ffmpeg34)/.INSTALL_PKG/usr/local/include"
+  LDFLAGS="$LDFLAGS -L$(get_build_dir ffmpeg34)/.INSTALL_PKG/usr/local/lib"
+}
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)
@@ -20,7 +26,7 @@ make_target() {
   make VDRDIR=$VDR_DIR \
   LIBDIR="." \
   LOCDIR="./locale" \
-  all install-i18n
+  all
 }
 
 post_make_target() {
