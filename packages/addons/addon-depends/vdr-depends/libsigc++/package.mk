@@ -9,3 +9,5 @@ PKG_SITE="http://libsigc.sourceforge.net/"
 PKG_URL="http://ftp.gnome.org/pub/GNOME/sources/$PKG_NAME/${PKG_VERSION:0:4}/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="libsigc++ implements a typesafe callback system for standard C++. It allows you to define signals and to connect those signals to any callback function, either global or a member function, regardless of whether it is static or virtual."
+
+PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
