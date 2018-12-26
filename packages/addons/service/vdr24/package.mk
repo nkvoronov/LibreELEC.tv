@@ -3,7 +3,7 @@
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.0"
-PKG_REV="163"
+PKG_REV="164"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -678,6 +678,7 @@ addon() {
     LIBXCBUTILRENDERUTIL_DIR=$(get_build_dir xcb-util-renderutil)
     LIBXCBUTILWM_DIR=$(get_build_dir xcb-util-wm)
     FFMPEG34_DIR=$(get_build_dir ffmpeg34)
+    LIBVAGLX_DIR=$(get_build_dir libva-glx)
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb.so.1.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb.so.1
       cp -P $LIBXCB_DIR/.install_pkg/usr/lib/libxcb-composite.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxcb-composite.so.0
@@ -716,6 +717,7 @@ addon() {
       cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libpostproc.so.54.7.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpostproc.so.54
       cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libswresample.so.2.9.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libswresample.so.2
       cp -P $FFMPEG34_DIR/.INSTALL_PKG/usr/local/lib/libswscale.so.4.8.100 $ADDON_BUILD/$PKG_ADDON_ID/lib/libswscale.so.4
+      cp -P $LIBVAGLX_DIR/.install_pkg/usr/lib/libva-glx.so.2.300.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libva-glx.so.2
   fi
 
   #plugin streamdev
