@@ -3,10 +3,10 @@
 
 PKG_NAME="oscam"
 PKG_VERSION="11444"
-#PKG_SHA256="230cc9a59f411115d612dc6d736dbb1cee47385924c6e6b9e53e5b9c3f82cb11"
+PKG_SHA256="19228272482d593333989cd4292bb54651db2d3c1c6da58cb204fe899266ad80"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
-PKG_URL="https://www.dropbox.com/s/93i3orl012nnv54/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="https://www.dropbox.com/s/z47i09tual0blwe/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain openssl pcsc-lite"
 PKG_LONGDESC="OSCam: is a software to be used to decrypt digital television channels, as an alternative for a conditional access module."
 
