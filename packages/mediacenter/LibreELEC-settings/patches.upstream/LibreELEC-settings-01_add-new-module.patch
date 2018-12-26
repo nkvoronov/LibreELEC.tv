@@ -1,6 +1,6 @@
 diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.language.en_gb/strings.po
 --- a/language/resource.language.en_gb/strings.po	2018-12-24 23:40:36.236502505 +0200
-+++ b/language/resource.language.en_gb/strings.po	2018-12-25 00:05:15.864559867 +0200
++++ b/language/resource.language.en_gb/strings.po	2018-12-27 01:05:33.696231975 +0200
 @@ -104,6 +104,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
@@ -226,27 +226,27 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#36007"
-+msgid "XMLTV File location"
++msgid "- patch"
 +msgstr ""
 +
 +msgctxt "#1107"
-+msgid "Local location XMLTV file"
++msgid "Select XMLTV file"
 +msgstr ""
 +
 +msgctxt "#36008"
-+msgid "XMLTV Web location"
++msgid "- url"
 +msgstr ""
 +
 +msgctxt "#1108"
-+msgid "Web location XMLTV file"
++msgid "Select XMLTV url"
 +msgstr ""
 +
 +msgctxt "#36009"
-+msgid "XMLTV Script location"
++msgid "- script"
 +msgstr ""
 +
 +msgctxt "#1109"
-+msgid "Location XMLTV script"
++msgid "Select XMLTV script"
 +msgstr ""
 +
 +##########################################################
@@ -305,7 +305,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37007"
-+msgid "PVR plugin"
++msgid "- PVR plugin"
 +msgstr ""
 +
 +msgctxt "#1207"
@@ -313,15 +313,15 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37008"
-+msgid "Enable plugin: iptv"
++msgid "plugin: iptv"
 +msgstr ""
 +
 +msgctxt "#1208"
-+msgid "Enabled iptv plugin"
++msgid "Enable iptv plugin"
 +msgstr ""
 +
 +msgctxt "#37009"
-+msgid "iptv num devices"
++msgid "- num devices"
 +msgstr ""
 +
 +msgctxt "#1209"
@@ -329,7 +329,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37010"
-+msgid "Enable plugin: streamdev-client"
++msgid "plugin: streamdev-client"
 +msgstr ""
 +
 +msgctxt "#1210"
@@ -337,31 +337,31 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37011"
-+msgid "Enable plugin: streamdev-server"
++msgid "plugin: streamdev-server"
 +msgstr ""
 +
 +msgctxt "#1211"
-+msgid "Enabled streamdev-server plugin"
++msgid "Enable streamdev-server plugin"
 +msgstr ""
 +
 +msgctxt "#37012"
-+msgid "Enable plugin: wirbelscan"
++msgid "plugin: wirbelscan"
 +msgstr ""
 +
 +msgctxt "#1212"
-+msgid "Enabled wirbelscan plugin"
++msgid "Enable wirbelscan plugin"
 +msgstr ""
 +
 +msgctxt "#37013"
-+msgid "Enable plugin: live"
++msgid "plugin: live"
 +msgstr ""
 +
 +msgctxt "#1213"
-+msgid "Enabled live plugin"
++msgid "Enable live plugin"
 +msgstr ""
 +
 +msgctxt "#37014"
-+msgid "live: listen on ip"
++msgid "- listen on ip"
 +msgstr ""
 +
 +msgctxt "#1214"
@@ -369,7 +369,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37015"
-+msgid "live: listen on port"
++msgid "- listen on port"
 +msgstr ""
 +
 +msgctxt "#1215"
@@ -377,31 +377,31 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37016"
-+msgid "Enable plugin: epgsearch"
++msgid "plugin: epgsearch"
 +msgstr ""
 +
 +msgctxt "#1216"
-+msgid "Enabled epgsearch plugin"
++msgid "Enable epgsearch plugin"
 +msgstr ""
 +
 +msgctxt "#37017"
-+msgid "Enable plugin: xmltv2vdr"
++msgid "plugin: xmltv2vdr"
 +msgstr ""
 +
 +msgctxt "#1217"
-+msgid "Enabled xmltv2vdr plugin"
++msgid "Enable xmltv2vdr plugin"
 +msgstr ""
 +
 +msgctxt "#37018"
-+msgid "Enable plugin: softcam"
++msgid "plugin: softcam"
 +msgstr ""
 +
 +msgctxt "#1218"
-+msgid "Enabled softcam plugin"
++msgid "Enable softcam plugin"
 +msgstr ""
 +
 +msgctxt "#37019"
-+msgid "softcam: options"
++msgid "- options"
 +msgstr ""
 +
 +msgctxt "#1219"
@@ -409,39 +409,39 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37020"
-+msgid "Enable plugin: dummydevice"
++msgid "plugin: dummydevice"
 +msgstr ""
 +
 +msgctxt "#1220"
-+msgid "Enabled dummydevice plugin"
++msgid "Enable dummydevice plugin"
 +msgstr ""
 +
 +msgctxt "#37021"
-+msgid "Enable plugin: satip"
++msgid "plugin: satip"
 +msgstr ""
 +
 +msgctxt "#1221"
-+msgid "Enabled satip plugin"
++msgid "Enable satip plugin"
 +msgstr ""
 +
 +msgctxt "#37022"
-+msgid "Enable plugin: epgfixer"
++msgid "plugin: epgfixer"
 +msgstr ""
 +
 +msgctxt "#1222"
-+msgid "Enabled epgfixer plugin"
++msgid "Enable epgfixer plugin"
 +msgstr ""
 +
 +msgctxt "#37023"
-+msgid "Enable plugin: restfulapi"
++msgid "plugin: restfulapi"
 +msgstr ""
 +
 +msgctxt "#1223"
-+msgid "Enabled restfulapi plugin"
++msgid "Enable restfulapi plugin"
 +msgstr ""
 +
 +msgctxt "#37024"
-+msgid "restfulapi: listen on ip"
++msgid "- listen on ip"
 +msgstr ""
 +
 +msgctxt "#1224"
@@ -449,7 +449,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37025"
-+msgid "restfulapi: listen on port"
++msgid "- listen on port"
 +msgstr ""
 +
 +msgctxt "#1225"
@@ -457,27 +457,27 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#37026"
-+msgid "Enable plugin: ddci2"
++msgid "plugin: ddci2"
 +msgstr ""
 +
 +msgctxt "#1226"
-+msgid "Enabled ddci2 plugin""
++msgid "Enable ddci2 plugin""
 +msgstr ""
 +
 +msgctxt "#37027"
-+msgid "Enable plugin: dynamite"
++msgid "plugin: dynamite"
 +msgstr ""
 +
 +msgctxt "#1227"
-+msgid "Enabled dynamite plugin"
++msgid "Enable dynamite plugin"
 +msgstr ""
 +
 +msgctxt "#37028"
-+msgid "Enable plugin: robotv"
++msgid "plugin: robotv"
 +msgstr ""
 +
 +msgctxt "#1228"
-+msgid "Enabled robotv plugin"
++msgid "Enable robotv plugin"
 +msgstr ""
 +
 +##########################################################
@@ -502,147 +502,147 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#39020"
-+msgid "Enable plugin: channellists"
++msgid "plugin: channellists"
 +msgstr ""
 +
 +msgctxt "#1420"
-+msgid "Enabled channellists plugin"
++msgid "Enable channellists plugin"
 +msgstr ""
 +
 +msgctxt "#39021"
-+msgid "Enable plugin: pin"
++msgid "plugin: pin"
 +msgstr ""
 +
 +msgctxt "#1421"
-+msgid "Enabled pin plugin"
++msgid "Enable pin plugin"
 +msgstr ""
 +
 +msgctxt "#39022"
-+msgid "Enable plugin: femon"
++msgid "plugin: femon"
 +msgstr ""
 +
 +msgctxt "#1422"
-+msgid "Enabled femon plugin"
++msgid "Enable femon plugin"
 +msgstr ""
 +
 +msgctxt "#39023"
-+msgid "Enable plugin: systeminfo"
++msgid "plugin: systeminfo"
 +msgstr ""
 +
 +msgctxt "#1423"
-+msgid "Enabled systeminfo plugin"
++msgid "Enable systeminfo plugin"
 +msgstr ""
 +
 +msgctxt "#39024"
-+msgid "Enable plugin: sleeptimer"
++msgid "plugin: sleeptimer"
 +msgstr ""
 +
 +msgctxt "#1424"
-+msgid "Enabled sleeptimer plugin"
++msgid "Enable sleeptimer plugin"
 +msgstr ""
 +
 +msgctxt "#39025"
-+msgid "Enable plugin: filebrowser"
++msgid "plugin: filebrowser"
 +msgstr ""
 +
 +msgctxt "#1425"
-+msgid "Enabled filebrowser plugin"
++msgid "Enable filebrowser plugin"
 +msgstr ""
 +
 +msgctxt "#39026"
-+msgid "Enable plugin: lcdproc"
++msgid "plugin: lcdproc"
 +msgstr ""
 +
 +msgctxt "#1426"
-+msgid "Enabled lcdproc plugin"
++msgid "Enable lcdproc plugin"
 +msgstr ""
 +
 +msgctxt "#39027"
-+msgid "Enable plugin: imonlcd"
++msgid "plugin: imonlcd"
 +msgstr ""
 +
 +msgctxt "#1427"
-+msgid "Enabled imonlcd plugin"
++msgid "Enable imonlcd plugin"
 +msgstr ""
 +
 +msgctxt "#39028"
-+msgid "Enable plugin: text2skin"
++msgid "plugin: text2skin"
 +msgstr ""
 +
 +msgctxt "#1428"
-+msgid "Enabled text2skin plugin"
++msgid "Enable text2skin plugin"
 +msgstr ""
 +
 +msgctxt "#39029"
-+msgid "Enable plugin: skinnopacity"
++msgid "plugin: skinnopacity"
 +msgstr ""
 +
 +msgctxt "#1429"
-+msgid "Enabled skinnopacity plugin"
++msgid "Enable skinnopacity plugin"
 +msgstr ""
 +
 +msgctxt "#39030"
-+msgid "Enable plugin: skinflat"
++msgid "plugin: skinflat"
 +msgstr ""
 +
 +msgctxt "#1430"
-+msgid "Enabled skinflat plugin"
++msgid "Enable skinflat plugin"
 +msgstr ""
 +
 +msgctxt "#39031"
-+msgid "Enable plugin: skinflatplus"
++msgid "plugin: skinflatplus"
 +msgstr ""
 +
 +msgctxt "#1431"
-+msgid "Enabled skinflatplus plugin"
++msgid "Enable skinflatplus plugin"
 +msgstr ""
 +
 +msgctxt "#39032"
-+msgid "Enable plugin: skindesigner"
++msgid "plugin: skindesigner"
 +msgstr ""
 +
 +msgctxt "#1432"
-+msgid "Enabled skindesigner plugin"
++msgid "Enable skindesigner plugin"
 +msgstr ""
 +
 +msgctxt "#39033"
-+msgid "Enable plugin: tvguideng"
++msgid "plugin: tvguideng"
 +msgstr ""
 +
 +msgctxt "#1433"
-+msgid "Enabled tvguideng plugin"
++msgid "Enable tvguideng plugin"
 +msgstr ""
 +
 +msgctxt "#39034"
-+msgid "Enable plugin: weatherforecast"
++msgid "plugin: weatherforecast"
 +msgstr ""
 +
 +msgctxt "#1434"
-+msgid "Enabled weatherforecast plugin"
++msgid "Enable weatherforecast plugin"
 +msgstr ""
 +
 +msgctxt "#39035"
-+msgid "Enable plugin: tvscraper"
++msgid "plugin: tvscraper"
 +msgstr ""
 +
 +msgctxt "#1435"
-+msgid "Enabled tvscraper plugin"
++msgid "Enable tvscraper plugin"
 +msgstr ""
 +
 +msgctxt "#39036"
-+msgid "Enable plugin: menuorg"
++msgid "plugin: menuorg"
 +msgstr ""
 +
 +msgctxt "#1436"
-+msgid "Enabled menuorg plugin"
++msgid "Enable menuorg plugin"
 +msgstr ""
 +
 +msgctxt "#39037"
-+msgid "Enable plugin: favorites"
++msgid "plugin: favorites"
 +msgstr ""
 +
 +msgctxt "#1437"
-+msgid "Enabled favorites plugin"
++msgid "Enable favorites plugin"
 +msgstr ""
 +
 +msgctxt "#39038"
@@ -654,7 +654,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#39039"
-+msgid "VDR video output"
++msgid "- video output"
 +msgstr ""
 +
 +msgctxt "#1439"
@@ -662,23 +662,23 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#39040"
-+msgid "softhddevice audio device"
++msgid "- audio device"
 +msgstr ""
 +
 +msgctxt "#1440"
-+msgid "Enter softhddevice audio device"
++msgid "Select softhddevice audio device"
 +msgstr ""
 +
 +msgctxt "#39041"
-+msgid "xineliboutput audio device"
++msgid "- audio device"
 +msgstr ""
 +
 +msgctxt "#1441"
-+msgid "Enter xineliboutput audio device"
++msgid "Select xineliboutput audio device"
 +msgstr ""
 +
 +msgctxt "#39042"
-+msgid "softhddevice options"
++msgid "- options"
 +msgstr ""
 +
 +msgctxt "#1442"
@@ -686,7 +686,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#39043"
-+msgid "xineliboutput options"
++msgid "- options"
 +msgstr ""
 +
 +msgctxt "#1443"
@@ -709,7 +709,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#40002"
-+msgid "Number of adapters to wait"
++msgid "- Number of adapters"
 +msgstr ""
 +
 +msgctxt "#1502"
@@ -717,7 +717,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +msgctxt "#40003"
-+msgid "Unload DVB mudules before suspend"
++msgid "- unload DVB mudules"
 +msgstr ""
 +
 +msgctxt "#1503"
@@ -725,34 +725,34 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 +
 +##########################################################
-+## Oscam
++## OScam
 +
 +msgctxt "#41000"
-+msgid "Oscam Configuration"
++msgid "OScam Configuration"
 +msgstr ""
 +
 +msgctxt "#41001"
-+msgid "Enable Oscam"
++msgid "Enable OScam"
 +msgstr ""
 +
 +msgctxt "#1601"
-+msgid "Enable Oscam"
++msgid "Enable OScam"
 +msgstr ""
 +
 +msgctxt "#41002"
-+msgid "Oscam debug level"
++msgid "- debug level"
 +msgstr ""
 +
 +msgctxt "#1602"
-+msgid "Oscam debug level"
++msgid "OScam debug level"
 +msgstr ""
 +
 +msgctxt "#41003"
-+msgid "Restart on suspend / resume"
++msgid "- restart on suspend / resume"
 +msgstr ""
 +
 +msgctxt "#1603"
-+msgid "Restart on resume"
++msgid "Restart OScam on suspend / resume"
 +msgstr ""
 +
 +##########################################################
@@ -784,7 +784,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.language.ru_RU/strings.po
 --- a/language/resource.language.ru_RU/strings.po	2018-12-24 23:40:36.240502536 +0200
-+++ b/language/resource.language.ru_RU/strings.po	2018-12-25 00:16:46.026118940 +0200
++++ b/language/resource.language.ru_RU/strings.po	2018-12-27 01:14:57.900640931 +0200
 @@ -126,6 +126,10 @@
  "is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
@@ -1011,27 +1011,27 @@ diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.lan
 +msgstr "Выбрат XMLTV тип"
 +
 +msgctxt "#36007"
-+msgid "XMLTV File location"
-+msgstr "XMLTV путь"
++msgid "- patch"
++msgstr "- путь"
 +
 +msgctxt "#1107"
-+msgid "Local location XMLTV file"
++msgid "Select XMLTV file"
 +msgstr "Выбрать XMLTV файлы"
 +
 +msgctxt "#36008"
-+msgid "XMLTV Web location"
-+msgstr "XMLTV ссылка"
++msgid "- url"
++msgstr "- url"
 +
 +msgctxt "#1108"
-+msgid "Web location XMLTV file"
-+msgstr "Выбрать XMLTV ссылку"
++msgid "Select XMLTV url"
++msgstr "Выбрать XMLTV url"
 +
 +msgctxt "#36009"
-+msgid "XMLTV Script location"
-+msgstr "XMLTV скрипт"
++msgid "- script"
++msgstr "- скрипт"
 +
 +msgctxt "#1109"
-+msgid "Location XMLTV script"
++msgid "Select XMLTV script"
 +msgstr "Выбрать XMLTV script"
 +
 +##########################################################
@@ -1090,31 +1090,31 @@ diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.lan
 +msgstr "Разрешить отладку VDR"
 +
 +msgctxt "#37007"
-+msgid "PVR plugin"
-+msgstr "PVR плагин"
++msgid "- PVR plugin"
++msgstr "- PVR плагин"
 +
 +msgctxt "#1207"
 +msgid "Select PVR plugin"
 +msgstr "Выбрать PVR плагин"
 +
 +msgctxt "#37008"
-+msgid "Enable plugin: iptv"
++msgid "plugin: iptv"
 +msgstr "Плагин: iptv"
 +
 +msgctxt "#1208"
-+msgid "Enabled iptv plugin"
++msgid "Enable iptv plugin"
 +msgstr "Разрешить iptv плагин"
 +
 +msgctxt "#37009"
-+msgid "iptv num devices"
-+msgstr "Количество устройств iptv"
++msgid "- num devices"
++msgstr "- количество устройств"
 +
 +msgctxt "#1209"
 +msgid "iptv num devices"
 +msgstr "Количество устройств iptv"
 +
 +msgctxt "#37010"
-+msgid "Enable plugin: streamdev-client"
++msgid "plugin: streamdev-client"
 +msgstr "Плагин: streamdev-client"
 +
 +msgctxt "#1210"
@@ -1122,147 +1122,147 @@ diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.lan
 +msgstr "Разрешить streamdev-client плагин"
 +
 +msgctxt "#37011"
-+msgid "Enable plugin: streamdev-server"
++msgid "plugin: streamdev-server"
 +msgstr "Плагин: streamdev-server"
 +
 +msgctxt "#1211"
-+msgid "Enabled streamdev-server plugin"
++msgid "Enable streamdev-server plugin"
 +msgstr "Разрешить streamdev-server плагин"
 +
 +msgctxt "#37012"
-+msgid "Enable plugin: wirbelscan"
++msgid "plugin: wirbelscan"
 +msgstr "Плагин: wirbelscan"
 +
 +msgctxt "#1212"
-+msgid "Enabled wirbelscan plugin"
++msgid "Enable wirbelscan plugin"
 +msgstr "Разрешить wirbelscan плагин"
 +
 +msgctxt "#37013"
-+msgid "Enable plugin: live"
++msgid "plugin: live"
 +msgstr "Плагин: live"
 +
 +msgctxt "#1213"
-+msgid "Enabled live plugin"
++msgid "Enable live plugin"
 +msgstr "Разрешить live плагин"
 +
 +msgctxt "#37014"
-+msgid "live: listen on ip"
-+msgstr "live: IP"
++msgid "- listen on ip"
++msgstr "- IP"
 +
 +msgctxt "#1214"
 +msgid "Listen ip address for live plugin"
 +msgstr "IP-адрес для live плагина"
 +
 +msgctxt "#37015"
-+msgid "live: listen on port"
-+msgstr "live: Порт"
++msgid "- listen on port"
++msgstr "- Порт"
 +
 +msgctxt "#1215"
 +msgid "Listen port for live plugin"
 +msgstr "Порт для live плагина"
 +
 +msgctxt "#37016"
-+msgid "Enable plugin: epgsearch"
++msgid "plugin: epgsearch"
 +msgstr "Плагин: epgsearch"
 +
 +msgctxt "#1216"
-+msgid "Enabled epgsearch plugin"
++msgid "Enable epgsearch plugin"
 +msgstr "Разрешить epgsearch плагин"
 +
 +msgctxt "#37017"
-+msgid "Enable plugin: xmltv2vdr"
++msgid "plugin: xmltv2vdr"
 +msgstr "Плагин: xmltv2vdr"
 +
 +msgctxt "#1217"
-+msgid "Enabled xmltv2vdr plugin"
++msgid "Enable xmltv2vdr plugin"
 +msgstr "Разрешить xmltv2vdr плагин"
 +
 +msgctxt "#37018"
-+msgid "Enable plugin: softcam"
++msgid "plugin: softcam"
 +msgstr "Плагин: softcam"
 +
 +msgctxt "#1218"
-+msgid "Enabled softcam plugin"
++msgid "Enable softcam plugin"
 +msgstr "Разрешить softcam плагин"
 +
 +msgctxt "#37019"
-+msgid "softcam: options"
-+msgstr "softcam: опции"
++msgid "- options"
++msgstr "- опции"
 +
 +msgctxt "#1219"
 +msgid "softcam plugin options"
 +msgstr "Опции для softcam плагина"
 +
 +msgctxt "#37020"
-+msgid "Enable plugin: dummydevice"
++msgid "plugin: dummydevice"
 +msgstr "Плагин: dummydevice"
 +
 +msgctxt "#1220"
-+msgid "Enabled dummydevice plugin"
++msgid "Enable dummydevice plugin"
 +msgstr "Разрешить dummydevice плагин"
 +
 +msgctxt "#37021"
-+msgid "Enable plugin: satip"
++msgid "plugin: satip"
 +msgstr "Плагин: satip"
 +
 +msgctxt "#1221"
-+msgid "Enabled satip plugin"
++msgid "Enable satip plugin"
 +msgstr "Разрешить satip плагин"
 +
 +msgctxt "#37022"
-+msgid "Enable plugin: epgfixer"
++msgid "plugin: epgfixer"
 +msgstr "Плагин: epgfixer"
 +
 +msgctxt "#1222"
-+msgid "Enabled epgfixer plugin"
++msgid "Enable epgfixer plugin"
 +msgstr "Разрешить epgfixer плагин"
 +
 +msgctxt "#37023"
-+msgid "Enable plugin: restfulapi"
++msgid "plugin: restfulapi"
 +msgstr "Плагин: restfulapi"
 +
 +msgctxt "#1223"
-+msgid "Enabled restfulapi plugin"
++msgid "Enable restfulapi plugin"
 +msgstr "Разрешить restfulapi плагин"
 +
 +msgctxt "#37024"
-+msgid "restfulapi: listen on ip"
-+msgstr "restfulapi: IP"
++msgid "- listen on ip"
++msgstr "- IP"
 +
 +msgctxt "#1224"
 +msgid "Listen ip address for restfulapi plugin"
 +msgstr "IP-адрес для restfulapi плагина"
 +
 +msgctxt "#37025"
-+msgid "restfulapi: listen on port"
-+msgstr "restfulapi: Порт"
++msgid "- listen on port"
++msgstr "- Порт"
 +
 +msgctxt "#1225"
 +msgid "Listen port for restfulapi plugin"
 +msgstr "Порт для restfulapi плагина"
 +
 +msgctxt "#37026"
-+msgid "Enable plugin: ddci2"
++msgid "plugin: ddci2"
 +msgstr "Плагин: ddci2"
 +
 +msgctxt "#1226"
-+msgid "Enabled ddci2 plugin"
++msgid "Enable ddci2 plugin"
 +msgstr "Разрешить ddci2 плагин"
 +
 +msgctxt "#37027"
-+msgid "Enable plugin: dynamite"
++msgid "plugin: dynamite"
 +msgstr "Плагин: dynamite"
 +
 +msgctxt "#1227"
-+msgid "Enabled dynamite plugin"
++msgid "Enable dynamite plugin"
 +msgstr "Разрешить dynamite плагин"
 +
 +msgctxt "#37028"
-+msgid "Enable plugin: robotv"
++msgid "plugin: robotv"
 +msgstr "Плагин: robotv"
 +
 +msgctxt "#1228"
-+msgid "Enabled robotv plugin"
++msgid "Enable robotv plugin"
 +msgstr "Разрешить robotv плагин"
 +
 +##########################################################
@@ -1287,147 +1287,147 @@ diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.lan
 +msgstr "VDR Фронтенд"
 +
 +msgctxt "#39020"
-+msgid "Enable plugin: channellists"
++msgid "plugin: channellists"
 +msgstr "Плагин: channellists"
 +
 +msgctxt "#1420"
-+msgid "Enabled channellists plugin"
++msgid "Enable channellists plugin"
 +msgstr "Разрешить channellists плагин"
 +
 +msgctxt "#39021"
-+msgid "Enable plugin: pin"
++msgid "plugin: pin"
 +msgstr "Плагин: pin"
 +
 +msgctxt "#1421"
-+msgid "Enabled pin plugin"
++msgid "Enable pin plugin"
 +msgstr "Разрешить pin плагин"
 +
 +msgctxt "#39022"
-+msgid "Enable plugin: femon"
++msgid "plugin: femon"
 +msgstr "Плагин: femon"
 +
 +msgctxt "#1422"
-+msgid "Enabled femon plugin"
++msgid "Enable femon plugin"
 +msgstr "Разрешить femon плагин"
 +
 +msgctxt "#39023"
-+msgid "Enable plugin: systeminfo"
++msgid "plugin: systeminfo"
 +msgstr "Плагин: systeminfo"
 +
 +msgctxt "#1423"
-+msgid "Enabled systeminfo plugin"
++msgid "Enable systeminfo plugin"
 +msgstr "Разрешить systeminfo плагин"
 +
 +msgctxt "#39024"
-+msgid "Enable plugin: sleeptimer"
++msgid "plugin: sleeptimer"
 +msgstr "Плагин: sleeptimer"
 +
 +msgctxt "#1424"
-+msgid "Enabled sleeptimer plugin"
++msgid "Enable sleeptimer plugin"
 +msgstr "Разрешить sleeptimer плагин"
 +
 +msgctxt "#39025"
-+msgid "Enable plugin: filebrowser"
++msgid "plugin: filebrowser"
 +msgstr "Плагин: filebrowser"
 +
 +msgctxt "#1425"
-+msgid "Enabled filebrowser plugin"
++msgid "Enable filebrowser plugin"
 +msgstr "Разрешить filebrowser плагин"
 +
 +msgctxt "#39026"
-+msgid "Enable plugin: lcdproc"
++msgid "plugin: lcdproc"
 +msgstr "Плагин: lcdproc"
 +
 +msgctxt "#1426"
-+msgid "Enabled lcdproc plugin"
++msgid "Enable lcdproc plugin"
 +msgstr "Разрешить lcdproc плагин"
 +
 +msgctxt "#39027"
-+msgid "Enable plugin: imonlcd"
++msgid "plugin: imonlcd"
 +msgstr "Плагин: imonlcd"
 +
 +msgctxt "#1427"
-+msgid "Enabled imonlcd plugin"
++msgid "Enable imonlcd plugin"
 +msgstr "Разрешить imonlcd плагин"
 +
 +msgctxt "#39028"
-+msgid "Enable plugin: text2skin"
++msgid "plugin: text2skin"
 +msgstr "Плагин: text2skin"
 +
 +msgctxt "#1428"
-+msgid "Enabled text2skin plugin"
++msgid "Enable text2skin plugin"
 +msgstr "Разрешить text2skin плагин"
 +
 +msgctxt "#39029"
-+msgid "Enable plugin: skinnopacity"
++msgid "plugin: skinnopacity"
 +msgstr "Плагин: skinnopacity"
 +
 +msgctxt "#1429"
-+msgid "Enabled skinnopacity plugin"
++msgid "Enable skinnopacity plugin"
 +msgstr "Разрешить skinnopacity плагин"
 +
 +msgctxt "#39030"
-+msgid "Enable plugin: skinflat"
++msgid "plugin: skinflat"
 +msgstr "Плагин: skinflat"
 +
 +msgctxt "#1430"
-+msgid "Enabled skinflat plugin"
++msgid "Enable skinflat plugin"
 +msgstr "Разрешить skinflat плагин"
 +
 +msgctxt "#39031"
-+msgid "Enable plugin: skinflatplus"
++msgid "plugin: skinflatplus"
 +msgstr "Плагин: skinflatplus"
 +
 +msgctxt "#1431"
-+msgid "Enabled skinflatplus plugin"
++msgid "Enable skinflatplus plugin"
 +msgstr "Разрешить skinflatplus плагин"
 +
 +msgctxt "#39032"
-+msgid "Enable plugin: skindesigner"
++msgid "plugin: skindesigner"
 +msgstr "Плагин: skindesigner"
 +
 +msgctxt "#1432"
-+msgid "Enabled skindesigner plugin"
++msgid "Enable skindesigner plugin"
 +msgstr "Разрешить skindesigner плагин"
 +
 +msgctxt "#39033"
-+msgid "Enable plugin: tvguideng"
++msgid "plugin: tvguideng"
 +msgstr "Плагин: tvguideng"
 +
 +msgctxt "#1433"
-+msgid "Enabled tvguideng plugin"
++msgid "Enable tvguideng plugin"
 +msgstr "Разрешить tvguideng плагин"
 +
 +msgctxt "#39034"
-+msgid "Enable plugin: weatherforecast"
++msgid "plugin: weatherforecast"
 +msgstr "Плагин: weatherforecast"
 +
 +msgctxt "#1434"
-+msgid "Enabled weatherforecast plugin"
++msgid "Enable weatherforecast plugin"
 +msgstr "Разрешить weatherforecast плагин"
 +
 +msgctxt "#39035"
-+msgid "Enable plugin: tvscraper"
++msgid "plugin: tvscraper"
 +msgstr "Плагин: tvscraper"
 +
 +msgctxt "#1435"
-+msgid "Enabled tvscraper plugin"
++msgid "Enable tvscraper plugin"
 +msgstr "Разрешить tvscraper плагин"
 +
 +msgctxt "#39036"
-+msgid "Enable plugin: menuorg"
++msgid "plugin: menuorg"
 +msgstr "Плагин: menuorg"
 +
 +msgctxt "#1436"
-+msgid "Enabled menuorg plugin"
++msgid "Enable menuorg plugin"
 +msgstr "Разрешить menuorg плагин"
 +
 +msgctxt "#39037"
-+msgid "Enable plugin: favorites"
++msgid "plugin: favorites"
 +msgstr "Плагин: favorites"
 +
 +msgctxt "#1437"
-+msgid "Enabled favorites plugin"
++msgid "Enable favorites plugin"
 +msgstr "Разрешить favorites плагин"
 +
 +msgctxt "#39038"
@@ -1439,40 +1439,40 @@ diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.lan
 +msgstr "Выбрать VDR плагин вывода"
 +
 +msgctxt "#39039"
-+msgid "VDR video output"
-+msgstr "VDR видео драйвер"
++msgid "- video output"
++msgstr "- видео драйвер"
 +
 +msgctxt "#1439"
 +msgid "Select VDR video output"
 +msgstr "Выбрать VDR видео драйвер"
 +
 +msgctxt "#39040"
-+msgid "softhddevice audio device"
-+msgstr "softhddevice аудио устройство"
++msgid "- audio device"
++msgstr "- аудио устройство"
 +
 +msgctxt "#1440"
 +msgid "Enter softhddevice audio device"
 +msgstr "Введите softhddevice аудио устройство"
 +
 +msgctxt "#39041"
-+msgid "xineliboutput audio device"
-+msgstr "xineliboutput аудио устройство"
++msgid "- audio device"
++msgstr "- аудио устройство"
 +
 +msgctxt "#1441"
 +msgid "Enter xineliboutput audio device"
 +msgstr "Введите xineliboutput аудио устройство"
 +
 +msgctxt "#39042"
-+msgid "softhddevice options"
-+msgstr "softhddevice опции"
++msgid "- options"
++msgstr "- опции"
 +
 +msgctxt "#1442"
 +msgid "Enter softhddevice options"
 +msgstr "Введите softhddevice опции"
 +
 +msgctxt "#39043"
-+msgid "xineliboutput options"
-+msgstr "xineliboutput опции"
++msgid "- options"
++msgstr "- опции"
 +
 +msgctxt "#1443"
 +msgid "Enter xineliboutput options"
@@ -1494,51 +1494,51 @@ diff -Naur a/language/resource.language.ru_RU/strings.po b/language/resource.lan
 +msgstr "Ожидать инициализацию адаптера"
 +
 +msgctxt "#40002"
-+msgid "Number of adapters to wait"
-+msgstr "Номер адаптера"
++msgid "- Number of adapters"
++msgstr "- номера адаптеров"
 +
 +msgctxt "#1502"
 +msgid "Number of adapters to wait"
-+msgstr "Номер адаптера для ожидания"
++msgstr "Номера адаптеров для ожидания"
 +
 +msgctxt "#40003"
-+msgid "Unload DVB mudules before suspend"
-+msgstr "Выгрузка DVB модулей перед остановкой"
++msgid "- unload DVB mudules"
++msgstr "- Выгрузка DVB модулей"
 +
 +msgctxt "#1503"
 +msgid "Unload DVB mudules before suspend"
 +msgstr "Выгрузка DVB модулей перед остановкой"
 +
 +##########################################################
-+## Oscam
++## OScam
 +
 +msgctxt "#41000"
-+msgid "Oscam Configuration"
-+msgstr "Конфигурация Oscam"
++msgid "OScam Configuration"
++msgstr "Конфигурация OScam"
 +
 +msgctxt "#41001"
-+msgid "Enable Oscam"
-+msgstr "Запуск Oscam"
++msgid "Enable OScam"
++msgstr "Запуск OScam"
 +
 +msgctxt "#1601"
-+msgid "Enable Oscam"
-+msgstr "Запуск Oscam"
++msgid "Enable OScam"
++msgstr "Запуск OScam"
 +
 +msgctxt "#41002"
-+msgid "Oscam debug level"
-+msgstr "Уровень отладки Oscam"
++msgid "- debug level"
++msgstr "- уровень отладки"
 +
 +msgctxt "#1602"
-+msgid "Oscam debug level"
-+msgstr "Уровень отладки Oscam"
++msgid "OScam debug level"
++msgstr "Уровень отладки OScam"
 +
 +msgctxt "#41003"
-+msgid "Restart on suspend / resume"
-+msgstr "Перезапуск при отключении / восстановлении"
++msgid "- restart on suspend / resume"
++msgstr "- перезапуск при отключении / восстановлении"
 +
 +msgctxt "#1603"
-+msgid "Restart on resume"
-+msgstr "Перезапуск при отключении / восстановлении"
++msgid "Restart OScam on suspend / resume"
++msgstr "Перезапуск OScam при отключении / восстановлении"
 +
 +##########################################################
 +
@@ -2019,7 +2019,7 @@ diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/sys
              self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')
 diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
 --- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2018-12-25 01:57:12.931801580 +0200
++++ b/src/resources/lib/modules/transmission.py	2018-12-27 00:02:09.765841127 +0200
 @@ -0,0 +1,328 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -2062,7 +2062,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +    D_TRANSMISSION_LIMIT_GLOBAL = None
 +    D_TRANSMISSION_LIMIT_TORRENT = None
 +    D_TRANSMISSION_DL_DIR = None
-+    menu = {'7': {
++    menu = {'11': {
 +        'name': 33000,
 +        'menuLoader': 'load_menu',
 +        'listTyp': 'list',
@@ -2351,7 +2351,7 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
 diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
 --- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2018-12-25 01:57:12.935801605 +0200
++++ b/src/resources/lib/modules/tvservers.py	2018-12-27 00:26:21.361498166 +0200
 @@ -0,0 +1,2203 @@
 +################################################################################
 +#      This file is part of OpenELEC - http://www.openelec.tv
@@ -2473,7 +2473,7 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +    D_F_ENABLE_SKINNOPACITY = None
 +    D_F_ENABLE_SKINFLAT = None
 +    D_F_ENABLE_SKINFLATPLUS = None
-+    D_F_ENABLE_MENUORG = None
++#    D_F_ENABLE_MENUORG = None
 +    D_F_ENABLE_TVSCRAPER = None
 +    D_F_ENABLE_SKINDESIGNER = None
 +    D_F_ENABLE_TVGUIDENG = None
@@ -2492,7 +2492,7 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +    D_OSCAM_ENABLE = None
 +    D_OSCAM_DEBUG = None
 +    D_RESTART_ON_RESUME = None
-+    menu = {'6': {
++    menu = {'10': {
 +        'name': 34000,
 +        'menuLoader': 'load_menu',
 +        'listTyp': 'list',
@@ -3229,13 +3229,13 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +                            'type': 'bool',
 +                            'InfoText': 1435,
 +                        },
-+                        'enable_menuorg': {
-+                            'order': 44,
-+                            'name': 39036,
-+                            'value': '0',
-+                            'action': 'initialize_vdrfront',
-+                            'type': 'bool',
-+                            'InfoText': 1436,
++#                        'enable_menuorg': {
++#                            'order': 44,
++#                            'name': 39036,
++#                            'value': '0',
++#                            'action': 'initialize_vdrfront',
++#                            'type': 'bool',
++#                            'InfoText': 1436,
 +                        },
 +                        'enable_favorites': {
 +                            'order': 45,
@@ -3747,8 +3747,8 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +                self.struct['vdrfront']['settings']['enable_tvscraper']['value'] = \
 +                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_TVSCRAPER', self.D_F_ENABLE_TVSCRAPER).replace('true','1').replace('false','0').replace('"', '')
 +
-+                self.struct['vdrfront']['settings']['enable_menuorg']['value'] = \
-+                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_MENUORG', self.D_F_ENABLE_MENUORG).replace('true','1').replace('false','0').replace('"', '')
++#                self.struct['vdrfront']['settings']['enable_menuorg']['value'] = \
++#                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_MENUORG', self.D_F_ENABLE_MENUORG).replace('true','1').replace('false','0').replace('"', '')
 +
 +                self.struct['vdrfront']['settings']['enable_favorites']['value'] = \
 +                self.oe.get_service_option('vdr-front', 'VDR_ENABLE_FAVORITES', self.D_F_ENABLE_FAVORITES).replace('true','1').replace('false','0').replace('"', '')
@@ -4382,11 +4382,11 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +                else:
 +                    val34 = 'false'
 +
-+                if self.struct['vdrfront']['settings']['enable_menuorg']['value'] == '1':
-+                    val35 = 'true'
-+
-+                else:
-+                    val35 = 'false'
++#                if self.struct['vdrfront']['settings']['enable_menuorg']['value'] == '1':
++#                    val35 = 'true'
++#
++#                else:
++#                    val35 = 'false'
 +
 +                if self.struct['vdrfront']['settings']['enable_favorites']['value'] == '1':
 +                    val36 = 'true'
@@ -4437,7 +4437,7 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +                options['VDR_ENABLE_TVGUIDENG'] = '"%s"' % val32
 +                options['VDR_ENABLE_WEATHERFORECAST'] = '"%s"' % val33
 +                options['VDR_ENABLE_TVSCRAPER'] = '"%s"' % val34
-+                options['VDR_ENABLE_MENUORG'] = '"%s"' % val35
++#                options['VDR_ENABLE_MENUORG'] = '"%s"' % val35
 +                options['VDR_ENABLE_FAVORITES'] = '"%s"' % val36
 +                options['VDR_OTHER'] = '"%s"' % self.struct['vdrfront']['settings']['vdr_other']['value']
 +                options['VDR_FRONT'] = '"%s"' % self.struct['vdrfront']['settings']['vdr_pluginfront']['value']

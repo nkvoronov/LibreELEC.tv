@@ -9,6 +9,7 @@ CONFIG_CACHE="/storage/.cache"
 VDR_TYPE="none"
 VDR_ARG=""
 CONF_FILE=$CONFIG_CACHE/services/vdr.conf
+VLIBS="/usr/lib"
 
 ################################################################################
 
@@ -208,9 +209,9 @@ init_vdr_front_plugins() {
     VDR_ARG="$VDR_ARG -P lcdproc"
   fi
 
-  if [ "$VDR_ENABLE_MENUORG" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P menuorg"
-  fi
+#  if [ "$VDR_ENABLE_MENUORG" == "true" ]; then
+#    VDR_ARG="$VDR_ARG -P menuorg"
+#  fi
 
   if [ "$VDR_ENABLE_PIN" == "true" ]; then
     VDR_ARG="$VDR_ARG -P pin"
@@ -260,6 +261,7 @@ init_vdr_front_plugins() {
 }
 
 init_vdr_soft() {
+  VLIBS="$VLIBS:/usr/lib/ffmpeg3.4"
 
   if [ "$VDR_OUTPUT_VIDEO" == "auto" ]; then
     VDR_ARG="$VDR_ARG -P 'softhddevice -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"
@@ -376,7 +378,7 @@ if [ -f $CONF_FILE ]; then
   fix_config
 
   if [ "$VDR_TYPE" != "none" ]; then
-    eval DISPLAY=:0.0 LANG=en_US.UTF-8 VDR_CHARSET_OVERRIDE="$VDR_CHARSET_OVERRIDE" exec vdr.bin $VDR_ARG &>$LOG_VDR
+    eval DISPLAY=:0.0 LANG=en_US.UTF-8 VDR_CHARSET_OVERRIDE="$VDR_CHARSET_OVERRIDE" LD_LIBRARY_PATH=$VLIBS exec vdr.bin $VDR_ARG &>$LOG_VDR
   else
     eval LANG=en_US.UTF-8 VDR_CHARSET_OVERRIDE="$VDR_CHARSET_OVERRIDE" exec vdr.bin $VDR_ARG &>$LOG_VDR
   fi
