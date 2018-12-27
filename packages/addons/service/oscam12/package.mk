@@ -3,7 +3,7 @@
 
 PKG_NAME="oscam12"
 PKG_VERSION="11444"
-PKG_REV="146"
+PKG_REV="147"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"
