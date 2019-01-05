@@ -201,7 +201,7 @@ post_install() {
   fi
   # efibootmgr
   if [ "$ENABLE_EFIBOOTMGR" = "yes" ]; then
-    cp -P $(get_build_dir efibootmgr)/src/efibootmgr/efibootmgr $INSTALL/usr/bin 2>/dev/null || :
+    cp -P $(get_build_dir efibootmgr)/src/efibootmgr $INSTALL/usr/bin 2>/dev/null || :
   fi
   # encfs
   if [ "$ENABLE_ENCFS" = "yes" ]; then
