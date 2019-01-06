@@ -40,9 +40,3 @@ pre_configure_target() {
   export CFLAGS="$CFLAGS -I$SYSROOT_PREFIX/usr/include/slang"
   export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
 }
-
-post_makeinstall_target() {
-  #mv $INSTALL/usr/bin/mc $INSTALL/usr/bin/mc-bin
-  #rm -f $INSTALL/usr/bin/{mcedit,mcview}
-  #cp $PKG_DIR/wrapper/* $INSTALL/usr/bin
-}
