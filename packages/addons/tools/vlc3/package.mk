@@ -3,7 +3,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.4"
-PKG_REV="48"
+PKG_REV="49"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"

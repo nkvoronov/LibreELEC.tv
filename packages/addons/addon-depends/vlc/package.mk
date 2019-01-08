@@ -21,9 +21,8 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --datarootdir=$VLC_PREFIX/share \
               --localedir=$VLC_PREFIX/share/locale \
               --enable-run-as-root \
-              --disable-nls \
-              --without-gnu-ld \
               --disable-rpath \
+              --enable-nls \
               --enable-archive \
               --enable-live555 \
               --enable-dc1394 \
@@ -35,7 +34,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-smbclient \
               --enable-sftp \
               --enable-nfs \
-              --disable-realrtsp \
+              --enable-realrtsp \
               --enable-dvbpsi \
               --enable-gme \
               --enable-ogg \
@@ -67,7 +66,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-jpeg \
               --disable-x262 \
               --enable-x264 \
-              --disable-x265 \
+              --enable-x265 \
               --enable-zvbi \
               --enable-libass \
               --disable-kate \
@@ -97,7 +96,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-ncurses \
               --enable-lirc \
               --disable-goom \
-              --disable-projectm \
+              --enable-projectm \
               --enable-avahi \
               --enable-mtp \
               --enable-upnp \
@@ -117,6 +116,8 @@ PKG_CONFIGURE_OPTS_TARGET="\
 pre_configure_target() {
 
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
+  export X265_CFLAGS="-I$SYSROOT_PREFIX/usr/local/include"
+  export X265_LIBS="-L$SYSROOT_PREFIX/usr/local/lib -lx265"
   export LUAC=$SYSROOT_PREFIX/usr/bin/luac
   export LUA_LIBS="-L$SYSROOT_PREFIX/usr/lib -llua -lm"
   export CXXFLAGS+=" -std=c++11"
