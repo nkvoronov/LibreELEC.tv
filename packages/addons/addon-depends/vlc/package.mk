@@ -115,6 +115,9 @@ PKG_CONFIGURE_OPTS_TARGET="\
 
 pre_configure_target() {
 
+  cd $PKG_BUILD
+  rm -rf .$TARGET_NAME
+
   export TAGLIB_CFLAGS="-I$SYSROOT_PREFIX/usr/include/taglib"
   export X265_CFLAGS="-I$SYSROOT_PREFIX/usr/local/include"
   export X265_LIBS="-L$SYSROOT_PREFIX/usr/local/lib -lx265"
@@ -134,16 +137,9 @@ pre_configure_target() {
 
 post_makeinstall_target() {
 
-  mkdir -p $INSTALL/usr/share/locale
-  for fgmo in `ls $PKG_BUILD/po/*.gmo`;do
-    fname=`basename $fgmo .gmo`
-    mkdir -p $INSTALL/usr/share/locale/$fname
-    mkdir -p $INSTALL/usr/share/locale/$fname/LC_MESSAGES
-    cp -p $fgmo $INSTALL/usr/share/locale/$fname/LC_MESSAGES/vlc.mo
-  done
-
   mkdir -p $INSTALL/usr/share
     mv $INSTALL/$VLC_PREFIX/share/vlc $INSTALL/usr/share
+    mv $INSTALL/$VLC_PREFIX/share/locale $INSTALL/usr/share
 
   rm -fR $INSTALL/$VLC_PREFIX
 }
