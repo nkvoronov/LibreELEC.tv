@@ -122,9 +122,5 @@ post_install() {
 
   mkdir -p $INSTALL/usr/lib/qt5/plugins
     cp -PR $PKG_BUILD/qtbase/plugins/* $INSTALL/usr/lib/qt5/plugins
-
-  mkdir -p $INSTALL/usr/lib/fonts
-    cp -P $PKG_BUILD/qtbase/lib/fonts/* $INSTALL/usr/lib/fonts
-    rm -f $INSTALL/usr/lib/fonts/README
-
+    cp -PR $PKG_BUILD/qtsvg/plugins/* $INSTALL/usr/lib/qt5/plugins
 }

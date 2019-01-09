@@ -3,7 +3,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.4"
-PKG_REV="50"
+PKG_REV="51"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -60,6 +60,8 @@ addon() {
   LIB_FLUID=$(get_build_dir fluidsynth)
   LIB_SHOUT=$(get_build_dir libshout)
   LIB_DVBPSI=$(get_build_dir libdvbpsi)
+  LIB_X265=$(get_build_dir x265)
+  LIB_ProjectM=$(get_build_dir libprojectM)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -103,6 +105,7 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib/plugins
     cp -PR $QT5/qtbase/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/plugins
+    cp -PR $QT5/qtsvg/plugins/* $ADDON_BUILD/$PKG_ADDON_ID/lib/plugins
 
     cp -P $LIB_SDL/.install_pkg/usr/lib/libSDL-1.2.so.0.11.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL-1.2.so.0
     cp -P $LIB_SDL_IMG/.install_pkg/usr/lib/libSDL_image.so.0.8.4 $ADDON_BUILD/$PKG_ADDON_ID/lib/libSDL_image.so.0
@@ -152,9 +155,11 @@ addon() {
     cp -P $LIB_FLUID/.install_pkg/usr/lib/libfluidsynth.so.1.5.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfluidsynth.so.1
     cp -P $LIB_SHOUT/.install_pkg/usr/lib/libshout.so.3.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libshout.so.3
     cp -P $LIB_DVBPSI/.install_pkg/usr/lib/libdvbpsi.so.10.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvbpsi.so.10
+    cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.165 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.165
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
+    cp -R $LIB_ProjectM/.install_pkg/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
