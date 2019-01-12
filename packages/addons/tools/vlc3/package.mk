@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc3"
-PKG_VERSION="3.0.4"
-PKG_REV="52"
+PKG_VERSION="3.0.6"
+PKG_REV="53"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -18,6 +18,7 @@ PKG_ADDON_NAME="Vlc Player 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
 QT5VWER="5.10.1"
+#QT5VWER="5.12.0"
 
 addon() {
   VLC_DIR=$(get_build_dir vlc)
@@ -144,7 +145,7 @@ addon() {
     cp -P $LIB_RAW1394/.install_pkg/usr/lib/libraw1394.so.11.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libraw1394.so.11
     cp -P $LIB_DCA/.install_pkg/usr/lib/libdca.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdca.so.0
     cp -P $LIB_MAD/.install_pkg/usr/lib/libmad.so.0.2.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmad.so.0
-    cp -P $LIB_MTP/.install_pkg/usr/lib/libmtp.so.9.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmtp.so.9
+    cp -P $LIB_MTP/.install_pkg/usr/lib/libmtp.so.9.4.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmtp.so.9
     cp -P $LIB_MPG123/.install_pkg/usr/lib/libmpg123.so.0.44.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpg123.so.0
     cp -P $LIB_SAMPLERATE/.install_pkg/usr/lib/libsamplerate.so.0.1.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/libsamplerate.so.0
     cp -P $LIB_THEORA/.install_pkg/usr/lib/libtheora.so.0.3.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtheora.so.0

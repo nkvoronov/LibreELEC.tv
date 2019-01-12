@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc"
-PKG_VERSION="3.0.4"
-PKG_SHA256="01f3db3790714038c01f5e23c709e31ecd6f1c046ac93d19e1dde38b3fc05a9e"
+PKG_VERSION="3.0.6"
+PKG_SHA256="18c16d4be0f34861d0aa51fbd274fb87f0cab3b7119757ead93f3db3a1f27ed3"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
@@ -71,7 +71,6 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-libass \
               --disable-kate \
               --disable-tiger \
-              --enable-fluidsynth \
               --enable-vdpau \
               --disable-wayland \
               --enable-sdl-image \
@@ -111,7 +110,10 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --disable-notify \
               --disable-libplacebo \
               --enable-vlc \
-              --disable-aribsub"
+              --disable-aribsub \
+              --enable-aom \
+              --disable-srt \
+              --disable-dav1d"
 
 pre_configure_target() {
 
