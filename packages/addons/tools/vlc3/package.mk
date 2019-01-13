@@ -3,7 +3,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.6"
-PKG_REV="53"
+PKG_REV="55"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -17,8 +17,7 @@ PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Vlc Player 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
-QT5VWER="5.10.1"
-#QT5VWER="5.12.0"
+QT5VWER="5.12.0"
 
 addon() {
   VLC_DIR=$(get_build_dir vlc)
@@ -159,7 +158,6 @@ addon() {
     cp -P $LIB_DVBPSI/.install_pkg/usr/lib/libdvbpsi.so.10.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvbpsi.so.10
     cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.165 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.165
     cp -P $LIB_GOOM/.install_pkg/usr/lib/libgoom2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgoom2.so.0
-    cp -P $LIB_ProjectM/.install_pkg/usr/lib/libprojectM.so.2.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libprojectM.so.2
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share

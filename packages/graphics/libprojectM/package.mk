@@ -13,7 +13,7 @@ PKG_LONGDESC="A MilkDrop compatible opensource music visualizer."
 PKG_TOOLCHAIN="configure"
 PKG_BUILD_FLAGS="+pic"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-shared \
+PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
                            --enable-static"
 
 # workaround due broken release files, remove at next bump

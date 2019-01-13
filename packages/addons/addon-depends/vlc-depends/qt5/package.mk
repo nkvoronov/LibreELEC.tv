@@ -2,12 +2,11 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="qt5"
-PKG_VERSION="5.10.1"
-#PKG_VERSION="5.11.1"
-PKG_SHA256="05ffba7b811b854ed558abf2be2ddbd3bb6ddd0b60ea4b5da75d277ac15e740a"
+PKG_VERSION="5.12.0"
+PKG_SHA256="356f42d9087718f22f03d13d0c2cdfb308f91dc3cf0c6318bed33f2094cd9d6c"
 PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
-PKG_URL="http://download.qt.io/official_releases/qt/5.10/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
+PKG_URL="http://download.qt.io/official_releases/qt/5.12/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
 PKG_SOURCE_DIR="qt-everywhere-src-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain libjpeg-turbo xcb-util xcb-util-keysyms xcb-util-renderutil fontconfig xcb-util-wm libXrender libXi sqlite xcb-util-image icu libinput libSM libxkbcommon alsa-lib"
 PKG_LONGDESC="Qt GUI toolkit"
@@ -19,7 +18,6 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix /usr
                            -opensource -confirm-license -v
                            -no-sql-sqlite
                            -no-sql-mysql
-                           -no-qml-debug
                            -system-zlib
                            -system-harfbuzz
                            -openssl-linked
@@ -106,7 +104,8 @@ post_install() {
     cp -P $PKG_BUILD/qtbase/lib/libQt5Concurrent.so* $INSTALL/usr/lib
     cp -P $PKG_BUILD/qtbase/lib/libQt5Core.so* $INSTALL/usr/lib
     cp -P $PKG_BUILD/qtbase/lib/libQt5DBus.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5EglDeviceIntegration.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5EglFSDeviceIntegration.so* $INSTALL/usr/lib
+    cp -P $PKG_BUILD/qtbase/lib/libQt5EglFsKmsSupport.so* $INSTALL/usr/lib
     cp -P $PKG_BUILD/qtbase/lib/libQt5Gui.so* $INSTALL/usr/lib
     cp -P $PKG_BUILD/qtbase/lib/libQt5Network.so* $INSTALL/usr/lib
     cp -P $PKG_BUILD/qtbase/lib/libQt5OpenGL.so* $INSTALL/usr/lib
