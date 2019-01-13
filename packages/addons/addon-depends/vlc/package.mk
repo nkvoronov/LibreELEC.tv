@@ -10,7 +10,7 @@ PKG_URL="http://download.videolan.org/$PKG_NAME/$PKG_VERSION/$PKG_NAME-$PKG_VERS
 PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libxpm libdca lua libmatroska taglib libmatroska ffmpegx faad2 libmad libmpeg2 xcb-util-keysyms libtar libXinerama libarchive qt5 \
 fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libmicrodns libdvdcss samba fluidsynth \
 libssh2 mesa libnfs mpg123 libdvdread libdvdnav libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
-alsa-lib libsamplerate lirc chromaprint ncursesw"
+alsa-lib libsamplerate lirc chromaprint ncursesw libprojectM libgoom2"
 PKG_LONGDESC="VLC is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."
 PKG_TOOLCHAIN="autotools"
 
@@ -94,7 +94,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-libtar \
               --enable-ncurses \
               --enable-lirc \
-              --disable-goom \
+              --enable-goom \
               --enable-projectm \
               --enable-avahi \
               --enable-mtp \
