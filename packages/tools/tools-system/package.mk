@@ -260,6 +260,8 @@ post_install() {
   # jq
   if [ "$ENABLE_JQ" = "yes" ]; then
     cp -P $(get_build_dir jq)/.$TARGET_NAME/jq $INSTALL/usr/bin
+    cp -P $(get_build_dir oniguruma)/.install_pkg/usr/lib/libonig.so $INSTALL/usr//lib
+}
   fi
   # lm_sensors
   if [ "$ENABLE_LM_SENSORS" = "yes" ]; then

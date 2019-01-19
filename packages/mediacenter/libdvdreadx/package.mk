@@ -8,6 +8,10 @@ PKG_SHA256="a30b6aa0aad0f2c505bc77948af2d5531a80b6e68112addb4c123fca24d5d3bf"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/libdvdread"
 PKG_URL="https://github.com/xbmc/libdvdread/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain libdvdcssx"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="libdvdread is a library which provides a simple foundation for reading DVDs."
 PKG_TOOLCHAIN="manual"
+
+if [ "$KODI_DVDCSS_SUPPORT" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libdvdcssx"
+fi

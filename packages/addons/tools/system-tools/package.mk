@@ -3,7 +3,7 @@
 
 PKG_NAME="system-tools"
 PKG_VERSION="1.0"
-PKG_REV="110"
+PKG_REV="111"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
@@ -265,6 +265,7 @@ addon() {
   # jq
   if [ "$ENABLE_JQ" = yes ]; then
     cp -P $(get_build_dir jq)/.$TARGET_NAME/jq $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P $(get_build_dir oniguruma)/.install_pkg/usr/lib/libonig.so $ADDON_BUILD/$PKG_ADDON_ID/lib
   fi
   # lm_sensors
   if [ "$ENABLE_LM_SENSORS" = yes ]; then

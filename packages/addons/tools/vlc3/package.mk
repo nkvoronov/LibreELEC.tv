@@ -61,7 +61,6 @@ addon() {
   LIB_SHOUT=$(get_build_dir libshout)
   LIB_DVBPSI=$(get_build_dir libdvbpsi)
   LIB_X265=$(get_build_dir x265)
-  LIB_ProjectM=$(get_build_dir libprojectM)
   LIB_GOOM=$(get_build_dir libgoom2)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -161,7 +160,6 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
-    cp -R $LIB_ProjectM/.install_pkg/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/vlc
     cp -R $VLC_DIR/.install_pkg/usr/share/vlc/* $ADDON_BUILD/$PKG_ADDON_ID/share/vlc/
