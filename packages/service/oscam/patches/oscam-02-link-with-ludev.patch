@@ -1,21 +1,19 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 3ebd781..2966e65 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -474,7 +474,7 @@ add_library (${csoscam} STATIC ${csoscam_srcs} ${csoscam_hdrs})
+diff -Naur a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	2019-01-20 08:56:22.937150542 +0200
++++ b/CMakeLists.txt	2019-01-20 09:02:38.175849955 +0200
+@@ -498,7 +498,7 @@
  
  set (exe_name "oscam")
  add_executable (${exe_name} ${exe_srcs} ${exe_hdrs})
 -target_link_libraries (${exe_name} ${csoscam} ${csmodules} ${csreaders} csctapi cscrypt minilzo)
 +target_link_libraries (${exe_name} ${csoscam} ${csmodules} ${csreaders} csctapi cscrypt minilzo udev)
  if(HAVE_LIBRT AND HAVE_LIBUSB)
-    if (LIBUSBDIR)
- 	set (libusb_link "imp_libusb")
-diff --git a/utils/CMakeLists.txt b/utils/CMakeLists.txt
-index 6790913..a603d3e 100644
---- a/utils/CMakeLists.txt
-+++ b/utils/CMakeLists.txt
-@@ -12,7 +12,7 @@ file (GLOB all_srcs ${exe_srcs})
+ 	if (LIBUSBDIR)
+ 		set (libusb_link "imp_libusb")
+diff -Naur a/utils/CMakeLists.txt b/utils/CMakeLists.txt
+--- a/utils/CMakeLists.txt	2019-01-20 08:56:22.853149932 +0200
++++ b/utils/CMakeLists.txt	2019-01-20 09:03:14.768111216 +0200
+@@ -12,7 +12,7 @@
  
  set (util_name "list_smargo")
  add_executable (${util_name} ${exe_srcs} ${exe_hdrs})
@@ -24,5 +22,3 @@ index 6790913..a603d3e 100644
  #----------------------- printout resume -----------------------------
  
  message (STATUS "Utils: operating system: ${OSCamOperatingSystem}")
--- 
-1.7.2.5

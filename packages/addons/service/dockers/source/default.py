@@ -250,8 +250,8 @@ def print_notification(json_data):
     try:
         if message is not '':
             length = int(__addon__.getSetting('notification_length')) * 1000
-            dialog.notification('Docker', message, '/storage/.kodi/addons/service.system.dockerx/resources/icon.png', length)
-            xbmc.log('## service.system.dockerx ## ' + unicode(message))
+            dialog.notification('Docker', message, '/storage/.kodi/addons/service.system.dockers/resources/icon.png', length)
+            xbmc.log('## service.system.dockers ## ' + unicode(message))
     except NameError as e:
         pass
 
@@ -277,29 +277,29 @@ class Main(object):
 
         restart_docker = False
 
-        if os.path.islink('/storage/.config/system.d/service.system.dockerx.socket'):
-            os.remove('/storage/.config/system.d/service.system.dockerx.socket')
-        if os.path.islink('/storage/.config/system.d/dockerx.socket'):
-            os.remove('/storage/.config/system.d/dockerx.socket')
+        if os.path.islink('/storage/.config/system.d/service.system.dockers.socket'):
+            os.remove('/storage/.config/system.d/service.system.dockers.socket')
+        if os.path.islink('/storage/.config/system.d/dockers.socket'):
+            os.remove('/storage/.config/system.d/dockers.socket')
 
-        if os.path.islink('/storage/.config/system.d/service.system.dockerx.service'):
-            if 'systemd' in os.readlink('/storage/.config/system.d/service.system.dockerx.service'):
-                os.remove('/storage/.config/system.d/service.system.dockerx.service')
+        if os.path.islink('/storage/.config/system.d/service.system.dockers.service'):
+            if 'systemd' in os.readlink('/storage/.config/system.d/service.system.dockers.service'):
+                os.remove('/storage/.config/system.d/service.system.dockers.service')
                 restart_docker = True
 
-        if os.path.islink('/storage/.config/system.d/dockerx.service'):
-            if 'systemd' in os.readlink('/storage/.config/system.d/dockerx.service'):
-                os.remove('/storage/.config/system.d/dockerx.service')
+        if os.path.islink('/storage/.config/system.d/dockers.service'):
+            if 'systemd' in os.readlink('/storage/.config/system.d/dockers.service'):
+                os.remove('/storage/.config/system.d/dockers.service')
                 restart_docker = True
 
-        if os.path.islink('/storage/.config/system.d/multi-user.target.wants/service.system.dockerx.service'):
-            if 'systemd' in os.readlink('/storage/.config/system.d/multi-user.target.wants/service.system.dockerx.service'):
-                os.remove('/storage/.config/system.d/multi-user.target.wants/service.system.dockerx.service')
+        if os.path.islink('/storage/.config/system.d/multi-user.target.wants/service.system.dockers.service'):
+            if 'systemd' in os.readlink('/storage/.config/system.d/multi-user.target.wants/service.system.dockers.service'):
+                os.remove('/storage/.config/system.d/multi-user.target.wants/service.system.dockers.service')
                 restart_docker = True
 
         if restart_docker:
-            oe.execute('systemctl enable  /storage/.kodi/addons/service.system.dockerx/system.d/service.system.dockerx.service')
-            oe.execute('systemctl restart /storage/.kodi/addons/service.system.dockerx/system.d/service.system.dockerx.service')
+            oe.execute('systemctl enable  /storage/.kodi/addons/service.system.dockers/system.d/service.system.dockers.service')
+            oe.execute('systemctl restart /storage/.kodi/addons/service.system.dockers/system.d/service.system.dockers.service')
 
         # end temp cleanup
         #############################

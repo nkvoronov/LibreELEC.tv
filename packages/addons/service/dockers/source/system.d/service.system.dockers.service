@@ -5,10 +5,10 @@ After=network.target
 
 [Service]
 Type=notify
-Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/storage/.kodi/addons/service.system.dockerx/bin
-ExecStartPre=/storage/.kodi/addons/service.system.dockerx/bin/docker-config
-EnvironmentFile=-/storage/.kodi/userdata/addon_data/service.system.dockerx/config/docker.conf
-ExecStart=/storage/.kodi/addons/service.system.dockerx/bin/dockerd --log-driver=journald \
+Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/storage/.kodi/addons/service.system.dockers/bin
+ExecStartPre=/storage/.kodi/addons/service.system.dockers/bin/docker-config
+EnvironmentFile=-/storage/.kodi/userdata/addon_data/service.system.dockers/config/docker.conf
+ExecStart=/storage/.kodi/addons/service.system.dockers/bin/dockerd --log-driver=journald \
                                                                    --group=root \
                                                                    $DOCKER_DAEMON_OPTS \
                                                                    $DOCKER_STORAGE_OPTS

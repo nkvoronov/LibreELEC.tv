@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="emby35x"
-PKG_VERSION="3.5.3.0"
-PKG_SHA256="7241e4b19579eef080109dd67ffe50a9fbdbcfd74fd73c2d7723adb442f63151"
-PKG_REV="356"
+PKG_NAME="embyu"
+PKG_VERSION="4.0.0.2"
+#PKG_SHA256="7241e4b19579eef080109dd67ffe50a9fbdbcfd74fd73c2d7723adb442f63151"
+PKG_REV="357"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
 PKG_URL="https://github.com/MediaBrowser/Emby.Releases/releases/download/${PKG_VERSION}/emby-server-deb_${PKG_VERSION}_amd64.deb"
@@ -15,7 +15,7 @@ PKG_LONGDESC="Emby Server ($PKG_VERSION) brings your home videos, music, and pho
 PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="Emby Server"
+PKG_ADDON_NAME="Emby Server Ubuntu"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_MAINTAINER="ubuntu"
 

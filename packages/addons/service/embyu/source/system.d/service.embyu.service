@@ -1,11 +1,11 @@
 [Unit]
-Description=Emby - streaming server
+Description=Emby - streaming server (Ubuntu)
 Documentation=http://emby.media
 After=network.target
 Requires=network.target
 
 [Service]
-ExecStart=/bin/sh /storage/.kodi/addons/service.emby35x/bin/emby.start
+ExecStart=/bin/sh /storage/.kodi/addons/service.embyu/bin/embyu.start
 Restart=always
 
 [Install]

@@ -4,7 +4,7 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 . /etc/profile
-oe_setup_addon service.emby35x
+oe_setup_addon service.embyu
 
 chmod +x $ADDON_DIR/bin/*
 chmod +x $ADDON_DIR/system/EmbyServer

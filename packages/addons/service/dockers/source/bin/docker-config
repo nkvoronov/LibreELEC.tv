@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
-ADDON_DIR="/storage/.kodi/addons/service.system.dockerx"
-ADDON_HOME_DIR="/storage/.kodi/userdata/addon_data/service.system.dockerx"
+ADDON_DIR="/storage/.kodi/addons/service.system.dockers"
+ADDON_HOME_DIR="/storage/.kodi/userdata/addon_data/service.system.dockers"
 
 if [ ! -d "$ADDON_HOME_DIR/config" ]; then
   mkdir -p $ADDON_HOME_DIR/config

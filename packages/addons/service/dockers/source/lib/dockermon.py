@@ -20,7 +20,7 @@ else:
 __version__ = '0.2.2'
 # buffer size must be 256 or lower otherwise events won't show in realtime
 bufsize = 256
-default_sock_url = 'ipc:///var/run/dockerx.sock'
+default_sock_url = 'ipc:///var/run/dockers.sock'
 
 
 class DockermonError(Exception):

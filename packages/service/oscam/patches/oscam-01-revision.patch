@@ -1,11 +1,11 @@
---- a/config.sh
-+++ b/config.sh
-@@ -689,7 +689,7 @@ do
- 		break
+diff -Naur a/config.sh b/config.sh
+--- a/config.sh	2019-01-20 08:56:22.945150599 +0200
++++ b/config.sh	2019-01-20 08:59:57.070696114 +0200
+@@ -699,6 +699,7 @@
  	;;
  	'-r'|'--oscam-revision')
--		revision=`(svnversion -n . 2>/dev/null || printf 0) | sed 's/.*://; s/[^0-9]*$//; s/^$/0/'`
+ 		revision=`(svnversion -n . 2>/dev/null || printf 0) | sed 's/.*://; s/[^0-9]*$//; s/^$/0/'`
 +		echo "$OSCAM_VERSION"
- 		if [ "$revision" = "0" ] 
+ 		if [ "$revision" = "0" ]
  		then
- 			which git > /dev/null 2>&1 && revision=`git log -1 --pretty=%B | grep git-svn-id | sed -n -e 's/^.*trunk@\([0-9]*\) .*$/\1/p'`
+ 			which git > /dev/null 2>&1 && revision=`git log -10 --pretty=%B | grep git-svn-id | head -n 1 | sed -n -e 's/^.*trunk@\([0-9]*\) .*$/\1/p'`

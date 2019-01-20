@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="dockerx"
+PKG_NAME="dockers"
 PKG_VERSION="18.09.1"
 PKG_SHA256="c9959e42b637fb7362899ac1d1aeef2a966fa0ea85631da91f4c4a7a9ec29644"
-PKG_REV="130"
+PKG_REV="131"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
 PKG_URL="https://download.docker.com/linux/static/stable/x86_64/$PKG_NAME-$PKG_VERSION.tgz"
@@ -16,7 +16,7 @@ PKG_LONGDESC="Docker containers can encapsulate any payload, and will run consis
 PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="Dockerx"
+PKG_ADDON_NAME="Docker stable"
 PKG_ADDON_TYPE="xbmc.service"
 
 addon() {
