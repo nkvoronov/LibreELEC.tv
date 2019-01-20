@@ -1,6 +1,6 @@
 # Kodi Media Center language file
-# Addon Name: docker
-# Addon id: service.system.docker
+# Addon Name: dockers
+# Addon id: service.system.dockers
 msgid ""
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr "топ"
 
 msgctxt "#30049"
 msgid "unpause"
-msgstr ""
+msgstr "возобновить"
 
 msgctxt "#30050"
 msgid "update"

@@ -1,6 +1,6 @@
 # Kodi Media Center language file
-# Addon Name: docker
-# Addon id: service.system.docker
+# Addon Name: dockers
+# Addon id: service.system.dockers
 msgid ""
 msgstr ""
 

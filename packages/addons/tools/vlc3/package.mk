@@ -62,6 +62,10 @@ addon() {
   LIB_DVBPSI=$(get_build_dir libdvbpsi)
   LIB_X265=$(get_build_dir x265)
   LIB_GOOM=$(get_build_dir libgoom2)
+  LIB_GNUTLS=$(get_build_dir gnutls)
+  LIB_NETTLE=$(get_build_dir nettle)
+  LIB_IDN2=$(get_build_dir libidn2)
+  LIB_GMP=$(get_build_dir gmp)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
@@ -157,6 +161,12 @@ addon() {
     cp -P $LIB_DVBPSI/.install_pkg/usr/lib/libdvbpsi.so.10.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvbpsi.so.10
     cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.165 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.165
     cp -P $LIB_GOOM/.install_pkg/usr/lib/libgoom2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgoom2.so.0
+
+    cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.23.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
+    cp -P $LIB_NETTLE/.install_pkg/usr/lib/libnettle.so.6.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libnettle.so.6
+    cp -P $LIB_NETTLE/.install_pkg/usr/lib/libhogweed.so.4.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libhogweed.so.4
+    cp -P $LIB_IDN2/.install_pkg/usr/lib/libidn2.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libidn2.so.4
+    cp -P $LIB_GMP/.install_pkg/usr/lib/libgmp.so.10.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgmp.so.10
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share

@@ -7,7 +7,7 @@ PKG_VERSION_NUMBER="4.3.1731"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
-PKG_DEPENDS_TARGET="toolchain avahi curl dvb-apps ffmpegx libdvbcsa libhdhomerun libiconv openssl pngquant:host Python2:host tvh-dtv-scan-tables"
+PKG_DEPENDS_TARGET="toolchain avahi comskip curl dvb-apps ffmpegx libdvbcsa libhdhomerun libiconv openssl pngquant:host Python2:host tvh-dtv-scan-tables"
 PKG_LONGDESC="Tvheadend: is a TV streaming server for Linux supporting DVB-S/S2, DVB-C, DVB-T/T2, IPTV, SAT>IP, ATSC and ISDB-T"
 
 # basic transcoding options
@@ -48,6 +48,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --enable-dvben50221 \
                            --disable-dvbscan \
                            --enable-hdhomerun_client \
+                           --disable-hdhomerun_static \
                            --enable-epoll \
                            --enable-inotify \
                            --enable-pngquant \
@@ -76,6 +77,12 @@ pre_configure_target() {
   CFLAGS="$CFLAGS -I$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib"
 
+# pass gnutls to build
+  LDFLAGS="$LDFLAGS -L$(get_build_dir gnutls)/.INSTALL_PKG/usr/lib"
+
+# pass libhdhomerun to build
+  CFLAGS="$CFLAGS -I$(get_build_dir libhdhomerun)"
+
   export CROSS_COMPILE="$TARGET_PREFIX"
   export CFLAGS="$CFLAGS -I$SYSROOT_PREFIX/usr/include/iconv -L$SYSROOT_PREFIX/usr/lib/iconv"
 }
@@ -89,15 +96,24 @@ post_install() {
     cp -P $PKG_BUILD/build.linux/tvheadend $INSTALL/usr/bin
     cp -P $PKG_DIR/scripts/* $INSTALL/usr/bin
     cp -P $PKG_DIR/tv_grabs/* $INSTALL/usr/bin
+    cp -P $PKG_BUILD/capmt_ca.so $INSTALL/usr/bin
 
+# copy gnutls lib that is needed for ffmpeg
   mkdir -p $INSTALL/usr/lib
-    cp -P $PKG_BUILD/capmt_ca.so $INSTALL/usr/lib
+    cp -PL $(get_build_dir gnutls)/.INSTALL_PKG/usr/lib/libgnutls.so.30 $INSTALL/usr/lib
 
   mkdir -p $INSTALL/usr/share/tvheadend
     cp -pR $PKG_BUILD/data $INSTALL/usr/share/tvheadend
 
   mkdir -p $INSTALL/usr/config/tvheadend
     cp -pR $PKG_DIR/config/* $INSTALL/usr/config/tvheadend
+
+# dvb-scan files
+  mkdir -p $INSTALL/usr/share/tvheadend/dvb-scan
+  cp -r $(get_build_dir tvh-dtv-scan-tables)/atsc \
+        $(get_build_dir tvh-dtv-scan-tables)/dvb-* \
+        $(get_build_dir tvh-dtv-scan-tables)/isdb-t \
+        $INSTALL/usr/share/tvheadend/dvb-scan
 
   enable_service tvheadend.service
 }

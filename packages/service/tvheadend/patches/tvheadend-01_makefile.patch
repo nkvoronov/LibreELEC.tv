@@ -1,7 +1,7 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2018-07-26 11:57:06.000000000 +0300
-+++ b/Makefile	2018-08-06 15:20:25.837375057 +0300
-@@ -112,50 +112,65 @@
+--- a/Makefile	2018-11-28 15:41:33.639603151 +0200
++++ b/Makefile	2019-01-20 17:24:58.573286428 +0200
+@@ -116,50 +116,65 @@
      --define-variable=includedir=$(FFMPEG_INCDIR) \
      --define-variable=libdir=$(FFMPEG_LIBDIR) --static
  
@@ -73,7 +73,7 @@ diff -Naur a/Makefile b/Makefile
  endif
  
  # LIBAV ########################################################################
-@@ -696,7 +711,7 @@
+@@ -706,7 +721,7 @@
  
  # Binary
  ${PROG}: .config.mk make_webui $(OBJS)

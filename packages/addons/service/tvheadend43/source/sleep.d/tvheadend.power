@@ -7,20 +7,20 @@
 
 oe_setup_addon service.tvheadend43
 
-SERVICE="service.tvheadend-addon.service"
+SERVICE="service.tvheadend43"
 
 case "$1" in
   pre)
     if systemctl is-active "$SERVICE" &>/dev/null ; then
       systemctl stop "$SERVICE"
-      for module in $DVB_REMOVE_MODULES ; do
+      for module in $REMOVE_MODULES ; do
         rmmod $module
       done
     fi
     ;;
   post)
     if systemctl is-enabled "$SERVICE" &>/dev/null ; then
-      for module in $DVB_REMOVE_MODULES ; do
+      for module in $REMOVE_MODULES ; do
         modprobe $module
       done
       systemctl start "$SERVICE"

@@ -3,7 +3,7 @@
 
 PKG_NAME="embyu"
 PKG_VERSION="4.0.0.2"
-#PKG_SHA256="7241e4b19579eef080109dd67ffe50a9fbdbcfd74fd73c2d7723adb442f63151"
+PKG_SHA256="1a50e4499ff8037a96aa9748719e65fd3fe6c8299f17cd74aa29e50613b488b7"
 PKG_REV="357"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
@@ -26,6 +26,7 @@ unpack() {
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp $PKG_BUILD/opt/emby-server/bin/ffdetect $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp $PKG_BUILD/opt/emby-server/bin/ffmpeg $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp $PKG_BUILD/opt/emby-server/bin/ffprobe $ADDON_BUILD/$PKG_ADDON_ID/bin
 
@@ -34,6 +35,9 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -r $PKG_BUILD/opt/emby-server/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/licenses
+    cp -r $PKG_BUILD/opt/emby-server/licenses/* $ADDON_BUILD/$PKG_ADDON_ID/licenses
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -r $PKG_BUILD/opt/emby-server/share/* $ADDON_BUILD/$PKG_ADDON_ID/share

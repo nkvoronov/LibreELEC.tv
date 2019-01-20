@@ -135,6 +135,10 @@ pre_configure_target() {
   PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib/pkgconfig"
   CFLAGS="$CFLAGS -I$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir ffmpegx)/.INSTALL_PKG/usr/local/lib"
+
+  PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$(get_build_dir gnutls)/.INSTALL_PKG/usr/lib/pkgconfig"
+  CFLAGS="$CFLAGS -I$(get_build_dir gnutls)/.INSTALL_PKG/usr/include"
+  LDFLAGS="$LDFLAGS -L$(get_build_dir gnutls)/.INSTALL_PKG/usr/lib"
 }
 
 post_makeinstall_target() {

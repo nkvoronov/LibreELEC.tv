@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2018-09-12 16:23:21.570411584 +0300
-+++ b/Makefile.ffmpeg	2018-09-12 18:25:25.675661044 +0300
+--- a/Makefile.ffmpeg	2019-01-09 19:48:05.224475525 +0200
++++ b/Makefile.ffmpeg	2019-01-20 17:26:48.477962832 +0200
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
@@ -11,16 +11,16 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  unexport CFLAGS
  unexport LDFLAGS
  
-@@ -178,7 +181,7 @@
+@@ -181,7 +184,7 @@
  
  $(LIB_ROOT)/$(NASM)/.tvh_build: \
  		$(LIB_ROOT)/$(NASM)/.tvh_download
 -	cd $(LIB_ROOT)/$(NASM) && $(CONFIGURE_PI) \
 +	cd $(LIB_ROOT)/$(YASM) && $(CONFIGURE) CC=$(HOST_CC) \
  		--libdir=/$(EPREFIX0)/lib
- 	INSTALLROOT=$(EBUILDIR) \
+ 	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(NASM) install
-@@ -273,6 +276,7 @@
+@@ -276,6 +279,7 @@
  	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
  		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
  		-DENABLE_SHARED:BOOL=OFF \
@@ -28,7 +28,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		../../source
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
-@@ -310,7 +314,7 @@
+@@ -313,7 +317,7 @@
  ifeq (yes,$(CONFIG_LIBVPX_STATIC))
  
  ifneq (,$(FFMPEG_TARGET))
@@ -37,7 +37,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  endif
  
  $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
-@@ -322,7 +326,7 @@
+@@ -325,7 +329,7 @@
  		$(LIB_ROOT)/$(NASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
@@ -46,7 +46,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
  		--disable-docs \
-@@ -401,7 +405,8 @@
+@@ -404,7 +408,8 @@
  	cd $(LIB_ROOT)/$(LIBTHEORA) && \
  		$(CONFIGURE_PI) \
  		--libdir=/$(EPREFIX0)/lib \
@@ -56,7 +56,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--disable-examples \
  		--disable-spec \
  		$(LIBTHEORA_HOST)
-@@ -449,7 +454,8 @@
+@@ -452,7 +457,8 @@
  	cd $(LIB_ROOT)/$(LIBVORBIS) && \
  		$(CONFIGURE_PI) \
  		--libdir=/$(EPREFIX0)/lib \
@@ -66,7 +66,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
  	@touch $@
-@@ -673,10 +679,12 @@
+@@ -676,10 +682,12 @@
  		$(LIB_ROOT)/$(FFNVCODEC)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
  	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \

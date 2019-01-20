@@ -3,7 +3,7 @@
 
 PKG_NAME="system-tools"
 PKG_VERSION="1.0"
-PKG_REV="111"
+PKG_REV="115"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
@@ -12,44 +12,45 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="A bundle of system tools and programs"
 PKG_LONGDESC="This bundle currently includes autossh, diffutils, dstat, dtach, efibootmgr, encfs, evtest, fdupes, file, getscancodes, hddtemp, hd-idle, hid_mapper, htop, i2c-tools, inotify-tools, jq, lm_sensors, lshw, mc, mrxvt, mtpfs, nmon, p7zip, patch, pv, screen, smartmontools, strace, stress-ng, unrar, usb-modeswitch and vim."
+PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="System Tools"
 PKG_ADDON_TYPE="xbmc.python.script"
 
-ENABLE_AUTOSSH="no"
-ENABLE_DIFFUTILS="no"
-ENABLE_DSTAT="no"
-ENABLE_DTACH="no"
-ENABLE_EFIBOOTMGR="no"
-ENABLE_ENCFS="no"
+ENABLE_AUTOSSH="yes"
+ENABLE_DIFFUTILS="yes"
+ENABLE_DSTAT="yes"
+ENABLE_DTACH="yes"
+ENABLE_EFIBOOTMGR="yes"
+ENABLE_ENCFS="yes"
 ENABLE_EVTEST="yes"
-ENABLE_FDUPES="no"
-ENABLE_FILE="no"
-ENABLE_GETSCANCODES="no"
+ENABLE_FDUPES="yes"
+ENABLE_FILE="yes"
+ENABLE_GETSCANCODES="yes"
 ENABLE_HDDTEMP="yes"
-ENABLE_HD_IDLE="no"
-ENABLE_HID_MAPPER="no"
+ENABLE_HD_IDLE="yes"
+ENABLE_HID_MAPPER="yes"
 ENABLE_HTOP="yes"
-ENABLE_I2C_TOOLS="no"
-ENABLE_INOTIFY_TOOLS="no"
-ENABLE_JQ="no"
+ENABLE_I2C_TOOLS="yes"
+ENABLE_INOTIFY_TOOLS="yes"
+ENABLE_JQ="yes"
 ENABLE_LM_SENSORS="yes"
-ENABLE_LSHW="no"
+ENABLE_LSHW="yes"
 ENABLE_MC="yes"
-ENABLE_MRXVT="no"
-ENABLE_MTPFS="no"
-ENABLE_NMON="no"
+ENABLE_MRXVT="yes"
+ENABLE_MTPFS="yes"
+ENABLE_NMON="yes"
 ENABLE_P7ZIP="yes"
-ENABLE_PATCH="no"
-ENABLE_PV="no"
-ENABLE_SCREEN="no"
-ENABLE_SMARTMONTOOLS="no"
-ENABLE_STRACE="no"
-ENABLE_STRACE_NG="no"
+ENABLE_PATCH="yes"
+ENABLE_PV="yes"
+ENABLE_SCREEN="yes"
+ENABLE_SMARTMONTOOLS="yes"
+ENABLE_STRACE="yes"
+ENABLE_STRACE_NG="yes"
 ENABLE_UNRAR="yes"
-ENABLE_USB_MODESWITCH="no"
-ENABLE_VIM="no"
+ENABLE_USB_MODESWITCH="yes"
+ENABLE_VIM="yes"
 
 if [ "$ENABLE_AUTOSSH" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET autossh"
@@ -175,7 +176,7 @@ if [ "$ENABLE_UNRAR" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET unrar"
 fi
 
-if [ "$ENABLE_USB-MODESWITCH" = "yes" ]; then
+if [ "$ENABLE_USB_MODESWITCH" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET usb-modeswitch"
 fi
 
@@ -277,8 +278,11 @@ addon() {
   fi
   # mc
   if [ "$ENABLE_MC" = yes ]; then
-    cp -Pa $(get_build_dir mc)/.install_pkg/usr/bin/* $ADDON_BUILD/$PKG_ADDON_ID/bin/
-    cp -PR  $(get_build_dir mc)/.install_pkg/* $ADDON_BUILD/$PKG_ADDON_ID
+    cp -a $(get_build_dir mc)/.install_pkg/usr/bin/* $ADDON_BUILD/$PKG_ADDON_ID/bin/
+    cp -PR  $(get_build_dir mc)/.install_pkg/usr/lib/* $ADDON_BUILD/$PKG_ADDON_ID/lib/
+    cp -PR  $(get_build_dir mc)/.install_pkg/etc/* $ADDON_BUILD/$PKG_ADDON_ID/data/
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/
+      cp -PR  $(get_build_dir mc)/.install_pkg/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share/
   fi
   # mrxvt
   if [ "$ENABLE_MRXVT" = yes ]; then

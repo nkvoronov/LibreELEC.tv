@@ -1,9 +1,7 @@
-<settings>
-    <setting id="OSCAM_DEBUG" value="1" />
-    <setting id="OSCAM_RESTART_ON_RESUME" value="false" />
-    <setting id="OSCAM_WAIT_FOR_NET" value="false" />
-    <setting id="OSCAM_WAIT_FOR_NET_TIME" value="1" />
-    <setting id="DVB_WAIT_FOR_FEINIT" value="false" />
-    <setting id="DVB_NUM_ADAPTERS" value="1" />
+<settings version="2">
+    <setting id="NUM_ADAPTERS">1</setting>
+    <setting id="RESTART_ON_RESUME" default="true">false</setting>
+    <setting id="WAIT_FOR_FEINIT" default="true">false</setting>
+    <setting id="WORKAROUND_SLEEP" default="true">false</setting>
+    <setting id="WORKAROUND_SLEEP_TIME">1</setting>
 </settings>
-
