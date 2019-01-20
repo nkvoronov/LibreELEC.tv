@@ -44,7 +44,7 @@ fi
   OSCAM_SERVICE="yes"
 
 # TV Services
-  TVHEADEND_SERVICE="yes"
+  TVHEADEND_SERVICE="no"
   VDR_SERVICE="yes"
 
 # Tools
