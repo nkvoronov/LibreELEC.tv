@@ -1073,6 +1073,7 @@ done
            r ${tmp_changelog}
            d
          }" -i "$addon_xml"
+    rm -f "${tmp_changelog}"
   else
     sed -e "s|@PKG_ADDON_NEWS@||g" -i "$addon_xml"
   fi
