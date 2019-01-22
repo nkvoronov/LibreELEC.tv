@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol>110</defaultcontrol>
-	<include condition="Skin.HasSetting(lrclyrics_alternative_view)">OpenClose_Right</include>
-	<include condition="!Skin.HasSetting(lrclyrics_alternative_view)">Lrclyrics_Dialog</include>
+	<include>OpenClose_Right</include>
 	<controls>
 		<control type="group">
 			<width>1320</width>
@@ -60,7 +59,7 @@
 						<aligny>center</aligny>
 						<align>center</align>
 						<shadowcolor>black</shadowcolor>
-						<textcolor>$VAR[MainColorVar]</textcolor>
+						<textcolor>button_focus</textcolor>
 						<label fallback="--">$INFO[ListItem.Label]</label>
 					</control>
 				</focusedlayout>

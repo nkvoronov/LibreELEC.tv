@@ -15,23 +15,22 @@
 				<param name="header_label" value="$ADDON[script.libreelec.devupdate 32145]" />
 				<param name="header_id" value="1" />
 			</include>
-			<control type="group">
-				<description>Bottom panel</description>
-				<top>940</top>
-				<control type="textbox" id="200">
-					<description>Info area</description>
-					<left>40</left>
-					<top>25</top>
-					<height>130</height>
-					<width>300</width>
-				</control>
-			</control>
 			<control type="image">
 				<left>0</left>
 				<top>80</top>
 				<width>450</width>
 				<height>670</height>
 				<texture border="40">buttons/dialogbutton-nofo.png</texture>
+			</control>
+			<control type="group">
+				<description>Bottom panel</description>
+				<top>500</top>
+				<left>900</left>
+				<control type="textbox" id="200">
+					<description>Info area</description>
+					<height>130</height>
+					<width>300</width>
+				</control>
 			</control>
 			<control type="list" id="10">
 				<description>Source list</description>
@@ -120,6 +119,7 @@
 						<align>center</align>
 						<textcolor>ff87bde1</textcolor>
 						<info>ListItem.Label</info>
+						<animation effect="slide" start="0,0" end="100,0" time="0" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
 					</control>
 					<control type="label">
 						<right>100</right>
@@ -149,6 +149,7 @@
 						<aligny>center</aligny>
 						<align>center</align>
 						<info>ListItem.Label</info>
+						<animation effect="slide" start="0,0" end="100,0" time="0" condition="String.IsEmpty(ListItem.Label2)">Conditional</animation>
 					</control>
 					<control type="label">
 						<right>100</right>
