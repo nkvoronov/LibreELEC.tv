@@ -24,17 +24,6 @@
 # Enable shared build
   ENABLE_SHARED="yes"
 
-# additional drivers (DVB) to install (crazycat / tbsdtv / no):
-  MEDIA_BUILD_TYPE="tbsdtv"
-
-if [ "$MEDIA_BUILD_TYPE" != "no" ]; then
-  if [ "$MEDIA_BUILD_TYPE" = "crazycat" ]; then
-    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS crazycat-media-build"
-  else
-    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS tbsdtv-media-build"
-  fi
-fi
-
 # KODI addons
   KODI_REPOSITORY_YELLOWDRAGON="yes"
 
@@ -70,7 +59,6 @@ show_distro_config() {
     config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
     config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
     config_message="$config_message\n - Enable shared build:\t\t\t $ENABLE_SHARED"
-    config_message="$config_message\n - Media build type:\t\t\t $MEDIA_BUILD_TYPE"
 
     config_message="$config_message\n - KODI YELLOWDRAGON repositories:\t $KODI_REPOSITORY_YELLOWDRAGON"
     config_message="$config_message\n - Lcdproc service:\t\t\t $LCDPROC_SERVICE"

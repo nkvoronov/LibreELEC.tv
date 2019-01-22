@@ -24,6 +24,13 @@ unpack() {
   tar --strip-components=1 -xf $SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz -C $PKG_BUILD/addon
 }
 
+post_unpack() {
+  for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
+    cat $patch | patch -d \
+      `echo $PKG_BUILD/addon | cut -f1 -d\ ` -p1
+  done
+}
+
 make_target() {
   :
 }

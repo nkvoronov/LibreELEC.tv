@@ -784,7 +784,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.language.ru_ru/strings.po
 --- a/language/resource.language.ru_ru/strings.po	2019-01-20 07:50:41.051273649 +0200
-+++ b/language/resource.language.ru_ru/strings.po	2019-01-20 08:24:05.206696295 +0200
++++ b/language/resource.language.ru_ru/strings.po	2019-01-22 15:10:23.373179421 +0200
 @@ -126,6 +126,10 @@
  "is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
@@ -811,6 +811,24 @@ diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.lan
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
+@@ -751,7 +763,7 @@
+ 
+ msgctxt "#32307"
+ msgid "Previous"
+-msgstr ""
++msgstr "Предыдущ."
+ 
+ msgctxt "#32308"
+ msgid "Hostname:"
+@@ -763,7 +775,7 @@
+ 
+ msgctxt "#32310"
+ msgid "Language:"
+-msgstr ""
++msgstr "Язык"
+ 
+ msgctxt "#32311"
+ msgid "Sharing and Remote Access"
 @@ -1035,3 +1047,754 @@
  msgctxt "#32399"
  msgid "Public"

@@ -1,0 +1,108 @@
+diff -Naur a/addon.xml b/addon.xml
+--- a/addon.xml	2019-01-22 14:36:43.988498923 +0200
++++ b/addon.xml	2019-01-22 14:49:03.232949259 +0200
+@@ -12,6 +12,9 @@
+         <summary lang="de_de">LibreELEC Treibermodul Auswahl</summary>
+         <description lang="de_de">Wähle und installiere ein passendes Treibermodul für Deine Hardware.</description>
+         <disclaimer lang="de_de">Benutzung auf eigene Gefahr. Keine Garantie, daß das Addon wie erwartet funktioniert.</disclaimer>
++        <summary lang="ru_ru">Выбор драйвера LibreELEC</summary>
++        <description lang="ru_ru">Выберите и установите подходящий модуль драйвера для вашего оборудования.</description>
++        <disclaimer lang="ru_ru">Используйте на свой риск. Нет гарантии, что это дополнение работает правильно.</disclaimer>
+         <platform>linux</platform>
+         <license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
+         <forum></forum>
+diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/language/resource.language.ru_ru/strings.po
+--- a/resources/language/resource.language.ru_ru/strings.po	1970-01-01 03:00:00.000000000 +0300
++++ b/resources/language/resource.language.ru_ru/strings.po	2019-01-22 14:46:24.131978320 +0200
+@@ -0,0 +1,91 @@
++# XBMC Media Center language file
++# Addon Name: DVB driver select
++# Addon id: script.program.driverselect
++# Addon version: 0.1.0
++# Addon Provider: Birger Jesch
++msgid ""
++msgstr ""
++"Project-Id-Version: XBMC-Addons\n"
++"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
++"POT-Creation-Date: 2017-09-15 00:00+0000\n"
++"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
++"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
++"Language-Team: LANGUAGE\n"
++"MIME-Version: 1.0\n"
++"Content-Type: text/plain; charset=UTF-8\n"
++"Content-Transfer-Encoding: 8bit\n"
++"Language: ru_RU\n"
++"Plural-Forms: nplurals=2; plural=(n != 1)\n"
++
++msgctxt "#30010"
++msgid "LibreELEC driver select"
++msgstr "Выбор драйвера LibreELEC"
++
++msgctxt "#30011"
++msgid "Select driver module"
++msgstr "Выбрать модули драйвера"
++
++msgctxt "#30012"
++msgid "System Reboot required"
++msgstr "Требуется перезагрузка системы"
++
++msgctxt "#30013"
++msgid "You changed the system driver. A system reboot is required for the new driver to work properly. Would you like to reboot the system now?"
++msgstr "Вы изменили системный драйвер. Для правильной работы нового драйвера требуется перезагрузка системы. Вы хотите перезагрузить систему сейчас?"
++
++msgctxt "#30014"
++msgid "Driver changed, reboot required!"
++msgstr "Драйвер изменен, требуется перезагрузка!"
++
++msgctxt "#30015"
++msgid "No driver modules found!"
++msgstr "Модули драйвера не найдены!"
++
++msgctxt "#30016"
++msgid "No description available for this module!"
++msgstr "Нет описания для этого модуля!"
++
++msgctxt "#30017"
++msgid "unknown"
++msgstr "неизвестно"
++
++msgctxt "#30018"
++msgid "You have module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
++msgstr "У вас отключены модули драйвера. Перезагрузка системы необходима для правильной работы. Вы хотите перезагрузить систему сейчас?"
++
++msgctxt "#30019"
++msgid "Could not access addon library"
++msgstr "Не удалось получить доступ к библиотеке дополнений"
++
++msgctxt "#30020"
++msgid "Select category"
++msgstr "Выбрать категорию"
++
++msgctxt "#30021"
++msgid "Choose DVB driver module"
++msgstr "Выберите модуль драйвера DVB"
++
++msgctxt "#30022"
++msgid "Choose video driver module"
++msgstr "Выберите модуль видео драйвера"
++
++msgctxt "#30023"
++msgid "Choose network driver module"
++msgstr "Выберите модуль сетевого драйвера"
++
++msgctxt "#30024"
++msgid "LE default drivers"
++msgstr "LibreELEC стандартные драйвера"
++
++msgctxt "#30025"
++msgid "DVB drivers from standard package"
++msgstr "Драйвера DVB из стандартного пакета"
++
++msgctxt "#30026"
++msgid "Video drivers from standard package"
++msgstr "Видеодрайвера из стандартного комплекта"
++
++msgctxt "#30027"
++msgid "Network drivers from standard package"
++msgstr "Сетевые драйвера из стандартного пакета"
++
