@@ -784,7 +784,7 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgstr ""
 diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.language.ru_ru/strings.po
 --- a/language/resource.language.ru_ru/strings.po	2019-01-20 07:50:41.051273649 +0200
-+++ b/language/resource.language.ru_ru/strings.po	2019-01-22 15:10:23.373179421 +0200
++++ b/language/resource.language.ru_ru/strings.po	2019-01-23 18:21:57.192805464 +0200
 @@ -126,6 +126,10 @@
  "is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
@@ -811,6 +811,15 @@ diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.lan
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
+@@ -605,7 +617,7 @@
+ 
+ msgctxt "#32196"
+ msgid "About"
+-msgstr "Об LibreELEC"
++msgstr "О LibreELEC"
+ 
+ msgctxt "#32198"
+ msgid "SSID"
 @@ -751,7 +763,7 @@
  
  msgctxt "#32307"
@@ -1750,6 +1759,27 @@ diff -Naur a/src/defaults.py b/src/defaults.py
 +    'vdr': ['vdr.service'],
 +    'oscam': ['oscam.service'],
      }
+diff -Naur a/src/oe.py b/src/oe.py
+--- a/src/oe.py	2019-01-20 07:50:41.059273701 +0200
++++ b/src/oe.py	2019-01-23 18:23:21.469515471 +0200
+@@ -35,6 +35,7 @@
+ __busy__ = 0
+ xbmcIsPlaying = 0
+ input_request = False
++is_wizard = False
+ dictModules = {}
+ listObject = {
+     'list': 1100,
+@@ -82,8 +83,7 @@
+ 
+ 
+ def _(code):
+-    wizardComp = read_setting('libreelec', 'wizard_completed')
+-    if wizardComp == "True":
++    if not is_wizard:
+         codeNew = __addon__.getLocalizedString(code)
+     else:
+         curLang = read_setting("system", "language")
 diff -Naur a/src/resources/lib/modules/services.py b/src/resources/lib/modules/services.py
 --- a/src/resources/lib/modules/services.py	2019-01-20 07:50:41.063273728 +0200
 +++ b/src/resources/lib/modules/services.py	2019-01-20 07:56:54.225780365 +0200
@@ -4716,3 +4746,22 @@ diff -Naur a/src/resources/lib/modules/updates.py b/src/resources/lib/modules/up
      # Identify connected GPU card (card0, card1 etc.)
      def get_gpu_card(self):
          for root, dirs, files in os.walk("/sys/class/drm", followlinks=False):
+diff -Naur a/src/resources/lib/oeWindows.py b/src/resources/lib/oeWindows.py
+--- a/src/resources/lib/oeWindows.py	2019-01-20 07:50:41.063273728 +0200
++++ b/src/resources/lib/oeWindows.py	2019-01-23 18:24:55.106304088 +0200
+@@ -54,6 +54,7 @@
+ 
+         self.isChild = False
+         self.oe = kwargs['oeMain']
++        self.oe.is_wizard = False
+         self.lastGuiList = -1
+         self.lastListType = -1
+         if 'isChild' in kwargs:
+@@ -466,6 +467,7 @@
+ 
+         self.actions = {}
+         self.wizards = []
++        self.oe.is_wizard = True
+         self.last_wizard = None
+ 
+     def onInit(self):

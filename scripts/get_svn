@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
+
+# Handler for svn
+# Usage (in package.mk):
+# PKG_URL (mandatory) must point to a git repository (http://www.example/svn/project/trunk)
+# PKG_VERSION (mandatory) must point to a revision 12134
+
+_get_repo_already_downloaded() {
+  if [ -d "${PACKAGE}" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Latest file already present, exit now...
+_get_repo_already_downloaded && exit 0
+
+lock_source_dir "${1}"
+
+# Check again in case of concurrent access - if nothing needs to be downloaded, exit now...
+_get_repo_already_downloaded && exit 0
+
+# At this point, we need to download something...
+build_msg "CLR_GET" "GET" "${1} (svn)" "indent"
+
+rm -f "${STAMP_URL}" "${STAMP_SHA}"
+
+SVN_FOUND="no"
+opwd="$(pwd)"
+for d in "${SOURCES}/${1}/${1}-"* ; do
+  if [ -d "${d}/.svn" ]; then
+    if [ "${SVN_FOUND}" = "no" ]; then
+      cd "${d}"
+      SVN_FOUND="yes"
+      SVN_DIR="${d}"
+      svn update
+      cd "${opwd}"
+    fi
+  else
+    build_msg "CLR_CLEAN" "DELETE" "(${d})"
+    rm -rf "${d}"
+  fi
+done
+cd "${opwd}"
+
+if [ "${SVN_FOUND}" = "no" ]; then
+  build_msg "CLR_GET" "SVN CHECKOUT" "${1}"
+  svn checkout "${PKG_URL}" "${PACKAGE}"
+elif [ ! "${SVN_DIR}" = "${PACKAGE}" ]; then
+  mv "${SVN_DIR}" "${PACKAGE}"
+fi
+
+( cd "${PACKAGE}"
+  svn update -r "${PKG_VERSION}"
+)
