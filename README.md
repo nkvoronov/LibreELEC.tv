@@ -25,6 +25,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * vdr (service and addon)
 * lcdproc (service and addon) 
 * vdr plugins (service and addon)
+
   vdr-plugin-channellists
   vdr-plugin-ddci2
   vdr-plugin-dummydevice
@@ -74,6 +75,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * custom backup (script.xbmcbackup)
 * Locale set (glibc, busybox)
 * LibreELEC-settings changes
+
   Lcdproc
   TV (tvheadend, VDR, Oscam)
   Transmission
