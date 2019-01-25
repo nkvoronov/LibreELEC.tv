@@ -27,41 +27,41 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * vdr plugins (service and addon)
 
   vdr-plugin-channellists</br>
-  vdr-plugin-ddci2
-  vdr-plugin-dummydevice
-  vdr-plugin-dvbapi
-  vdr-plugin-dynamite
-  vdr-plugin-epgfixer
-  vdr-plugin-epgsearch
-  vdr-plugin-favorites
-  vdr-plugin-femon
-  vdr-plugin-filebrowser
-  vdr-plugin-imonlcd
-  vdr-plugin-iptv
-  vdr-plugin-lcdproc
-  vdr-plugin-live
-  vdr-plugin-menuorg - 
-  vdr-plugin-pin
-  vdr-plugin-restfulapi
-  vdr-plugin-robotv
-  vdr-plugin-satip
-  vdr-plugin-skindesigner
-  vdr-plugin-skinflat
-  vdr-plugin-skinflatplus
-  vdr-plugin-skinnopacity
-  vdr-plugin-sleeptimer
-  vdr-plugin-softhddevice +-
-  vdr-plugin-streamdev
-  vdr-plugin-systeminfo
-  vdr-plugin-text2skin
-  vdr-plugin-tvguideng
-  vdr-plugin-tvscraper
-  vdr-plugin-vnsiserver
-  vdr-plugin-weatherforecast
-  vdr-plugin-wirbelscan
-  vdr-plugin-wirbelscancontrol
-  vdr-plugin-xineliboutput
-  vdr-plugin-xmltv2vdr
+  vdr-plugin-ddci2</br>
+  vdr-plugin-dummydevice</br>
+  vdr-plugin-dvbapi</br>
+  vdr-plugin-dynamite</br>
+  vdr-plugin-epgfixer</br>
+  vdr-plugin-epgsearch</br>
+  vdr-plugin-favorites</br>
+  vdr-plugin-femon</br>
+  vdr-plugin-filebrowser</br>
+  vdr-plugin-imonlcd</br>
+  vdr-plugin-iptv</br>
+  vdr-plugin-lcdproc</br>
+  vdr-plugin-live</br>
+  vdr-plugin-menuorg - </br>
+  vdr-plugin-pin</br>
+  vdr-plugin-restfulapi</br>
+  vdr-plugin-robotv</br>
+  vdr-plugin-satip</br>
+  vdr-plugin-skindesigner</br>
+  vdr-plugin-skinflat</br>
+  vdr-plugin-skinflatplus</br>
+  vdr-plugin-skinnopacity</br>
+  vdr-plugin-sleeptimer</br>
+  vdr-plugin-softhddevice +- </br>
+  vdr-plugin-streamdev</br>
+  vdr-plugin-systeminfo</br>
+  vdr-plugin-text2skin</br>
+  vdr-plugin-tvguideng</br></br>
+  vdr-plugin-tvscraper</br>
+  vdr-plugin-vnsiserver</br>
+  vdr-plugin-weatherforecast</br>
+  vdr-plugin-wirbelscan</br>
+  vdr-plugin-wirbelscancontrol</br>
+  vdr-plugin-xineliboutput</br>
+  vdr-plugin-xmltv2vdr</br>
 * transmission (service and addon)
 * vlc last (addon)
 * acestream (addon)
@@ -76,12 +76,12 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * Locale set (glibc, busybox)
 * LibreELEC-settings changes
 
-  Lcdproc
-  TV (tvheadend, VDR, Oscam)
-  Transmission
-  Configure Locale
-  Configure keyboard switches
-  Custom update
-  Custom backup -
+  Lcdproc</br>
+  TV (tvheadend, VDR, Oscam)</br>
+  Transmission</br></br>
+  Configure Locale</br>
+  Configure keyboard switches</br>
+  Custom update</br>
+  Custom backup - </br>
 * repository.yellowdragon
 * repository.yellowdragon.libreelec
