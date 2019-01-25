@@ -54,7 +54,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
   vdr-plugin-streamdev</br>
   vdr-plugin-systeminfo</br>
   vdr-plugin-text2skin</br>
-  vdr-plugin-tvguideng</br></br>
+  vdr-plugin-tvguideng</br>
   vdr-plugin-tvscraper</br>
   vdr-plugin-vnsiserver</br>
   vdr-plugin-weatherforecast</br>
@@ -78,7 +78,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 
   Lcdproc</br>
   TV (tvheadend, VDR, Oscam)</br>
-  Transmission</br></br>
+  Transmission</br>
   Configure Locale</br>
   Configure keyboard switches</br>
   Custom update</br>
