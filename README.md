@@ -26,7 +26,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * lcdproc (service and addon) 
 * vdr plugins (service and addon)
 
-  vdr-plugin-channellists
+  vdr-plugin-channellists</br>
   vdr-plugin-ddci2
   vdr-plugin-dummydevice
   vdr-plugin-dvbapi
