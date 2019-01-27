@@ -9,5 +9,5 @@ ExecStart=/bin/sh /storage/.kodi/addons/service.embyu/bin/embyu.start
 Restart=always
 
 [Install]
-WantedBy=kodi.target
+WantedBy=multi-user.target
 
