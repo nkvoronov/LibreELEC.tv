@@ -2,16 +2,18 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="3.1.35"
+PKG_VERSION="b78eb20349630883e2c57ac21c508688fb8b4b4b"
+PKG_VERSION_NUM="3.1.35"
 PKG_REV="10"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
-PKG_URL=""
-PKG_DEPENDS_TARGET="toolchain acestream"
-PKG_SECTION="tools"
-PKG_SHORTDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
-PKG_LONGDESC="acestream (Version: $PKG_VERSION): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
+PKG_URL="https://github.com/nkvoronov/tools-ace.git"
+PKG_GIT_CLONE_BRANCH="v$PKG_VERSION_NUM"
+PKG_DEPENDS_TARGET="toolchain"
+PKG_SECTION="service"
+PKG_SHORTDESC="acestream (Version: $PKG_VERSION_NUM): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
+PKG_LONGDESC="acestream (Version: $PKG_VERSION_NUM): This is an innovative media platform of a new generation, which will take you to a new high-quality level of multimedia space on the Internet."
 PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
@@ -19,30 +21,28 @@ PKG_ADDON_NAME="ACE stream engine"
 PKG_ADDON_TYPE="xbmc.service"
 
 addon() {
-  ACESTREAM_DIR=$(get_build_dir acestream)
-
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
-    cp -PR $ACESTREAM_DIR/acestream/data/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
+    cp -PR $PKG_BUILD/acestream/data/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/data
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -PR $ACESTREAM_DIR/acestream/lib/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $PKG_BUILD/acestream/lib/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
     rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/m2crypto.egg
 
-    cp -r $ACESTREAM_DIR/libs/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -PR $ACESTREAM_DIR/libs/setuptools/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -pr $PKG_BUILD/libs/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/setuptools/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto
-    cp -PR $ACESTREAM_DIR/libs/M2Crypto/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto
+    cp -PR $PKG_BUILD/libs/M2Crypto/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto
 
-    cp -PR $ACESTREAM_DIR/libs/apsw/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
-    cp -PR $ACESTREAM_DIR/libs/sqlite/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/apsw/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/sqlite/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml
-    cp -PR $ACESTREAM_DIR/libs/lxml/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml
+    cp -PR $PKG_BUILD/libs/lxml/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml
 
-    cp -PR $ACESTREAM_DIR/libs/libxslt/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/libxslt/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
 
-    cp -P $ACESTREAM_DIR/acestream/acestream.conf $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
-    cp -P $ACESTREAM_DIR/acestream/acestreamengine $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
+    cp -P $PKG_BUILD/acestream/acestream.conf $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
+    cp -P $PKG_BUILD/acestream/acestreamengine $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
 }
