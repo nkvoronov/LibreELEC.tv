@@ -1,0 +1,12 @@
+[Unit]
+Description=AceStream Engine (console)
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /storage/.kodi/addons/service.acestream-engine/bin/acestream-engine.start
+
+[Install]
+WantedBy=multi-user.target
+

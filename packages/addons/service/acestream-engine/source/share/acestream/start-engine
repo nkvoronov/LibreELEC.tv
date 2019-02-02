@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
+. /etc/profile
+
+ADDON_DIR=/storage/.kodi/addons/service.acestream-engine
+ROOT=$ADDON_DIR/share/acestream
+
+LD_LIBRARY_PATH=${ROOT}/lib ${ROOT}/acestreamengine --lib-path $ROOT "$@"

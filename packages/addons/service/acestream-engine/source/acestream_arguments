@@ -1,0 +1,99 @@
+Client
+optional arguments:
+  -h, --help            show this help message and exit
+  --port PORT           node port
+  --api-port API_PORT   api port
+  --http-port HTTP_PORT
+                        http port
+  --https-port HTTPS_PORT
+                        https port
+  --bind-all            bind on all interfaces
+  --max-file-size MAX_FILE_SIZE
+                        max file size supported by filesystem (bytes)
+  --state-dir STATE_DIR
+                        state dir
+  --cache-dir CACHE_DIR
+                        cache dir
+  --cache-limit CACHE_LIMIT
+                        cache limit, Gb
+  --vod-buffer VOD_BUFFER
+                        VOD buffer in seconds
+  --login LOGIN         user login
+  --password PASSWORD   use password
+
+ALL
+optional arguments:
+  --client-console      run client in console
+  --client-wx           run wx client
+  --client-gtk          run gtk client
+  --stream-source-node  run source node
+  --stream-support-node
+                        run support node
+  --stream-startup-node
+                        run startup node
+  --control-node        run control node
+  --create-transport    create transport file
+  --create-transport-multi
+                        create multi stream from several transport files
+  --create-hls-transport
+                        create transport file from HLS
+  --start-tracker       start standalone tracker
+  --get-infohash PATH   print infohash of the file
+  --get-file-info PATH  print infohash of the file
+  --get-file-info-with-id PATH
+                        print infohash of the file
+  -v, --version         print version and exit
+  --gui-wx              use WX GUI
+  --gui-gtk             use GTK GUI
+  --log-stdout          log to stdout
+  --log-stderr          log to stderr
+  --log-stdout-level LEVEL
+                        log level for STDOUT (error, info, debug, any)
+  --log-stderr-level LEVEL
+                        log level for STDERR (error, info, debug, any)
+  --log-file PATH       enable logging to file and set log path
+  --log-file-mode MODE  set file write mode: a=append, w=overwrite
+  --log-max-size SIZE   log file max size in bytes
+  --log-backup-count COUNT
+                        number of backup logs
+  --log-file-buffer N   use N-bytes memory buffer for logs and flush
+                        periodically to file
+  --log-file-encoding LOG_FILE_ENCODING
+  --log-syslog HOST     enable logging to syslog and set syslog host
+  --log-syslog-port PORT
+                        syslog port
+  --log-syslog-facility FACILITY
+                        syslog facility
+  --log-syslog-buffer N
+                        use N-bytes memory buffer for logs and flush
+                        periodically to file
+  --use-ffmpeg USE_FFMPEG
+                        use ffmpeg
+  --download-limit DOWNLOAD_LIMIT
+                        download limit, Kb/s
+  --upload-limit UPLOAD_LIMIT
+                        upload limit, Kb/s
+  --max-connections MAX_CONNECTIONS
+                        total max connections
+  --max-peers MAX_PEERS
+                        max connections to peers
+  --max-peers-limit MAX_PEERS_LIMIT
+                        max connections to peers
+  --max-timeshift-peers MAX_TIMESHIFT_PEERS
+                        reserve connections for timeshift peers
+  --max-upload-slots MAX_UPLOAD_SLOTS
+                        max upload slots
+  --live-cache-type LIVE_CACHE_TYPE
+                        Live cache type (memory or disk)
+  --live-disk-cache-size LIVE_DISK_CACHE_SIZE
+                        Disk cache max size in bytes
+  --live-mem-cache-size LIVE_MEM_CACHE_SIZE
+                        Memory cache max size in bytes
+  --vod-cache-type VOD_CACHE_TYPE
+                        VOD cache type (memory or disk)
+  --disk-cache-limit DISK_CACHE_LIMIT
+                        Max size of cache on disk, in bytes
+  --memory-cache-limit MEMORY_CACHE_LIMIT
+                        Max size of cache in RAM, in bytes
+  --enable-profiler ENABLE_PROFILER
+                        Enable internal profiler (0 or 1)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="32000">
+		<setting label="32001" type="number" id="vod_buffer" default="0" />
+		<setting label="32002" type="number" id="live_buffer" default="0" />
+		<setting label="32003" type="number" id="download_limit" default="0" />
+		<setting label="32004" type="number" id="upload_limit" default="0" />
+	</category>
+	<category label="32010">
+		<setting label="32011" type="number" id="cache_limit" default="0" />
+		<setting label="32012" type="folder" id="cache_dir" default="" option="writeable" />
+		<setting label="32013" type="folder" id="state_dir" default="" option="writeable" />
+		<setting label="32014" type="enum" id="vod_cache_type" default="0" lvalues="32015|32016" />
+		<setting label="32017" type="number" id="vod_cache_size" default="0" />
+		<setting label="32018" type="enum" id="live_cache_type" default="0" lvalues="32015|32016" />
+		<setting label="32019" type="number" id="live_cache_size" default="0" />
+	</category>
+	<category label="32020">
+		<setting label="32021" type="text" id="login" default="" />
+		<setting label="32022" type="text" id="password" default="" option="hidden"/>
+	</category>
+	<category label="32030">
+		<setting label="32031" type="number" id="port" default="0" />
+		<setting label="32032" type="number" id="api_port" default="0" />
+		<setting label="32033" type="number" id="http_port" default="0" />
+		<setting label="32034" type="number" id="https_port" default="0" />
+		<setting label="32035" type="number" id="max_connections" default="0" />
+		<setting label="32036" type="number" id="max_peers" default="0" />
+		<setting label="32037" type="number" id="max_peers_limit" default="0" />
+		<setting label="32038" type="number" id="max_timeshift_peers" default="0" />
+		<setting label="32039" type="number" id="max_upload_slots" default="0" />
+		<setting label="32040" type="text" id="other_params" default="" />
+	</category>
+	<category label="32041">
+		<setting label="32042" type="text" id="log_file" default="" />
+		<setting label="32043" type="number" id="log_max_size" default="0" />
+	</category>
+</settings>

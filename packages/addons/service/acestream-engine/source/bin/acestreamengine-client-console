@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
+. /etc/profile
+oe_setup_addon service.acestream-engine
+
+chmod +x $ADDON_DIR/bin/*
+chmod a+x $ADDON_DIR/share/acestream/acestreamengine
+chmod a+x $ADDON_DIR/share/acestream/start-engine
+
+$ADDON_DIR/share/acestream/start-engine --client-console "$@"

@@ -1,0 +1,27 @@
+<settings>
+	<setting id="vod_buffer" value="0" />
+	<setting id="live_buffer" value="0" />
+	<setting id="download_limit" value="0" />
+	<setting id="upload_limit" value="0" />
+	<setting id="cache_limit" value="0" />
+	<setting id="cache_dir" value="" />
+	<setting id="state_dir" value="" />
+	<setting id="vod_cache_type" value="0" />
+	<setting id="vod_cache_size" value="0" />
+	<setting id="live_cache_type" value="0" />
+	<setting id="live_cache_size" value="0" />
+	<setting id="login" value="" />
+	<setting id="password" value="" />
+	<setting id="port" value="0" />
+	<setting id="api_port" value="0" />
+	<setting id="http_port" value="0" />
+	<setting id="https_port" value="0" />
+	<setting id="max_connections" value="0" />
+	<setting id="max_peers" value="0" />
+	<setting id="max_peers_limit" value="0" />
+	<setting id="max_timeshift_peers" value="0" />
+	<setting id="max_upload_slots" value="0" />
+	<setting id="other_params" value="" />
+	<setting id="log_file" value="" />
+	<setting id="log_max_size" value="0" />
+</settings>

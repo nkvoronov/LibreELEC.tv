@@ -1,0 +1,129 @@
+#!/bin/sh
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+
+. /etc/profile
+
+mkdir -p "/storage/.kodi/userdata/addon_data/service.acestream-engine"
+oe_setup_addon service.acestream-engine
+
+chmod +x $ADDON_DIR/bin/*
+chmod a+x $ADDON_DIR/share/acestream/acestreamengine
+chmod a+x $ADDON_DIR/share/acestream/start-engine
+
+ACE_PARAM=""
+client_console="true"
+bind_all="true"
+
+if [ "$client_console" = "true" ]; then
+  ACE_PARAM="$ACE_PARAM --client-console"
+fi
+
+if [ "$bind_all" = "true" ]; then
+  ACE_PARAM="$ACE_PARAM --bind-all"
+fi
+
+if [ "$vod_buffer" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --vod-buffer $vod_buffer"
+fi
+
+if [ "$live_buffer" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --live-buffer $live_buffer"
+fi
+
+if [ "$download_limit" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --download-limit $download_limit"
+fi
+
+if [ "$upload_limit" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --upload-limit $upload_limit"
+fi
+
+if [ "$cache_limit" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --cache-limit $cache_limit"
+fi
+
+if [ "$cache_dir" != "" ]; then 
+  ACE_PARAM="$ACE_PARAM --cache-dir $cache_dir"
+fi
+
+if [ "$state_dir" != "" ]; then 
+  ACE_PARAM="$ACE_PARAM --state-dir $state_dir"
+fi
+
+if [ "$vod_cache_size" != "0" ]; then 
+  if [ "$vod_cache_type" = "0" ]; then
+    ACE_PARAM="$ACE_PARAM --vod-cache-type disk --disk-cache-limit $vod_cache_size"
+  else
+    ACE_PARAM="$ACE_PARAM --vod-cache-type memory --memory-cache-limit $vod_cache_size"
+  fi
+fi
+
+if [ "$live_cache_size" != "0" ]; then 
+  if [ "$live_cache_type" = "0" ]; then
+    ACE_PARAM="$ACE_PARAM --live-cache-type disk --live-disk-cache-size $live_cache_size"
+  else
+    ACE_PARAM="$ACE_PARAM --live-cache-type memory --live-mem-cache-size $live_cache_size"
+  fi
+fi
+
+if [ "$login" != "" ]; then 
+  ACE_PARAM="$ACE_PARAM --login $login"
+fi
+
+if [ "$password" != "" ]; then 
+  ACE_PARAM="$ACE_PARAM --password $password"
+fi
+
+if [ "$port" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --port $port"
+fi
+
+if [ "$api_port" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --api-port $api_port"
+fi
+
+if [ "$http_port" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --http-port $http_port"
+fi
+
+if [ "$https_port" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --https-port $https_port"
+fi
+
+if [ "$max_connections" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --max-connections $max_connections"
+fi
+
+if [ "$max_peers" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --max-peers $max_peers"
+fi
+
+if [ "$max_peers_limit" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --max-peers-limit $max_peers_limit"
+fi
+
+if [ "$max_timeshift_peers" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --max-timeshift-peers $max_timeshift_peers"
+fi
+
+if [ "$max_upload_slots" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --max-upload-slots $max_upload_slots"
+fi
+
+if [ "$other_params" != "" ]; then 
+  ACE_PARAM="$ACE_PARAM $other_params"
+fi
+
+if [ "$log_file" != "" ]; then 
+  ACE_PARAM="$ACE_PARAM --log-file $log_file"
+fi
+
+if [ "$log_max_size" != "0" ]; then 
+  ACE_PARAM="$ACE_PARAM --log-max-size $log_max_size"
+fi
+
+echo $ACE_PARAM
+
+exec $ADDON_DIR/share/acestream/start-engine $ACE_PARAM
