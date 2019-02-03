@@ -29,7 +29,7 @@ addon() {
     rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
     rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/m2crypto.egg
 
-    cp -pr $PKG_BUILD/libs/openssl/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
+    cp -PR $PKG_BUILD/libs/openssl/*.so.* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     cp -PR $PKG_BUILD/libs/setuptools/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto
@@ -45,4 +45,7 @@ addon() {
 
     cp -P $PKG_BUILD/acestream/acestream.conf $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
     cp -P $PKG_BUILD/acestream/acestreamengine $ADDON_BUILD/$PKG_ADDON_ID/share/acestream
+
+    rm -rf `find $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/ -name "*.pyc"`
+    rm -rf `find $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/ -name "*.pyo"`
 }
