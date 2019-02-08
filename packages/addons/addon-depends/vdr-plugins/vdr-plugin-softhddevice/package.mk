@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-softhddevice"
-PKG_VERSION="b044877"
+PKG_VERSION="a2389a7"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-softhddevice"
 PKG_URL="https://github.com/ua0lnj/vdr-plugin-softhddevice.git"
