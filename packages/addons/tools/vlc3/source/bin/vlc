@@ -4,7 +4,7 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 . /etc/profile
-. /storage/.kodi/addons/tools.vlc3/etc/vlc.conf
+. /storage/.kodi/addons/tools.vlc3/data/config
 
 eval `dbus-launch --sh-syntax`
-LD_LIBRARY_PATH=$VLIBS exec $ADDON_DIR/bin/vlc.bin --no-plugins-cache "$@"
+LD_LIBRARY_PATH=$PLIBS exec $ADDON_DIR/data/vlc.bin --no-plugins-cache "$@"

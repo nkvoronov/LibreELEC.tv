@@ -2,7 +2,7 @@
 ADDON_DIR=/storage/.kodi/addons/tools.poppler
 
 chmod a+x $ADDON_DIR/bin/*
-chmod a+x $ADDON_DIR/binary/*
+chmod a+x $ADDON_DIR/data/*.bin
 
-VLIBS="$ADDON_DIR/lib"
+PLIBS="$ADDON_DIR/lib"
 

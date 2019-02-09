@@ -3,7 +3,7 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.6"
-PKG_REV="56"
+PKG_REV="58"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -68,10 +68,13 @@ addon() {
   LIB_GMP=$(get_build_dir gmp)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/bin/vlc.bin
     cp -P $LUA/src/lua $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $LUA/src/luac $ADDON_BUILD/$PKG_ADDON_ID/bin
     chmod +x $ADDON_BUILD/$PKG_ADDON_ID/bin/*
+
+  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/data
+    cp -P $VLC_DIR/.install_pkg/usr/bin/vlc $ADDON_BUILD/$PKG_ADDON_ID/data/vlc.bin
+    chmod +x $ADDON_BUILD/$PKG_ADDON_ID/data/*.bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $VLC_DIR/.install_pkg/usr/lib/libvlc.so.5.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libvlc.so.5

@@ -2,8 +2,9 @@
 ADDON_DIR=/storage/.kodi/addons/tools.vlc3
 
 chmod a+x $ADDON_DIR/bin/*
+chmod a+x $ADDON_DIR/data/*.bin
 
-VLIBS="$ADDON_DIR/lib:$ADDON_DIR/lib/vlc:$ADDON_DIR/lib/vlc/plugins"
+PLIBS="$ADDON_DIR/lib:$ADDON_DIR/lib/vlc:$ADDON_DIR/lib/vlc/plugins"
 
 QT5DIR=$ADDON_DIR/lib
 QTDIR=$QT5DIR

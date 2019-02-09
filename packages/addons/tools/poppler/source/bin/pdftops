@@ -4,6 +4,6 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 . /etc/profile
-. /storage/.kodi/addons/tools.poppler/etc/poppler.conf
+. /storage/.kodi/addons/tools.poppler/data/config
 
-LD_LIBRARY_PATH=$VLIBS exec $ADDON_DIR/binary/pdftops "$@"
+LD_LIBRARY_PATH=$PLIBS exec $ADDON_DIR/data/pdftops.bin "$@"
