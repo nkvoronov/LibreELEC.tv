@@ -4,7 +4,7 @@
 PKG_NAME="poppler"
 PKG_VERSION="0.73.0"
 PKG_SHA256="e44b5543903128884ba4538c2a97d3bcc8889e97ffacc4636112101f0238db03"
-PKG_REV="3"
+PKG_REV="4"
 PKG_LICENSE="GPL"
 PKG_SITE="https://poppler.freedesktop.org/"
 PKG_URL="https://poppler.freedesktop.org/${PKG_NAME}-${PKG_VERSION}.tar.xz"
@@ -31,7 +31,8 @@ addon() {
     cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdfdetach $ADDON_BUILD/$PKG_ADDON_ID/data/pdfdetach.bin
     cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdffonts $ADDON_BUILD/$PKG_ADDON_ID/data/pdffonts.bin
     cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdfimages $ADDON_BUILD/$PKG_ADDON_ID/data/pdfimages.bin
-    cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdfseparate $ADDON_BUILD/$PKG_ADDON_ID/data/pdfseparate.bin 
+    cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdfinfo $ADDON_BUILD/$PKG_ADDON_ID/data/pdfinfo.bin
+    cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdfseparate $ADDON_BUILD/$PKG_ADDON_ID/data/pdfseparate.bin
     cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdfsig $ADDON_BUILD/$PKG_ADDON_ID/data/pdfsig.bin
     cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdftocairo $ADDON_BUILD/$PKG_ADDON_ID/data/pdftocairo.bin
     cp -p $PKG_BUILD/.install_pkg$POPPLER_PREFIX/bin/pdftohtml $ADDON_BUILD/$PKG_ADDON_ID/data/pdftohtml.bin

@@ -6,4 +6,4 @@
 . /etc/profile
 . /storage/.kodi/addons/tools.poppler/data/config
 
-LD_LIBRARY_PATH=$PLIBS exec $ADDON_DIR/data/jpicc.bin "$@"
+LD_LIBRARY_PATH=$PLIBS exec $ADDON_DIR/data/jpgicc.bin "$@"
