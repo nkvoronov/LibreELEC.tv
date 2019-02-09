@@ -1,7 +1,7 @@
 [Unit]
 Description=oscam
 ConditionPathExists=|/storage/.cache/services/oscam.conf
-After=multi-user.target
+After=network.target
 
 [Service]
 ExecStart=/bin/sh -c "exec sh /usr/bin/oscam.start"

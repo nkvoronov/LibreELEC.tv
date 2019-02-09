@@ -1,7 +1,7 @@
 [Unit]
 Description=transmission
 ConditionPathExists=|/storage/.cache/services/transmission.conf
-After=multi-user.target
+After=network.target
 
 [Service]
 EnvironmentFile=-/storage/.cache/services/transmission.conf

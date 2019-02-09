@@ -1,7 +1,7 @@
 [Unit]
 Description=vdr-front
 ConditionPathExists=|/storage/.cache/services/vdr-front.conf
-After=multi-user.target
+After=network.target
 
 [Service]
 EnvironmentFile=-/storage/.cache/services/vdr-front.conf

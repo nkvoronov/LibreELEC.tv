@@ -1,7 +1,7 @@
 [Unit]
 Description=LCDProc
 ConditionPathExists=|/storage/.cache/services/lcdd.conf
-After=multi-user.target
+After=network.target
 
 [Service]
 EnvironmentFile=-/storage/.cache/services/lcdd.conf
