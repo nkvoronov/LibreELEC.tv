@@ -31,7 +31,7 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -PR $LCD_DIR/.install_pkg/usr/share/lcdproc/fonts $ADDON_BUILD/$PKG_ADDON_ID/share/
 
-  sed -e "s|^DriverPath=.*$|DriverPath=/storage/.kodi/addons/service.lcdd/lib/lcdproc/|" \
+  sed -e "s|^DriverPath=.*$|DriverPath=/storage/.kodi/addons/service.lcdd/lib/|" \
       -e "s|^Font=/usr/share/lcdproc/fonts/cp1251.fnt|Font=/storage/.kodi/addons/service.lcdd/share/fonts/cp1251.fnt|" \
       -i $ADDON_BUILD/$PKG_ADDON_ID/config/LCDd.conf
 
