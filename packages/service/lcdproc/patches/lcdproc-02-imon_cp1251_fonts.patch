@@ -1,6 +1,6 @@
 diff -Naur a/LCDd.conf b/LCDd.conf
 --- a/LCDd.conf	2019-02-11 17:50:16.493894793 +0200
-+++ b/LCDd.conf	2019-02-11 20:16:20.751510897 +0200
++++ b/LCDd.conf	2019-02-11 21:52:38.139291873 +0200
 @@ -50,7 +50,7 @@
  #   mdm166a, ms6931, mtc_s16209x, MtxOrb, mx5000, NoritakeVFD,
  #   Olimex_MOD_LCD1x9, picolcd, pyramid, rawserial, sdeclcd, sed1330,
@@ -19,7 +19,7 @@ diff -Naur a/LCDd.conf b/LCDd.conf
  
  ## Soundgraph iMON LCD ##
  [imonlcd]
-@@ -751,13 +751,16 @@
+@@ -751,13 +751,13 @@
  # [legal: 0, 1; default: 0]
  # Choose 0 for 15c2:ffdc device,
  # Choose 1 for 15c2:0038 device
@@ -32,13 +32,10 @@ diff -Naur a/LCDd.conf b/LCDd.conf
  # 2 means blank device
 -#OnExit=2
 +OnExit=1
-+
-+# Set the exit behavior [legal: 0-255; default: 128]
-+ExitShowClockFlag=128
  
  # Select the output device to use [default: /dev/lcd0]
  Device=/dev/lcd0
-@@ -774,9 +777,9 @@
+@@ -774,9 +774,9 @@
  # Set the disc mode [legal: 0,1; default: 0]
  # 0 => spin the "slim" disc - two disc segments,
  # 1 => their complement spinning;
@@ -50,7 +47,7 @@ diff -Naur a/LCDd.conf b/LCDd.conf
  
  ## IrMan driver ##
  [IrMan]
-@@ -1451,20 +1454,6 @@
+@@ -1451,20 +1451,6 @@
  # Select the output device to use [default: /dev/ttyUSB0]
  #Device=/dev/ttyUSB0
  
@@ -146,7 +143,7 @@ diff -Naur a/server/drivers/adv_bignum.c b/server/drivers/adv_bignum.c
  		},
 diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
 --- a/server/drivers/imonlcd.c	2018-10-17 19:29:18.448007562 +0300
-+++ b/server/drivers/imonlcd.c	2019-02-11 20:15:03.783003505 +0200
++++ b/server/drivers/imonlcd.c	2019-02-11 21:55:25.216256228 +0200
 @@ -5,6 +5,11 @@
   */
  
@@ -159,18 +156,17 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
   * Copyright (c) 2004, Venky Raju <dev (at) venky (dot) ws>
   *               2007, Dean Harding <dean (at) codeka dotcom>
   *               2007, Christian Leuschen <christian (dot) leuschen (at) gmx (dot) de>
-@@ -51,7 +56,9 @@
+@@ -51,7 +56,8 @@
  #define DEFAULT_DISCMODE     0	/**< spin the "slim" disc */
  #define DEFAULT_ON_EXIT      1	/**< show the big clock */
  #define DEFAULT_PROTOCOL     0	/**< protocol for 15c2:ffdc device */
 -
 +#define DEFAULT_FONT         ""
 +#define DEFAULT_FONT_ENCODING         "iso-8859-15"
-+#define DEFAULT_SHOWCLOCK_FLAG 128
  
  #define ON_EXIT_SHOWMSG      0	/**< Do nothing - just leave the "shutdown"
  				 * message there */
-@@ -60,6 +67,7 @@
+@@ -60,6 +66,7 @@
  
  #define PROTOCOL_FFDC        0	/**< protocol ID for 15c2:ffdc device */
  #define PROTOCOL_0038        1	/**< protocol ID for 15c2:0038 device */
@@ -178,7 +174,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  
  /* Vars for the server core */
  MODULE_EXPORT char *api_version = API_VERSION;
-@@ -69,7 +77,7 @@
+@@ -69,7 +76,7 @@
  
  /** Private data for the \c imonlcd driver */
  typedef struct imonlcd_private_data {
@@ -187,19 +183,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  	int imon_fd;
  
  	/* send buffer for one command or display data */
-@@ -100,6 +108,11 @@
- 	 */
- 	int protocol;
- 
-+	/*
-+	 * byte show clock flag
-+	 */
-+	unsigned char showclockflag
-+
- 	/* store commands appropriate for the version of the iMON LCD */
- 	uint64_t command_display;
- 	uint64_t command_shutdown;
-@@ -111,6 +124,11 @@
+@@ -111,6 +118,11 @@
  
  	/* save the last output state so we don't needlessly reset the icons */
  	int last_output_state;
@@ -211,7 +195,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  	int last_output_bar_state;
  } PrivateData;
  
-@@ -239,6 +257,21 @@
+@@ -239,6 +251,21 @@
  static void send_command_data(uint64_t commandData, PrivateData *p);
  static int send_packet(PrivateData *p);
  
@@ -233,7 +217,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  /**
   * Initialize the driver.
   * \param drvthis  Pointer to driver structure.
-@@ -252,6 +285,7 @@
+@@ -252,6 +279,7 @@
  	char buf[256];
  	int graph_width, graph_height;	/* width and height of screen, in pixels */
  	int tmp;
@@ -241,18 +225,10 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  
  	/* Allocate, initialize and store private p */
  	p = (PrivateData *) calloc(1, sizeof(PrivateData));
-@@ -367,6 +401,85 @@
+@@ -367,6 +395,77 @@
  	/* Get the "disc-mode" setting */
  	p->discMode = drvthis->config_get_bool(drvthis->name, "DiscMode", 0, DEFAULT_DISCMODE);
  
-+	tmp = drvthis->config_get_int(drvthis->name, "ExitShowClockFlag", 0, DEFAULT_SHOWCLOCK_FLAG);
-+	if ((tmp < 0) || (tmp > 255)) {
-+		report(RPT_WARNING, "%s: ExitShowClockFlag must be between 0 and 255; using default %d",
-+		       drvthis->name, DEFAULT_SHOWCLOCK_FLAG);
-+		tmp = DEFAULT_SHOWCLOCK_FLAG;
-+	}
-+	p->showclockflag = tmp;
-+
 +	/* Default font settings */
 +	p->font=default_font;
 +	p->font_encoding=DEFAULT_FONT_ENCODING;
@@ -327,16 +303,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  	/*
  	 * We need a little bit of extra memory in the frame buffer so that
  	 * all of the last 7-byte-long packet data will be within the frame
-@@ -482,7 +595,7 @@
- 				data += ((uint64_t) t->tm_mday << 24);
- 				data += ((uint64_t) t->tm_mon << 16);
- 				data += (((uint64_t) t->tm_year) << 8);
--				data += 0x80;
-+				data += p->showclockflag;
- 				send_command_data(data, p);
- 				send_command_data(p->command_clear_alarm, p);
- 			}
-@@ -493,6 +606,14 @@
+@@ -493,6 +592,14 @@
  			free(p->framebuf);
  		p->framebuf = NULL;
  
@@ -351,7 +318,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  		free(p);
  	}
  	drvthis->store_private_ptr(drvthis, NULL);
-@@ -509,7 +630,7 @@
+@@ -509,7 +616,7 @@
  {
  	PrivateData *p = drvthis->private_data;
  
@@ -360,7 +327,7 @@ diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
  	return p->info;
  }
  
-@@ -609,7 +730,7 @@
+@@ -609,7 +716,7 @@
  	x *= p->cellwidth;
  	y *= p->bytesperline;
  
