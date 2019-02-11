@@ -1,7 +1,16 @@
-diff -Naur lcdproc-0.5.6-old/LCDd.conf lcdproc-0.5.6-new/LCDd.conf
---- lcdproc-0.5.6-old/LCDd.conf	2012-08-19 17:29:07.000000000 +0300
-+++ lcdproc-0.5.6-new/LCDd.conf	2013-03-26 02:49:34.931626779 +0200
-@@ -634,7 +634,7 @@
+diff -Naur a/LCDd.conf b/LCDd.conf
+--- a/LCDd.conf	2019-02-11 17:50:16.493894793 +0200
++++ b/LCDd.conf	2019-02-11 20:16:20.751510897 +0200
+@@ -50,7 +50,7 @@
+ #   mdm166a, ms6931, mtc_s16209x, MtxOrb, mx5000, NoritakeVFD,
+ #   Olimex_MOD_LCD1x9, picolcd, pyramid, rawserial, sdeclcd, sed1330,
+ #   sed1520, serialPOS, serialVFD, shuttleVFD, sli, stv5730, svga, t6963,
+-#   text, tyan, ula200, vlsys_m428, xosd, yard2LCD
++#   text, tyan, ula200, vlsys_m428, yard2LCD
+ Driver=curses
+ 
+ # Tells the driver to bind to the given interface. [default: 127.0.0.1]
+@@ -743,7 +743,7 @@
  # hd44780_cp1251, hd44780_8859_5 ] (upd16314, hd44780_koi8_r,
  # hd44780_cp1251, hd44780_8859_5 are possible if compiled with additional
  # charmaps)
@@ -10,7 +19,7 @@ diff -Naur lcdproc-0.5.6-old/LCDd.conf lcdproc-0.5.6-new/LCDd.conf
  
  ## Soundgraph iMON LCD ##
  [imonlcd]
-@@ -642,13 +642,13 @@
+@@ -751,13 +751,16 @@
  # [legal: 0, 1; default: 0]
  # Choose 0 for 15c2:ffdc device,
  # Choose 1 for 15c2:0038 device
@@ -23,10 +32,13 @@ diff -Naur lcdproc-0.5.6-old/LCDd.conf lcdproc-0.5.6-new/LCDd.conf
  # 2 means blank device
 -#OnExit=2
 +OnExit=1
++
++# Set the exit behavior [legal: 0-255; default: 128]
++ExitShowClockFlag=128
  
  # Select the output device to use [default: /dev/lcd0]
  Device=/dev/lcd0
-@@ -665,9 +665,9 @@
+@@ -774,9 +777,9 @@
  # Set the disc mode [legal: 0,1; default: 0]
  # 0 => spin the "slim" disc - two disc segments,
  # 1 => their complement spinning;
@@ -38,9 +50,30 @@ diff -Naur lcdproc-0.5.6-old/LCDd.conf lcdproc-0.5.6-new/LCDd.conf
  
  ## IrMan driver ##
  [IrMan]
-diff -Naur lcdproc-0.5.6-old/server/drivers/adv_bignum.c lcdproc-0.5.6-new/server/drivers/adv_bignum.c
---- lcdproc-0.5.6-old/server/drivers/adv_bignum.c	2012-08-19 17:29:08.000000000 +0300
-+++ lcdproc-0.5.6-new/server/drivers/adv_bignum.c	2013-03-17 21:30:52.000000000 +0200
+@@ -1451,20 +1454,6 @@
+ # Select the output device to use [default: /dev/ttyUSB0]
+ #Device=/dev/ttyUSB0
+ 
+-
+-
+-## OnScreen Display using libxosd ##
+-[xosd]
+-
+-# set display size [default: 20x4]
+-Size=20x4
+-
+-# Offset in pixels from the top-left corner of the monitor [default: 0x0]
+-Offset=200x200
+-
+-# X font to use, in XLFD format, as given by "xfontsel"
+-Font=-*-terminus-*-r-*-*-*-320-*-*-*-*-*
+-
+ ## Y.A.R.D.2 LCD section
+ [yard2LCD]
+ Size=20x4
+diff -Naur a/server/drivers/adv_bignum.c b/server/drivers/adv_bignum.c
+--- a/server/drivers/adv_bignum.c	2018-10-17 19:29:18.440007504 +0300
++++ b/server/drivers/adv_bignum.c	2019-02-11 19:29:31.427276048 +0200
 @@ -202,20 +202,20 @@
  			"   "
  		},
@@ -111,9 +144,9 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/adv_bignum.c lcdproc-0.5.6-new/serve
  			"  |",
  			"   "
  		},
-diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/drivers/imonlcd.c
---- lcdproc-0.5.6-old/server/drivers/imonlcd.c	2011-10-23 12:36:00.000000000 +0300
-+++ lcdproc-0.5.6-new/server/drivers/imonlcd.c	2013-03-18 01:09:46.000000000 +0200
+diff -Naur a/server/drivers/imonlcd.c b/server/drivers/imonlcd.c
+--- a/server/drivers/imonlcd.c	2018-10-17 19:29:18.448007562 +0300
++++ b/server/drivers/imonlcd.c	2019-02-11 20:15:03.783003505 +0200
 @@ -5,6 +5,11 @@
   */
  
@@ -126,17 +159,18 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
   * Copyright (c) 2004, Venky Raju <dev (at) venky (dot) ws>
   *               2007, Dean Harding <dean (at) codeka dotcom>
   *               2007, Christian Leuschen <christian (dot) leuschen (at) gmx (dot) de>
-@@ -51,7 +56,8 @@
+@@ -51,7 +56,9 @@
  #define DEFAULT_DISCMODE     0	/**< spin the "slim" disc */
  #define DEFAULT_ON_EXIT      1	/**< show the big clock */
  #define DEFAULT_PROTOCOL     0	/**< protocol for 15c2:ffdc device */
 -
 +#define DEFAULT_FONT         ""
 +#define DEFAULT_FONT_ENCODING         "iso-8859-15"
++#define DEFAULT_SHOWCLOCK_FLAG 128
  
  #define ON_EXIT_SHOWMSG      0	/**< Do nothing - just leave the "shutdown"
  				 * message there */
-@@ -60,6 +66,7 @@
+@@ -60,6 +67,7 @@
  
  #define PROTOCOL_FFDC        0	/**< protocol ID for 15c2:ffdc device */
  #define PROTOCOL_0038        1	/**< protocol ID for 15c2:0038 device */
@@ -144,7 +178,7 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  
  /* Vars for the server core */
  MODULE_EXPORT char *api_version = API_VERSION;
-@@ -69,7 +76,7 @@
+@@ -69,7 +77,7 @@
  
  /** Private data for the \c imonlcd driver */
  typedef struct imonlcd_private_data {
@@ -153,7 +187,19 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  	int imon_fd;
  
  	/* send buffer for one command or display data */
-@@ -111,6 +118,11 @@
+@@ -100,6 +108,11 @@
+ 	 */
+ 	int protocol;
+ 
++	/*
++	 * byte show clock flag
++	 */
++	unsigned char showclockflag
++
+ 	/* store commands appropriate for the version of the iMON LCD */
+ 	uint64_t command_display;
+ 	uint64_t command_shutdown;
+@@ -111,6 +124,11 @@
  
  	/* save the last output state so we don't needlessly reset the icons */
  	int last_output_state;
@@ -165,9 +211,9 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  	int last_output_bar_state;
  } PrivateData;
  
-@@ -239,6 +251,21 @@
+@@ -239,6 +257,21 @@
  static void send_command_data(uint64_t commandData, PrivateData *p);
- static void send_packet(PrivateData *p);
+ static int send_packet(PrivateData *p);
  
 +char* fgetsz(char* buf, int maxsize, FILE* file)
 +{
@@ -187,7 +233,7 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  /**
   * Initialize the driver.
   * \param drvthis  Pointer to driver structure.
-@@ -252,6 +279,7 @@
+@@ -252,6 +285,7 @@
  	char buf[256];
  	int graph_width, graph_height;	/* width and height of screen, in pixels */
  	int tmp;
@@ -195,10 +241,18 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  
  	/* Allocate, initialize and store private p */
  	p = (PrivateData *) calloc(1, sizeof(PrivateData));
-@@ -367,6 +395,77 @@
+@@ -367,6 +401,85 @@
  	/* Get the "disc-mode" setting */
  	p->discMode = drvthis->config_get_bool(drvthis->name, "DiscMode", 0, DEFAULT_DISCMODE);
  
++	tmp = drvthis->config_get_int(drvthis->name, "ExitShowClockFlag", 0, DEFAULT_SHOWCLOCK_FLAG);
++	if ((tmp < 0) || (tmp > 255)) {
++		report(RPT_WARNING, "%s: ExitShowClockFlag must be between 0 and 255; using default %d",
++		       drvthis->name, DEFAULT_SHOWCLOCK_FLAG);
++		tmp = DEFAULT_SHOWCLOCK_FLAG;
++	}
++	p->showclockflag = tmp;
++
 +	/* Default font settings */
 +	p->font=default_font;
 +	p->font_encoding=DEFAULT_FONT_ENCODING;
@@ -272,8 +326,17 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
 +
  	/*
  	 * We need a little bit of extra memory in the frame buffer so that
- 	 * all of the last 7-bit-long packet data will be within the frame
-@@ -493,6 +592,14 @@
+ 	 * all of the last 7-byte-long packet data will be within the frame
+@@ -482,7 +595,7 @@
+ 				data += ((uint64_t) t->tm_mday << 24);
+ 				data += ((uint64_t) t->tm_mon << 16);
+ 				data += (((uint64_t) t->tm_year) << 8);
+-				data += 0x80;
++				data += p->showclockflag;
+ 				send_command_data(data, p);
+ 				send_command_data(p->command_clear_alarm, p);
+ 			}
+@@ -493,6 +606,14 @@
  			free(p->framebuf);
  		p->framebuf = NULL;
  
@@ -288,7 +351,7 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  		free(p);
  	}
  	drvthis->store_private_ptr(drvthis, NULL);
-@@ -509,7 +616,7 @@
+@@ -509,7 +630,7 @@
  {
  	PrivateData *p = drvthis->private_data;
  
@@ -297,7 +360,7 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  	return p->info;
  }
  
-@@ -604,7 +711,7 @@
+@@ -609,7 +730,7 @@
  	x *= p->cellwidth;
  	y *= p->bytesperline;
  
@@ -306,9 +369,9 @@ diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd.c lcdproc-0.5.6-new/server/d
  
  	/* Copy character from font into frame buffer */
  	for (col = 0; col < p->cellwidth; col++) {
-diff -Naur lcdproc-0.5.6-old/server/drivers/imonlcd_font.h lcdproc-0.5.6-new/server/drivers/imonlcd_font.h
---- lcdproc-0.5.6-old/server/drivers/imonlcd_font.h	2010-12-27 15:32:57.000000000 +0200
-+++ lcdproc-0.5.6-new/server/drivers/imonlcd_font.h	2013-03-17 21:57:51.000000000 +0200
+diff -Naur a/server/drivers/imonlcd_font.h b/server/drivers/imonlcd_font.h
+--- a/server/drivers/imonlcd_font.h	2018-10-17 19:29:18.448007562 +0300
++++ b/server/drivers/imonlcd_font.h	2019-02-11 19:29:31.431276021 +0200
 @@ -10,6 +10,8 @@
   * Created March 2009 by Jonathan Kyler for inclusion in lcdproc
   * Structure based on codeka's imonlcd patch by Dean Harding

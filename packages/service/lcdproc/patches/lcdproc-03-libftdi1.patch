@@ -1,0 +1,48 @@
+diff -Naur a/server/drivers/hd44780-low.h b/server/drivers/hd44780-low.h
+--- a/server/drivers/hd44780-low.h	2019-02-11 17:50:16.553897160 +0200
++++ b/server/drivers/hd44780-low.h	2019-02-11 19:18:36.254098952 +0200
+@@ -26,7 +26,7 @@
+ #endif
+ 
+ #ifdef HAVE_LIBFTDI
+-# include <ftdi.h>
++# include <libftdi1/ftdi.h>
+ #endif
+ 
+ #include "i2c.h"
+diff -Naur a/server/drivers/i2500vfd.c b/server/drivers/i2500vfd.c
+--- a/server/drivers/i2500vfd.c	2018-10-17 19:29:18.448007562 +0300
++++ b/server/drivers/i2500vfd.c	2019-02-11 19:18:36.254098952 +0200
+@@ -32,7 +32,7 @@
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <string.h>
+-#include <ftdi.h>
++#include <libftdi1/ftdi.h>
+ 
+ #include "lcd.h"
+ #include "i2500vfd.h"
+diff -Naur a/server/drivers/lis.c b/server/drivers/lis.c
+--- a/server/drivers/lis.c	2018-10-17 19:29:18.448007562 +0300
++++ b/server/drivers/lis.c	2019-02-11 19:18:36.254098952 +0200
+@@ -41,7 +41,7 @@
+ #include <errno.h>
+ #include <pthread.h>
+ 
+-#include <ftdi.h>
++#include <libftdi1/ftdi.h>
+ 
+ #include "lcd.h"
+ #include "lis.h"
+diff -Naur a/server/drivers/ula200.c b/server/drivers/ula200.c
+--- a/server/drivers/ula200.c	2018-10-17 19:29:18.456007619 +0300
++++ b/server/drivers/ula200.c	2019-02-11 19:18:36.258098999 +0200
+@@ -30,7 +30,7 @@
+ #include <string.h>
+ #include <errno.h>
+ 
+-#include <ftdi.h>
++#include <libftdi1/ftdi.h>
+ 
+ #include "lcd.h"
+ #include "ula200.h"
