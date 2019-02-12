@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="repository.yellowdragon"
-PKG_VERSION="18.0"
-PKG_SHA256="db7ef78b893562b4ebead553ae0c4e1b7403fbabc85a5505f67b23838cb60e6a"
+PKG_VERSION="18.1"
+PKG_SHA256="f7a63063ecc525e21842e75864287607392ea56f04326cb43377feda1ff7ec22"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
