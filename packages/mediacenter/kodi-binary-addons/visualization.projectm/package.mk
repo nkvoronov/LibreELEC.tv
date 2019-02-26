@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="visualization.projectm"
-PKG_VERSION="e6c5ab35f09c634d71252f333f450095ac5e6ca2"
-PKG_SHA256="96e78b1fc1e5e9bfde24b8c556ad3a178ce5ba866d5b158df2a6f2761f50d5e6"
+PKG_VERSION="463495df3d4ebea58e32600e0b2f07d89a92c34c"
+PKG_SHA256="2e9ef74561432fbf8cf61347c92b5d6168e20fde48f75e24d3860c2a704e10b1"
 PKG_REV="3"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
