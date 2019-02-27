@@ -5,8 +5,8 @@
 PKG_NAME="linux"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kernel.org"
-PKG_DEPENDS_HOST="ccache:host"
-PKG_DEPENDS_TARGET="toolchain cpio:host kmod:host pciutils xz:host wireless-regdb keyutils $KERNEL_EXTRA_DEPENDS_TARGET"
+PKG_DEPENDS_HOST="ccache:host openssl:host"
+PKG_DEPENDS_TARGET="toolchain cpio:host kmod:host xz:host wireless-regdb keyutils $KERNEL_EXTRA_DEPENDS_TARGET"
 PKG_DEPENDS_INIT="toolchain"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_LONGDESC="This package contains a precompiled kernel image and the modules."
@@ -30,14 +30,14 @@ case "$LINUX" in
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   raspberrypi)
-    PKG_VERSION="5c4a6441f890845472a698e35c8df995804e06e2" # 4.19.17
-    PKG_SHA256="58eac16e603edfd106993ae057bcc13adf3f8ffce609172f404144696edd7221"
+    PKG_VERSION="0a7f6900636f7c5a027124fe3388c928f1769c52" # 4.19.23
+    PKG_SHA256="937cbaa16d33260148c405f984a9c44bac0e62c5028249a00b2a3ca01605ba91"
     PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="4.19.17"
-    PKG_SHA256="872d92a17a2d252ccd6334503bc8f67eebceeb99cb822a77f5c72b936f2ccb59"
+    PKG_VERSION="4.19.23"
+    PKG_SHA256="2d9b25678aac7f3f109c52e6266fb6ee89cc424b597518a2875874bacb8f130a"
     PKG_URL="https://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     PKG_PATCH_DIRS="default"
     ;;
@@ -57,7 +57,7 @@ if [ "$PKG_BUILD_PERF" != "no" ] && grep -q ^CONFIG_PERF_EVENTS= $PKG_KERNEL_CFG
 fi
 
 if [ "$TARGET_ARCH" = "x86_64" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-ucode:host kernel-firmware elfutils:host"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-ucode:host kernel-firmware elfutils:host pciutils"
 fi
 
 if [ "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
