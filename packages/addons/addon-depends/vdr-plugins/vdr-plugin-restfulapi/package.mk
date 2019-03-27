@@ -3,7 +3,7 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-restfulapi"
-PKG_VERSION="96a03b3"
+PKG_VERSION="8712e44"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/yavdr/vdr-plugin-restfulapi.git"
 PKG_URL="https://github.com/yavdr/vdr-plugin-restfulapi.git"

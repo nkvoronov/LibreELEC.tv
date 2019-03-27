@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-dynamite"
-PKG_VERSION="8081711"
+PKG_VERSION="d8aea41"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/flensrocker/vdr-plugin-dynamite"
 PKG_URL="https://github.com/flensrocker/vdr-plugin-dynamite.git"
