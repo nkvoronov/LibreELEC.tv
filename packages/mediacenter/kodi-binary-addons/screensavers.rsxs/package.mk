@@ -3,13 +3,13 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="screensavers.rsxs"
-PKG_VERSION="be03db6e9652a465b521cb7768b692e52ed2f1e3"
-PKG_SHA256="b0f35760a3f444769c2f0f948defc220b34459dde1bea06522708498eefe2e99"
-PKG_REV="2"
-PKG_ARCH="broken"
+PKG_VERSION="7cb648507440d87948dec10d5bfdab3b722d37fe"
+PKG_SHA256="22ff3f0ca9679c59ce1a90b98d918dd10a8012b789729b2e44c04d4ce8c86ad8"
+PKG_REV="3"
+PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_URL="https://github.com/notspiff/screensavers.rsxs/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/screensavers.rsxs/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libXt libXmu"
 PKG_SECTION=""
 PKG_SHORTDESC="screensavers.rsxs"

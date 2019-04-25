@@ -3,9 +3,9 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audioencoder.flac"
-PKG_VERSION="7bce2e5aeb5b9f272520a096805a40ea9421b96d"
-PKG_SHA256="5c65d789e7a9180208b539a63fcb092a84f1d4c4fadd85a53805f21bb2427c45"
-PKG_REV="2"
+PKG_VERSION="264fa66e26de2612fdcd1b7c313403fdf0de39cd"
+PKG_SHA256="03bdcdd2af3f17e8671e79272d84e6e1066d6d8de7a21fcf488f1fcff74dd437"
+PKG_REV="3"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
