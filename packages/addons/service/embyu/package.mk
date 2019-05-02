@@ -2,9 +2,9 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="embyu"
-PKG_VERSION="4.1.0.26"
-PKG_SHA256="65c1c7f37179888e2ba47cce4c36cd8f2ff0f555561a4963720fbe90865c32ff"
-PKG_REV="362"
+PKG_VERSION="4.1.1.0"
+PKG_SHA256="7c797c7863eabea45471ba1b482d000348a066c8361565448d1fb754065fa2e7"
+PKG_REV="363"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
 PKG_URL="https://github.com/MediaBrowser/Emby.Releases/releases/download/${PKG_VERSION}/emby-server-deb_${PKG_VERSION}_amd64.deb"
