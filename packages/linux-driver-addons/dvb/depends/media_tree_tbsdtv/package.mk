@@ -2,8 +2,8 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="media_tree_tbsdtv"
-PKG_VERSION="58810fd236cb8d3151bc9238451cbfb58d1667e2"
-PKG_SHA256="196c100e3437fcacd94957beac65a59afea2ad2808fb7282b584e1ee61c086b7"
+PKG_VERSION="35e13036285523588b90e0153f9af820fb8b74a9"
+PKG_SHA256="4b4e18261e277c942995a7ac69e7b2693bbab23f78aee2ba6651e226d2a27055"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/linux_media.git"
 PKG_URL="https://github.com/tbsdtv/linux_media/archive/$PKG_VERSION.tar.gz"
