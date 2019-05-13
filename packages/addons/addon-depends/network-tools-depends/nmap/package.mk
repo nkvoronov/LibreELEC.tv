@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="nmap"
@@ -16,7 +16,8 @@ PKG_CONFIGURE_OPTS_TARGET="--enable-static \
                            --with-libpcre=included \
                            --with-libdnet=included \
                            --with-liblua=included \
-                           --with-liblinear=included"
+                           --with-liblinear=included \
+                           --with-openssl=$SYSROOT_PREFIX"
 
 pre_configure_target() {
 # nmap fails to build in subdirs

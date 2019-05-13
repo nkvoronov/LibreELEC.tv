@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-picodrive"
@@ -28,7 +28,7 @@ pre_configure_host() {
 }
 
 make_host() {
-  if [ "$ARCH" == "arm" ]; then
+  if [ "$ARCH" = "arm" ]; then
     make -C cpu/cyclone CONFIG_FILE=../cyclone_config.h
   fi
 }

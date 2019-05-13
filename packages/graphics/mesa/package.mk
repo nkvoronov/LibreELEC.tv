@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mesa"
-PKG_VERSION="18.3.4"
-PKG_SHA256="3c0bcc6bf523013e8d904dd018b06ccf71163c3d66bdfb1fdd3cacb18050dd00"
+PKG_VERSION="19.0.3"
+PKG_SHA256="46a8b46bfbd3f8a3eccf3edcfa94e68f13bd6429b71ed8b57a24c6a0543c824e"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.mesa3d.org/"
 PKG_URL="https://github.com/mesa3d/mesa/archive/mesa-$PKG_VERSION.tar.gz"
@@ -15,8 +15,8 @@ PKG_BUILD_FLAGS="+lto"
 
 get_graphicdrivers
 
-PKG_MESON_OPTS_TARGET="-Ddri-drivers=$DRI_DRIVERS \
-                       -Dgallium-drivers=$GALLIUM_DRIVERS \
+PKG_MESON_OPTS_TARGET="-Ddri-drivers=${DRI_DRIVERS// /,} \
+                       -Dgallium-drivers=${GALLIUM_DRIVERS// /,} \
                        -Dgallium-extra-hud=false \
                        -Dgallium-xvmc=false \
                        -Dgallium-omx=disabled \

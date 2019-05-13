@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="ffmpegx"
@@ -14,7 +14,7 @@ PKG_BUILD_FLAGS="-gold"
 # Dependencies
 get_graphicdrivers
 
-if [ "$KODIPLAYER_DRIVER" == "bcm2835-driver" ]; then
+if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bcm2835-driver"
 fi
 
@@ -40,15 +40,15 @@ pre_configure_target() {
   CFLAGS="$CFLAGS -I$(get_build_dir gnutls)/.INSTALL_PKG/usr/include"
   LDFLAGS="$LDFLAGS -L$(get_build_dir gnutls)/.INSTALL_PKG/usr/lib"
 
-  if [ "$KODIPLAYER_DRIVER" == "bcm2835-driver" ]; then
-    CFLAGS="-DRPI=1 -I$SYSROOT_PREFIX/usr/include/IL -I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads -I$SYSROOT_PREFIX/usr/include/interface/vmcs_host/linux $CFLAGS"
+  if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
+    CFLAGS="$CFLAGS -DRPI=1 -I$SYSROOT_PREFIX/usr/include/IL"
     PKG_FFMPEG_LIBS="-lbcm_host -ldl -lmmal -lmmal_core -lmmal_util -lvchiq_arm -lvcos -lvcsm"
   fi
 
 # HW encoders
 
   # RPi 0-3
-  if [ "$KODIPLAYER_DRIVER" == "bcm2835-driver" ]; then
+  if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
     PKG_FFMPEG_HW_ENCODERS_RPi="\
     `#Video encoders` \
     --enable-omx-rpi \

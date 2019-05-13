@@ -1,27 +1,27 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 case "$ARCH" in
   "aarch64")
     PKG_NC_ARCH="arm64"
-    PKG_SHA256="8baeaeb6ff7d65fbb8e7d085f7625cc4e3e2ffaecd97e80d2c5e4ca0ed598356"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/8931cb99-76f8-4d62-82be-881b79b03aac/9b31f0cbd0caac6d1639cece76d414a8/dotnet-runtime-2.2.0-linux-arm64.tar.gz"
+    PKG_SHA256="492de061d1e01862c2f208287c5454a19650ab2d6441554347d847656900da70"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/9e06922d-3a96-4f0d-9eb0-94f2cf94458f/93dfe5f0ad50c0eb347e98d7f81b34ec/dotnet-runtime-2.2.4-linux-arm64.tar.gz"
     ;;
   "arm")
     PKG_NC_ARCH="arm"
-    PKG_SHA256="248e3d43b7b46b30f9059c775b08770c377f3a90f27bbc3da188a3f7f24de75d"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/a3f3e38e-246a-4eab-8da3-63f9cd1b1c13/c2e795a9bb03bc75d3cfa767f3f77310/dotnet-runtime-2.2.0-linux-arm.tar.gz"
+    PKG_SHA256="06cc0010e92591c350fe010feacdd6bb55294f89e97ea30eac5a46c33fd8d1f4"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/8c52648c-bedd-44b0-9442-95cd830fdada/d6ba4c50a6b2afddc4ae3d313349f3ac/dotnet-runtime-2.2.4-linux-arm.tar.gz"
     ;;
   "x86_64")
     PKG_NC_ARCH="x64"
-    PKG_SHA256="452ea9e2fc4f84fd5d0bf17501aa99a99d33badabee23950e537a1a4dc6a2b05"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/1057e14e-16cc-410b-80a4-5c2420c8359c/004dc3ce8255475d4723de9a011ac513/dotnet-runtime-2.2.0-linux-x64.tar.gz"
+    PKG_SHA256="0e494df7a3936ac59c17de3b91d928bb3ab3cdd1e6734d581ad4774f551ca239"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/853048a3-764a-4b4d-a608-c6144a84f257/99c5cb1ea145f9dc3c2bbd093c682c9b/dotnet-runtime-2.2.4-linux-x64.tar.gz"
     ;;
 esac
 
 PKG_NAME="dotnet-runtime"
-PKG_VERSION="2.2.0"
-PKG_REV="104"
+PKG_VERSION="2.2.4"
+PKG_REV="106"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://dotnet.github.io/"

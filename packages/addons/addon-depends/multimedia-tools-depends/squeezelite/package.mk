@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="squeezelite"
@@ -12,7 +12,7 @@ PKG_LONGDESC="A client for the Logitech Media Server."
 
 pre_make_target() {
   export OPTS="-DDSD -DFFMPEG -DRESAMPLE -DVISEXPORT -DLINKALL"
-  export LIBS="-lvorbis -logg"
+  export LDFLAGS="$LDFLAGS -lFLAC -lvorbisfile -lvorbis -logg"
 }
 
 makeinstall_target() {

@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="slice-firmware"
@@ -8,7 +8,7 @@ PKG_ARCH="arm"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/FiveNinjas/slice-firmware"
 PKG_URL="https://github.com/libreelec/slice-firmware/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain dtc:host linux"
+PKG_DEPENDS_TARGET="toolchain linux"
 PKG_LONGDESC="BCM270x firmware related stuff for Slice"
 PKG_TOOLCHAIN="manual"
 

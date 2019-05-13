@@ -49,8 +49,6 @@ if [ -f $STAMP ]; then
     rm -f $STAMP
   elif [ ! "$BUILD_WITH_DEBUG" = "$STAMP_BUILD_WITH_DEBUG" ]; then
     rm -f $STAMP
-  elif [ "${PKG_NAME}" = "u-boot" -a ! "$UBOOT_SYSTEM" = "$STAMP_UBOOT_SYSTEM" ]; then
-    rm -f $STAMP
   else
     # stamp matched: already built, do nothing
     pkg_lock_status "UNLOCK" "${PKG_NAME}:${TARGET}" "build" "already built"
@@ -439,10 +437,16 @@ done
 for i in $(find "${SYSROOT_PREFIX}/usr"/{lib,share} -type f -name "*.cmake" 2>/dev/null); do
   sed -e "s#${SYSROOT_PREFIX}/usr#${PKG_ORIG_SYSROOT_PREFIX}/usr#g" -i "${i}"
 done
+for i in $(find "${SYSROOT_PREFIX}" -type l 2>/dev/null); do
+  _tmp="$(readlink -m "${i}")"
+  if [[ ${_tmp} =~ ^${SYSROOT_PREFIX}/ ]]; then
+    ln -sf "${_tmp/${SYSROOT_PREFIX}\//${PKG_ORIG_SYSROOT_PREFIX}\/}" "${i}"
+  fi
+done
 
 # Transfer the new sysroot content to the shared sysroot
 mkdir -p "${PKG_ORIG_SYSROOT_PREFIX}"
-cp -PR "${SYSROOT_PREFIX}"/* "${PKG_ORIG_SYSROOT_PREFIX}"
+cp -PRf "${SYSROOT_PREFIX}"/* "${PKG_ORIG_SYSROOT_PREFIX}"
 rm -rf "${SYSROOT_PREFIX}"
 
 export SYSROOT_PREFIX="${PKG_ORIG_SYSROOT_PREFIX}"
@@ -496,8 +500,5 @@ PKG_DEEPHASH=$(calculate_stamp)
 for i in PKG_NAME PKG_DEEPHASH BUILD_WITH_DEBUG; do
   echo "STAMP_$i=\"${!i}\"" >> $STAMP
 done
-if [ "${PKG_NAME}" = "u-boot" ]; then
-  echo "STAMP_UBOOT_SYSTEM=\"${UBOOT_SYSTEM}\"" >> $STAMP
-fi
 
 pkg_lock_status "UNLOCK" "${PKG_NAME}:${TARGET}" "build" "built"

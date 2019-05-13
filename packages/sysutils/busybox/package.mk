@@ -124,6 +124,8 @@ makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
     [ $TARGET_ARCH = x86_64 ] && cp $PKG_DIR/scripts/getedid $INSTALL/usr/bin
     cp $PKG_DIR/scripts/createlog $INSTALL/usr/bin/
+    cp $PKG_DIR/scripts/dtfile $INSTALL/usr/bin
+    cp $PKG_DIR/scripts/dtname $INSTALL/usr/bin
     cp $PKG_DIR/scripts/lsb_release $INSTALL/usr/bin/
     cp $PKG_DIR/scripts/apt-get $INSTALL/usr/bin/
     cp $PKG_DIR/scripts/sudo $INSTALL/usr/bin/
@@ -175,7 +177,6 @@ post_install() {
   add_user nobody x 65534 65534 "Nobody" "/" "/bin/sh"
   add_group nogroup 65534
 
-  enable_service debug-shell.service
   enable_service shell.service
   enable_service show-version.service
   enable_service var.mount

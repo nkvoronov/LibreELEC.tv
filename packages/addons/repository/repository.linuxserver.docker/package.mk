@@ -1,11 +1,10 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="repository.linuxserver.docker"
 PKG_VERSION="9.0"
 PKG_REV="102"
 PKG_ARCH="any"
-PKG_ADDON_PROJECTS="any !WeTek_Core !WeTek_Play"
 PKG_LICENSE="GPL"
 PKG_SITE="https://linuxserver.io"
 PKG_URL=""
