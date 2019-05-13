@@ -1,10 +1,10 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="acestream-engine"
 PKG_VERSION="b78eb20349630883e2c57ac21c508688fb8b4b4b"
 PKG_VERSION_NUM="3.1.35"
-PKG_REV="10"
+PKG_REV="11"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"

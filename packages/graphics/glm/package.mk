@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="glm"
@@ -10,7 +10,3 @@ PKG_URL="https://github.com/g-truc/glm/releases/download/$PKG_VERSION/glm-$PKG_V
 PKG_SOURCE_DIR="glm"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="OpenGL Mathematics (GLM)"
-
-if [ "$OPENGL" = "no" ] ; then
-  exit 0
-fi

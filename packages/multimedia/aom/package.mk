@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="aom"
@@ -16,6 +16,10 @@ PKG_CMAKE_OPTS_TARGET="-DBUILD_SHARED_LIBS=1 \
                        -DENABLE_EXAMPLES=0 \
                        -DENABLE_TESTS=0 \
                        -DENABLE_TOOLS=0"
+
+if [ "$TARGET_ARCH" = "x86_64" ]; then
+  PKG_DEPENDS_TARGET+=" nasm:host"
+fi
 
 if ! target_has_feature neon; then
   PKG_CMAKE_OPTS_TARGET+=" -DENABLE_NEON=0 -DENABLE_NEON_ASM=0"

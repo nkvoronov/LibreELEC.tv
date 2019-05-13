@@ -1,10 +1,10 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="poppler"
 PKG_VERSION="0.73.0"
 PKG_SHA256="e44b5543903128884ba4538c2a97d3bcc8889e97ffacc4636112101f0238db03"
-PKG_REV="4"
+PKG_REV="5"
 PKG_LICENSE="GPL"
 PKG_SITE="https://poppler.freedesktop.org/"
 PKG_URL="https://poppler.freedesktop.org/${PKG_NAME}-${PKG_VERSION}.tar.xz"

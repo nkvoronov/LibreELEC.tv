@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="lftp"
@@ -12,6 +12,7 @@ PKG_LONGDESC="A sophisticated ftp/http client, and a file transfer program suppo
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-nls \
                            --without-gnutls \
+                           --without-libidn2 \
                            --with-openssl \
                            --with-readline=$SYSROOT_PREFIX/usr \
                            --with-zlib=$SYSROOT_PREFIX/usr"

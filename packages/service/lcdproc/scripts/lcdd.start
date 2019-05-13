@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# SPDX-License-Identifier: GPL-2.0
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 if [ -f /storage/.cache/services/lcdd.conf ]; then
   . /storage/.cache/services/lcdd.conf

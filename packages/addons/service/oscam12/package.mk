@@ -1,9 +1,9 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="oscam12"
 PKG_VERSION="11518"
-PKG_REV="163"
+PKG_REV="164"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.streamboard.tv/oscam/wiki"

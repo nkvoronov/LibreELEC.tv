@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="libmad"

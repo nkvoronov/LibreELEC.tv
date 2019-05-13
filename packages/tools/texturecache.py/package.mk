@@ -1,9 +1,9 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="texturecache.py"
-PKG_VERSION="2.4.8"
-PKG_SHA256="e4279ee57e0afd3875c9cdbdc732598b0ca12722e0652271887700b0138e3c26"
+PKG_VERSION="2.5.1"
+PKG_SHA256="bb8a7adca58d04a282af5c1ec5cb4c2dc012dda87510cc665ec4ba4ac7bc0cb3"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/MilhouseVH/texturecache.py"
 PKG_URL="https://github.com/MilhouseVH/$PKG_NAME/archive/$PKG_VERSION.tar.gz"

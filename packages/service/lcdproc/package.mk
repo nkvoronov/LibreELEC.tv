@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# SPDX-License-Identifier: GPL-2.0
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="lcdproc"
 PKG_VERSION="e08546c13a4157ed98cd4a8e9086e7acd66f93c0"

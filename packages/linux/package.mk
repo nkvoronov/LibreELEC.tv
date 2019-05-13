@@ -38,14 +38,14 @@ case "$LINUX" in
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   raspberrypi)
-    PKG_VERSION="0a7f6900636f7c5a027124fe3388c928f1769c52" # 4.19.23
-    PKG_SHA256="937cbaa16d33260148c405f984a9c44bac0e62c5028249a00b2a3ca01605ba91"
+    PKG_VERSION="f70d3cee7ea9e6411559cc75e3882d4703752dfe" # 4.19.36
+    PKG_SHA256="37c97f4b21d813569f33b2190e7c28be5053ea080b792b504b77ddf8f9f4a67c"
     PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="4.19.23"
-    PKG_SHA256="2d9b25678aac7f3f109c52e6266fb6ee89cc424b597518a2875874bacb8f130a"
+    PKG_VERSION="4.19.36"
+    PKG_SHA256="b808b508177f9d288d94a3b9df7b01d5eac9fcc1804a794c913b2144de63f2bc"
     PKG_URL="https://www.kernel.org/pub/linux/kernel/v4.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     PKG_PATCH_DIRS="default"
     ;;
@@ -193,8 +193,6 @@ make_target() {
       NO_LIBAUDIT=1 \
       NO_LZMA=1 \
       NO_SDT=1 \
-      LDFLAGS="$LDFLAGS -ldw -ldwfl -lebl -lelf -ldl -lz" \
-      EXTRA_PERFLIBS="-lebl" \
       CROSS_COMPILE="$TARGET_PREFIX" \
       JOBS="$CONCURRENCY_MAKE_LEVEL" \
         make $PERF_BUILD_ARGS
