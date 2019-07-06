@@ -2,7 +2,7 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-skindesigner"
-PKG_VERSION="5b03953"
+PKG_VERSION="a685cbb"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-skindesigner"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-skindesigner.git"
