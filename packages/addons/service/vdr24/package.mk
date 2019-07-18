@@ -3,7 +3,7 @@
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.0"
-PKG_REV="180"
+PKG_REV="181"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
