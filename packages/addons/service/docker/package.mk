@@ -6,7 +6,7 @@ PKG_STABLE="yes"
 if [ "$PKG_STABLE" = "yes" ]; then
   PKG_VERSION="18.09.8"
   PKG_SHA256="12277eff64363f51ba2f20dd258bdc2c3248022996c0251921193ec6fd179e52"
-  PKG_REV="140"
+  PKG_REV="141"
   PKG_URL="https://download.docker.com/linux/static/stable/x86_64/${PKG_NAME}-${PKG_VERSION}.tgz"
   PKG_SOURCE_DIR="docker"
 else
