@@ -5,8 +5,8 @@ diff -Naur a/DVBAPI.h b/DVBAPI.h
  #define GITVERSION ""
  #endif
  
--#define VERSION                   "2.2.4" GITVERSION
-+#define VERSION                   "2.2.4"
+-#define VERSION                   "2.2.5" GITVERSION
++#define VERSION                   "2.2.5"
  static const char *DESCRIPTION    = trNOOP("SoftCAM for OSCam");
  
  class SCCIAdapter;

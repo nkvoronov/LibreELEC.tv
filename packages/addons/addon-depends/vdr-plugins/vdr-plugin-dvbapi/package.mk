@@ -3,8 +3,7 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-dvbapi"
-#PKG_VERSION="197e752"
-PKG_VERSION="37b18ec"
+PKG_VERSION="197e752"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/manio/vdr-plugin-dvbapi"
 PKG_URL="https://github.com/manio/vdr-plugin-dvbapi.git"
