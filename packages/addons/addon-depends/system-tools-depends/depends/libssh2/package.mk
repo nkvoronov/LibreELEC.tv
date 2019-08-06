@@ -11,4 +11,6 @@ PKG_DEPENDS_TARGET="toolchain openssl"
 PKG_LONGDESC="A library implementing the SSH2 protocol"
 PKG_TOOLCHAIN="autotools"
 
-PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
+#PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
+PKG_CMAKE_OPTS_TARGET="-DBUILD_EXAMPLES=OFF \
+                       -DBUILD_TESTING=OFF"
