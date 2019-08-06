@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 ################################################################################
-# variables such as $ROOT $PATH etc... that are required for this
+# variables such as ${ROOT} ${PATH} etc... that are required for this
 # script to work must be passed via env ... in scripts/image
 ################################################################################
 
@@ -52,12 +52,6 @@ show_error() {
 }
 
 trap cleanup SIGINT
-
-# generate volume id for fat partition
-UUID_1=$(date '+%d%m')
-UUID_2=$(date '+%M%S')
-FAT_SERIAL_NUMBER="${UUID_1}${UUID_2}"
-UUID_SYSTEM="${UUID_1}-${UUID_2}"
 
 # create an image
 echo -e "\nimage: creating file $(basename ${DISK})..."
@@ -113,7 +107,7 @@ alias mcopy="mcopy -i ${DISK}@@${OFFSET}"
 alias mmd="mmd -i ${DISK}@@${OFFSET}"
 
 if [ "${BOOTLOADER}" = "syslinux" -o "${BOOTLOADER}" = "bcm2835-bootloader" -o "${BOOTLOADER}" = "u-boot" ]; then
-  mformat -v "${DISTRO_BOOTLABEL}" -N "${FAT_SERIAL_NUMBER}" ::
+  mformat -v "${DISTRO_BOOTLABEL}" -N "${UUID_SYSTEM//-/}" ::
 fi
 sync
 
@@ -121,7 +115,14 @@ if [ "${BOOTLOADER}" = "syslinux" ]; then
   # create bootloader configuration
   echo "image: creating bootloader configuration..."
   cat << EOF > "${LE_TMP}/syslinux.cfg"
-SAY Wait for installer to start or press <TAB> for more options (live, run)
+SAY Wait for installer mode to start automatically in 5 seconds...
+SAY
+SAY Options
+SAY =======
+SAY installer: permanently install ${DISTRO} to HDD/SSD
+SAY live: boot ${DISTRO} using RAM for temporary storage
+SAY run: boot ${DISTRO} using this USB memory device for storage
+SAY
 DEFAULT installer
 TIMEOUT 50
 PROMPT 1
@@ -164,8 +165,8 @@ EOF
 
   # copy files
   echo "image: copying files to part1..."
-  mcopy "${TARGET_IMG}/${IMAGE_NAME}.kernel" "::/${KERNEL_NAME}"
-  mcopy "${TARGET_IMG}/${IMAGE_NAME}.system" ::/SYSTEM
+  mcopy "${TARGET_IMG}/${BUILD_NAME}.kernel" "::/${KERNEL_NAME}"
+  mcopy "${TARGET_IMG}/${BUILD_NAME}.system" ::/SYSTEM
   mcopy "${RELEASE_DIR}/target/KERNEL.md5" "::/${KERNEL_NAME}.md5"
   mcopy "${RELEASE_DIR}/target/SYSTEM.md5" ::/SYSTEM.md5
 
@@ -186,8 +187,8 @@ EOF
 
   # copy files
   echo "image: copying files to part1..."
-  mcopy "${TARGET_IMG}/${IMAGE_NAME}.kernel" "::/${KERNEL_NAME}"
-  mcopy "${TARGET_IMG}/${IMAGE_NAME}.system" ::/SYSTEM
+  mcopy "${TARGET_IMG}/${BUILD_NAME}.kernel" "::/${KERNEL_NAME}"
+  mcopy "${TARGET_IMG}/${BUILD_NAME}.system" ::/SYSTEM
   mcopy "${RELEASE_DIR}/target/KERNEL.md5" "::/${KERNEL_NAME}.md5"
   mcopy "${RELEASE_DIR}/target/SYSTEM.md5" ::/SYSTEM.md5
 
@@ -243,8 +244,8 @@ EOF
   fi
 
   echo "image: copying files to part1..."
-  mcopy "${TARGET_IMG}/${IMAGE_NAME}.kernel" "::/${KERNEL_NAME}"
-  mcopy "${TARGET_IMG}/${IMAGE_NAME}.system" ::/SYSTEM
+  mcopy "${TARGET_IMG}/${BUILD_NAME}.kernel" "::/${KERNEL_NAME}"
+  mcopy "${TARGET_IMG}/${BUILD_NAME}.system" ::/SYSTEM
   mcopy "${RELEASE_DIR}/target/KERNEL.md5" "::/${KERNEL_NAME}.md5"
   mcopy "${RELEASE_DIR}/target/SYSTEM.md5" ::/SYSTEM.md5
 
@@ -290,7 +291,7 @@ fsck -n "${LE_TMP}/part1.fat" >"${SAVE_ERROR}" 2>&1 || show_error
 # create virtual image
 if [ "${PROJECT}" = "Generic" ]; then
   echo "image: creating open virtual appliance..."
-  # duplicate $DISK so anything we do to it directly doesn't effect original
+  # duplicate ${DISK} so anything we do to it directly doesn't effect original
   dd if="${DISK}" of="${DISK_BASENAME}.tmp" bs=1M >"${SAVE_ERROR}" 2>&1 || show_error
   # change syslinux default to 'run'
   echo "image: modifying fs on part1 for open virtual appliance..."
@@ -303,11 +304,11 @@ if [ "${PROJECT}" = "Generic" ]; then
   # merge modified part1 back to tmp disk image
   echo "image: merging part1 back to open virtual appliance..."
   dd if="${LE_TMP}/part1.fat" of="${DISK_BASENAME}.tmp" bs=512 seek="${SYSTEM_PART_START}" conv=fsync,notrunc >"${SAVE_ERROR}" 2>&1 || show_error
-  # create vmdk from tmp $DISK
+  # create vmdk from tmp ${DISK}
   qemu-img convert -O vmdk -o subformat=streamOptimized "${DISK_BASENAME}.tmp" "${DISK_BASENAME}.vmdk"
   # generate ovf from template
   sed -e "s,@DISTRO@,${DISTRO},g" -e "s,@DISK@,${IMAGE_NAME},g" \
-      -e "s,@OVA_SIZE@,$(($OVA_SIZE*1024*1024)),g" \
+      -e "s,@OVA_SIZE@,$((${OVA_SIZE}*1024*1024)),g" \
       "${PROJECT_DIR}/${PROJECT}/config/ovf.template" > "${DISK_BASENAME}.ovf"
   # combine ovf and vmdk into official ova
   tar -C "${TARGET_IMG}" -cf "${DISK_BASENAME}.ova" "${IMAGE_NAME}.ovf" "${IMAGE_NAME}.vmdk"
@@ -316,7 +317,7 @@ if [ "${PROJECT}" = "Generic" ]; then
     sha256sum "${IMAGE_NAME}.ova" > "${IMAGE_NAME}.ova.sha256"
   )
   echo "image: cleaning up..."
-  # remove tmp $DISK, vmdk and ovf
+  # remove tmp ${DISK}, vmdk and ovf
   rm "${DISK_BASENAME}.tmp" "${DISK_BASENAME}.vmdk" "${DISK_BASENAME}.ovf"
   # set owner
   [ -n "${SUDO_USER}" ] && chown "${SUDO_USER}:" "${DISK_BASENAME}.ova"
@@ -324,7 +325,7 @@ fi
 
 # gzip
 echo "image: compressing..."
-gzip "${DISK}"
+pigz --best --force "${DISK}"
 
 # set owner
 if [ -n "${SUDO_USER}" ]; then

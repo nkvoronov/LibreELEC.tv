@@ -12,11 +12,14 @@
           TARGET_CPU="arm1176jzf-s"
         elif [ "$DEVICE" = "RPi2" -o "$DEVICE" = "Slice3" ]; then
           TARGET_CPU="cortex-a7"
+        elif [ "$DEVICE" = "RPi4" ]; then
+          TARGET_CPU="cortex-a53"
+          TARGET_CPU_FLAGS="+crc"
         fi
 
         # TARGET_FLOAT:
         # Specifies which floating-point ABI to use. Permissible values are:
-        # soft softfp hard
+        # soft hard
         TARGET_FLOAT="hard"
 
         # Valid TARGET_FPU for Raspberry Pi based devices:
@@ -27,6 +30,8 @@
           TARGET_FPU="vfp"
         elif [ "$DEVICE" = "RPi2" -o "$DEVICE" = "Slice3" ]; then
           TARGET_FPU="neon-vfpv4"
+        elif [ "$DEVICE" = "RPi4" ]; then
+          TARGET_FPU="neon-fp-armv8"
         fi
         TARGET_FEATURES="32bit"
         ;;
@@ -38,17 +43,8 @@
   # u-boot version to use (default)
     UBOOT_VERSION="default"
 
-  # Configuration for u-boot
-    UBOOT_CONFIG=""
-
-  # Target Configfile for u-boot
-    UBOOT_CONFIGFILE=""
-
   # Kernel target
     KERNEL_TARGET="zImage"
-
-  # Kernel extra targets to build
-    KERNEL_UBOOT_EXTRA_TARGET=""
 
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD="dtbs"
@@ -111,9 +107,6 @@
   # e.g. FIRMWARE="dvb-firmware misc-firmware wlan-firmware"
     FIRMWARE="misc-firmware wlan-firmware dvb-firmware brcmfmac_sdio-firmware-rpi"
 
-  # build and install ATV IR remote support (yes / no)
-    ATVCLIENT_SUPPORT="no"
-
   # build with installer (yes / no)
     INSTALLER_SUPPORT="no"
 
@@ -128,7 +121,7 @@
   # for a list of additional drivers see packages/linux-drivers
   # Space separated list is supported,
   # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
-    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS rpi-cirrus-config"
+    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS rpi-cirrus-config bcm2835-driver"
 
   # build and install driver addons (yes / no)
     DRIVER_ADDONS_SUPPORT="yes"
