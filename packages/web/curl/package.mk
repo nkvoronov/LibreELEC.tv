@@ -11,12 +11,12 @@
 #   there: http://forum.xbmc.org/showthread.php?tid=177557
 
 PKG_NAME="curl"
-PKG_VERSION="7.64.1"
-PKG_SHA256="9252332a7f871ce37bfa7f78bdd0a0e3924d8187cc27cb57c76c9474a7168fb3"
+PKG_VERSION="7.65.1"
+PKG_SHA256="f6c22074877f235aebc7c53057dbc7ee82358f8ae58bfb767e955c18c859a77a"
 PKG_LICENSE="MIT"
 PKG_SITE="http://curl.haxx.se"
 PKG_URL="http://curl.haxx.se/download/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain zlib openssl rtmpdump nghttp2"
+PKG_DEPENDS_TARGET="toolchain zlib gnutls rtmpdump libidn2 nghttp2"
 PKG_LONGDESC="Client and library for (HTTP, HTTPS, FTP, ...) transfers."
 PKG_TOOLCHAIN="configure"
 
@@ -63,24 +63,18 @@ PKG_CONFIGURE_OPTS_TARGET="ac_cv_lib_rtmp_RTMP_Init=yes \
                            --without-egd-socket \
                            --enable-thread \
                            --with-random=/dev/urandom \
-                           --without-gnutls \
-                           --with-ssl \
-                           --without-polarssl \
+                           --with-gnutls \
+                           --without-ssl \
+                           --without-mbedtls \
                            --without-nss \
                            --with-ca-bundle=/run/libreelec/cacert.pem \
                            --without-ca-path \
                            --without-libpsl \
                            --without-libmetalink \
                            --without-libssh2 \
-                           --with-librtmp=$SYSROOT_PREFIX/usr \
-                           --without-libidn \
-                           --without-libidn2 \
+                           --with-librtmp \
+                           --with-libidn2 \
                            --with-nghttp2"
-
-pre_configure_target() {
-# link against librt because of undefined reference to 'clock_gettime'
-  export LIBS="-lrt -lm -lrtmp"
-}
 
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/share/zsh

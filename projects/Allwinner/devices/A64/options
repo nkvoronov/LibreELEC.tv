@@ -25,11 +25,11 @@
   # Kernel target
     KERNEL_TARGET="Image"
 
+  # U-Boot firmware package(s) to use
+    UBOOT_FIRMWARE="atf"
+
   # ATF platform
     ATF_PLATFORM="sun50i_a64"
-
-  # additional drivers to install:
-    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS gpu-sunxi"
 
   # Mali GPU family
     MALI_FAMILY="400"
