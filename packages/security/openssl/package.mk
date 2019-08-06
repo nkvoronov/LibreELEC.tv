@@ -3,32 +3,27 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="openssl"
-PKG_VERSION="1.0.2q"
-PKG_SHA256="5744cfcbcec2b1b48629f7354203bc1e5e9b5466998bbccc5b5fcde3b18eb684"
+PKG_VERSION="1.1.1c"
+PKG_SHA256="f6fb3079ad15076154eda9413fed42877d668e7069d9b87396d0804fdb3f4c90"
 PKG_LICENSE="BSD"
 PKG_SITE="https://www.openssl.org"
 PKG_URL="https://www.openssl.org/source/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_HOST="ccache:host"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="The Open Source toolkit for Secure Sockets Layer and Transport Layer Security"
+PKG_TOOLCHAIN="configure"
 PKG_BUILD_FLAGS="-parallel"
 
 PKG_CONFIGURE_OPTS_SHARED="--libdir=lib \
                            shared \
                            threads \
                            no-ec2m \
-                           no-gmp \
-                           no-jpake \
-                           no-krb5 \
-                           no-libunbound \
                            no-md2 \
                            no-rc5 \
-                           no-rfc3779
+                           no-rfc3779 \
                            no-sctp \
                            no-ssl-trace \
-                           no-ssl2 \
                            no-ssl3 \
-                           no-store \
                            no-unit-test \
                            no-weak-ssl-ciphers \
                            no-zlib \
@@ -39,6 +34,10 @@ PKG_CONFIGURE_OPTS_HOST="--prefix=$TOOLCHAIN \
                          --openssldir=$TOOLCHAIN/etc/ssl"
 PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --openssldir=/etc/ssl"
+
+post_unpack() {
+  find $PKG_BUILD/apps -type f | xargs -n 1 -t sed 's|./demoCA|/etc/ssl|' -i
+}
 
 pre_configure_host() {
   mkdir -p $PKG_BUILD/.$HOST_NAME
@@ -78,10 +77,8 @@ configure_target() {
 }
 
 makeinstall_target() {
-  make INSTALL_PREFIX=$INSTALL install_sw
-  make INSTALL_PREFIX=$SYSROOT_PREFIX install_sw
-  chmod 755 $INSTALL/usr/lib/*.so*
-  chmod 755 $INSTALL/usr/lib/engines/*.so
+  make DESTDIR=$INSTALL install_sw
+  make DESTDIR=$SYSROOT_PREFIX install_sw
 }
 
 post_makeinstall_target() {

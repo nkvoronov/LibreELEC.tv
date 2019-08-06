@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="libmad"
@@ -12,8 +12,9 @@ PKG_LONGDESC="A high-quality MPEG audio decoder."
 PKG_TOOLCHAIN="autotools"
 
 # package specific configure options
+#PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
 if [ "$TARGET_ARCH" = "x86_64" ] ; then
-  PKG_CONFIGURE_OPTS_TARGET="--enable-accuracy --enable-fpm=64bit"
+  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-accuracy --enable-fpm=64bit"
 fi
 
 post_makeinstall_target() {

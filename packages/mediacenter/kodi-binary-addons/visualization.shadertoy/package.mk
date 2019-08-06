@@ -5,7 +5,7 @@
 PKG_NAME="visualization.shadertoy"
 PKG_VERSION="1.1.10-Leia"
 PKG_SHA256="342b89a6d9ec1175023d085f540358b5ddc427bb73e172f155d61e77e87ee56e"
-PKG_REV="1"
+PKG_REV="3"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/visualization.shadertoy"
@@ -27,12 +27,3 @@ if [ "$OPENGLES_SUPPORT" = yes ]; then
 # for OpenGL-ES support
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $OPENGLES"
 fi
-
-pre_configure_target() {
-  if [ "$KODIPLAYER_DRIVER" = bcm2835-driver ]; then
-    BCM2835_INCLUDES="-I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads/ \
-                      -I$SYSROOT_PREFIX/usr/include/interface/vmcs_host/linux"
-    export CFLAGS="$CFLAGS $BCM2835_INCLUDES"
-    export CXXFLAGS="$CXXFLAGS $BCM2835_INCLUDES"
-  fi
-}

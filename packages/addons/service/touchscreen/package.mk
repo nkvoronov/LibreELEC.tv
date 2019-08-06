@@ -3,9 +3,9 @@
 
 PKG_NAME="touchscreen"
 PKG_VERSION="1.0"
-PKG_REV="101"
+PKG_REV="102"
 PKG_ARCH="any"
-PKG_ADDON_PROJECTS="Generic RPi Amlogic"
+PKG_ADDON_PROJECTS="Generic RPi"
 PKG_LICENSE="GPL"
 PKG_SITE=""
 PKG_URL=""

@@ -38,10 +38,17 @@ else
 fi
 
 if [ "$PROJECT" = "Rockchip" ]; then
+  PKG_PATCH_DIRS+=" rkmpp"
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET rkmpp"
   PKG_FFMPEG_RKMPP="--enable-rkmpp --enable-libdrm --enable-version3"
 else
   PKG_FFMPEG_RKMPP="--disable-rkmpp"
+fi
+
+if [ "$PROJECT" = "Allwinner" ]; then
+  PKG_PATCH_DIRS+=" v4l2-request-api"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libdrm systemd" # systemd is needed for libudev
+  PKG_FFMPEG_V4L2_REQUEST="--enable-v4l2-request --enable-libudev --enable-libdrm"
 fi
 
 if build_with_debug; then
@@ -50,8 +57,13 @@ else
   PKG_FFMPEG_DEBUG="--disable-debug --enable-stripping"
 fi
 
-if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
+if [ "$PROJECT" = "RPi" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bcm2835-driver"
+  if [ "$DEVICE" = "RPi4" ]; then
+   PKG_PATCH_DIRS+=" rpi4-hevc"
+  else
+   PKG_PATCH_DIRS+=" rpi-hevc"
+ fi
 fi
 
 if target_has_feature neon; then
@@ -73,12 +85,9 @@ pre_configure_target() {
   cd $PKG_BUILD
   rm -rf .$TARGET_NAME
 
-  if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
-    CFLAGS="-I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads -I$SYSROOT_PREFIX/usr/include/interface/vmcs_host/linux $CFLAGS"
+  if [ "$PROJECT" = "RPi" ]; then
     PKG_FFMPEG_LIBS="-lbcm_host -lvcos -lvchiq_arm -lmmal -lmmal_core -lmmal_util -lvcsm"
     PKG_FFMPEG_RPI="--enable-rpi"
-  else
-    PKG_FFMPEG_RPI="--disable-rpi"
   fi
 }
 
@@ -138,6 +147,7 @@ configure_target() {
               $PKG_FFMPEG_VDPAU \
               $PKG_FFMPEG_RPI \
               $PKG_FFMPEG_RKMPP \
+              $PKG_FFMPEG_V4L2_REQUEST \
               --enable-runtime-cpudetect \
               --disable-hardcoded-tables \
               --disable-encoders \

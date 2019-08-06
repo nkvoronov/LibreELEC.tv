@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2017 Lukas Rusak (lrusak@libreelec.tv)
+# Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="docker"
 PKG_STABLE="yes"
@@ -10,9 +11,9 @@ if [ "$PKG_STABLE" = "yes" ]; then
   PKG_URL="https://download.docker.com/linux/static/stable/x86_64/${PKG_NAME}-${PKG_VERSION}.tgz"
   PKG_SOURCE_DIR="docker"
 else
-  PKG_VERSION="18.09.1"
-  PKG_SHA256="9eadb1eae1954b0322aadf6505f5397d1b1eccf6395ab511cadf8e6975cfc576"
-  PKG_REV="122"
+  PKG_VERSION="18.09.7"
+  PKG_SHA256="f05dc15f5c11635472534c3aaf759c39c1bba842dd1ac23059431c2fd1ae1795"
+  PKG_REV="126"
   PKG_URL="https://github.com/docker/docker-ce/archive/v${PKG_VERSION}.tar.gz"
 fi
 PKG_LICENSE="ASL"

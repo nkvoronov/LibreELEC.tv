@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="crazycat"
-PKG_VERSION="f77791e13e0a29edeb775383f89e37bb1ed80416"
-PKG_SHA256="524a5cdbbb653b0db46d20b56249953e473302bd20e8097bf06e3918e5c0a35f"
+PKG_VERSION="532599d255411a24f93b585a92b1b0c49e2012f7"
+PKG_SHA256="0e3addc3562057a77edefdde0052a78aec145c4dd5b737b53dd25ce389b95093"
 PKG_LICENSE="GPL"
 PKG_SITE="https://bitbucket.org/CrazyCat/media_build"
 PKG_URL="https://bitbucket.org/CrazyCat/media_build/get/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain linux media_tree_cc"
-PKG_NEED_UNPACK="$LINUX_DEPENDS media_tree_cc"
+PKG_NEED_UNPACK="$LINUX_DEPENDS $(get_pkg_directory media_tree_cc)"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="DVB driver for TBS cards with CrazyCats additions"
 

@@ -3,13 +3,13 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="busybox"
-PKG_VERSION="1.29.3"
-PKG_SHA256="97648636e579462296478e0218e65e4bc1e9cd69089a3b1aeb810bff7621efb7"
+PKG_VERSION="1.31.0"
+PKG_SHA256="0e4925392fd9f3743cc517e031b68b012b24a63b0cf6c1ff03cce7bb3846cc99"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.busybox.net"
 PKG_URL="http://busybox.net/downloads/$PKG_NAME-$PKG_VERSION.tar.bz2"
-PKG_DEPENDS_HOST=""
-PKG_DEPENDS_TARGET="toolchain busybox:host hdparm dosfstools e2fsprogs zip unzip pciutils usbutils parted procps-ng gptfdisk libtirpc"
+PKG_DEPENDS_HOST="gcc:host"
+PKG_DEPENDS_TARGET="toolchain busybox:host hdparm dosfstools e2fsprogs zip unzip usbutils parted procps-ng gptfdisk libtirpc"
 PKG_DEPENDS_INIT="toolchain libtirpc"
 PKG_LONGDESC="BusyBox combines tiny versions of many common UNIX utilities into a single small executable."
 # busybox fails to build with GOLD support enabled with binutils-2.25
@@ -23,6 +23,10 @@ fi
 # nfs support
 if [ "$NFS_SUPPORT" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET rpcbind"
+fi
+
+if [ "$TARGET_ARCH" = "x86_64" ]; then
+  PKG_DEPENDS_TARGET+=" pciutils"
 fi
 
 pre_build_target() {
@@ -120,6 +124,8 @@ makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
     [ $TARGET_ARCH = x86_64 ] && cp $PKG_DIR/scripts/getedid $INSTALL/usr/bin
     cp $PKG_DIR/scripts/createlog $INSTALL/usr/bin/
+    cp $PKG_DIR/scripts/dtfile $INSTALL/usr/bin
+    cp $PKG_DIR/scripts/dtname $INSTALL/usr/bin
     cp $PKG_DIR/scripts/lsb_release $INSTALL/usr/bin/
     cp $PKG_DIR/scripts/apt-get $INSTALL/usr/bin/
     cp $PKG_DIR/scripts/sudo $INSTALL/usr/bin/

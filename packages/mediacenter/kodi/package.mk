@@ -5,21 +5,28 @@
 PKG_NAME="kodi"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnavx libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers lcms2"
+PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers"
 PKG_LONGDESC="A free and open source cross-platform media player."
+PKG_TOOLCHAIN="cmake-make"
 
 PKG_PATCH_DIRS="$KODI_VENDOR"
 
 case $KODI_VENDOR in
   raspberrypi)
-    PKG_VERSION="newclock5_18.2-Leia"
-    PKG_SHA256="ff3f1770dd7a3223fb1f9441c0abf028bb4c3d406c5d9ba6fe202872b7237ee5"
+    PKG_VERSION="newclock5_18.3-Leia"
+    PKG_SHA256="7e7a89a66a1921b0fa32478277d11361b3c7a04aea88784bac668b300b182298"
+    PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
+    PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
+    ;;
+  raspberrypi4)
+    PKG_VERSION="932b08f071fd6cf8d95d01fe0c9e186821a38983" # 18.3-Leia
+    PKG_SHA256="4f678f48baedca0b6bfacec451424d38a8b8b04c47490899c656305de72f8a15"
     PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
   rockchip)
-    PKG_VERSION="rockchip_18.2-Leia"
-    PKG_SHA256="437b3608bb4ddb4703cc2ee86acb0a4065846244b84fe555d9f4c7b74a49b263"
+    PKG_VERSION="rockchip_18.3-Leia-v2"
+    PKG_SHA256="dfce13129aa8381a4e06cd6c0f597c6212f4230184723edf802d06ea20d5509b"
     PKG_URL="https://github.com/kwiboo/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
@@ -31,6 +38,10 @@ case $KODI_VENDOR in
     ;;
 esac
 
+if [ "$PROJECT" = "RPi" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bcm2835-driver"
+fi
+
 configure_package() {
   # Single threaded LTO is very slow so rely on Kodi for parallel LTO support
   if [ "$LTO_SUPPORT" = "yes" ] && ! build_with_debug; then
@@ -38,6 +49,10 @@ configure_package() {
   fi
 
   get_graphicdrivers
+
+  if [ "$TARGET_ARCH" = "x86_64" ]; then
+    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET pciutils"
+  fi
 
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dbus"
 
@@ -84,6 +99,10 @@ configure_package() {
     KODI_CEC="-DENABLE_CEC=OFF"
   fi
 
+  if [ "$CEC_FRAMEWORK_SUPPORT" = "yes" ]; then
+    PKG_PATCH_DIRS+=" cec-framework"
+  fi
+
   if [ "$KODI_OPTICAL_SUPPORT" = yes ]; then
     KODI_OPTICAL="-DENABLE_OPTICAL=ON"
   else
@@ -92,7 +111,7 @@ configure_package() {
 
   if [ "$KODI_DVDCSS_SUPPORT" = yes ]; then
     KODI_DVDCSS="-DENABLE_DVDCSS=ON \
-                 -DLIBDVDCSS_URL=$SOURCES/libdvdcssx/libdvdcssx-$(get_pkg_version libdvdcssx).tar.gz"
+                 -DLIBDVDCSS_URL=$SOURCES/libdvdcss/libdvdcss-$(get_pkg_version libdvdcss).tar.gz"
   else
     KODI_DVDCSS="-DENABLE_DVDCSS=OFF"
   fi
@@ -194,8 +213,6 @@ configure_package() {
       KODI_PLAYER="-DCORE_PLATFORM_NAME=gbm -DGBM_RENDER_SYSTEM=gles"
       CFLAGS="$CFLAGS -DMESA_EGL_NO_X11_HEADERS"
       CXXFLAGS="$CXXFLAGS -DMESA_EGL_NO_X11_HEADERS"
-    elif [ "$KODIPLAYER_DRIVER" = libamcodec ]; then
-      KODI_PLAYER="-DCORE_PLATFORM_NAME=aml"
     fi
   fi
 
@@ -287,6 +304,7 @@ post_makeinstall_target() {
     sed -e "s|@OS_VERSION@|$OS_VERSION|g" -i $INSTALL/usr/share/kodi/addons/os.libreelec.tv/addon.xml
     cp -R $PKG_DIR/config/repository.libreelec.tv $INSTALL/usr/share/kodi/addons
     sed -e "s|@ADDON_URL@|$ADDON_URL|g" -i $INSTALL/usr/share/kodi/addons/repository.libreelec.tv/addon.xml
+    sed -e "s|@ADDON_VERSION@|$ADDON_VERSION|g" -i $INSTALL/usr/share/kodi/addons/repository.libreelec.tv/addon.xml
     cp -R $PKG_DIR/config/repository.kodi.game $INSTALL/usr/share/kodi/addons
 
   mkdir -p $INSTALL/usr/share/kodi/config

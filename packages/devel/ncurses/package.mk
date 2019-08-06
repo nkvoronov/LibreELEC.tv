@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="ncurses"
@@ -7,6 +8,7 @@ PKG_SHA256="08b07c3e792961f300829512c283d5fefc0b1c421a57b76922c3d13303ed677d"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/ncurses/"
 PKG_URL="http://invisible-mirror.net/archives/ncurses/current/ncurses-$PKG_VERSION.tgz"
+PKG_DEPENDS_HOST="gcc:host"
 PKG_DEPENDS_TARGET="toolchain zlib ncurses:host"
 PKG_LONGDESC="A library is a free software emulation of curses in System V Release 4.0, and more."
 # causes some segmentation fault's (dialog) when compiled with gcc's link time optimization.
