@@ -1,6 +1,7 @@
-diff -Naur a/v4l/Makefile b/v4l/Makefile
---- a/v4l/Makefile	2018-02-06 00:12:31.000000000 +0200
-+++ b/v4l/Makefile	2018-02-08 23:55:38.005474881 +0200
+[Patch] without this patch you need to install libproc-processtable-perl at host system
+
+--- a/v4l/Makefile
++++ b/v4l/Makefile
 @@ -51,7 +51,7 @@
  	@echo Kernel build directory is $(OUTDIR)
  	$(MAKE) -C ../linux apply_patches

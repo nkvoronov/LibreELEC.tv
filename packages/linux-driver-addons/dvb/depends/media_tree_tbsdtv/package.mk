@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="media_tree_tbsdtv"
-PKG_VERSION="17587ba554c68dff58d48f20669a7b37d7551547"
-PKG_SHA256="20244a6b9f30058e7f72e8cf48a967cc923afb3136ea909c037cd82c5245d3bf"
+PKG_VERSION="8c67168b32dc5b68fd5f2b107f824aa1f423b6b9"
+PKG_SHA256="f2957eddd6c71b811ee1005293b2d6e83bcae0115b513d154f59f5da42adf5e2"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/linux_media.git"
 PKG_URL="https://github.com/tbsdtv/linux_media/archive/$PKG_VERSION.tar.gz"
@@ -12,3 +12,13 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_LONGDESC="Source of Linux Kernel media_tree subsystem to build with media_build."
 PKG_TOOLCHAIN="manual"
+
+post_unpack() {
+  # hack/workaround for borked upstream kernel/media_build
+  # without removing atomisp there a lot additional includes that 
+  # slowdown build process after modpost from 3min to 6min
+  # even if atomisp is disabled via kernel.conf
+  rm -rf $PKG_BUILD/drivers/staging/media/atomisp
+  sed -i 's|^.*drivers/staging/media/atomisp.*$||' \
+    $PKG_BUILD/drivers/staging/media/Kconfig
+}
