@@ -38,6 +38,9 @@ PKG_LONGDESC="Root package used to build and create complete image"
 # Devtools... (not for Release)
 [ "$TESTING" = "yes" ] && PKG_DEPENDS_TARGET+=" testing"
 
+# Custom packages
+[ "$CUSTOM_SUPPORT" = "yes" ] && PKG_DEPENDS_TARGET+=" custom"
+
 # OEM packages
 [ "$OEM_SUPPORT" = "yes" ] && PKG_DEPENDS_TARGET+=" oem"
 
