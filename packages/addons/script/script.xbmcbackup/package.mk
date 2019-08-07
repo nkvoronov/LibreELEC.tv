@@ -8,9 +8,13 @@ PKG_SITE="https://kodi.tv/"
 PKG_URL="https://github.com/nkvoronov/script.xbmcbackup.git"
 PKG_GIT_CLONE_BRANCH="vleia"
 PKG_DEPENDS_TARGET="toolchain Python2 kodi script.module.httplib2 script.module.oauth2client script.module.uritemplate script.module.yaml script.module.googleapi"
-PKG_SOURCE_DIR="$PKG_NAME"
 PKG_LONGDESC="Backup and restore your XBMC database and configuration files in the event of a crash or file."
 PKG_TOOLCHAIN="manual"
+
+unpack() {
+  mkdir -p $PKG_BUILD
+  cp -PR $SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION/* $PKG_BUILD
+}
 
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME
@@ -21,4 +25,6 @@ post_install() {
 
   python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/$PKG_NAME/resources/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/$PKG_NAME/resources/lib/ -name "*.py"`
+
+  rm -rf `find $INSTALL/usr/share/kodi/addons/$PKG_NAME/ -name "*.gitignore"`
 }

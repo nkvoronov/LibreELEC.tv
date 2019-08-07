@@ -3,22 +3,20 @@
 
 PKG_NAME="repository.yellowdragon.libreelec"
 PKG_VERSION="9.0"
-PKG_SHA256="e7f3935422f3e7997a9c62375268214fa9971822981406fa7dafb5dfb80d00e6"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
-PKG_URL="https://bitbucket.org/nkvoronov/repository.yellowdragon.libreelec/raw/$PKG_VERSION/repo/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
-PKG_DEPENDS_TARGET="toolchain Python2 kodi"
+PKG_URL=""
+PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION=""
 PKG_SHORTDESC="YLLOW_DRAGON addons repository for LibreELEC."
 PKG_LONGDESC="YLLOW_DRAGON addons repository for LibreELEC."
 PKG_TOOLCHAIN="manual"
 
-unpack() {
-  unzip -q $SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip -d $BUILD/$PKG_NAME-$PKG_VERSION
-}
-
 post_install() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/repository.yellowdragon.libreelec
-    cp -PR $PKG_BUILD/repository.yellowdragon.libreelec/* $INSTALL/usr/share/kodi/addons/repository.yellowdragon.libreelec
+  mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME
+    cp -PR $PKG_DIR/source/* $INSTALL/usr/share/kodi/addons/$PKG_NAME
+
+  sed -e "s|@PKG_VERSION@|$PKG_VERSION|g" \
+      -i $INSTALL/usr/share/kodi/addons/$PKG_NAME/addon.xml
 }

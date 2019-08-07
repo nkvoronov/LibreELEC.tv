@@ -66,7 +66,7 @@ case ${PKG_SOURCE_NAME} in
     zcat ${FULL_SOURCE_PATH} | patch -d ${2} -p1
     ;;
   *.deb)
-     dpkg -x $FULL_SOURCE_PATH $2/$PKG_NAME-$PKG_VERSION
+     dpkg -x ${FULL_SOURCE_PATH} ${2}/${PKG_NAME}-${PKG_VERSION}
      ;;
   *)
     FULL_DEST_PATH="${2}/${PKG_NAME}-${PKG_VERSION}"

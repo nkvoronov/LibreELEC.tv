@@ -3,7 +3,7 @@
 
 PKG_NAME="Perl"
 PKG_VERSION="5.30.0"
-#PKG_SHA256="7e929f64d4cb0e9d1159d4a59fc89394e27fa1f7004d0836ca0d514685406ea8"
+PKG_SHA256="851213c754d98ccff042caa40ba7a796b2cee88c5325f121be5cbb61bbf975f2"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.cpan.org/"
 PKG_URL="http://www.cpan.org/src/5.0/perl-$PKG_VERSION.tar.gz"

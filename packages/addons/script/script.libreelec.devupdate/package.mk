@@ -11,6 +11,11 @@ PKG_DEPENDS_TARGET="toolchain Python2 kodi script.module.beautifulsoup4 script.m
 PKG_LONGDESC="Unofficial LibreELEC updater"
 PKG_TOOLCHAIN="manual"
 
+unpack() {
+  mkdir -p $PKG_BUILD
+  cp -PR $SOURCES/$PKG_NAME/$PKG_NAME-$PKG_VERSION/* $PKG_BUILD
+}
+
 post_install() {
   mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/$PKG_NAME

@@ -12,6 +12,9 @@
 # Custom packages
   CUSTOM_SUPPORT="yes"
 
+# Custom patch LibreELEC-settings
+  CUSTOM_LIBREELEC_SETTING="no"
+
 # Custom source
   DISTRO_CUSTOM_SRC=""
 
@@ -29,12 +32,12 @@
 
 # Services
   LCDPROC_SERVICE="yes"
-  TRANSMISSION_SERVICE="yes"
+  TRANSMISSION_SERVICE="no"
   OSCAM_SERVICE="yes"
 
 # TV Services
   TVHEADEND_SERVICE="yes"
-  VDR_SERVICE="yes"
+  VDR_SERVICE="no"
 
 # Tools
   SYS_TOOLS_ENABLED="yes"
@@ -57,6 +60,7 @@ show_distro_config() {
     config_message="$config_message\n"
 
     config_message="$config_message\n - Locales support:\t\t\t $LOCALES_SUPPORT"
+    config_message="$config_message\n - Patch LibreELEC-settings:\t\t $CUSTOM_LIBREELEC_SETTING"
     config_message="$config_message\n - libXCB extention:\t\t\t $LIBXCB_EXT"
     config_message="$config_message\n - Enable shared build:\t\t\t $ENABLE_SHARED"
 
