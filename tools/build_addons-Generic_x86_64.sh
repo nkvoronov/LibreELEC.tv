@@ -13,8 +13,8 @@ PROJECT=Generic ARCH=x86_64 ./scripts/create_addon dvb-tools
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon docker
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon embyu
 #PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vlc3
-#PROJECT=Generic ARCH=x86_64 ./scripts/create_addon poppler
-#PROJECT=Generic ARCH=x86_64 ./scripts/create_addon mariadb
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon poppler
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon mariadb
 
 
 
