@@ -37,7 +37,7 @@
 
 # TV Services
   TVHEADEND_SERVICE="yes"
-  VDR_SERVICE="no"
+  VDR_SERVICE="yes"
 
 # Tools
   SYS_TOOLS_ENABLED="yes"
