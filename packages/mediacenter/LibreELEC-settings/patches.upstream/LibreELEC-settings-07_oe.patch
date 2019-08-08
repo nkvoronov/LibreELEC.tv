@@ -1,0 +1,21 @@
+diff -Naur a/src/oe.py b/src/oe.py
+--- a/src/oe.py	2019-06-11 18:53:22.000000000 +0300
++++ b/src/oe.py	2019-08-08 04:23:08.184871843 +0300
+@@ -37,6 +37,7 @@
+ __busy__ = 0
+ xbmcIsPlaying = 0
+ input_request = False
++is_wizard = False
+ dictModules = {}
+ listObject = {
+     'list': 1100,
+@@ -84,8 +85,7 @@
+ 
+ 
+ def _(code):
+-    wizardComp = read_setting('libreelec', 'wizard_completed')
+-    if wizardComp == "True":
++    if not is_wizard:
+         codeNew = __addon__.getLocalizedString(code)
+     else:
+         curLang = read_setting("system", "language")

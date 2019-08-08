@@ -1,0 +1,166 @@
+diff -Naur a/src/defaults.py b/src/defaults.py
+--- a/src/defaults.py	2019-06-11 18:53:22.000000000 +0300
++++ b/src/defaults.py	2019-08-08 04:29:14.124015691 +0300
+@@ -34,6 +34,143 @@
+     }
+ 
+ ################################################################################
++# Transmission Module
++################################################################################
++
++transmission = {
++    'ENABLED': True,
++    'TRANSMISSION_DAEMON': '/usr/bin/transmission-daemon',
++    'TRANSMISSION_DAEMON_START': '/usr/bin/transmission.start',
++    'D_TRANSMISSION_SECURE': '1',
++    'D_TRANSMISSION_USERNAME': 'libreelec',
++    'D_TRANSMISSION_PASSWORD': 'libreelec',
++    'D_TRANSMISSION_IP': '*.*.*.*',
++    'D_TRANSMISSION_LIMIT_GLOBAL': '100',
++    'D_TRANSMISSION_LIMIT_TORRENT': '100',
++    'D_TRANSMISSION_DL_DIR': '/storage/downloads/',
++    }
++
++################################################################################
++# Tv Servers Module
++################################################################################
++
++tvservers = {
++    'ENABLED': True,
++    'TVHEADEND_DAEMON': '/usr/bin/tvheadend',
++    'TVHEADEND_DAEMON_START': '/usr/bin/tvheadend.start',
++    'VDR_DAEMON': '/usr/bin/vdr.bin',
++    'VDR_DAEMON_START': '/usr/bin/vdr.start',
++    'VDR_DAEMON_FRONT': '/usr/bin/vdr.bin',
++    'OSCAM_DAEMON': '/usr/bin/oscam',
++    'OSCAM_DAEMON_START': '/usr/bin/oscam.start',
++    #TVBACKEND
++    'D_TV_BACKEND': 'none',
++    #TVHEADEND
++    'D_PRELOAD_CAPMT_CA': '0',
++    'D_TVH_BACKUP': '0',
++    'D_TVH_DEBUG': '0',
++    'D_TVH_ADAPTERS': '',
++    'D_TVH_OTHER_ARG': '',
++    'D_XMLTV_TYPE': 'none',
++    'D_XMLTV_LOCATION_FILE': '',
++    'D_XMLTV_LOCATION_WEB': 'http://',
++    'D_XMLTV_LOCATION_SCRIPT': '',
++    #VDR
++    'D_ENABLE_EXTERNAL_RECCMD': '0',
++    'D_EXTERNAL_RECCMD_PATH': '',
++    'D_ENABLE_CHARSET_OVERRIDE': '0',
++    'D_CHARSET_OVERRIDE_STR': '',
++    'D_VDR_VIDEO_DIR': '/storage/videos/',
++    'D_VDR_DEBUG': '0',
++    'D_VDR_PVR_PLUGIN': 'vnsiserver',
++    'D_ENABLE_IPTV': '0',
++    'D_IPTV_NUM_DEVICES': '1',
++    'D_ENABLE_STREAMDEV_CLIENT': '1',
++    'D_ENABLE_STREAMDEV_SERVER': '1',
++    'D_ENABLE_WIRBELSCAN': '0',
++    'D_ENABLE_LIVE': '0',
++    'D_LIVE_IP': '0.0.0.0',
++    'D_LIVE_PORT': '8008',
++    'D_ENABLE_EPGSEARCH': '1',
++    'D_ENABLE_XMLTV2VDR': '0',
++    'D_ENABLE_SOFTCAM': '1',
++    'D_SOFTCAM_OPTION': '',
++    'D_ENABLE_DUMMYDEVICE': '0',
++    'D_ENABLE_SATIP': '0',
++    'D_ENABLE_EPGFIXER': '0',
++    'D_ENABLE_RESTFULAPI': '0',
++    'D_RESTFULAPI_IP': '0.0.0.0',
++    'D_RESTFULAPI_PORT': '8002',
++    'D_ENABLE_DDCI2': '0',
++    'D_ENABLE_DYNAMITE': '0',
++    'D_ENABLE_ROBOTV': '1',
++    'D_VDR_OTHER_ARG': '',
++    #TV FRONT
++    'D_TV_FRONT': 'none',
++    #VDR FRONT
++    'D_F_ENABLE_EXTERNAL_RECCMD': '0',
++    'D_F_EXTERNAL_RECCMD_PATH': '',
++    'D_F_ENABLE_CHARSET_OVERRIDE': '0',
++    'D_F_CHARSET_OVERRIDE_STR': '',
++    'D_F_VDR_VIDEO_DIR': '/storage/videos/',
++    'D_F_VDR_DEBUG': '0',
++    'D_F_ENABLE_IPTV': '1',
++    'D_F_IPTV_NUM_DEVICES': '1',
++    'D_F_ENABLE_STREAMDEV_CLIENT': '1',
++    'D_F_ENABLE_STREAMDEV_SERVER': '1',
++    'D_F_ENABLE_WIRBELSCAN': '1',
++    'D_F_ENABLE_LIVE': '0',
++    'D_F_LIVE_IP': '0.0.0.0',
++    'D_F_LIVE_PORT': '8008',
++    'D_F_ENABLE_EPGSEARCH': '1',
++    'D_F_ENABLE_XMLTV2VDR': '1',
++    'D_F_ENABLE_SOFTCAM': '1',
++    'D_F_SOFTCAM_OPTION': '',
++    'D_F_ENABLE_DUMMYDEVICE': '0',
++    'D_F_ENABLE_SATIP': '1',
++    'D_F_ENABLE_EPGFIXER': '0',
++    'D_F_ENABLE_RESTFULAPI': '0',
++    'D_F_RESTFULAPI_IP': '0.0.0.0',
++    'D_F_RESTFULAPI_PORT': '8002',
++    'D_F_ENABLE_DDCI2': '0',
++    'D_F_ENABLE_DYNAMITE': '0',
++    'D_F_ENABLE_ROBOTV': '1',
++    'D_F_ENABLE_FEMON': '1',
++    'D_F_ENABLE_CHANNELLISTS': '1',
++    'D_F_ENABLE_PIN': '1',
++    'D_F_ENABLE_SYSTEMINFO': '1',
++    'D_F_ENABLE_SLEEPTIMER': '1',
++    'D_F_ENABLE_FILEBROWSER': '1',
++    'D_F_ENABLE_LCDPROC': '1',
++    'D_F_ENABLE_IMONLCD': '1',
++    'D_F_ENABLE_TEXT2SKIN': '1',
++    'D_F_ENABLE_SKINNOPACITY': '1',
++    'D_F_ENABLE_SKINFLAT': '1',
++    'D_F_ENABLE_SKINFLATPLUS': '1',
++#    'D_F_ENABLE_MENUORG': '0',
++    'D_F_ENABLE_TVSCRAPER': '1',
++    'D_F_ENABLE_SKINDESIGNER': '0',
++    'D_F_ENABLE_TVGUIDENG': '0',
++    'D_F_ENABLE_WEATHERFORECAST': '0',
++    'D_F_ENABLE_FAVORITES': '0',
++    'D_F_VDR_OTHER_ARG': '',
++    'D_F_VDR_FRONT': 'soft',
++    'D_F_VDR_OUTPUTVIDEO': 'auto',
++    'D_F_VDR_SOUNDSOFT': 'alsa',
++    'D_F_VDR_SOUNDXINE': 'alsa',
++    'D_F_VDR_SOFTPARAM': '',
++    'D_F_VDR_XINEPARAM': '',
++    #DVB
++    'D_WAIT_FOR_FEINIT': '0',
++    'D_NUM_ADAPTERS': '1',
++    'D_REMOVE_MODULES': '',
++    #OSCAM
++    'D_OSCAM_ENABLE': '1',
++    'D_OSCAM_DEBUG': '1',
++    'D_RESTART_ON_RESUME': '0',
++     }
++
++################################################################################
+ # Service Module
+ ################################################################################
+ 
+@@ -54,6 +191,8 @@
+     'D_SSH_DISABLE_PW_AUTH': '0',
+     'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
+     'CRON_DAEMON': '/sbin/crond',
++    'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
++    'D_LCD_DRIVER': 'none',
+     }
+ 
+ system = {
+@@ -94,4 +233,9 @@
+     'obexd': ['obex.service'],
+     'crond': ['cron.service'],
+     'iptables': ['iptables.service'],
++    'lcdd': ['lcdd.service'],
++    'transmission': ['transmission.service'],
++    'tvheadend': ['tvheadend.service'],
++    'vdr': ['vdr.service'],
++    'oscam': ['oscam.service'],
+     }

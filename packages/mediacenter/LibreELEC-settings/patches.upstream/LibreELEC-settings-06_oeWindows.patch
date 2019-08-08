@@ -1,0 +1,19 @@
+diff -Naur a/src/resources/lib/oeWindows.py b/src/resources/lib/oeWindows.py
+--- a/src/resources/lib/oeWindows.py	2019-06-11 18:53:22.000000000 +0300
++++ b/src/resources/lib/oeWindows.py	2019-08-08 04:17:40.165968052 +0300
+@@ -54,6 +54,7 @@
+ 
+         self.isChild = False
+         self.oe = kwargs['oeMain']
++        self.oe.is_wizard = False
+         self.lastGuiList = -1
+         self.lastListType = -1
+         if 'isChild' in kwargs:
+@@ -463,6 +464,7 @@
+ 
+         self.actions = {}
+         self.wizards = []
++        self.oe.is_wizard = True
+         self.last_wizard = None
+ 
+     def onInit(self):

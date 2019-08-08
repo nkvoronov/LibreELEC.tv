@@ -1,0 +1,185 @@
+diff -Naur a/src/resources/lib/modules/system.py b/src/resources/lib/modules/system.py
+--- a/src/resources/lib/modules/system.py	2019-06-11 18:53:22.000000000 +0300
++++ b/src/resources/lib/modules/system.py	2019-08-08 04:12:14.322928162 +0300
+@@ -105,10 +105,34 @@
+                             'values': [],
+                             'InfoText': 713,
+                             },
++                        'KeyboardSwitches': {
++                            'order': 6,
++                            'name': 32401,
++                            'value': 'grp-ctrl_shift_toggle',
++                            'action': 'set_keyboard_layout',
++                            'type': 'multivalue',
++                            'values': [],
++                            'InfoText': 799,
++                            },
++                        },
++                    },
++                'locale': {
++                     'order': 3,
++                    'name': 32402,
++                    'settings': {
++                        'SystemLocale': {
++                            'name': 32403,
++                            'value': 'en_GB',
++                            'action': 'set_locales',
++                            'type': 'multivalue',
++                            'values': [],
++                            'InfoText': 1702,
++                            'order': 1,
++                            },
+                         },
+                     },
+                 'pinlock': {
+-                    'order': 3,
++                    'order': 4,
+                     'name': 32192,
+                     'settings': {
+                         'pinlock_enable': {
+@@ -217,6 +241,7 @@
+             self.set_hostname()
+             self.set_keyboard_layout()
+             self.set_hw_clock()
++            self.set_locales()
+             del self.is_service
+             self.oe.dbg_log('system::start_service', 'exit_function', 0)
+         except Exception, e:
+@@ -252,12 +277,18 @@
+                 arrLayouts,
+                 arrTypes,
+                 self.arrVariants,
+-                ) = self.get_keyboard_layouts()
++                arrOptions
++            ) = self.get_keyboard_layouts()
+             if not arrTypes is None:
+                 self.struct['keyboard']['settings']['KeyboardType']['values'] = arrTypes
+                 value = self.oe.read_setting('system', 'KeyboardType')
+                 if not value is None:
+                     self.struct['keyboard']['settings']['KeyboardType']['value'] = value
++            if not arrOptions is None:
++                self.struct['keyboard']['settings']['KeyboardSwitches']['values'] = arrOptions
++                value = self.oe.read_setting('system', 'KeyboardSwitches')
++                if not value is None:
++                    self.struct['keyboard']['settings']['KeyboardSwitches']['value'] = value
+             if not arrLayouts is None:
+                 self.struct['keyboard']['settings']['KeyboardLayout1']['values'] = arrLayouts
+                 self.struct['keyboard']['settings']['KeyboardLayout2']['values'] = arrLayouts
+@@ -296,6 +327,13 @@
+             if not value is None:
+                 self.struct['pinlock']['settings']['pinlock_enable']['value'] = value
+ 
++            # Locales
++            arrLocales = self.get_locales()
++            if not arrLocales is None:
++                self.struct['locale']['settings']['SystemLocale']['values'] = arrLocales
++                value = self.oe.read_setting('system', 'SystemLocale')
++                if not value is None:
++                    self.struct['locale']['settings']['SystemLocale']['value'] = value
+ 
+         except Exception, e:
+             self.oe.dbg_log('system::load_values', 'ERROR: (' + repr(e) + ')')
+@@ -335,7 +373,8 @@
+                         ]['KeyboardLayout2']['value']]
+                 self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']) + ','
+                                 + unicode(self.struct['keyboard']['settings']['KeyboardLayout2']['value']) + ' ' + '-model '
+-                                + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']), 1)
++                                + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']) + ' ' + '-group '
++                                + unicode(self.struct['keyboard']['settings']['KeyboardSwitches']['value']), 1)
+                 if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
+                     os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
+                 config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
+@@ -344,7 +383,9 @@
+                                   self.struct['keyboard']['settings']['KeyboardVariant2']['value']))
+                 config_file.write('XKBLAYOUT="' + self.struct['keyboard']['settings']['KeyboardLayout1']['value'] + ',' + self.struct['keyboard'
+                                   ]['settings']['KeyboardLayout2']['value'] + '"\n')
+-                config_file.write('XKBOPTIONS="grp:alt_shift_toggle"\n')
++                KbdOpt = self.struct['keyboard']['settings']['KeyboardSwitches']['value']
++                KbdOpt = 'grp:' + KbdOpt.replace('+','_') + '_toggle'
++                config_file.write('XKBOPTIONS="' + KbdOpt + '"\n')
+                 config_file.close()
+                 parameters = [
+                     '-display ' + os.environ['DISPLAY'],
+@@ -353,7 +394,7 @@
+                     '-variant ' + self.struct['keyboard']['settings']['KeyboardVariant1']['value'] + ',' + self.struct['keyboard']['settings'
+                             ]['KeyboardVariant2']['value'],
+                     '-model ' + unicode(self.struct['keyboard']['settings']['KeyboardType']['value']),
+-                    '-option "grp:alt_shift_toggle"',
++                    '-option ' + unicode(KbdOpt)
+                     ]
+                 self.oe.execute('setxkbmap ' + ' '.join(parameters))
+             elif self.nox_keyboard_layouts == True:
+@@ -398,12 +439,43 @@
+             self.oe.set_busy(0)
+             self.oe.dbg_log('system::set_hostname', 'ERROR: (' + repr(e) + ')')
+ 
++    def get_locales(self):
++        try:
++            self.oe.dbg_log('system::get_locales', 'enter_function', 0)
++            # get list locales
++            arrLocales = []
++            for root, dirs, files in os.walk('/usr/share/i18n/locales'):
++                for filename in files:
++                    if (filename == 'POSIX') or (filename.find('translit_') != -1) or (filename.find('iso') != -1) or (filename.find('i18n') != -1):
++                       continue
++                    arrLocales.append(filename)
++            arrLocales.sort()
++            self.oe.dbg_log('system::get_locales', 'exit_function', 0)
++            return arrLocales
++        except Exception, e:
++            self.oe.dbg_log('system::get_locales', 'ERROR: (' + repr(e) + ')')
++
++    def set_locales(self, listItem=None):
++        try:
++            self.oe.dbg_log('system::set_locales', 'enter_function', 0)
++            oldLocale = self.oe.read_setting('system', 'SystemLocale')
++            if not listItem == None:
++                self.set_value(listItem)
++            # update locales
++            newLocale = self.struct['locale']['settings']['SystemLocale']['value']
++            if oldLocale != newLocale:
++                subprocess.call(['/usr/bin/generate_locale', newLocale])
++            self.oe.dbg_log('system::set_locales', 'exit_function', 0)
++        except Exception, e:
++            self.oe.dbg_log('system::set_locales', 'ERROR: (' + repr(e) + ')')
++
+     def get_keyboard_layouts(self):
+         try:
+             self.oe.dbg_log('system::get_keyboard_layouts', 'enter_function', 0)
+             arrLayouts = []
+             arrVariants = {}
+             arrTypes = []
++            arrOptions = []
+             if os.path.exists(self.NOX_KEYBOARD_INFO):
+                 for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
+                     if os.path.isfile(layout):
+@@ -451,8 +523,21 @@
+                                 if subnode_2.nodeName == 'description':
+                                     if hasattr(subnode_2.firstChild, 'nodeValue'):
+                                         arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
++                for xml_layout in xml_conf.getElementsByTagName('option'):
++                    for subnode_1 in xml_layout.childNodes:
++                        if subnode_1.nodeName == 'configItem':
++                            for subnode_2 in subnode_1.childNodes:
++                                if subnode_2.nodeName == 'name':
++                                    if hasattr(subnode_2.firstChild,'nodeValue'):
++                                        ovalue = subnode_2.firstChild.nodeValue
++                                if subnode_2.nodeName == 'description':
++                                    if hasattr(subnode_2.firstChild,'nodeValue'):
++                                        if (ovalue.find('grp:') != -1) and (ovalue.find('_toggle') != -1):
++                                            ovalue = ovalue.replace('grp:','').replace('_toggle','').replace('_','+')
++                                            arrOptions.append(subnode_2.firstChild.nodeValue + ':' + ovalue)
+                 arrLayouts.sort()
+                 arrTypes.sort()
++                arrOptions.sort()
+             else:
+                 self.oe.dbg_log('system::get_keyboard_layouts', 'exit_function (no keyboard layouts found)', 0)
+                 return (None, None, None)
+@@ -461,6 +546,7 @@
+                 arrLayouts,
+                 arrTypes,
+                 arrVariants,
++                arrOptions
+                 )
+         except Exception, e:
+             self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: (' + repr(e) + ')')

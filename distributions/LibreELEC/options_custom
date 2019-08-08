@@ -13,7 +13,7 @@
   CUSTOM_SUPPORT="yes"
 
 # Custom patch LibreELEC-settings
-  CUSTOM_LIBREELEC_SETTING="no"
+  CUSTOM_LIBREELEC_SETTING="yes"
 
 # Custom source
   DISTRO_CUSTOM_SRC=""
