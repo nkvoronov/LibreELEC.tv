@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-vnsiserver"
-PKG_VERSION="49003f0"
+PKG_VERSION="49003f036609ee2a0b8d819979c063d8f8d348c8"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/FernetMenta/vdr-plugin-vnsiserver"
 PKG_URL="https://github.com/FernetMenta/vdr-plugin-vnsiserver.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="VDR plugin to handle Kodi clients."
 PKG_TOOLCHAIN="manual"
 

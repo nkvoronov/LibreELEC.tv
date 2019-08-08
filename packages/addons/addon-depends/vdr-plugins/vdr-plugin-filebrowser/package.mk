@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-filebrowser"
 PKG_VERSION="0.2.1"
@@ -9,6 +9,7 @@ PKG_SITE="https://github.com/herrwiese/gentoo-portage/tree/master/media-plugins/
 PKG_URL="http://opensource.holgerbrunn.net/vdr/filebrowser/vdr-filebrowser-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="filebrowser-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="VDR plugin for file browsing and executing shell commands. With this plugin it's possible to browse the file system in VDR's OSD. It's possible to define commands, that can be executed with the currently selected files. The commands will be executed asynchronously in background."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

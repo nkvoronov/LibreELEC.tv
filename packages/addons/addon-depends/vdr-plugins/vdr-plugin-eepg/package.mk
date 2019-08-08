@@ -1,13 +1,15 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-eepg"
-PKG_VERSION="584d766"
-PKG_SHA256="0ad19af6bcfb5f7de05814dfcb4ab18bb4f705fdbe60b11ab7dbf72cf0d85231"
+#PKG_VERSION="584d766"
+#PKG_SHA256="08b343caa392bddefeb6e8cfe6f341b4e11e120046dce05961a335a06e9bee6c"
+PKG_VERSION="770de32f1908b1f9c60f66bf288a4c8a03f97d52"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-eepg"
-PKG_URL="https://github.com/vdr-projects/vdr-plugin-eepg/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch.git"
+#PKG_URL="https://github.com/vdr-projects/vdr-plugin-eepg/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="This plugin parses the Extended EPG data which is send by providers on their portal channels."

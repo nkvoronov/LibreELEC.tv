@@ -1,20 +1,20 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-live"
-PKG_VERSION="e582514"
+PKG_VERSION="e582514ede475574842b44ca6792335ff141172d"
 PKG_LICENSE="GPL"
 PKG_SITE="http://live.vdr-developer.org/en/index.php"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-live.git"
 PKG_DEPENDS_TARGET="toolchain vdr tntnet pcre:host pcre"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Allows a comfortable operation of VDR and some of its plugins trough a web interface."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"
 
-pre_make_target() {
-  # dont build parallel
-  MAKEFLAGS=-j1
+pre_configure_target() {
+  export LDFLAGS="$LDFLAGS -L$SYSROOT_PREFIX/usr/lib/iconv"
 }
 
 make_target() {

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-dummydevice"
 PKG_VERSION="2.0.0"
@@ -9,6 +9,7 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://www.vdr-wiki.de/wiki/index.php/Dummydevice-plugin"
 PKG_URL="http://phivdr.dyndns.org/vdr/vdr-dummydevice/${PKG_NAME/-plugin/}-$PKG_VERSION.tgz"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="This plugin can be used to run vdr as recording server without any output devices."
 PKG_TOOLCHAIN="manual"
 

@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-lcdproc"
-PKG_VERSION="0c54897"
+PKG_VERSION="0c548975b2d66d860180c79d58235a8923641a0c"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-lcdproc"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-lcdproc.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Plugin to vdr that connects to lcdproc. This plugin for vdr connect the digital PVR to lcdproc."
 PKG_TOOLCHAIN="manual"
 

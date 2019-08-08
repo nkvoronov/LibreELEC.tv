@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-favorites"
-PKG_VERSION="8d3f3a5"
+PKG_VERSION="8d3f3a5068f43ad74f6a652271f5484efdd21230"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.vdr-wiki.de/wiki/index.php/Favorites-plugin"
 PKG_URL="https://github.com/nkvoronov/vdr-plugin-favorites.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Favorite Channels Plugin for VDR. Favorites is a VDR-Plugin that implements a favorite channels menu. It makes it easy to recall (switch to) your favorite channels."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

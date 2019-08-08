@@ -486,7 +486,7 @@ addon() {
   #libs dep fo plugins
   if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes -o "$ENABLE_VDR_PLUGIN_SKINFLAT" = yes -o "$ENABLE_VDR_PLUGIN_SKINFLATPLUS" = yes -o "$ENABLE_VDR_PLUGIN_SKINNOPACITY" = yes -o "$ENABLE_VDR_PLUGIN_TEXT2SKIN" = yes -o "$ENABLE_VDR_PLUGIN_TVGUIDENG" = yes ]; then
 
-    IM_DIR=$(get_build_dir ImageMagick)
+    IM_DIR=$(get_build_dir graphicsmagick)
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.8.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.8

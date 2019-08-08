@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-channellists"
 PKG_VERSION="0.0.6"
@@ -8,6 +8,7 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://www.zulu-entertainment.de/content.php?f=VDR-Plugins&sub=Channellists"
 PKG_URL="https://www.dropbox.com/s/47fqg8t59zlzsze/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Channellists - A VDR Plugin to manage your Channellists"
 PKG_TOOLCHAIN="manual"
 

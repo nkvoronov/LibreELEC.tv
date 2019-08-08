@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-satip"
 PKG_VERSION="2.4.0"
@@ -10,6 +10,7 @@ PKG_SITE="http://www.saunalahti.fi/~rahrenbe/vdr/satip/"
 PKG_URL="http://www.saunalahti.fi/~rahrenbe/vdr/satip/files/vdr-satip-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="satip-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr curl tinyxml"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="This is an SAT>IP plugin for the Video Disk Recorder (VDR)."
 PKG_TOOLCHAIN="manual"
 

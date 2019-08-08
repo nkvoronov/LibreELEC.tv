@@ -1,6 +1,6 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2014-10-18 00:39:10.000000000 +0300
-+++ b/Makefile	2014-10-20 04:12:02.822677506 +0300
+--- a/Makefile	2019-08-08 22:09:18.703178348 +0300
++++ b/Makefile	2019-08-08 22:25:37.086461790 +0300
 @@ -18,24 +18,19 @@
  ### The directory environment:
  
@@ -30,13 +30,21 @@ diff -Naur a/Makefile b/Makefile
  
  ### The name of the distribution archive:
  
-@@ -47,6 +42,7 @@
+@@ -47,12 +42,13 @@
  SOFILE = libvdr-$(PLUGIN).so
  
  ### Includes and Defines and Dependencies (add further entries here):
 +INCLUDES += -I$(VDRDIR)/include
  
- INCLUDES += $(shell pkg-config --cflags Magick++)
+-INCLUDES += $(shell pkg-config --cflags Magick++)
++INCLUDES += $(shell pkg-config --cflags GraphicsMagick++)
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
+ 
+-LIBS += $(shell pkg-config --libs Magick++)
++LIBS += $(shell pkg-config --libs GraphicsMagick++)
+ 
+ ### The object files (add further files here):
  
 @@ -107,6 +103,7 @@
  

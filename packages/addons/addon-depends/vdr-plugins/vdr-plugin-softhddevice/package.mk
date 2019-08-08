@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-softhddevice"
-PKG_VERSION="d131c0c"
+PKG_VERSION="d131c0cd6c678775451e32f6393f614b295c2857"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-softhddevice"
 PKG_URL="https://github.com/ua0lnj/vdr-plugin-softhddevice.git"
 PKG_GIT_CLONE_BRANCH="vdpau+vaapi"
 PKG_DEPENDS_TARGET="toolchain vdr ffmpeg34 libva-glx libxcb xcb-proto xcb-util xcb-util-keysyms xcb-util-wm xcb-util-renderutil xcb-util-image"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Plugin for VDR. A software and GPU emulated HD device. This plugin for the Linux Video Disc Recorder VDR. A software and GPU emulated HD device"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

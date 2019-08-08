@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-dvbapi"
-PKG_VERSION="197e752"
+PKG_VERSION="197e7524e563923d4b86e74a121f7174373818d9"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/manio/vdr-plugin-dvbapi"
 PKG_URL="https://github.com/manio/vdr-plugin-dvbapi.git"
 PKG_DEPENDS_TARGET="toolchain vdr libdvbcsa"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="VDR dvbapi plugin for use with OSCam"
 PKG_TOOLCHAIN="manual"
-PKG_BUILD_FLAGS="-parallel"
 
 make_target() {
   VDR_DIR=$(get_build_dir vdr)

@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-xineliboutput"
 PKG_VERSION="b298178"
-#PKG_VERSION="021d0fc"
+#PKG_VERSION="021d0fcc0ba766fb80c6810c8e2e8787babcc19b"
 PKG_LICENSE="GPL"
 PKG_SITE="http://sourceforge.net/projects/xineliboutput/"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-xineliboutput.git"
 PKG_DEPENDS_TARGET="toolchain vdr xine-lib"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="xine-lib based software output device for VDR."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

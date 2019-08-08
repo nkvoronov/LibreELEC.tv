@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-skinflat"
-PKG_VERSION="1040bb7"
+PKG_VERSION="1040bb702e44285cfd9db7b69b96053f9e03f443"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-skinflat"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-skinflat.git"
-PKG_DEPENDS_TARGET="toolchain vdr ImageMagick"
+PKG_DEPENDS_TARGET="toolchain vdr graphicsmagick"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="A VDR plugin, "the" flat skin for VDR. A simple skin for vdr without any configuration."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

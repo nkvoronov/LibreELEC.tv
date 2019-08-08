@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-femon"
 PKG_VERSION="2.4.0"
@@ -9,6 +9,7 @@ PKG_SITE="http://www.saunalahti.fi/~rahrenbe/vdr/femon/"
 PKG_URL="http://www.saunalahti.fi/~rahrenbe/vdr/femon/files/vdr-femon-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="femon-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="DVB frontend status monitor plugin for VDR. DVB Frontend Status Monitor (femon) is a VDR plugin that displays signal quality parameters of the tuned channel on the OSD."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-epgsearch"
-PKG_VERSION="770de32"
+PKG_VERSION="770de32f1908b1f9c60f66bf288a4c8a03f97d52"
 PKG_LICENSE="GPL"
 PKG_SITE="http://winni.vdr-developer.org/epgsearch/"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="EPGSearch is a plugin for the Video-Disc-Recorder (VDR)."
 PKG_TOOLCHAIN="manual"
 

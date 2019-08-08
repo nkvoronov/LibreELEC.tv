@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-streamdev"
-PKG_VERSION="e2a9b97"
+PKG_VERSION="e2a9b979d3fb92967c7a6a8221e674eb7e55c813"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-streamdev"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-streamdev.git"
 PKG_DEPENDS_TARGET="toolchain vdr openssl"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="VDR Plugin to stream Live-TV to other VDR's - client part. This plugin for vdr lets the software stream videos into the network. You can interconnect several vdrs that way or watch those streams with special client apps like video lan client or mplayer. This is the client part."
 PKG_TOOLCHAIN="manual"
 

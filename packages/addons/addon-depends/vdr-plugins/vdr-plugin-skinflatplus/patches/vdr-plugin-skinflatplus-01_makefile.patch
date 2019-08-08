@@ -1,6 +1,6 @@
 diff -Naur a/Makefile b/Makefile
---- a/Makefile	2017-09-09 17:07:44.000000000 +0300
-+++ b/Makefile	2017-09-13 22:20:38.523245978 +0300
+--- a/Makefile	2019-08-08 22:35:06.758617261 +0300
++++ b/Makefile	2019-08-08 22:44:48.582911346 +0300
 @@ -35,18 +35,11 @@
  ### The directory environment:
  
@@ -31,15 +31,23 @@ diff -Naur a/Makefile b/Makefile
  
  ### The name of the distribution archive:
  
-@@ -67,7 +60,7 @@
+@@ -67,13 +60,13 @@
  SOFILE = libvdr-$(PLUGIN).so
  
  ### Includes and Defines and Dependencies (add further entries here):
 -
+-INCLUDES += $(shell pkg-config --cflags Magick++ freetype2 fontconfig)
 +INCLUDES += -I$(VDRDIR)/include
- INCLUDES += $(shell pkg-config --cflags Magick++ freetype2 fontconfig)
++INCLUDES += $(shell pkg-config --cflags GraphicsMagick++ freetype2 fontconfig)
  
  DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"' -DVDRLOGO=\"$(SKINFLATPLUS_VDRLOGO)\"
+ DEFINES += -DWIDGETFOLDER='"$(SKINFLATPLUS_WIDGETDIR)"'
+ 
+-LIBS += $(shell pkg-config --libs Magick++)
++LIBS += $(shell pkg-config --libs GraphicsMagick++)
+ 
+ ### The object files (add further files here):
+ 
 @@ -128,6 +121,7 @@
  
  $(SOFILE): $(OBJS)

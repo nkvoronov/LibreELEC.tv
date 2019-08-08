@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-epgfixer"
-PKG_VERSION="354f28b"
+PKG_VERSION="354f28b0112ba27f08f6509243b410899f74b6ed"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-epgfixer"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgfixer.git"
 PKG_DEPENDS_TARGET="toolchain vdr pcre"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Plugin for modifying EPG data using regular expressions."
 PKG_TOOLCHAIN="manual"
 

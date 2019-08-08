@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-systeminfo"
 PKG_VERSION="0.1.4"
@@ -9,6 +9,7 @@ PKG_SITE="http://firefly.vdr-developer.org/systeminfo"
 PKG_URL="http://firefly.vdr-developer.org/systeminfo/vdr-systeminfo-$PKG_VERSION.tar.bz2"
 PKG_SOURCE_DIR="systeminfo-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="This VDR-plugin displays system informations. This plugin for VDR displays system informations like CPU type and speed, disk and swap space etc. "
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

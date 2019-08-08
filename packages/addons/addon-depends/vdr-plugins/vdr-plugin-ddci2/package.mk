@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-ddci2"
-PKG_VERSION="05dd988"
+PKG_VERSION="05dd98824092859afd2aa7a4996c8f258affd975"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/jasmin-j/vdr-plugin-ddci2"
 PKG_URL="https://github.com/jasmin-j/vdr-plugin-ddci2.git"
 PKG_DEPENDS_TARGET="toolchain vdr"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Support for stand alone CI by Digital Devices."
 PKG_TOOLCHAIN="manual"
 

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-wirbelscancontrol"
 PKG_VERSION="0.0.2"
@@ -10,6 +10,7 @@ PKG_SITE="http://wirbel.htpc-forum.de/wirbelscancontrol/index2.html"
 PKG_URL="http://wirbel.htpc-forum.de/wirbelscancontrol/${PKG_NAME/-plugin/}-$PKG_VERSION.tgz"
 PKG_SOURCE_DIR="wirbelscancontrol-${PKG_VERSION}"
 PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-wirbelscan"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="Adds menu entry for wirbelscan at VDR."
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

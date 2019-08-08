@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-skindesigner"
-PKG_VERSION="a685cbb"
+PKG_VERSION="a685cbb131d5e62f30582fc8ab61a02b420512a8"
 PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-skindesigner"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-skindesigner.git"
 PKG_DEPENDS_TARGET="toolchain vdr librsvg libxml2"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="A VDR skinning engine that displays XML based Skins"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"

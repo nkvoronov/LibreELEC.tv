@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2009-2019 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="vdr-plugin-tvguideng"
-PKG_VERSION="65248ba"
+PKG_VERSION="65248babe1380b5b9e214ffb30ccf7f3d4c02096"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/vdr-projects/vdr-plugin-tvguideng"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-tvguideng.git"
 PKG_DEPENDS_TARGET="toolchain vdr vdr-plugin-skindesigner"
+PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="TvGuideNG is a highly customizable 2D EPG viewer plugin for Skindesigner Skins."
 PKG_TOOLCHAIN="manual"
 
