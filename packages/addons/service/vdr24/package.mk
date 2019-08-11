@@ -489,9 +489,9 @@ addon() {
     IM_DIR=$(get_build_dir graphicsmagick)
 
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagick++-6.Q16.so.8.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagick++-6.Q16.so.8
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickCore-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickCore-6.Q16.so.6
-      cp -P $IM_DIR/.install_pkg/usr/lib/libMagickWand-6.Q16.so.6.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libMagickWand-6.Q16.so.6
+      cp -P $IM_DIR/.install_pkg/usr/lib/libGraphicsMagick++.so.12.4.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libGraphicsMagick++.so.12
+      cp -P $IM_DIR/.install_pkg/usr/lib/libGraphicsMagick.so.3.20.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libGraphicsMagick.so.3
+      cp -P $IM_DIR/.install_pkg/usr/lib/libGraphicsMagickWand.so.2.9.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libGraphicsMagickWand.so.2
   fi
 
   #plugin restfulapi
