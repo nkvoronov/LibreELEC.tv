@@ -298,7 +298,7 @@ addon() {
     cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.23.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
     cp -P $LIB_NETTLE/.install_pkg/usr/lib/libnettle.so.6.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libnettle.so.6
     cp -P $LIB_NETTLE/.install_pkg/usr/lib/libhogweed.so.4.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libhogweed.so.4
-    cp -P $LIB_IDN2/.install_pkg/usr/lib/libidn2.so.4.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libidn2.so.4
+    cp -P $LIB_IDN2/.install_pkg/usr/lib/libidn2.so.0.3.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libidn2.so.0
     cp -P $LIB_GMP/.install_pkg/usr/lib/libgmp.so.10.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgmp.so.10
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
