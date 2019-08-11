@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="poppler"
-PKG_VERSION="0.73.0"
-PKG_SHA256="e44b5543903128884ba4538c2a97d3bcc8889e97ffacc4636112101f0238db03"
-PKG_REV="5"
+PKG_VERSION="0.79.0"
+PKG_SHA256="f985a4608fe592d2546d9d37d4182e502ff6b4c42f8db4be0a021a1c369528c8"
+PKG_REV="6"
 PKG_LICENSE="GPL"
 PKG_SITE="https://poppler.freedesktop.org/"
 PKG_URL="https://poppler.freedesktop.org/${PKG_NAME}-${PKG_VERSION}.tar.xz"
@@ -52,10 +52,10 @@ addon() {
     cp -p $(get_build_dir lcms2)/.install_pkg/usr/bin/transicc $ADDON_BUILD/$PKG_ADDON_ID/data/transicc.bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler.so.84.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler.so.84
-    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler-glib.so.8.12.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler-glib.so.8
-    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler-cpp.so.0.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler-cpp.so.0
-    cp -P $(get_build_dir openjpeg2)/.install_pkg/usr/lib/libopenjp2.so.2.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libopenjp2.so.7
+    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler.so.89.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler.so.89
+    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler-glib.so.8.13.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler-glib.so.8
+    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler-cpp.so.0.7.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler-cpp.so.0
+    cp -P $(get_build_dir openjpeg2)/.install_pkg/usr/lib/libopenjp2.so.2.3.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libopenjp2.so.7
     cp -P $(get_build_dir lcms2)/.install_pkg/usr/lib/liblcms2.so.2.0.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblcms2.so.2
     cp -P $(get_build_dir tiff)/.install_pkg/usr/lib/libtiff.so.5.4.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtiff.so.5
     cp -P $(get_build_dir tiff)/.install_pkg/usr/lib/libtiffxx.so.5.4.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtiffxx.so.5

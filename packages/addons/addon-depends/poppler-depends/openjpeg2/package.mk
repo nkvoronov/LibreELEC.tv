@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="openjpeg2"
-PKG_VERSION="2.3.0"
-PKG_SHA256="3dc787c1bb6023ba846c2a0d9b1f6e179f1cd255172bde9eb75b01f1e6c7d71a"
+PKG_VERSION="2.3.1"
+PKG_SHA256="63f5a4713ecafc86de51bfad89cc07bb788e9bba24ebbf0c4ca637621aadb6a9"
 PKG_REV="1"
 PKG_LICENSE="BSD"
 PKG_SITE="https://github.com/uclouvain/openjpeg"
