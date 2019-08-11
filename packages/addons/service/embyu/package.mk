@@ -4,7 +4,7 @@
 PKG_NAME="embyu"
 PKG_VERSION="4.2.0.40"
 PKG_SHA256="41ec62f394fff0fce776d3d3136655745f85944e47a5c9ce28bb4a1375cd88ba"
-PKG_REV="365"
+PKG_REV="366"
 PKG_LICENSE="OSS"
 PKG_SITE="http://emby.media"
 PKG_URL="https://github.com/MediaBrowser/Emby.Releases/releases/download/${PKG_VERSION}/emby-server-deb_${PKG_VERSION}_amd64.deb"

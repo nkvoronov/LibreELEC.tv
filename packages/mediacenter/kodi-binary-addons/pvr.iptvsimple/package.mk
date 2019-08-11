@@ -5,7 +5,7 @@
 PKG_NAME="pvr.iptvsimple"
 PKG_VERSION="6c53796acdde3f91fefd7576a2d3da838769fbd0"
 PKG_SHA256="5294ff0cf97cf140adc72aba0ea55446d1b59a373aa6f76f2c56b6db6785372d"
-PKG_REV="3"
+PKG_REV="5"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"

@@ -3,7 +3,7 @@
 
 PKG_NAME="lcdd"
 PKG_VERSION="0.5dev+2018-11-04"
-PKG_REV="111"
+PKG_REV="112"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"
