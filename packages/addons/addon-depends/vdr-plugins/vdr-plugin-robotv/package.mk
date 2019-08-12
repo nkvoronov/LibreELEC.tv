@@ -26,3 +26,7 @@ post_make_target() {
 
   cp --remove-destination $PKG_BUILD/.$TARGET_NAME/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
 }
+
+post_makeinstall_target() {
+  rm -rf $INSTALL
+}
