@@ -2,7 +2,7 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.libreelec.devupdate"
-PKG_VERSION="b22fc06c8668fa9476d6cfec72c3916c162c5b31"
+PKG_VERSION="c7eea4543679fbe5dd0d4c4aa1f1aa48b4ace428"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://github.com/nkvoronov/$PKG_NAME.git"
