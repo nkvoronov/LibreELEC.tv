@@ -261,8 +261,6 @@ init_vdr_front_plugins() {
 }
 
 init_vdr_soft() {
-  VLIBS="$VLIBS:/usr/lib/ffmpeg3.4"
-
   if [ "$VDR_OUTPUT_VIDEO" == "auto" ]; then
     VDR_ARG="$VDR_ARG -P 'softhddevice -a $VDR_SOUND_SOFT $VDR_SOFT_PARAM'"
   elif [ "$VDR_OUTPUT_VIDEO" == "vdpau" ]; then
