@@ -23,8 +23,9 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * tvheadend last (service and addon)
 * oscam last (service and addon)
 * vdr (service and addon)
-* lcdproc (service and addon) 
-* vdr plugins (service and addon)
+* lcdproc (service and addon)
+* transmission (service and addon)
+* vdr plugins (addon)
 
   vdr-plugin-channellists</br>
   vdr-plugin-ddci2</br>
@@ -62,7 +63,6 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
   vdr-plugin-wirbelscancontrol</br>
   vdr-plugin-xineliboutput</br>
   vdr-plugin-xmltv2vdr</br>
-* transmission (service and addon)
 * vlc last (addon)
 * acestream (addon)
 * docker official (addon)

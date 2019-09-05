@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
-
-. /etc/profile
-
-/usr/bin/vdr-power -p

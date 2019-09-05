@@ -31,8 +31,8 @@ case $KODI_VENDOR in
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="18.3-Leia"
-    PKG_SHA256="4f265901c00f582beb8d6ad96c9c303e5ab82611e828c7121ae822b07c0915cc"
+    PKG_VERSION="18.4-Leia"
+    PKG_SHA256="bf2be186d8ae5b5377e43c06a538012bb9f51a0e98f8244b70a401006861d110"
     PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
     ;;
@@ -357,7 +357,6 @@ post_makeinstall_target() {
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" $ADDON_MANIFEST
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" $ADDON_MANIFEST
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" $ADDON_MANIFEST
-    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.vdrfront.run" $ADDON_MANIFEST
   fi
 
   if [ "$DRIVER_ADDONS_SUPPORT" = "yes" ]; then

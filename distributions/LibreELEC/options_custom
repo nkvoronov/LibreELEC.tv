@@ -37,7 +37,6 @@
 
 # TV Services
   TVHEADEND_SERVICE="yes"
-  VDR_SERVICE="yes"
 
 # Tools
   SYS_TOOLS_ENABLED="yes"
@@ -69,7 +68,6 @@ show_distro_config() {
     config_message="$config_message\n - Transmission service:\t\t $TRANSMISSION_SERVICE"
     config_message="$config_message\n - Oscam service:\t\t\t $OSCAM_SERVICE"
     config_message="$config_message\n - Tvheadend  service:\t\t\t $TVHEADEND_SERVICE"
-    config_message="$config_message\n - VDR service:\t\t\t\t $VDR_SERVICE"
     config_message="$config_message\n - System tools:\t\t\t $SYS_TOOLS_ENABLED"
     config_message="$config_message\n - DVB tools:\t\t\t\t $DVB_TOOLS_ENABLED"
     config_message="$config_message\n - Perl:\t\t\t\t $PERL_SUPPORT"

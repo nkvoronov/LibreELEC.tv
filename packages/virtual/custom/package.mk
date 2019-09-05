@@ -34,10 +34,6 @@ if [ "$LIBXCB_EXT" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libxcb xcb-proto xcb-util xcb-util-keysyms xcb-util-wm xcb-util-renderutil xcb-util-image"
 fi
 
-if [ "$VDR_SERVICE" = "yes" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-service"
-fi
-
 if [ "$SYS_TOOLS_ENABLED" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET tools-system"
 fi
