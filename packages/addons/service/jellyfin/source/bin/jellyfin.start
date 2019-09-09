@@ -7,12 +7,9 @@
 oe_setup_addon service.jellyfin
 
 chmod +x $ADDON_DIR/bin/*
-chmod +x $ADDON_DIR/jellyfin/jellyfin
 mkdir -p $ADDON_HOME
 
-#LD_PRELOAD="$ADDON_DIR/lib/libMagickCore-7.Q16HDRI.so.6 \
-#            $ADDON_DIR/lib/CORE_RL_Wand_.so" \
+export LD_LIBRARY_PATH=$ADDON_DIR/lib
 
 nice -n "$jellyfin_nice" \
-#le_dotnet $ADDON_DIR/jellyfin/jellyfin.dll --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache
-$ADDON_DIR/jellyfin/jellyfin --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache --configdir $ADDON_HOME/config --logdir $ADDON_HOME/log
+le_dotnet $ADDON_DIR/jellyfin/jellyfin.dll --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache --configdir $ADDON_HOME/config --logdir $ADDON_HOME/log
