@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.idna"
-PKG_VERSION="2.6"
-PKG_SHA256="e80facf06fe603098051531cea6a8a88cbfa6b75520d7921d99a4a045177d37d"
+PKG_VERSION="2.8"
+PKG_SHA256="2502266d6f9caf3badb29fd6d99d03d23730e54286bb98d0fa6af762950e9261"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"

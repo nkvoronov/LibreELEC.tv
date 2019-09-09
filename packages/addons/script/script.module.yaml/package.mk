@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.yaml"
-PKG_VERSION="3.11.0"
-PKG_SHA256="928daaf92b682cbfd88caa4a42575405a0da2f86e1b39e78347bf2f426e4d4c4"
+PKG_VERSION="4.1"
+PKG_SHA256="e2fcbabc75df6953c8491988497a8afc4ba5d09730d30932b3f1d1057ef58d92"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
