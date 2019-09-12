@@ -67,6 +67,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * acestream (addon)
 * docker official (addon)
 * emby from ubuntu (addon)
+* jellyfin (addon)
 * perl
 * tbsdtv drivers addon
 * system tools (mc, htop and other)
