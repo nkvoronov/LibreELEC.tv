@@ -1,14 +1,14 @@
-# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2011 Anthony Nash (nash.ant@gmail.com)
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr"
-PKG_VERSION="2.4.0"
-PKG_SHA256="93af49fe87048073dc38ef5e6c71e9704344d730f21c261afac69e3c937f8cce"
+PKG_VERSION="2.4.1"
+PKG_SHA256="25c3f835c4f3ff92cd2db10c004439ef22c2e895193c77fbe8cc7eac4858a1dc"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvdr.de"
-PKG_URL="ftp://ftp.tvdr.de/vdr/vdr-$PKG_VERSION.tar.bz2"
+PKG_URL="http://ftp.tvdr.de/vdr-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain bzip2 fontconfig freetype libcap libiconv libjpeg-turbo"
 PKG_LONGDESC="A DVB TV server application."
 PKG_TOOLCHAIN="manual"
