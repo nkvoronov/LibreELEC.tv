@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-robotv"
 PKG_VERSION="13b691af63743ce6481e2558dc50ee89dd7a0349"
@@ -9,7 +9,7 @@ PKG_SITE="https://github.com/pipelka/roboTV"
 PKG_URL="https://github.com/pipelka/vdr-plugin-robotv/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain vdr avahi"
 PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
-PKG_LONGDESC="RoboTV is a Android TV based frontend for VDR"
+PKG_LONGDESC="RoboTV is a Android TV based frontend for VDR."
 PKG_TOOLCHAIN="cmake"
 
 pre_configure_target() {

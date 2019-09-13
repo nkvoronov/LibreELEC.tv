@@ -1,6 +1,6 @@
-# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-xmltv2vdr"
 PKG_VERSION="ec7bd920d94e55f2d21bfa076b7e900b7b2b7537"
@@ -8,8 +8,8 @@ PKG_LICENSE="GPL"
 PKG_SITE="http://projects.vdr-developer.org/projects/plg-xmltv2vdr"
 PKG_URL="https://github.com/vdr-projects/vdr-plugin-xmltv2vdr.git"
 PKG_DEPENDS_TARGET="toolchain vdr sqlite curl libzip libxml2 libxslt enca pcre"
-PKG_LONGDESC="xmltv2vdr imports data in xmltv format"
 PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
+PKG_LONGDESC="xmltv2vdr imports data in xmltv format"
 PKG_TOOLCHAIN="manual"
 PKG_BUILD_FLAGS="+pic"
 

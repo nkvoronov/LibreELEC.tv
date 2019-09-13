@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr24"
-PKG_VERSION="2.4.0"
-PKG_REV="183"
+PKG_VERSION="2.4.1"
+PKG_REV="184"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
