@@ -3,7 +3,7 @@
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.1"
-PKG_REV="184"
+PKG_REV="185"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -22,7 +22,7 @@ ENABLE_VDR_PLUGIN_CHANNELLISTS="yes"
 ENABLE_VDR_PLUGIN_DDCI2="yes"
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_DVBAPI="yes"
-ENABLE_VDR_PLUGIN_DYNAMITE="yes"
+ENABLE_VDR_PLUGIN_DYNAMITE="no"
 ENABLE_VDR_PLUGIN_EPGFIXER="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
 ENABLE_VDR_PLUGIN_FAVORITES="yes"
@@ -33,7 +33,7 @@ ENABLE_VDR_PLUGIN_IPTV="yes"
 ENABLE_VDR_PLUGIN_LCDPROC="yes"
 ENABLE_VDR_PLUGIN_LIVE="yes"
 ENABLE_VDR_PLUGIN_MENUORG="no"
-ENABLE_VDR_PLUGIN_PIN="yes"
+ENABLE_VDR_PLUGIN_PIN="no"
 ENABLE_VDR_PLUGIN_RESTFULAPI="yes"
 ENABLE_VDR_PLUGIN_ROBOTV="yes"
 ENABLE_VDR_PLUGIN_SATIP="yes"
@@ -577,6 +577,7 @@ addon() {
       cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
       cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
       cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
+      cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
       cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
       cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
