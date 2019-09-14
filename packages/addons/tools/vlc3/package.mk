@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.8"
 PKG_SHA256="e0149ef4a20a19b9ecd87309c2d27787ee3f47dfd47c6639644bc1f6fd95bdf6"
-PKG_REV="65"
+PKG_REV="66"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -292,7 +292,7 @@ addon() {
     cp -P $LIB_FLUID/.install_pkg/usr/lib/libfluidsynth.so.1.5.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libfluidsynth.so.1
     cp -P $LIB_SHOUT/.install_pkg/usr/lib/libshout.so.3.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libshout.so.3
     cp -P $LIB_DVBPSI/.install_pkg/usr/lib/libdvbpsi.so.10.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvbpsi.so.10
-    cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.165 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.165
+    cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.169 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.169
     cp -P $LIB_GOOM/.install_pkg/usr/lib/libgoom2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgoom2.so.0
 
     cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.23.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
