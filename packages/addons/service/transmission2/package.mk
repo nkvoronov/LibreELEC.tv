@@ -3,7 +3,7 @@
 
 PKG_NAME="transmission2"
 PKG_VERSION="2.94"
-PKG_REV="8"
+PKG_REV="9"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"

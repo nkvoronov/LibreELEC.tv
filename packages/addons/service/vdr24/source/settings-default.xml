@@ -23,6 +23,8 @@
     <setting id="VDR_RESTFULAPI_IP" value="0.0.0.0"/>
     <setting id="VDR_RESTFULAPI_PORT" value="8002"/>
     <setting id="VDR_ENABLE_WIRBELSCAN" value="true" />
+    <setting id="VDR_ENABLE_DDCI2" value="true" />
+    <setting id="VDR_ENABLE_ROBOTV" value="true" />    
     <setting id="VDR_ENABLE_SOFTCAM" value="true" />
     <setting id="VDR_SOFTCAM_OPTION" value="" />
     <setting id="VDR_ENABLE_IPTV_F" value="false" />
@@ -41,8 +43,11 @@
     <setting id="VDR_RESTFULAPI_IP_F" value="0.0.0.0"/>
     <setting id="VDR_RESTFULAPI_PORT_F" value="8002"/>
     <setting id="VDR_ENABLE_WIRBELSCAN_F" value="true" />
+    <setting id="VDR_ENABLE_DDCI2_F" value="true" />
+    <setting id="VDR_ENABLE_ROBOTV_F" value="true" />    
     <setting id="VDR_ENABLE_SOFTCAM_F" value="true" />
     <setting id="VDR_SOFTCAM_OPTION_F" value="" />
+    <setting id="VDR_ENABLE_CHANNELLISTS" value="true" />    
     <setting id="VDR_ENABLE_FAVORITES" value="true" />
     <setting id="VDR_ENABLE_FEMON" value="false" />
     <setting id="VDR_ENABLE_SYSTEMINFO" value="false" />
@@ -54,7 +59,6 @@
     <setting id="VDR_ENABLE_SKINFLAT" value="false" />
     <setting id="VDR_ENABLE_SKINFLATPLUS" value="false" />
     <setting id="VDR_ENABLE_SKINDESIGNER" value="false" />
-    <setting id="VDR_ENABLE_MENUORG" value="false" />
     <setting id="VDR_ENABLE_TVSCRAPER" value="false" />
     <setting id="VDR_ENABLE_WEATHERFORECAST" value="false" />
     <setting id="VDR_FRONT" value="soft" />" />

@@ -3,7 +3,7 @@
 
 PKG_NAME="vdr24"
 PKG_VERSION="2.4.1"
-PKG_REV="185"
+PKG_REV="186"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.openelec.tv"
@@ -22,18 +22,14 @@ ENABLE_VDR_PLUGIN_CHANNELLISTS="yes"
 ENABLE_VDR_PLUGIN_DDCI2="yes"
 ENABLE_VDR_PLUGIN_DUMMYDEVICE="yes"
 ENABLE_VDR_PLUGIN_DVBAPI="yes"
-ENABLE_VDR_PLUGIN_DYNAMITE="no"
 ENABLE_VDR_PLUGIN_EPGFIXER="yes"
 ENABLE_VDR_PLUGIN_EPGSEARCH="yes"
 ENABLE_VDR_PLUGIN_FAVORITES="yes"
 ENABLE_VDR_PLUGIN_FEMON="yes"
 ENABLE_VDR_PLUGIN_FILEBROWSER="yes"
-ENABLE_VDR_PLUGIN_IMONLCD="yes"
 ENABLE_VDR_PLUGIN_IPTV="yes"
 ENABLE_VDR_PLUGIN_LCDPROC="yes"
 ENABLE_VDR_PLUGIN_LIVE="yes"
-ENABLE_VDR_PLUGIN_MENUORG="no"
-ENABLE_VDR_PLUGIN_PIN="no"
 ENABLE_VDR_PLUGIN_RESTFULAPI="yes"
 ENABLE_VDR_PLUGIN_ROBOTV="yes"
 ENABLE_VDR_PLUGIN_SATIP="yes"
@@ -70,10 +66,6 @@ if [ "$ENABLE_VDR_PLUGIN_DVBAPI" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dvbapi"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_DYNAMITE" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-dynamite"
-fi
-
 if [ "$ENABLE_VDR_PLUGIN_EPGFIXER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-epgfixer"
 fi
@@ -94,10 +86,6 @@ if [ "$ENABLE_VDR_PLUGIN_FILEBROWSER" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-filebrowser"
 fi
 
-if [ "$ENABLE_VDR_PLUGIN_IMONLCD" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-imonlcd"
-fi
-
 if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-iptv"
 fi
@@ -108,14 +96,6 @@ fi
 
 if [ "$ENABLE_VDR_PLUGIN_LIVE" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-live"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-menuorg"
-fi
-
-if [ "$ENABLE_VDR_PLUGIN_PIN" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET vdr-plugin-pin"
 fi
 
 if [ "$ENABLE_VDR_PLUGIN_RESTFULAPI" = yes ]; then
@@ -275,18 +255,6 @@ addon() {
     cp -PR $VDR_PLUGIN_DVBAPI_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
-  #plugin dynamite
-  if [ "$ENABLE_VDR_PLUGIN_DYNAMITE" = yes ]; then
-
-    VDR_PLUGIN_DYNAMITE_DIR=$(get_build_dir vdr-plugin-dynamite)
-
-    #libs
-    cp -PR $VDR_PLUGIN_DYNAMITE_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-    #locale
-    cp -PR $VDR_PLUGIN_DYNAMITE_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-  fi
-
   #libs dep fo plugins
   if [ "$ENABLE_VDR_PLUGIN_EPGFIXER" = yes -o "$ENABLE_VDR_PLUGIN_LIVE" = yes ]; then
 
@@ -371,18 +339,6 @@ addon() {
     cp -PR $VDR_PLUGIN_FILEBROWSER_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
-  #plugin imonlcd
-  if [ "$ENABLE_VDR_PLUGIN_IMONLCD" = yes ]; then
-
-    VDR_PLUGIN_IMONLCD_DIR=$(get_build_dir vdr-plugin-imonlcd)
-
-    #libs
-    cp -PR $VDR_PLUGIN_IMONLCD_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-    #locale
-    cp -PR $VDR_PLUGIN_IMONLCD_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-  fi
-
   #plugin iptv
   if [ "$ENABLE_VDR_PLUGIN_IPTV" = yes ]; then
 
@@ -441,46 +397,6 @@ addon() {
     TNTNET_DIR=$(get_build_dir tntnet)
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
       cp -P $TNTNET_DIR/.install_pkg/usr/lib/libtntnet.so.12.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtntnet.so.12
-  fi
-
-  #plugin menuorg
-  if [ "$ENABLE_VDR_PLUGIN_MENUORG" = yes ]; then
-
-    VDR_PLUGIN_MENUORG_DIR=$(get_build_dir vdr-plugin-menuorg)
-
-    #libs
-    cp -PR $VDR_PLUGIN_MENUORG_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-    #config
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/menuorg
-      cp -PR $VDR_PLUGIN_MENUORG_DIR/menuorg.* $ADDON_BUILD/$PKG_ADDON_ID/config/plugins/menuorg
-      cp -PR $PKG_DIR/config/plugins/menuorg.xml $ADDON_BUILD/$PKG_ADDON_ID/config/plugins
-
-    #locale
-    cp -PR $VDR_PLUGIN_MENUORG_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
-
-    #libs dep
-    GLIBMM_DIR=$(get_build_dir glibmm)
-    LIBXMLPP_DIR=$(get_build_dir libxml++)
-    LIBSIGPP_DIR=$(get_build_dir libsigc++)
-    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-      cp -P $GLIBMM_DIR/.install_pkg/usr/lib/libgiomm-2.4.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgiomm-2.4.so.1
-      cp -P $GLIBMM_DIR/.install_pkg/usr/lib/libglibmm-2.4.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libglibmm-2.4.so.1
-      cp -P $GLIBMM_DIR/.install_pkg/usr/lib/libglibmm_generate_extra_defs-2.4.so.1.3.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libglibmm_generate_extra_defs-2.4.so.1
-      cp -P $LIBSIGPP_DIR/.install_pkg/usr/lib/libsigc-2.0.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libsigc-2.0.so.0
-      cp -P $LIBXMLPP_DIR/.install_pkg/usr/lib/libxml++-2.6.so.2.0.7 $ADDON_BUILD/$PKG_ADDON_ID/lib/libxml++-2.6.so.2
-  fi
-
-  #plugin pin
-  if [ "$ENABLE_VDR_PLUGIN_PIN" = yes ]; then
-
-    VDR_PLUGIN_PIN_DIR=$(get_build_dir vdr-plugin-pin)
-
-    #libs
-    cp -PR $VDR_PLUGIN_PIN_DIR/libvdr*.so.* $ADDON_BUILD/$PKG_ADDON_ID/lib/vdr
-
-    #locale
-    cp -PR $VDR_PLUGIN_PIN_DIR/locale/* $ADDON_BUILD/$PKG_ADDON_ID/share/locale
   fi
 
   #libs dep fo plugins

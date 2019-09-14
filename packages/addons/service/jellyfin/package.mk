@@ -4,7 +4,7 @@
 PKG_NAME="jellyfin"
 PKG_VERSION="10.3.7"
 #PKG_SHA256="595dfbfd2ba61e3aa16cda365b02f02f631d8cb477e30b9f72e75b78c792b918"
-PKG_REV="2"
+PKG_REV="3"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"

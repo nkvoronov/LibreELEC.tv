@@ -1,6 +1,6 @@
 # Kodi Media Center language file
-# Addon Name: vdra
-# Addon id: service.multimedia.vdra
+# Addon Name: vdr24
+# Addon id: service.vdr24
 # Addon Provider: YLLOW_DRAGON
 msgid ""
 msgstr ""
@@ -242,4 +242,16 @@ msgstr ""
 
 msgctxt "#4122"
 msgid "- xine params"
+msgstr ""
+
+msgctxt "#4123"
+msgid "Enable plugin: channellists"
+msgstr ""
+
+msgctxt "#4124"
+msgid "Enable plugin: ddci2"
+msgstr ""
+
+msgctxt "#4125"
+msgid "Enable plugin: robotv"
 msgstr ""

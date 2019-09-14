@@ -3,13 +3,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vdr-plugin-iptv"
-PKG_VERSION="5ae793f"
+PKG_VERSION="5ae793f03048816193003c472d844091f4fd1767"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.saunalahti.fi/~rahrenbe/vdr/iptv/"
 PKG_URL="https://github.com/rofafor/vdr-plugin-iptv.git"
 PKG_DEPENDS_TARGET="toolchain vdr curl"
 PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
-PKG_LONGDESC="vdr-plugin-iptv is an IPTV plugin for the Video Disk Recorder (VDR)"
+PKG_LONGDESC="vdr-iptv is an IPTV plugin for the Video Disk Recorder (VDR)"
 PKG_TOOLCHAIN="manual"
 
 make_target() {

@@ -21,7 +21,7 @@ make_target() {
   make \
     LIBDIR="." \
     LOCDIR="./locale" \
-    all
+    all install-i18n
 }
 
 post_make_target() {

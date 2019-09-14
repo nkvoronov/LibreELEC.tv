@@ -188,10 +188,6 @@ init_vdr_plugins() {
       VDR_ARG="$VDR_ARG -P ddci2"
     fi
 
-    if [ "$VDR_ENABLE_DYNAMITE" == "true" ]; then
-      VDR_ARG="$VDR_ARG -P dynamite"
-    fi
-
     if [ "$VDR_ENABLE_ROBOTV" == "true" ]; then
       VDR_ARG="$VDR_ARG -P robotv"
     fi
@@ -211,10 +207,6 @@ init_vdr_plugins() {
 
     if [ "$VDR_ENABLE_WIRBELSCAN_F" == "true" ]; then
         VDR_ARG="$VDR_ARG -P wirbelscan -P wirbelscancontrol"
-    fi
-
-    if [ "$VDR_ENABLE_CHANNELLISTS_F" == "true" ]; then
-        VDR_ARG="$VDR_ARG -P channellists"
     fi
 
     if [ "$VDR_ENABLE_IPTV_F" == "true" ]; then
@@ -285,10 +277,6 @@ init_vdr_plugins() {
       VDR_ARG="$VDR_ARG -P ddci2"
     fi
 
-    if [ "$VDR_ENABLE_DYNAMITE_F" == "true" ]; then
-      VDR_ARG="$VDR_ARG -P dynamite"
-    fi
-
     if [ "$VDR_ENABLE_ROBOTV_F" == "true" ]; then
       VDR_ARG="$VDR_ARG -P robotv"
     fi
@@ -314,20 +302,8 @@ init_vdr_front_plugins() {
     VDR_ARG="$VDR_ARG -P filebrowser"
   fi
 
-  if [ "$VDR_ENABLE_IMONLCD" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P imonlcd"
-  fi
-
   if [ "$VDR_ENABLE_LCDPROC" == "true" ]; then
     VDR_ARG="$VDR_ARG -P lcdproc"
-  fi
-
-  if [ "$VDR_ENABLE_MENUORG" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P menuorg"
-  fi
-
-  if [ "$VDR_ENABLE_PIN" == "true" ]; then
-    VDR_ARG="$VDR_ARG -P pin"
   fi
 
   if [ "$VDR_ENABLE_SKINDESIGNER" == "true" ]; then

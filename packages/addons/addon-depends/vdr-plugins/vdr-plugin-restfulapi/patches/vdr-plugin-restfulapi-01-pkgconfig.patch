@@ -1,0 +1,20 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2019-08-07 17:36:30.982091169 +0300
++++ b/Makefile	2019-08-08 20:10:33.726842148 +0300
+@@ -51,13 +51,13 @@
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
+ 
+-LIBS    += $(shell cxxtools-config --libs) -lcxxtools-http
++LIBS += $(shell pkg-config --libs cxxtools-http cxxtools)
+ CONFDIR  = $(call PKGCFG,configdir)
+ PLGCONFDIR = $(CONFDIR)/plugins/$(PLUGIN)
+ 
+ ifeq ($(USE_LIBMAGICKPLUSPLUS), 1)
+-INCLUDES += $(shell pkg-config --cflags Magick++)
+-LIBS += $(shell pkg-config --libs Magick++)
++INCLUDES += $(shell pkg-config --cflags GraphicsMagick++)
++LIBS += $(shell pkg-config --libs GraphicsMagick++)
+ CXXFLAGS += -DUSE_LIBMAGICKPLUSPLUS
+ endif
+ 
