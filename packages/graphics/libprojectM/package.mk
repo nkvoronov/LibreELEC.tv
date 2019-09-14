@@ -4,7 +4,7 @@
 
 PKG_NAME="libprojectM"
 PKG_VERSION="e85bf0386d3ba7f6e9122462c3fef02ebd536057"
-#PKG_SHA256="1bc4a2b9a0310b5215ff29b4bd12c807c776174ea28c11acf37b76587e88c7b8"
+PKG_SHA256="c36bdd0033b88425435804211a7daf25ed522889299a8fe111b15ef2458a8ce0"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/projectM-visualizer/projectm"
 PKG_URL="https://github.com/projectM-visualizer/projectm/archive/$PKG_VERSION.tar.gz"

@@ -1182,9 +1182,6 @@ install_driver_addon_files() {
   install_addon_files "$PKG_ADDON_DIR"
 }
 
-tolower() {
-  echo "$@" | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
-}
 
 ### TARGET CONFIGURATION HELPERS ###
 add_user() {
@@ -1417,6 +1414,10 @@ exec_thread_safe() {
   result=$?
   release_exclusive_lock "${PKG_NAME:exec}" "execcmd"
   return ${result}
+}
+
+tolower() {
+  echo "$@" | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
 }
 
 # Use distribution functions if any

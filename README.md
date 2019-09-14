@@ -31,17 +31,14 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
   vdr-plugin-ddci2</br>
   vdr-plugin-dummydevice</br>
   vdr-plugin-dvbapi</br>
-  vdr-plugin-dynamite</br>
   vdr-plugin-epgfixer</br>
   vdr-plugin-epgsearch</br>
   vdr-plugin-favorites</br>
   vdr-plugin-femon</br>
   vdr-plugin-filebrowser</br>
-  vdr-plugin-imonlcd</br>
   vdr-plugin-iptv</br>
   vdr-plugin-lcdproc</br>
   vdr-plugin-live</br>
-  vdr-plugin-menuorg - </br>
   vdr-plugin-pin</br>
   vdr-plugin-restfulapi</br>
   vdr-plugin-robotv</br>
@@ -51,7 +48,7 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
   vdr-plugin-skinflatplus</br>
   vdr-plugin-skinnopacity</br>
   vdr-plugin-sleeptimer</br>
-  vdr-plugin-softhddevice +- </br>
+  vdr-plugin-softhddevice</br>
   vdr-plugin-streamdev</br>
   vdr-plugin-systeminfo</br>
   vdr-plugin-text2skin</br>
