@@ -482,9 +482,9 @@ addon() {
     #libs dep
     LIBXFT_DIR=$(get_build_dir libXft)
     CAIRO_DIR=$(get_build_dir cairo)
-    PANGO_DIR=$(get_build_dir pango)
+    PANGO_DIR=$(get_build_dir pangox)
     HARFBUZZ_DIR=$(get_build_dir harfbuzz)
-    GDK_PIXBUF_DIR=$(get_build_dir gdk-pixbuf)
+    GDK_PIXBUF_DIR=$(get_build_dir gdk-pixbufx)
     LIBCROCO_DIR=$(get_build_dir libcroco)
     LIBRSVG_DIR=$(get_build_dir librsvg)
     mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
