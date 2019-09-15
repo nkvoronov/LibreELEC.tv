@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.8"
 PKG_SHA256="e0149ef4a20a19b9ecd87309c2d27787ee3f47dfd47c6639644bc1f6fd95bdf6"
-PKG_REV="66"
+PKG_REV="67"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -196,6 +196,13 @@ addon() {
   LIB_NETTLE=$(get_build_dir nettle)
   LIB_IDN2=$(get_build_dir libidn2)
   LIB_GMP=$(get_build_dir gmp)
+  LIBXFT_DIR=$(get_build_dir libXft)
+  CAIRO_DIR=$(get_build_dir cairo)
+  PANGO_DIR=$(get_build_dir pangox)
+  HARFBUZZ_DIR=$(get_build_dir harfbuzz)
+  GDK_PIXBUF_DIR=$(get_build_dir gdk-pixbufx)
+  LIBCROCO_DIR=$(get_build_dir libcroco)
+  LIBRSVG_DIR=$(get_build_dir librsvg)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $LUA/src/lua $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -300,6 +307,22 @@ addon() {
     cp -P $LIB_NETTLE/.install_pkg/usr/lib/libhogweed.so.4.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libhogweed.so.4
     cp -P $LIB_IDN2/.install_pkg/usr/lib/libidn2.so.0.3.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libidn2.so.0
     cp -P $LIB_GMP/.install_pkg/usr/lib/libgmp.so.10.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgmp.so.10
+
+    cp -P $LIBXFT_DIR/.install_pkg/usr/lib/libXft.so.2.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libXft.so.2
+    cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz.so.0.10800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz.so.0
+    cp -P $HARFBUZZ_DIR/.install_pkg/usr/lib/libharfbuzz-icu.so.0.10800.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libharfbuzz-icu.so.0
+    cp -P $LIBCROCO_DIR/.install_pkg/usr/lib/libcroco-0.6.so.3.0.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcroco-0.6.so.3
+    cp -PR $GDK_PIXBUF_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
+    cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
+    cp -P $GDK_PIXBUF_DIR/.install_pkg/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgdk_pixbuf-2.0.so.0
+    cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo.so.2.11400.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo.so.2
+    cp -P $CAIRO_DIR/.install_pkg/usr/lib/libcairo-script-interpreter.so.2.11400.10 $ADDON_BUILD/$PKG_ADDON_ID/lib/libcairo-script-interpreter.so.2
+    cp -P $PANGO_DIR/.install_pkg/usr/lib/libpango-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpango-1.0.so.0
+    cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoft2-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoft2-1.0.so.0
+    cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangoxft-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangoxft-1.0.so.0
+    cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
+    cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
+    cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
