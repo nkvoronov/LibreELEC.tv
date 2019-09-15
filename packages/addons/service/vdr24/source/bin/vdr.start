@@ -36,7 +36,7 @@ vdr_init() {
 
   RUN_FRONT="false"
 
-  if [ "$VDR_TYPE" != "frontend" ]; then
+  if [ "$VDR_TYPE" == "service" ]; then
     touch $VDR_RUN_FILE
   else
     rm -f $VDR_RUN_FILE
