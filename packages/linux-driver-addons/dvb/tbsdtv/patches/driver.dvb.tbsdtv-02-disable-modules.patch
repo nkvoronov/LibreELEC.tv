@@ -1,6 +1,7 @@
---- a/v4l/scripts/make_kconfig.pl
-+++ b/v4l/scripts/make_kconfig.pl
-@@ -626,6 +626,10 @@ ($$)
+diff -Naur a/v4l/scripts/make_kconfig.pl b/v4l/scripts/make_kconfig.pl
+--- a/v4l/scripts/make_kconfig.pl	2019-09-18 16:13:59.136331111 +0300
++++ b/v4l/scripts/make_kconfig.pl	2019-09-18 16:19:44.222336595 +0300
+@@ -626,6 +626,10 @@
  close OUT;
  
  # These options should default to off

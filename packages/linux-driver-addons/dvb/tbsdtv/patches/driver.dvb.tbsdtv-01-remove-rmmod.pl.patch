@@ -1,11 +1,10 @@
-[Patch] without this patch you need to install libproc-processtable-perl at host system
-
---- a/v4l/Makefile
-+++ b/v4l/Makefile
+diff -Naur a/v4l/Makefile b/v4l/Makefile
+--- a/v4l/Makefile	2019-09-18 16:13:59.124331040 +0300
++++ b/v4l/Makefile	2019-09-18 16:16:42.021287092 +0300
 @@ -51,7 +51,7 @@
  	@echo Kernel build directory is $(OUTDIR)
  	$(MAKE) -C ../linux apply_patches
- 	$(MAKE) -C $(OUTDIR) SUBDIRS=$(PWD) $(MYCFLAGS) modules
+ 	$(MAKE) -C $(OUTDIR) M=$(PWD) $(MYCFLAGS) modules
 -	./scripts/rmmod.pl check
 +#	./scripts/rmmod.pl check
  #	$(MAKE) checkpatch
