@@ -4,9 +4,10 @@
 
 PKG_NAME="vdr-plugin-epgsearch"
 PKG_VERSION="770de32f1908b1f9c60f66bf288a4c8a03f97d52"
+PKG_SHA256="8b6144ee3d22b0c13ba81be94920b421b05fd9b921dfe8245ed582db407acac8"
 PKG_LICENSE="GPL"
 PKG_SITE="http://winni.vdr-developer.org/epgsearch/"
-PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch.git"
+PKG_URL="https://github.com/vdr-projects/vdr-plugin-epgsearch/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain vdr"
 PKG_NEED_UNPACK="$(get_pkg_directory vdr)"
 PKG_LONGDESC="EPGSearch is a plugin for the Video-Disc-Recorder (VDR)."
@@ -28,8 +29,5 @@ post_make_target() {
   VDR_APIVERSION=`sed -ne '/define APIVERSION/s/^.*"\(.*\)".*$/\1/p' $VDR_DIR/config.h`
   LIB_NAME=lib${PKG_NAME/-plugin/}
 
-  cp --remove-destination $PKG_BUILD/libvdr-conflictcheckonly.so $PKG_BUILD/libvdr-conflictcheckonly.so.${VDR_APIVERSION}
   cp --remove-destination $PKG_BUILD/${LIB_NAME}.so $PKG_BUILD/${LIB_NAME}.so.${VDR_APIVERSION}
-  cp --remove-destination $PKG_BUILD/libvdr-epgsearchonly.so $PKG_BUILD/libvdr-epgsearchonly.so.${VDR_APIVERSION}
-  cp --remove-destination $PKG_BUILD/libvdr-quickepgsearch.so $PKG_BUILD/libvdr-quickepgsearch.so.${VDR_APIVERSION}
 }

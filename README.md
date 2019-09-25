@@ -25,41 +25,6 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * vdr (service and addon)
 * lcdproc (service and addon)
 * transmission (service and addon)
-* vdr plugins (addon)
-
-  vdr-plugin-channellists</br>
-  vdr-plugin-ddci2</br>
-  vdr-plugin-dummydevice</br>
-  vdr-plugin-dvbapi</br>
-  vdr-plugin-epgfixer</br>
-  vdr-plugin-epgsearch</br>
-  vdr-plugin-favorites</br>
-  vdr-plugin-femon</br>
-  vdr-plugin-filebrowser</br>
-  vdr-plugin-iptv</br>
-  vdr-plugin-lcdproc</br>
-  vdr-plugin-live</br>
-  vdr-plugin-pin</br>
-  vdr-plugin-restfulapi</br>
-  vdr-plugin-robotv</br>
-  vdr-plugin-satip</br>
-  vdr-plugin-skindesigner</br>
-  vdr-plugin-skinflat</br>
-  vdr-plugin-skinflatplus</br>
-  vdr-plugin-skinnopacity</br>
-  vdr-plugin-sleeptimer</br>
-  vdr-plugin-softhddevice</br>
-  vdr-plugin-streamdev</br>
-  vdr-plugin-systeminfo</br>
-  vdr-plugin-text2skin</br>
-  vdr-plugin-tvguideng</br>
-  vdr-plugin-tvscraper</br>
-  vdr-plugin-vnsiserver</br>
-  vdr-plugin-weatherforecast</br>
-  vdr-plugin-wirbelscan</br>
-  vdr-plugin-wirbelscancontrol</br>
-  vdr-plugin-xineliboutput</br>
-  vdr-plugin-xmltv2vdr</br>
 * vlc last (addon)
 * acestream (addon)
 * docker official (addon)
