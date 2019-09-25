@@ -4,9 +4,9 @@
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
     <extension point="xbmc.addon.repository" name="LibreELEC Yellow Dragon Repository">
-        <info compressed="false">https://bitbucket.org/nkvoronov/repository.yellowdragon.libreelec/raw/@PKG_VERSION@/repo/addons.xml</info>
-        <checksum>https://bitbucket.org/nkvoronov/repository.yellowdragon.libreelec/raw/@PKG_VERSION@/repo/addons.xml.md5</checksum>
-        <datadir zip="true">https://bitbucket.org/nkvoronov/repository.yellowdragon.libreelec/raw/@PKG_VERSION@/repo/</datadir>
+        <info compressed="false">https://raw.githubusercontent.com/nkvoronov/repository.yellowdragon.libreelec/@PKG_VERSION@/repo/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/nkvoronov/repository.yellowdragon.libreelec/@PKG_VERSION@/repo/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/nkvoronov/repository.yellowdragon.libreelec/@PKG_VERSION@/repo/</datadir>
         <hashes>false</hashes>
     </extension>
     <extension point="xbmc.addon.metadata">
