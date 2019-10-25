@@ -2,14 +2,14 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mariadb"
-PKG_VERSION="10.4.6"
-PKG_REV="211"
-PKG_SHA256="a270fe6169a1aaf6f2cbbc945de2c954d818c48e1a0fc02fbed92ecb94678e70"
+PKG_VERSION="10.4.8"
+PKG_REV="212"
+PKG_SHA256="10cc2c3bdb76733c9c6fd1e3c6c860d8b4282c85926da7d472d2a0e00fffca9b"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
 PKG_URL="https://downloads.mariadb.org/interstitial/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_HOST="toolchain ncurses:host"
-PKG_DEPENDS_TARGET="toolchain binutils bzip2 libaio libxml2 lzo ncurses openssl systemd zlib mariadb:host"
+PKG_DEPENDS_TARGET="toolchain binutils bzip2 libaio libxml2 lzo ncurses openssl systemd zlib zstd lz4 mariadb:host"
 PKG_SHORTDESC="MariaDB is a community-developed fork of the MySQL."
 PKG_LONGDESC="MariaDB (${PKG_VERSION}) is a fast SQL database server and a drop-in replacement for MySQL."
 PKG_TOOLCHAIN="cmake"
@@ -55,6 +55,8 @@ configure_package() {
     -DWITH_EMBEDDED_SERVER=OFF \
     -DWITHOUT_SERVER=OFF \
     -DPLUGIN_AUTH_SOCKET=STATIC \
+    -DPLUGIN_AUTH_PAM=NO \
+    -DNOT_FOR_DISTRIBUTION=ON \
     -DDISABLE_SHARED=NO \
     -DENABLED_PROFILING=OFF \
     -DENABLE_STATIC_LIBS=OFF \
