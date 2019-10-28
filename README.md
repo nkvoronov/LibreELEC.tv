@@ -22,7 +22,6 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 
 * tvheadend last (service and addon)
 * oscam last (service and addon)
-* vdr (service and addon)
 * lcdproc (service and addon)
 * transmission (service and addon)
 * vlc last (addon)
@@ -40,11 +39,11 @@ As LibreELEC includes code from many upstream projects it includes many copyrigh
 * LibreELEC-settings changes
 
   Lcdproc</br>
-  TV (tvheadend, VDR, Oscam)</br>
+  TV (tvheadend, Oscam)</br>
   Transmission</br>
   Configure Locale</br>
   Configure keyboard switches</br>
   Custom update</br>
-  Custom backup - </br>
+  Custom backup</br>
 * repository.yellowdragon
 * repository.yellowdragon.libreelec
