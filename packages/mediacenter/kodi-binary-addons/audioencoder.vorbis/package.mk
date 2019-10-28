@@ -3,9 +3,9 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audioencoder.vorbis"
-PKG_VERSION="v2.0.1"
-PKG_SHA256="cb6ab5aa121e36b9a9d7ccbd92d5aca4684cbd4a4839135df08b65b6925e1d6b"
-PKG_REV="3"
+PKG_VERSION="2.0.3-Leia"
+PKG_SHA256="0bc1470ecef83ecc7e36239ef414abc49380394b551d35eb7bcc6704e74b469c"
+PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/audioencoder.vorbis"

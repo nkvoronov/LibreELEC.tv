@@ -3,9 +3,9 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.2sf"
-PKG_VERSION="2.0.0-Leia"
-PKG_SHA256="1e56b402cc851a2bce3ecda7c0679581467ce00b35fa8a780cad73f4e7da42e7"
-PKG_REV="3"
+PKG_VERSION="2.1.1-Matrix"
+PKG_SHA256="2eb85188a2742872d61e9e452e45687a8f8fc7a4f0b291d0c7fcd7201c89b23a"
+PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/audiodecoder.2sf"
