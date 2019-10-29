@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.8"
 PKG_SHA256="e0149ef4a20a19b9ecd87309c2d27787ee3f47dfd47c6639644bc1f6fd95bdf6"
-PKG_REV="67"
+PKG_REV="68"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -302,7 +302,7 @@ addon() {
     cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.169 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.169
     cp -P $LIB_GOOM/.install_pkg/usr/lib/libgoom2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgoom2.so.0
 
-    cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.23.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
+    cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.26.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
     cp -P $LIB_NETTLE/.install_pkg/usr/lib/libnettle.so.6.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libnettle.so.6
     cp -P $LIB_NETTLE/.install_pkg/usr/lib/libhogweed.so.4.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libhogweed.so.4
     cp -P $LIB_IDN2/.install_pkg/usr/lib/libidn2.so.0.3.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libidn2.so.0
