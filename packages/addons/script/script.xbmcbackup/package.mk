@@ -2,7 +2,7 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.xbmcbackup"
-PKG_VERSION="e0368f0cf3a862f08bd9deed582842f1795b010f"
+PKG_VERSION="1960f9205e130a2b6e4d40b15d547beb01a86669"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://github.com/nkvoronov/script.xbmcbackup.git"
