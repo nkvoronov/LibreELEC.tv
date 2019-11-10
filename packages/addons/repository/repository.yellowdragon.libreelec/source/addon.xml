@@ -10,10 +10,12 @@
         <hashes>false</hashes>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="en">YLLOW_DRAGON addons repository for LibreELEC</summary>
-        <summary lang="ru">Репозиторий плагинов YLLOW_DRAGON для LibreELEC</summary>
-        <description  lang="en">Download and install YLLOW_DRAGON addons repository.</description>
-        <description  lang="ru">Загружайте и устанавливайте плагины из репозитория YLLOW_DRAGON.</description>
+        <summary lang="en_GB">YLLOW_DRAGON addons repository for LibreELEC</summary>
+        <summary lang="ru_RU">Репозиторий дополнений YLLOW_DRAGON для LibreELEC</summary>
+        <summary lang="uk_UA">Репозиторій доповнень YLLOW_DRAGON для LibreELEC</summary>
+        <description  lang="en_GB">Download and install YLLOW_DRAGON addons repository.</description>
+        <description  lang="ru_RU">Загружайте и устанавливайте дополнений из репозитория YLLOW_DRAGON.</description>
+        <description  lang="uk_UA">Завантажуйте та встановлюйте доповненя з репозиторію YLLOW_DRAGON.</description>
         <platform>all</platform>
         <assets>
             <icon>resources/icon.png</icon>
