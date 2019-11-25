@@ -1,7 +1,8 @@
 diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
---- a/drivers/media/rc/imon.c	2018-02-06 00:25:20.000000000 +0200
-+++ b/drivers/media/rc/imon.c	2018-02-09 02:01:55.673768718 +0200
-@@ -1,9 +1,9 @@
+--- a/drivers/media/rc/imon.c	2019-11-25 10:37:32.466322908 +0200
++++ b/drivers/media/rc/imon.c	2019-11-25 11:17:18.738925038 +0200
+@@ -1,10 +1,10 @@
+ // SPDX-License-Identifier: GPL-2.0-or-later
  /*
 - *   imon.c:	input and display driver for SoundGraph iMON IR/VFD/LCD
 + *   imon.c: input and display driver for SoundGraph iMON IR/VFD/LCD
@@ -13,7 +14,7 @@ diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
   *
   *   Huge thanks to R. Geoff Newbury for invaluable debugging on the
   *   0xffdc iMON devices, and for sending me one to hack on, without
-@@ -466,6 +466,15 @@
+@@ -462,6 +462,14 @@
  module_param(pad_stabilize, int, S_IRUGO | S_IWUSR);
  MODULE_PARM_DESC(pad_stabilize, "Apply stabilization algorithm to iMON PAD presses in arrow key mode. 0=disable, 1=enable (default).");
  
@@ -25,11 +26,10 @@ diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
 +module_param(send_packet_delay, int, S_IRUGO | S_IWUSR);
 +MODULE_PARM_DESC(send_packet_delay, "Minimum delay between send_packet() calls (default 5ms)");
 +
-+
  /*
   * In certain use cases, mouse mode isn't really helpful, and could actually
   * cause confusion, so allow disabling it when the IR device is open.
-@@ -657,7 +666,13 @@
+@@ -653,7 +661,13 @@
  	 * send_packet can get called so rapidly as to overwhelm the device,
  	 * particularly on faster systems and/or those with quirky usb.
  	 */
@@ -44,7 +44,7 @@ diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
  	set_current_state(TASK_INTERRUPTIBLE);
  	schedule_timeout(timeout);
  
-@@ -1310,8 +1325,7 @@
+@@ -1308,8 +1322,7 @@
  	return keycode;
  }
  
@@ -54,21 +54,40 @@ diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
  {
  	signed char rel_x = 0x00, rel_y = 0x00;
  	u8 right_shift = 1;
-@@ -1733,8 +1747,8 @@
+@@ -1578,6 +1591,7 @@
+ 	struct device *dev = ictx->dev;
+ 	unsigned long flags;
+ 	u32 kc;
++	s64 msec;
+ 	u64 scancode;
+ 	int press_type = 0;
+ 	ktime_t t;
+@@ -1646,8 +1660,8 @@
  	}
  
  	if (debug) {
 -		printk(KERN_INFO "intf%d decoded packet: %*ph\n",
 -		       intf, len, buf);
-+	    printk(KERN_INFO "intf%d decoded packet: %*ph\n", intf, len, buf);
-+	    printk(" key code - %d\n", ictx->kc);
++		printk(KERN_INFO "intf%d decoded packet: %*ph\n", intf, len, buf);
++		printk(" key code - %d\n", ictx->kc);
  	}
  
  	press_type = imon_parse_press_type(ictx, buf, ktype);
-@@ -1766,6 +1780,94 @@
- 		msec = ktime_ms_delta(t, prev_time);
- 		if (msec < ictx->idev->rep[REP_DELAY]) {
- 			spin_unlock_irqrestore(&ictx->kc_lock, flags);
+@@ -1681,11 +1695,99 @@
+ 	spin_lock_irqsave(&ictx->kc_lock, flags);
+ 
+ 	t = ktime_get();
+-	/* KEY repeats from knob and panel that need to be suppressed */
+-	if (ictx->kc == KEY_MUTE ||
+-	    ictx->dev_descr->flags & IMON_SUPPRESS_REPEATED_KEYS) {
+-		if (ictx->kc == ictx->last_keycode &&
+-		    ktime_ms_delta(t, prev_time) < ictx->idev->rep[REP_DELAY]) {
++
++	/* KEY_MUTE repeats from knob and panel that need to be suppressed */
++	if (ictx->kc == KEY_MUTE && ictx->kc == ictx->last_keycode) {
++		msec = ktime_ms_delta(t, prev_time);
++		if (msec < ictx->idev->rep[REP_DELAY]) {
++			spin_unlock_irqrestore(&ictx->kc_lock, flags);
 +			return;
 +		}
 +	}
@@ -156,7 +175,6 @@ diff -Naur a/drivers/media/rc/imon.c b/drivers/media/rc/imon.c
 +	if (ictx->kc == KEY_SELECT && ictx->kc == ictx->last_keycode) {
 +		msec = ktime_ms_delta(t, prev_time);
 +		if (msec < ictx->idev->rep[REP_DELAY]) {
-+			spin_unlock_irqrestore(&ictx->kc_lock, flags);
+ 			spin_unlock_irqrestore(&ictx->kc_lock, flags);
  			return;
  		}
- 	}
