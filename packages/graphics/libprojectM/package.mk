@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libprojectM"
-PKG_VERSION="e85bf0386d3ba7f6e9122462c3fef02ebd536057"
-PKG_SHA256="c36bdd0033b88425435804211a7daf25ed522889299a8fe111b15ef2458a8ce0"
+PKG_VERSION="3.1.1-rc4"
+PKG_SHA256="a0a3cf3a24e372ddfaab43c509c679ed8f5f0e962093228d2982c58e59eb2034"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/projectM-visualizer/projectm"
 PKG_URL="https://github.com/projectM-visualizer/projectm/archive/$PKG_VERSION.tar.gz"
@@ -14,7 +14,10 @@ PKG_TOOLCHAIN="configure"
 PKG_BUILD_FLAGS="+pic"
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
-                           --enable-static"
+                           --enable-static \
+                           --disable-qt \
+                           --disable-pulseaudio \
+                           --disable-jack"
 
 # workaround due broken release files, remove at next bump
 pre_configure_target() {
