@@ -63,7 +63,7 @@ LINUX_DEPENDS="${PROJECT_DIR}/${PROJECT}/linux ${PROJECT_DIR}/${PROJECT}/patches
 [ -z "${LOCAL_CC}" ] && export LOCAL_CC="$(command -v gcc)"
 
 if [ -z "${LOCAL_CC}" ]; then
-  die "***** Please install gcc *****" "127"
+  die "***** Please install gcc - run scripts/checkdeps *****" "127"
 fi
 
 # Need to point to your actual g++
@@ -105,6 +105,10 @@ check_config
 
 # If the package caches are unset, then populate them
 init_package_cache
+
+if [ -z "${DEFAULT_PYTHON_VERSION+set}" ]; then
+  export DEFAULT_PYTHON_VERSION="$(get_pkg_variable Python3 PKG_PYTHON_VERSION)"
+fi
 
 # set package metadata
 source_package "${1}"
