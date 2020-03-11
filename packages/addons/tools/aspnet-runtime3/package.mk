@@ -4,35 +4,35 @@
 case "$ARCH" in
   "aarch64")
     PKG_NC_ARCH="arm64"
-    PKG_SHA256="9721d849bd4935c82fdb0e4a5324cf5ac5b93bd9cac81ace619186630d96752b"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/d3ee4d51-5cbf-4591-baf0-f9af7f9a07e7/59fa68462184d031275c2fa09cdf375d/dotnet-runtime-3.1.2-linux-arm64.tar.gz"
+    PKG_SHA256="572d45c32e24c751b8dfe6ef9f4456f0b6942ebf24dea5d9597f1fbd7d3592c2"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/ec985ae1-e15c-4858-b586-de5f78956573/f585f8ffc303bbca6a711ecd61417a40/aspnetcore-runtime-3.1.2-linux-arm64.tar.gz"
     ;;
   "arm")
     PKG_NC_ARCH="arm"
-    PKG_SHA256="cd15ac49bdb11a8eae28c321198d25c93433c6e1f600282330eaa0f59c2cd1d7"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/30ed47bb-c25b-431c-9cfd-7b942b07314f/5c92af345a5475ca58b6878dd974e1dc/dotnet-runtime-3.1.2-linux-arm.tar.gz"
+    PKG_SHA256="217bafd4d8ff50d1f84d37f4456326d1690f670b8dc747b17e8a9d294adae841"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/8ccacf09-e5eb-481b-a407-2398b08ac6ac/1cef921566cb9d1ca8c742c9c26a521c/aspnetcore-runtime-3.1.2-linux-arm.tar.gz"
     ;;
   "x86_64")
     PKG_NC_ARCH="x64"
-    PKG_SHA256="5c6dc963344c26a67d6268e15c96c0155a456f8dc34f20b1076e9e51bac7ea2c"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/38269fba-9fdb-4723-a14c-067cc316827d/53e4161da346d70404375fb8804ee91a/dotnet-runtime-3.1.2-linux-x64.tar.gz"
+    PKG_SHA256="d3ec949528d698d9cd7016b9276b4c01a949c4970d168295b6506d7399d608f1"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/2d72ee67-ac4d-42c6-97d9-a26a28201fc8/977ad14b99b6ed03dcefd6655789e43a/aspnetcore-runtime-3.1.2-linux-x64.tar.gz"
     ;;
 esac
 
-PKG_NAME="dotnet-runtime3"
+PKG_NAME="aspnet-runtime3"
 PKG_VERSION="3.1.2"
-PKG_REV="108"
+PKG_REV="110"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://dotnet.github.io/"
 PKG_DEPENDS_TARGET="toolchain curl curl3 krb5 lttng-ust"
 PKG_SECTION="tools"
-PKG_SHORTDESC=".NET Core Runtime"
-PKG_LONGDESC=".NET Core Runtime ($PKG_VERSION) runs applications built with .NET Core, a cross-platform .NET implementation."
+PKG_SHORTDESC="ASP.NET Core Runtime"
+PKG_LONGDESC="The ASP.NET Core Runtime ($PKG_VERSION) enables you to run existing web/server applications. On Windows, we recommended installing the Hosting Bundle, which includes the .NET Core Runtime and IIS support."
 PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME=".Net Core Runtime"
+PKG_ADDON_NAME=".AspNet Core Runtime"
 PKG_ADDON_TYPE="xbmc.python.script"
 PKG_MAINTAINER="Anton Voyl (awiouy)"
 

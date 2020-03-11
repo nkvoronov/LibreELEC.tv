@@ -12,4 +12,4 @@ mkdir -p $ADDON_HOME
 export LD_LIBRARY_PATH=$ADDON_DIR/lib
 
 nice -n "$jellyfin_nice" \
-le_dotnet $ADDON_DIR/jellyfin/jellyfin.dll --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache --configdir $ADDON_HOME/config --logdir $ADDON_HOME/log
+le_dotnet3 $ADDON_DIR/jellyfin/jellyfin.dll --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache --configdir $ADDON_HOME/config --logdir $ADDON_HOME/log
