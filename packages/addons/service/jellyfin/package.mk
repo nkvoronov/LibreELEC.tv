@@ -4,7 +4,7 @@
 PKG_NAME="jellyfin"
 PKG_VERSION="10.5.0"
 PKG_SHA256="979ae11e8ef975e9fd00992faccf5b654aac08753cef5f2a6412b9320a95d4e4"
-PKG_REV="10"
+PKG_REV="11"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
@@ -20,7 +20,7 @@ PKG_BUILD_FLAGS="-strip"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Jellyfin Server"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="tools.dotnet-runtime:0.0.0"
+PKG_ADDON_REQUIRES="tools.dotnet-runtime3:0.0.0"
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/jellyfin
