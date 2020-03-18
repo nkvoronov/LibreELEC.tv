@@ -2,9 +2,9 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="poppler"
-PKG_VERSION="0.79.0"
-PKG_SHA256="f985a4608fe592d2546d9d37d4182e502ff6b4c42f8db4be0a021a1c369528c8"
-PKG_REV="7"
+PKG_VERSION="0.86.1"
+PKG_SHA256="af630a277c8e194c31339c5446241834aed6ed3d4b4dc7080311e51c66257f6c"
+PKG_REV="8"
 PKG_LICENSE="GPL"
 PKG_SITE="https://poppler.freedesktop.org/"
 PKG_URL="https://poppler.freedesktop.org/${PKG_NAME}-${PKG_VERSION}.tar.xz"
@@ -50,7 +50,7 @@ addon() {
     cp -p $(get_build_dir lcms2)/.install_pkg/usr/bin/transicc $ADDON_BUILD/$PKG_ADDON_ID/data/transicc.bin
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/lib
-    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler.so.89.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler.so.89
+    cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler.so.97.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler.so.97
     cp -P $PKG_BUILD/.install_pkg$POPPLER_PREFIX/lib/libpoppler-cpp.so.0.7.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpoppler-cpp.so.0
     cp -P $(get_build_dir openjpeg2)/.install_pkg/usr/lib/libopenjp2.so.2.3.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libopenjp2.so.7
     cp -P $(get_build_dir lcms2)/.install_pkg/usr/lib/liblcms2.so.2.0.8 $ADDON_BUILD/$PKG_ADDON_ID/lib/liblcms2.so.2

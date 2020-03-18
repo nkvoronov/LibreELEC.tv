@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.8"
 PKG_SHA256="e0149ef4a20a19b9ecd87309c2d27787ee3f47dfd47c6639644bc1f6fd95bdf6"
-PKG_REV="69"
+PKG_REV="70"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -23,7 +23,7 @@ PKG_ADDON_NAME="Vlc Player 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
 VLC_PREFIX="/storage/.kodi/addons/tools.vlc3"
-QT5VWER="5.12.0"
+QT5VWER="5.14.0"
 
 PKG_CONFIGURE_OPTS_TARGET="\
               --prefix=$VLC_PREFIX \

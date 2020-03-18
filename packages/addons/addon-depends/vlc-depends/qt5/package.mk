@@ -2,11 +2,11 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="qt5"
-PKG_VERSION="5.12.0"
-PKG_SHA256="356f42d9087718f22f03d13d0c2cdfb308f91dc3cf0c6318bed33f2094cd9d6c"
+PKG_VERSION="5.14.0"
+PKG_SHA256="be9a77cd4e1f9d70b58621d0753be19ea498e6b0da0398753e5038426f76a8ba"
 PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
-PKG_URL="http://download.qt.io/official_releases/qt/5.12/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
+PKG_URL="http://download.qt.io/official_releases/qt/5.14/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
 PKG_SOURCE_DIR="qt-everywhere-src-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain libjpeg-turbo xcb-util xcb-util-keysyms xcb-util-renderutil fontconfig xcb-util-wm libXrender libXi sqlite xcb-util-image icu libinput libSM libxkbcommon alsa-lib harfbuzz"
 PKG_LONGDESC="Qt GUI toolkit"
