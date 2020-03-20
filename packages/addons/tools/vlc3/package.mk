@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.8"
 PKG_SHA256="e0149ef4a20a19b9ecd87309c2d27787ee3f47dfd47c6639644bc1f6fd95bdf6"
-PKG_REV="70"
+PKG_REV="71"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -203,6 +203,7 @@ addon() {
   GDK_PIXBUF_DIR=$(get_build_dir gdk-pixbufx)
   LIBCROCO_DIR=$(get_build_dir libcroco)
   LIBRSVG_DIR=$(get_build_dir librsvg)
+  LIBZSTD_DIR=$(get_build_dir zstd)
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp -P $LUA/src/lua $ADDON_BUILD/$PKG_ADDON_ID/bin
@@ -323,6 +324,7 @@ addon() {
     cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
     cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
+    cp -P $LIBZSTD_DIR/.install_pkg/usr/lib/libzstd.so.1.4.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzstd.so.1
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
