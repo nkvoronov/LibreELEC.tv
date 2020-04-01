@@ -3,20 +3,14 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mesa"
-PKG_VERSION="19.2.4"
-PKG_SHA256="7550011dc9c840b973bfa4599a1120feaed3ea423c7d26300e94204d07391ab4"
+PKG_VERSION="20.0.2"
+PKG_SHA256="f05f99ff9a47f3d0fd5043be24803b989cbaddc372a12fb60b7bc859afb6dbea"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.mesa3d.org/"
 PKG_URL="https://github.com/mesa3d/mesa/archive/mesa-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain expat libdrm Mako:host"
 PKG_LONGDESC="Mesa is a 3-D graphics library with an API."
 PKG_TOOLCHAIN="meson"
-
-if listcontains "${GRAPHIC_DRIVERS}" "(lima|panfrost)"; then
-  PKG_VERSION="ef919d8dcb9272ad7b23f5dbd8b7fb2f83393b42" # master-19.3
-  PKG_SHA256="9b881e5c7617941ae89876cbb2c31982f19c7289353a5fdca4101f8b01ade69d"
-  PKG_URL="https://gitlab.freedesktop.org/mesa/mesa/-/archive/$PKG_VERSION/mesa-$PKG_VERSION.tar.gz"
-fi
 
 get_graphicdrivers
 
@@ -53,7 +47,6 @@ fi
 
 if [ "${LLVM_SUPPORT}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" elfutils llvm"
-  export LLVM_CONFIG="${SYSROOT_PREFIX}/usr/bin/llvm-config-host"
   PKG_MESON_OPTS_TARGET+=" -Dllvm=true"
 else
   PKG_MESON_OPTS_TARGET+=" -Dllvm=false"

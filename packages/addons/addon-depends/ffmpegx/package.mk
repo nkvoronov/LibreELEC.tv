@@ -9,7 +9,7 @@ PKG_SITE="https://ffmpeg.org"
 PKG_URL="https://ffmpeg.org/releases/ffmpeg-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain aom bzip2 gnutls libvorbis opus x264 zlib"
 PKG_LONGDESC="FFmpegx is an complete FFmpeg build to support encoding and decoding."
-PKG_BUILD_FLAGS="-gold"
+PKG_BUILD_FLAGS="-gold -sysroot"
 
 # Dependencies
 get_graphicdrivers
@@ -19,7 +19,11 @@ if [ "$KODIPLAYER_DRIVER" = "bcm2835-driver" ]; then
 fi
 
 if [ "$TARGET_ARCH" = "x86_64" ]; then
-  PKG_DEPENDS_TARGET+=" nasm:host intel-vaapi-driver x265"
+  PKG_DEPENDS_TARGET+=" nasm:host x265"
+
+  if listcontains "$GRAPHIC_DRIVERS" "(iris|i915|i965)"; then
+    PKG_DEPENDS_TARGET+=" intel-vaapi-driver"
+  fi
 fi
 
 if [[ ! $TARGET_ARCH = arm ]] || target_has_feature neon; then
@@ -175,8 +179,4 @@ configure_target() {
     `#Advanced options` \
     --disable-hardcoded-tables \
 
-}
-
-makeinstall_target() {
-  make install DESTDIR="$INSTALL/../.INSTALL_PKG"
 }

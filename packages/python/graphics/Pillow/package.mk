@@ -3,8 +3,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="Pillow"
-PKG_VERSION="6.2.0"
-PKG_SHA256="4548236844327a718ce3bb182ab32a16fa2050c61e334e959f554cac052fb0df"
+PKG_VERSION="7.0.0"
+PKG_SHA256="4d9ed9a64095e031435af120d3c910148067087541131e82b3e8db302f4c8946"
 PKG_LICENSE="BSD"
 PKG_SITE="http://www.pythonware.com/products/pil/"
 PKG_URL="https://files.pythonhosted.org/packages/source/${PKG_NAME:0:1}/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz"

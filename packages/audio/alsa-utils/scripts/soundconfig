@@ -119,6 +119,11 @@ else
 # Allwinner H3 Analog
   mixer $card 'Line Out' 0db on
 
+# Allwinner A20 Analog
+  mixer $card 'Power Amplifier' 0db
+  mixer $card 'Power Amplifier DAC' on
+  mixer $card 'Power Amplifier Mute' on
+
 # Allwinner A64 Analog
   mixer $card Headphone 0db on
   mixer $card 'AIF1 Slot 0 Digital DAC' on
@@ -135,6 +140,10 @@ else
   mixer $card 'FRDDR_B SRC 1 EN' on
   mixer $card 'SPDIFOUT SRC SEL' 'IN 1'
   mixer $card 'SPDIFOUT Playback' on
+
+# Amlogic GX HDMI and S/PDIF
+  mixer $card 'AIU HDMI CTRL SRC' 'I2S'
+  mixer $card 'AIU SPDIF SRC SEL' 'SPDIF'
 fi
 
 exit 0

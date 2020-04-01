@@ -82,7 +82,7 @@
 # build with UPnP support (yes / no)
   KODI_UPNP_SUPPORT="yes"
 
-# build with MySQL support (mysql / mariadb / none)
+# build with MySQL support (mariadb / none)
   KODI_MYSQL_SUPPORT="mariadb"
 
 # build xbmc with optical drive support (yes / no)
@@ -115,6 +115,9 @@
 # build and install OpenVPN support (yes / no)
   OPENVPN_SUPPORT="yes"
 
+# build and install WireGuard support (yes / no)
+  WIREGUARD_SUPPORT="yes"
+
 # build and install diskmounter support (udevil)
 # this service provide auto mounting support for external drives in the
 # mediacenter also automount internally drives at boottime via udev (yes / no)
@@ -135,7 +138,7 @@
 # Xorg Graphic drivers to use (all / i915,i965,r200,r300,r600,nvidia)
 # Space separated list is supported,
 # e.g. GRAPHIC_DRIVERS="i915 i965 r300 r600 radeonsi nvidia"
-  GRAPHIC_DRIVERS="r300 r600 radeonsi i915 i965 nvidia nvidia-legacy vmware virtio"
+  GRAPHIC_DRIVERS="r300 r600 radeonsi iris i915 i965 nvidia nvidia-legacy vmware virtio"
 
 # build and install remote support (yes / no)
   REMOTE_SUPPORT="yes"
@@ -192,9 +195,8 @@
 # Addon Server Url
   ADDON_SERVER_URL="https://addons.libreelec.tv"
 
-# set the addon dirs
-  ADDON_PATH="$ADDON_VERSION/${DEVICE:-$PROJECT}/$TARGET_ARCH"
-  ADDON_URL="$ADDON_SERVER_URL/$ADDON_PATH"
+# set the default addon project
+  ADDON_PROJECT="${DEVICE:-$PROJECT}"
 
 # Default size of system partition, in MB, eg. 512
   SYSTEM_SIZE=512
@@ -215,6 +217,7 @@
 
 # Settings package name - blank if not required
   DISTRO_PKG_SETTINGS="LibreELEC-settings"
+  DISTRO_PKG_SETTINGS_ID="service.libreelec.settings"
 
 # IR remote keymaps supported in default config
   IR_REMOTE_KEYMAPS="rc6_mce xbox_360 xbox_one"

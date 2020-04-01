@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="systemd"
-PKG_VERSION="243"
-PKG_SHA256="0611843c2407f8b125b1b7cb93533bdebd4ccf91c99dffa64ec61556a258c7d1"
+PKG_VERSION="245"
+PKG_SHA256="f34f1dc52b2dc60563c2deb6db86d78f6a97bceb29aa0511436844b2fc618040"
 PKG_LICENSE="LGPL2.1+"
 PKG_SITE="http://www.freedesktop.org/wiki/Software/systemd"
 PKG_URL="https://github.com/systemd/systemd/archive/v$PKG_VERSION.tar.gz"
@@ -25,8 +25,10 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dacl=false \
                        -Daudit=false \
                        -Dblkid=true \
+                       -Dfdisk=false \
                        -Dkmod=true \
                        -Dpam=false \
+                       -Dpwquality=false \
                        -Dmicrohttpd=false \
                        -Dlibcryptsetup=false \
                        -Dlibcurl=false \
@@ -37,6 +39,7 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dgcrypt=false \
                        -Dgnutls=false \
                        -Dopenssl=false \
+                       -Dp11kit=false \
                        -Delfutils=false \
                        -Dzlib=false \
                        -Dbzip2=false \
@@ -49,16 +52,20 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Ddefault-dnssec=no \
                        -Dimportd=false \
                        -Dremote=false \
-                       -Dutmp=false \
+                       -Dutmp=true \
                        -Dhibernate=false \
                        -Denvironment-d=false \
                        -Dbinfmt=false \
+                       -Drepart=false \
                        -Dcoredump=false \
                        -Dresolve=false \
                        -Dlogind=true \
                        -Dhostnamed=true \
                        -Dlocaled=false \
                        -Dmachined=false \
+                       -Dportabled=false \
+                       -Duserdb=false \
+                       -Dhomed=false \
                        -Dnetworkd=false \
                        -Dtimedated=false \
                        -Dtimesyncd=true \
@@ -84,6 +91,9 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dnss-systemd=false \
                        -Dman=false \
                        -Dhtml=false \
+                       -Dlink-udev-shared=true \
+                       -Dlink-systemctl-shared=true \
+                       -Dlink-networkd-shared=false \
                        -Dbashcompletiondir=no \
                        -Dzshcompletiondir=no \
                        -Dkmod-path=/usr/bin/kmod \
@@ -205,6 +215,7 @@ post_makeinstall_target() {
   cp $PKG_DIR/scripts/systemd-machine-id-setup $INSTALL/usr/bin
   cp $PKG_DIR/scripts/userconfig-setup $INSTALL/usr/bin
   cp $PKG_DIR/scripts/usercache-setup $INSTALL/usr/bin
+  cp $PKG_DIR/scripts/environment-setup $INSTALL/usr/bin
 
   # use systemd to set cpufreq governor and tunables
   find_file_path scripts/cpufreq && cp -PRv $FOUND_PATH $INSTALL/usr/bin
@@ -217,6 +228,7 @@ post_makeinstall_target() {
   # /etc/resolv.conf and /etc/hosts must be writable
   ln -sf /run/libreelec/resolv.conf $INSTALL/etc/resolv.conf
   ln -sf /run/libreelec/hosts $INSTALL/etc/hosts
+  ln -sf /run/libreelec/environment $INSTALL/etc/environment
 
   # provide 'halt', 'shutdown', 'reboot' & co.
   ln -sf /usr/bin/systemctl $INSTALL/usr/sbin/halt
@@ -276,6 +288,7 @@ post_install() {
   enable_service debugconfig.service
   enable_service userconfig.service
   enable_service usercache.service
+  enable_service envconfig.service
   enable_service kernel-overlays.service
   enable_service hwdb.service
   enable_service cpufreq.service

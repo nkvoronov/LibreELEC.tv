@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-mame2010"
-PKG_VERSION="70732f9137f6bb2bde4014746ea8bc613173dd1e"
-PKG_SHA256="36ab11541233c9a4240baf6f0a529d8d335dce23f25b66b950e18373fd8e65fb"
+PKG_VERSION="d3151837758eade73c85c28c20e7d2a8706f30c6"
+PKG_SHA256="e95bad0f9b0ee36f23f04ab4fd36bb7e977b17ddb586a4971f416c25d3b6c7da"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/mame2010-libretro"
 PKG_URL="https://github.com/libretro/mame2010-libretro/archive/$PKG_VERSION.tar.gz"
@@ -14,31 +14,31 @@ PKG_LIBNAME="mame2010_libretro.so"
 PKG_LIBPATH="$PKG_LIBNAME"
 PKG_LIBVAR="MAME2010_LIB"
 
-pre_make_target() {
+pre_configure_target() {
   export CFLAGS="$CFLAGS -fpermissive"
   export CXXFLAGS="$CXXFLAGS -fpermissive"
   export LD="$CXX"
-}
 
-make_target() {
   case $TARGET_CPU in
     arm1176jzf-s)
-      make platform=armv6-hardfloat-$TARGET_CPU
+      PKG_MAKE_OPTS_TARGET="platform=armv6-hardfloat-$TARGET_CPU"
       ;;
     cortex-a7|cortex-a9)
-      make platform=armv7-neon-hardfloat-$TARGET_CPU
+      PKG_MAKE_OPTS_TARGET="platform=armv7-neon-hardfloat-$TARGET_CPU"
       ;;
     *cortex-a53|cortex-a17)
       if [ "$TARGET_ARCH" = "aarch64" ]; then
-        make platform=aarch64
+        PKG_MAKE_OPTS_TARGET="platform=aarch64"
       else
-        make platform=armv7-neon-hardfloat-cortex-a9
+        PKG_MAKE_OPTS_TARGET="platform=armv7-neon-hardfloat-cortex-a9"
       fi
       ;;
-    x86-64)
-      make
-      ;;
   esac
+}
+
+pre_make_target() {
+  # precreate the build directories because they may be created too late
+  make ${PKG_MAKE_OPTS_TARGET} maketree
 }
 
 makeinstall_target() {

@@ -13,20 +13,14 @@ PKG_PATCH_DIRS="$KODI_VENDOR"
 
 case $KODI_VENDOR in
   raspberrypi)
-    PKG_VERSION="60bef867ee45a6eba15abc7cd021220cc30d6910" # kodi19-pre-Python3
-    PKG_SHA256="1804b2e494472810a71e604fc9e05b2a47fe7d0d775e42f91ac180ec417dde9a"
+    PKG_VERSION="78f79b5700b90f402da48190ee00dd08d3d6c594"
+    PKG_SHA256="e4638c5bcd0325709bb5eaa5ca47765652df89bd91446558b9a936740cc4c95c"
     PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
-  rockchip)
-    PKG_VERSION="rockchip_18.4-Leia"
-    PKG_SHA256="16a64493ba1c91f22064444970147b505e6d38d368012f4ea88c68c1416a2ef2"
-    PKG_URL="https://github.com/kwiboo/xbmc/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
-    ;;
   *)
-    PKG_VERSION="29f64ce850040abc9972fcf015a02a3804bdf8c6"
-    PKG_SHA256="1ee23b6d1b72f4224f9b0011195c65357cdab88579144e852967f6d3dd298c6c"
+    PKG_VERSION="3375a26606b3a6913bea18f4ef7b85a72b724915"
+    PKG_SHA256="995c9f78143d1c96a0ae1d6dc4ad8c49e9a2f24047f9569130675dfc08797cb2"
     PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
     ;;
@@ -48,7 +42,7 @@ configure_package() {
 
   if [ "$DISPLAYSERVER" = "x11" ]; then
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libX11 libXext libdrm libXrandr"
-    KODI_XORG="-DCORE_PLATFORM_NAME=x11"
+    KODI_XORG="-DCORE_PLATFORM_NAME=x11 -DX11_RENDER_SYSTEM=gl"
   elif [ "$DISPLAYSERVER" = "weston" ]; then
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET wayland waylandpp"
     CFLAGS="$CFLAGS -DMESA_EGL_NO_X11_HEADERS"
@@ -203,8 +197,8 @@ configure_package() {
       KODI_PLAYER="-DCORE_PLATFORM_NAME=rbpi"
     elif [ "$OPENGLES_SUPPORT" = yes -a "$KODIPLAYER_DRIVER" = "$OPENGLES" ]; then
       KODI_PLAYER="-DCORE_PLATFORM_NAME=gbm -DGBM_RENDER_SYSTEM=gles"
-      CFLAGS="$CFLAGS -DMESA_EGL_NO_X11_HEADERS"
-      CXXFLAGS="$CXXFLAGS -DMESA_EGL_NO_X11_HEADERS"
+      CFLAGS="$CFLAGS -DEGL_NO_X11"
+      CXXFLAGS="$CXXFLAGS -DEGL_NO_X11"
     fi
   fi
 
@@ -219,9 +213,8 @@ configure_package() {
                          -DPYTHON_EXECUTABLE=$TOOLCHAIN/bin/$PKG_PYTHON_VERSION \
                          -DPYTHON_INCLUDE_DIRS=$SYSROOT_PREFIX/usr/include/$PKG_PYTHON_VERSION \
                          -DGIT_VERSION=$PKG_VERSION \
-                         -DWITH_FFMPEG=$(get_build_dir ffmpeg) \
+                         -DFFMPEG_PATH=$SYSROOT_PREFIX/usr \
                          -DENABLE_INTERNAL_FFMPEG=OFF \
-                         -DFFMPEG_INCLUDE_DIRS=$SYSROOT_PREFIX/usr \
                          -DENABLE_INTERNAL_CROSSGUID=OFF \
                          -DENABLE_UDEV=ON \
                          -DENABLE_DBUS=ON \
@@ -258,6 +251,12 @@ pre_configure_target() {
 }
 
 post_makeinstall_target() {
+  mkdir -p $INSTALL/.noinstall
+    mv $INSTALL/usr/share/kodi/addons/skin.estouchy \
+       $INSTALL/usr/share/kodi/addons/skin.estuary \
+       $INSTALL/usr/share/kodi/addons/service.xbmc.versioncheck \
+       $INSTALL/.noinstall
+
   rm -rf $INSTALL/usr/bin/kodi
   rm -rf $INSTALL/usr/bin/kodi-standalone
   rm -rf $INSTALL/usr/bin/xbmc
@@ -266,10 +265,6 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/share/applications
   rm -rf $INSTALL/usr/share/icons
   rm -rf $INSTALL/usr/share/pixmaps
-  rm -rf $INSTALL/usr/share/kodi/addons/skin.estouchy
-  rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary
-  rm -rf $INSTALL/usr/share/kodi/addons/service.xbmc.versioncheck
-  rm -rf $INSTALL/usr/share/kodi/addons/visualization.vortex
   rm -rf $INSTALL/usr/share/xsessions
 
   mkdir -p $INSTALL/usr/lib/kodi
@@ -302,6 +297,9 @@ post_makeinstall_target() {
     cp -R $PKG_DIR/config/repository.kodi.game $INSTALL/usr/share/kodi/addons
 
   mkdir -p $INSTALL/usr/share/kodi/config
+
+  ln -sf /run/libreelec/cacert.pem $INSTALL/usr/share/kodi/system/certs/cacert.pem
+
   mkdir -p $INSTALL/usr/share/kodi/system/settings
 
   $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/guisettings.xml \
@@ -332,7 +330,9 @@ post_makeinstall_target() {
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.libreelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.openelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.libreelec.tv" $ADDON_MANIFEST
-  xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.libreelec.settings" $ADDON_MANIFEST
+  if [ -n "$DISTRO_PKG_SETTINGS" ]; then
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "$DISTRO_PKG_SETTINGS_ID" $ADDON_MANIFEST
+  fi
 
   if [ "$DRIVER_ADDONS_SUPPORT" = "yes" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.program.driverselect" $ADDON_MANIFEST
