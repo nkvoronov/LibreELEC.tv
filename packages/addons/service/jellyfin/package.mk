@@ -2,9 +2,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin"
-PKG_VERSION="10.5.0"
-PKG_SHA256="979ae11e8ef975e9fd00992faccf5b654aac08753cef5f2a6412b9320a95d4e4"
-PKG_REV="12"
+PKG_VERSION="10.5.2"
+PKG_SHA256="597a4ae735c390c74f0ea2282523ffe903d8818cce777db12d7901a5f6a5d461"
+PKG_REV="13"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
