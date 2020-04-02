@@ -4,24 +4,24 @@
 case "$ARCH" in
   "aarch64")
     PKG_NC_ARCH="arm64"
-    PKG_SHA256="572d45c32e24c751b8dfe6ef9f4456f0b6942ebf24dea5d9597f1fbd7d3592c2"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/ec985ae1-e15c-4858-b586-de5f78956573/f585f8ffc303bbca6a711ecd61417a40/aspnetcore-runtime-3.1.2-linux-arm64.tar.gz"
+    PKG_SHA256="9dab4863b0203bf7b6b59f3533e55f7dda3624fe209eef3199510e917df9da13"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/d5c6e9d7-25b9-47ac-9d67-35ac65211ad3/c8f4ccd0dc02ca8229ba43ecbe84294b/aspnetcore-runtime-3.1.3-linux-arm64.tar.gz"
     ;;
   "arm")
     PKG_NC_ARCH="arm"
-    PKG_SHA256="217bafd4d8ff50d1f84d37f4456326d1690f670b8dc747b17e8a9d294adae841"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/8ccacf09-e5eb-481b-a407-2398b08ac6ac/1cef921566cb9d1ca8c742c9c26a521c/aspnetcore-runtime-3.1.2-linux-arm.tar.gz"
+    PKG_SHA256="467490cb72058017e557aa8c20c9c5f45d6f3f23d75c530cedb819dea2f7270d"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/b68cde83-05c7-4421-ad9a-3e6f2cc53824/876dbfc9b4521d3ca89a226c6438ffc1/aspnetcore-runtime-3.1.3-linux-arm.tar.gz"
     ;;
   "x86_64")
     PKG_NC_ARCH="x64"
-    PKG_SHA256="d3ec949528d698d9cd7016b9276b4c01a949c4970d168295b6506d7399d608f1"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/2d72ee67-ac4d-42c6-97d9-a26a28201fc8/977ad14b99b6ed03dcefd6655789e43a/aspnetcore-runtime-3.1.2-linux-x64.tar.gz"
+    PKG_SHA256="34cc5c7f16b45234603d9f352a1bd3997d5e07d7380c49266860f75dbc29146d"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/7faca87b-7526-4dcd-ae23-4559d2c51ce3/7db1f314c733191ea43e1757e3b2583d/aspnetcore-runtime-3.1.3-linux-x64.tar.gz"
     ;;
 esac
 
 PKG_NAME="aspnet-runtime3"
-PKG_VERSION="3.1.2"
-PKG_REV="110"
+PKG_VERSION="3.1.3"
+PKG_REV="111"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://dotnet.github.io/"
