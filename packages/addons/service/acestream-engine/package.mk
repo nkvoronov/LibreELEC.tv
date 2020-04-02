@@ -2,9 +2,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="a2953358796460331c36ba9455ecf2cae17baa9e"
+PKG_VERSION="fe5682feff111c857145bf38fea8f4ac8559b3f1"
 PKG_VERSION_NUM="3.1.49"
-PKG_REV="14"
+PKG_REV="15"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
