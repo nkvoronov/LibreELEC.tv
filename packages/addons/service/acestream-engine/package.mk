@@ -2,9 +2,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="acestream-engine"
-PKG_VERSION="b78eb20349630883e2c57ac21c508688fb8b4b4b"
-PKG_VERSION_NUM="3.1.35"
-PKG_REV="13"
+PKG_VERSION="a2953358796460331c36ba9455ecf2cae17baa9e"
+PKG_VERSION_NUM="3.1.49"
+PKG_REV="14"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://wiki.acestream.org/wiki/index.php/AceStream_3.0"
@@ -28,7 +28,7 @@ addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     cp -PR $PKG_BUILD/acestream/lib/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/lxml-3.7.2-py2.7-linux-x86_64.egg
-    rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/m2crypto.egg
+    rm $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib/M2Crypto-0.35.2-py2.7-linux-x86_64.egg
 
     cp -PR $PKG_BUILD/libs/openssl/*.so.* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
     cp -PR $PKG_BUILD/libs/setuptools/* $ADDON_BUILD/$PKG_ADDON_ID/share/acestream/lib
