@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin"
-PKG_VERSION="10.5.3"
-PKG_SHA256="8e8e1bb5f9e07db13e9de0ec138473c7336d98359540bf77249cba7c1a23d056"
-PKG_REV="16"
+PKG_VERSION="10.5.4"
+PKG_SHA256="19d3d2957459bbd5093018fd1dacf84b64871c22ccccc2d60e831987421a8223"
+PKG_REV="17"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
-PKG_URL="https://www.dropbox.com/s/pshah8adr2mhmg1/jellyfin-${PKG_VERSION}.tar.gz"
+PKG_URL="https://www.dropbox.com/s/pndglnbkiqz1ba9/jellyfin-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="service"
 PKG_SHORTDESC="Jellyfin Server: The Free Software Media System"
