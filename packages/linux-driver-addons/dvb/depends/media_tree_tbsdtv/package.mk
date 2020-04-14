@@ -3,7 +3,7 @@
 
 PKG_NAME="media_tree_tbsdtv"
 PKG_VERSION="79e3ecf11c4d705244a3e6e241cdbd5824007231"
-#PKG_SHA256="e6df3ad385bd05015dfd8e94d72bd08d6eeb39f72415657e72b6b8b544c85ce6"
+PKG_SHA256="8f5ba9f09e66badaab9f73c1bb5d99f86d9d618a8593085a2188d8a88ee6e8a6"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/linux_media.git"
 PKG_URL="https://github.com/tbsdtv/linux_media/archive/$PKG_VERSION.tar.gz"
