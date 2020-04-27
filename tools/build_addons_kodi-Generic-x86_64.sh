@@ -12,5 +12,8 @@ PROJECT=Generic ARCH=x86_64 ./scripts/create_addon audioencoder.wav
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vfs.rar
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vfs.libarchive
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vfs.sftp
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon imagedecoder.heif
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon imagedecoder.mpo
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon imagedecoder.raw
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon inputstream.rtmp
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon inputstream.adaptive
