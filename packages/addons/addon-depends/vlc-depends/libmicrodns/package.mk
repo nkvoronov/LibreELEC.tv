@@ -2,15 +2,14 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libmicrodns"
-PKG_VERSION="0.0.10"
-PKG_SHA256="623e3077bd940816215d9707c217dc8f957d3dee9b7fd3ea7aaa4de0cd881833"
+PKG_VERSION="0.1.2"
+PKG_SHA256="2b4d733f9472e11b71d66208c025de2e1f4a1087814bdc1e12e1aa78aca670e5"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/videolabs/libmicrodns"
 PKG_URL="https://github.com/videolabs/libmicrodns/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain glibc"
-PKG_TOOLCHAIN="autotools"
 
-PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
+# Meson version is 0.49.1 but project requires >= 0.50.0 !!!!
 
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/bin

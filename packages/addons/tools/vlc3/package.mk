@@ -2,15 +2,15 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc3"
-PKG_VERSION="3.0.8"
-PKG_SHA256="e0149ef4a20a19b9ecd87309c2d27787ee3f47dfd47c6639644bc1f6fd95bdf6"
-PKG_REV="71"
+PKG_VERSION="3.0.10"
+PKG_SHA256="a966abfc7f3b2ff3adaa130306ecaf5d6ad3b6dc73385fc9ab0c1204029d4c31"
+PKG_REV="72"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/vlc/$PKG_VERSION/vlc-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libxpm libdca lua libmatroska taglib libmatroska ffmpegx faad2 libmad libmpeg2 xcb-util-keysyms libtar libXinerama libarchive qt5 \
-fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libmicrodns libdvdcss samba fluidsynth \
+fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libdvdcss samba fluidsynth \
 libssh2 mesa libnfs mpg123 libdvdread libdvdnav libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
 alsa-lib libsamplerate lirc chromaprint ncursesw libgoom2 gnutls"
 PKG_SECTION="tools"
@@ -108,7 +108,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-avahi \
               --enable-mtp \
               --enable-upnp \
-              --enable-microdns \
+              --disable-microdns \
               --enable-libxml2 \
               --disable-libgcrypt \
               --enable-gnutls \
@@ -167,7 +167,7 @@ addon() {
   LIB_DVDREAD=$(get_build_dir libdvdread)
   LIB_DVDNAV=$(get_build_dir libdvdnav)
   LIB_GME=$(get_build_dir libgme)
-  LIB_MDN=$(get_build_dir libmicrodns)
+# LIB_MDN=$(get_build_dir libmicrodns)
   LIB_MPEG2=$(get_build_dir libmpeg2)
   LIB_TWOLAME=$(get_build_dir twolame)
   LIB_UPNP=$(get_build_dir libupnp)
@@ -269,7 +269,7 @@ addon() {
     cp -P $LIB_DVDREAD/.install_pkg/usr/lib/libdvdread.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdread.so.4
     cp -P $LIB_DVDNAV/.install_pkg/usr/lib/libdvdnav.so.4.2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libdvdnav.so.4
     cp -P $LIB_GME/.install_pkg/usr/lib/libgme.so.0.6.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgme.so.0
-    cp -P $LIB_MDN/.install_pkg/usr/lib/libmicrodns.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmicrodns.so.0
+#   cp -P $LIB_MDN/.install_pkg/usr/lib/libmicrodns.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmicrodns.so.0
     cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2.so.0.1.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2.so.0
     cp -P $LIB_MPEG2/.install_pkg/usr/lib/libmpeg2convert.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libmpeg2convert.so.0
     cp -P $LIB_TWOLAME/.install_pkg/usr/lib/libtwolame.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libtwolame.so.0
