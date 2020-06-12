@@ -80,54 +80,54 @@ configure_target() {
     export GOOS=linux
     export CGO_ENABLED=1
     export CGO_NO_EMULATION=1
-    export CGO_CFLAGS=$CFLAGS
+    export CGO_CFLAGS=${CFLAGS}
     export LDFLAGS="-w -linkmode external -extldflags -Wl,--unresolved-symbols=ignore-in-shared-libs -extld $CC"
-    export GOLANG=$TOOLCHAIN/lib/golang/bin/go
-    export GOPATH=$PKG_BUILD/.gopath_cli:$PKG_BUILD/.gopath
-    export GOROOT=$TOOLCHAIN/lib/golang
-    export PATH=$PATH:$GOROOT/bin
+    export GOLANG=${TOOLCHAIN}/lib/golang/bin/go
+    export GOPATH=${PKG_BUILD}/.gopath_cli:${PKG_BUILD}/.gopath
+    export GOROOT=${TOOLCHAIN}/lib/golang
+    export PATH=${PATH}:${GOROOT}/bin
 
-    mkdir -p $PKG_BUILD/.gopath
-    mkdir -p $PKG_BUILD/.gopath_cli
+    mkdir -p ${PKG_BUILD}/.gopath
+    mkdir -p ${PKG_BUILD}/.gopath_cli
 
-    PKG_ENGINE_PATH=$PKG_BUILD/components/engine
-    PKG_CLI_PATH=$PKG_BUILD/components/cli
+    PKG_ENGINE_PATH=${PKG_BUILD}/components/engine
+    PKG_CLI_PATH=${PKG_BUILD}/components/cli
 
-    if [ -d $PKG_ENGINE_PATH/vendor ]; then
-      mv $PKG_ENGINE_PATH/vendor $PKG_BUILD/.gopath/src
+    if [ -d ${PKG_ENGINE_PATH}/vendor ]; then
+      mv ${PKG_ENGINE_PATH}/vendor ${PKG_BUILD}/.gopath/src
     fi
 
-    if [ -d $PKG_CLI_PATH/vendor ]; then
-      mv $PKG_CLI_PATH/vendor $PKG_BUILD/.gopath_cli/src
+    if [ -d ${PKG_CLI_PATH}/vendor ]; then
+      mv ${PKG_CLI_PATH}/vendor ${PKG_BUILD}/.gopath_cli/src
     fi
 
     # Fix missing/incompatible .go files
-    cp -rf $PKG_BUILD/.gopath/src/github.com/moby/buildkit/frontend/* $PKG_BUILD/.gopath_cli/src/github.com/moby/buildkit/frontend
-    cp -rf $PKG_BUILD/.gopath/src/github.com/moby/buildkit/frontend/gateway/* $PKG_BUILD/.gopath_cli/src/github.com/moby/buildkit/frontend/gateway
-    cp -rf $PKG_BUILD/.gopath/src/github.com/moby/buildkit/solver/* $PKG_BUILD/.gopath_cli/src/github.com/moby/buildkit/solver
-    cp -rf $PKG_BUILD/.gopath/src/github.com/moby/buildkit/util/progress/* $PKG_BUILD/.gopath_cli/src/github.com/moby/buildkit/util/progress
-    cp -rf $PKG_BUILD/.gopath/src/github.com/docker/swarmkit/manager/* $PKG_BUILD/.gopath_cli/src/github.com/docker/swarmkit/manager
-    cp -rf $PKG_BUILD/.gopath/src/github.com/coreos/etcd/raft/* $PKG_BUILD/.gopath_cli/src/github.com/coreos/etcd/raft
-    cp -rf $PKG_BUILD/.gopath/src/golang.org/x/* $PKG_BUILD/.gopath_cli/src/golang.org/x
-    cp -rf $PKG_BUILD/.gopath/src/github.com/opencontainers/runtime-spec/specs-go/* $PKG_BUILD/.gopath_cli/src/github.com/opencontainers/runtime-spec/specs-go
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/moby/buildkit/frontend/*               ${PKG_BUILD}/.gopath_cli/src/github.com/moby/buildkit/frontend
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/moby/buildkit/frontend/gateway/*       ${PKG_BUILD}/.gopath_cli/src/github.com/moby/buildkit/frontend/gateway
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/moby/buildkit/solver/*                 ${PKG_BUILD}/.gopath_cli/src/github.com/moby/buildkit/solver
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/moby/buildkit/util/progress/*          ${PKG_BUILD}/.gopath_cli/src/github.com/moby/buildkit/util/progress
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/docker/swarmkit/manager/*              ${PKG_BUILD}/.gopath_cli/src/github.com/docker/swarmkit/manager
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/coreos/etcd/raft/*                     ${PKG_BUILD}/.gopath_cli/src/github.com/coreos/etcd/raft
+    cp -rf ${PKG_BUILD}/.gopath/src/golang.org/x/*                                    ${PKG_BUILD}/.gopath_cli/src/golang.org/x
+    cp -rf ${PKG_BUILD}/.gopath/src/github.com/opencontainers/runtime-spec/specs-go/* ${PKG_BUILD}/.gopath_cli/src/github.com/opencontainers/runtime-spec/specs-go
 
-    rm -rf $PKG_BUILD/.gopath_cli/src/github.com/containerd/containerd
-    mkdir -p $PKG_BUILD/.gopath_cli/src/github.com/containerd/containerd
-    cp -rf $PKG_BUILD/.gopath/src/github.com/containerd/containerd/* $PKG_BUILD/.gopath_cli/src/github.com/containerd/containerd
+    rm -rf   ${PKG_BUILD}/.gopath_cli/src/github.com/containerd/containerd
+    mkdir -p ${PKG_BUILD}/.gopath_cli/src/github.com/containerd/containerd
+    cp -rf   ${PKG_BUILD}/.gopath/src/github.com/containerd/containerd/* ${PKG_BUILD}/.gopath_cli/src/github.com/containerd/containerd
 
-    rm -rf $PKG_BUILD/.gopath_cli/src/github.com/containerd/continuity
-    mkdir -p $PKG_BUILD/.gopath_cli/src/github.com/containerd/continuity
-    cp -rf $PKG_BUILD/.gopath/src/github.com/containerd/continuity/* $PKG_BUILD/.gopath_cli/src/github.com/containerd/continuity
+    rm -rf   ${PKG_BUILD}/.gopath_cli/src/github.com/containerd/continuity
+    mkdir -p ${PKG_BUILD}/.gopath_cli/src/github.com/containerd/continuity
+    cp -rf   ${PKG_BUILD}/.gopath/src/github.com/containerd/continuity/* ${PKG_BUILD}/.gopath_cli/src/github.com/containerd/continuity
 
-    mkdir -p $PKG_BUILD/.gopath_cli/src/github.com/docker/docker/builder
-    cp -rf $PKG_ENGINE_PATH/builder/* $PKG_BUILD/.gopath_cli/src/github.com/docker/docker/builder
+    mkdir -p ${PKG_BUILD}/.gopath_cli/src/github.com/docker/docker/builder
+    cp -rf   ${PKG_ENGINE_PATH}/builder/* ${PKG_BUILD}/.gopath_cli/src/github.com/docker/docker/builder
 
-    if [ ! -L $PKG_BUILD/.gopath/src/github.com/docker/docker ];then
-      ln -fs $PKG_ENGINE_PATH $PKG_BUILD/.gopath/src/github.com/docker/docker
+    if [ ! -L ${PKG_BUILD}/.gopath/src/github.com/docker/docker ];then
+      ln -fs  ${PKG_ENGINE_PATH} ${PKG_BUILD}/.gopath/src/github.com/docker/docker
     fi
 
-    if [ ! -L $PKG_BUILD/.gopath_cli/src/github.com/docker/cli ];then
-      ln -fs $PKG_CLI_PATH $PKG_BUILD/.gopath_cli/src/github.com/docker/cli
+    if [ ! -L ${PKG_BUILD}/.gopath_cli/src/github.com/docker/cli ];then
+      ln -fs ${PKG_CLI_PATH} ${PKG_BUILD}/.gopath_cli/src/github.com/docker/cli
     fi
 
     # used for docker version
@@ -135,9 +135,9 @@ configure_target() {
     export VERSION=${PKG_VERSION}
     export BUILDTIME="$(date --utc)"
 
-    cd $PKG_ENGINE_PATH
+    cd ${PKG_ENGINE_PATH}
     bash hack/make/.go-autogen
-    cd $PKG_BUILD
+    cd ${PKG_BUILD}
   fi
 }
 
@@ -147,8 +147,8 @@ make_target() {
     PKG_CLI_FLAGS="-X 'github.com/docker/cli/cli.Version=${VERSION}'"
     PKG_CLI_FLAGS="${PKG_CLI_FLAGS} -X 'github.com/docker/cli/cli.GitCommit=${GITCOMMIT}'"
     PKG_CLI_FLAGS="${PKG_CLI_FLAGS} -X 'github.com/docker/cli/cli.BuildTime=${BUILDTIME}'"
-    $GOLANG build -v -o bin/docker -a -tags "$DOCKER_BUILDTAGS" -ldflags "$LDFLAGS ${PKG_CLI_FLAGS}" ./components/cli/cmd/docker
-    $GOLANG build -v -o bin/dockerd -a -tags "$DOCKER_BUILDTAGS" -ldflags "$LDFLAGS" ./components/engine/cmd/dockerd
+    ${GOLANG} build -v -o bin/docker -a -tags "${DOCKER_BUILDTAGS}" -ldflags "${LDFLAGS} ${PKG_CLI_FLAGS}" ./components/cli/cmd/docker
+    ${GOLANG} build -v -o bin/dockerd -a -tags "${DOCKER_BUILDTAGS}" -ldflags "${LDFLAGS}" ./components/engine/cmd/dockerd
   fi
 }
 
@@ -157,24 +157,24 @@ makeinstall_target() {
 }
 
 addon() {
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
   if [ "$PKG_STABLE" = "yes" ]; then
-    cp -P $PKG_BUILD/* $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P ${PKG_BUILD}/* ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
   else
-    cp -P $PKG_BUILD/bin/docker $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp -P $PKG_BUILD/bin/dockerd $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp -P ${PKG_BUILD}/bin/docker ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp -P ${PKG_BUILD}/bin/dockerd ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
 
     # containerd
-    cp -P $(get_build_dir containerd)/bin/containerd $ADDON_BUILD/$PKG_ADDON_ID/bin/containerd
-    cp -P $(get_build_dir containerd)/bin/containerd-shim $ADDON_BUILD/$PKG_ADDON_ID/bin/containerd-shim
+    cp -P $(get_build_dir containerd)/bin/containerd ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/containerd
+    cp -P $(get_build_dir containerd)/bin/containerd-shim ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/containerd-shim
 
     # libnetwork
-    cp -P $(get_build_dir libnetwork)/bin/docker-proxy $ADDON_BUILD/$PKG_ADDON_ID/bin/docker-proxy
+    cp -P $(get_build_dir libnetwork)/bin/docker-proxy ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/docker-proxy
 
     # runc
-    cp -P $(get_build_dir runc)/bin/runc $ADDON_BUILD/$PKG_ADDON_ID/bin/runc
+    cp -P $(get_build_dir runc)/bin/runc ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/runc
 
     # tini
-    cp -P $(get_build_dir tini)/.$TARGET_NAME/tini-static $ADDON_BUILD/$PKG_ADDON_ID/bin/docker-init
+    cp -P $(get_build_dir tini)/.${TARGET_NAME}/tini-static ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/docker-init
   fi
 }
