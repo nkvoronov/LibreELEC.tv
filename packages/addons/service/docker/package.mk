@@ -17,6 +17,7 @@ else
   PKG_REV="126"
   PKG_URL="https://github.com/docker/docker-ce/archive/v${PKG_VERSION}.tar.gz"
 fi
+PKG_ARCH="any"
 PKG_LICENSE="ASL"
 PKG_SITE="http://www.docker.com/"
 PKG_DEPENDS_TARGET="toolchain systemd"
@@ -55,14 +56,14 @@ configure_target() {
                              exclude_graphdriver_btrfs \
                              journald"
 
-    case $TARGET_ARCH in
+    case ${TARGET_ARCH} in
       x86_64)
         export GOARCH=amd64
         ;;
       arm)
         export GOARCH=arm
 
-        case $TARGET_CPU in
+        case ${TARGET_CPU} in
           arm1176jzf-s)
             export GOARM=6
             ;;
