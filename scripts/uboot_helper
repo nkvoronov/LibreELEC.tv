@@ -112,6 +112,10 @@ devices = \
         'dtb': 'sun50i-h5-orangepi-pc2.dtb',
         'config': 'orangepi_pc2_defconfig'
       },
+      'tritium-h5': {
+        'dtb': 'sun50i-h5-libretech-all-h3-cc.dtb',
+        'config': 'libretech_all_h3_cc_h5_defconfig'
+      },
     },
     'H6': {
       'beelink-gs1' : {
@@ -122,12 +126,20 @@ devices = \
         'dtb': 'sun50i-h6-orangepi-3.dtb',
         'config': 'orangepi_3_defconfig'
       },
+      'orangepi-lite2': {
+        'dtb': 'sun50i-h6-orangepi-lite2.dtb',
+        'config': 'orangepi_lite2_defconfig'
+      },
       'orangepi-one-plus': {
         'dtb': 'sun50i-h6-orangepi-one-plus.dtb',
         'config': 'orangepi_one_plus_defconfig'
       },
       'pine-h64': {
         'dtb': 'sun50i-h6-pine-h64.dtb',
+        'config': 'pine_h64_defconfig'
+      },
+      'pine-h64-model-b': {
+        'dtb': 'sun50i-h6-pine-h64-model-b.dtb',
         'config': 'pine_h64_defconfig'
       },
       'tanix-tx6' : {

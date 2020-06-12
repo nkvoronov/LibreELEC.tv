@@ -23,14 +23,14 @@ case "$LINUX" in
     PKG_PATCH_DIRS="amlogic"
     ;;
   raspberrypi)
-    PKG_VERSION="67d4589da4940159e2ded20e4bf5fa90b370b4c3" # 5.4.28
-    PKG_SHA256="7ece38b077d609adf0c5e0504469ccfaa4c0309e702d7a637674748d8185cf7f"
+    PKG_VERSION="7048ac9fd3b918d83a71caf5c94bb061a2866794" # 5.4.42
+    PKG_SHA256="758eaeab008092013eb79ac5cda422f8d49cf76245910887ca9c27eb0d4ccf49"
     PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="5.6"
-    PKG_SHA256="e342b04a2aa63808ea0ef1baab28fc520bd031ef8cf93d9ee4a31d4058fcb622"
+    PKG_VERSION="5.6.6"
+    PKG_SHA256="6484ced005e4be5696d6ab0438a9674b9eac89831b4019822f1b0155e7a66bd4"
     PKG_URL="https://www.kernel.org/pub/linux/kernel/v5.x/$PKG_NAME-$PKG_VERSION.tar.xz"
     PKG_PATCH_DIRS="default"
     ;;
@@ -110,6 +110,11 @@ post_patch() {
       sed -e "s|^CONFIG_DRM_LIMA=.*$|# CONFIG_DRM_LIMA is not set|" -i $PKG_BUILD/.config
       sed -e "s|^CONFIG_DRM_PANFROST=.*$|# CONFIG_DRM_PANFROST is not set|" -i $PKG_BUILD/.config
     fi
+
+    # disable wireguard support if not enabled
+    if [ ! "$WIREGUARD_SUPPORT" = yes ]; then
+      sed -e "s|^CONFIG_WIREGUARD=.*$|# CONFIG_WIREGUARD is not set|" -i $PKG_BUILD/.config
+    fi
   fi
 }
 
@@ -149,7 +154,7 @@ pre_make_target() {
   if [ "$TARGET_ARCH" = "x86_64" ]; then
     # copy some extra firmware to linux tree
     mkdir -p $PKG_BUILD/external-firmware
-      cp -a $(get_build_dir kernel-firmware)/{amdgpu,amd-ucode,i915,radeon,e100,rtl_nic} $PKG_BUILD/external-firmware
+      cp -a $(get_build_dir kernel-firmware)/.copied-firmware/{amdgpu,amd-ucode,i915,radeon,e100,rtl_nic} $PKG_BUILD/external-firmware
 
     cp -a $(get_build_dir intel-ucode)/intel-ucode $PKG_BUILD/external-firmware
 
@@ -260,7 +265,8 @@ makeinstall_target() {
     rm -f $INSTALL/usr/share/bootloader/bcm283*.dtb
 
     # install overlay dtbs
-    for dtb in arch/$TARGET_KERNEL_ARCH/boot/dts/overlays/*.dtbo; do
+    for dtb in arch/$TARGET_KERNEL_ARCH/boot/dts/overlays/*.dtb \
+               arch/$TARGET_KERNEL_ARCH/boot/dts/overlays/*.dtbo; do
       cp $dtb $INSTALL/usr/share/bootloader/overlays 2>/dev/null || :
     done
     cp -p arch/$TARGET_KERNEL_ARCH/boot/dts/overlays/README $INSTALL/usr/share/bootloader/overlays

@@ -23,7 +23,11 @@ if [ "$OPENVPN_SUPPORT" = "yes" ]; then
 fi
 
 if [ "$WIREGUARD_SUPPORT" = "yes" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET wireguard-tools wireguard-linux-compat"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET wireguard-tools"
+  # projects using Linux 5.6+ can use the in-kernel module
+  if [ "$LINUX" = "raspberrypi" ]; then
+    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET wireguard-linux-compat"
+  fi
 fi
 
 # nss needed by inputstream.adaptive, chromium etc.
