@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.oauth2client"
-PKG_VERSION="4.1.2"
-PKG_SHA256="71490172370b03e497edb41fa2ff719f34a701170cc42d11cc306d3b8356a11a"
+PKG_VERSION="4.1.3"
+PKG_SHA256="2e6d4219a87fcdd09c7287c25759e28c4c5ce538785341f08dab4428ff13e737"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/leia/$PKG_NAME/$PKG_NAME-$PKG_VERSION.zip"
@@ -17,7 +17,6 @@ post_install() {
     cp -PR $PKG_BUILD/* $INSTALL/usr/share/kodi/addons/$PKG_NAME
 
   rm $INSTALL/usr/share/kodi/addons/$PKG_NAME/README.md
-  rm $INSTALL/usr/share/kodi/addons/$PKG_NAME/LICENSE.txt
 
   python -Wi -t -B $TOOLCHAIN/lib/python2.7/compileall.py $INSTALL/usr/share/kodi/addons/$PKG_NAME/lib/ -f
   rm -rf `find $INSTALL/usr/share/kodi/addons/$PKG_NAME/lib/ -name "*.py"`
