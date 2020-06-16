@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="liblivemedia"
-PKG_VERSION="2018.12.14"
-PKG_SHA256="8dc31f76909602c3c07c8f876237e6ab7ac674d00f1bb065eda20e719f772a47"
+PKG_VERSION="2019.11.06"
+PKG_SHA256="a512071d1c6dd2caf16ecec0aa2c24f0b1cc4fe789e96adc927ee1fe29be493a"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.live555.com/liveMedia"
 PKG_URL="https://download.videolan.org/pub/contrib/live555/live.$PKG_VERSION.tar.gz"
