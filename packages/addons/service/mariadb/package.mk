@@ -2,14 +2,12 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mariadb"
-#PKG_VERSION="10.4.12"
 PKG_VERSION="10.4.7"
 PKG_REV="213"
-#PKG_SHA256="fef1e1d38aa253dd8a51006bd15aad184912fce31c446bb69434fcde735aa208"
 PKG_SHA256="c8e6a6d0bb4f22c416ed675d24682a3ecfa383c5283efee70c8edf131374d817"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
-PKG_URL="https://downloads.mariadb.org/interstitial/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_URL="https://www.dropbox.com/s/rpcw117oegk6trn/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_HOST="toolchain ncurses:host"
 PKG_DEPENDS_TARGET="toolchain binutils bzip2 libaio libxml2 lzo ncurses openssl systemd zlib zstd lz4 mariadb:host"
 PKG_SHORTDESC="MariaDB is a community-developed fork of the MySQL."
