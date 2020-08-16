@@ -24,5 +24,4 @@ fi
 
 pre_configure_target() {
   export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
-  sed -i "s|\${PROJECTM_PREFIX}|$SYSROOT_PREFIX\/usr|" -i $PKG_BUILD/FindProjectM.cmake
 }
