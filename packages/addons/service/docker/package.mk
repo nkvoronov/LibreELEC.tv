@@ -27,7 +27,7 @@ PKG_LONGDESC="Docker containers can encapsulate any payload, and will run consis
 PKG_TOOLCHAIN="manual"
 
 if [ "$PKG_STABLE" != "yes" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET sqlite go:host containerd runc libnetwork tini"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET sqlite go:host containerd runc libnetwork tini systemd"
 fi
 
 PKG_IS_ADDON="yes"
