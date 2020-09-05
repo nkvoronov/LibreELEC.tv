@@ -216,7 +216,7 @@ do_install_quick() {
     if [ "$GPT" = "1" ]; then
       parted -s $INSTALL_DEVICE unit s mkpart $DISKLABEL_STORAGE ext4 -- $partsize_storage_start $partsize_storage_end >> $LOGFILE 2>&1
     else
-    parted -s $INSTALL_DEVICE unit s mkpart primary ext4 -- $partsize_storage_start $partsize_storage_end >> $LOGFILE 2>&1
+      parted -s $INSTALL_DEVICE unit s mkpart primary ext4 -- $partsize_storage_start $partsize_storage_end >> $LOGFILE 2>&1
     fi
 
     msg_progress_install "16" "Setup bootflag on partition 1 of $INSTALL_DEVICE"

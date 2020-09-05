@@ -14,7 +14,7 @@ SYSTEMCTL="/usr/bin/systemctl"
 CONNMANCTL="/usr/bin/connmanctl"
 
 check_docker() {
-    $SYSTEMCTL is-active --quiet $DOCKER && $SYSTEMCTL restart $DOCKER
+  $SYSTEMCTL is-active --quiet $DOCKER && $SYSTEMCTL restart $DOCKER
 }
 
 get_technology_config() {
