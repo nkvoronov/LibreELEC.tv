@@ -5,7 +5,7 @@
 
 . /etc/profile
 
-oe_setup_addon service.transmission2
+oe_setup_addon service.transmission3
 
 export TRANSMISSION_WEB_HOME="$ADDON_DIR/web"
 
