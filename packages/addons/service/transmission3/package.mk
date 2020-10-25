@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="transmission2"
-PKG_VERSION="2.94"
-PKG_REV="9"
+PKG_NAME="transmission3"
+PKG_VERSION="3.00"
+PKG_REV="10"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"
@@ -23,7 +23,7 @@ addon() {
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp $TRANSMISSION_DIR/.$TARGET_NAME/daemon/transmission-daemon $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp $TRANSMISSION_DIR/.$TARGET_NAME/daemon/transmission-remote $ADDON_BUILD/$PKG_ADDON_ID/bin
+    cp $TRANSMISSION_DIR/.$TARGET_NAME/utils/transmission-remote $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp $TRANSMISSION_DIR/.$TARGET_NAME/utils/transmission-create $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp $TRANSMISSION_DIR/.$TARGET_NAME/utils/transmission-edit $ADDON_BUILD/$PKG_ADDON_ID/bin
     cp $TRANSMISSION_DIR/.$TARGET_NAME/utils/transmission-show $ADDON_BUILD/$PKG_ADDON_ID/bin

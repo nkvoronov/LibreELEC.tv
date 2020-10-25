@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="transmission"
-PKG_VERSION="2.94"
-PKG_SHA256="35442cc849f91f8df982c3d0d479d650c6ca19310a994eccdaa79a4af3916b7d"
+PKG_VERSION="3.00"
+PKG_SHA256="9144652fe742f7f7dd6657716e378da60b751aaeda8bef8344b3eefc4db255f2"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"
 PKG_URL="https://github.com/transmission/transmission-releases/raw/master/$PKG_NAME-$PKG_VERSION.tar.xz"
@@ -25,7 +25,7 @@ PKG_CONFIGURE_OPTS_TARGET="--enable-utp \
 post_install() {
   mkdir -p $INSTALL/usr/bin
     cp $PKG_BUILD/.$TARGET_NAME/daemon/transmission-daemon $INSTALL/usr/bin
-    cp $PKG_BUILD/.$TARGET_NAME/daemon/transmission-remote $INSTALL/usr/bin
+    cp $PKG_BUILD/.$TARGET_NAME/utils/transmission-remote $INSTALL/usr/bin
     cp $PKG_BUILD/.$TARGET_NAME/utils/transmission-create $INSTALL/usr/bin
     cp $PKG_BUILD/.$TARGET_NAME/utils/transmission-edit $INSTALL/usr/bin
     cp $PKG_BUILD/.$TARGET_NAME/utils/transmission-show $INSTALL/usr/bin
