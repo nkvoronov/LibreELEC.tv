@@ -6,16 +6,17 @@ PKG_NAME="xf86-video-nvidia"
 # Remember to run "python packages/x11/driver/xf86-video-nvidia/scripts/make_nvidia_udev.py" and commit changes to
 # "packages/x11/driver/xf86-video-nvidia/udev.d/96-nvidia.rules" whenever bumping version.
 # Host may require installation of python-lxml and python-requests packages.
-PKG_VERSION="430.50"
-PKG_SHA256="19ff49073e88245666825722e2c814d369ab4d01b2883a954ce0bfbe9c3b22ab"
+PKG_VERSION="450.80.02"
+PKG_SHA256="ad4492e8905e915fe850ffb618347770ca2f0cb488ec3b2b09e96e427dc0d0c3"
 PKG_ARCH="x86_64"
 PKG_LICENSE="nonfree"
 PKG_SITE="http://www.nvidia.com/"
 PKG_URL="http://us.download.nvidia.com/XFree86/Linux-x86_64/${PKG_VERSION}/NVIDIA-Linux-x86_64-${PKG_VERSION}-no-compat32.run"
-PKG_DEPENDS_TARGET="toolchain util-macros linux xorg-server libvdpau libglvnd"
-PKG_NEED_UNPACK="${LINUX_DEPENDS}"
+PKG_DEPENDS_TARGET="util-macros xorg-server libvdpau libglvnd"
 PKG_LONGDESC="The Xorg driver for NVIDIA video chips."
 PKG_TOOLCHAIN="manual"
+
+PKG_IS_KERNEL_PKG="yes"
 
 unpack() {
   [ -d ${PKG_BUILD} ] && rm -rf ${PKG_BUILD}

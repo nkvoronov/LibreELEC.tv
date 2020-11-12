@@ -2,15 +2,26 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="kernel-firmware"
-PKG_VERSION="c0590d8300dda251b7e9291a4c9f1693436c2793"
-PKG_SHA256="aeba4973360324555bcc504bddc035c40b636eed9220bb9875c5c3b8eb3842eb"
+PKG_VERSION="20201022"
+PKG_SHA256="4b6da661adb20ced2ecd4baee43c2b4e2eb35cd49cab825dc3a5164ba514c008"
 PKG_LICENSE="other"
 PKG_SITE="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/"
 PKG_URL="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/$PKG_VERSION.tar.gz"
 PKG_NEED_UNPACK="${PROJECT_DIR}/${PROJECT}/packages/${PKG_NAME} ${PROJECT_DIR}/${PROJECT}/devices/${DEVICE}/packages/${PKG_NAME}"
-PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="kernel-firmware: kernel related firmware"
 PKG_TOOLCHAIN="manual"
+
+configure_package() {
+  PKG_FW_SOURCE=${PKG_BUILD}/.copied-firmware
+}
+
+post_patch() {
+  (
+    cd ${PKG_BUILD}
+    mkdir -p "${PKG_FW_SOURCE}"
+      ./copy-firmware.sh --verbose "${PKG_FW_SOURCE}"
+  )
+}
 
 # Install additional miscellaneous drivers
 makeinstall_target() {
@@ -34,17 +45,19 @@ makeinstall_target() {
       [[ ${fwline} =~ ^#.* ]] && continue
       [[ ${fwline} =~ ^[[:space:]] ]] && continue
 
-      while read -r fwfile; do
-        [ -d "${PKG_BUILD}/${fwfile}" ] && continue
+      eval "(cd ${PKG_FW_SOURCE} && find "${fwline}" >/dev/null)" || die "ERROR: Firmware pattern does not exist: ${fwline}"
 
-        if [ -f "${PKG_BUILD}/${fwfile}" ]; then
+      while read -r fwfile; do
+        [ -d "${PKG_FW_SOURCE}/${fwfile}" ] && continue
+
+        if [ -f "${PKG_FW_SOURCE}/${fwfile}" ]; then
           mkdir -p "$(dirname "${FW_TARGET_DIR}/${fwfile}")"
-            cp -Lv "${PKG_BUILD}/${fwfile}" "${FW_TARGET_DIR}/${fwfile}"
+            cp -Lv "${PKG_FW_SOURCE}/${fwfile}" "${FW_TARGET_DIR}/${fwfile}"
         else
           echo "ERROR: Firmware file ${fwfile} does not exist - aborting"
           exit 1
         fi
-      done <<< "$(cd ${PKG_BUILD} && eval "find "${fwline}"")"
+      done <<< "$(cd ${PKG_FW_SOURCE} && eval "find "${fwline}"")"
     done < "${fwlist}"
   done
 

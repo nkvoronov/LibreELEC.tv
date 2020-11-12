@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.meteor"
-PKG_VERSION="1.4.0.3-Leia"
-PKG_SHA256="a8ee8bebe761c29228e925c0dcd9e9e889870d1d22eb4da78d0959a04fd387f3"
+PKG_VERSION="1.4.0.7-Matrix"
+PKG_SHA256="ca92b28caca864d18a539ee541d94deec6afeb64eed0e5fb4a1a99a11b5730dd"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

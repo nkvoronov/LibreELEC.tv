@@ -3,34 +3,14 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="kodi"
+PKG_VERSION="bb0699db41d50a613de88f2bbe8124d4edf269d3"
+PKG_SHA256="28bd28a85e47995d4965ac402228374662bb85ba0644c94c52f371d97c87db1b"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
-PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python2 zlib systemd lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers"
+PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
+PKG_DEPENDS_TARGET="toolchain JsonSchemaBuilder:host TexturePacker:host Python3 zlib systemd lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid libdvdnav libhdhomerun libfmt lirc libfstrcmp flatbuffers:host flatbuffers libudfread spdlog"
 PKG_LONGDESC="A free and open source cross-platform media player."
 PKG_BUILD_FLAGS="+speed"
-
-PKG_PATCH_DIRS="$KODI_VENDOR"
-
-case $KODI_VENDOR in
-  raspberrypi)
-    PKG_VERSION="60bef867ee45a6eba15abc7cd021220cc30d6910" # kodi19-pre-Python3
-    PKG_SHA256="1804b2e494472810a71e604fc9e05b2a47fe7d0d775e42f91ac180ec417dde9a"
-    PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
-    ;;
-  rockchip)
-    PKG_VERSION="rockchip_18.4-Leia"
-    PKG_SHA256="16a64493ba1c91f22064444970147b505e6d38d368012f4ea88c68c1416a2ef2"
-    PKG_URL="https://github.com/kwiboo/xbmc/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
-    ;;
-  *)
-    PKG_VERSION="e31d257e4b6a9c5a622bb280d4abc4e44dc9eca5" # kodi19-pre-python3
-    PKG_SHA256="d8647c883661685bbcae6fd9f3312298636f4cacfb1b2ee53d4d349028579ffa"
-    PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
-    ;;
-esac
 
 configure_package() {
   # Single threaded LTO is very slow so rely on Kodi for parallel LTO support
@@ -48,13 +28,13 @@ configure_package() {
 
   if [ "$DISPLAYSERVER" = "x11" ]; then
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libX11 libXext libdrm libXrandr"
-    KODI_XORG="-DCORE_PLATFORM_NAME=x11"
+    KODI_XORG="-DCORE_PLATFORM_NAME=x11 -DAPP_RENDER_SYSTEM=gl"
   elif [ "$DISPLAYSERVER" = "weston" ]; then
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET wayland waylandpp"
     CFLAGS="$CFLAGS -DMESA_EGL_NO_X11_HEADERS"
     CXXFLAGS="$CXXFLAGS -DMESA_EGL_NO_X11_HEADERS"
     KODI_XORG="-DCORE_PLATFORM_NAME=wayland \
-               -DWAYLAND_RENDER_SYSTEM=gles \
+               -DAPP_RENDER_SYSTEM=gles \
                -DWAYLANDPP_PROTOCOLS_DIR=${SYSROOT_PREFIX}/usr/share/waylandpp/protocols"
   fi
 
@@ -78,10 +58,6 @@ configure_package() {
     KODI_PULSEAUDIO="-DENABLE_PULSEAUDIO=ON"
   else
     KODI_PULSEAUDIO="-DENABLE_PULSEAUDIO=OFF"
-  fi
-
-  if [ "$ESPEAK_SUPPORT" = yes ]; then
-    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET espeak"
   fi
 
   if [ "$CEC_SUPPORT" = yes ]; then
@@ -193,18 +169,13 @@ configure_package() {
     KODI_ARCH="-DWITH_ARCH=$TARGET_ARCH"
   fi
 
-  if [ "$DEVICE" = "Slice" -o "$DEVICE" = "Slice3" ]; then
-    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET led_tools"
-  fi
-
   if [ ! "$KODIPLAYER_DRIVER" = default ]; then
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $KODIPLAYER_DRIVER libinput libxkbcommon"
-    if [ "$KODIPLAYER_DRIVER" = bcm2835-driver ]; then
-      KODI_PLAYER="-DCORE_PLATFORM_NAME=rbpi"
-    elif [ "$OPENGLES_SUPPORT" = yes -a "$KODIPLAYER_DRIVER" = "$OPENGLES" ]; then
-      KODI_PLAYER="-DCORE_PLATFORM_NAME=gbm -DGBM_RENDER_SYSTEM=gles"
-      CFLAGS="$CFLAGS -DMESA_EGL_NO_X11_HEADERS"
-      CXXFLAGS="$CXXFLAGS -DMESA_EGL_NO_X11_HEADERS"
+    if [ "$OPENGLES_SUPPORT" = yes -a "$KODIPLAYER_DRIVER" = "$OPENGLES" ]; then
+      KODI_PLAYER="-DCORE_PLATFORM_NAME=gbm -DAPP_RENDER_SYSTEM=gles"
+      CFLAGS="$CFLAGS -DEGL_NO_X11"
+      CXXFLAGS="$CXXFLAGS -DEGL_NO_X11"
+      PKG_APPLIANCE_XML="$PKG_DIR/config/appliance-gbm.xml"
     fi
   fi
 
@@ -216,13 +187,15 @@ configure_package() {
                          -DWITH_TEXTUREPACKER=$TOOLCHAIN/bin/TexturePacker \
                          -DWITH_JSONSCHEMABUILDER=$TOOLCHAIN/bin/JsonSchemaBuilder \
                          -DDEPENDS_PATH=$PKG_BUILD/depends \
+                         -DSWIG_EXECUTABLE=$TOOLCHAIN/bin/swig \
                          -DPYTHON_EXECUTABLE=$TOOLCHAIN/bin/$PKG_PYTHON_VERSION \
                          -DPYTHON_INCLUDE_DIRS=$SYSROOT_PREFIX/usr/include/$PKG_PYTHON_VERSION \
                          -DGIT_VERSION=$PKG_VERSION \
-                         -DWITH_FFMPEG=$(get_build_dir ffmpeg) \
+                         -DFFMPEG_PATH=$SYSROOT_PREFIX/usr \
                          -DENABLE_INTERNAL_FFMPEG=OFF \
-                         -DFFMPEG_INCLUDE_DIRS=$SYSROOT_PREFIX/usr \
                          -DENABLE_INTERNAL_CROSSGUID=OFF \
+                         -DENABLE_INTERNAL_UDFREAD=OFF \
+                         -DENABLE_INTERNAL_SPDLOG=OFF \
                          -DENABLE_UDEV=ON \
                          -DENABLE_DBUS=ON \
                          -DENABLE_XSLT=ON \
@@ -232,7 +205,9 @@ configure_package() {
                          -DENABLE_LDGOLD=ON \
                          -DENABLE_DEBUGFISSION=OFF \
                          -DENABLE_APP_AUTONAME=OFF \
+                         -DENABLE_TESTING=OFF \
                          -DENABLE_INTERNAL_FLATBUFFERS=OFF \
+                         -DENABLE_LCMS2=OFF \
                          $PKG_KODI_USE_LTO \
                          $KODI_ARCH \
                          $KODI_NEON \
@@ -258,6 +233,12 @@ pre_configure_target() {
 }
 
 post_makeinstall_target() {
+  mkdir -p $INSTALL/.noinstall
+    mv $INSTALL/usr/share/kodi/addons/skin.estouchy \
+       $INSTALL/usr/share/kodi/addons/skin.estuary \
+       $INSTALL/usr/share/kodi/addons/service.xbmc.versioncheck \
+       $INSTALL/.noinstall
+
   rm -rf $INSTALL/usr/bin/kodi
   rm -rf $INSTALL/usr/bin/kodi-standalone
   rm -rf $INSTALL/usr/bin/xbmc
@@ -266,10 +247,6 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/share/applications
   rm -rf $INSTALL/usr/share/icons
   rm -rf $INSTALL/usr/share/pixmaps
-  rm -rf $INSTALL/usr/share/kodi/addons/skin.estouchy
-  rm -rf $INSTALL/usr/share/kodi/addons/skin.estuary
-  rm -rf $INSTALL/usr/share/kodi/addons/service.xbmc.versioncheck
-  rm -rf $INSTALL/usr/share/kodi/addons/visualization.vortex
   rm -rf $INSTALL/usr/share/xsessions
 
   mkdir -p $INSTALL/usr/lib/kodi
@@ -282,6 +259,20 @@ post_makeinstall_target() {
         -e "s|@KODI_MAX_SECONDS@|${KODI_MAX_SECONDS:-900}|g" \
         -i $INSTALL/usr/lib/kodi/kodi.sh
 
+    cp $PKG_DIR/config/kodi.conf $INSTALL/usr/lib/kodi/kodi.conf
+
+    # set default display environment
+    if [ "$DISPLAYSERVER" = "x11" ]; then
+      echo "DISPLAY=:0.0" >> $INSTALL/usr/lib/kodi/kodi.conf
+    elif [ "$DISPLAYSERVER" = "weston" ]; then 
+      echo "WAYLAND_DISPLAY=wayland-0" >> $INSTALL/usr/lib/kodi/kodi.conf
+    fi
+
+    # nvidia: Enable USLEEP to reduce CPU load while rendering
+    if listcontains "${GRAPHIC_DRIVERS}" "nvidia" || listcontains "${GRAPHIC_DRIVERS}" "nvidia-legacy"; then
+      echo "__GL_YIELD=USLEEP" >> $INSTALL/usr/lib/kodi/kodi.conf
+    fi
+
   mkdir -p $INSTALL/usr/sbin
     cp $PKG_DIR/scripts/service-addon-wrapper $INSTALL/usr/sbin
 
@@ -292,16 +283,15 @@ post_makeinstall_target() {
     ln -sf /usr/bin/pastekodi $INSTALL/usr/bin/pastecrash
 
   mkdir -p $INSTALL/usr/share/kodi/addons
-    cp -R $PKG_DIR/config/os.openelec.tv $INSTALL/usr/share/kodi/addons
-    sed -e "s|@OS_VERSION@|$OS_VERSION|g" -i $INSTALL/usr/share/kodi/addons/os.openelec.tv/addon.xml
-    cp -R $PKG_DIR/config/os.libreelec.tv $INSTALL/usr/share/kodi/addons
-    sed -e "s|@OS_VERSION@|$OS_VERSION|g" -i $INSTALL/usr/share/kodi/addons/os.libreelec.tv/addon.xml
     cp -R $PKG_DIR/config/repository.libreelec.tv $INSTALL/usr/share/kodi/addons
     sed -e "s|@ADDON_URL@|$ADDON_URL|g" -i $INSTALL/usr/share/kodi/addons/repository.libreelec.tv/addon.xml
     sed -e "s|@ADDON_VERSION@|$ADDON_VERSION|g" -i $INSTALL/usr/share/kodi/addons/repository.libreelec.tv/addon.xml
     cp -R $PKG_DIR/config/repository.kodi.game $INSTALL/usr/share/kodi/addons
 
   mkdir -p $INSTALL/usr/share/kodi/config
+
+  ln -sf /run/libreelec/cacert.pem $INSTALL/usr/share/kodi/system/certs/cacert.pem
+
   mkdir -p $INSTALL/usr/share/kodi/system/settings
 
   $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/guisettings.xml \
@@ -320,6 +310,7 @@ post_makeinstall_target() {
                                 > $INSTALL/usr/share/kodi/system/advancedsettings.xml
 
   $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                $PKG_APPLIANCE_XML \
                                 $PROJECT_DIR/$PROJECT/kodi/appliance.xml \
                                 $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
                                 > $INSTALL/usr/share/kodi/system/settings/appliance.xml
@@ -329,17 +320,13 @@ post_makeinstall_target() {
   xmlstarlet ed -L -d "/addons/addon[text()='service.xbmc.versioncheck']" $ADDON_MANIFEST
   xmlstarlet ed -L -d "/addons/addon[text()='skin.estouchy']" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.kodi.game" $ADDON_MANIFEST
-  xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.libreelec.tv" $ADDON_MANIFEST
-  xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "os.openelec.tv" $ADDON_MANIFEST
   xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.libreelec.tv" $ADDON_MANIFEST
-  xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.libreelec.settings" $ADDON_MANIFEST
+  if [ -n "$DISTRO_PKG_SETTINGS" ]; then
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "$DISTRO_PKG_SETTINGS_ID" $ADDON_MANIFEST
+  fi
 
   if [ "$DRIVER_ADDONS_SUPPORT" = "yes" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.program.driverselect" $ADDON_MANIFEST
-  fi
-
-  if [ "$DEVICE" = "Slice" -o "$DEVICE" = "Slice3" ]; then
-    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "service.slice" $ADDON_MANIFEST
   fi
 
   # more binaddons cross compile badness meh
@@ -351,6 +338,9 @@ post_makeinstall_target() {
     mkdir -p $INSTALL/usr/share/kodi/media/Fonts
       cp $PKG_DIR/fonts/*.ttf $INSTALL/usr/share/kodi/media/Fonts
   fi
+
+  # Compile kodi Python site-packages to .pyc bytecode, and remove .py source code
+  python_compile $INSTALL/usr/lib/$PKG_PYTHON_VERSION/site-packages/kodi
 
   debug_strip $INSTALL/usr/lib/kodi/kodi.bin
 }

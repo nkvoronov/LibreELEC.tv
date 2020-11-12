@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.nosefart"
-PKG_VERSION="2.2.0-Matrix"
-PKG_SHA256="f27e89d5d04fdd7d695aaac89d8602909b2c307031d8e44bedef0e706bde5716"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="a4be5f6efc46841c9b1689c91b06f69cd695220b583e62ed2948768fa93d09a2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

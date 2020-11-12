@@ -32,7 +32,7 @@ PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --without-dmalloc \
                            --disable-rpath \
                            --disable-database \
-                           --with-fallbacks=linux,screen,xterm,xterm-color \
+                           --with-fallbacks=linux,screen,xterm,xterm-color,dumb \
                            --with-termpath=/storage/.config/termcap \
                            --disable-big-core \
                            --enable-termcap \
@@ -59,6 +59,12 @@ PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --disable-warnings \
                            --disable-home-terminfo \
                            --disable-assertions"
+
+PKG_CONFIGURE_OPTS_HOST="--enable-termcap \
+                         --with-termlib \
+                         --with-shared \
+                         --enable-pc-files \
+                         --without-manpages"
 
 post_makeinstall_target() {
   cp misc/ncurses-config $TOOLCHAIN/bin

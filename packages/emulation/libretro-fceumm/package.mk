@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-fceumm"
-PKG_VERSION="d3f4d8f30c78d36f10c57d301d893f806786313c"
-PKG_SHA256="e1e665b906443bc559a424f9675af252c827ef028c85ceaf0dd23ccf79177486"
+PKG_VERSION="0e173120c3323b8d0a3d5937f18e9a4b0e164ef2"
+PKG_SHA256="30a6717d1b0412262b71007308023617275206f5af797f799472692611da11e0"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/libretro-fceumm"
 PKG_URL="https://github.com/libretro/libretro-fceumm/archive/$PKG_VERSION.tar.gz"

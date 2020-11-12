@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.upse"
-PKG_VERSION="2.1.1-Matrix"
-PKG_SHA256="8c439d4d50bda417157443a7308f8819335de24f455049d6e6871382726b46f3"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="bf40ed39025177384f777e4fbb45691b3d61302606b42f6ffa5fe2a7096981a8"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

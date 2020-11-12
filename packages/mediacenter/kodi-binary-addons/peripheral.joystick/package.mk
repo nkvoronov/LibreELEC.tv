@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="peripheral.joystick"
-PKG_VERSION="1.4.8-Leia"
-PKG_SHA256="b6ddefed73582a3dc9bc36a9d40f8309139802ef9cfc130933bd0fe6e569d933"
+PKG_VERSION="1.7.1-Matrix"
+PKG_SHA256="4dc63c6c5bdad25881eeba800765d97c53b2583addf28e71bbcd67775452ecdb"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

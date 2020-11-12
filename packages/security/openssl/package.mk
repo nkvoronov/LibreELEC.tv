@@ -3,8 +3,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="openssl"
-PKG_VERSION="1.1.1d"
-PKG_SHA256="1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2"
+PKG_VERSION="1.1.1h"
+PKG_SHA256="5c9ca8774bd7b03e5784f26ae9e9e6d749c9da2438545077e6b3d755a06595d9"
 PKG_LICENSE="BSD"
 PKG_SITE="https://www.openssl.org"
 PKG_URL="https://www.openssl.org/source/$PKG_NAME-$PKG_VERSION.tar.gz"
@@ -46,7 +46,7 @@ pre_configure_host() {
 
 configure_host() {
   cd $PKG_BUILD/.$HOST_NAME
-  ./Configure $PKG_CONFIGURE_OPTS_HOST $PKG_CONFIGURE_OPTS_SHARED linux-x86_64 $CFLAGS $LDFLAGS
+  ./Configure $PKG_CONFIGURE_OPTS_HOST $PKG_CONFIGURE_OPTS_SHARED linux-${MACHINE_HARDWARE_NAME} $CFLAGS $LDFLAGS
 }
 
 makeinstall_host() {

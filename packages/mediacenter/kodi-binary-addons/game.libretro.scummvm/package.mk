@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.scummvm"
-PKG_VERSION="2.0.0.6-Leia"
-PKG_SHA256="f71f7ba56ca4c7717afdd0626b0ce1d9da3ae199a32eceb22837f8658c7d4698"
+PKG_VERSION="2.1.1.9-Matrix"
+PKG_SHA256="f6422186d999195521801dda385bc553da91ad9a6ac5c3d6e677005bb18a7739"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -15,3 +15,7 @@ PKG_LONGDESC="game.libretro.scummvm: scummvm for Kodi"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="kodi.gameclient"
+
+pre_configure_target() {
+  export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
+}

@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-tgbdual"
-PKG_VERSION="c13b9418664dede869362d965cdc8eeb6382e779"
-PKG_SHA256="8ba057ec134bbde12c32765ca27cb6cd51a48657f097a785aa62149690f429e8"
+PKG_VERSION="b1fd9280dc89733ecdfb45d7d24b65e5e30f74a5"
+PKG_SHA256="246dd68382a6b87be3001decbfef4c4ba6e9b209948ec22c7cf3ba94a5ddfd2f"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/libretro/tgbdual-libretro"
 PKG_URL="https://github.com/libretro/tgbdual-libretro/archive/$PKG_VERSION.tar.gz"

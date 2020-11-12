@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-meteor"
-PKG_VERSION="f8ab66ce5f68991bf9f926bf1dd5b662abd9d74b"
-PKG_SHA256="3d2c4934ccb688782353f017313ca5bfea75441cc4c6751cda2751688d255c13"
+PKG_VERSION="bc6bbc06f00afd69803fe30a923be9bb95c73cb6"
+PKG_SHA256="f718aa75a079539a01fad6d349afe38f06b762272d498640e29467d2f3c8b4cd"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/libretro/meteor-libretro"
 PKG_URL="https://github.com/libretro/meteor-libretro/archive/$PKG_VERSION.tar.gz"

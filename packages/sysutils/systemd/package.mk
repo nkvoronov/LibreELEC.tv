@@ -3,12 +3,12 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="systemd"
-PKG_VERSION="243"
-PKG_SHA256="0611843c2407f8b125b1b7cb93533bdebd4ccf91c99dffa64ec61556a258c7d1"
+PKG_VERSION="246"
+PKG_SHA256="4268bd88037806c61c5cd1c78d869f7f20bf7e7368c63916d47b5d1c3411bd6f"
 PKG_LICENSE="LGPL2.1+"
 PKG_SITE="http://www.freedesktop.org/wiki/Software/systemd"
 PKG_URL="https://github.com/systemd/systemd/archive/v$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain libcap kmod util-linux entropy libidn2"
+PKG_DEPENDS_TARGET="toolchain libcap kmod util-linux entropy libidn2 wait-time-sync"
 PKG_LONGDESC="A system and session manager for Linux, compatible with SysV and LSB init scripts."
 
 PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
@@ -25,8 +25,10 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dacl=false \
                        -Daudit=false \
                        -Dblkid=true \
+                       -Dfdisk=false \
                        -Dkmod=true \
                        -Dpam=false \
+                       -Dpwquality=false \
                        -Dmicrohttpd=false \
                        -Dlibcryptsetup=false \
                        -Dlibcurl=false \
@@ -37,6 +39,7 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dgcrypt=false \
                        -Dgnutls=false \
                        -Dopenssl=false \
+                       -Dp11kit=false \
                        -Delfutils=false \
                        -Dzlib=false \
                        -Dbzip2=false \
@@ -49,16 +52,20 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Ddefault-dnssec=no \
                        -Dimportd=false \
                        -Dremote=false \
-                       -Dutmp=false \
+                       -Dutmp=true \
                        -Dhibernate=false \
                        -Denvironment-d=false \
                        -Dbinfmt=false \
+                       -Drepart=false \
                        -Dcoredump=false \
                        -Dresolve=false \
                        -Dlogind=true \
                        -Dhostnamed=true \
                        -Dlocaled=false \
                        -Dmachined=false \
+                       -Dportabled=false \
+                       -Duserdb=false \
+                       -Dhomed=false \
                        -Dnetworkd=false \
                        -Dtimedated=false \
                        -Dtimesyncd=true \
@@ -84,6 +91,9 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dnss-systemd=false \
                        -Dman=false \
                        -Dhtml=false \
+                       -Dlink-udev-shared=true \
+                       -Dlink-systemctl-shared=true \
+                       -Dlink-networkd-shared=false \
                        -Dbashcompletiondir=no \
                        -Dzshcompletiondir=no \
                        -Dkmod-path=/usr/bin/kmod \
@@ -111,7 +121,6 @@ post_makeinstall_target() {
   safe_remove $INSTALL/usr/lib/tmpfiles.d/etc.conf
   safe_remove $INSTALL/usr/lib/tmpfiles.d/home.conf
   safe_remove $INSTALL/usr/share/factory
-  safe_remove $INSTALL/usr/share/zsh
 
   # clean up hwdb
   safe_remove $INSTALL/usr/lib/udev/hwdb.d/20-OUI.hwdb
@@ -124,15 +133,12 @@ post_makeinstall_target() {
   # remove Network adaper renaming rule, this is confusing
   safe_remove $INSTALL/usr/lib/udev/rules.d/80-net-setup-link.rules
 
-  # remove the uaccess rules as we don't build systemd with ACL (see https://github.com/systemd/systemd/issues/4107)
-  safe_remove $INSTALL/usr/lib/udev/rules.d/70-uaccess.rules
   safe_remove $INSTALL/usr/lib/udev/rules.d/71-seat.rules
   safe_remove $INSTALL/usr/lib/udev/rules.d/73-seat-late.rules
 
   # remove getty units, we dont want a console
   safe_remove $INSTALL/usr/lib/systemd/system/autovt@.service
   safe_remove $INSTALL/usr/lib/systemd/system/console-getty.service
-  safe_remove $INSTALL/usr/lib/systemd/system/console-shell.service
   safe_remove $INSTALL/usr/lib/systemd/system/container-getty@.service
   safe_remove $INSTALL/usr/lib/systemd/system/getty.target
   safe_remove $INSTALL/usr/lib/systemd/system/getty@.service
@@ -144,13 +150,8 @@ post_makeinstall_target() {
   safe_remove $INSTALL/usr/lib/systemd/system/systemd-update-done.service
   safe_remove $INSTALL/usr/lib/systemd/system/*.target.wants/systemd-update-done.service
 
-  # remove systemd-udev-hwdb-update. we have own hwdb.service
-  safe_remove $INSTALL/usr/lib/systemd/system/systemd-udev-hwdb-update.service
-  safe_remove $INSTALL/usr/lib/systemd/system/*.target.wants/systemd-udev-hwdb-update.service
-
-  # remove systemd-user-sessions
-  safe_remove $INSTALL/usr/lib/systemd/system/systemd-user-sessions.service
-  safe_remove $INSTALL/usr/lib/systemd/system/*.target.wants/systemd-user-sessions.service
+  # remove systemd-hwdb-update. we have own hwdb.service
+  safe_remove $INSTALL/usr/lib/systemd/system/systemd-hwdb-update.service
 
   # remove nspawn
   safe_remove $INSTALL/usr/bin/systemd-nspawn
@@ -185,6 +186,10 @@ post_makeinstall_target() {
   # remove networkd
   safe_remove $INSTALL/usr/lib/systemd/network
 
+  # remove systemd-time-wait-sync (not detecting slew time updates, using package wait-time-sync)
+  safe_remove $INSTALL/usr/lib/systemd/system/systemd-time-wait-sync.service
+  safe_remove $INSTALL/usr/lib/systemd/systemd-time-wait-sync
+
   # tune journald.conf
   sed -e "s,^.*Compress=.*$,Compress=no,g" -i $INSTALL/etc/systemd/journald.conf
   sed -e "s,^.*SplitMode=.*$,SplitMode=none,g" -i $INSTALL/etc/systemd/journald.conf
@@ -197,7 +202,6 @@ post_makeinstall_target() {
   sed -e "s,^.*HandlePowerKey=.*$,HandlePowerKey=ignore,g" -i $INSTALL/etc/systemd/logind.conf
 
   # replace systemd-machine-id-setup with ours
-  safe_remove $INSTALL/usr/lib/systemd/systemd-machine-id-commit
   safe_remove $INSTALL/usr/lib/systemd/system/systemd-machine-id-commit.service
   safe_remove $INSTALL/usr/lib/systemd/system/*.target.wants/systemd-machine-id-commit.service
   safe_remove $INSTALL/usr/bin/systemd-machine-id-setup
@@ -205,9 +209,20 @@ post_makeinstall_target() {
   cp $PKG_DIR/scripts/systemd-machine-id-setup $INSTALL/usr/bin
   cp $PKG_DIR/scripts/userconfig-setup $INSTALL/usr/bin
   cp $PKG_DIR/scripts/usercache-setup $INSTALL/usr/bin
+  cp $PKG_DIR/scripts/environment-setup $INSTALL/usr/bin
+
+  # use systemd to set cpufreq governor and tunables
+  find_file_path scripts/cpufreq && cp -PRv $FOUND_PATH $INSTALL/usr/bin
 
   mkdir -p $INSTALL/usr/sbin
   cp $PKG_DIR/scripts/kernel-overlays-setup $INSTALL/usr/sbin
+  cp $PKG_DIR/scripts/network-base-setup $INSTALL/usr/sbin
+  cp $PKG_DIR/scripts/systemd-timesyncd-setup $INSTALL/usr/sbin
+
+  # /etc/resolv.conf and /etc/hosts must be writable
+  ln -sf /run/libreelec/resolv.conf $INSTALL/etc/resolv.conf
+  ln -sf /run/libreelec/hosts $INSTALL/etc/hosts
+  ln -sf /run/libreelec/environment $INSTALL/etc/environment
 
   # provide 'halt', 'shutdown', 'reboot' & co.
   ln -sf /usr/bin/systemctl $INSTALL/usr/sbin/halt
@@ -226,10 +241,9 @@ post_makeinstall_target() {
 
   safe_remove $INSTALL/etc/modules-load.d
   ln -sf /storage/.config/modules-load.d $INSTALL/etc/modules-load.d
-  safe_remove $INSTALL/etc/systemd/logind.conf.d
   ln -sf /storage/.config/logind.conf.d $INSTALL/etc/systemd/logind.conf.d
-  safe_remove $INSTALL/etc/systemd/sleep.conf.d
   ln -sf /storage/.config/sleep.conf.d $INSTALL/etc/systemd/sleep.conf.d
+  ln -sf /storage/.config/timesyncd.conf.d $INSTALL/etc/systemd/timesyncd.conf.d
   safe_remove $INSTALL/etc/sysctl.d
   ln -sf /storage/.config/sysctl.d $INSTALL/etc/sysctl.d
   safe_remove $INSTALL/etc/tmpfiles.d
@@ -255,7 +269,9 @@ post_install() {
   add_group disk 6
   add_group floppy 19
   add_group kmem 9
+  add_group kvm 10
   add_group lp 7
+  add_group render 12
   add_group tape 33
   add_group tty 5
   add_group video 39
@@ -266,6 +282,11 @@ post_install() {
   enable_service debugconfig.service
   enable_service userconfig.service
   enable_service usercache.service
+  enable_service envconfig.service
   enable_service kernel-overlays.service
   enable_service hwdb.service
+  enable_service cpufreq.service
+  enable_service network-base.service
+  enable_service systemd-timesyncd.service
+  enable_service systemd-timesyncd-setup.service
 }

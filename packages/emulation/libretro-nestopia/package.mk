@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-nestopia"
-PKG_VERSION="fbeed047d5ad783e8e73daff8ff4dfa82f913307"
-PKG_SHA256="018a0530edefe94f0a1afa58497dcfa8660eab4c0e01b42f4c97c5a14e08bfdd"
+PKG_VERSION="02e7c03f933333bb9ce79b2c0e5ebb936a9536e2"
+PKG_SHA256="f3fd8e18899a6b46aadb4436c3b58f2aeb844d0d22ea904017dbc9c112b8fd5d"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/nestopia"
 PKG_URL="https://github.com/libretro/nestopia/archive/$PKG_VERSION.tar.gz"
@@ -14,10 +14,6 @@ PKG_TOOLCHAIN="manual"
 PKG_LIBNAME="nestopia_libretro.so"
 PKG_LIBPATH="libretro/$PKG_LIBNAME"
 PKG_LIBVAR="NESTOPIA_LIB"
-
-post_unpack() {
-  rm $PKG_BUILD/configure.ac
-}
 
 make_target() {
   make -C libretro

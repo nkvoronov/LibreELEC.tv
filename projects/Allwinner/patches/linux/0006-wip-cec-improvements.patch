@@ -165,7 +165,7 @@ index 43643ad31730..d840bc07cba6 100644
 -	regmap_write(phy->regs, SUN8I_HDMI_PHY_CEC_REG, 0);
 +	/* manual control of CEC pins */
 +	regmap_write(phy->regs, SUN8I_HDMI_PHY_CEC_REG,
-+		     SUN8I_HDMI_PHY_CEC_PIN_CTRL);
++		     phy->variant->bit_bang_cec ? SUN8I_HDMI_PHY_CEC_PIN_CTRL : 0);
  
  	/* read calibration data */
  	regmap_read(phy->regs, SUN8I_HDMI_PHY_ANA_STS_REG, &val);
@@ -177,7 +177,7 @@ index 43643ad31730..d840bc07cba6 100644
  }
  
 +#ifdef CONFIG_DRM_SUN8I_DW_HDMI_CEC
-+static bool sun8i_hdmi_phy_cec_pin_read(struct cec_adapter *adap)
++static int sun8i_hdmi_phy_cec_pin_read(struct cec_adapter *adap)
 +{
 +	struct sun8i_hdmi_phy *phy = cec_get_drvdata(adap);
 +	unsigned int val;
@@ -227,14 +227,6 @@ index 43643ad31730..d840bc07cba6 100644
  	.has_phy_clk = true,
  	.is_custom_phy = true,
  	.phy_init = &sun8i_hdmi_phy_init_h3,
-@@ -557,6 +600,7 @@ static const struct sun8i_hdmi_phy_variant sun8i_h3_hdmi_phy = {
- };
- 
- static const struct sun8i_hdmi_phy_variant sun8i_r40_hdmi_phy = {
-+	.bit_bang_cec = true,
- 	.has_phy_clk = true,
- 	.has_second_pll = true,
- 	.is_custom_phy = true,
 @@ -566,6 +610,7 @@ static const struct sun8i_hdmi_phy_variant sun8i_r40_hdmi_phy = {
  };
  
@@ -243,31 +235,29 @@ index 43643ad31730..d840bc07cba6 100644
  	.has_phy_clk = true,
  	.is_custom_phy = true,
  	.phy_init = &sun8i_hdmi_phy_init_h3,
-@@ -711,10 +756,40 @@ int sun8i_hdmi_phy_probe(struct sun8i_dw_hdmi *hdmi, struct device_node *node)
+@@ -711,10 +756,38 @@ int sun8i_hdmi_phy_probe(struct sun8i_dw_hdmi *hdmi, struct device_node *node)
  		clk_prepare_enable(phy->clk_phy);
  	}
  
 +#ifdef CONFIG_DRM_SUN8I_DW_HDMI_CEC
 +	if (phy->variant->bit_bang_cec) {
-+		phy->cec_notifier = cec_notifier_get(dev);
-+		if (!phy->cec_notifier) {
-+			ret = -ENOMEM;
-+			goto err_disable_clk_phy;
-+		}
-+
 +		phy->cec_adapter =
 +			cec_pin_allocate_adapter(&sun8i_hdmi_phy_cec_pin_ops,
 +						 phy, "sun8i-cec",
 +						 CEC_CAP_DEFAULTS);
 +		ret = PTR_ERR_OR_ZERO(phy->cec_adapter);
 +		if (ret < 0)
-+			goto err_put_cec_notifier;
++			goto err_disable_clk_phy;
++
++		phy->cec_notifier = cec_notifier_cec_adap_register(dev, NULL, phy->cec_adapter);
++		if (!phy->cec_notifier) {
++			ret = -ENOMEM;
++			goto err_delete_cec_adapter;
++		}
 +
 +		ret = cec_register_adapter(phy->cec_adapter, dev);
 +		if (ret < 0)
-+			goto err_delete_cec_adapter;
-+
-+		cec_register_cec_notifier(phy->cec_adapter, phy->cec_notifier);
++			goto err_put_cec_notifier;
 +	}
 +#endif
 +
@@ -275,22 +265,21 @@ index 43643ad31730..d840bc07cba6 100644
  
  	return 0;
  
++err_put_cec_notifier:
++	cec_notifier_cec_adap_unregister(phy->cec_notifier, phy->cec_adapter);
 +err_delete_cec_adapter:
 +	cec_delete_adapter(phy->cec_adapter);
-+err_put_cec_notifier:
-+	cec_notifier_put(phy->cec_notifier);
 +err_disable_clk_phy:
 +	clk_disable_unprepare(phy->clk_phy);
  err_disable_clk_mod:
  	clk_disable_unprepare(phy->clk_mod);
  err_disable_clk_bus:
-@@ -739,6 +814,10 @@ void sun8i_hdmi_phy_remove(struct sun8i_dw_hdmi *hdmi)
+@@ -739,6 +814,9 @@ void sun8i_hdmi_phy_remove(struct sun8i_dw_hdmi *hdmi)
  {
  	struct sun8i_hdmi_phy *phy = hdmi->phy;
  
++	cec_notifier_cec_adap_unregister(phy->cec_notifier, phy->cec_adapter);
 +	cec_unregister_adapter(phy->cec_adapter);
-+	if (phy->cec_notifier)
-+		cec_notifier_put(phy->cec_notifier);
 +
  	clk_disable_unprepare(phy->clk_mod);
  	clk_disable_unprepare(phy->clk_bus);
