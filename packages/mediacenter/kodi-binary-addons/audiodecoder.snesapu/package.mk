@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.snesapu"
-PKG_VERSION="2.1.2-Matrix"
-PKG_SHA256="6ac9ca11522236c8f47341d7210bfb821a79f82fd1f3266a85b2aec82109df4a"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="3537b735acfbbacaada2aa1d2035acbc698f37cc7626375f408e967ca612b2d0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

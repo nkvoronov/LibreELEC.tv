@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-mame2010"
-PKG_VERSION="d3151837758eade73c85c28c20e7d2a8706f30c6"
-PKG_SHA256="e95bad0f9b0ee36f23f04ab4fd36bb7e977b17ddb586a4971f416c25d3b6c7da"
+PKG_VERSION="2d2e86b5d8dced24a390bbb3b44d913833a1f6fa"
+PKG_SHA256="5a084d988b314b9cbfc3e697f330f0a436a572481ca66ce91b0b7baafb37a8b7"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/mame2010-libretro"
 PKG_URL="https://github.com/libretro/mame2010-libretro/archive/$PKG_VERSION.tar.gz"
@@ -23,7 +23,7 @@ pre_configure_target() {
     arm1176jzf-s)
       PKG_MAKE_OPTS_TARGET="platform=armv6-hardfloat-$TARGET_CPU"
       ;;
-    cortex-a7|cortex-a9)
+    cortex-a7|cortex-a8|cortex-a9)
       PKG_MAKE_OPTS_TARGET="platform=armv7-neon-hardfloat-$TARGET_CPU"
       ;;
     *cortex-a53|cortex-a17)

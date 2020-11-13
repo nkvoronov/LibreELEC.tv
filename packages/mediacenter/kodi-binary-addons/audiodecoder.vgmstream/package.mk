@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.vgmstream"
-PKG_VERSION="2.1.1-Matrix"
-PKG_SHA256="ffb6714642549adf94eb2d68a6f16fa6515c4d816dec87a572952b5786df2159"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="81f4577c2ec53bfa7ab04d3da374b1cc639ef5f5fe9c2837f9e85916b50d9d5d"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

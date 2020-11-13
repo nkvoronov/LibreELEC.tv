@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-vbam"
-PKG_VERSION="7d88e045a2fe44e56b3f84846beec446b4c4b2d9"
-PKG_SHA256="2d0c15b2b0a456c91f4b7747689402be203003f1e79a6836c7a2e5e03af9ce17"
+PKG_VERSION="26e9a6e3d91fce2380ef128bf23e52fb3be2bce1"
+PKG_SHA256="d5ae8a518b413a7263b8bb2c5a1e282ea6168eeea1de3075db1e26333d847e22"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/vbam-libretro"
 PKG_URL="https://github.com/libretro/vbam-libretro/archive/$PKG_VERSION.tar.gz"

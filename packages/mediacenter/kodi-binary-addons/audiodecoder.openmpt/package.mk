@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.openmpt"
-PKG_VERSION="2.2.2-Matrix"
-PKG_SHA256="92d30ef80de40b91fc5294793b4eff99d415894d24a763e0af6b2f7ff9a55c04"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="3cff81a4b06d1298c2d62118bcfb2067140d7122aa68dc6558fe5eb9949def2a"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

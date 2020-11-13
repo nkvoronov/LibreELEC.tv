@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-uae"
-PKG_VERSION="d38f5176ad76eb62010e3ca2e51632e116e860f4"
-PKG_SHA256="c7358d95d6dd7c89d50cf154f16e901e3b4d5524b510cba6b2e351dbec89f01d"
+PKG_VERSION="12918bf8a27059812a141f767cc7a4b9ae5f18e3"
+PKG_SHA256="24034a55917cf577123e3245761e576d2f254f18dfa86e4a7f7b0afa58c0b69c"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/libretro/libretro-uae"
 PKG_URL="https://github.com/libretro/libretro-uae/archive/$PKG_VERSION.tar.gz"
@@ -16,6 +16,7 @@ PKG_LIBPATH="$PKG_LIBNAME"
 PKG_LIBVAR="UAE_LIB"
 
 pre_configure_target() {
+  CFLAGS="$CFLAGS -fcommon"
   if [ "$TARGET_ARCH" = "arm" ]; then
     CFLAGS="$CFLAGS -DARM -marm"
   fi

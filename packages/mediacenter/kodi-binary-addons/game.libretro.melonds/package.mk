@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.melonds"
-PKG_VERSION="0.8.3.6-Leia"
-PKG_SHA256="28a240cb62d202cbd5d4f731ba19305b928528dbd96e310a8cef439c1087cb58"
+PKG_VERSION="0.9.0.11-Matrix"
+PKG_SHA256="98b40d70f0d6f4596beb446903cf3a4baba085334197fda9e5d405af940bc7d0"
 PKG_REV="1"
 # no openGL suport in retroplayer yet
 PKG_ARCH="none"

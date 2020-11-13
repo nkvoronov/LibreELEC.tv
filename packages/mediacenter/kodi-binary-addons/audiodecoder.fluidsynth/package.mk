@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.fluidsynth"
-PKG_VERSION="2.2.1-Matrix"
-PKG_SHA256="f9bb9ea9b408ab6bd7650221b0e1a16b16b22b53230abd6f348b1b14559004ee"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="73d5f5dba2e67df7864fda3f550520d8e50187484175bb637162be6f2edb8271"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

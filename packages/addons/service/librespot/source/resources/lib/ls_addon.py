@@ -22,7 +22,9 @@ ADDON_HOME = xbmc.translatePath(ADDON.getAddonInfo('profile'))
 ADDON_ICON = ADDON.getAddonInfo('icon')
 ADDON_NAME = ADDON.getAddonInfo('name')
 ADDON_PATH = ADDON.getAddonInfo('path')
-ADDON_ENVT = dict(PATH=os.path.join(ADDON_PATH, 'bin'))
+ADDON_ENVT = dict(
+    LD_LIBRARY_PATH=os.path.join(ADDON_PATH, 'lib'),
+    PATH=os.path.join(ADDON_PATH, 'bin'))
 DIALOG = xbmcgui.Dialog()
 
 
@@ -38,7 +40,7 @@ def get_settings():
 
 
 def log(message):
-    xbmc.log('{}: {}'.format(ADDON_NAME, message), xbmc.LOGNOTICE)
+    xbmc.log('{}: {}'.format(ADDON_NAME, message), xbmc.LOGINFO)
 
 
 def notification(message):

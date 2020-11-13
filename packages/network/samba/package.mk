@@ -3,8 +3,8 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="samba"
-PKG_VERSION="4.12.2"
-PKG_SHA256="6490f2a858be200c0169a47391fb27287e80f45f2beef7afa6c16bd88526a150"
+PKG_VERSION="4.12.7"
+PKG_SHA256="30556a0dd2f9ab3b251eb9db6132ffd4379c159f574366fc2f2eabbc018c6fd2"
 PKG_LICENSE="GPLv3+"
 PKG_SITE="https://www.samba.org"
 PKG_URL="https://download.samba.org/pub/samba/stable/$PKG_NAME-$PKG_VERSION.tar.gz"
@@ -113,6 +113,13 @@ configure_target() {
   PYTHON_CONFIG="$SYSROOT_PREFIX/usr/bin/python3-config" \
   python_LDFLAGS="" python_LIBDIR="" \
   PYTHON=${TOOLCHAIN}/bin/python3 ./configure $PKG_CONFIGURE_OPTS
+}
+
+# disable icu, there is no buildswitch to disable
+pre_make_target() {
+  sed -e '/#define HAVE_ICU_I18N 1/d' \
+      -e '/#define HAVE_LIBICUI.* 1/d' \
+      -i bin/default/include/config.h
 }
 
 make_target() {

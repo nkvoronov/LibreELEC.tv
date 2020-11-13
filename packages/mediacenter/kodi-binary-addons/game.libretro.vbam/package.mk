@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.vbam"
-PKG_VERSION="2.1.3.7-Leia"
-PKG_SHA256="5a95f23e4d4b9707e64b29ec1caf73b09d30ae8d269157c469c63789023b06f8"
+PKG_VERSION="2.1.3.11-Matrix"
+PKG_SHA256="59edc259bc898f9cc4da9c6ef94f1ff3368ea5b8c041c579cb94ad79aeee057e"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

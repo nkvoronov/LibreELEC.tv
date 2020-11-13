@@ -127,6 +127,7 @@ makeinstall_target() {
     cp $PKG_DIR/scripts/dtfile $INSTALL/usr/bin
     cp $PKG_DIR/scripts/dtname $INSTALL/usr/bin
     cp $PKG_DIR/scripts/dtsoc $INSTALL/usr/bin
+    cp $PKG_DIR/scripts/ledfix $INSTALL/usr/bin
     cp $PKG_DIR/scripts/lsb_release $INSTALL/usr/bin/
     cp $PKG_DIR/scripts/apt-get $INSTALL/usr/bin/
     cp $PKG_DIR/scripts/sudo $INSTALL/usr/bin/
@@ -143,10 +144,12 @@ makeinstall_target() {
       cp $PKG_DIR/scripts/rpi-flash-firmware $INSTALL/usr/lib/libreelec
     fi
 
+  mkdir -p $INSTALL/usr/lib/systemd/system-generators/
+    cp $PKG_DIR/scripts/libreelec-target-generator $INSTALL/usr/lib/systemd/system-generators/
+
   mkdir -p $INSTALL/etc
     cp $PKG_DIR/config/profile $INSTALL/etc
     cp $PKG_DIR/config/inputrc $INSTALL/etc
-    cp $PKG_DIR/config/httpd.conf $INSTALL/etc
     cp $PKG_DIR/config/suspend-modules.conf $INSTALL/etc
 
   # /etc/fstab is needed by...
@@ -160,13 +163,6 @@ makeinstall_target() {
 
   # create /etc/hostname
     ln -sf /proc/sys/kernel/hostname $INSTALL/etc/hostname
-
-  # add webroot
-    mkdir -p $INSTALL/usr/www
-      echo "It works" > $INSTALL/usr/www/index.html
-
-    mkdir -p $INSTALL/usr/www/error
-      echo "404" > $INSTALL/usr/www/error/404.html
 }
 
 post_install() {
@@ -182,10 +178,11 @@ post_install() {
   add_user nobody x 65534 65534 "Nobody" "/" "/bin/sh"
   add_group nogroup 65534
 
+  enable_service fs-resize.service
+  enable_service ledfix.service
   enable_service shell.service
   enable_service show-version.service
   enable_service var.mount
-  enable_service fs-resize.service
   listcontains "${FIRMWARE}" "rpi-eeprom" && enable_service rpi-flash-firmware.service
 
   # cron support

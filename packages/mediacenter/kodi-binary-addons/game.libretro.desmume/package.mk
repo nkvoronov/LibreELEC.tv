@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.desmume"
-PKG_VERSION="0.0.1.4-Leia"
-PKG_SHA256="b04dfa794884dbdf41d74980980d513b2fc57d5bcd176b51d859be92febbbe80"
+PKG_VERSION="0.0.1.7-Matrix"
+PKG_SHA256="3e211e8c11d92bc6ad4061fac69e637099f814c488ef37473cb1a9a93d3e64ad"
 PKG_REV="1"
 # no openGL suport in retroplayer yet
 PKG_ARCH="none"

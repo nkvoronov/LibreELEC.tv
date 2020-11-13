@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.cap32"
-PKG_VERSION="4.5.0.6-Leia"
-PKG_SHA256="f958c56c9b281f55be29901ea7a464c5e4c045371b3aae0d3d5df5938095bfff"
+PKG_VERSION="4.5.0.9-Matrix"
+PKG_SHA256="9d4a998082890b6f8bbb9bb2a222f6e7e3a8e910ce24dba92f68b7d8188e1a88"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

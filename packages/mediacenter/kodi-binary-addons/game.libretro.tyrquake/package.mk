@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.tyrquake"
-PKG_VERSION="0.62.0.7-Leia"
-PKG_SHA256="9456df65027e002174b43a6da7ed2364dcc8c646dab518fb0f30eff7fadc7c04"
+PKG_VERSION="0.62.0.12-Matrix"
+PKG_SHA256="28f064c3e9b3e8eafe17df29e8d0ad55aa772622ae245be53cbe7df4e959bdb8"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

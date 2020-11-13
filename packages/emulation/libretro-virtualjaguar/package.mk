@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-virtualjaguar"
-PKG_VERSION="a162fb75926f5509f187e9bfc69958bced40b0a6"
-PKG_SHA256="3d02418fa669ef2074245a583cf67bfaf06ed1b3b3fc30ee252e39b59101fb41"
+PKG_VERSION="575371decc78b186273146126140268c3efb7ce4"
+PKG_SHA256="110933269a6f6e607101399c8c70a9a990d3f0d9c2d53b9daab5ec398360f80e"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/libretro/virtualjaguar-libretro"
 PKG_URL="https://github.com/libretro/virtualjaguar-libretro/archive/$PKG_VERSION.tar.gz"
