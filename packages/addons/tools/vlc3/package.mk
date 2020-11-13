@@ -303,9 +303,9 @@ addon() {
     cp -P $LIB_X265/.install_pkg/usr/local/lib/libx265.so.179 $ADDON_BUILD/$PKG_ADDON_ID/lib/libx265.so.179
     cp -P $LIB_GOOM/.install_pkg/usr/lib/libgoom2.so.0.0.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgoom2.so.0
 
-    cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.27.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
-    cp -P $LIB_NETTLE/.install_pkg/usr/lib/libnettle.so.6.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libnettle.so.6
-    cp -P $LIB_NETTLE/.install_pkg/usr/lib/libhogweed.so.4.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libhogweed.so.4
+    cp -P $LIB_GNUTLS/.INSTALL_PKG/usr/lib/libgnutls.so.30.28.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgnutls.so.30
+    cp -P $LIB_NETTLE/.install_pkg/usr/lib/libnettle.so.8.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libnettle.so.6
+    cp -P $LIB_NETTLE/.install_pkg/usr/lib/libhogweed.so.6.0 $ADDON_BUILD/$PKG_ADDON_ID/lib/libhogweed.so.4
     cp -P $LIB_IDN2/.install_pkg/usr/lib/libidn2.so.0.3.5 $ADDON_BUILD/$PKG_ADDON_ID/lib/libidn2.so.0
     cp -P $LIB_GMP/.install_pkg/usr/lib/libgmp.so.10.3.2 $ADDON_BUILD/$PKG_ADDON_ID/lib/libgmp.so.10
 
