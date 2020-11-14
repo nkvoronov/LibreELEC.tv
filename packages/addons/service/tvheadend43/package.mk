@@ -3,7 +3,7 @@
 
 PKG_NAME="tvheadend43"
 PKG_VERSION="4.3.1914"
-PKG_REV="280"
+PKG_REV="281"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"

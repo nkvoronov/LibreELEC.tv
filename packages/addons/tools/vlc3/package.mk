@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.11"
 PKG_SHA256="3e94a1acf33445e9da15d528aa48657aa26b912eaa2656b403d43860a8834919"
-PKG_REV="76"
+PKG_REV="78"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -324,7 +324,7 @@ addon() {
     cp -P $PANGO_DIR/.install_pkg/usr/lib/libpangocairo-1.0.so.0.4200.1 $ADDON_BUILD/$PKG_ADDON_ID/lib/libpangocairo-1.0.so.0
     cp -PR $LIBRSVG_DIR/.install_pkg/usr/lib/gdk-pixbuf-2.0 $ADDON_BUILD/$PKG_ADDON_ID/lib
     cp -P $LIBRSVG_DIR/.install_pkg/usr/lib/librsvg-2.so.2.40.9 $ADDON_BUILD/$PKG_ADDON_ID/lib/librsvg-2.so.2
-    cp -P $LIBZSTD_DIR/.install_pkg/usr/lib/libzstd.so.1.4.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzstd.so.1
+    cp -P $LIBZSTD_DIR/.x86_64-linux-gnu/lib/libzstd.so.1.4.3 $ADDON_BUILD/$PKG_ADDON_ID/lib/libzstd.so.1
 
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/share
     cp -R $LIB_NCURSESW/.INSTALL_PKG/usr/share/* $ADDON_BUILD/$PKG_ADDON_ID/share
