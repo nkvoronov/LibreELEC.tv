@@ -4,7 +4,7 @@
 
 PKG_NAME="mc"
 PKG_VERSION="4.8.25"
-#PKG_SHA256="859f1cc070450bf6eb4d319ffcb6a5ac29deb0ac0d81559fb2e71242b1176d46"
+PKG_SHA256="ffc19617f20ebb23330acd3998b7fd559a042d172fa55746d53d246697b2548a"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.midnight-commander.org"
 PKG_URL="http://ftp.midnight-commander.org/mc-${PKG_VERSION}.tar.xz"
