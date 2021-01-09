@@ -5,9 +5,9 @@
 PKG_NAME="docker"
 PKG_STABLE="yes"
 if [ "$PKG_STABLE" = "yes" ]; then
-  PKG_VERSION="19.03.14"
-  PKG_SHA256="9f1ec28e357a8f18e9561129239caf9c0807d74756e21cc63637c7fdeaafe847"
-  PKG_REV="154"
+  PKG_VERSION="20.10.2"
+  PKG_SHA256="97017e32a8ecbdd1826bb3c7b1424303ee0dea3f900d33591b1df5e394ed4eed"
+  PKG_REV="155"
   PKG_URL="https://download.docker.com/linux/static/stable/x86_64/${PKG_NAME}-${PKG_VERSION}.tgz"
   PKG_SOURCE_DIR="docker"
   PKG_BUILD_FLAGS="-strip"
