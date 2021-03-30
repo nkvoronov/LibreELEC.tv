@@ -1,17 +1,23 @@
+125
+- fix download zipped content for epg data with epg_grab_file
+
+124
+- fix query url for imdb.com and thetvdb.com
+
 123
-- update gnutls to 3.6.14
+- Python3 ABI support
 
 122
-- update gnutls to 3.6.13
-
-121
 - update to 4.2.8-36
 - update comskip to 2019-11-03
 - fixed default recording path
 
-120
+121
 - update to 4.2.8-27
 - update comskip to 2019-03-30
+
+120
+- Use system gnutls
 
 119
 - Use system libidn2

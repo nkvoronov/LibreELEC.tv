@@ -7,17 +7,14 @@ PKG_SHA256="4d45d30335ce1c28fb4de8865ada57f81de18d83a77950e9ab7c3ea26d24a883"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kaashoek.com/comskip/"
 PKG_URL="https://github.com/erikkaashoek/Comskip/archive/${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain argtable2 ffmpeg gnutls"
+PKG_DEPENDS_TARGET="toolchain argtable2 ffmpegx"
+PKG_DEPENDS_CONFIG="argtable2 ffmpegx"
 PKG_LONGDESC="Comskip detects commercial breaks from a video stream. It can be used for post-processing recordings."
 PKG_TOOLCHAIN="autotools"
+PKG_BUILD_FLAGS="-sysroot"
 
 pre_configure_target() {
-  LDFLAGS+=" -ldl"
-
-  export argtable2_CFLAGS="-I$(get_build_dir argtable2)/src"
-  export argtable2_LIBS="-L$(get_build_dir argtable2)/src/.libs -largtable2"
-}
-
-make_target() {
- :
+  # pass ffmpegx to build
+  CFLAGS+=" -I$(get_install_dir ffmpegx)/usr/local/include"
+  LDFLAGS+=" -L$(get_install_dir ffmpegx)/usr/local/lib -ldl"
 }

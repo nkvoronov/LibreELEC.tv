@@ -129,7 +129,7 @@ PROMPT 1
 
 LABEL installer
   KERNEL /${KERNEL_NAME}
-  APPEND boot=UUID=${UUID_SYSTEM} installer quiet systemd.debug_shell systemd.unit=installer.target vga=current
+  APPEND boot=UUID=${UUID_SYSTEM} installer quiet systemd.debug_shell vga=current
 
 LABEL live
   KERNEL /${KERNEL_NAME}
@@ -198,10 +198,6 @@ EOF
   mcopy "${RELEASE_DIR}/3rdparty/bootloader/config.txt" ::
   mcopy "${RELEASE_DIR}/3rdparty/bootloader/distroconfig.txt" ::
 
-  if [ -f "${RELEASE_DIR}/3rdparty/bootloader/dt-blob.bin" ]; then
-    mcopy "${RELEASE_DIR}/3rdparty/bootloader/dt-blob.bin" ::
-  fi
-
   for dtb in "${RELEASE_DIR}/3rdparty/bootloader/"*.dtb ; do
     if [ -f "${dtb}" ]; then
       mcopy "${dtb}" ::/$(basename "${dtb}")
@@ -212,15 +208,19 @@ EOF
     mcopy -s "${RELEASE_DIR}/3rdparty/bootloader/overlays" ::
   fi
 
-elif [ "${BOOTLOADER}" = "u-boot" -a \( -n "${UBOOT_SYSTEM}" -o "${UBOOT_VERSION}" = "vendor" \) ]; then
+elif [ "${BOOTLOADER}" = "u-boot" -a -n "${UBOOT_SYSTEM}" ]; then
   # create bootloader configuration
   echo "image: creating bootloader configuration..."
 
-  if [ "${UBOOT_VERSION}" != "vendor" ]; then
-    DTB="$(${SCRIPTS}/uboot_helper ${PROJECT} ${DEVICE} ${UBOOT_SYSTEM} dtb)"
+  DTB="$(${SCRIPTS}/uboot_helper ${PROJECT} ${DEVICE} ${UBOOT_SYSTEM} dtb)"
+  if [ -n "${DTB}" ]; then
 
     if [ -f "${RELEASE_DIR}/3rdparty/bootloader/${DTB}" ]; then
       mcopy "${RELEASE_DIR}/3rdparty/bootloader/${DTB}" ::
+    fi
+
+    if [ -d "${RELEASE_DIR}/3rdparty/bootloader/overlays" ]; then
+      mcopy -s "${RELEASE_DIR}/3rdparty/bootloader/overlays" ::
     fi
 
     mkdir -p "${LE_TMP}/extlinux"
@@ -319,18 +319,12 @@ if [ "${PROJECT}" = "Generic" ]; then
   echo "image: cleaning up..."
   # remove tmp ${DISK}, vmdk and ovf
   rm "${DISK_BASENAME}.tmp" "${DISK_BASENAME}.vmdk" "${DISK_BASENAME}.ovf"
-  # set owner
-  [ -n "${SUDO_USER}" ] && chown "${SUDO_USER}:" "${DISK_BASENAME}.ova"
 fi
 
 # gzip
 echo "image: compressing..."
 pigz --best --force "${DISK}"
 
-# set owner
-if [ -n "${SUDO_USER}" ]; then
-  chown "${SUDO_USER}:" "${DISK}.gz"
-fi
 # create sha256 checksum of image
 ( cd "${TARGET_IMG}"
   sha256sum $(basename "${DISK}").gz > $(basename "${DISK}").gz.sha256

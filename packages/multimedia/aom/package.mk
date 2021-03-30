@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="aom"
-PKG_VERSION="990da97d18a80dcdb0cb291ffb91e284e2e25320"
-PKG_SHA256="830cc4b00a5fb747144218f1a6bf48c4ddff49670d95acda61313502520c236b"
+PKG_VERSION="7ddc21b28468b9e8d0f189bb46a2467de4e09e12"
+PKG_SHA256="995349787105db62daba924f22f7a90c4825575fe24d2b87c4b183d8ac99f5b3"
 PKG_LICENSE="BSD"
 PKG_SITE="https://www.webmproject.org"
 PKG_URL="http://repo.or.cz/aom.git/snapshot/${PKG_VERSION}.tar.gz"
@@ -17,7 +17,7 @@ PKG_CMAKE_OPTS_TARGET="-DBUILD_SHARED_LIBS=1 \
                        -DENABLE_TESTS=0 \
                        -DENABLE_TOOLS=0"
 
-if [ "$TARGET_ARCH" = "x86_64" ]; then
+if [ "${TARGET_ARCH}" = "x86_64" ]; then
   PKG_DEPENDS_TARGET+=" nasm:host"
 fi
 

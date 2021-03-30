@@ -1,5 +1,24 @@
+133
+- Update to docker 19.03.15
+- runc: update to 1.0.0-rc93
+
+132
+- Fix python addon
+
+131
+- Update to docker 19.03.14
+
+130
+- Update to docker 19.03.13
+
+129
+- Fix "docker run --init"
+
+128
+- Update to docker 19.03.2
+
 127
-- Rebuild tini without -DMINIMAL=ON to fix 'docker run --init'
+- Update to docker 18.09.8
 
 126
 - Update to docker 18.09.7

@@ -5,9 +5,6 @@
   # Bootloader to use (syslinux / u-boot / bcm2835-bootloader)
     BOOTLOADER="u-boot"
 
-  # u-boot version to use (default)
-    UBOOT_VERSION="default"
-
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD="dtbs"
 
@@ -40,12 +37,6 @@
   # OpenGL(X) implementation to use (no / mesa)
     OPENGL="no"
 
-  # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q)
-    OPENGLES="libmali"
-
-  # include uvesafb support (yes / no)
-    UVESAFB_SUPPORT="no"
-
   # Displayserver to use (x11 / no)
     DISPLAYSERVER="no"
 
@@ -55,13 +46,7 @@
   # Xorg Graphic drivers to use (all / i915,i965,r200,r300,r600,nvidia)
   # Space separated list is supported,
   # e.g. GRAPHIC_DRIVERS="i915 i965 r300 r600 radeonsi nvidia"
-    GRAPHIC_DRIVERS=""
-
-  # KODI Player implementation to use (default / bcm2835-driver / libfslvpuwrap)
-    KODIPLAYER_DRIVER="$OPENGLES"
-
-  # Modules to install in initramfs for early boot
-    INITRAMFS_MODULES=""
+    GRAPHIC_DRIVERS="lima panfrost"
 
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
@@ -77,3 +62,5 @@
   # debug tty path
     DEBUG_TTY="/dev/console"
 
+  # additional packages to install:
+    ADDITIONAL_PACKAGES="dt-overlays"

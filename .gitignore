@@ -1,10 +1,10 @@
 # build directorys
 /build.*/
+/builds
 /.fakeroot.*
 
 # automatically downloaded source files
 /sources/
-/.stamps/
 
 # prebuild target binarys to provide
 /target/
@@ -34,3 +34,6 @@ mkpkg-temp
 # crap
 .DS_Store
 .directory
+
+# ignore git repos from update scripts
+tools/mkpkg/*.git

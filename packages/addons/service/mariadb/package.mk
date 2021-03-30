@@ -3,17 +3,17 @@
 
 PKG_NAME="mariadb"
 PKG_VERSION="10.5.9"
-PKG_SHA256="40ab19aeb8de141fdc188cf2251213c9e7351bee4d0cd29db704fae68d1068cf"
-PKG_URL="https://downloads.mariadb.org/interstitial/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_REV="218"
+PKG_SHA256="40ab19aeb8de141fdc188cf2251213c9e7351bee4d0cd29db704fae68d1068cf"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
+PKG_URL="https://downloads.mariadb.org/interstitial/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_HOST="toolchain:host ncurses:host"
 PKG_DEPENDS_TARGET="toolchain binutils bzip2 libaio libxml2 lzo ncurses openssl systemd zlib mariadb:host"
 PKG_SHORTDESC="MariaDB is a community-developed fork of the MySQL."
 PKG_LONGDESC="MariaDB (${PKG_VERSION}) is a fast SQL database server and a drop-in replacement for MySQL."
 PKG_TOOLCHAIN="cmake"
-PKG_BUILD_FLAGS="-gold"
+PKG_BUILD_FLAGS="-gold -sysroot"
 
 PKG_IS_ADDON="yes"
 PKG_SECTION="service"
@@ -71,15 +71,13 @@ makeinstall_host() {
   :
 }
 
-makeinstall_target() {
-  # use only for addon
-  DESTDIR=${PKG_BUILD}/.install_addon ninja ${NINJA_OPTS} install
-  rm -rf "${PKG_BUILD}/.install_addon/usr/mysql-test"
+post_makeinstall_target() {
+  rm -rf "${PKG_INSTALL}/usr/mysql-test"
 }
 
 addon() {
   local ADDON="${ADDON_BUILD}/${PKG_ADDON_ID}"
-  local MARIADB="${PKG_BUILD}/.install_addon/usr"
+  local MARIADB="${PKG_INSTALL}/usr"
 
   mkdir -p ${ADDON}/bin
   mkdir -p ${ADDON}/config

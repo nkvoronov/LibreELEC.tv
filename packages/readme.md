@@ -33,8 +33,9 @@ To control the build behaviour of your package, use variables in the top-down or
 | PKG_NEED_UNPACK | -   | no  | Space separated list of files or folders to include in package stamp calculation. If the stamp is invalidated through changes to package files or dependent files/folders the package is cleaned and rebuilt. e.g. `PKG_NEED_UNPACK="$(get_pkg_directory linux)"` will trigger clean/rebuild of a Linux kernel driver package when a change to the `linux` kernel package is detected. |
 | PKG_TOOLCHAIN | auto  | no  | Control which build toolchain is used. For detailed information, see [reference](#toolchain-options). |
 | PKG_BUILD_FLAGS | -   | no  | A space separated list of flags with which to fine-tune the build process. Flags can be enabled or disabled with a `+` or `-` prefix. For detailed information, see the [Reference](#build_flags-options). |
-| PKG_PYTHON_VERSION | python2.7 | no | Define the Python version to be used. |
+| PKG_PYTHON_VERSION | python3.8 | no | Define the Python version to be used. |
 | PKG_IS_KERNEL_PKG | - | no  | Set to `yes` for packages that include Linux kernel modules |
+| PKG_DEPENDS_CONFIG | - | no  | Space separated list of packages to add to PKG_CONFIG_PATH. Use this to build with support for `-sysroot` packages (See [reference](BUILD_FLAGS options). |
 
 #### Meson Options
 | Variable    | Default | Required |Description |
@@ -114,17 +115,20 @@ Build flags implement often used build options. Normally these are activated be 
 
 Set the variable `PKG_BUILD_FLAGS` in the `package.mk` to enable/disable the single flags. It is a space separated list. The flags can enabled with a `+` prefix, and disabled with a `-`.
 
-| flag     | default  | affected stage | description |
-|----------|----------|----------------|-------------|
-| pic      | disabled | target/init    | [Position Independent Code](https://en.wikipedia.org/wiki/Position-independent_code) |
-| pic:host | disabled | host/bootstrap | see above |
-| lto      | disabled | target/init    | enable LTO (Link Time optimization) in the compiler and linker unless disabled via `LTO_SUPPORT`. Compiles non-fat LTO objects (only bytecode) and performs single-threaded optimization at link stage |
-| lto-parallel | disabled | target/init | same as `lto` but enable parallel optimization at link stage. Only enable this if the package build doesn't run multiple linkers in parallel otherwise this can result in lots of parallel processes! |
-| lto-fat  | disabled | target/init | same as `lto` but compile fat LTO objects (bytecode plus optimized assembly). This increases compile time but can be useful to create static libraries suitable both for LTO and non-LTO linking |
-| lto-off  | disabled | target/init | explicitly disable LTO in the compiler and linker |
-| gold     | depend on `GOLD_SUPPORT` | target/init | can only disabled, use of the GOLD-Linker |
+| flag     | default  | affected stage(s) | description |
+|----------|----------|-------------------|-------------|
+| pic      | disabled | target, init      | [Position Independent Code](https://en.wikipedia.org/wiki/Position-independent_code) |
+| pic:host | disabled | host, bootstrap   | see above |
+| speed    | disabled | target, init      | replaces default `-O2` compiler optimization with `-O3` (can only enable; overrules size) |
+| size     | disabled | target, init      | replaces default `-O2` compiler optimization with `-Os` (can only enable) |
+| lto      | disabled | target, init      | enable LTO (Link Time optimization) in the compiler and linker unless disabled via `LTO_SUPPORT`. Compiles non-fat LTO objects (only bytecode) and performs single-threaded optimization at link stage |
+| lto-parallel | disabled | target, init  | same as `lto` but enables parallel optimization at link stage. Only enable this if the package build doesn't run multiple linkers in parallel otherwise this can result in lots of parallel processes! |
+| lto-fat  | disabled | target, init      | same as `lto` but compile fat LTO objects (bytecode plus optimized assembly). This increases compile time but can be useful to create static libraries suitable both for LTO and non-LTO linking |
+| lto-off  | disabled | target, init      | explicitly disable LTO in the compiler and linker |
+| gold     | enabled by `GOLD_SUPPORT` | target, init | do not use GOLD-Llinker (can only disable) |
 | parallel | enabled  | all | `make` or `ninja` builds with multiple threads/processes (or not) |
 | strip    | enabled  | target | strips executables (or not) |
+| sysroot  | enabled  | target | installs the package to the sysroot folder (or not) |
 
 ###### Example
 ```
@@ -133,8 +137,8 @@ PKG_BUILD_FLAGS="-parallel"
 ```
 
 ## Functions
-All build steps in the LibreELEC build system, a done by shell function.
-These functions can overwritten in the `package.mk`. But this raises problems, when the build system is updated. To reduce the problem, most function was extended by `pre_` and `post_` scripts, to use instead.
+All build steps in the LibreELEC build system are done by shell function.
+These functions can be overwritten in the `package.mk`. However, this raises problems when the build system is updated. To reduce the impact, most functions are extended by `pre_` and `post_` scripts to use instead.
 
 When it is nesseary to replace configure, make and makeinstall, please use `PKG_TOOLCHAIN="manual"`.
 
@@ -152,6 +156,13 @@ Full list of overwrittable functions.
 | make_\[stage]<br>pre_make_\[stage]<br>post_make_\[stage] | yes | Build of the package |
 | makeinstall_\[stage]<br>pre_makeinstall_\[stage]<br>post_makeinstall_\[stage] | yes | Installation of the files in the correct pathes<br>host: TOOLCHAIN<br>target: SYSROOT and IMAGE<br>bootstrap and init: temporary destination
 | addon                   | -      | Copy all files together for addon creation. This is requiered for addons |
+| post_install_addon      | -      | Post processing of installed addon files in `${INSTALL}` directory |
+
+## Directory structure
+Every package has its own set of build and install directories. The sources are extracted and built in the former, and build artifacts are installed to the latter.
+Usually an install target provided by the package build system will populate the install directory automatically, but it's important that you use the standard `usr/lib/`, `usr/bin/` etc. structure when doing so manually, because the contents of the install directory will be part of the final image (with the exception of top level hidden directories).
+
+Sometimes it's necessary to access build artifacts from different packages - like an addon collecting files of various other packages. In that case you need to access the files using the package's install directories (and not their build directories since they might not exist anymore). If you need additional files which should not be part of the final image, you can use a hidden directory for those - grep for `.noinstall` for some examples.
 
 ## Late Binding variable assignment
 
@@ -266,7 +277,7 @@ Issue | Level | Meaning |
     * when it extend an existing package, add it there to the `PKG_DEPENDS_TARGET`/`PKG_DEPENDS_HOST` etc.
     * take a look into the path `packages/virtual`, there you should find a virtual packages, that match your new package (misc-packages should be the last option)
 5. Now you can build your image
-    * after the build, inside the `build-*` folder you should find a directory with your package name and -version, eg. `widget-1.2.3`.
+    * after the build, inside the `BUILD_DIR` (normally build.*) folder you should find a directory with your package name and -version, eg. `widget-1.2.3`.
 
 ## Example
 ```

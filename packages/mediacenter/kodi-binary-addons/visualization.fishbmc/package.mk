@@ -2,13 +2,13 @@
 # Copyright (C) 2020-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="visualization.fishbmc"
-PKG_VERSION="5.1.3-Leia"
-PKG_SHA256="a03d4f64a6d44625d6936fd3abd359a0a08d11252663cae9fc5d061bd489c006"
-PKG_REV="1"
+PKG_VERSION="6.3.0-Matrix"
+PKG_SHA256="fd6a4383e36ed67590d40eb945d11bc5eae0c83e0ea56bfcadbc0ff03de0b2a4"
+PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/visualization.fishbmc"
-PKG_URL="https://github.com/xbmc/visualization.fishbmc/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/visualization.fishbmc/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform glm"
 PKG_SECTION=""
 PKG_SHORTDESC="visualization.fishbmc"

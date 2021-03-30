@@ -11,7 +11,5 @@
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
     FIRMWARE="${FIRMWARE} rpi-eeprom"
 
-    OPENGLES="mesa"
-    GRAPHIC_DRIVERS="vc4"
-    KODIPLAYER_DRIVER="mesa"
-    KODI_VENDOR="raspberrypi4"
+  # set the addon project
+    ADDON_PROJECT="ARMv8"

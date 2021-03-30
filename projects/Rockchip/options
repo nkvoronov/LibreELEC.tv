@@ -5,9 +5,21 @@
   # Bootloader to use (syslinux / u-boot / bcm2835-bootloader)
     BOOTLOADER="u-boot"
 
+  # U-Boot make target
+    UBOOT_TARGET="u-boot-dtb.bin"
+
+  # U-Boot firmware package(s) to use
+    UBOOT_FIRMWARE="rkbin"
+
+  # Additional kernel make parameters (for example to specify the u-boot loadaddress)
+    KERNEL_MAKE_EXTRACMD="dtbs"
+
+  # Additional kernel dependencies
+    KERNEL_EXTRA_DEPENDS_TARGET="lz4:host"
+
   # Kernel to use. values can be:
   # default:  default mainline kernel
-    LINUX="${LINUX:-rockchip-4.4}"
+    LINUX="${LINUX:-default}"
 
 ################################################################################
 # setup build defaults
@@ -16,8 +28,8 @@
   # Project CFLAGS
     PROJECT_CFLAGS=""
 
-  # SquashFS compression method (gzip / lzo / xz)
-    SQUASHFS_COMPRESSION="lzo"
+  # SquashFS compression method (gzip / lzo / xz / zstd)
+    SQUASHFS_COMPRESSION="zstd"
 
 ################################################################################
 # setup project defaults
@@ -29,11 +41,8 @@
   # OpenGL(X) implementation to use (no / mesa)
     OPENGL="no"
 
-  # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q)
-    OPENGLES="libmali"
-
-  # include uvesafb support (yes / no)
-    UVESAFB_SUPPORT="no"
+  # OpenGL-ES implementation to use (no / libmali / mesa)
+    OPENGLES="${OPENGLES:-mesa}"
 
   # Displayserver to use (weston / no)
     DISPLAYSERVER="no"
@@ -46,19 +55,13 @@
   # e.g. GRAPHIC_DRIVERS="i915 i965 r300 r600 radeonsi nvidia"
     GRAPHIC_DRIVERS=""
 
-  # Use a vendor specific KODI repo
-    KODI_VENDOR="rockchip"
-
   # KODI Player implementation to use (default / bcm2835-driver / libfslvpuwrap)
     KODIPLAYER_DRIVER="$OPENGLES"
-
-  # Modules to install in initramfs for early boot
-    INITRAMFS_MODULES=""
 
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
   # e.g. FIRMWARE="dvb-firmware misc-firmware wlan-firmware"
-    FIRMWARE="misc-firmware wlan-firmware dvb-firmware rockchip-firmware"
+    FIRMWARE="misc-firmware wlan-firmware dvb-firmware brcmfmac_sdio-firmware"
 
   # additional packages to install
     ADDITIONAL_PACKAGES="dtc"
@@ -73,7 +76,7 @@
     SYSTEM_PART_START=32768
 
   # build and install driver addons (yes / no)
-    DRIVER_ADDONS_SUPPORT="yes"
+    DRIVER_ADDONS_SUPPORT="no"
 
   # driver addons to install:
   # for a list of additinoal drivers see packages/linux-driver-addons

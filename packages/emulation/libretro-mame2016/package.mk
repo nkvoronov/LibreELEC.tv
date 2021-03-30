@@ -2,12 +2,12 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-mame2016"
-PKG_VERSION="02987af9b81a9c3294af8fb9d5a34f9826a2cf4d"
-PKG_SHA256="d09ce628901f8b19417f05a84aa7cb1bc2b567b05b0de2bb425451d62f897507"
+PKG_VERSION="d53c379892b0bd91b4a52fc2de491e1199f03e32"
+PKG_SHA256="bafcac133ff37fb3adeafd9960427e3314e682caf22d455395855d64553d46fe"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/mame2016-libretro"
 PKG_URL="https://github.com/libretro/mame2016-libretro/archive/${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain linux glibc alsa-lib"
+PKG_DEPENDS_TARGET="toolchain linux:host alsa-lib"
 PKG_LONGDESC="Late 2016 version of MAME (0.174) for libretro. Compatible with MAME 0.174 romsets."
 PKG_TOOLCHAIN="make"
 
@@ -15,24 +15,19 @@ PKG_LIBNAME="mame2016_libretro.so"
 PKG_LIBPATH="${PKG_LIBNAME}"
 PKG_LIBVAR="MAME2016_LIB"
 
-make_target() {
+pre_make_target() {
+  PKG_MAKE_OPTS_TARGET=" \
+    REGENIE=1 VERBOSE=1 NOWERROR=1 PYTHON_EXECUTABLE=python3 CONFIG=libretro \
+    LIBRETRO_OS="unix" ARCH="" PROJECT="" LIBRETRO_CPU="${ARCH}" DISTRO="debian-stable" \
+    CROSS_BUILD="1" OVERRIDE_CC="${CC}" OVERRIDE_CXX="${CXX}" \
+    TARGET="mame" SUBTARGET="arcade" PLATFORM="${ARCH}" RETRO=1 OSD="retro" \
+    GIT_VERSION=${PKG_VERSION:0:7}"
+
   if [ "${ARCH}" = "arm" ]; then
-    PKG_NOASM="1"
-  else
-    PKG_NOASM="0"
+    PKG_MAKE_OPTS_TARGET+=" NOASM="1" ARCHITECTURE="""
+  elif [ "${ARCH}" = "x86_64" ]; then
+    PKG_MAKE_OPTS_TARGET+=" NOASM="0" PTR64="1""
   fi
-
-  if [ "${ARCH}" = "x86_64" ]; then
-    PKG_PTR64="1"
-  else
-    PKG_PTR64="0"
-  fi
-
-  make REGENIE=1 VERBOSE=1 NOWERROR=1 PYTHON_EXECUTABLE=python2 CONFIG=libretro \
-       LIBRETRO_OS="unix" ARCH="" PROJECT="" LIBRETRO_CPU="${ARCH}" DISTRO="debian-stable" \
-       CROSS_BUILD="1" OVERRIDE_CC="${CC}" OVERRIDE_CXX="${CXX}" \
-       PTR64="${PKG_PTR64}" NOASM="${PKG_NOASM}" TARGET="mame" \
-       SUBTARGET="arcade" PLATFORM="${ARCH}" RETRO=1 OSD="retro" GIT_VERSION=${PKG_VERSION:0:7}
 }
 
 post_make_target() {

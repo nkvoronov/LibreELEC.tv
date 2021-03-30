@@ -2,13 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="crazycat"
-PKG_VERSION="532599d255411a24f93b585a92b1b0c49e2012f7"
-PKG_SHA256="0e3addc3562057a77edefdde0052a78aec145c4dd5b737b53dd25ce389b95093"
+PKG_VERSION="4a6d5e54cb90363e50f20a91af93aec84eef3205"
+PKG_SHA256="b55eb13d2f9a92d8b75a84f4f77d841ae12bbb6c97bd672ffd9eb2e2800d0523"
 PKG_LICENSE="GPL"
-PKG_SITE="https://bitbucket.org/CrazyCat/media_build"
-PKG_URL="https://bitbucket.org/CrazyCat/media_build/get/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain linux media_tree_cc"
-PKG_NEED_UNPACK="$LINUX_DEPENDS $(get_pkg_directory media_tree_cc)"
+PKG_SITE="https://github.com/crazycat69/media_build"
+PKG_URL="https://github.com/LibreELEC/media_build/archive/${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_UNPACK="media_tree_cc"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="DVB driver for TBS cards with CrazyCats additions"
 
@@ -19,27 +18,33 @@ PKG_ADDON_NAME="DVB drivers for TBS"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
 
+PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
+
+if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
+  PKG_PATCH_DIRS="disable-pci"
+fi
+
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
   export LDFLAGS=""
 }
 
 make_target() {
-  cp -RP $(get_build_dir media_tree_cc)/* $PKG_BUILD/linux
+  cp -RP $(get_build_dir media_tree_cc)/* ${PKG_BUILD}/linux
 
   # make config all
-  kernel_make VER=$KERNEL_VER SRCDIR=$(kernel_path) allyesconfig
+  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
 
   # hack to workaround media_build bug
-  if [ "$PROJECT" = Rockchip ]; then
+  if [ "${PROJECT}" = Rockchip ]; then
     sed -e 's/CONFIG_DVB_CXD2820R=m/# CONFIG_DVB_CXD2820R is not set/g' -i v4l/.config
     sed -e 's/CONFIG_DVB_LGDT3306A=m/# CONFIG_DVB_LGDT3306A is not set/g' -i v4l/.config
   fi
 
   # add menuconfig to edit .config
-  kernel_make VER=$KERNEL_VER SRCDIR=$(kernel_path)
+  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path)
 }
 
 makeinstall_target() {
-  install_driver_addon_files "$PKG_BUILD/v4l/"
+  install_driver_addon_files "${PKG_BUILD}/v4l/"
 }

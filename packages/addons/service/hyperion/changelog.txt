@@ -1,13 +1,13 @@
 112
+- Remove legacy RPi dispmanx support
+
+111
 - update qt to 5.14.0
   * fixes screenshot not saving png files
 
-111
+110
 - Update to version 2019-08-19
   * Fix resuming from paused in kodi 18
-
-110
-- Fix RPi4 build to use dispmanx grabber
 
 109
 - Update to version 2018-12-20

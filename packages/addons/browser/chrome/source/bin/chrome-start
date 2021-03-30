@@ -77,12 +77,6 @@ if [ ! -z $ALSA_DEVICE ]; then
   chrome_OPTS="$chrome_OPTS --alsa-output-device=$ALSA_DEVICE"
 fi
 
-# dark mode
-if [ "$DARK_MODE" == "true" ]
-then
-  chrome_OPTS="$chrome_OPTS --force-dark-mode"
-fi
-
 # HACK!!! to get sound at Chrome stop pulseaudio
 systemctl stop pulseaudio
 
@@ -98,6 +92,12 @@ LD_PRELOAD=/usr/lib/libGL.so $ADDON_DIR/chrome-bin/chrome \
 if [ "$HIDE_CURSOR" == "true" ]
 then
   kill $UNCLUTTER_PID
+fi
+
+# dark mode
+if [ "$DARK_MODE" == "true" ]
+then
+  chrome_OPTS="$chrome_OPTS --force-dark-mode"
 fi
 
 # HACK!!! to get sound at Kodi start pulseaudio

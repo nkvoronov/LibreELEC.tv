@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.vba-next"
-PKG_VERSION="1.0.2.6-Leia"
-PKG_SHA256="69a31e6c5caf302b9a6225a82588b1e98c0cc06501d28ae7f6abbc6fb497d577"
-PKG_REV="1"
+PKG_VERSION="1.0.2.11-Matrix"
+PKG_SHA256="09013f1d793fb3a5de05a61a12f25100fb9ea365fed1d6685d205445ceacc6ae"
+PKG_REV="3"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/game.libretro.vba-next"
-PKG_URL="https://github.com/kodi-game/game.libretro.vba-next/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/kodi-game/game.libretro.vba-next/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libretro-vba-next"
 PKG_SECTION=""
 PKG_LONGDESC="game.libretro.vba-next: VBA-Next emulator for Kodi"

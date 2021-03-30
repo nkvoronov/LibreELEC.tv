@@ -1,7 +1,11 @@
+104
+- updated to 87.0.4280
+
 103
-- add flag for dark mode
+- fix getting default audio device
 
 102
+- add dark mode at options
 - support for latest Chrome
 
 101

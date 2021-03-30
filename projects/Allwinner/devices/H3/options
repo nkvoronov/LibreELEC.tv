@@ -37,5 +37,20 @@
   # Kernel target
     KERNEL_TARGET="zImage"
 
+  # U-Boot firmware package(s) to use
+    UBOOT_FIRMWARE="crust"
+
+  # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q)
+    OPENGLES="mesa"
+
   # Mali GPU family
     MALI_FAMILY="400"
+
+  # KODI Player implementation to use (default / bcm2835-driver / libfslvpuwrap)
+    KODIPLAYER_DRIVER="$OPENGLES"
+
+  # set the addon project
+    ADDON_PROJECT="ARMv7"
+
+  # additional kernel parameters
+    EXTRA_CMDLINE="$EXTRA_CMDLINE vmalloc=320M"

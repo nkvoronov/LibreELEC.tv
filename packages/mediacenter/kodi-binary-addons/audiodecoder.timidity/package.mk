@@ -3,13 +3,13 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="audiodecoder.timidity"
-PKG_VERSION="2.0.5-Leia"
-PKG_SHA256="b20a3a23056aaf76c216c755f36dff03e943d7c086d3e3fca4c920b93113e073"
-PKG_REV="1"
+PKG_VERSION="3.0.0-Matrix"
+PKG_SHA256="0e049f25a12d8cfc9965d189de573d87aa3e7e6549e99a7ddcaf9d8cddc111db"
+PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/audiodecoder.timidity"
-PKG_URL="https://github.com/xbmc/audiodecoder.timidity/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/audiodecoder.timidity/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform"
 PKG_SECTION=""
 PKG_SHORTDESC="audiodecoder.timidity"
@@ -18,9 +18,13 @@ PKG_LONGDESC="audiodecoder.timidity"
 PKG_IS_ADDON="yes"
 PKG_ADDON_TYPE="kodi.audiodecoder"
 
-addon() {
-  install_binary_addon $PKG_ADDON_ID
+pre_configure_target() {
+  CFLAGS+=" -fcommon"
+}
 
-  mkdir -p $ADDON_BUILD/$PKG_ADDON_ID
-    cp -P $PKG_BUILD/.$TARGET_NAME/lib/timidity/libtimidity_*.so $ADDON_BUILD/$PKG_ADDON_ID/
+addon() {
+  install_binary_addon ${PKG_ADDON_ID}
+
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}
+    cp -P ${PKG_BUILD}/.${TARGET_NAME}/lib/timidity/libtimidity_*.so ${ADDON_BUILD}/${PKG_ADDON_ID}/
 }

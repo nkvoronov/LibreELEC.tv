@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="inputstream.rtmp"
-PKG_VERSION="2.0.9-Leia"
-PKG_SHA256="56dac63262fa736620863900d903616d4827d735992e6d8beda84e377a5599e5"
-PKG_REV="2"
+PKG_VERSION="3.4.0-Matrix"
+PKG_SHA256="efaaa9b07c18810582a3826df476fc36a2aac82be7512271545073c3f6cc0212"
+PKG_REV="4"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/inputstream.rtmp"
-PKG_URL="https://github.com/xbmc/inputstream.rtmp/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/inputstream.rtmp/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform rtmpdump"
 PKG_SECTION=""
 PKG_SHORTDESC="inputstream.rtmp"

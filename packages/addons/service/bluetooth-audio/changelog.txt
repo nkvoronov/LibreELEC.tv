@@ -1,5 +1,6 @@
 102
-- Avoid LibreELEC Settings addon crash
+- Python 3 support
+- Using separate dbus process
 
 101
 - Fix log errors
