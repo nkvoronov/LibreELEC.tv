@@ -114,6 +114,13 @@ show_config() {
     show_distro_config
   fi
 
+  if [ -f distributions/${DISTRO}/show_config_custom ]; then
+    . distributions/${DISTRO}/show_config_custom
+  fi
+  if [ "$(type -t show_distro_config_custom)" = "function" ]; then
+    show_distro_config_custom
+  fi
+
   config_message+="\n\n $dashes$dashes$dashes"
   config_message+="\n End Configuration for $DISTRONAME"
   config_message+="\n $dashes$dashes$dashes"

@@ -44,29 +44,3 @@
 
 # Docker Fix
   DOCKER_FIX="no"
-
-show_distro_config() {
-  if [ "${CUSTOM_SUPPORT}" = "yes" ]; then
-    config_message+="\n - Remove shipped skins:\t\t ${SKIN_REMOVE_SHIPPED}"
-
-    config_message+="\n"
-    config_message+="\n $dashes$dashes"
-    config_message+="\n Custom options for ${DISTRONAME}"
-    config_message+="\n $dashes$dashes"
-    config_message+="\n"
-
-    config_message+="\n - Locales support:\t\t\t ${LOCALES_SUPPORT}"
-    config_message+="\n - Patch LibreELEC-settings:\t\t ${CUSTOM_LIBREELEC_SETTING}"
-    config_message+="\n - libXCB extention:\t\t\t ${LIBXCB_EXT}"
-    config_message+="\n - Enable shared build:\t\t\t ${ENABLE_SHARED}"
-
-    config_message+="\n - KODI YELLOWDRAGON repositories:\t ${KODI_REPOSITORY_YELLOWDRAGON}"
-    config_message+="\n - Lcdproc service:\t\t\t ${LCDPROC_SERVICE}"
-    config_message+="\n - Transmission service:\t\t ${TRANSMISSION_SERVICE}"
-    config_message+="\n - Oscam service:\t\t\t ${OSCAM_SERVICE}"
-    config_message+="\n - Tvheadend  service:\t\t\t ${TVHEADEND_SERVICE}"
-    config_message+="\n - System tools:\t\t\t ${SYS_TOOLS_ENABLED}"
-    config_message+="\n - DVB tools:\t\t\t\t ${DVB_TOOLS_ENABLED}"
-    config_message+="\n - Docker Fix:\t\t\t\t ${DOCKER_FIX}"
-  fi
-}
