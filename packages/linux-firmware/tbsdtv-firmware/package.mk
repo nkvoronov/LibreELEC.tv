@@ -4,7 +4,7 @@
 
 PKG_NAME="tbsdtv-firmware"
 PKG_VERSION="1.0"
-PKG_SHA256="105288b21c525f858cab0db1e712ad2e500d6aee9a701f5599595bcfbdf35597"
+PKG_SHA256="bceb70bc3e8b982f4d3c18c146e3ccca9790724c4f132eb0a42a13fdb701e3ea"
 PKG_LICENSE="Free-to-use"
 PKG_SITE="https://github.com/tbsdtv/linux_media/wiki"
 PKG_URL="http://www.tbsdtv.com/download/document/linux/tbs-tuner-firmwares_v$PKG_VERSION.tar.bz2"

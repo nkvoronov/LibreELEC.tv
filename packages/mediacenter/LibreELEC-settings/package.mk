@@ -21,6 +21,15 @@ else
   PKG_DEPENDS_TARGET+=" bkeymaps"
 fi
 
+post_unpack() {
+  if [ "${CUSTOM_LIBREELEC_SETTING}" = "yes" ]; then
+    for patch in `ls $PKG_DIR/patches.upstream/*.patch`; do
+      cat $patch | patch -d \
+      `echo ${PKG_BUILD} | cut -f1 -d\ ` -p1
+    done
+  fi
+}
+
 post_makeinstall_target() {
   mkdir -p ${INSTALL}/usr/lib/libreelec
     cp ${PKG_DIR}/scripts/* ${INSTALL}/usr/lib/libreelec

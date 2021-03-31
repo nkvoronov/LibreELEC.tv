@@ -1,7 +1,7 @@
 # Kodi Media Center language file
 # Addon Name: tvheadend43
 # Addon id: service.tvheadend43
-# Addon Provider: Team LibreELEC, YLLOW_DRAGON
+# Addon Provider: Team LibreELEC
 msgid ""
 msgstr ""
 

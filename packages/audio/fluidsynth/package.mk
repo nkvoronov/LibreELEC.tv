@@ -12,7 +12,13 @@ PKG_DEPENDS_TARGET="toolchain glib"
 PKG_LONGDESC="FluidSynth renders midi music files as raw audio data, for playing or conversion."
 PKG_BUILD_FLAGS="+pic"
 
-PKG_CMAKE_OPTS_TARGET="-DBUILD_SHARED_LIBS=1 \
+if [ "${CUSTOM_SUPPORT}" = "yes" -a "${ENABLE_SHARED}" = "yes" ]; then
+  SHARED="-DBUILD_SHARED_LIBS=1"
+else
+  SHARED="-DBUILD_SHARED_LIBS=0"
+fi
+
+PKG_CMAKE_OPTS_TARGET="${SHARED} \
                        -DLIB_SUFFIX= \
                        -Denable-readline=0 \
                        -Denable-pulseaudio=0 \

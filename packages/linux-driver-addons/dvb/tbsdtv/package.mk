@@ -6,9 +6,8 @@ PKG_VERSION="ad3104e066fe7b0a62f3afd4179c68e09c741a9c"
 PKG_SHA256="1e70ba353c746eb30dced7a9e16bce476b4fb0a677e7c9ec80ea37901e3771c2"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
-PKG_URL="https://github.com/tbsdtv/media_build/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain linux media_tree_tbsdtv"
-PKG_NEED_UNPACK="$LINUX_DEPENDS $(get_pkg_directory media_tree_tbsdtv)"
+PKG_URL="https://github.com/tbsdtv/media_build/archive/${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="TBS linux open source drivers"
 
@@ -31,11 +30,11 @@ pre_make_target() {
 }
 
 make_target() {
-  #mkdir -p ${PKG_BUILD}/media
-  #cp -RP $(get_build_dir media_tree_tbsdtv)/* ${PKG_BUILD}/media
-  #make dir DIR=./media
+  mkdir -p ${PKG_BUILD}/media
+  cp -RP $(get_build_dir media_tree_tbsdtv)/* ${PKG_BUILD}/media
+  make dir DIR=./media
 
-  cp -RP $(get_build_dir media_tree_tbsdtv)/* ${PKG_BUILD}/linux
+  #cp -RP $(get_build_dir media_tree_tbsdtv)/* ${PKG_BUILD}/linux
 
   # make config all
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig

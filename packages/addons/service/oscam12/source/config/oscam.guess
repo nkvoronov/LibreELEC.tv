@@ -1,9 +1,0 @@
-# oscam.guess
-# CAID guessing table by len in hex, only needed for protocols (at the moment BOMBA protocol only) that does not pass CAIDs
-#
-# Format:
-# <length of ECM>:<CAID>
-#
-# Example:
-# 12:3456
-#

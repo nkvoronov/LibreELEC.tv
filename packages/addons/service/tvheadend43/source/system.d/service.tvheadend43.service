@@ -1,6 +1,6 @@
 [Unit]
 Description=TVHeadend43 Service
-After=graphical.target
+After=network-online.service
 
 [Service]
 ExecStart=/bin/sh -c "exec sh /storage/.kodi/addons/service.tvheadend43/bin/tvheadend43.start"
