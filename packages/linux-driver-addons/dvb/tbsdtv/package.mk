@@ -2,11 +2,12 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tbsdtv"
-PKG_VERSION="ad3104e066fe7b0a62f3afd4179c68e09c741a9c"
-PKG_SHA256="1e70ba353c746eb30dced7a9e16bce476b4fb0a677e7c9ec80ea37901e3771c2"
+PKG_VERSION="a681bcc377ed582cd02ded081252d517e9f1b092"
+PKG_SHA256="2193e1c62ffa9975b4861c4671bf1f3b6261b25ada612728f51f794666efbb3f"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
 PKG_URL="https://github.com/tbsdtv/media_build/archive/${PKG_VERSION}.tar.gz"
+#PKG_URL="https://www.dropbox.com/s/4dz22b08v8rzjql/${PKG_NAME}_${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="TBS linux open source drivers"
@@ -46,7 +47,8 @@ make_target() {
   fi
 
   # add menuconfig to edit .config
-  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path)
+  export MAX_ARG_PAGES=64
+  kernel_make -j4 VER=${KERNEL_VER} SRCDIR=$(kernel_path)
 }
 
 makeinstall_target() {
