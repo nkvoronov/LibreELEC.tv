@@ -1,0 +1,62 @@
+# Kodi Media Center language file
+# Addon Name: transmission2
+# Addon id: service.transmission2
+# Addon Provider: Team LibreELEC, YLLOW_DRAGON
+msgid ""
+msgstr ""
+
+msgctxt "#1000"
+msgid "Transmission"
+msgstr ""
+
+msgctxt "#1010"
+msgid "User Settings"
+msgstr ""
+
+msgctxt "#1021"
+msgid "Use authentification"
+msgstr ""
+
+msgctxt "#1022"
+msgid "Username"
+msgstr ""
+
+msgctxt "#1023"
+msgid "Password"
+msgstr ""
+
+msgctxt "#2010"
+msgid "Network Settings"
+msgstr ""
+
+msgctxt "#2021"
+msgid "Allowed IP addresses (comma-delimited)"
+msgstr ""
+
+msgctxt "#3110"
+msgid "Other"
+msgstr ""
+
+msgctxt "#3121"
+msgid "Download Directory"
+msgstr ""
+
+msgctxt "#3122"
+msgid "Watch Directory"
+msgstr ""
+
+msgctxt "#3123"
+msgid "Incoming (incomplete) Directory"
+msgstr ""
+
+msgctxt "#4110"
+msgid "Custom Configuration"
+msgstr ""
+
+msgctxt "#4121"
+msgid "Enable custom configuration"
+msgstr ""
+
+msgctxt "#4122"
+msgid "Custom configuration folder"
+msgstr ""
