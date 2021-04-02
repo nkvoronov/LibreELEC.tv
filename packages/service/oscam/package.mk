@@ -8,7 +8,7 @@ PKG_SITE="http://www.streamboard.tv/oscam/wiki"
 PKG_URL="http://www.streamboard.tv/svn/oscam/trunk"
 PKG_DEPENDS_TARGET="toolchain openssl pcsc-lite"
 PKG_LONGDESC="OSCam: is a software to be used to decrypt digital television channels, as an alternative for a conditional access module."
-                       
+
 PKG_CMAKE_OPTS_TARGET="\
   `#Building` \
   -DLIBUSBDIR=${SYSROOT_PREFIX}/usr \

@@ -11,7 +11,8 @@ PKG_SECTION="virtual"
 PKG_LONGDESC="custom is a Metapackage for installing custom package"
 
 if [ "${KODI_REPOSITORY_YELLOWDRAGON}" = "yes" ]; then
-  PKG_DEPENDS_TARGET+=" repository.yellowdragon repository.yellowdragon.libreelec script.libreelec.devupdate"
+  PKG_DEPENDS_TARGET+=" repository.yellowdragon repository.yellowdragon.libreelec"
+# script.libreelec.devupdate"
 fi
 
 if [ "${LCDPROC_SERVICE}" = "yes" ]; then
