@@ -1,0 +1,72 @@
+#!/bin/sh
+
+# SPDX-License-Identifier: GPL-2.0
+# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
+
+. /etc/profile
+
+CONFIG_CACHE="/storage/.cache"
+
+# Set debug level mask used for logging:
+# 0 - No extra debugging (default).
+# 1 - Detailed error messages.
+# 2 - ATR parsing info, ECM, EMM and CW dumps.
+# 4 - Traffic from/to the reader.
+# 8 - Traffic from/to the clients.
+# 16 - Traffic to the reader-device on IFD layer.
+# 32 - Traffic to the reader-device on I/O layer.
+# 64 - EMM logging.
+# 128 - DVBAPI logging.
+# 256 - Loadbalancer logging.
+# 512 - CACHEEX logging.
+# 1024 - Client ECM logging.
+# 65535 - Debug all.
+
+if [ -f $CONFIG_CACHE/services/oscam.conf ]; then
+
+  . $CONFIG_CACHE/services/oscam.conf
+
+  if [ -f $CONFIG_CACHE/services/dvb.conf ]; then
+    . $CONFIG_CACHE/services/dvb.conf
+
+    for module in $DVB_REMOVE_MODULES ; do
+      modprobe $module
+    done
+  fi
+
+  if [ "$OSCAM_DEBUG" == "" ] ; then
+    DEBUG_LEVEL="1"
+  fi
+
+  OSCAM_LOG="/var/log/oscam"
+  OSCAM_HOME="$HOME/.config/oscam"
+
+  mkdir -p $OSCAM_HOME
+  OSCAM_ARG="-d $OSCAM_DEBUG -r 2 -u -c $OSCAM_HOME"
+
+  echo "Starting OScam server ..."
+
+  # start userspace DVB driver/addon
+  for driver_dvb in $(find /storage/.xbmc/addons/driver.dvb.*/bin/userspace-driver.sh -type f 2>/dev/null); do
+    driver_dvb_name=$(echo $driver_dvb | awk 'BEGIN {FS="/"} {printf("%s", $5)}')
+    . $driver_dvb
+  done
+
+  [ "$DVB_NUM_ADAPTERS" == "" ] && DVB_NUM_ADAPTERS=1
+  [ $DVB_NUM_ADAPTERS -lt 1 ] && DVB_NUM_ADAPTERS=1
+
+  if [ "$DVB_WAIT_FOR_FEINIT" == "true" ] ; then
+    while [ true ] ; do
+      if [ -e /dev/dvb/adapter$((DVB_NUM_ADAPTERS-1))/frontend0 ] ; then
+        break
+      fi
+      sleep 1
+    done
+  fi
+
+  mkdir -p $OSCAM_LOG
+  mkdir -p $OSCAM_LOG/cw
+  mkdir -p $OSCAM_LOG/emm
+  exec oscam $OSCAM_ARG > /dev/null 2>&1
+
+fi
