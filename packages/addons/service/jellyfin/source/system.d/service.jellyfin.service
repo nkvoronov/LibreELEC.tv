@@ -1,0 +1,13 @@
+[Unit]
+Description=Jellyfin - streaming server
+Documentation=https://jellyfin.github.io/
+After=network.target
+Requires=network.target
+
+[Service]
+ExecStart=/bin/sh /storage/.kodi/addons/service.jellyfin/bin/jellyfin.start
+Restart=always
+
+[Install]
+WantedBy=kodi.target
+

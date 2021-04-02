@@ -1,0 +1,12 @@
+diff -Naur a/src/input/mpegts/scanfile.c b/src/input/mpegts/scanfile.c
+--- a/src/input/mpegts/scanfile.c	2018-11-28 15:41:33.671603151 +0200
++++ b/src/input/mpegts/scanfile.c	2019-01-20 17:31:04.855521443 +0200
+@@ -906,7 +906,7 @@
+ #elif defined(PLATFORM_FREEBSD)
+     path = "/usr/local/share/dtv-scan-tables";
+ #else
+-    path = "/usr/share/dvb";
++    path = "/usr/share/tvheadend/dvb-scan";
+ #endif
+ 
+   if (!initialized) {
