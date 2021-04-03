@@ -21,10 +21,10 @@ post_install() {
 
   sed -e "s|@PKG_VERSION@|${PKG_VERSION}|g" \
       -i ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/addon.xml
-      
+
   sed -e "s|@PKG_VERSION_NAME@|${PKG_VERSION_NAME}|g" \
       -i ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/addon.xml
-      
+
   sed -e "s|@PKG_VERSION_NAME1@|${PKG_VERSION_NAME1}|g" \
       -i ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/addon.xml
 }

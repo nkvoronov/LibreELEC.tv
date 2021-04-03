@@ -11,7 +11,7 @@ PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain transmission"
 PKG_SECTION="service"
 PKG_SHORTDESC="transmission: a fast, easy and free BitTorrent client"
-PKG_LONGDESC="transmission is a fast, easy and free BitTorrent client"
+PKG_LONGDESC="transmission(${PKG_VERSION}) is a fast, easy and free BitTorrent client"
 PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"

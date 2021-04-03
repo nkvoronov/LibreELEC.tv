@@ -19,9 +19,9 @@ PKG_ADDON_NAME="OSCam"
 PKG_ADDON_TYPE="xbmc.service"
 
 addon() {
-  OSCAM_DIR=$(get_install_dir oscam)
+  OSCAM_DIR=$(get_build_dir oscam)
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp -P ${OSCAM_DIR}/oscam ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp -P ${OSCAM_DIR}/utils/list_smargo ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp -P ${OSCAM_DIR}/.${TARGET_NAME}/oscam ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp -P ${OSCAM_DIR}/.${TARGET_NAME}/utils/list_smargo ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
 }

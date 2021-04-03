@@ -1,37 +1,23 @@
-diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modules/transmission.py
---- a/src/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/transmission.py	2019-08-08 03:26:30.450264116 +0300
-@@ -0,0 +1,328 @@
-+################################################################################
-+#      This file is part of OpenELEC - http://www.openelec.tv
-+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-+#      Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
-+#
-+#  This program is dual-licensed; you can redistribute it and/or modify
-+#  it under the terms of the GNU General Public License as published by
-+#  the Free Software Foundation; either version 2 of the License, or
-+#  (at your option) any later version.
-+#
-+#  This Program is distributed in the hope that it will be useful,
-+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-+#  GNU General Public License for more details.
-+#
-+#  You should have received a copy of the GNU General Public License
-+#  along with OpenELEC; see the file COPYING.  If not, see
-+#  <http://www.gnu.org/licenses/>.
-+#
-+#  Alternatively, you can license this library under a commercial license,
-+#  please contact OpenELEC Licensing for more information.
-+#
-+#  For more information contact:
-+#  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
-+################################################################################
-+# -*- coding: utf-8 -*-
-+import os
-+import glob
+diff -Naur a/resources/lib/modules/transmission.py b/resources/lib/modules/transmission.py
+--- a/resources/lib/modules/transmission.py	1970-01-01 03:00:00.000000000 +0300
++++ b/resources/lib/modules/transmission.py	2021-04-03 23:23:43.000000000 +0300
+@@ -0,0 +1,209 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
++# Copyright (C) 2009-2013 Stephan Raue (stephan@openelec.tv)
++# Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
++# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 +
-+class transmission:
++import log
++import modules
++import oe
++import os
++import subprocess
++import xbmc
++import xbmcgui
++
++xbmcDialog = xbmcgui.Dialog()
++
++class transmission(modules.Module):
 +
 +    ENABLED = False
 +    TRANSMISSION_DAEMON = None
@@ -48,325 +34,203 @@ diff -Naur a/src/resources/lib/modules/transmission.py b/src/resources/lib/modul
 +        'menuLoader': 'load_menu',
 +        'listTyp': 'list',
 +        'InfoText': 800,
-+        }
-+    }
++        }}
 +
++    @log.log_function()
 +    def __init__(self, oeMain):
-+        try:
-+            oeMain.dbg_log('transmission::__init__', 'enter_function', 0)
++        super().__init__()
++        self.struct = {
++            'transmission': {
++                'order': 1,
++                'name': 33001,
++                'not_supported': [],
++                'settings': {
++                    'transmission_autostart': {
++                        'order': 1,
++                        'name': 33002,
++                        'value': '0',
++                        'action': 'initialize_transmission',
++                        'type': 'bool',
++                        'InfoText': 801,
++                    },
++                    'transmission_secure': {
++                        'order': 2,
++                        'name': 33003,
++                        'value': '1',
++                        'action': 'initialize_transmission',
++                        'type': 'bool',
++                        'parent': {'entry': 'transmission_autostart','value': ['1']},
++                        'InfoText': 802,
++                    },
++                    'transmission_username': {
++                        'order': 3,
++                        'name': 33004,
++                        'value': 'libreelec',
++                        'action': 'initialize_transmission',
++                        'type': 'text',
++                        'parent': {'entry': 'transmission_secure','value': ['1']},
++                        'InfoText': 803,
++                    },
++                    'transmission_password': {
++                        'order': 4,
++                        'name': 33005,
++                        'value': 'libreelec',
++                        'action': 'initialize_transmission',
++                        'type': 'text',
++                        'parent': {'entry': 'transmission_secure','value': ['1']},
++                        'InfoText': 804,
++                    },
++                    'transmission_ip': {
++                        'order': 5,
++                        'name': 33006,
++                        'value': '*.*.*.*',
++                        'action': 'initialize_transmission',
++                        'type': 'text',
++                        'parent': {'entry': 'transmission_autostart','value': ['1']},
++                        'InfoText': 805,
++                    },
++                    'transmission_limit_global': {
++                        'order': 6,
++                        'name': 33007,
++                        'value': '100',
++                        'action': 'initialize_transmission',
++                        'type': 'num',
++                        'parent': {'entry': 'transmission_autostart','value': ['1']},
++                        'InfoText': 806,
++                    },
++                    'transmission_limit_torrent': {
++                        'order': 7,
++                        'name': 33008,
++                        'value': '100',
++                        'action': 'initialize_transmission',
++                        'type': 'num',
++                        'parent': {'entry': 'transmission_autostart','value': ['1']},
++                        'InfoText': 807,
++                    },
++                    'transmission_dl_dir': {
++                        'order': 8,
++                        'name': 33009,
++                        'value': '/storage/downloads/',
++                        'action': 'initialize_transmission',
++                        'type': 'folder',
++                        'parent': {'entry': 'transmission_autostart','value': ['1']},
++                        'InfoText': 808,
++                    },
++                }
++            },
++        }
 +
-+            self.oe = oeMain
-+
-+            self.struct = {
-+                'transmission': {
-+                    'order': 1,
-+                    'name': 33001,
-+                    'not_supported': [],
-+                    'settings': {
-+                        'transmission_autostart': {
-+                            'order': 1,
-+                            'name': 33002,
-+                            'value': '0',
-+                            'action': 'initialize_transmission',
-+                            'type': 'bool',
-+                            'InfoText': 801,
-+                        },
-+                        'transmission_secure': {
-+                            'order': 2,
-+                            'name': 33003,
-+                            'value': '1',
-+                            'action': 'initialize_transmission',
-+                            'type': 'bool',
-+                            'parent': {'entry': 'transmission_autostart','value': ['1']},
-+                            'InfoText': 802,
-+                        },
-+                        'transmission_username': {
-+                            'order': 3,
-+                            'name': 33004,
-+                            'value': 'libreelec',
-+                            'action': 'initialize_transmission',
-+                            'type': 'text',
-+                            'parent': {'entry': 'transmission_secure','value': ['1']},
-+                            'InfoText': 803,
-+                        },
-+                        'transmission_password': {
-+                            'order': 4,
-+                            'name': 33005,
-+                            'value': 'libreelec',
-+                            'action': 'initialize_transmission',
-+                            'type': 'text',
-+                            'parent': {'entry': 'transmission_secure','value': ['1']},
-+                            'InfoText': 804,
-+                        },
-+                        'transmission_ip': {
-+                            'order': 5,
-+                            'name': 33006,
-+                            'value': '*.*.*.*',
-+                            'action': 'initialize_transmission',
-+                            'type': 'text',
-+                            'parent': {'entry': 'transmission_autostart','value': ['1']},
-+                            'InfoText': 805,
-+                        },
-+                        'transmission_limit_global': {
-+                            'order': 6,
-+                            'name': 33007,
-+                            'value': '100',
-+                            'action': 'initialize_transmission',
-+                            'type': 'num',
-+                            'parent': {'entry': 'transmission_autostart','value': ['1']},
-+                            'InfoText': 806,
-+                        },
-+                        'transmission_limit_torrent': {
-+                            'order': 7,
-+                            'name': 33008,
-+                            'value': '100',
-+                            'action': 'initialize_transmission',
-+                            'type': 'num',
-+                            'parent': {'entry': 'transmission_autostart','value': ['1']},
-+                            'InfoText': 807,
-+                        },
-+                        'transmission_dl_dir': {
-+                            'order': 8,
-+                            'name': 33009,
-+                            'value': '/storage/downloads/',
-+                            'action': 'initialize_transmission',
-+                            'type': 'folder',
-+                            'parent': {'entry': 'transmission_autostart','value': ['1']},
-+                            'InfoText': 808,
-+                        },
-+                    }
-+                },
-+            }
-+
-+            self.oe.dbg_log('transmission::__init__', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::__init__', 'ERROR: (' + repr(e) + ')')
-+
++    @log.log_function()
 +    def start_service(self):
-+        try:
-+            self.oe.dbg_log('transmission::start_service', 'enter_function', 0)
-+            self.load_values()
-+            self.initialize_transmission(service=1)
-+            self.oe.dbg_log('transmission::start_service', 'exit_function', 0)
++        self.load_values()
++        self.initialize_transmission(service=1)
 +
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::start_service', 'ERROR: (%s)' % repr(e))
-+
-+    def stop_service(self):
-+        try:
-+            self.oe.dbg_log('transmission::stop_service', 'enter_function', 0)
-+            self.oe.dbg_log('transmission::stop_service', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::stop_service', 'ERROR: (' + repr(e) + ')')
-+
++    @log.log_function()
 +    def do_init(self):
-+        try:
-+            self.oe.dbg_log('transmission::do_init', 'exit_function', 0)
-+            self.load_values()
-+            self.oe.dbg_log('transmission::do_init', 'exit_function', 0)
++        self.load_values()
 +
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::do_init', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def set_value(self, listItem):
-+        try:
-+            self.oe.dbg_log('transmission::set_value', 'enter_function', 0)
-+            self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
-+            self.oe.dbg_log('transmission::set_value', 'exit_function', 0)
++        self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
 +
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::set_value', 'ERROR: (' + repr(e)  + ')')
-+
++    @log.log_function()
 +    def load_menu(self, focusItem):
-+        try:
-+            self.oe.dbg_log('transmission::load_menu', 'enter_function', 0)
-+            self.oe.winOeMain.build_menu(self.struct)
-+            self.oe.dbg_log('transmission::load_menu', 'exit_function', 0)
++        self.oe.winOeMain.build_menu(self.struct)
 +
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::load_menu', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def load_values(self):
-+        try:
-+            self.oe.dbg_log('transmission::load_values', 'enter_function', 0)
++        #TRANSMISSION
++        if os.path.isfile(self.TRANSMISSION_DAEMON_START) and os.path.isfile(self.TRANSMISSION_DAEMON):
++            self.struct['transmission']['settings']['transmission_autostart']['value'] = self.oe.get_service_state('transmission')
++            self.struct['transmission']['settings']['transmission_secure']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_SECURE',
++                self.D_TRANSMISSION_SECURE).replace('true','1').replace('false','0').replace('"', '')
++            self.struct['transmission']['settings']['transmission_username']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_USERNAME',
++                self.D_TRANSMISSION_USERNAME).replace('"', '')
++            self.struct['transmission']['settings']['transmission_password']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_PASSWORD',
++                self.D_TRANSMISSION_PASSWORD).replace('"', '')
++            self.struct['transmission']['settings']['transmission_ip']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_IP',
++                self.D_TRANSMISSION_IP).replace('"', '')
++            self.struct['transmission']['settings']['transmission_limit_global']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_LIMIT_GLOBAL',
++                self.D_TRANSMISSION_LIMIT_GLOBAL).replace('"', '')
++            self.struct['transmission']['settings']['transmission_limit_torrent']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_LIMIT_TORRENT',
++                self.D_TRANSMISSION_LIMIT_TORRENT).replace('"', '')
++            self.struct['transmission']['settings']['transmission_dl_dir']['value'] = self.oe.get_service_option('transmission', 'TRANSMISSION_DL_DIR',
++                self.D_TRANSMISSION_DL_DIR).replace('"', '')
++        else:
++            self.struct['transmission']['hidden'] = 'true'
 +
-+            if os.path.isfile(self.TRANSMISSION_DAEMON_START) and os.path.isfile(self.TRANSMISSION_DAEMON):
-+
-+                self.struct['transmission']['settings']['transmission_autostart']['value'] = \
-+                self.oe.get_service_state('transmission')
-+
-+                self.struct['transmission']['settings']['transmission_secure']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_SECURE', self.D_TRANSMISSION_SECURE).replace('true','1').replace('false','0').replace('"', '')
-+
-+                self.struct['transmission']['settings']['transmission_username']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_USERNAME', self.D_TRANSMISSION_USERNAME).replace('"', '')
-+
-+                self.struct['transmission']['settings']['transmission_password']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_PASSWORD', self.D_TRANSMISSION_PASSWORD).replace('"', '')
-+
-+                self.struct['transmission']['settings']['transmission_ip']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_IP', self.D_TRANSMISSION_IP).replace('"', '')
-+
-+                self.struct['transmission']['settings']['transmission_limit_global']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_LIMIT_GLOBAL', self.D_TRANSMISSION_LIMIT_GLOBAL).replace('"', '')
-+
-+                self.struct['transmission']['settings']['transmission_limit_torrent']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_LIMIT_TORRENT', self.D_TRANSMISSION_LIMIT_TORRENT).replace('"', '')
-+
-+                self.struct['transmission']['settings']['transmission_dl_dir']['value'] = \
-+                self.oe.get_service_option('transmission', 'TRANSMISSION_DL_DIR', self.D_TRANSMISSION_DL_DIR).replace('"', '')
-+
-+            else:
-+                self.struct['transmission']['hidden'] = 'true'
-+
-+            self.oe.dbg_log('transmission::load_values', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::load_values', 'ERROR: (%s)'  % repr(e))
-+
++    @log.log_function()
 +    def initialize_transmission(self, **kwargs):
-+        try:
-+            self.oe.dbg_log('transmission::initialize_transmission', 'enter_function', 0)
-+
-+            self.oe.set_busy(1)
-+
-+            if 'listItem' in kwargs:
-+                self.set_value(kwargs['listItem'])
-+
-+            options = {}
-+
-+            if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
-+
-+                state = 1
-+
-+                if 'hidden' in self.struct['transmission']['settings']['transmission_username']:
-+                    del self.struct['transmission']['settings']['transmission_username']['hidden']
-+
-+                if 'hidden' in self.struct['transmission']['settings']['transmission_password']:
-+                    del self.struct['transmission']['settings']['transmission_password']['hidden']
-+
-+                if self.struct['transmission']['settings']['transmission_secure']['value'] == '1':
-+                    val = 'true'
-+                else:
-+                    val = 'false'
-+
-+                options['TRANSMISSION_SECURE']   = '"%s"' % val
-+                options['TRANSMISSION_USERNAME'] = '"%s"' % self.struct['transmission']['settings']['transmission_username']['value']
-+                options['TRANSMISSION_PASSWORD'] = '"%s"' % self.struct['transmission']['settings']['transmission_password']['value']
-+                options['TRANSMISSION_IP'] = '"%s"' % self.struct['transmission']['settings']['transmission_ip']['value']
-+                options['TRANSMISSION_LIMIT_GLOBAL'] = '"%s"' % self.struct['transmission']['settings']['transmission_limit_global']['value']
-+                options['TRANSMISSION_LIMIT_TORRENT'] = '"%s"' % self.struct['transmission']['settings']['transmission_limit_torrent']['value']
-+                options['TRANSMISSION_DL_DIR'] = '"%s"' % self.struct['transmission']['settings']['transmission_dl_dir']['value']
-+
++        if 'listItem' in kwargs:
++            self.set_value(kwargs['listItem'])
++        options = {}
++        if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
++            state = 1
++            if 'hidden' in self.struct['transmission']['settings']['transmission_username']:
++                del self.struct['transmission']['settings']['transmission_username']['hidden']
++            if 'hidden' in self.struct['transmission']['settings']['transmission_password']:
++                del self.struct['transmission']['settings']['transmission_password']['hidden']
++            if self.struct['transmission']['settings']['transmission_secure']['value'] == '1':
++                val = 'true'
 +            else:
++                val = 'false'
++            options['TRANSMISSION_SECURE']   = '"%s"' % val
++            options['TRANSMISSION_USERNAME'] = '"%s"' % self.struct['transmission']['settings']['transmission_username']['value']
++            options['TRANSMISSION_PASSWORD'] = '"%s"' % self.struct['transmission']['settings']['transmission_password']['value']
++            options['TRANSMISSION_IP'] = '"%s"' % self.struct['transmission']['settings']['transmission_ip']['value']
++            options['TRANSMISSION_LIMIT_GLOBAL'] = '"%s"' % self.struct['transmission']['settings']['transmission_limit_global']['value']
++            options['TRANSMISSION_LIMIT_TORRENT'] = '"%s"' % self.struct['transmission']['settings']['transmission_limit_torrent']['value']
++            options['TRANSMISSION_DL_DIR'] = '"%s"' % self.struct['transmission']['settings']['transmission_dl_dir']['value']
++        else:
++            state = 0
++            self.struct['transmission']['settings']['transmission_username']['hidden'] = True
++            self.struct['transmission']['settings']['transmission_password']['hidden'] = True
++        self.oe.set_service('transmission', options, state)
 +
-+                state = 0
-+
-+                self.struct['transmission']['settings']['transmission_username']['hidden'] = True
-+                self.struct['transmission']['settings']['transmission_password']['hidden'] = True
-+
-+            self.oe.set_service('transmission', options, state)
-+
-+            self.load_values()
-+
-+            self.oe.set_busy(0)
-+
-+            self.oe.dbg_log('transmission::initialize_transmission', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.set_busy(0)
-+            self.oe.dbg_log('transmission::initialize_transmission', 'ERROR: (%s)' % repr(e), 4)
-+
-+    def exit(self):
-+        try:
-+            self.oe.dbg_log('transmission::exit', 'enter_function', 0)
-+            self.oe.dbg_log('transmission::exit', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::exit', 'ERROR: (%s)' % repr(e), 4)
-+
++    @log.log_function()
 +    def do_wizard(self):
-+        try:
-+            self.oe.dbg_log('transmission::do_wizard', 'enter_function', 0)
-+            self.oe.winOeMain.set_wizard_title(self.oe._(33000))
-+            self.oe.winOeMain.set_wizard_text(self.oe._(33010))
-+            self.oe.winOeMain.set_wizard_button_title(self.oe._(33001))
-+            self.set_wizard_buttons()
-+            self.oe.dbg_log('transmission::do_wizard', 'exit_function', 0)
++        self.oe.winOeMain.set_wizard_title(self.oe._(33000))
++        self.oe.winOeMain.set_wizard_text(self.oe._(33010))
++        self.oe.winOeMain.set_wizard_button_title(self.oe._(33001))
++        self.set_wizard_buttons()
 +
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::do_wizard', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def set_wizard_buttons(self):
-+        try:
-+            self.oe.dbg_log('transmission::set_wizard_buttons', 'enter_function', 0)
++        if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
++            self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(33000), self, 'wizard_set_transmission', True)
++        else:
++            self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(33000), self, 'wizard_set_transmission')
 +
-+            if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
-+                self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(33000), self, 'wizard_set_transmission', True)
-+            else:
-+                self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(33000), self, 'wizard_set_transmission')
-+
-+            self.oe.dbg_log('transmission::set_wizard_buttons', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::set_wizard_buttons', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def wizard_set_transmission(self):
-+        try:
-+            self.oe.dbg_log('transmission::wizard_set_transmission', 'enter_function', 0)
-+            if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
-+                self.struct['transmission']['settings']['transmission_autostart']['value'] = '0'
-+ 
-+            else:
-+                self.struct['transmission']['settings']['transmission_autostart']['value'] = '1'
++        if self.struct['transmission']['settings']['transmission_autostart']['value'] == '1':
++            self.struct['transmission']['settings']['transmission_autostart']['value'] = '0'
++        else:
++            self.struct['transmission']['settings']['transmission_autostart']['value'] = '1'
++            self.initialize_transmission()
++            self.load_values()
++            self.set_wizard_buttons()
 +
-+                self.initialize_transmission()
-+                self.load_values()
-+                self.set_wizard_buttons()
+diff -Naur a/resources/lib/modules/tvservers.py b/resources/lib/modules/tvservers.py
+--- a/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
++++ b/resources/lib/modules/tvservers.py	2021-04-03 23:57:24.000000000 +0300
+@@ -0,0 +1,405 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
++# Copyright (C) 2009-2013 Stephan Raue (stephan@openelec.tv)
++# Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
++# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 +
-+                self.oe.dbg_log('transmission::wizard_set_transmission', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('transmission::wizard_set_transmission', 'ERROR: (%s)' % repr(e))
-diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/tvservers.py
---- a/src/resources/lib/modules/tvservers.py	1970-01-01 03:00:00.000000000 +0300
-+++ b/src/resources/lib/modules/tvservers.py	2019-08-08 03:26:30.454264150 +0300
-@@ -0,0 +1,628 @@
-+################################################################################
-+#      This file is part of OpenELEC - http://www.openelec.tv
-+#      Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
-+#      Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
-+#
-+#  This program is dual-licensed; you can redistribute it and/or modify
-+#  it under the terms of the GNU General Public License as published by
-+#  the Free Software Foundation; either version 2 of the License, or
-+#  (at your option) any later version.
-+#
-+#  This Program is distributed in the hope that it will be useful,
-+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-+#  GNU General Public License for more details.
-+#
-+#  You should have received a copy of the GNU General Public License
-+#  along with OpenELEC; see the file COPYING.  If not, see
-+#  <http://www.gnu.org/licenses/>.
-+#
-+#  Alternatively, you can license this library under a commercial license,
-+#  please contact OpenELEC Licensing for more information.
-+#
-+#  For more information contact:
-+#  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
-+################################################################################
-+# -*- coding: utf-8 -*-
++import log
++import modules
++import oe
++import os
++import subprocess
 +import xbmc
 +import xbmcgui
-+import os
-+import glob
-+import oeWindows
 +
-+class tvservers:
++xbmcDialog = xbmcgui.Dialog()
++
++class tvservers(modules.Module):
 +
 +    ENABLED = False
 +    TVHEADEND_DAEMON = None
@@ -396,569 +260,363 @@ diff -Naur a/src/resources/lib/modules/tvservers.py b/src/resources/lib/modules/
 +        'InfoText': 1000,
 +        }}
 +
++    @log.log_function()
 +    def __init__(self, oeMain):
-+        try:
-+            oeMain.dbg_log('tvservers::__init__', 'enter_function', 0)
-+
-+            self.oe = oeMain
-+
-+            self.struct = {
-+                'tvbackends': {
-+                    'order': 1,
-+                    'name': 35000,
-+                    'not_supported': [],
-+                    'settings': {
-+                        'tv_backend': {
-+                            'order': 1,
-+                            'name': 35001,
-+                            'value': 'none',
-+                            'values': ['none','tvheadend'],
-+                            'action': 'initialize_tvbackend',
-+                            'type': 'multivalue',
-+                            'InfoText': 1001,
-+                        },
++        super().__init__()
++        self.struct = {
++            'tvbackends': {
++                'order': 1,
++                'name': 35000,
++                'not_supported': [],
++                'settings': {
++                    'tv_backend': {
++                        'order': 1,
++                        'name': 35001,
++                        'value': 'none',
++                        'values': ['none','tvheadend'],
++                        'action': 'initialize_tvbackend',
++                        'type': 'multivalue',
++                        'InfoText': 1001,
 +                    },
 +                },
-+                'tvheadend': {
-+                    'order': 2,
-+                    'name': 36000,
-+                    'not_supported': [],
-+                    'settings': {
-+                        'preload_capmt_ca': {
-+                            'order': 1,
-+                            'name': 36001,
-+                            'value': '0',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'bool',
-+                            'InfoText': 1101,
-+                        },
-+                        'tvh_backup': {
-+                            'order': 2,
-+                            'name': 36002,
-+                            'value': '0',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'bool',
-+                            'InfoText': 1102,
-+                        },
-+                        'tvh_debug': {
-+                            'order': 3,
-+                            'name': 36003,
-+                            'value': '0',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'bool',
-+                            'InfoText': 1103,
-+                        },
-+                        'tvh_adapters': {
-+                            'order': 4,
-+                            'name': 36004,
-+                            'value': '',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'text',
-+                            'InfoText': 1104,
-+                        },
-+                        'tvh_other': {
-+                            'order': 5,
-+                            'name': 36005,
-+                            'value': '',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'text',
-+                            'InfoText': 1105,
-+                        },
-+                        'xmltv_type': {
-+                            'order': 6,
-+                            'name': 36006,
-+                            'value': 'none',
-+                            'values': ['none','file','web','script'],
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'multivalue',
-+                            'InfoText': 1106,
-+                        },
-+                        'xmltv_location_file': {
-+                            'order': 7,
-+                            'name': 36007,
-+                            'value': '',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'file',
-+                            'parent': {'entry': 'xmltv_type','value': ['file']},
-+                            'InfoText': 1107,
-+                        },
-+                        'xmltv_location_web': {
-+                            'order': 8,
-+                            'name': 36008,
-+                            'value': 'http://',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'text',
-+                            'parent': {'entry': 'xmltv_type','value': ['web']},
-+                            'InfoText': 1108,
-+                        },
-+                        'xmltv_location_script': {
-+                            'order': 9,
-+                            'name': 36009,
-+                            'value': '',
-+                            'action': 'initialize_tvheadend',
-+                            'type': 'folder',
-+                            'parent': {'entry': 'xmltv_type','value': ['script']},
-+                            'InfoText': 1109,
-+                        },
++            },
++            'tvheadend': {
++                'order': 2,
++                'name': 36000,
++                'not_supported': [],
++                'settings': {
++                    'preload_capmt_ca': {
++                        'order': 1,
++                        'name': 36001,
++                        'value': '0',
++                        'action': 'initialize_tvheadend',
++                        'type': 'bool',
++                        'InfoText': 1101,
++                    },
++                    'tvh_backup': {
++                        'order': 2,
++                        'name': 36002,
++                        'value': '0',
++                        'action': 'initialize_tvheadend',
++                        'type': 'bool',
++                        'InfoText': 1102,
++                    },
++                    'tvh_debug': {
++                        'order': 3,
++                        'name': 36003,
++                        'value': '0',
++                        'action': 'initialize_tvheadend',
++                        'type': 'bool',
++                        'InfoText': 1103,
++                    },
++                    'tvh_adapters': {
++                        'order': 4,
++                        'name': 36004,
++                        'value': '',
++                        'action': 'initialize_tvheadend',
++                        'type': 'text',
++                        'InfoText': 1104,
++                    },
++                    'tvh_other': {
++                        'order': 5,
++                        'name': 36005,
++                        'value': '',
++                        'action': 'initialize_tvheadend',
++                        'type': 'text',
++                        'InfoText': 1105,
++                    },
++                    'xmltv_type': {
++                        'order': 6,
++                        'name': 36006,
++                        'value': 'none',
++                        'values': ['none','file','web','script'],
++                        'action': 'initialize_tvheadend',
++                        'type': 'multivalue',
++                        'InfoText': 1106,
++                    },
++                    'xmltv_location_file': {
++                        'order': 7,
++                        'name': 36007,
++                        'value': '',
++                        'action': 'initialize_tvheadend',
++                        'type': 'file',
++                        'parent': {'entry': 'xmltv_type','value': ['file']},
++                        'InfoText': 1107,
++                    },
++                    'xmltv_location_web': {
++                        'order': 8,
++                        'name': 36008,
++                        'value': 'http://',
++                        'action': 'initialize_tvheadend',
++                        'type': 'text',
++                        'parent': {'entry': 'xmltv_type','value': ['web']},
++                        'InfoText': 1108,
++                    },
++                    'xmltv_location_script': {
++                        'order': 9,
++                        'name': 36009,
++                        'value': '',
++                        'action': 'initialize_tvheadend',
++                        'type': 'folder',
++                        'parent': {'entry': 'xmltv_type','value': ['script']},
++                        'InfoText': 1109,
 +                    },
 +                },
-+                'dvb': {
-+                    'order': 3,
-+                    'name': 40000,
-+                    'not_supported': [],
-+                    'settings': {
-+                        'wait_for_feinit': {
-+                            'order': 1,
-+                            'name': 40001,
-+                            'value': '0',
-+                            'action': 'initializetv_backend',
-+                            'type': 'bool',
-+                            'InfoText': 1501,
-+                        },
-+                        'num_adapters': {
-+                            'order': 2,
-+                            'name': 40002,
-+                            'value': '1',
-+                            'action': 'initialize_tvbackend',
-+                            'type': 'num',
-+                            'InfoText': 1502,
-+                        },
-+                        'remove_modules': {
-+                            'order': 3,
-+                            'name': 40003,
-+                            'value': '',
-+                            'action': 'initialize_tvbackend',
-+                            'type': 'text',
-+                            'InfoText': 1503,
-+                        },
++            },
++            'dvb': {
++                'order': 3,
++                'name': 40000,
++                'not_supported': [],
++                'settings': {
++                    'wait_for_feinit': {
++                        'order': 1,
++                        'name': 40001,
++                        'value': '0',
++                        'action': 'initializetv_backend',
++                        'type': 'bool',
++                        'InfoText': 1501,
++                    },
++                    'num_adapters': {
++                        'order': 2,
++                        'name': 40002,
++                        'value': '1',
++                        'action': 'initialize_tvbackend',
++                        'type': 'num',
++                        'InfoText': 1502,
++                    },
++                    'remove_modules': {
++                        'order': 3,
++                        'name': 40003,
++                        'value': '',
++                        'action': 'initialize_tvbackend',
++                        'type': 'text',
++                        'InfoText': 1503,
 +                    },
 +                },
-+                'oscam': {
-+                    'order': 4,
-+                    'name': 41000,
-+                    'not_supported': [],
-+                    'settings': {
-+                        'enable_oscam': {
-+                            'order': 1,
-+                            'name': 41001,
-+                            'value': '0',
-+                            'action': 'initialize_oscam',
-+                            'type': 'bool',
-+                            'InfoText': 1601,
-+                        },
-+                        'oscam_debug': {
-+                            'order': 2,
-+                            'name': 41002,
-+                            'value': '1',
-+                            'action': 'initialize_oscam',
-+                            'type': 'num',
-+                            'parent': {'entry': 'enable_oscam','value': ['1']},
-+                            'InfoText': 1602,
-+                        },
-+                        'restart_on_resume': {
-+                            'order': 3,
-+                            'name': 41003,
-+                            'value': '0',
-+                            'action': 'initialize_oscam',
-+                            'type': 'bool',
-+                            'parent': {'entry': 'enable_oscam','value': ['1']},
-+                            'InfoText': 1603,
-+                        },
++            },
++            'oscam': {
++                'order': 4,
++                'name': 41000,
++                'not_supported': [],
++                'settings': {
++                    'enable_oscam': {
++                        'order': 1,
++                        'name': 41001,
++                        'value': '0',
++                        'action': 'initialize_oscam',
++                        'type': 'bool',
++                        'InfoText': 1601,
++                    },
++                    'oscam_debug': {
++                        'order': 2,
++                        'name': 41002,
++                        'value': '1',
++                        'action': 'initialize_oscam',
++                        'type': 'num',
++                        'parent': {'entry': 'enable_oscam','value': ['1']},
++                        'InfoText': 1602,
++                    },
++                    'restart_on_resume': {
++                        'order': 3,
++                        'name': 41003,
++                        'value': '0',
++                        'action': 'initialize_oscam',
++                        'type': 'bool',
++                        'parent': {'entry': 'enable_oscam','value': ['1']},
++                        'InfoText': 1603,
 +                    },
 +                },
-+            }
++            },
++        }
 +
-+            self.oe.dbg_log('tvservers::__init__', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::__init__', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def start_service(self):
-+        try:
-+            self.oe.dbg_log('tvservers::start_service', 'enter_function', 0)
++        self.load_values()
++        self.initialize_tvbackend()
++        self.initialize_oscam()
 +
-+            self.load_values()
-+
-+            self.initialize_tvbackend()
-+            self.initialize_oscam()
-+
-+            self.oe.dbg_log('tvservers::start_service', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::start_service', 'ERROR: (%s)' % repr(e))
-+
-+    def stop_service(self):
-+        try:
-+            self.oe.dbg_log('tvservers::stop_service', 'enter_function', 0)
-+
-+            self.oe.dbg_log('tvservers::stop_service', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::stop_service', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def do_init(self):
-+        try:
-+            self.oe.dbg_log('tvservers::do_init', 'exit_function', 0)
++        self.load_values()
 +
-+            self.load_values()
-+
-+            self.oe.dbg_log('tvservers::do_init', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::do_init', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def set_value(self, listItem):
-+        try:
-+            self.oe.dbg_log('tvservers::set_value', 'enter_function', 0)
++        self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
 +
-+            self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
-+
-+            self.oe.dbg_log('tvservers::set_value', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::set_value', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def load_menu(self, focusItem):
-+        try:
-+            self.oe.dbg_log('tvservers::load_menu', 'enter_function', 0)
++        self.oe.winOeMain.build_menu(self.struct)
 +
-+            self.oe.winOeMain.build_menu(self.struct)
-+
-+            self.oe.dbg_log('tvservers::load_menu', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::load_menu', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def load_values(self):
-+        try:
-+            self.oe.dbg_log('tvservers::load_values', 'enter_function', 0)
++        tvheadenabled = self.oe.get_service_state('tvheadend')
++        oscamenabled = self.oe.get_service_state('oscam')
++        #tvbackend
++        if tvheadenabled == '0':
++            self.struct['tvbackends']['settings']['tv_backend']['value'] = 'none'
++        if tvheadenabled == '1':
++            self.struct['tvbackends']['settings']['tv_backend']['value'] = 'tvheadend'
++        #tvheadend
++        if os.path.isfile(self.TVHEADEND_DAEMON_START) and os.path.isfile(self.TVHEADEND_DAEMON) and tvheadenabled=='1':
++            if 'hidden' in self.struct['tvheadend']:
++                del self.struct['tvheadend']['hidden']
++            self.struct['tvheadend']['settings']['preload_capmt_ca']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_PRELOAD_CAPMT_CA',
++                self.D_PRELOAD_CAPMT_CA).replace('true','1').replace('false','0').replace('"', '')
++            self.struct['tvheadend']['settings']['tvh_backup']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_BACKUP',
++                self.D_TVH_BACKUP).replace('true','1').replace('false','0').replace('"', '')
++            self.struct['tvheadend']['settings']['tvh_debug']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_DEBUG',
++                self.D_TVH_DEBUG).replace('true','1').replace('false','0').replace('"', '')
++            self.struct['tvheadend']['settings']['tvh_adapters']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_ADAPTERS',
++                self.D_TVH_ADAPTERS).replace('"', '')
++            self.struct['tvheadend']['settings']['tvh_other']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_OTHER',
++                self.D_TVH_OTHER_ARG).replace('"', '')
++            self.struct['tvheadend']['settings']['xmltv_type']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_TYPE',
++                self.D_XMLTV_TYPE).replace('"', '')
++            self.struct['tvheadend']['settings']['xmltv_location_file']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_FILE',
++                self.D_XMLTV_LOCATION_FILE).replace('"', '')
++            self.struct['tvheadend']['settings']['xmltv_location_web']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_WEB',
++                self.D_XMLTV_LOCATION_WEB).replace('"', '')
++            self.struct['tvheadend']['settings']['xmltv_location_script']['value'] = self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_SCRIPT',
++                self.D_XMLTV_LOCATION_SCRIPT).replace('"', '')
++        else:
++            self.struct['tvheadend']['hidden'] = 'true'
++        if os.path.isfile(self.TVHEADEND_DAEMON_START) and os.path.isfile(self.TVHEADEND_DAEMON) and tvheadenabled=='1':
++            if 'hidden' in self.struct['dvb']:
++                del self.struct['dvb']['hidden']
++            self.struct['dvb']['settings']['wait_for_feinit']['value'] = self.oe.get_service_option('dvb', 'DVB_WAIT_FOR_FEINIT',
++                self.D_WAIT_FOR_FEINIT).replace('true','1').replace('false','0').replace('"', '')
++            self.struct['dvb']['settings']['num_adapters']['value'] = self.oe.get_service_option('dvb', 'DVB_NUM_ADAPTERS',
++                self.D_NUM_ADAPTERS).replace('"', '')
++            self.struct['dvb']['settings']['remove_modules']['value'] = self.oe.get_service_option('dvb', 'DVB_REMOVE_MODULES',
++                self.D_REMOVE_MODULES).replace('"', '')
++        else:
++            self.struct['dvb']['hidden'] = 'true'
++        #oscam
++        if os.path.isfile(self.OSCAM_DAEMON_START) and os.path.isfile(self.OSCAM_DAEMON):
++            if 'hidden' in self.struct['oscam']:
++                del self.struct['oscam']['hidden']
++            self.struct['oscam']['settings']['enable_oscam']['value'] = oscamenabled
++            self.struct['oscam']['settings']['oscam_debug']['value'] = self.oe.get_service_option('oscam', 'OSCAM_DEBUG',
++                self.D_OSCAM_DEBUG).replace('"', '')
++            self.struct['oscam']['settings']['restart_on_resume']['value'] = self.oe.get_service_option('oscam', 'RESTART_ON_RESUME',
++                self.D_RESTART_ON_RESUME).replace('true','1').replace('false','0').replace('"', '')
++        else:
++            self.struct['oscam']['hidden'] = 'true'
 +
-+            tvheadenabled = \
-+            self.oe.get_service_state('tvheadend')
-+
-+            oscamenabled = \
-+            self.oe.get_service_state('oscam')
-+
-+            #tvbackend
-+
-+            if tvheadenabled == '0':
-+
-+                self.struct['tvbackends']['settings']['tv_backend']['value'] = 'none'
-+
-+            if tvheadenabled == '1':
-+
-+                self.struct['tvbackends']['settings']['tv_backend']['value'] = 'tvheadend'
-+
-+            #tvheadend
-+
-+            if os.path.isfile(self.TVHEADEND_DAEMON_START) and os.path.isfile(self.TVHEADEND_DAEMON) and tvheadenabled=='1':
-+
-+                if 'hidden' in self.struct['tvheadend']:
-+                    del self.struct['tvheadend']['hidden']
-+
-+                self.struct['tvheadend']['settings']['preload_capmt_ca']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_PRELOAD_CAPMT_CA', self.D_PRELOAD_CAPMT_CA).replace('true','1').replace('false','0').replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['tvh_backup']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_BACKUP', self.D_TVH_BACKUP).replace('true','1').replace('false','0').replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['tvh_debug']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_DEBUG', self.D_TVH_DEBUG).replace('true','1').replace('false','0').replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['tvh_adapters']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_ADAPTERS', self.D_TVH_ADAPTERS).replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['tvh_other']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_OTHER', self.D_TVH_OTHER_ARG).replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['xmltv_type']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_TYPE', self.D_XMLTV_TYPE).replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['xmltv_location_file']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_FILE', self.D_XMLTV_LOCATION_FILE).replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['xmltv_location_web']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_WEB', self.D_XMLTV_LOCATION_WEB).replace('"', '')
-+
-+                self.struct['tvheadend']['settings']['xmltv_location_script']['value'] = \
-+                self.oe.get_service_option('tvheadend', 'TVHEADEND_XMLTV_LOCATION_SCRIPT', self.D_XMLTV_LOCATION_SCRIPT).replace('"', '')
-+
-+            else:
-+                self.struct['tvheadend']['hidden'] = 'true'
-+
-+            if os.path.isfile(self.TVHEADEND_DAEMON_START) and os.path.isfile(self.TVHEADEND_DAEMON) and tvheadenabled=='1':
-+
-+                if 'hidden' in self.struct['dvb']:
-+                    del self.struct['dvb']['hidden']
-+
-+                self.struct['dvb']['settings']['wait_for_feinit']['value'] = \
-+                self.oe.get_service_option('dvb', 'DVB_WAIT_FOR_FEINIT', self.D_WAIT_FOR_FEINIT).replace('true','1').replace('false','0').replace('"', '')
-+
-+                self.struct['dvb']['settings']['num_adapters']['value'] = \
-+                self.oe.get_service_option('dvb', 'DVB_NUM_ADAPTERS', self.D_NUM_ADAPTERS).replace('"', '')
-+
-+                self.struct['dvb']['settings']['remove_modules']['value'] = \
-+                self.oe.get_service_option('dvb', 'DVB_REMOVE_MODULES', self.D_REMOVE_MODULES).replace('"', '')
-+
-+            else:
-+                self.struct['dvb']['hidden'] = 'true'
-+
-+            #oscam
-+
-+            if os.path.isfile(self.OSCAM_DAEMON_START) and os.path.isfile(self.OSCAM_DAEMON):
-+
-+                if 'hidden' in self.struct['oscam']:
-+                    del self.struct['oscam']['hidden']
-+
-+                self.struct['oscam']['settings']['enable_oscam']['value'] = oscamenabled
-+
-+                self.struct['oscam']['settings']['oscam_debug']['value'] = \
-+                self.oe.get_service_option('oscam', 'OSCAM_DEBUG', self.D_OSCAM_DEBUG).replace('"', '')
-+
-+                self.struct['oscam']['settings']['restart_on_resume']['value'] = \
-+                self.oe.get_service_option('oscam', 'RESTART_ON_RESUME', self.D_RESTART_ON_RESUME).replace('true','1').replace('false','0').replace('"', '')
-+
-+            else:
-+                self.struct['oscam']['hidden'] = 'true'
-+
-+            self.oe.dbg_log('tvservers::load_values', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::load_values', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def initialize_tvbackend(self, **kwargs):
-+        try:
-+            self.oe.dbg_log('tvservers::initialize_tvbackend', 'enter_function', 0)
++        if 'listItem' in kwargs:
++            self.set_value(kwargs['listItem']) 
++        state = 1
++        options = {}
++        if self.struct['dvb']['settings']['wait_for_feinit']['value'] == '1':
++            val1 = 'true'
++        else:
++            val1 = 'false'
++        options['DVB_WAIT_FOR_FEINIT']   = '"%s"' % val1
++        options['DVB_NUM_ADAPTERS'] = '"%s"' % self.struct['dvb']['settings']['num_adapters']['value']
++        options['DVB_REMOVE_MODULES'] = '"%s"' % self.struct['dvb']['settings']['remove_modules']['value']
++        self.oe.set_service('dvb', options, state)
++        self.initialize_tvheadend()
++        self.load_values()
 +
-+            self.oe.set_busy(1)
-+
-+            if 'listItem' in kwargs:
-+                self.set_value(kwargs['listItem']) 
-+
++    @log.log_function()
++    def initialize_tvheadend(self, **kwargs):
++        if 'listItem' in kwargs:
++            self.set_value(kwargs['listItem'])
++        options = {}
++        if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'tvheadend':
 +            state = 1
-+            options = {}
++            if 'hidden' in self.struct['tvheadend']:
++                del self.struct['tvheadend']['hidden']
++            if self.struct['tvheadend']['settings']['preload_capmt_ca']['value'] == '1':
++                val1 ='true'
++            else:
++                val1 ='false'
++            if self.struct['tvheadend']['settings']['tvh_backup']['value'] == '1':
++                val2 ='true'
++            else:
++                val2 ='false'
++            if self.struct['tvheadend']['settings']['tvh_debug']['value'] == '1':
++                val3 ='true'
++            else:
++                val3 ='false'
++            options['TVHEADEND_PRELOAD_CAPMT_CA']   = '"%s"' % val1
++            options['TVHEADEND_BACKUP']   = '"%s"' % val2
++            options['TVHEADEND_DEBUG']   = '"%s"' % val3
++            options['TVHEADEND_ADAPTERS'] = '"%s"' % self.struct['tvheadend']['settings']['tvh_adapters']['value']
++            options['TVHEADEND_OTHER'] = '"%s"' % self.struct['tvheadend']['settings']['tvh_other']['value']
++            options['TVHEADEND_XMLTV_TYPE'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_type']['value']
++            options['TVHEADEND_XMLTV_LOCATION_FILE'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_file']['value']
++            options['TVHEADEND_XMLTV_LOCATION_WEB'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_web']['value']
++            options['TVHEADEND_XMLTV_LOCATION_SCRIPT'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_script']['value']
++        else:
++            state = 0
++        self.oe.set_service('tvheadend', options, state)
++        self.load_values()
 +
-+            if self.struct['dvb']['settings']['wait_for_feinit']['value'] == '1':
++    @log.log_function()
++    def initialize_oscam(self, **kwargs):
++        if 'listItem' in kwargs:
++            self.set_value(kwargs['listItem'])
++        options = {}
++        if self.struct['oscam']['settings']['enable_oscam']['value'] == '1':
++            state = 1
++            if self.struct['oscam']['settings']['restart_on_resume']['value'] == '1':
 +                val1 = 'true'
 +            else:
 +                val1 = 'false'
++            options['OSCAM_DEBUG']   = '"%s"' % self.struct['oscam']['settings']['oscam_debug']['value']
++            options['RESTART_ON_RESUME'] = '"%s"' % val1
++        else:
++            state = 0
++        self.oe.set_service('oscam', options, state)
++        self.load_values()
 +
-+            options['DVB_WAIT_FOR_FEINIT']   = '"%s"' % val1
-+            options['DVB_NUM_ADAPTERS'] = '"%s"' % self.struct['dvb']['settings']['num_adapters']['value']
-+            options['DVB_REMOVE_MODULES'] = '"%s"' % self.struct['dvb']['settings']['remove_modules']['value']
-+
-+            self.oe.set_service('dvb', options, state)
-+
-+            self.initialize_tvheadend()
-+
-+            self.load_values()
-+
-+            self.oe.set_busy(0)
-+
-+            self.oe.dbg_log('tvservers::initialize_tvbackend', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.set_busy(0)
-+            self.oe.dbg_log('tvservers::initialize_tvbackend', 'ERROR: (%s)' % repr(e), 4)
-+
-+    def initialize_tvheadend(self, **kwargs):
-+        try:
-+            self.oe.dbg_log('tvservers::initialize_tvheadend', 'enter_function', 0)
-+
-+            self.oe.set_busy(1)
-+
-+            if 'listItem' in kwargs:
-+                self.set_value(kwargs['listItem'])
-+
-+            options = {}
-+
-+            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'tvheadend':
-+
-+                state = 1
-+
-+                if 'hidden' in self.struct['tvheadend']:
-+                    del self.struct['tvheadend']['hidden']
-+
-+                if self.struct['tvheadend']['settings']['preload_capmt_ca']['value'] == '1':
-+                    val1 ='true'
-+
-+                else:
-+                    val1 ='false'
-+
-+                if self.struct['tvheadend']['settings']['tvh_backup']['value'] == '1':
-+                    val2 ='true'
-+
-+                else:
-+                    val2 ='false'
-+
-+                if self.struct['tvheadend']['settings']['tvh_debug']['value'] == '1':
-+                    val3 ='true'
-+
-+                else:
-+                    val3 ='false'
-+
-+                options['TVHEADEND_PRELOAD_CAPMT_CA']   = '"%s"' % val1
-+                options['TVHEADEND_BACKUP']   = '"%s"' % val2
-+                options['TVHEADEND_DEBUG']   = '"%s"' % val3
-+                options['TVHEADEND_ADAPTERS'] = '"%s"' % self.struct['tvheadend']['settings']['tvh_adapters']['value']
-+                options['TVHEADEND_OTHER'] = '"%s"' % self.struct['tvheadend']['settings']['tvh_other']['value']
-+                options['TVHEADEND_XMLTV_TYPE'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_type']['value']
-+                options['TVHEADEND_XMLTV_LOCATION_FILE'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_file']['value']
-+                options['TVHEADEND_XMLTV_LOCATION_WEB'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_web']['value']
-+                options['TVHEADEND_XMLTV_LOCATION_SCRIPT'] = '"%s"' % self.struct['tvheadend']['settings']['xmltv_location_script']['value']
-+
-+            else:
-+
-+                state = 0
-+
-+            self.oe.set_service('tvheadend', options, state)
-+
-+            self.load_values()
-+
-+            self.oe.set_busy(0)
-+
-+            self.oe.dbg_log('tvservers::initialize_tvheadend', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.set_busy(0)
-+            self.oe.dbg_log('tvservers::initialize_tvheadend', 'ERROR: (%s)' % repr(e), 4)
-+
-+    def initialize_oscam(self, **kwargs):
-+        try:
-+            self.oe.dbg_log('tvservers::initialize_oscam', 'enter_function', 0)
-+
-+            self.oe.set_busy(1)
-+
-+            if 'listItem' in kwargs:
-+                self.set_value(kwargs['listItem'])
-+
-+            options = {}
-+
-+            if self.struct['oscam']['settings']['enable_oscam']['value'] == '1':
-+
-+                state = 1
-+
-+                if self.struct['oscam']['settings']['restart_on_resume']['value'] == '1':
-+                    val1 = 'true'
-+                else:
-+                    val1 = 'false'
-+
-+                options['OSCAM_DEBUG']   = '"%s"' % self.struct['oscam']['settings']['oscam_debug']['value']
-+                options['RESTART_ON_RESUME'] = '"%s"' % val1
-+
-+            else:
-+
-+                state = 0
-+
-+            self.oe.set_service('oscam', options, state)
-+
-+            self.load_values()
-+
-+            self.oe.set_busy(0)
-+
-+            self.oe.dbg_log('tvservers::initialize_oscam', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.set_busy(0)
-+            self.oe.dbg_log('tvservers::initialize_oscam', 'ERROR: (%s)' % repr(e), 4)
-+
++    @log.log_function()
 +    def initialize_tvfrontends(self, **kwargs):
-+        try:
-+            self.oe.dbg_log('tvservers::initialize_tvfrontends', 'enter_function', 0)
++        if 'listItem' in kwargs:
++            self.set_value(kwargs['listItem'])
++        self.load_values()
 +
-+            self.oe.set_busy(1)
-+
-+            if 'listItem' in kwargs:
-+                self.set_value(kwargs['listItem'])
-+
-+            self.load_values()
-+
-+            self.oe.set_busy(0)
-+
-+            self.oe.dbg_log('tvservers::initialize_tvfrontends', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.set_busy(0)
-+            self.oe.dbg_log('tvservers::initialize_tvfrontends', 'ERROR: (%s)' % repr(e), 4)
-+
-+    def exit(self):
-+        try:
-+            self.oe.dbg_log('tvservers::exit', 'enter_function', 0)
-+            self.oe.dbg_log('tvservers::exit', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::exit', 'ERROR: (%s)' % repr(e), 4)
-+
++    @log.log_function()
 +    def do_wizard(self):
-+        try:
-+            self.oe.dbg_log('tvservers::do_wizard', 'enter_function', 0)
-+            self.oe.winOeMain.set_wizard_title(self.oe._(34000))
-+            self.oe.winOeMain.set_wizard_text(self.oe._(42000))
-+            self.oe.winOeMain.set_wizard_button_title(self.oe._(35000))
-+            self.set_wizard_buttons()
-+            self.oe.dbg_log('tvservers::do_wizard', 'exit_function', 0)
++        self.oe.dbg_log('tvservers::do_wizard', 'enter_function', 0)
++        self.oe.winOeMain.set_wizard_title(self.oe._(34000))
++        self.oe.winOeMain.set_wizard_text(self.oe._(42000))
++        self.oe.winOeMain.set_wizard_button_title(self.oe._(35000))
++        self.set_wizard_buttons()
 +
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::do_wizard', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def set_wizard_buttons(self):
-+        try:
-+            self.oe.dbg_log('tvservers::set_wizard_buttons', 'enter_function', 0)
++        self.oe.winOeMain.set_wizard_button_2(self.oe._(34000) + self.get_tvbackend(), self, 'select_tvbackend')
 +
-+            self.oe.winOeMain.set_wizard_button_2(self.oe._(34000).encode('utf-8')+self.get_tvbackend(), self,'select_tvbackend')
-+
-+            self.oe.dbg_log('tvservers::set_wizard_buttons', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::set_wizard_buttons', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def get_tvbackend(self):
-+        try:
-+            current_tv_backend = ':'+self.struct['tvbackends']['settings']['tv_backend']['value']
-+            return current_tv_backend
++        current_tv_backend = ':'self.struct['tvbackends']['settings']['tv_backend']['value']
++        return current_tv_backend
 +
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::get_tvbackend()','ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def select_tvbackend(self):
-+        try:
-+            self.oe.dbg_log('tvservers::select_tvbackend', 'enter_function', 0)
++        defaultValue = self.struct['tvbackends']['settings']['tv_backend']['value']
++        items = self.struct['tvbackends']['settings']['tv_backend']['values']
++        title = self.oe._(35001)
++        select_window = xbmcgui.Dialog()
++        ret = select_window.select(title, items)
++        result = items[ret]
++        if defaultValue != result:
++            self.struct['tvbackends']['settings']['tv_backend']['value'] = result
++            self.wizard_set_tvbackend()
++            self.oe.winOeMain.set_wizard_button_2(self.oe._(34000) + self.get_tvbackend(), self, 'select_tvbackend')
 +
-+            defaultValue = self.struct['tvbackends']['settings']['tv_backend']['value']
-+            items = self.struct['tvbackends']['settings']['tv_backend']['values']
-+            title = self.oe._(35001).encode('utf-8')
-+            select_window = xbmcgui.Dialog()
-+            ret = select_window.select(title, items)
-+            result = items[ret]
-+
-+            if defaultValue != result:
-+                self.struct['tvbackends']['settings']['tv_backend']['value'] = result
-+                self.wizard_set_tvbackend()
-+                self.oe.winOeMain.set_wizard_button_2(self.oe._(34000).encode('utf-8')+self.get_tvbackend(), self, 'select_tvbackend')
-+
-+            self.oe.dbg_log('tvservers::select_tvbackend', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::select_tvbackend', 'ERROR: (%s)' % repr(e))
-+
++    @log.log_function()
 +    def wizard_set_tvbackend(self):
-+        try:
-+            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'enter_function', 0)
-+
-+            options = {}
-+
-+            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'tvheadend':
-+                self.oe.set_service('tvheadend', options, 1)
-+
-+            if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'none':
-+                self.oe.set_service('tvheadend', options, 0)
-+
-+            self.initialize_tvbackend()
-+            self.initialize_tvheadend()
-+            self.initialize_oscam()
-+            self.load_values()
-+
-+            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'exit_function', 0)
-+
-+        except Exception, e:
-+            self.oe.dbg_log('tvservers::wizard_set_tvbackend', 'ERROR: (%s)' % repr(e))
++        options = {}
++        if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'tvheadend':
++            self.oe.set_service('tvheadend', options, 1)
++        if self.struct['tvbackends']['settings']['tv_backend']['value'] == 'none':
++            self.oe.set_service('tvheadend', options, 0)
++        self.initialize_tvbackend()
++        self.initialize_tvheadend()
++        self.initialize_oscam()
++        self.load_values()

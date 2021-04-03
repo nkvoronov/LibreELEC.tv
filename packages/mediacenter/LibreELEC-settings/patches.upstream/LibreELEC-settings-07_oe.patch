@@ -1,16 +1,16 @@
-diff -Naur a/src/oe.py b/src/oe.py
---- a/src/oe.py	2019-06-11 18:53:22.000000000 +0300
-+++ b/src/oe.py	2019-08-08 04:23:08.184871843 +0300
-@@ -37,6 +37,7 @@
- __busy__ = 0
+diff -Naur a/resources/lib/oe.py b/resources/lib/oe.py
+--- a/resources/lib/oe.py	2021-03-10 05:37:21.000000000 +0200
++++ b/resources/lib/oe.py	2021-04-04 01:31:50.000000000 +0300
+@@ -41,6 +41,7 @@
+ conf_lock = False
  xbmcIsPlaying = 0
  input_request = False
 +is_wizard = False
  dictModules = {}
  listObject = {
      'list': 1100,
-@@ -84,8 +85,7 @@
- 
+@@ -265,8 +266,7 @@
+         return self.cancelled
  
  def _(code):
 -    wizardComp = read_setting('libreelec', 'wizard_completed')

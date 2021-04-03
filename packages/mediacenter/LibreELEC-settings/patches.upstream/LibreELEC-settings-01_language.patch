@@ -1,18 +1,18 @@
-diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.language.en_gb/strings.po
---- a/language/resource.language.en_gb/strings.po	2019-06-11 18:53:22.000000000 +0300
-+++ b/language/resource.language.en_gb/strings.po	2019-08-08 03:02:47.809894600 +0300
+diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/language/resource.language.en_gb/strings.po
+--- a/resources/language/resource.language.en_gb/strings.po	2021-03-10 05:37:21.000000000 +0200
++++ b/resources/language/resource.language.en_gb/strings.po	2021-04-03 22:12:10.000000000 +0300
 @@ -104,6 +104,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
  
 +msgctxt "#717"
-+msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
-+msgstr ""
++msgid "If you have an small LCD or VFD attached to your LibreELEC system you must configure the correct display driver"
++msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе LibreELEC - Вы должны сконфигурировать правильный драйвер дисплея"
 +
  msgctxt "#718"
  msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to http://ix.io, and display the short URL"
  msgstr ""
-@@ -292,6 +296,14 @@
+@@ -300,6 +304,14 @@
  msgid "Updates"
  msgstr ""
  
@@ -27,19 +27,19 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr ""
-@@ -999,3 +1011,305 @@
- msgctxt "#32399"
- msgid "Public"
+@@ -1051,3 +1063,306 @@
+ msgctxt "#32401"
+ msgid "Syncing Disks..."
  msgstr ""
 +
-+msgctxt "#32400"
++msgctxt "#32402"
 +msgid "Enable LCD Driver Support"
 +msgstr ""
 +
 +##########################################################
 +## Keyboard Options
 +
-+msgctxt "#32401"
++msgctxt "#32403"
 +msgid "Keyboard Switches"
 +msgstr ""
 +
@@ -50,11 +50,11 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +##########################################################
 +## Locale Options
 +
-+msgctxt "#32402"
++msgctxt "#32404"
 +msgid "Locale"
 +msgstr ""
 +
-+msgctxt "#32403"
++msgctxt "#32405"
 +msgid "Select locale"
 +msgstr ""
 +
@@ -334,9 +334,9 @@ diff -Naur a/language/resource.language.en_gb/strings.po b/language/resource.lan
 +msgctxt "#1701"
 +msgid "Updates"
 +msgstr ""
-diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.language.ru_ru/strings.po
---- a/language/resource.language.ru_ru/strings.po	2019-06-11 18:53:22.000000000 +0300
-+++ b/language/resource.language.ru_ru/strings.po	2019-08-08 03:00:36.880757052 +0300
+diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/language/resource.language.ru_ru/strings.po
+--- a/resources/language/resource.language.ru_ru/strings.po	2021-03-10 05:37:21.000000000 +0200
++++ b/resources/language/resource.language.ru_ru/strings.po	2021-04-03 22:17:07.000000000 +0300
 @@ -126,6 +126,10 @@
  "is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
@@ -348,7 +348,7 @@ diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.lan
  msgctxt "#718"
  msgid ""
  "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-@@ -347,6 +351,14 @@
+@@ -368,6 +372,14 @@
  msgid "Updates"
  msgstr "Oбновления"
  
@@ -363,7 +363,7 @@ diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.lan
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
-@@ -605,7 +617,7 @@
+@@ -676,7 +688,7 @@
  
  msgctxt "#32196"
  msgid "About"
@@ -372,37 +372,19 @@ diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.lan
  
  msgctxt "#32198"
  msgid "SSID"
-@@ -751,7 +763,7 @@
- 
- msgctxt "#32307"
- msgid "Previous"
--msgstr ""
-+msgstr "Предыдущ."
- 
- msgctxt "#32308"
- msgid "Hostname:"
-@@ -763,7 +775,7 @@
- 
- msgctxt "#32310"
- msgid "Language:"
--msgstr ""
-+msgstr "Язык"
- 
- msgctxt "#32311"
- msgid "Sharing and Remote Access"
-@@ -1035,3 +1047,303 @@
- msgctxt "#32399"
- msgid "Public"
- msgstr "Общественные"
+@@ -1174,3 +1186,306 @@
+ msgctxt "#32401"
+ msgid "Syncing Disks..."
+ msgstr ""
 +
-+msgctxt "#32400"
++msgctxt "#32402"
 +msgid "Enable LCD Driver Support"
 +msgstr "Включить поддержку драйвера ЖК-экрана"
 +
 +##########################################################
 +## Keyboard Options
 +
-+msgctxt "#32401"
++msgctxt "#32403"
 +msgid "Keyboard Switches"
 +msgstr "Переключение клавиатуры"
 +
@@ -413,11 +395,11 @@ diff -Naur a/language/resource.language.ru_ru/strings.po b/language/resource.lan
 +##########################################################
 +## Locale Options
 +
-+msgctxt "#32402"
++msgctxt "#32404"
 +msgid "Locale"
 +msgstr "Локаль"
 +
-+msgctxt "#32403"
++msgctxt "#32405"
 +msgid "Select locale"
 +msgstr "Выбрать локаль"
 +

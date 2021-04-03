@@ -1,8 +1,8 @@
-diff -Naur a/src/defaults.py b/src/defaults.py
---- a/src/defaults.py	2019-06-11 18:53:22.000000000 +0300
-+++ b/src/defaults.py	2019-08-08 04:29:14.124015691 +0300
-@@ -34,6 +34,55 @@
-     }
+diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
+--- a/resources/lib/defaults.py	2021-03-10 05:37:21.000000000 +0200
++++ b/resources/lib/defaults.py	2021-04-04 01:39:13.000000000 +0300
+@@ -37,6 +37,55 @@
+ bluetooth['ENABLED'] = bluetooth['ENABLED']()
  
  ################################################################################
 +# Transmission Module
@@ -57,7 +57,7 @@ diff -Naur a/src/defaults.py b/src/defaults.py
  # Service Module
  ################################################################################
  
-@@ -54,6 +191,8 @@
+@@ -57,6 +106,8 @@
      'D_SSH_DISABLE_PW_AUTH': '0',
      'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
      'CRON_DAEMON': '/sbin/crond',
@@ -66,7 +66,7 @@ diff -Naur a/src/defaults.py b/src/defaults.py
      }
  
  system = {
-@@ -94,4 +233,8 @@
+@@ -104,4 +155,8 @@
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
      'iptables': ['iptables.service'],

@@ -23,20 +23,19 @@ addon() {
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
     cp -PR ${LCD_DIR}/usr/sbin/LCDd ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/
-    cp -PR ${LCD_DIR}/usr/bin/* ${ADDON_BUILD}/${PKG_ADDON_ID}/bin/
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/config
     cp -PR ${LCD_DIR}/etc/LCDd.conf ${ADDON_BUILD}/${PKG_ADDON_ID}/config/
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
     cp -PR ${LCD_DIR}/usr/lib/lcdproc/*.so ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/
-    cp -L $(get_install_dir serdisplib)/usr/lib/libserdisp.so.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/
-  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/share
-    cp -PR ${LCD_DIR}/usr/share/lcdproc/fonts ${ADDON_BUILD}/${PKG_ADDON_ID}/share/
+    cp -L $(get_install_dir serdisplib)/usr/lib/libserdisp.so.2 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/
+  mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/fonts
+    cp -PR ${LCD_DIR}/usr/share/lcdproc/fonts/* ${ADDON_BUILD}/${PKG_ADDON_ID}/fonts/
 
   sed -e "s|^DriverPath=.*$|DriverPath=/storage/.kodi/addons/service.lcdd/lib/|" \
-      -e "s|^Font=/usr/share/lcdproc/fonts/cp1251.fnt|Font=/storage/.kodi/addons/service.lcdd/share/fonts/cp1251.fnt|" \
+      -e "s|^Font=/usr/share/lcdproc/fonts/cp1251.fnt|Font=/storage/.kodi/addons/service.lcdd/fonts/cp1251.fnt|" \
       -i ${ADDON_BUILD}/${PKG_ADDON_ID}/config/LCDd.conf
 
-  drivers="none|$(cat ${LCD_DIR}/.${TARGET_NAME}/config.log | sed -n "s|^DRIVERS=' \(.*\)'|\1|p" | sed "s|.so||g" | tr ' ' '|')"
+  drivers="none|$(cat $(get_build_dir lcdproc)/.${TARGET_NAME}/config.log | sed -n "s|^DRIVERS=' \(.*\)'|\1|p" | sed "s|.so||g" | tr ' ' '|')"
   cp -PR ${PKG_DIR}/resources ${ADDON_BUILD}/${PKG_ADDON_ID}
   sed -e "s/@DRIVERS@/$drivers/" \
       -i ${ADDON_BUILD}/${PKG_ADDON_ID}/resources/settings.xml
