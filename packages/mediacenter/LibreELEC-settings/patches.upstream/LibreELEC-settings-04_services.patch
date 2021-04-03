@@ -76,7 +76,7 @@ diff -Naur a/resources/lib/modules/services.py b/resources/lib/modules/services.
 +    def get_lcd_drivers(self):
 +        arrDrivers = ['none']
 +        if os.path.exists(self.LCD_DRIVER_DIR):
-+            for driver in glob.glob(self.LCD_DRIVER_DIR  '*'):
++            for driver in glob.glob(self.LCD_DRIVER_DIR + '*'):
 +                arrDrivers.append(os.path.basename(driver).replace('.so', ''))
 +        return arrDrivers
 +

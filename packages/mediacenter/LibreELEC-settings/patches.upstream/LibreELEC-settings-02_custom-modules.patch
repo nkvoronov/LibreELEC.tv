@@ -593,7 +593,7 @@ diff -Naur a/resources/lib/modules/tvservers.py b/resources/lib/modules/tvserver
 +
 +    @log.log_function()
 +    def get_tvbackend(self):
-+        current_tv_backend = ':'self.struct['tvbackends']['settings']['tv_backend']['value']
++        current_tv_backend = ':' + self.struct['tvbackends']['settings']['tv_backend']['value']
 +        return current_tv_backend
 +
 +    @log.log_function()
