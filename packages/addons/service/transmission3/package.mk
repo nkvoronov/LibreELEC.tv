@@ -19,17 +19,17 @@ PKG_ADDON_NAME="Transmission"
 PKG_ADDON_TYPE="xbmc.service"
 
 addon() {
-  TRANSMISSION_DIR=$(get_build_dir transmission)
+  TRANSMISSION_DIR=$(get_install_dir transmission)
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp ${TRANSMISSION_DIR}/.${TARGET_NAME}/daemon/transmission-daemon ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp ${TRANSMISSION_DIR}/.${TARGET_NAME}/utils/transmission-remote ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp ${TRANSMISSION_DIR}/.${TARGET_NAME}/utils/transmission-create ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp ${TRANSMISSION_DIR}/.${TARGET_NAME}/utils/transmission-edit ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-    cp ${TRANSMISSION_DIR}/.${TARGET_NAME}/utils/transmission-show ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp ${TRANSMISSION_DIR}/usr/bin/transmission-daemon ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp ${TRANSMISSION_DIR}/usr/bin/transmission-remote ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp ${TRANSMISSION_DIR}/usr/bin/transmission-create ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp ${TRANSMISSION_DIR}/usr/bin/transmission-edit ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
+    cp ${TRANSMISSION_DIR}/usr/bin/transmission-show ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/web
-    cp -R ${TRANSMISSION_DIR}/web/* ${ADDON_BUILD}/${PKG_ADDON_ID}/web
+    cp -R ${TRANSMISSION_DIR}/usr/share/transmission/web/* ${ADDON_BUILD}/${PKG_ADDON_ID}/web
     find ${ADDON_BUILD}/${PKG_ADDON_ID}/web -name "Makefile*" -exec rm -rf {} ";"
     rm -rf ${ADDON_BUILD}/${PKG_ADDON_ID}/web/LICENSE
 }

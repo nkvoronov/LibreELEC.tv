@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tvheadend"
-PKG_VERSION="fe0e5f1f9"
-PKG_VERSION_NUMBER="4.3.1940"
+PKG_VERSION="dbaa0f850"
+PKG_VERSION_NUMBER="4.3.1947"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
@@ -59,7 +59,7 @@ pre_configure_target() {
                              --enable-bundle \
                              --disable-dbus_1 \
                              --enable-dvbcsa \
-                             --disable-dvben50221 \
+                             --enable-dvben50221 \
                              --disable-dvbscan \
                              --enable-hdhomerun_client \
                              --disable-hdhomerun_static \
@@ -80,8 +80,12 @@ pre_configure_target() {
   rm -rf .${TARGET_NAME}
 
 # pass ffmpegx to build
+  PKG_CONFIG_PATH="$(get_install_dir ffmpegx)/usr/local/lib/pkgconfig"
   CFLAGS+=" -I$(get_install_dir ffmpegx)/usr/local/include"
   LDFLAGS+=" -L$(get_install_dir ffmpegx)/usr/local/lib"
+
+# pass gnutls to build
+  LDFLAGS="$LDFLAGS -L$(get_install_dir gnutls)/usr/lib"
 
 # pass libhdhomerun to build
   CFLAGS+=" -I${SYSROOT_PREFIX}/usr/include/hdhomerun"
@@ -108,7 +112,7 @@ post_install() {
   mkdir -p ${INSTALL}/usr/config/tvheadend
     cp -pR ${PKG_DIR}/config/* ${INSTALL}/usr/config/tvheadend
 
-  # dvb-scan files
+# dvb-scan files
   mkdir -p ${INSTALL}/usr/share/tvheadend/dvb-scan
   cp -r $(get_install_dir tvh-dtv-scan-tables)/usr/share/dvbv5/* \
         ${INSTALL}/usr/share/tvheadend/dvb-scan  
