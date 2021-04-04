@@ -273,6 +273,7 @@ post_install() {
     mkdir -p ${INSTALL}/usr/lib/p7zip
     cp -P $(get_install_dir p7zip)/usr/bin/{7z,7za,7z.so} ${INSTALL}/usr/lib/p7zip
     cp -PR $(get_install_dir p7zip)/usr/bin/Codecs ${INSTALL}/usr/lib/p7zip
+    cp ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin/
   fi
   # patch
   if [ "${ENABLE_PATCH}" = "yes" ]; then
