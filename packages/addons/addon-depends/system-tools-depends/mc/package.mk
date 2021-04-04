@@ -3,21 +3,20 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mc"
-PKG_VERSION="4.8.25"
-PKG_SHA256="ffc19617f20ebb23330acd3998b7fd559a042d172fa55746d53d246697b2548a"
+PKG_VERSION="4.8.26"
+#PKG_SHA256="ffc19617f20ebb23330acd3998b7fd559a042d172fa55746d53d246697b2548a"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.midnight-commander.org"
 PKG_URL="http://ftp.midnight-commander.org/mc-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host ncurses pcre"
+PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host slang pcre"
 PKG_LONGDESC="Midnight Commander is a text based filemanager that emulates Norton Commander."
-PKG_BUILD_FLAGS="-sysroot"
 
 PKG_CONFIGURE_OPTS_TARGET=" \
-  --datadir=/storage/.kodi/addons/virtual.system-tools/data \
-  --libexecdir=/storage/.kodi/addons/virtual.system-tools/mclib \
-  --with-homedir=/storage/.kodi/userdata/addon_data/virtual.system-tools \
-  --sysconfdir=/storage/.kodi/addons/virtual.system-tools/etc \
-  --with-screen=ncurses \
+  --host=${TARGET_NAME} \
+  --build=${HOST_NAME} \
+  --prefix=/usr \
+  --exec-prefix=/usr \
+  --with-screen=slang \
   --with-sysroot=${SYSROOT_PREFIX} \
   --disable-aspell \
   --without-diff-viewer \
@@ -38,12 +37,6 @@ PKG_CONFIGURE_OPTS_TARGET=" \
 
 pre_configure_target() {
   LDFLAGS+=" -lcrypto -lssl"
-}
-
-post_makeinstall_target() {
-  rm -rf ${INSTALL}/storage/.kodi/addons/virtual.system-tools/data/locale
-  rm -rf ${INSTALL}/storage/.kodi/addons/virtual.system-tools/data/mc/help/mc.hlp.*
-  mv ${INSTALL}/usr/bin/mc ${INSTALL}/usr/bin/mc-bin
-  rm -f ${INSTALL}/usr/bin/{mcedit,mcview}
-  cp -p ${PKG_DIR}/wrapper/* ${INSTALL}/usr/bin
+  export CFLAGS+=" -I${SYSROOT_PREFIX}/usr/include/slang"
+  export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
 }
