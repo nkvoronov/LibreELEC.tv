@@ -40,7 +40,7 @@
 
 # Tools
   SYS_TOOLS_ENABLED="no"
-  DVB_TOOLS_ENABLED="no"
+  DVB_TOOLS_ENABLED="yes"
 
 # Docker Fix
   DOCKER_FIX="yes"
