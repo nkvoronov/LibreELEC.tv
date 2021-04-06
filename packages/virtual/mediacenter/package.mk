@@ -12,7 +12,10 @@ PKG_SECTION="virtual"
 PKG_LONGDESC="Mediacenter: Metapackage"
 
 if [ "${MEDIACENTER}" = "kodi" ]; then
-  PKG_DEPENDS_TARGET+=" ${MEDIACENTER}-theme-${SKIN_DEFAULT}"
+
+  if [ "${SKIN_REMOVE_SHIPPED}" = "yes" ]; then
+    PKG_DEPENDS_TARGET+=" ${MEDIACENTER}-theme-${SKIN_DEFAULT}"
+  fi
 
   for i in ${SKINS}; do
     PKG_DEPENDS_TARGET+=" ${MEDIACENTER}-theme-${i}"
