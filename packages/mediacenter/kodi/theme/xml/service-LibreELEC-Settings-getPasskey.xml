@@ -19,7 +19,7 @@
 				<top>5</top>
 				<width>600</width>
 				<height>174</height>
-				<texture border="15">os/libreelec/dialog-bg-solid.png</texture>
+				<texture border="15">extras/libreelec/dialog-bg-solid.png</texture>
 			</control>
 			<control type="group">
 				<left>17</left>
