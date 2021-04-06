@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">10</defaultcontrol>
+	<include>Animation_DialogPopupOpenClose</include>
+	<controls>
+		<control type="group">
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<height>742</height>
+			<width>930</width>
+			<include content="DialogBackgroundCommons">
+				<param name="width" value="930" />
+				<param name="height" value="742" />
+				<param name="header_label" value="$ADDON[script.libreelec.devupdate 32145]" />
+				<param name="header_id" value="1" />
+			</include>
+			<control type="image">
+				<left>0</left>
+				<top>80</top>
+				<width>930</width>
+				<height>670</height>
+				<texture border="40">buttons/dialogbutton-nofo.png</texture>
+			</control>
+			<control type="panel" id="2">
+				<left>35</left>
+				<top>100</top>
+				<height>625</height>
+				<pagecontrol>10</pagecontrol>
+				<scrolltime>2000</scrolltime>
+				<itemlayout height="44" width="820">
+					<control type="label">
+						<left>0</left>
+						<width>260</width>
+						<height>44</height>
+						<textcolor>ffbbbbbb</textcolor>
+						<info>ListItem.Property(timestamp)</info>
+					</control>
+					<control type="label">
+						<left>260</left>
+						<width>160</width>
+						<height>44</height>
+						<align>right</align>
+						<textcolor>ff87bde1</textcolor>
+						<info>ListItem.Property(version)</info>
+					</control>
+					<control type="label">
+						<left>450</left>
+						<width>400</width>
+						<height>44</height>
+						<align>left</align>
+						<textcolor>ff888888</textcolor>
+						<info>ListItem.Property(source)</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="44" width="820">
+				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="10">
+				<top>100</top>
+				<left>900</left>
+				<width>12</width>
+				<height>630</height>
+				<orientation>vertical</orientation>
+				<showonepage>false</showonepage>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -7,9 +7,10 @@ PKG_VERSION="4.8.26"
 PKG_SHA256="c6deadc50595f2d9a22dc6c299a9f28b393e358346ebf6ca444a8469dc166c27"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.midnight-commander.org"
-PKG_URL="http://ftp.midnight-commander.org/mc-${PKG_VERSION}.tar.xz"
+PKG_URL="http://ftp.midnight-commander.org/${PKG_NAME}-${PKG_VERSION}.tar.xz"
 PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host slang pcre"
 PKG_LONGDESC="Midnight Commander is a text based filemanager that emulates Norton Commander."
+PKG_BUILD_FLAGS="-sysroot"
 
 PKG_CONFIGURE_OPTS_TARGET=" \
   --host=${TARGET_NAME} \
@@ -37,6 +38,6 @@ PKG_CONFIGURE_OPTS_TARGET=" \
 
 pre_configure_target() {
   LDFLAGS+=" -lcrypto -lssl"
-  export CFLAGS+=" -I${SYSROOT_PREFIX}/usr/include/slang"
+  export CFLAGS+=" -I$SYSROOT_PREFIX/usr/include/slang"
   export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
 }

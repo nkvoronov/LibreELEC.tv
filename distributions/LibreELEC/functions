@@ -1,3 +1,0 @@
-tolower() {
-  echo "$@" | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
-}

@@ -5,7 +5,7 @@ diff -Naur a/resources/lib/oeWindows.py b/resources/lib/oeWindows.py
              }
  
          self.isChild = False
-+        self.oe.is_wizard = False
++        is_wizard = False
          self.lastGuiList = -1
          self.lastListType = -1
          if 'isChild' in kwargs:
@@ -13,7 +13,7 @@ diff -Naur a/resources/lib/oeWindows.py b/resources/lib/oeWindows.py
  
          self.actions = {}
          self.wizards = []
-+        self.oe.is_wizard = True
++        is_wizard = True
          self.last_wizard = None
  
      def onInit(self):

@@ -38,7 +38,7 @@ ENABLE_SCREEN="yes"
 ENABLE_SMARTMONTOOLS="yes"
 ENABLE_STRACE_NG="yes"
 ENABLE_UNRAR="yes"
-ENABLE_USB_MODESWITCH="yes"
+ENABLE_USB_MODESWITCH="no"
 ENABLE_VIM="yes"
 
 if [ "${ENABLE_AUTOSSH}" = "yes" ]; then
@@ -194,8 +194,8 @@ post_install() {
   # file
   if [ "${ENABLE_FILE}" = "yes" ]; then
     cp -P $(get_install_dir file)/usr/bin/file ${INSTALL}/usr/bin
-    mkdir -p $INSTALL/usr/data/
-    cp -P $(get_install_dir file)/usr/share/misc/magic.mgc $INSTALL/usr/data
+    mkdir -p ${INSTALL}/usr/data/usr/share/misc
+    cp -P $(get_install_dir file)/usr/share/misc/magic.mgc ${INSTALL}/usr/data/usr/share/misc
   fi
   # getscancodes
   if [ "${ENABLE_GETSCANCODES}" = "yes" ]; then
@@ -221,11 +221,11 @@ post_install() {
   fi
   # i2c-tools
   if [ "${ENABLE_I2C_TOOLS}" = "yes" ]; then
-    cp -P $(get_install_dir i2c-tools)/usr/sbin/{i2cdetect,i2cdump,i2cget,i2cset} $INSTALL/usr/bin
-    cp -P $(get_install_dir i2c-tools)/usr/lib/${PKG_PYTHON_VERSION}/site-packages/smbus.so $INSTALL/usr/lib
-    cp -P $(get_install_dir i2c-tools)/usr/lib/libi2c.so.0.1.1 $INSTALL/usr/lib/libi2c.so
-    cp -P $(get_install_dir i2c-tools)/usr/lib/libi2c.so.0.1.1 $INSTALL/usr/lib/libi2c.so.0
-    cp -P $(get_install_dir i2c-tools)/usr/lib/libi2c.so.0.1.1 $INSTALL/usr/lib/libi2c.so.0.1.1
+    cp -P $(get_install_dir i2c-tools)/usr/sbin/{i2cdetect,i2cdump,i2cget,i2cset} ${INSTALL}/usr/bin
+    cp -P $(get_install_dir i2c-tools)/usr/lib/${PKG_PYTHON_VERSION}/site-packages/smbus.so ${INSTALL}/usr/lib
+    cp -P $(get_install_dir i2c-tools)/usr/lib/libi2c.so.0.1.1 ${INSTALL}/usr/lib/libi2c.so
+    cp -P $(get_install_dir i2c-tools)/usr/lib/libi2c.so.0.1.1 ${INSTALL}/usr/lib/libi2c.so.0
+    cp -P $(get_install_dir i2c-tools)/usr/lib/libi2c.so.0.1.1 ${INSTALL}/usr/lib/libi2c.so.0.1.1
   fi
   # inotify-tools
   if [ "${ENABLE_INOTIFY_TOOLS}" = "yes" ]; then
@@ -238,7 +238,7 @@ post_install() {
   fi
   # lm_sensors
   if [ "${ENABLE_LM_SENSORS}" = "yes" ]; then
-    cp -P $(get_install_dir lm_sensors)/usr/bin/sensors ${INSTALL}/usr/bin 2>/dev/null || :
+    cp -P $(get_install_dir lm_sensors)/usr/bin/sensors ${INSTALL}/usr/bin
   fi
   # lshw
   if [ "${ENABLE_LSHW}" = "yes" ]; then
@@ -248,16 +248,16 @@ post_install() {
   if [ "${ENABLE_MC}" = "yes" ]; then
     cp -PR  $(get_install_dir mc)/usr/bin/* ${INSTALL}/usr/bin/
     mkdir -p ${INSTALL}/usr/share/mc/bin
-    ln -s /usr/libexec/mc/mc-wrapper.csh $INSTALL/usr/share/mc/bin/mc-wrapper.csh
-    ln -s /usr/libexec/mc/mc-wrapper.sh $INSTALL/usr/share/mc/bin/mc-wrapper.sh
-    ln -s /usr/libexec/mc/mc.csh $INSTALL/usr/share/mc/bin/mc.csh
-    ln -s /usr/libexec/mc/mc.sh $INSTALL/usr/share/mc/bin/mc.sh
+    ln -s /usr/libexec/mc/mc-wrapper.csh ${INSTALL}/usr/share/mc/bin/mc-wrapper.csh
+    ln -s /usr/libexec/mc/mc-wrapper.sh ${INSTALL}/usr/share/mc/bin/mc-wrapper.sh
+    ln -s /usr/libexec/mc/mc.csh ${INSTALL}/usr/share/mc/bin/mc.csh
+    ln -s /usr/libexec/mc/mc.sh ${INSTALL}/usr/share/mc/bin/mc.sh
     mkdir -p ${INSTALL}/usr/share/locale
     for fgmo in `ls $(get_build_dir mc)/po/*.gmo`;do
-      fname=`basename $fgmo .gmo`
-      mkdir -p ${INSTALL}/usr/share/locale/$fname
-      mkdir -p ${INSTALL}/usr/share/locale/$fname/LC_MESSAGES
-      cp -p $fgmo ${INSTALL}/usr/share/locale/$fname/LC_MESSAGES/mc.mo
+      fname=`basename ${fgmo} .gmo`
+      mkdir -p ${INSTALL}/usr/share/locale/${fname}
+      mkdir -p ${INSTALL}/usr/share/locale/${fname}/LC_MESSAGES
+      cp -p ${fgmo} ${INSTALL}/usr/share/locale/${fname}/LC_MESSAGES/mc.mo
     done
   fi
   # mtpfs
@@ -270,10 +270,8 @@ post_install() {
   fi
   # p7zip
   if [ "${ENABLE_P7ZIP}" = "yes" ]; then
-    mkdir -p ${INSTALL}/usr/lib/p7zip
-    cp -P $(get_install_dir p7zip)/usr/bin/{7z,7za,7z.so} ${INSTALL}/usr/lib/p7zip
-    cp -PR $(get_install_dir p7zip)/usr/bin/Codecs ${INSTALL}/usr/lib/p7zip
-    cp ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin/
+    cp -P $(get_install_dir p7zip)/usr/bin/{7z,7za,7z.so} ${INSTALL}/usr/bin
+    cp -PR $(get_install_dir p7zip)/usr/bin/Codecs ${INSTALL}/usr/bin
   fi
   # patch
   if [ "${ENABLE_PATCH}" = "yes" ]; then

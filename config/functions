@@ -1721,6 +1721,10 @@ release_update_lock() {
   flock --unlock 97 2>/dev/null
 }
 
+tolower() {
+  echo "$@" | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+}
+
 # Use distribution functions if any
 if [ -f "distributions/$DISTRO/config/functions" ]; then
   . distributions/$DISTRO/config/functions
