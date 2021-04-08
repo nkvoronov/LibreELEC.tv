@@ -12,17 +12,15 @@ PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host pcre"
 PKG_LONGDESC="Midnight Commander is a text based filemanager that emulates Norton Commander."
 PKG_BUILD_FLAGS="-sysroot"
 
-PKG_BUILD_SLANG="no"
+BUILD_WITH_SLANG="yes"
 
-if [ "${PKG_BUILD_SLANG}" = "yes" ]; then
+if [ "${BUILD_WITH_SLANG}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" slang"
   WSCREEN = "slang"
 else
   PKG_DEPENDS_TARGET+=" ncurses"
   WSCREEN = "ncurses"
 fi
-
-
 
 PKG_CONFIGURE_OPTS_TARGET=" \
   --host=${TARGET_NAME} \
@@ -41,7 +39,7 @@ PKG_CONFIGURE_OPTS_TARGET=" \
   --without-libintl-prefix \
   --with-internal-edit \
   --disable-mclib \
-  --with-subshell \
+  --without-subshell \
   --enable-vfs-extfs \
   --enable-vfs-ftp \
   --enable-vfs-sftp \
@@ -51,7 +49,7 @@ PKG_CONFIGURE_OPTS_TARGET=" \
 pre_configure_target() {
   LDFLAGS+=" -lcrypto -lssl"
 
-  if [ "${PKG_BUILD_SLANG}" = "yes" ]; then
+  if [ "${BUILD_WITH_SLANG}" = "yes" ]; then
     export CFLAGS+=" -I$SYSROOT_PREFIX/usr/include/slang"
     export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
   fi
