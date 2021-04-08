@@ -328,7 +328,7 @@ post_makeinstall_target() {
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "${DISTRO_PKG_SETTINGS_ID}" ${ADDON_MANIFEST}
   fi
 
-  if [ "${DRIVER_ADDONS_SUPPORT}" = "yes" ]; then
+  if [ "${DRIVER_ADDONS_SUPPORT}" = "yes" -a "${CUSTOM_LIBREELEC_SETTING}" = "no" ]; then
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.program.driverselect" ${ADDON_MANIFEST}
   fi
 

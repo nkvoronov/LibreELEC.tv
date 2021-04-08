@@ -73,7 +73,7 @@
 			</control>
 			<control type="image">
 				<description>LOGO</description>
-				<left>55</left>
+				<left>30</left>
 				<bottom>0</bottom>
 				<width>360</width>
 				<height>160</height>
@@ -91,7 +91,7 @@
 					<bottom>140</bottom>
 					<visible>String.IsEqual(Container(1000).ListItem.Property(listTyp), 1900)</visible>
 					<control type="image">
-						<left>1120</left>
+						<left>1140</left>
 						<top>20</top>
 						<width>300</width>
 						<height>300</height>

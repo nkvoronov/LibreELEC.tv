@@ -1,0 +1,57 @@
+diff -Naur a/resources/lib/oe.py b/resources/lib/oe.py
+--- a/resources/lib/oe.py	2021-03-10 05:37:21.000000000 +0200
++++ b/resources/lib/oe.py	2021-04-08 17:00:00.000000000 +0300
+@@ -21,6 +21,7 @@
+ import defaults
+ import shutil
+ import hashlib, binascii
++import json
+ 
+ from xml.dom import minidom
+ import imp
+@@ -914,6 +915,45 @@
+             builder_version
+             )
+ 
++def jsonrpc(query):
++    querystring = {"jsonrpc": "2.0", "id": 1}
++    querystring.update(query)
++    try:
++        response = json.loads(xbmc.executeJSONRPC(json.dumps(querystring)))
++        if 'result' in response: return response['result']
++    except TypeError as e:
++        dbg_log('oe::jsonrpc', f'ERROR: ({repr(e)})')
++    return None
++
++def ask_for_reboot(msgid):
++    message = [_(43017), _(43018)]
++    yesno = dialogYesNo(_(43019), message[msgid])
++    if yesno:
++        query = {"method": "System.Reboot",
++                 "params": {}}
++        response = jsonrpc(query)
++        if response == 'OK':
++            dbg_log('oe::ask_for_reboot', 'system will now reboot')
++        else:
++            dbg_log('oe::ask_for_reboot', 'could not reboot')
++    else:
++        notify(_(43009), _(43021))
++    return False
++
++def set_addon(module, enabled):
++    query = {"method": "Addons.SetAddonEnabled",
++             "params": {"addonid": module, "enabled": enabled}}
++    response = jsonrpc(query)
++    if response == 'OK':
++        dbg_log('oe::set_addon', 'driver module \'%s\' %s' % (module, 'enabled' if enabled else 'disabled'))
++        return True
++    else:
++        dbg_log('oe::set_addon', 'could not %s driver module \'%s\'' % ('enable' if enabled else 'disable', module))
++    return False
++
++def dialogYesNo(header, message):
++    return xbmcgui.Dialog().yesno(header, message)
++
+ minidom.Element.writexml = fixed_writexml
+ 
+ ############################################################################################

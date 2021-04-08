@@ -11,5 +11,9 @@ PKG_SECTION="virtual"
 PKG_LONGDESC="linux-drivers is a Meta package to install additional drivers"
 
 if [ "${DRIVER_ADDONS_SUPPORT}" = "yes" ]; then
-  PKG_DEPENDS_TARGET+=" ${DRIVER_ADDONS} driverselect"
+  PKG_DEPENDS_TARGET+=" ${DRIVER_ADDONS}"
+fi
+
+if [ "${CUSTOM_LIBREELEC_SETTING}" = "no" ]; then
+  PKG_DEPENDS_TARGET+=" driverselect"
 fi

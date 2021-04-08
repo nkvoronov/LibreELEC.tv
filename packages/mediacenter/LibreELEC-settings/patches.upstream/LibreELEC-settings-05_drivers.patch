@@ -1,0 +1,191 @@
+diff -Naur a/resources/lib/modules/drivers.py b/resources/lib/modules/drivers.py
+--- a/resources/lib/modules/drivers.py	1970-01-01 03:00:00.000000000 +0300
++++ b/resources/lib/modules/drivers.py	2021-04-08 15:32:00.000000000 +0300
+@@ -0,0 +1,187 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
++# Copyright (C) 2009-2013 Stephan Raue (stephan@openelec.tv)
++# Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
++# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
++
++import log
++import modules
++import oe
++import os
++import subprocess
++import xbmc
++import xbmcgui
++
++ADDON_TYPE = 'xbmc.service'
++SIGNATURE_DVB = 'driver.dvb.'
++SIGNATURE_VD = 'driver.video.'
++SIGNATURE_NET = 'driver.net.'
++
++# Addon Id's in this list should not appear in driver selection menue
++EXCLUDES = ['driver.dvb.sundtek-mediatv', 'driver.dvb.hdhomerun']
++
++xbmcDialog = xbmcgui.Dialog()
++
++class drivers(modules.Module):
++
++    ENABLED = False
++
++    menu = {'8': {
++        'name': 43009,
++        'menuLoader': 'load_menu',
++        'listTyp': 'list',
++        'InfoText': 1706,
++        }}
++
++    @log.log_function()
++    def __init__(self, oeMain):
++        super().__init__()
++        self.modules = None
++        self.struct = {
++            'drivers': {
++                'order': 1,
++                'name': 43009,
++                'not_supported': [],
++                'settings': {
++                    'dvb': {
++                        'order': 1,
++                        'name': 43010,
++                        'value': oe._(43014),
++                        'action': 'initialize_drivers',
++                        'type': 'multivalue',
++                        'InfoText': 1703,
++                        },
++                    'video': {
++                        'order': 2,
++                        'name': 43011,
++                        'value': oe._(43014),
++                        'action': 'initialize_drivers',
++                        'type': 'multivalue',
++                        'InfoText': 1704,
++                        },
++                    'net': {
++                        'order': 3,
++                        'name': 43012,
++                        'value': oe._(43014),
++                        'action': 'initialize_drivers',
++                        'type': 'multivalue',
++                        'InfoText': 1705,
++                        },
++                    },
++                },
++            }
++
++    @log.log_function()
++    def start_service(self):
++        self.load_values()
++        self.initialize_drivers(service=1)
++
++    @log.log_function()
++    def do_init(self):
++        self.load_info()
++        self.load_values()
++
++    @log.log_function()
++    def set_value(self, listItem):
++        self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
++
++    @log.log_function()
++    def load_menu(self, focusItem):
++        oe.winOeMain.build_menu(self.struct)
++
++    @log.log_function()
++    def load_values(self):
++        # Drivers addons
++        (
++            arrDvb,
++            arrVideo,
++            arrNet
++        ) = self.get_drivers_addons()
++        if not arrDvb is None:
++            self.struct['drivers']['settings']['dvb']['values'] = arrDvb
++            value = oe.read_setting('drivers', 'DriversDvb')
++        if not value is None:
++            self.struct['drivers']['settings']['dvb']['value'] = value
++        if not arrVideo is None:
++            self.struct['drivers']['settings']['video']['values'] = arrVideo
++            value = oe.read_setting('drivers', 'DriversVideo')
++        if not value is None:
++            self.struct['drivers']['settings']['video']['value'] = value
++        if not arrNet is None:
++            self.struct['drivers']['settings']['net']['values'] = arrNet
++            value = oe.read_setting('drivers', 'DriversNet')
++        if not value is None:
++            self.struct['drivers']['settings']['net']['value'] = value
++
++    @log.log_function()
++    def initialize_drivers(self, **kwargs):
++        if 'listItem' in kwargs:
++            self.set_value(kwargs['listItem'])
++
++        value_dvb = self.struct['drivers']['settings']['dvb']['value']
++        value_dvb_old = oe.read_setting('drivers', 'DriversDvb')
++        if value_dvb != value_dvb_old:
++            oe.write_setting('drivers', 'DriversDvb', value_dvb)
++            self.update_addons(SIGNATURE_DVB, value_dvb)
++
++        value_video = self.struct['drivers']['settings']['video']['value']
++        value_video_old = oe.read_setting('drivers', 'DriversVideo')
++        if value_video != value_video_old:
++            oe.write_setting('drivers', 'DriversVideo', value_video)
++            self.update_addons(SIGNATURE_VD, value_video)
++
++        value_net = self.struct['drivers']['settings']['net']['value']
++        value_net_old = oe.read_setting('drivers', 'DriversNet')
++        if value_net != value_net_old:
++            oe.write_setting('drivers', 'DriversNet', value_net)
++            self.update_addons(SIGNATURE_NET, value_net)
++
++    @log.log_function()
++    def get_drivers_addons(self):
++        arrDvb = []
++        arrVideo = []
++        arrNet = []
++
++        arrDvb.append(oe._(43014))
++        arrVideo.append(oe._(43014))
++        arrNet.append(oe._(43014))
++
++        if self.modules is not None:
++            for module in self.modules['addons']:
++                if not SIGNATURE_DVB in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
++                arrDvb.append(module.get('name') or oe._(43013))
++        if self.modules is not None:
++            for module in self.modules['addons']:
++                if not SIGNATURE_VD in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
++                arrVideo.append(module.get('name') or oe._(43013))
++        if self.modules is not None:
++            for module in self.modules['addons']:
++                if not SIGNATURE_NET in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
++                arrNet.append(module.get('name') or oe._(43013))
++        return (
++            arrDvb,
++            arrVideo,
++            arrNet
++            )
++
++    @log.log_function()
++    def load_info(self):
++        query = {"method": "Addons.GetAddons",
++                 "params": {"type": ADDON_TYPE,
++                            "properties": ["description", "enabled", "name", "path", "thumbnail", "version"]}}
++        self.modules = oe.jsonrpc(query)
++
++    @log.log_function()
++    def update_addons(self, dtype, dname):
++        if self.modules is not None:
++            sid = None
++            for module in self.modules['addons']:
++                if not dtype in module.get('addonid', '') or module.get('addonid', '') in EXCLUDES: continue
++                mname = module.get('name')
++                mid = module.get('addonid')
++                if mname == dname: sid = mid
++                oe.set_addon(mid, False)
++            if sid is not None:
++                oe.set_addon(sid, True)
++                oe.ask_for_reboot(0)
++            else:
++                oe.ask_for_reboot(1)

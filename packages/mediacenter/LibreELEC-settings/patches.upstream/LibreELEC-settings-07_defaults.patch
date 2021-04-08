@@ -1,15 +1,12 @@
 diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
 --- a/resources/lib/defaults.py	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/lib/defaults.py	2021-04-04 01:39:13.000000000 +0300
-@@ -37,6 +37,55 @@
- bluetooth['ENABLED'] = bluetooth['ENABLED']()
- 
- ################################################################################
-+# Transmission Module
-+################################################################################
-+
-+transmission = {
-+    'ENABLED': True,
++++ b/resources/lib/defaults.py	2021-04-08 16:40:00.000000000 +0300
+@@ -57,6 +57,36 @@
+     'D_SSH_DISABLE_PW_AUTH': '0',
+     'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
+     'CRON_DAEMON': '/sbin/crond',
++    'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
++    'D_LCD_DRIVER': 'none',
 +    'TRANSMISSION_DAEMON': '/usr/bin/transmission-daemon',
 +    'TRANSMISSION_DAEMON_START': '/usr/bin/transmission.start',
 +    'D_TRANSMISSION_SECURE': '1',
@@ -19,21 +16,8 @@ diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
 +    'D_TRANSMISSION_LIMIT_GLOBAL': '100',
 +    'D_TRANSMISSION_LIMIT_TORRENT': '100',
 +    'D_TRANSMISSION_DL_DIR': '/storage/downloads/',
-+    }
-+
-+################################################################################
-+# Tv Servers Module
-+################################################################################
-+
-+tvservers = {
-+    'ENABLED': True,
 +    'TVHEADEND_DAEMON': '/usr/bin/tvheadend',
 +    'TVHEADEND_DAEMON_START': '/usr/bin/tvheadend.start',
-+    'OSCAM_DAEMON': '/usr/bin/oscam',
-+    'OSCAM_DAEMON_START': '/usr/bin/oscam.start',
-+    #TVBACKEND
-+    'D_TV_BACKEND': 'none',
-+    #TVHEADEND
 +    'D_PRELOAD_CAPMT_CA': '0',
 +    'D_TVH_BACKUP': '0',
 +    'D_TVH_DEBUG': '0',
@@ -43,30 +27,27 @@ diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
 +    'D_XMLTV_LOCATION_FILE': '',
 +    'D_XMLTV_LOCATION_WEB': 'http://',
 +    'D_XMLTV_LOCATION_SCRIPT': '',
-+    #DVB
-+    'D_WAIT_FOR_FEINIT': '0',
-+    'D_NUM_ADAPTERS': '1',
-+    'D_REMOVE_MODULES': '',
-+    #OSCAM
++    'OSCAM_DAEMON': '/usr/bin/oscam',
++    'OSCAM_DAEMON_START': '/usr/bin/oscam.start',
 +    'D_OSCAM_ENABLE': '1',
 +    'D_OSCAM_DEBUG': '1',
 +    'D_RESTART_ON_RESUME': '0',
-+     }
-+
-+################################################################################
- # Service Module
- ################################################################################
- 
-@@ -57,6 +106,8 @@
-     'D_SSH_DISABLE_PW_AUTH': '0',
-     'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
-     'CRON_DAEMON': '/sbin/crond',
-+    'LCD_DRIVER_DIR': '/usr/lib/lcdproc/',
-+    'D_LCD_DRIVER': 'none',
++    'D_WAIT_FOR_FEINIT': '0',
++    'D_NUM_ADAPTERS': '1',
++    'D_REMOVE_MODULES': '',
      }
  
  system = {
-@@ -104,4 +155,8 @@
+@@ -92,6 +122,8 @@
+     'RPI_FLASHING_TRIGGER': '/storage/.rpi_flash_firmware',
+     }
+ 
++drivers = {'ENABLED': True}
++
+ about = {'ENABLED': True}
+ 
+ xdbus = {'ENABLED': True}
+@@ -104,4 +136,8 @@
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
      'iptables': ['iptables.service'],

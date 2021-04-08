@@ -1,6 +1,6 @@
 diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
 --- a/resources/lib/modules/updates.py	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/lib/modules/updates.py	2021-04-04 01:20:41.000000000 +0300
++++ b/resources/lib/modules/updates.py	2021-04-06 19:13:00.000000000 +0300
 @@ -46,25 +46,57 @@
                      'value': 'auto',
                      'action': 'set_auto_update',

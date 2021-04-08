@@ -23,12 +23,6 @@ if [ -f $CONFIG_CACHE/services/tvheadend.conf ]; then
 
   echo  "Starting HTS TVHeadend server ..."
 
-  if [ "$TVHEADEND_ADAPTERS" != "" ]; then
-    TVHEADEND_ARG="-a $TVHEADEND_ADAPTERS"
-  else
-    TVHEADEND_ARG=""
-  fi
-
   if [ "$TVHEADEND_BACKUP" != "true" ] ; then
     TVHEADEND_ARG="$TVHEADEND_ARG -B"
   fi

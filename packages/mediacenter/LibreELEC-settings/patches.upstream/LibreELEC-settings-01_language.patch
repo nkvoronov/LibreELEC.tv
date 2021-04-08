@@ -1,39 +1,273 @@
 diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/language/resource.language.en_gb/strings.po
 --- a/resources/language/resource.language.en_gb/strings.po	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/language/resource.language.en_gb/strings.po	2021-04-03 22:12:10.000000000 +0300
-@@ -104,6 +104,10 @@
++++ b/resources/language/resource.language.en_gb/strings.po	2021-04-08 17:00:00.000000000 +0300
+@@ -1,5 +1,5 @@
+ # Kodi Media Center language file
+-# Addon Name: @DISTRONAME@ Configuration
++# Addon Name: LibreELEC Configuration
+ # Addon id: service.libreelec.settings
+ # Addon Provider: LibreELEC
+ msgid ""
+@@ -9,7 +9,7 @@
+ "Content-Transfer-Encoding: 8bit\n"
+ 
+ msgctxt "#600"
+-msgid "@DISTRONAME@ Settings"
++msgid "LibreELEC Settings"
+ msgstr ""
+ 
+ msgctxt "#601"
+@@ -81,7 +81,7 @@
+ msgstr ""
+ 
+ msgctxt "#710"
+-msgid "Configure the Hostname of your @DISTRONAME@ system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
++msgid "Configure the Hostname of your LibreELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
+ msgstr ""
+ 
+ msgctxt "#711"
+@@ -97,13 +97,17 @@
+ msgstr ""
+ 
+ msgctxt "#714"
+-msgid "@DISTRONAME@ can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
++msgid "LibreELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
+ msgstr ""
+ 
+ msgctxt "#715"
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
  
 +msgctxt "#717"
 +msgid "If you have an small LCD or VFD attached to your LibreELEC system you must configure the correct display driver"
-+msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе LibreELEC - Вы должны сконфигурировать правильный драйвер дисплея"
++msgstr "���� � ��� ��������� LCD ��� VFD �������, ������������ � ������� LibreELEC - �� ������ ���������������� ���������� ������� �������"
 +
  msgctxt "#718"
  msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to http://ix.io, and display the short URL"
  msgstr ""
+@@ -117,7 +121,7 @@
+ msgstr ""
+ 
+ msgctxt "#722"
+-msgid "Create a tar archive containing all @DISTRONAME@ and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backup/"
++msgid "Create a tar archive containing all LibreELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backup/"
+ msgstr ""
+ 
+ msgctxt "#723"
+@@ -125,11 +129,11 @@
+ msgstr ""
+ 
+ msgctxt "#724"
+-msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset @DISTRONAME@ configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
++msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset LibreELEC configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
+ msgstr ""
+ 
+ msgctxt "#725"
+-msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset @DISTRONAME@ and Kodi configuration to defaults (everything in your storage partition will be deleted)"
++msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset LibreELEC and Kodi configuration to defaults (everything in your storage partition will be deleted)"
+ msgstr ""
+ 
+ msgctxt "#726"
+@@ -189,7 +193,7 @@
+ msgstr ""
+ 
+ msgctxt "#742"
+-msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password '@ROOT_PASSWORD@'."
++msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'libreelec'."
+ msgstr ""
+ 
+ msgctxt "#743"
+@@ -209,11 +213,11 @@
+ msgstr ""
+ 
+ msgctxt "#747"
+-msgid "Enable a PIN for @DISTRONAME@ Settings access"
++msgid "Enable a PIN for LibreELEC Settings access"
+ msgstr ""
+ 
+ msgctxt "#748"
+-msgid "Change the PIN Lock for @DISTRONAME@ Settings access"
++msgid "Change the PIN Lock for LibreELEC Settings access"
+ msgstr ""
+ 
+ msgctxt "#749"
+@@ -225,7 +229,7 @@
+ msgstr ""
+ 
+ msgctxt "#751"
+-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to @DISTRONAME@."
++msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to LibreELEC."
+ msgstr ""
+ 
+ msgctxt "#752"
 @@ -300,6 +304,14 @@
  msgid "Updates"
  msgstr ""
  
 +msgctxt "#32007"
-+msgid "Driver"
++msgid "LCD"
 +msgstr ""
 +
 +msgctxt "#32008"
-+msgid "LCD/VFD Driver"
++msgid "Driver"
 +msgstr ""
 +
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr ""
-@@ -1051,3 +1063,306 @@
+@@ -541,7 +553,7 @@
+ msgstr ""
+ 
+ msgctxt "#32180"
+-msgid "Would you like to update @DISTRONAME@ now?"
++msgid "Would you like to update LibreELEC now?"
+ msgstr ""
+ 
+ msgctxt "#32181"
+@@ -593,11 +605,11 @@
+ msgstr ""
+ 
+ msgctxt "#32193"
+-msgid "Enable @DISTRONAME@ Settings PIN Lock"
++msgid "Enable LibreELEC Settings PIN Lock"
+ msgstr ""
+ 
+ msgctxt "#32194"
+-msgid "Change @DISTRONAME@ Settings PIN Lock"
++msgid "Change LibreELEC Settings PIN Lock"
+ msgstr ""
+ 
+ msgctxt "#32196"
+@@ -717,15 +729,15 @@
+ msgstr ""
+ 
+ msgctxt "#32229"
+-msgid "@DISTRONAME@ Settings PIN lock not set.[CR][CR]Please try again."
++msgid "LibreELEC Settings PIN lock not set.[CR][CR]Please try again."
+ msgstr ""
+ 
+ msgctxt "#32230"
+-msgid "@DISTRONAME@ Settings PIN lock set."
++msgid "LibreELEC Settings PIN lock set."
+ msgstr ""
+ 
+ msgctxt "#32231"
+-msgid "Your @DISTRONAME@ Settings PIN lock has been set to:"
++msgid "Your LibreELEC Settings PIN lock has been set to:"
+ msgstr ""
+ 
+ msgctxt "#32232"
+@@ -733,7 +745,7 @@
+ msgstr ""
+ 
+ msgctxt "#32233"
+-msgid "@DISTRONAME@ Settings Locked[CR]Enter 4 digit PIN"
++msgid "LibreELEC Settings Locked[CR]Enter 4 digit PIN"
+ msgstr ""
+ 
+ msgctxt "#32234"
+@@ -749,7 +761,7 @@
+ msgstr ""
+ 
+ msgctxt "#32237"
+-msgid "@DISTRONAME@ Settings Locked!"
++msgid "LibreELEC Settings Locked!"
+ msgstr ""
+ 
+ msgctxt "#32238"
+@@ -761,7 +773,7 @@
+ msgstr ""
+ 
+ msgctxt "#32300"
+-msgid "Welcome to @DISTRONAME@"
++msgid "Welcome to LibreELEC"
+ msgstr ""
+ 
+ msgctxt "#32301"
+@@ -769,7 +781,7 @@
+ msgstr ""
+ 
+ msgctxt "#32302"
+-msgid "This wizard will guide you through the process of setting up your new @DISTRONAME@ installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > @DISTRONAME@ Settings."
++msgid "This wizard will guide you through the process of setting up your new LibreELEC installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > LibreELEC Settings."
+ msgstr ""
+ 
+ msgctxt "#32303"
+@@ -777,7 +789,7 @@
+ msgstr ""
+ 
+ msgctxt "#32304"
+-msgid "To be identified easily on the network, your new @DISTRONAME@ machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
++msgid "To be identified easily on the network, your new LibreELEC machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
+ msgstr ""
+ 
+ msgctxt "#32305"
+@@ -785,7 +797,7 @@
+ msgstr ""
+ 
+ msgctxt "#32306"
+-msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, @DISTRONAME@ needs to be connected the Internet.[CR][CR]An Internet connection is also required for @DISTRONAME@ to automatically update itself."
++msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, LibreELEC needs to be connected the Internet.[CR][CR]An Internet connection is also required for LibreELEC to automatically update itself."
+ msgstr ""
+ 
+ msgctxt "#32307"
+@@ -809,11 +821,11 @@
+ msgstr ""
+ 
+ msgctxt "#32312"
+-msgid "@DISTRONAME@ also supports SSH for remote access. This is for advanced users who wish to interact with @DISTRONAME@'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
++msgid "LibreELEC also supports SSH for remote access. This is for advanced users who wish to interact with LibreELEC's underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]libreelec[/COLOR]."
+ msgstr ""
+ 
+ msgctxt "#32313"
+-msgid "In order to share your files between your computers @DISTRONAME@ has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
++msgid "In order to share your files between your computers LibreELEC has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
+ msgstr ""
+ 
+ msgctxt "#32316"
+@@ -825,7 +837,7 @@
+ msgstr ""
+ 
+ msgctxt "#32318"
+-msgid "Your @DISTRONAME@ installation is now complete and you are about to enter Kodi where you can set up your media libraries. For help with this, there is a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find @DISTRONAME@ useful we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using @DISTRONAME@ as much as we've enjoyed building it. If you need any more help, you can find links to our support forum along with latest news at our website."
++msgid "Your LibreELEC installation is now complete and you are about to enter Kodi where you can set up your media libraries. For help with this, there is a guide available at wiki.kodi.tv[CR][CR]LibreELEC is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find LibreELEC useful we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using LibreELEC as much as we've enjoyed building it. If you need any more help, you can find links to our support forum along with latest news at our website."
+ msgstr ""
+ 
+ msgctxt "#32319"
+@@ -845,7 +857,7 @@
+ msgstr ""
+ 
+ msgctxt "#32325"
+-msgid "Reset @DISTRONAME@ to defaults"
++msgid "Reset LibreELEC to defaults"
+ msgstr ""
+ 
+ msgctxt "#32326"
+@@ -909,7 +921,7 @@
+ msgstr ""
+ 
+ msgctxt "#32363"
+-msgid "@DISTRONAME@"
++msgid "LibreELEC"
+ msgstr ""
+ 
+ msgctxt "#32364"
+@@ -1021,7 +1033,7 @@
+ msgstr ""
+ 
+ msgctxt "#32394"
+-msgid "@DISTRONAME@ has temporarily started in safe mode due to repeated Kodi crashes.[CR][CR]You may now investigate the cause of the crashes by enabling ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via \"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" share.[CR][CR]Rebooting will return to your original Kodi installation.[CR][CR]Go to https://forum.libreelec.tv if you require further assistance. When posting to the forum include the link to your crash log which can be viewed by clicking the crash log option in Settings > LibreELEC > System > Submit Log."
++msgid "LibreELEC has temporarily started in safe mode due to repeated Kodi crashes.[CR][CR]You may now investigate the cause of the crashes by enabling ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via \"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" share.[CR][CR]Rebooting will return to your original Kodi installation.[CR][CR]Go to https://forum.libreelec.tv if you require further assistance. When posting to the forum include the link to your crash log which can be viewed by clicking the crash log option in Settings > LibreELEC > System > Submit Log."
+ msgstr ""
+ 
+ msgctxt "#32395"
+@@ -1051,3 +1063,322 @@
  msgctxt "#32401"
  msgid "Syncing Disks..."
  msgstr ""
 +
 +msgctxt "#32402"
-+msgid "Enable LCD Driver Support"
++msgid "Enable LCD"
 +msgstr ""
 +
 +##########################################################
@@ -65,16 +299,8 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +##########################################################
 +## Transmission
 +
-+msgctxt "#33000"
-+msgid "Transmission"
-+msgstr ""
-+
-+msgctxt "#800"
-+msgid "Configuration transmission: a fast, easy and free BitTorrent client"
-+msgstr ""
-+
 +msgctxt "#33001"
-+msgid "Transmission daemon"
++msgid "Transmission"
 +msgstr ""
 +
 +msgctxt "#33002"
@@ -82,11 +308,11 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#801"
-+msgid "Enabled Transmission autostart"
++msgid "Enable Transmission"
 +msgstr ""
 +
 +msgctxt "#33003"
-+msgid "- enable secure"
++msgid "Enable secure"
 +msgstr ""
 +
 +msgctxt "#802"
@@ -94,7 +320,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#33004"
-+msgid " - user name"
++msgid "User name"
 +msgstr ""
 +
 +msgctxt "#803"
@@ -102,7 +328,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#33005"
-+msgid " - password"
++msgid "Password"
 +msgstr ""
 +
 +msgctxt "#804"
@@ -110,7 +336,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#33006"
-+msgid "- enabled IPs"
++msgid "Enabled IPs"
 +msgstr ""
 +
 +msgctxt "#805"
@@ -118,7 +344,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#33007"
-+msgid "- limit global"
++msgid "Limit global"
 +msgstr ""
 +
 +msgctxt "#806"
@@ -126,7 +352,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#33008"
-+msgid "- limit torrent"
++msgid "Limit torrent"
 +msgstr ""
 +
 +msgctxt "#807"
@@ -134,47 +360,26 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#33009"
-+msgid "- download directory"
++msgid "Download directory"
 +msgstr ""
 +
 +msgctxt "#808"
 +msgid "Select directory for download"
 +msgstr ""
 +
-+msgctxt "#33010"
-+msgid "Transmission is a cross-platform BitTorrent client"
-+msgstr ""
-+
-+##########################################################
-+## Tv server
-+
-+msgctxt "#34000"
-+msgid "TV"
-+msgstr ""
-+
-+msgctxt "#1000"
-+msgid "Configuration TV: Tvheadend and Oscam"
-+msgstr ""
-+
-+##########################################################
-+
-+msgctxt "#35000"
-+msgid "TV Server"
-+msgstr ""
-+
-+msgctxt "#35001"
-+msgid "TV Server"
-+msgstr ""
-+
-+msgctxt "#1001"
-+msgid "Select TV Server"
-+msgstr ""
-+
 +##########################################################
 +## Tvheadend
 +
++msgctxt "#35000"
++msgid "Enable Tvheadend"
++msgstr ""
++
++msgctxt "#1001"
++msgid "Enable Tvheadend"
++msgstr ""
++
 +msgctxt "#36000"
-+msgid "Tvheadend Configuration"
++msgid "Tvheadend"
 +msgstr ""
 +
 +msgctxt "#36001"
@@ -201,14 +406,6 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgid "Enable Tvheadend debug"
 +msgstr ""
 +
-+msgctxt "#36004"
-+msgid "Аdapters"
-+msgstr ""
-+
-+msgctxt "#1104"
-+msgid "Used adapters"
-+msgstr ""
-+
 +msgctxt "#36005"
 +msgid "Other params"
 +msgstr ""
@@ -226,7 +423,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#36007"
-+msgid "- patch"
++msgid "Patch"
 +msgstr ""
 +
 +msgctxt "#1107"
@@ -234,7 +431,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#36008"
-+msgid "- url"
++msgid "URL"
 +msgstr ""
 +
 +msgctxt "#1108"
@@ -242,7 +439,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#36009"
-+msgid "- script"
++msgid "Script"
 +msgstr ""
 +
 +msgctxt "#1109"
@@ -253,7 +450,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +## DVB
 +
 +msgctxt "#40000"
-+msgid "DVB Configuration"
++msgid "DVB"
 +msgstr ""
 +
 +msgctxt "#40001"
@@ -265,7 +462,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#40002"
-+msgid "- Number of adapters"
++msgid "Number of adapters"
 +msgstr ""
 +
 +msgctxt "#1502"
@@ -273,7 +470,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#40003"
-+msgid "- unload DVB mudules"
++msgid "Unload DVB mudules"
 +msgstr ""
 +
 +msgctxt "#1503"
@@ -284,7 +481,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +## OScam
 +
 +msgctxt "#41000"
-+msgid "OScam Configuration"
++msgid "OScam"
 +msgstr ""
 +
 +msgctxt "#41001"
@@ -296,7 +493,7 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#41002"
-+msgid "- debug level"
++msgid "Debug level"
 +msgstr ""
 +
 +msgctxt "#1602"
@@ -304,17 +501,11 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgstr ""
 +
 +msgctxt "#41003"
-+msgid "- restart on suspend / resume"
++msgid "Restart on suspend / resume"
 +msgstr ""
 +
 +msgctxt "#1603"
 +msgid "Restart OScam on suspend / resume"
-+msgstr ""
-+
-+##########################################################
-+
-+msgctxt "#42000"
-+msgid "Tvheadend is a TV streaming server for Linux supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, and Analog video (V4L) as input sources."
 +msgstr ""
 +
 +##########################################################
@@ -334,36 +525,234 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgctxt "#1701"
 +msgid "Updates"
 +msgstr ""
++
++##########################################################
++## drivers
++
++msgctxt "#43009"
++msgid "Drivers"
++msgstr ""
++
++msgctxt "#1706"
++msgid "LibreELEC driver select"
++msgstr ""
++
++msgctxt "#43010"
++msgid "DVB drivers"
++msgstr ""
++
++msgctxt "#1703"
++msgid "DVB drivers select"
++msgstr ""
++
++msgctxt "#43011"
++msgid "Video drivers"
++msgstr ""
++
++msgctxt "#1704"
++msgid "Video drivers select"
++msgstr ""
++
++msgctxt "#43012"
++msgid "Net drivers"
++msgstr ""
++
++msgctxt "#1705"
++msgid "Net drivers select"
++msgstr ""
++
++msgctxt "#43013"
++msgid "unknown"
++msgstr ""
++
++msgctxt "#43014"
++msgid "Standard package"
++msgstr ""
++
++msgctxt "#43017"
++msgid "You changed the system driver. A system reboot is required for the new driver to work properly. Would you like to reboot the system now?"
++msgstr ""
++
++msgctxt "#43018"
++msgid "You have module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
++msgstr ""
++
++msgctxt "#43019"
++msgid "System Reboot required"
++msgstr ""
++
++msgctxt "#43021"
++msgid "Driver changed, reboot required!"
++msgstr ""
+\ No newline at end of file
 diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/language/resource.language.ru_ru/strings.po
 --- a/resources/language/resource.language.ru_ru/strings.po	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/language/resource.language.ru_ru/strings.po	2021-04-03 22:17:07.000000000 +0300
++++ b/resources/language/resource.language.ru_ru/strings.po	2021-04-08 17:00:00.000000000 +0300
+@@ -1,5 +1,5 @@
+ # Kodi Media Center language file
+-# Addon Name: @DISTRONAME@ Configuration
++# Addon Name: LibreELEC Configuration
+ # Addon id: service.libreelec.settings
+ # Addon Provider: LibreELEC
+ msgid ""
+@@ -11,8 +11,8 @@
+ "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+ 
+ msgctxt "#600"
+-msgid "@DISTRONAME@ Settings"
+-msgstr "Настройки @DISTRONAME@"
++msgid "LibreELEC Settings"
++msgstr "Настройки LibreELEC"
+ 
+ msgctxt "#601"
+ msgid "Interface"
+@@ -97,9 +97,9 @@
+ 
+ msgctxt "#710"
+ msgid ""
+-"Configure the Hostname of your @DISTRONAME@ system. This will be used for "
++"Configure the Hostname of your LibreELEC system. This will be used for "
+ "the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
+-msgstr "Настройка имени хоста вашей системы @DISTRONAME@. Под этим именем Ваш HTPC будет виден, как \\\\имя_хоста в сети Windows и SMB сервер проводнике Mac OS"
++msgstr "Настройка имени хоста вашей системы LibreELEC. Под этим именем Ваш HTPC будет виден, как \\\\имя_хоста в сети Windows и SMB сервер проводнике Mac OS"
+ 
+ msgctxt "#711"
+ msgid "Configure the 1st keyboard software layout"
+@@ -115,10 +115,10 @@
+ 
+ msgctxt "#714"
+ msgid ""
+-"@DISTRONAME@ can be configured for automatic or manual updates. Automatic "
++"LibreELEC can be configured for automatic or manual updates. Automatic "
+ "updates are available on stable releases and stable release candidates. "
+ "Automatic update self-disables on beta and development builds"
+-msgstr "@DISTRONAME@ можно настроить для автоматического или ручного обновления ПО. Автоматические обновления доступны только на стабильных релизах и на кандидатах в релизы. Автоматические обновления отключены на бета-версиях и на сборках, предназначенных для разработчиков"
++msgstr "LibreELEC можно настроить для автоматического или ручного обновления ПО. Автоматические обновления доступны только на стабильных релизах и на кандидатах в релизы. Автоматические обновления отключены на бета-версиях и на сборках, предназначенных для разработчиков"
+ 
+ msgctxt "#715"
+ msgid ""
 @@ -126,6 +126,10 @@
  "is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
  
 +msgctxt "#717"
 +msgid "If you have an small LCD or VFD attached to your LibreELEC system you must configure the correct display driver"
-+msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе LibreELEC - Вы должны сконфигурировать правильный драйвер дисплея"
++msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе LibreELEC - Вы можете выбрать правильный драйвер дисплея"
 +
  msgctxt "#718"
  msgid ""
  "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
+@@ -144,10 +148,10 @@
+ 
+ msgctxt "#722"
+ msgid ""
+-"Create a tar archive containing all @DISTRONAME@ and Kodi configuration "
++"Create a tar archive containing all LibreELEC and Kodi configuration "
+ "settings, databases and thumbnail content. Backup files will be stored in "
+ "/storage/backup/"
+-msgstr "Создание tar-архива со всеми настройками @DISTRONAME@ и Kodi, всеми базами данных и миниатюрами. Резервные копии будут сохранены в /storage/backup/"
++msgstr "Создание tar-архива со всеми настройками LibreELEC и Kodi, всеми базами данных и миниатюрами. Резервные копии будут сохранены в /storage/backup/"
+ 
+ msgctxt "#723"
+ msgid ""
+@@ -158,14 +162,14 @@
+ msgctxt "#724"
+ msgid ""
+ "[COLOR FF00FF00]SOFT RESET[/COLOR]\n"
+-"Permanently reset @DISTRONAME@ configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
+-msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nВосстанавливает параметры @DISTRONAME@ по умолчанию (также сбрасываются настройки Kodi, включая библиотеку; медиафайлы — музыка, видео и т.п. — остаются на месте)"
++"Permanently reset LibreELEC configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
++msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nВосстанавливает параметры LibreELEC по умолчанию (также сбрасываются настройки Kodi, включая библиотеку; медиафайлы — музыка, видео и т.п. — остаются на месте)"
+ 
+ msgctxt "#725"
+ msgid ""
+ "[COLOR FFFF0000]HARD RESET[/COLOR]\n"
+-"Permanently reset @DISTRONAME@ and Kodi configuration to defaults (everything in your storage partition will be deleted)"
+-msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nПолный сброс @DISTRONAME@ и Kodi к параметрам по умолчанию (всё содержимое раздела с вашими данными будет удалено)"
++"Permanently reset LibreELEC and Kodi configuration to defaults (everything in your storage partition will be deleted)"
++msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nПолный сброс LibreELEC и Kodi к параметрам по умолчанию (всё содержимое раздела с вашими данными будет удалено)"
+ 
+ msgctxt "#726"
+ msgid "Enable or disable support for Wireless (WLAN) networks"
+@@ -233,8 +237,8 @@
+ msgctxt "#742"
+ msgid ""
+ "Set to ON to enable the embedded SSH server. The SSH console can be accessed"
+-" with username 'root' and password '@ROOT_PASSWORD@'."
+-msgstr "Включение встроенного SSH-сервера. Пользователь и пароли по-умолчанию для SSH:  пользователь: 'root', пароль: '@ROOT_PASSWORD@'."
++" with username 'root' and password 'libreelec'."
++msgstr "Включение встроенного SSH-сервера. Пользователь и пароли по-умолчанию для SSH:  пользователь: 'root', пароль: 'libreelec'."
+ 
+ msgctxt "#743"
+ msgid ""
+@@ -256,12 +260,12 @@
+ msgstr "Установите пароль для SSH"
+ 
+ msgctxt "#747"
+-msgid "Enable a PIN for @DISTRONAME@ Settings access"
+-msgstr "Включить блокировку по PIN для доступа к настройкам @DISTRONAME@"
++msgid "Enable a PIN for LibreELEC Settings access"
++msgstr "Включить блокировку по PIN для доступа к настройкам LibreELEC"
+ 
+ msgctxt "#748"
+-msgid "Change the PIN Lock for @DISTRONAME@ Settings access"
+-msgstr "Изменить PIN для доступа к настройкам @DISTRONAME@"
++msgid "Change the PIN Lock for LibreELEC Settings access"
++msgstr "Изменить PIN для доступа к настройкам LibreELEC"
+ 
+ msgctxt "#749"
+ msgid ""
+@@ -277,8 +281,8 @@
+ msgctxt "#751"
+ msgid ""
+ "With OBEX filetransfer you can send files, for example movies or pictures "
+-"over bluetooth to @DISTRONAME@."
+-msgstr "С помощью файловой передачи OBEX можно отправлять файлы, например фильмы или фотографии, через Bluetooth в @DISTRONAME@."
++"over bluetooth to LibreELEC."
++msgstr "С помощью файловой передачи OBEX можно отправлять файлы, например фильмы или фотографии, через Bluetooth в LibreELEC."
+ 
+ msgctxt "#752"
+ msgid ""
 @@ -368,6 +372,14 @@
  msgid "Updates"
  msgstr "Oбновления"
  
 +msgctxt "#32007"
-+msgid "Driver"
-+msgstr "Драйвер"
++msgid "LCD"
++msgstr "LCD"
 +
 +msgctxt "#32008"
-+msgid "LCD/VFD Driver"
-+msgstr "Драйвер LCD/VFD"
++msgid "Driver"
++msgstr "Драйвер"
 +
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
-@@ -676,7 +688,7 @@
+@@ -615,8 +627,8 @@
+ msgstr "Изменить"
+ 
+ msgctxt "#32180"
+-msgid "Would you like to update @DISTRONAME@ now?"
+-msgstr "Обновить @DISTRONAME@ сейчас?"
++msgid "Would you like to update LibreELEC now?"
++msgstr "Обновить LibreELEC сейчас?"
+ 
+ msgctxt "#32181"
+ msgid "Filename"
+@@ -667,16 +679,16 @@
+ msgstr "Блокировка по PIN "
+ 
+ msgctxt "#32193"
+-msgid "Enable @DISTRONAME@ Settings PIN Lock"
+-msgstr "Включить PIN блокировку настроек @DISTRONAME@"
++msgid "Enable LibreELEC Settings PIN Lock"
++msgstr "Включить PIN блокировку настроек LibreELEC"
+ 
+ msgctxt "#32194"
+-msgid "Change @DISTRONAME@ Settings PIN Lock"
+-msgstr "Изменить установки PIN для настроек @DISTRONAME@"
++msgid "Change LibreELEC Settings PIN Lock"
++msgstr "Изменить установки PIN для настроек LibreELEC"
  
  msgctxt "#32196"
  msgid "About"
@@ -372,14 +761,207 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
  
  msgctxt "#32198"
  msgid "SSID"
-@@ -1174,3 +1186,306 @@
+@@ -793,24 +805,24 @@
+ msgstr "PIN-коды не совпадают!"
+ 
+ msgctxt "#32229"
+-msgid "@DISTRONAME@ Settings PIN lock not set.[CR][CR]Please try again."
+-msgstr "@DISTRONAME@ PIN блокировка настроек не установлена.[CR][CR]Попробуйте снова."
++msgid "LibreELEC Settings PIN lock not set.[CR][CR]Please try again."
++msgstr "LibreELEC PIN блокировка настроек не установлена.[CR][CR]Попробуйте снова."
+ 
+ msgctxt "#32230"
+-msgid "@DISTRONAME@ Settings PIN lock set."
+-msgstr "Установлен PIN на вход в настройки @DISTRONAME@."
++msgid "LibreELEC Settings PIN lock set."
++msgstr "Установлен PIN на вход в настройки LibreELEC."
+ 
+ msgctxt "#32231"
+-msgid "Your @DISTRONAME@ Settings PIN lock has been set to:"
+-msgstr "Ваш PIN для настроек @DISTRONAME@ установлен в значение:"
++msgid "Your LibreELEC Settings PIN lock has been set to:"
++msgstr "Ваш PIN для настроек LibreELEC установлен в значение:"
+ 
+ msgctxt "#32232"
+ msgid "Error - PIN code not 4 digits!"
+ msgstr "Ошибка - PIN не содержит 4 цифр!"
+ 
+ msgctxt "#32233"
+-msgid "@DISTRONAME@ Settings Locked[CR]Enter 4 digit PIN"
+-msgstr "Вход в настройки @DISTRONAME@ заблокирован[CR]Введите 4 цифры PIN-кода"
++msgid "LibreELEC Settings Locked[CR]Enter 4 digit PIN"
++msgstr "Вход в настройки LibreELEC заблокирован[CR]Введите 4 цифры PIN-кода"
+ 
+ msgctxt "#32234"
+ msgid "Incorrect PIN!"
+@@ -827,8 +839,8 @@
+ msgstr "Вы ввели неверный PIN слишком много раз.[CR][CR]Теперь придётся подождать 5 минут до следующей попытки."
+ 
+ msgctxt "#32237"
+-msgid "@DISTRONAME@ Settings Locked!"
+-msgstr "Настройки @DISTRONAME@ заблокированы!"
++msgid "LibreELEC Settings Locked!"
++msgstr "Настройки LibreELEC заблокированы!"
+ 
+ msgctxt "#32238"
+ msgid ""
+@@ -841,8 +853,8 @@
+ msgstr "Радиочастотный регион"
+ 
+ msgctxt "#32300"
+-msgid "Welcome to @DISTRONAME@"
+-msgstr "Добро пожаловать в @DISTRONAME@"
++msgid "Welcome to LibreELEC"
++msgstr "Добро пожаловать в LibreELEC"
+ 
+ msgctxt "#32301"
+ msgid "Welcome"
+@@ -851,10 +863,10 @@
+ msgctxt "#32302"
+ msgid ""
+ "This wizard will guide you through the process of setting up your new "
+-"@DISTRONAME@ installation - setting your location, timezone and connecting "
++"LibreELEC installation - setting your location, timezone and connecting "
+ "you to the internet.[CR][CR]These settings can be changed later by "
+-"navigating to Programs > @DISTRONAME@ Settings."
+-msgstr "Этот мастер облегчит настройку при установке нового @DISTRONAME@ - определение вашего местоположения, часового пояса и подключения вас к Интернет.[CR][CR]Эти настройки можно изменить позже, перейдя в меню Программы > Настройки @DISTRONAME@."
++"navigating to Programs > LibreELEC Settings."
++msgstr "Этот мастер облегчит настройку при установке нового LibreELEC - определение вашего местоположения, часового пояса и подключения вас к Интернет.[CR][CR]Эти настройки можно изменить позже, перейдя в меню Программы > Настройки LibreELEC."
+ 
+ msgctxt "#32303"
+ msgid "Next"
+@@ -862,11 +874,11 @@
+ 
+ msgctxt "#32304"
+ msgid ""
+-"To be identified easily on the network, your new @DISTRONAME@ machine needs "
++"To be identified easily on the network, your new LibreELEC machine needs "
+ "a name.[CR][CR]Try to choose something meaningful - like the room it's in - "
+ "so you'll know what it is when you see it on the network.[CR][CR]This name "
+ "is used when configuring network services, like file sharing using samba."
+-msgstr "Для того, чтобы легко идентифицировать вас в сети, вашей машине с @DISTRONAME@  нужно имя.[CR][CR]Попробуйте выбрать что-то осмысленное, чтобы понимать, что это такое, когда вы видите его в сети.[CR][CR]Это имя используется при настройке сетевых служб, таких как общий доступ к файлам с помощью Samba."
++msgstr "Для того, чтобы легко идентифицировать вас в сети, вашей машине с LibreELEC  нужно имя.[CR][CR]Попробуйте выбрать что-то осмысленное, чтобы понимать, что это такое, когда вы видите его в сети.[CR][CR]Это имя используется при настройке сетевых служб, таких как общий доступ к файлам с помощью Samba."
+ 
+ msgctxt "#32305"
+ msgid "Networking"
+@@ -875,10 +887,10 @@
+ msgctxt "#32306"
+ msgid ""
+ "In order to download backdrops, banners and thumbnails for your movies and "
+-"TV shows and to stream online content from sites like YouTube, @DISTRONAME@ "
++"TV shows and to stream online content from sites like YouTube, LibreELEC "
+ "needs to be connected the Internet.[CR][CR]An Internet connection is also "
+-"required for @DISTRONAME@ to automatically update itself."
+-msgstr "Для того, чтобы загружать фанарт, баннеры и эскизы для ваших фильмов и сериалов и чтобы воспроизводить онлайн-контент с сайтов вроде YouTube, @DISTRONAME@ должен быть подключен к Интернет.[CR][CR]Подключение к Интернет также необходимо @DISTRONAME@  для автоматического обновления."
++"required for LibreELEC to automatically update itself."
++msgstr "Для того, чтобы загружать фанарт, баннеры и эскизы для ваших фильмов и сериалов и чтобы воспроизводить онлайн-контент с сайтов вроде YouTube, LibreELEC должен быть подключен к Интернет.[CR][CR]Подключение к Интернет также необходимо LibreELEC  для автоматического обновления."
+ 
+ msgctxt "#32307"
+ msgid "Previous"
+@@ -897,24 +909,24 @@
+ msgstr "Язык:"
+ 
+ msgctxt "#32311"
+-msgid "Sharing and Remote Access"
+-msgstr "Общие ресурсы и удаленный доступ"
++msgid "Services"
++msgstr "Службы"
+ 
+ msgctxt "#32312"
+ msgid ""
+-"@DISTRONAME@ also supports SSH for remote access. This is for advanced users"
+-" who wish to interact with @DISTRONAME@'s underlying operating system. The "
++"LibreELEC also supports SSH for remote access. This is for advanced users"
++" who wish to interact with LibreELEC's underlying operating system. The "
+ "default user is [COLOR blue]root[/COLOR] and the default password is [COLOR "
+-"blue]@ROOT_PASSWORD@[/COLOR]."
+-msgstr "@DISTRONAME@ так же поддерживает SSH для удаленного доступа. Это необходимо опытным пользователям, которые хотят взаимодействовать с операционной системой @DISTRONAME@ напрямую. Пользователь по-умолчанию [COLOR blue]root[/COLOR] пароль по-умолчанию [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
++"blue]libreelec[/COLOR]."
++msgstr "LibreELEC так же поддерживает SSH для удаленного доступа. Это необходимо опытным пользователям, которые хотят взаимодействовать с операционной системой LibreELEC напрямую. Пользователь по-умолчанию [COLOR blue]root[/COLOR] пароль по-умолчанию [COLOR blue]libreelec[/COLOR]."
+ 
+ msgctxt "#32313"
+ msgid ""
+-"In order to share your files between your computers @DISTRONAME@ has "
++"In order to share your files between your computers LibreELEC has "
+ "incorporated a samba server. This samba server can be integrated into your "
+ "local network by accessing it in a familiar way with Finder or Windows "
+ "Explorer."
+-msgstr "Для того, чтобы обмениваться файлами между компьютерами в @DISTRONAME@ включен Samba сервер. Этот сервер может быть доступен в локальной сети обычным способом с помощью Finder или проводником Windows."
++msgstr "Для того, чтобы обмениваться файлами между компьютерами в LibreELEC включен Samba сервер. Этот сервер может быть доступен в локальной сети обычным способом с помощью Finder или проводником Windows."
+ 
+ msgctxt "#32316"
+ msgid "Configure Services:"
+@@ -926,17 +938,17 @@
+ 
+ msgctxt "#32318"
+ msgid ""
+-"Your @DISTRONAME@ installation is now complete and you are about to enter "
++"Your LibreELEC installation is now complete and you are about to enter "
+ "Kodi where you can set up your media libraries. For help with this, there is"
+-" a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a "
++" a guide available at wiki.kodi.tv[CR][CR]LibreELEC is developed by a "
+ "dedicated team of developers who work purely in their spare time. Even as a "
+ "volunteer project, we still have to pay for our internet bandwidth and "
+-"development resources so if you find @DISTRONAME@ useful we will always "
++"development resources so if you find LibreELEC useful we will always "
+ "appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using"
+-" @DISTRONAME@ as much as we've enjoyed building it. If you need any more "
++" LibreELEC as much as we've enjoyed building it. If you need any more "
+ "help, you can find links to our support forum along with latest news at our "
+ "website."
+-msgstr "Установка @DISTRONAME@ завершена и теперь вы можете войти в Kodi и настроить вашу медиатеку. Если вам необходима помощь, то вы можете найти инструкцию, доступную на сайте wiki.kodi.tv[CR][CR]@DISTRONAME@ разработана группой разработчиков, которые работают в свободное время. Даже будучи волонтерским проектом, мы все равно должны платить за интернет и ресурсы для разработки, поэтому, если вы сочтете @DISTRONAME@ полезным, мы всегда будем признательны за пожертвование любой суммы. Наконец, мы надеемся, что вам понравится использовать @DISTRONAME@ настолько, насколько нам нравится его разрабатывать. Если вам нужна дополнительная помощь, вы можете найти ссылки на наш форум поддержки вместе с последними новостями на нашем сайте."
++msgstr "Установка LibreELEC завершена и теперь вы можете войти в Kodi и настроить вашу медиатеку. Если вам необходима помощь, то вы можете найти инструкцию, доступную на сайте wiki.kodi.tv[CR][CR]LibreELEC разработана группой разработчиков, которые работают в свободное время. Даже будучи волонтерским проектом, мы все равно должны платить за интернет и ресурсы для разработки, поэтому, если вы сочтете LibreELEC полезным, мы всегда будем признательны за пожертвование любой суммы. Наконец, мы надеемся, что вам понравится использовать LibreELEC настолько, насколько нам нравится его разрабатывать. Если вам нужна дополнительная помощь, вы можете найти ссылки на наш форум поддержки вместе с последними новостями на нашем сайте."
+ 
+ msgctxt "#32319"
+ msgid "Cron"
+@@ -955,8 +967,8 @@
+ msgstr "Сбросить системные настройки по-умолчанию"
+ 
+ msgctxt "#32325"
+-msgid "Reset @DISTRONAME@ to defaults"
+-msgstr "Сбросить @DISTRONAME@ в настройки по-умолчанию"
++msgid "Reset LibreELEC to defaults"
++msgstr "Сбросить LibreELEC в настройки по-умолчанию"
+ 
+ msgctxt "#32326"
+ msgid "Are you sure?"
+@@ -1021,8 +1033,8 @@
+ msgstr "Проверка обновлений:"
+ 
+ msgctxt "#32363"
+-msgid "@DISTRONAME@"
+-msgstr "@DISTRONAME@"
++msgid "LibreELEC"
++msgstr "LibreELEC"
+ 
+ msgctxt "#32364"
+ msgid "Update available"
+@@ -1136,7 +1148,7 @@
+ 
+ msgctxt "#32394"
+ msgid ""
+-"@DISTRONAME@ has temporarily started in safe mode due to repeated Kodi "
++"LibreELEC has temporarily started in safe mode due to repeated Kodi "
+ "crashes.[CR][CR]You may now investigate the cause of the crashes by enabling"
+ " ssh or Samba.[CR][CR]Your original Kodi installation can be accessed via "
+ "\"/storage/.kodi.FAILED\" and the Samba \"Kodi-Failed\" "
+@@ -1145,7 +1157,7 @@
+ " assistance. When posting to the forum include the link to your crash log "
+ "which can be viewed by clicking the crash log option in Settings > LibreELEC"
+ " > System > Submit Log."
+-msgstr "@DISTRONAME@ временно запущен в безопасном режиме из-за повторяющихся сбоев Kodi.[CR][CR]Теперь вы можете выяснить причину сбоев, включив ssh или Samba.[CR][CR]К исходной установке Kodi можно получить доступ через \"/storage/.kodi.FAILED\" и общий ресурс Samba \"Kodi-Failed\".[CR][CR]Перезагрузка вернется к исходной установке Kodi.[CR][CR]Перейдите на https://forum.libreelec.tv, если вам нужна дополнительная помощь. При размещении сообщений на форуме включите ссылку на ваш журнал сбоев, который можно просмотреть, щелкнув параметр журнала сбоев в меню Настройки > LibreELEC >  Система > Отправить журнал."
++msgstr "LibreELEC временно запущен в безопасном режиме из-за повторяющихся сбоев Kodi.[CR][CR]Теперь вы можете выяснить причину сбоев, включив ssh или Samba.[CR][CR]К исходной установке Kodi можно получить доступ через \"/storage/.kodi.FAILED\" и общий ресурс Samba \"Kodi-Failed\".[CR][CR]Перезагрузка вернется к исходной установке Kodi.[CR][CR]Перейдите на https://forum.libreelec.tv, если вам нужна дополнительная помощь. При размещении сообщений на форуме включите ссылку на ваш журнал сбоев, который можно просмотреть, щелкнув параметр журнала сбоев в меню Настройки > LibreELEC >  Система > Отправить журнал."
+ 
+ msgctxt "#32395"
+ msgid "Firewall"
+@@ -1174,3 +1186,322 @@
  msgctxt "#32401"
  msgid "Syncing Disks..."
  msgstr ""
 +
 +msgctxt "#32402"
-+msgid "Enable LCD Driver Support"
-+msgstr "Включить поддержку драйвера ЖК-экрана"
++msgid "Enable LCD"
++msgstr "Включить LCD"
 +
 +##########################################################
 +## Keyboard Options
@@ -410,117 +992,88 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +##########################################################
 +## Transmission
 +
-+msgctxt "#33000"
++msgctxt "#33001"
 +msgid "Transmission"
 +msgstr "Transmission"
 +
-+msgctxt "#800"
-+msgid "Configuration transmission: a fast, easy and free BitTorrent client"
-+msgstr "Конфигурация Transmission: быстрого, легкого и бесплатного BitTorrent клиента"
-+
-+msgctxt "#33001"
-+msgid "Transmission daemon"
-+msgstr "Transmission сервис"
-+
 +msgctxt "#33002"
 +msgid "Enable Transmission"
-+msgstr "Запуск Transmission"
++msgstr "Включить Transmission"
 +
 +msgctxt "#801"
-+msgid "Enabled Transmission autostart"
-+msgstr "Разрешить запуск Transmission"
++msgid "Enabled Transmission"
++msgstr "Включить Transmission"
 +
 +msgctxt "#33003"
-+msgid "- enable secure"
-+msgstr "- использовать авторизацию"
++msgid "Enable secure"
++msgstr "Использовать авторизацию"
 +
 +msgctxt "#802"
 +msgid "Use authentification"
 +msgstr "Использовать авторизацию"
 +
 +msgctxt "#33004"
-+msgid " - user name"
-+msgstr " - пользователь"
++msgid "User name"
++msgstr "Пользователь"
 +
 +msgctxt "#803"
 +msgid "Username for authentification"
 +msgstr "Пользователь для авторизации"
 +
 +msgctxt "#33005"
-+msgid " - password"
-+msgstr " - пароль"
++msgid "Password"
++msgstr "Пароль"
 +
 +msgctxt "#804"
 +msgid "Password for authentification"
 +msgstr "Пароль для авторизации"
 +
 +msgctxt "#33006"
-+msgid "- enabled IPs"
-+msgstr "- разрешенные IP адреса"
++msgid "Enabled IPs"
++msgstr "Разрешенные IP адреса"
 +
 +msgctxt "#805"
 +msgid "Allowed IP addresses (comma-delimited)"
 +msgstr "Разрешенные IP адреса (разделитель-запятая)"
 +
 +msgctxt "#33007"
-+msgid "- limit global"
-+msgstr "- общий лимит"
++msgid "Limit global"
++msgstr "Общий лимит"
 +
 +msgctxt "#806"
 +msgid "Overall peer limit"
 +msgstr "Общий лимит"
 +
 +msgctxt "#33008"
-+msgid "- limit torrent"
-+msgstr "- лимит на торрент"
++msgid "Limit torrent"
++msgstr "Лимит на торрент"
 +
 +msgctxt "#807"
 +msgid "Peer limit per torrent"
 +msgstr "Лимит на торрент"
 +
 +msgctxt "#33009"
-+msgid "- download directory"
-+msgstr "- папка загрузки"
++msgid "Download directory"
++msgstr "Папка загрузки"
 +
 +msgctxt "#808"
 +msgid "Select directory for download"
 +msgstr "Выбрать папку для загрузки"
 +
-+msgctxt "#33010"
-+msgid "Transmission is a cross-platform BitTorrent client"
-+msgstr "Transmission кросс-платформенный клиент BitTorrent"
-+
-+##########################################################
-+## Tv server
-+
-+msgctxt "#34000"
-+msgid "TV"
-+msgstr "ТВ"
-+
-+msgctxt "#1000"
-+msgid "Configuration TV: Tvheadend and Oscam"
-+msgstr "Конфигурация ТВ: Tvheadend и Oscam"
-+
-+##########################################################
-+
-+msgctxt "#35000"
-+msgid "TV Server"
-+msgstr "ТВ Сервер"
-+
-+msgctxt "#35001"
-+msgid "TV Server"
-+msgstr "Выбранный ТВ Сервер"
-+
-+msgctxt "#1001"
-+msgid "Select TV Server"
-+msgstr "Выбрать ТВ сервер"
-+
 +##########################################################
 +## Tvheadend
 +
++msgctxt "#35000"
++msgid "Enable Tvheadend"
++msgstr "Включить Tvheadend"
++
++msgctxt "#1001"
++msgid "Enable Tvheadend"
++msgstr "Включить Tvheadend"
++
 +msgctxt "#36000"
-+msgid "Tvheadend Configuration"
-+msgstr "Конфигурация Tvheadend"
++msgid "Tvheadend"
++msgstr "Tvheadend"
 +
 +msgctxt "#36001"
 +msgid "Preload capmt_ca.so library"
@@ -532,27 +1085,19 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +
 +msgctxt "#36002"
 +msgid "Enable Tvheadend backup"
-+msgstr "Разрешить резервное копирование"
++msgstr "Включить резервное копирование"
 +
 +msgctxt "#1102"
 +msgid "Enable Tvheadend backup on update"
-+msgstr "Разрешить резервное копирование при обновлении"
++msgstr "Включить резервное копирование при обновлении"
 +
 +msgctxt "#36003"
 +msgid "Enable Tvheadend debug"
-+msgstr "Разрешить отладку"
++msgstr "Включить отладку"
 +
 +msgctxt "#1103"
 +msgid "Enable Tvheadend debug"
-+msgstr "Разрешить отладку tvheadend"
-+
-+msgctxt "#36004"
-+msgid "Аdapters"
-+msgstr "Адаптеры"
-+
-+msgctxt "#1104"
-+msgid "Used adapters"
-+msgstr "Использовать адаптеры"
++msgstr "Включить отладку tvheadend"
 +
 +msgctxt "#36005"
 +msgid "Other params"
@@ -571,24 +1116,24 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +msgstr "Выбрат XMLTV тип"
 +
 +msgctxt "#36007"
-+msgid "- patch"
-+msgstr "- путь"
++msgid "Patch"
++msgstr "Путь"
 +
 +msgctxt "#1107"
 +msgid "Select XMLTV file"
 +msgstr "Выбрать XMLTV файлы"
 +
 +msgctxt "#36008"
-+msgid "- url"
-+msgstr "- url"
++msgid "URL"
++msgstr "URL"
 +
 +msgctxt "#1108"
 +msgid "Select XMLTV url"
 +msgstr "Выбрать XMLTV url"
 +
 +msgctxt "#36009"
-+msgid "- script"
-+msgstr "- скрипт"
++msgid "Script"
++msgstr "Скрипт"
 +
 +msgctxt "#1109"
 +msgid "Select XMLTV script"
@@ -598,8 +1143,8 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +## DVB
 +
 +msgctxt "#40000"
-+msgid "DVB Configuration"
-+msgstr "Конфигурация DVB"
++msgid "DVB"
++msgstr "DVB"
 +
 +msgctxt "#40001"
 +msgid "Wait for frontend initialization"
@@ -610,16 +1155,16 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +msgstr "Ожидать инициализацию адаптера"
 +
 +msgctxt "#40002"
-+msgid "- Number of adapters"
-+msgstr "- номера адаптеров"
++msgid "Number of adapters"
++msgstr "Номера адаптеров"
 +
 +msgctxt "#1502"
 +msgid "Number of adapters to wait"
 +msgstr "Номера адаптеров для ожидания"
 +
 +msgctxt "#40003"
-+msgid "- unload DVB mudules"
-+msgstr "- Выгрузка DVB модулей"
++msgid "Unload DVB mudules"
++msgstr "Выгрузка DVB модулей"
 +
 +msgctxt "#1503"
 +msgid "Unload DVB mudules before suspend"
@@ -629,38 +1174,32 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +## OScam
 +
 +msgctxt "#41000"
-+msgid "OScam Configuration"
-+msgstr "Конфигурация OScam"
++msgid "OScam"
++msgstr "OScam"
 +
 +msgctxt "#41001"
 +msgid "Enable OScam"
-+msgstr "Запуск OScam"
++msgstr "Включить OScam"
 +
 +msgctxt "#1601"
 +msgid "Enable OScam"
-+msgstr "Запуск OScam"
++msgstr "Включить OScam"
 +
 +msgctxt "#41002"
-+msgid "- debug level"
-+msgstr "- уровень отладки"
++msgid "Debug level"
++msgstr "Уровень отладки"
 +
 +msgctxt "#1602"
 +msgid "OScam debug level"
 +msgstr "Уровень отладки OScam"
 +
 +msgctxt "#41003"
-+msgid "- restart on suspend / resume"
-+msgstr "- перезапуск при отключении / восстановлении"
++msgid "Restart on suspend / resume"
++msgstr "Перезапуск при отключении / восстановлении"
 +
 +msgctxt "#1603"
 +msgid "Restart OScam on suspend / resume"
 +msgstr "Перезапуск OScam при отключении / восстановлении"
-+
-+##########################################################
-+
-+msgctxt "#42000"
-+msgid "Tvheadend is a TV streaming server for Linux supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, and Analog video (V4L) as input sources."
-+msgstr "Tvheadend ТВ потоковый сервер для Linux поддерживает DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, и аналогового видео (V4L) в качестве источников."
 +
 +##########################################################
 +
@@ -679,3 +1218,62 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +msgctxt "#1701"
 +msgid "Updates"
 +msgstr "Обновления"
++
++##########################################################
++## drivers
++
++msgctxt "#43009"
++msgid "Drivers"
++msgstr "Драйвера"
++
++msgctxt "#1706"
++msgid "LibreELEC driver select"
++msgstr "Выбрать LibreELEC драйвера"
++
++msgctxt "#43010"
++msgid "DVB drivers"
++msgstr "DVB драйвер"
++
++msgctxt "#1703"
++msgid "DVB drivers select"
++msgstr "Выбрать DVB драйвер"
++
++msgctxt "#43011"
++msgid "Video drivers"
++msgstr "Видео драйвер"
++
++msgctxt "#1704"
++msgid "Video drivers select"
++msgstr "Выбрать видео драйвер"
++
++msgctxt "#43012"
++msgid "Net drivers"
++msgstr "Сетевой драйвер"
++
++msgctxt "#1705"
++msgid "Net drivers select"
++msgstr "Выбрать сетевой драйвер"
++
++msgctxt "#43013"
++msgid "unknown"
++msgstr "неизвестно"
++
++msgctxt "#43014"
++msgid "Standard package"
++msgstr "Стандартные"
++
++msgctxt "#43017"
++msgid "You changed the system driver. A system reboot is required for the new driver to work properly. Would you like to reboot the system now?"
++msgstr "Вы сменили системный драйвер. Для правильной работы нового драйвера требуется перезагрузка системы. Хотите перезагрузить систему сейчас?"
++
++msgctxt "#43018"
++msgid "You have module drivers disabled. A system reboot is required to work properly. Would you like to reboot the system now?"
++msgstr "У вас отключены модули драйверов. Для правильной работы требуется перезагрузка системы. Хотите перезагрузить систему сейчас?"
++
++msgctxt "#43019"
++msgid "System Reboot required"
++msgstr "Необходима перегрузка системы"
++
++msgctxt "#43021"
++msgid "Driver changed, reboot required!"
++msgstr "Драйвер изменен, необходима перегрузка!"

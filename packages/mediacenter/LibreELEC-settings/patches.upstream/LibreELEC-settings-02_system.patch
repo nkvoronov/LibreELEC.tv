@@ -1,27 +1,28 @@
 diff -Naur a/resources/lib/modules/system.py b/resources/lib/modules/system.py
 --- a/resources/lib/modules/system.py	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/lib/modules/system.py	2021-04-04 00:53:22.000000000 +0300
-@@ -113,6 +113,30 @@
++++ b/resources/lib/modules/system.py	2021-04-06 20:09:00.000000000 +0300
+@@ -113,7 +113,31 @@
                          'values': [],
                          'InfoText': 713,
                          },
-+                        'KeyboardSwitches': {
-+                            'order': 6,
-+                            'name': 32403,
-+                            'value': 'grp-ctrl_shift_toggle',
-+                            'action': 'set_keyboard_layout',
-+                            'type': 'multivalue',
-+                            'values': [],
-+                            'InfoText': 799,
-+                            },
-+                        },
-+                    },
+-                    },
++                     'KeyboardSwitches': {
++                         'order': 6,
++                         'name': 32403,
++                         'value': 'grp-ctrl_shift_toggle',
++                         'action': 'set_keyboard_layout',
++                         'type': 'multivalue',
++                         'values': [],
++                         'InfoText': 799,
++                         },
++                      },
++                   },
 +                'locale': {
 +                     'order': 3,
-+                    'name': 32402,
++                    'name': 32404,
 +                    'settings': {
 +                        'SystemLocale': {
-+                            'name': 32404,
++                            'name': 32405,
 +                            'value': 'en_GB',
 +                            'action': 'set_locales',
 +                            'type': 'multivalue',
@@ -29,9 +30,10 @@ diff -Naur a/resources/lib/modules/system.py b/resources/lib/modules/system.py
 +                            'InfoText': 1702,
 +                            'order': 1,
 +                            },
-                     },
++                     },
                  },
              'pinlock': {
+                 'order': 3,
 @@ -217,6 +241,7 @@
          self.set_hostname()
          self.set_keyboard_layout()
@@ -54,7 +56,7 @@ diff -Naur a/resources/lib/modules/system.py b/resources/lib/modules/system.py
 +            self.struct['keyboard']['settings']['KeyboardType']['value'] = value
 +        if not arrOptions is None:
 +            self.struct['keyboard']['settings']['KeyboardSwitches']['values'] = arrOptions
-+            value = self.oe.read_setting('system', 'KeyboardSwitches')
++            value = oe.read_setting('system', 'KeyboardSwitches')
              if not value is None:
 -                self.struct['keyboard']['settings']['KeyboardType']['value'] = value
 +                self.struct['keyboard']['settings']['KeyboardSwitches']['value'] = value
@@ -69,7 +71,7 @@ diff -Naur a/resources/lib/modules/system.py b/resources/lib/modules/system.py
 +        arrLocales = self.get_locales()
 +        if not arrLocales is None:
 +            self.struct['locale']['settings']['SystemLocale']['values'] = arrLocales
-+            value = self.oe.read_setting('system', 'SystemLocale')
++            value = oe.read_setting('system', 'SystemLocale')
 +            if not value is None:
 +                self.struct['locale']['settings']['SystemLocale']['value'] = value
  
@@ -122,7 +124,7 @@ diff -Naur a/resources/lib/modules/system.py b/resources/lib/modules/system.py
 +
 +    @log.log_function()
 +    def set_locales(self, listItem=None):
-+        oldLocale = self.oe.read_setting('system', 'SystemLocale')
++        oldLocale = oe.read_setting('system', 'SystemLocale')
 +        if not listItem == None:
 +            self.set_value(listItem)
 +        # update locales
@@ -150,11 +152,11 @@ diff -Naur a/resources/lib/modules/system.py b/resources/lib/modules/system.py
 +                            if subnode_2.nodeName == 'name':
 +                                if hasattr(subnode_2.firstChild,'nodeValue'):
 +                                    ovalue = subnode_2.firstChild.nodeValue
-+                                if subnode_2.nodeName == 'description':
-+                                    if hasattr(subnode_2.firstChild,'nodeValue'):
-+                                        if (ovalue.find('grp:') != -1) and (ovalue.find('_toggle') != -1):
-+                                            ovalue = ovalue.replace('grp:','').replace('_toggle','').replace('_','+')
-+                                            arrOptions.append(subnode_2.firstChild.nodeValue + ':' + ovalue)
++                            if subnode_2.nodeName == 'description':
++                                if hasattr(subnode_2.firstChild,'nodeValue'):
++                                    if (ovalue.find('grp:') != -1) and (ovalue.find('_toggle') != -1):
++                                        ovalue = ovalue.replace('grp:','').replace('_toggle','').replace('_','+')
++                                        arrOptions.append(subnode_2.firstChild.nodeValue + ':' + ovalue)
              arrLayouts.sort()
              arrTypes.sort()
 +            arrOptions.sort()
