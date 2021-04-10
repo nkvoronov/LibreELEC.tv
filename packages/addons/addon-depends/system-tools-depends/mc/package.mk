@@ -8,26 +8,16 @@ PKG_SHA256="c6deadc50595f2d9a22dc6c299a9f28b393e358346ebf6ca444a8469dc166c27"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.midnight-commander.org"
 PKG_URL="http://ftp.midnight-commander.org/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host pcre"
+PKG_DEPENDS_TARGET="toolchain gettext:host glib libssh2 libtool:host slang pcre"
 PKG_LONGDESC="Midnight Commander is a text based filemanager that emulates Norton Commander."
 PKG_BUILD_FLAGS="-sysroot"
-
-BUILD_WITH_SLANG="yes"
-
-if [ "${BUILD_WITH_SLANG}" = "yes" ]; then
-  PKG_DEPENDS_TARGET+=" slang"
-  WSCREEN = "slang"
-else
-  PKG_DEPENDS_TARGET+=" ncurses"
-  WSCREEN = "ncurses"
-fi
 
 PKG_CONFIGURE_OPTS_TARGET=" \
   --host=${TARGET_NAME} \
   --build=${HOST_NAME} \
   --prefix=/usr \
   --exec-prefix=/usr \
-  --with-screen=${WSCREEN} \
+  --with-screen=slang \
   --with-sysroot=${SYSROOT_PREFIX} \
   --disable-aspell \
   --without-diff-viewer \
@@ -49,8 +39,6 @@ PKG_CONFIGURE_OPTS_TARGET=" \
 pre_configure_target() {
   LDFLAGS+=" -lcrypto -lssl"
 
-  if [ "${BUILD_WITH_SLANG}" = "yes" ]; then
-    export CFLAGS+=" -I$SYSROOT_PREFIX/usr/include/slang"
-    export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
-  fi
+  export CFLAGS+=" -I$SYSROOT_PREFIX/usr/include/slang"
+  export LDFLAGS=`echo $LDFLAGS | sed -e "s|-Wl,--as-needed||"`
 }
