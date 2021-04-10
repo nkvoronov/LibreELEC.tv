@@ -44,3 +44,4 @@
 
 # Docker Fix
   DOCKER_FIX="yes"
+  DOCKER_STABLE="yes"

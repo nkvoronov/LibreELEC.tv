@@ -3,10 +3,9 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="docker"
-PKG_STABLE="yes"
-if [ "${PKG_STABLE}" = "yes" ]; then
+if [ "${DOCKER_STABLE}" = "yes" ]; then
   PKG_VERSION="20.10.5"
-  #PKG_SHA256="47065a47f0692cd5af03073c7386fe090d9ef5ac88a7d8455a884d8e15809be5"
+  PKG_SHA256="3f18edc66e1faae607d428349e77f9800bdea554528521f0f6c49fc3f1de6abf"
   PKG_REV="156"
   PKG_URL="https://download.docker.com/linux/static/stable/x86_64/${PKG_NAME}-${PKG_VERSION}.tgz"
   PKG_SOURCE_DIR="docker"
@@ -26,7 +25,7 @@ PKG_SHORTDESC="Docker is an open-source engine that automates the deployment of 
 PKG_LONGDESC="Docker containers can encapsulate any payload, and will run consistently on and between virtually any server. The same container that a developer builds and tests on a laptop will run at scale, in production*, on VMs, bare-metal servers, OpenStack clusters, public instances, or combinations of the above."
 PKG_TOOLCHAIN="manual"
 
-if [ "${PKG_STABLE}" != "yes" ]; then
+if [ "${DOCKER_STABLE}" != "yes" ]; then
   PKG_DEPENDS_TARGET+=" sqlite go:host containerd runc libnetwork tini"
 else
 # Git commit of the matching release https://github.com/docker/docker-ce/releases
@@ -34,24 +33,33 @@ else
 fi
 
 PKG_IS_ADDON="yes"
-if [ "${PKG_STABLE}" = "yes" ]; then
+if [ "${DOCKER_STABLE}" = "yes" ]; then
   PKG_ADDON_NAME="Docker stable"
 else
   PKG_ADDON_NAME="Docker"
 fi
 PKG_ADDON_TYPE="xbmc.service"
 
-if [ "${PKG_STABLE}" != "yes" ]; then
+if [ "${DOCKER_STABLE}" != "yes" ]; then
   PKG_DOCKER_BUILDTAGS="daemon \
                         autogen \
                         exclude_graphdriver_devicemapper \
                         exclude_graphdriver_aufs \
                         exclude_graphdriver_btrfs \
-                       journald"
+                        journald"
 fi
 
+post_unpack() {
+  if [ "${DOCKER_STABLE}" != "yes" ]; then
+    for patch in `ls ${PKG_DIR}/patches.upstream/*.patch`; do
+      cat $patch | patch -d \
+      `echo ${BUILD}/${PKG_NAME}-${PKG_VERSION} | cut -f1 -d\ ` -p1
+    done
+  fi
+}
+
 configure_target() {
-  if [ "${PKG_STABLE}" != "yes" ]; then
+  if [ "${DOCKER_STABLE}" != "yes" ]; then
     go_configure
 
     PKG_GOPATH_ENGINE=${GOPATH}
@@ -118,7 +126,7 @@ configure_target() {
 }
 
 make_target() {
-  if [ "${PKG_STABLE}" != "yes" ]; then
+  if [ "${DOCKER_STABLE}" != "yes" ]; then
     mkdir -p bin
     PKG_CLI_FLAGS="-X 'github.com/docker/cli/cli/version.Version=${VERSION}'"
     PKG_CLI_FLAGS+=" -X 'github.com/docker/cli/cli/version.GitCommit=${GITCOMMIT}'"
@@ -134,7 +142,7 @@ makeinstall_target() {
 
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
-  if [ "${PKG_STABLE}" = "yes" ]; then
+  if [ "${DOCKER_STABLE}" = "yes" ]; then
     cp -P ${PKG_BUILD}/* ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
   else
     cp -P ${PKG_BUILD}/bin/docker ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
@@ -156,7 +164,7 @@ addon() {
 }
 
 post_install_addon() {
-  if [ "${PKG_STABLE}" != "yes" ]; then
+  if [ "${DOCKER_STABLE}" != "yes" ]; then
     sed -e "s/@DISTRO_PKG_SETTINGS_ID@/${DISTRO_PKG_SETTINGS_ID}/g" -i "${INSTALL}/default.py"
   fi
 }
