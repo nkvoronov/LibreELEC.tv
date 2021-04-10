@@ -2,12 +2,11 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tbsdtv"
-PKG_VERSION="a681bcc377ed582cd02ded081252d517e9f1b092"
-PKG_SHA256="2193e1c62ffa9975b4861c4671bf1f3b6261b25ada612728f51f794666efbb3f"
+PKG_VERSION="1c75627fd516087ac36652081ed9f613e019c5ee"
+#PKG_SHA256="2193e1c62ffa9975b4861c4671bf1f3b6261b25ada612728f51f794666efbb3f"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
 PKG_URL="https://github.com/tbsdtv/media_build/archive/${PKG_VERSION}.tar.gz"
-#PKG_URL="https://www.dropbox.com/s/4dz22b08v8rzjql/${PKG_NAME}_${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="TBS linux open source drivers"
