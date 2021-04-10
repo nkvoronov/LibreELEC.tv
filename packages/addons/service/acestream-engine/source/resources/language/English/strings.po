@@ -1,0 +1,146 @@
+# Kodi Media Center language file
+# Addon Name: ACE stream engine 3.1.x
+# Addon id: service.acestream-engine
+# Addon Provider: Team Kodi
+msgid ""
+msgstr ""
+
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: English (http://www.transifex.com/projects/p/xbmc-addons/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#32000"
+msgid "General"
+msgstr ""
+
+msgctxt "#32001"
+msgid "VOD buffer, s"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Live buffer, s"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Download limit speed (Kb/s) (0 - not limit)"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Upload limit speed (Kb/s) (0 - not limit)"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Cache"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Disk cache limit, Gb"
+msgstr ""
+
+msgctxt "#32012"
+msgid "Folder cache"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Folder state"
+msgstr ""
+
+msgctxt "#32014"
+msgid "VOD type cache"
+msgstr ""
+
+msgctxt "#32015"
+msgid "disk"
+msgstr ""
+
+msgctxt "#32016"
+msgid "memory"
+msgstr ""
+
+msgctxt "#32017"
+msgid "VOD cache size, bytes"
+msgstr ""
+
+msgctxt "#32018"
+msgid "live type cache"
+msgstr ""
+
+msgctxt "#32019"
+msgid "live cache size, bytes"
+msgstr ""
+
+msgctxt "#32020"
+msgid "Authorization"
+msgstr ""
+
+msgctxt "#32021"
+msgid "Login"
+msgstr ""
+
+msgctxt "#32022"
+msgid "Password"
+msgstr ""
+
+msgctxt "#32030"
+msgid "Additional"
+msgstr ""
+
+msgctxt "#32031"
+msgid "port"
+msgstr ""
+
+msgctxt "#32032"
+msgid "api port"
+msgstr ""
+
+msgctxt "#32033"
+msgid "http port"
+msgstr ""
+
+msgctxt "#32034"
+msgid "https port"
+msgstr ""
+
+msgctxt "#32035"
+msgid "max connections"
+msgstr ""
+
+msgctxt "#32036"
+msgid "max peers"
+msgstr ""
+
+msgctxt "#32037"
+msgid "max peers limit"
+msgstr ""
+
+msgctxt "#32038"
+msgid "max timeshift peers"
+msgstr ""
+
+msgctxt "#32039"
+msgid "max upload slots"
+msgstr ""
+
+msgctxt "#32040"
+msgid "other params"
+msgstr ""
+
+msgctxt "#32041"
+msgid "Debug"
+msgstr ""
+
+msgctxt "#32042"
+msgid "log file"
+msgstr ""
+
+msgctxt "#32043"
+msgid "max log file size, bytes"
+msgstr ""

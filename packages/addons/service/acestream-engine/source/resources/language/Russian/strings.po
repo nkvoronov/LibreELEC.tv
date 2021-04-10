@@ -1,0 +1,146 @@
+# Kodi Media Center language file
+# Addon Name: ACE stream engine 3.1.x
+# Addon id: service.acestream-engine
+# Addon Provider: Team Kodi
+msgid ""
+msgstr ""
+
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/xbmc-addons/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgctxt "#32000"
+msgid "General"
+msgstr "Общие"
+
+msgctxt "#32001"
+msgid "VOD buffer, s"
+msgstr "VOD буфер, сек"
+
+msgctxt "#32002"
+msgid "Live buffer, s"
+msgstr "Live буфер, сек"
+
+msgctxt "#32003"
+msgid "Download limit speed (Kb/s) (0 - not limit)"
+msgstr "Максимальная скорость загрузки (Kb/s) (0 - не ограничивать)"
+
+msgctxt "#32004"
+msgid "Upload limit speed (Kb/s) (0 - not limit)"
+msgstr "Максимальная скорость отдачи (Kb/s) (0 - не ограничивать)"
+
+msgctxt "#32010"
+msgid "Cache"
+msgstr "Кеш"
+
+msgctxt "#32011"
+msgid "Disk cache limit, Gb"
+msgstr "Лимит дискового кеша, Гб"
+
+msgctxt "#32012"
+msgid "Folder cache"
+msgstr "Папка кеша"
+
+msgctxt "#32013"
+msgid "Folder state"
+msgstr "Папка state"
+
+msgctxt "#32014"
+msgid "VOD type cache"
+msgstr "Тип VOD кеша"
+
+msgctxt "#32015"
+msgid "disk"
+msgstr "Диск"
+
+msgctxt "#32016"
+msgid "memory"
+msgstr "Память"
+
+msgctxt "#32017"
+msgid "VOD cache size, bytes"
+msgstr "Размер VOD кеша, ,байты"
+
+msgctxt "#32018"
+msgid "live type cache"
+msgstr "Тип live кеша"
+
+msgctxt "#32019"
+msgid "live cache size, bytes"
+msgstr "Размер live кеша, ,байты"
+
+msgctxt "#32020"
+msgid "Authorization"
+msgstr "Авторизация"
+
+msgctxt "#32021"
+msgid "Login"
+msgstr "Логин"
+
+msgctxt "#32022"
+msgid "Password"
+msgstr "Пароль"
+
+msgctxt "#32030"
+msgid "Additional"
+msgstr "Дополнительно"
+
+msgctxt "#32031"
+msgid "port"
+msgstr "Порт"
+
+msgctxt "#32032"
+msgid "api port"
+msgstr "Порт api"
+
+msgctxt "#32033"
+msgid "http port"
+msgstr "Порт http"
+
+msgctxt "#32034"
+msgid "https port"
+msgstr "Порт https"
+
+msgctxt "#32035"
+msgid "max connections"
+msgstr "Общее максимальное количество соединений"
+
+msgctxt "#32036"
+msgid "max peers"
+msgstr "Максимальное количество пиров"
+
+msgctxt "#32037"
+msgid "max peers limit"
+msgstr "Максимальный лимит пиров"
+
+msgctxt "#32038"
+msgid "max timeshift peers"
+msgstr "Максимальное количество timeshift пиров"
+
+msgctxt "#32039"
+msgid "max upload slots"
+msgstr "Максимальное количество слотов"
+
+msgctxt "#32040"
+msgid "other params"
+msgstr "Другие параметры"
+
+msgctxt "#32041"
+msgid "Debug"
+msgstr "Отладка"
+
+msgctxt "#32042"
+msgid "log file"
+msgstr "Лог файл"
+
+msgctxt "#32043"
+msgid "max log file size, bytes"
+msgstr "Максимальный размер лог файла, байты"

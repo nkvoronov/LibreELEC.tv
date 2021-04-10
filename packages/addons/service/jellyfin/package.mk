@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin"
 PKG_VERSION="10.6.4"
@@ -20,7 +20,6 @@ PKG_BUILD_FLAGS="-strip"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Jellyfin Server"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="tools.aspnet-runtime3:0.0.0"
 
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/jellyfin
