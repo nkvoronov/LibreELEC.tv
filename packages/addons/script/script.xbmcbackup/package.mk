@@ -3,7 +3,7 @@
 
 PKG_NAME="script.xbmcbackup"
 PKG_VERSION="1.6.6"
-#PKG_SHA256="e2fcbabc75df6953c8491988497a8afc4ba5d09730d30932b3f1d1057ef58d92"
+PKG_SHA256="b5f7edf09f575c27280f4973904ff552928193b3ae2b32e6d72c235ea0f09b48"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
@@ -16,10 +16,9 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/README.md
   rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.txt
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 
-  #rm -rf `find ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/ -name "*.gitignore"`
+  rm -rf `find ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/ -name "*.gitignore"`
 }

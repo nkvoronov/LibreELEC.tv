@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.yaml"
 PKG_VERSION="5.3.0+matrix.2"
-#PKG_SHA256="e2fcbabc75df6953c8491988497a8afc4ba5d09730d30932b3f1d1057ef58d92"
+PKG_SHA256="9147273b18a50bf989409ad784b89b98d39fd5f5dcab38b29b07d30657e84850"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
@@ -16,7 +16,6 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/README.md
   rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/

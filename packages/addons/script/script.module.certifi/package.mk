@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.certifi"
 PKG_VERSION="2019.11.28+matrix.1"
-#PKG_SHA256="07fd970ac5dd799776bfc972ac9262c487e7d706e25459a937168857df30700c"
+PKG_SHA256="c3ba080c7b3c367bc643f703638f083b97b046c049481ae3042b45a64614b441"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

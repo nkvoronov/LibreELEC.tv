@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.googleapi"
 PKG_VERSION="1.6.7+matrix.1"
-#PKG_SHA256="12a5222602a316ec44d9a0289fd7842fded79cd33a5366e3ed1317618faff3ac"
+PKG_SHA256="c81645c1c67af835fe10be5cf8dc52a1a31562cfe9480f16429f3422c5650a64"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

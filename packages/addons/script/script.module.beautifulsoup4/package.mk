@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.beautifulsoup4"
 PKG_VERSION="4.9.3+matrix.1"
-#PKG_SHA256="2ed268511ace7b963f9f0b6322a40f36b04da194270a3302131f5731bdb7b429"
+PKG_SHA256="6d3c1c1be42d4eedf0a8abaa6a21ef092c7a132bcc30afcd1913352654be33ed"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

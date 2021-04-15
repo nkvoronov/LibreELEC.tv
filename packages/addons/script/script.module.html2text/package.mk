@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.html2text"
 PKG_VERSION="2020.1.16+matrix.2"
-#PKG_SHA256="49d6563dd2f8973f51015776e39db927bcd3b3392282efae59672405b9eeb22a"
+PKG_SHA256="5766e0bfe9d3049ebd0683a0e7e0f541eb19e429dbf5a935a4af3ed568a1d2f7"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

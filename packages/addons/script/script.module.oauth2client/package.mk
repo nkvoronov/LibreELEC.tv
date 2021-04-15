@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.oauth2client"
 PKG_VERSION="4.1.3+matrix.2"
-#PKG_SHA256="2e6d4219a87fcdd09c7287c25759e28c4c5ce538785341f08dab4428ff13e737"
+PKG_SHA256="9cd4aabace578c93531feb723d20f4c2268ccec460ddad132f6d0f23a8c22e8e"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
