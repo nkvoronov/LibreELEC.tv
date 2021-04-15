@@ -1,0 +1,10 @@
+--- a/contrib/atsc-cc.c
++++ b/contrib/atsc-cc.c
+@@ -1848,6 +1848,7 @@
+ 				      cr->ucs_buffer,
+ 				      cr->ucs_buffer_length,
+ 				      /* repl_char */ '?');
++		fflush(fp);
+ 	}
+ }
+ 

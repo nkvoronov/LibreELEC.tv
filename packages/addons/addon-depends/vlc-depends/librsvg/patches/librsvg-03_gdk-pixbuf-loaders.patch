@@ -1,0 +1,28 @@
+﻿diff -Naur a/gdk-pixbuf-loader/Makefile.am b/gdk-pixbuf-loader/Makefile.am
+--- a/gdk-pixbuf-loader/Makefile.am	2013-12-03 22:19:50.000000000 +0200
++++ b/gdk-pixbuf-loader/Makefile.am	2015-04-15 22:20:27.007669219 +0300
+@@ -44,23 +44,17 @@
+ 	$(AM_LDFLAGS)
+ rsvg_loader_LDADD = \
+ 	$(GDK_PIXBUF_LIBS)
+-EXTRA_rsvg_loader_DEPENDENCIES = libpixbufloader-svg.la gdk-pixbuf-loaders
+-
+-gdk-pixbuf-loaders: Makefile
+-	$(AM_V_GEN) ( $(GDK_PIXBUF_QUERYLOADERS) ./libpixbufloader-svg.la && $(GDK_PIXBUF_QUERYLOADERS)) > gdk-pixbuf.loaders 2>/dev/null
++EXTRA_rsvg_loader_DEPENDENCIES = libpixbufloader-svg.la
+ 
+ install-data-hook:
+ 	if test -z "$(DESTDIR)"; then \
+ 		$(mkinstalldirs) $(DESTDIR)$(gdk_pixbuf_binarydir) ; \
+-		$(GDK_PIXBUF_QUERYLOADERS) > $(DESTDIR)$(gdk_pixbuf_cache_file) ; \
+ 	fi
+ 
+ CLEANFILES = \
+-	gdk-pixbuf.loaders \
+ 	$(NULL)
+ 
+ DISTCLEANFILES = \
+-	gdk-pixbuf.loaders \
+ 	$(NULL)
+ 
+ endif # ENABLE_PIXBUF_LOADER
