@@ -2,11 +2,11 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.libreelec.devupdate"
-#PKG_VERSION="ec83524407789a452b49da73f27bb8ddd78c36e0"
+PKG_VERSION="d9127fb9810009fb49056d10632a3736739e1dcd"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://github.com/nkvoronov/${PKG_NAME}.git"
-PKG_GIT_CLONE_BRANCH="matrix"
+PKG_GIT_CLONE_BRANCH="vmatrix"
 PKG_DEPENDS_TARGET="toolchain Python3 kodi script.module.beautifulsoup4 script.module.requests script.module.html2text script.xbmcbackup"
 PKG_LONGDESC="Unofficial LibreELEC updater"
 PKG_TOOLCHAIN="manual"

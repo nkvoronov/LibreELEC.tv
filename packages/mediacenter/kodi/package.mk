@@ -336,21 +336,21 @@ post_makeinstall_target() {
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "repository.yellowdragon.libreelec" ${ADDON_MANIFEST}
 
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.libreelec.devupdate" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.beautifulsoup4" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.requests" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.urllib3" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.chardet" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.idna" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.certifi" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.html2text" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.xbmcbackup" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.httplib2" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.oauth2client" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.uritemplate" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" ${ADDON_MANIFEST}
-#    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.libreelec.devupdate" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.beautifulsoup4" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.requests" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.urllib3" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.chardet" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.idna" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.certifi" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.html2text" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.xbmcbackup" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.httplib2" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.oauth2client" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.uritemplate" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" ${ADDON_MANIFEST}
   fi
 
   # more binaddons cross compile badness meh
