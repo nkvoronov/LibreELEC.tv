@@ -3,7 +3,7 @@
 
 PKG_NAME="openjpeg2"
 PKG_VERSION="2.4.0"
-#PKG_SHA256="63f5a4713ecafc86de51bfad89cc07bb788e9bba24ebbf0c4ca637621aadb6a9"
+PKG_SHA256="8702ba68b442657f11aaeb2b338443ca8d5fb95b0d845757968a7be31ef7f16d"
 PKG_REV="1"
 PKG_LICENSE="BSD"
 PKG_SITE="https://github.com/uclouvain/openjpeg"

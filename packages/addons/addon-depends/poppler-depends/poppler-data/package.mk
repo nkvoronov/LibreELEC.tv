@@ -3,7 +3,7 @@
 
 PKG_NAME="poppler-data"
 PKG_VERSION="0.4.10"
-#PKG_SHA256="1f9c7e7de9ecd0db6ab287349e31bf815ca108a5a175cf906a90163bdbe32012"
+PKG_SHA256="6e2fcef66ec8c44625f94292ccf8af9f1d918b410d5aa69c274ce67387967b30"
 PKG_REV="1"
 PKG_LICENSE="GPL"
 PKG_SITE="https://poppler.freedesktop.org/"
