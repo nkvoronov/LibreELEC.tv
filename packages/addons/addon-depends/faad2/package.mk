@@ -12,12 +12,16 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="An MPEG-4 AAC decoder."
 PKG_TOOLCHAIN="configure"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared \
-                           --without-drm \
+PKG_CONFIGURE_OPTS_TARGET="--without-drm \
                            --with-gnu-ld \
                            --without-mpeg4ip \
                            --without-xmms"
+
+if [ "${CUSTOM_SUPPORT}" = "no" -a "${ENABLE_SHARED}" = "no" ]; then
+   PKG_CONFIGURE_OPTS_TARGET+=" --disable-shared \
+                                --enable-static"
+fi
+
 pre_configure_target() {
   ./bootstrap
 }

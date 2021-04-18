@@ -2,18 +2,18 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="qt5"
-PKG_VERSION="5.14.0"
-PKG_SHA256="be9a77cd4e1f9d70b58621d0753be19ea498e6b0da0398753e5038426f76a8ba"
+PKG_VERSION="5.15.2"
+PKG_SHA256="3a530d1b243b5dec00bc54937455471aaa3e56849d2593edb8ded07228202240"
 PKG_LICENSE="OSS"
 PKG_SITE="http://qt-project.org"
-PKG_URL="http://download.qt.io/official_releases/qt/5.14/$PKG_VERSION/single/qt-everywhere-src-$PKG_VERSION.tar.xz"
+PKG_URL="http://download.qt.io/official_releases/qt/5.15/${PKG_VERSION}/single/qt-everywhere-src-${PKG_VERSION}.tar.xz"
 PKG_SOURCE_DIR="qt-everywhere-src-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain libjpeg-turbo xcb-util xcb-util-keysyms xcb-util-renderutil fontconfig xcb-util-wm libXrender libXi sqlite xcb-util-image icu libinput libSM libxkbcommon alsa-lib harfbuzz"
 PKG_LONGDESC="Qt GUI toolkit"
 
 PKG_CONFIGURE_OPTS_TARGET="-prefix /usr
-                           -sysroot $SYSROOT_PREFIX
-                           -hostprefix $TOOLCHAIN
+                           -sysroot ${SYSROOT_PREFIX}
+                           -hostprefix ${TOOLCHAIN}
                            -device linux-libreelec-g++
                            -opensource -confirm-license -v
                            -no-sql-sqlite
@@ -96,30 +96,30 @@ configure_target() {
   echo '#include "../../linux-g++/qplatformdefs.h"' >> $QMAKE_CONF_DIR/qplatformdefs.h
 
   unset CC CXX LD RANLIB AR AS CPPFLAGS CFLAGS LDFLAGS CXXFLAGS
-  ./configure $PKG_CONFIGURE_OPTS_TARGET
+  ./configure ${PKG_CONFIGURE_OPTS_TARGET}
 }
 
 post_install() {
-  mkdir -p $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Concurrent.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Core.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5DBus.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5EglFSDeviceIntegration.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5EglFsKmsSupport.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Gui.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Network.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5OpenGL.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5PrintSupport.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Sql.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Test.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Widgets.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5XcbQpa.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtbase/lib/libQt5Xml.so* $INSTALL/usr/lib
+  mkdir -p ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Concurrent.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Core.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5DBus.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5EglFSDeviceIntegration.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5EglFsKmsSupport.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Gui.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Network.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5OpenGL.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5PrintSupport.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Sql.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Test.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Widgets.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5XcbQpa.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtbase/lib/libQt5Xml.so* ${INSTALL}/usr/lib
 
-    cp -P $PKG_BUILD/qtsvg/lib/libQt5Svg.so* $INSTALL/usr/lib
-    cp -P $PKG_BUILD/qtx11extras/lib/libQt5X11Extras.so* $INSTALL/usr/lib
+    cp -P ${PKG_BUILD}/qtsvg/lib/libQt5Svg.so* ${INSTALL}/usr/lib
+    cp -P ${PKG_BUILD}/qtx11extras/lib/libQt5X11Extras.so* ${INSTALL}/usr/lib
 
-  mkdir -p $INSTALL/usr/lib/qt5/plugins
-    cp -PR $PKG_BUILD/qtbase/plugins/* $INSTALL/usr/lib/qt5/plugins
-    cp -PR $PKG_BUILD/qtsvg/plugins/* $INSTALL/usr/lib/qt5/plugins
+  mkdir -p ${INSTALL}/usr/lib/qt5/plugins
+    cp -PR ${PKG_BUILD}/qtbase/plugins/* ${INSTALL}/usr/lib/qt5/plugins
+    cp -PR ${PKG_BUILD}/qtsvg/plugins/* ${INSTALL}/usr/lib/qt5/plugins
 }

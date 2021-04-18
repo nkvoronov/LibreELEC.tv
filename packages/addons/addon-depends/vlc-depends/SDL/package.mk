@@ -6,7 +6,7 @@ PKG_VERSION="1.2.15"
 PKG_SHA256="d6d316a793e5e348155f0dd93b979798933fb98aa1edebcc108829d6474aad00"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.libsdl.org/"
-PKG_URL="http://www.libsdl.org/release/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="http://www.libsdl.org/release/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain alsa-lib"
 PKG_LONGDESC="Simple DirectMedia Layer is a cross-platform multimedia library designed to provide fast access to the graphics framebuffer and audio device. It is used by MPEG playback software, emulators, and many popular games, including the award winning Linux port of 'Civilization: Call To Power.' Simple DirectMedia Layer supports Linux, Win32, BeOS, MacOS, Solaris, IRIX, and FreeBSD."
 
@@ -26,8 +26,8 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-rpath \
                            --enable-alsa \
                            --disable-alsatest \
                            --enable-alsa-shared \
-                           --with-alsa-prefix=$SYSROOT_PREFIX/usr/lib \
-                           --with-alsa-inc-prefix=$SYSROOT_PREFIX/usr/include \
+                           --with-alsa-prefix=${SYSROOT_PREFIX}/usr/lib \
+                           --with-alsa-inc-prefix=${SYSROOT_PREFIX}/usr/include \
                            --disable-esd \
                            --disable-esdtest \
                            --disable-esd-shared \
@@ -72,41 +72,41 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-rpath \
                            --disable-atari-ldg \
                            --disable-clock_gettime"
 
-if [ "$DISPLAYSERVER" = "x11" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libX11 libXrandr"
+if [ "${DISPLAYSERVER}" = "x11" ]; then
+  PKG_DEPENDS_TARGET+=" libX11 libXrandr"
 
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-video --enable-x11-shared --disable-video-x11-dgamouse"
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video-x11-xinerama --disable-video-x11-xme"
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-video-x11-xrandr --enable-video-x11"
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video-x11-vm --disable-video-x11-xv --with-x"
+  PKG_CONFIGURE_OPTS_TARGET+=" --enable-video --enable-x11-shared --disable-video-x11-dgamouse"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video-x11-xinerama --disable-video-x11-xme"
+  PKG_CONFIGURE_OPTS_TARGET+=" --enable-video-x11-xrandr --enable-video-x11"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video-x11-vm --disable-video-x11-xv --with-x"
 else
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video --disable-x11-shared --disable-video-x11-dgamouse"
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video-x11-xinerama --disable-video-x11-xme"
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video-x11-xrandr --disable-video-x11"
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video-x11-vm --disable-video-x11-xv --without-x"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video --disable-x11-shared --disable-video-x11-dgamouse"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video-x11-xinerama --disable-video-x11-xme"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video-x11-xrandr --disable-video-x11"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video-x11-vm --disable-video-x11-xv --without-x"
 fi
 
-if [ ! "$OPENGL" = "no" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $OPENGL glu"
+if [ ! "${OPENGL}" = "no" ]; then
+  PKG_DEPENDS_TARGET+=" ${OPENGL} glu"
 
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-video-opengl"
+  PKG_CONFIGURE_OPTS_TARGET+=" --enable-video-opengl"
 else
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-video-opengl"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-video-opengl"
 fi
 
-if [ "$PULSEAUDIO_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET pulseaudio"
+if [ "${PULSEAUDIO_SUPPORT}" = yes ]; then
+  PKG_DEPENDS_TARGET+=" pulseaudio"
 
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-pulseaudio --enable-pulseaudio-shared"
+  PKG_CONFIGURE_OPTS_TARGET+=" --enable-pulseaudio --enable-pulseaudio-shared"
 else
-  PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --disable-pulseaudio --disable-pulseaudio-shared"
+  PKG_CONFIGURE_OPTS_TARGET+=" --disable-pulseaudio --disable-pulseaudio-shared"
 fi
 
 pre_configure_host() {
-  ( cd $PKG_BUILD
+  ( cd ${PKG_BUILD}
     # Skip autoheader because there is a problem with AC_DEFINE's in the configure.in in SDL 1.2.14.
     # Added include directory 'acinclude' because SDL 1.2.14 has no Makefile.am in which to specify it.
-      AUTOHEADER=true autoreconf --verbose --install --force -I $SYSROOT_PREFIX/usr/share/aclocal -I acinclude
+      AUTOHEADER=true autoreconf --verbose --install --force -I ${SYSROOT_PREFIX}/usr/share/aclocal -I acinclude
   )
 }
 
@@ -116,5 +116,5 @@ pre_configure_target() {
 }
 
 post_makeinstall_target() {
-  rm -rf $INSTALL/usr/bin
+  rm -rf ${INSTALL}/usr/bin
 }
