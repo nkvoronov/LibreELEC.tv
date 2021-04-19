@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="poppler"
-PKG_VERSION="21.04.0"
-#PKG_SHA256="af630a277c8e194c31339c5446241834aed6ed3d4b4dc7080311e51c66257f6c"
+PKG_VERSION="0.86.1"
+PKG_SHA256="af630a277c8e194c31339c5446241834aed6ed3d4b4dc7080311e51c66257f6c"
 PKG_REV="9"
 PKG_LICENSE="GPL"
 PKG_SITE="https://poppler.freedesktop.org/"
@@ -28,16 +28,19 @@ PKG_CMAKE_OPTS_TARGET="-DCMAKE_BUILD_TYPE=Release \
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/data
 
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdfdetach ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfdetach.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdffonts ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdffonts.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdfimages ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfimages.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdfinfo ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfinfo.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdfseparate ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfseparate.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdftohtml ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftohtml.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdftoppm ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftoppm.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdftops ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftops.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdftotext ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftotext.bin
-    cp -p ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/bin/pdfunite ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfunite.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfattach ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfattach.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfdetach ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfdetach.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdffonts ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdffonts.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfimages ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfimages.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfinfo ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfinfo.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfseparate ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfseparate.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfsig ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfsig.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdftocairo ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftocairo.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdftohtml ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftohtml.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdftoppm ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftoppm.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdftops ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftops.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdftotext ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdftotext.bin
+    cp -p $(get_install_dir poppler)${POPPLER_PREFIX}/bin/pdfunite ${ADDON_BUILD}/${PKG_ADDON_ID}/data/pdfunite.bin
 
     cp -p $(get_install_dir openjpeg2)/usr/bin/opj_compress ${ADDON_BUILD}/${PKG_ADDON_ID}/data/opj_compress.bin
     cp -p $(get_install_dir openjpeg2)/usr/bin/opj_decompress ${ADDON_BUILD}/${PKG_ADDON_ID}/data/opj_decompress.bin
@@ -50,12 +53,13 @@ addon() {
     cp -p $(get_install_dir lcms2)/usr/bin/transicc ${ADDON_BUILD}/${PKG_ADDON_ID}/data/transicc.bin
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
-    cp -P ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/lib/libpoppler.so.97.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpoppler.so.97
-    cp -P ${PKG_BUILD}/.install_pkg${POPPLER_PREFIX}/lib/libpoppler-cpp.so.0.7.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpoppler-cpp.so.0
+    cp -P $(get_install_dir poppler)${POPPLER_PREFIX}/lib/libpoppler.so.97.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpoppler.so.97
+    cp -P $(get_install_dir poppler)${POPPLER_PREFIX}/lib/libpoppler-cpp.so.0.7.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpoppler-cpp.so.0
+    cp -P $(get_install_dir poppler)${POPPLER_PREFIX}/lib/libpoppler-glib.so.8.15.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpoppler-glib.so.8
     cp -P $(get_install_dir openjpeg2)/usr/lib/libopenjp2.so.2.3.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libopenjp2.so.7
-    cp -P $(get_install_dir lcms2)/usr/lib/liblcms2.so.2.0.8 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/liblcms2.so.2
-    cp -P $(get_install_dir tiff)/usr/lib/libtiff.so.5.4.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtiff.so.5
-    cp -P $(get_install_dir tiff)/usr/lib/libtiffxx.so.5.4.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtiffxx.so.5
+    cp -P $(get_install_dir lcms2)/usr/lib/liblcms2.so.2.0.12 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/liblcms2.so.2
+    cp -P $(get_install_dir tiff)/usr/lib/libtiff.so.5.6.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtiff.so.5
+    cp -P $(get_install_dir tiff)/usr/lib/libtiffxx.so.5.6.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtiffxx.so.5
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/share/poppler
     cp -PR $(get_build_dir poppler-data)/cidToUnicode ${ADDON_BUILD}/${PKG_ADDON_ID}/share/poppler

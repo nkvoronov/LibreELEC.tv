@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.xbmcbackup"
-PKG_VERSION="1.6.6"
-PKG_SHA256="b5f7edf09f575c27280f4973904ff552928193b3ae2b32e6d72c235ea0f09b48"
+PKG_VERSION="1.6.7"
+PKG_SHA256="624516b1a35691494c323da61d7f952ef1e0e8b570eee6a27b8b08618d584360"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
