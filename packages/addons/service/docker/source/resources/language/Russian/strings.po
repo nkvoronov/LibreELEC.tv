@@ -1,0 +1,197 @@
+# Kodi Media Center language file
+# Addon Name: docker
+# Addon id: service.system.docker
+msgid ""
+msgstr ""
+
+msgctxt "#30000"
+msgid "Settings"
+msgstr "Настройки"
+
+msgctxt "#30001"
+msgid "Notifications"
+msgstr "Уведомления"
+
+msgctxt "#30002"
+msgid "Default"
+msgstr "По умолчанию"
+
+msgctxt "#30003"
+msgid "All"
+msgstr "Все"
+
+msgctxt "#30004"
+msgid "Off"
+msgstr "Выкл."
+
+msgctxt "#30005"
+msgid "Custom"
+msgstr "Пользовательский"
+
+msgctxt "#30006"
+msgid "Notification Length (Seconds)"
+msgstr "Продолжительность уведомления (секунды)"
+
+msgctxt "#30010"
+msgid "Name:"
+msgstr "Название:"
+
+msgctxt "#30011"
+msgid "Type:"
+msgstr "Тип:"
+
+msgctxt "#30012"
+msgid "Action:"
+msgstr "Действие:"
+
+msgctxt "#30030"
+msgid "Container"
+msgstr "Контейнер"
+
+msgctxt "#30031"
+msgid "attach"
+msgstr "присоединить"
+
+msgctxt "#30032"
+msgid "commit"
+msgstr "фиксировать"
+
+msgctxt "#30033"
+msgid "copy"
+msgstr "копировать"
+
+msgctxt "#30034"
+msgid "create"
+msgstr "создать"
+
+msgctxt "#30035"
+msgid "destroy"
+msgstr "уничтожить"
+
+msgctxt "#30036"
+msgid "die"
+msgstr "умереть"
+
+msgctxt "#30037"
+msgid "exec_create"
+msgstr "выполнить создание"
+
+msgctxt "#30038"
+msgid "exec_start"
+msgstr "выполнить старт"
+
+msgctxt "#30039"
+msgid "export"
+msgstr "экспорт"
+
+msgctxt "#30040"
+msgid "kill"
+msgstr "убить"
+
+msgctxt "#30041"
+msgid "out of memory"
+msgstr "недостаточно памяти"
+
+msgctxt "#30042"
+msgid "pause"
+msgstr "пауза"
+
+msgctxt "#30043"
+msgid "rename"
+msgstr "переименовать"
+
+msgctxt "#30044"
+msgid "resize"
+msgstr "изменить размер"
+
+msgctxt "#30045"
+msgid "restart"
+msgstr "рестарт"
+
+msgctxt "#30046"
+msgid "start"
+msgstr "старт"
+
+msgctxt "#30047"
+msgid "stop"
+msgstr "стоп"
+
+msgctxt "#30048"
+msgid "top"
+msgstr "топ"
+
+msgctxt "#30049"
+msgid "unpause"
+msgstr "возобновить"
+
+msgctxt "#30050"
+msgid "update"
+msgstr "обновить"
+
+msgctxt "#30060"
+msgid "Image"
+msgstr "Образ"
+
+msgctxt "#30061"
+msgid "delete"
+msgstr "удалить"
+
+msgctxt "#30062"
+msgid "import"
+msgstr "импорт"
+
+msgctxt "#30063"
+msgid "pull"
+msgstr "получить"
+
+msgctxt "#30064"
+msgid "push"
+msgstr "отправить"
+
+msgctxt "#30065"
+msgid "tag"
+msgstr "метка"
+
+msgctxt "#30066"
+msgid "untag"
+msgstr "снять метку"
+
+msgctxt "#30070"
+msgid "Volume"
+msgstr "Том"
+
+msgctxt "#30071"
+msgid "create"
+msgstr "создать"
+
+msgctxt "#30072"
+msgid "mount"
+msgstr "монтировать"
+
+msgctxt "#30073"
+msgid "unmount"
+msgstr "размонтировать"
+
+msgctxt "#30074"
+msgid "destroy"
+msgstr "уничтожить"
+
+msgctxt "#30080"
+msgid "Network"
+msgstr "Сеть"
+
+msgctxt "#30081"
+msgid "create"
+msgstr "создать"
+
+msgctxt "#30082"
+msgid "connect"
+msgstr "соеденить"
+
+msgctxt "#30083"
+msgid "disconnect"
+msgstr "отключить"
+
+msgctxt "#30084"
+msgid "destroy"
+msgstr "уничтожить"

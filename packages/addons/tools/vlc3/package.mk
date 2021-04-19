@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.12"
 PKG_SHA256="eff458f38a92126094f44f2263c2bf2c7cdef271b48192d0fe7b1726388cf879"
-PKG_REV="80"
+PKG_REV="81"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -215,7 +215,6 @@ addon() {
     cp -P $(get_install_dir libXrender)/usr/lib/libXrender.so.1.3.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libXrender.so.1
     cp -P $(get_install_dir libdvdread)/usr/lib/libdvdread.so.8.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libdvdread.so.8
     cp -P $(get_install_dir libdvdnav)/usr/lib/libdvdnav.so.4.3.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libdvdnav.so.4
-    #cp -P $(get_install_dir libmicrodns)/usr/lib/libmicrodns.so.0.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmicrodns.so.0
     cp -P $(get_install_dir libgme)/usr/lib/libgme.so.0.6.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgme.so.0
     cp -P $(get_install_dir libmpeg2)/usr/lib/libmpeg2.so.0.1.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmpeg2.so.0
     cp -P $(get_install_dir libmpeg2)/usr/lib/libmpeg2convert.so.0.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmpeg2convert.so.0
@@ -257,7 +256,6 @@ addon() {
     cp -P $(get_install_dir cairo)/usr/lib/libcairo-script-interpreter.so.2.11704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libcairo-script-interpreter.so.2
     cp -P $(get_install_dir pangox)/usr/lib/libpango-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpango-1.0.so.0
     cp -P $(get_install_dir pangox)/usr/lib/libpangoft2-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpangoft2-1.0.so.0
-    #cp -P $(get_install_dir pangox)/usr/lib/libpangoxft-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpangoxft-1.0.so.0
     cp -P $(get_install_dir pangox)/usr/lib/libpangocairo-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpangocairo-1.0.so.0
     cp -P $(get_install_dir harfbuzz)/usr/lib/libharfbuzz.so.0.20704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libharfbuzz.so.0
     cp -P $(get_install_dir harfbuzz)/usr/lib/libharfbuzz-subset.so.0.20704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libharfbuzz-subset.so.0
@@ -267,7 +265,6 @@ addon() {
     cp -P $(get_install_dir libcroco)/usr/lib/libcroco-0.6.so.3.0.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libcroco-0.6.so.3
     cp -PR $(get_install_dir librsvg)/usr/lib/gdk-pixbuf-2.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
     cp -P $(get_install_dir librsvg)/usr/lib/librsvg-2.so.2.40.9 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/librsvg-2.so.2
-    #cp -P $(get_build_dir zstd)/.x86_64-linux-gnu/lib/libzstd.so.1.4.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libzstd.so.1
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/share
     cp -R $(get_build_dir ncursesw)/.INSTALL_PKG/usr/share/* ${ADDON_BUILD}/${PKG_ADDON_ID}/share
@@ -277,5 +274,7 @@ addon() {
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/share/locale
     cp -R $(get_install_dir vlc3)${VLC_PREFIX}/share/locale/* ${ADDON_BUILD}/${PKG_ADDON_ID}/share/locale/
+    
+  rm -rf `find ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/vlc/plugins/ -name "*.la"`
 
 }
