@@ -17,8 +17,8 @@
 +    case LE_ADDON_DISABLED:
 +      contextStr = "disable";
 +      break;
-+    case LE_ADDON_POST_UPDATE:
-+      contextStr = "post-update";
++    case LE_ADDON_POST_INSTALL:
++      contextStr = "post-install";
 +      break;
 +    case LE_ADDON_PRE_UNINSTALL:
 +      contextStr = "pre-uninstall";
@@ -38,17 +38,16 @@
  void OnPreInstall(const AddonPtr& addon)
  {
    //Fallback to the pre-install callback in the addon.
-@@ -409,6 +440,9 @@ void OnPostInstall(const AddonPtr& addon
+@@ -409,6 +440,8 @@ void OnPostInstall(const AddonPtr& addon
      }
      closedir(addonsDir);
    }
 +
-+  if (update)
-+    LEAddonHook(addon, LE_ADDON_POST_UPDATE);
++  LEAddonHook(addon, LE_ADDON_POST_INSTALL);
    // OE
  
    addon->OnPostInstall(update, modal);
-@@ -416,6 +450,8 @@ void OnPostInstall(const AddonPtr& addon
+@@ -416,6 +449,8 @@ void OnPostInstall(const AddonPtr& addon
  
  void OnPreUnInstall(const AddonPtr& addon)
  {
@@ -66,7 +65,7 @@
 +typedef enum {
 +  LE_ADDON_ENABLED,
 +  LE_ADDON_DISABLED,
-+  LE_ADDON_POST_UPDATE,
++  LE_ADDON_POST_INSTALL,
 +  LE_ADDON_PRE_UNINSTALL,
 +} LE_ADDON_CONTEXT;
 +
@@ -77,7 +76,7 @@
  public:
 --- a/xbmc/addons/AddonManager.cpp
 +++ b/xbmc/addons/AddonManager.cpp
-@@ -788,6 +788,7 @@ bool CAddonMgr::DisableAddon(const std::
+@@ -789,6 +789,7 @@ bool CAddonMgr::DisableAddon(const std::
    AddonPtr addon;
    if (GetAddon(id, addon, ADDON_UNKNOWN, OnlyEnabled::NO) && addon != NULL)
    {
@@ -85,7 +84,7 @@
      CServiceBroker::GetEventLog().Add(EventPtr(new CAddonManagementEvent(addon, 24141)));
    }
  
-@@ -833,6 +834,7 @@ bool CAddonMgr::EnableSingle(const std::
+@@ -834,6 +835,7 @@ bool CAddonMgr::EnableSingle(const std::
    if (!m_database.EnableAddon(id))
      return false;
    m_disabled.erase(id);
