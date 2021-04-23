@@ -19,6 +19,4 @@ post_install() {
   rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.txt
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
-
-  rm -rf `find ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/ -name "*.gitignore"`
 }
