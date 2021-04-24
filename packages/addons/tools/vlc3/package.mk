@@ -246,9 +246,9 @@ addon() {
     cp -P $(get_install_dir libdvbpsi)/usr/lib/libdvbpsi.so.10.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libdvbpsi.so.10
     cp -P $(get_install_dir x265)/usr/local/lib/libx265.so.192 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libx265.so.192
     cp -P $(get_install_dir libgoom2)/usr/lib/libgoom2.so.0.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgoom2.so.0
-    cp -P $(get_install_dir gnutls)/usr/lib/libgnutls.so.30.29.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgnutls.so.30
-    cp -P $(get_install_dir nettle)/usr/lib/libnettle.so.8.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libnettle.so.8
-    cp -P $(get_install_dir nettle)/usr/lib/libhogweed.so.6.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libhogweed.so.6
+    cp -P $(get_install_dir gnutls)/usr/lib/libgnutls.so.30.29.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgnutls.so.30
+    cp -P $(get_install_dir nettle)/usr/lib/libnettle.so.8.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libnettle.so.8
+    cp -P $(get_install_dir nettle)/usr/lib/libhogweed.so.6.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libhogweed.so.6
     cp -P $(get_install_dir libidn2)/usr/lib/libidn2.so.0.3.7 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libidn2.so.0
     cp -P $(get_install_dir gmp)/usr/lib/libgmp.so.10.4.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgmp.so.10
     cp -P $(get_install_dir libXft)/usr/lib/libXft.so.2.3.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libXft.so.2
