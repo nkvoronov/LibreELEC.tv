@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.urllib3"
-PKG_VERSION="1.25.8+matrix.1"
-PKG_SHA256="e1ec8a08508785cf756b6040ea32eeb699ca50a1a111c555232bc7096f0a6abd"
+PKG_VERSION="1.26.4+matrix.1"
+#PKG_SHA256="e1ec8a08508785cf756b6040ea32eeb699ca50a1a111c555232bc7096f0a6abd"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

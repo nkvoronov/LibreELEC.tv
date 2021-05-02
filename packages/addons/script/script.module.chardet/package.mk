@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.chardet"
-PKG_VERSION="3.0.4+matrix.3"
-PKG_SHA256="580b38c04b76a0a947699dc35847dada1c8a030ef2ba4096d02e887c9f709b5f"
+PKG_VERSION="4.0.0+matrix.1"
+#PKG_SHA256="580b38c04b76a0a947699dc35847dada1c8a030ef2ba4096d02e887c9f709b5f"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
