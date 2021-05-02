@@ -3,7 +3,7 @@
 
 PKG_NAME="tbsdtv"
 PKG_VERSION="093e768a9e25e30e9c23afc4390c3a5bba0b9040"
-#PKG_SHA256="73d01dd943daab2e5ff587b51627f971a359fde9773b695aab2b50ab2b163a64"
+PKG_SHA256="1b12a49992145f530ea3a42cdf2b3ede8386f5fcc46d074150787f2156881c6c"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
 PKG_URL="https://github.com/tbsdtv/media_build/archive/${PKG_VERSION}.tar.gz"
