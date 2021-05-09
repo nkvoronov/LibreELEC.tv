@@ -203,7 +203,7 @@
 					</include>
 				</control>
 				<control type="label" id="100">
-					<description>Build type label</description>
+					<description>Build Type Label</description>
 					<top>690</top>
 					<right>20</right>
 					<align>right</align>
@@ -211,6 +211,6 @@
 					<textcolor>button_focus</textcolor>
 				</control>
 			</control>
-		</control>  
+		</control>
 	</controls>
 </window>

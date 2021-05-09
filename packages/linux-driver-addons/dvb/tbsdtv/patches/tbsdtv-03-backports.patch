@@ -1,12 +1,12 @@
 diff -Naur a/backports/v5.7_mmap_read_lock.patch b/backports/v5.7_mmap_read_lock.patch
---- a/backports/v5.7_mmap_read_lock.patch	2020-08-17 14:11:18.101478923 +0000
-+++ b/backports/v5.7_mmap_read_lock.patch	2020-08-17 16:11:00.235760019 +0000
-@@ -143,19 +143,4 @@
+--- a/backports/v5.7_mmap_read_lock.patch	2021-04-24 20:42:53.000000000 +0300
++++ b/backports/v5.7_mmap_read_lock.patch	2021-05-03 19:24:12.230975066 +0300
+@@ -165,19 +165,4 @@
   
   #include <media/videobuf-vmalloc.h>
   
 -diff --git a/drivers/staging/media/atomisp/pci/hmm/hmm_bo.c b/drivers/staging/media/atomisp/pci/hmm/hmm_bo.c
--index 4fb9bfdd2f4c..76d6e52b7af9 100644
+-index f13af2329f48..525df72e313a 100644
 ---- a/drivers/staging/media/atomisp/pci/hmm/hmm_bo.c
 -+++ b/drivers/staging/media/atomisp/pci/hmm/hmm_bo.c
 -@@ -896,9 +896,9 @@ static int alloc_user_pages(struct hmm_buffer_object *bo,

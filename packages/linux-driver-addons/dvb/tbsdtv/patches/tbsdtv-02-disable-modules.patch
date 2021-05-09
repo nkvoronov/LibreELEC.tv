@@ -1,6 +1,6 @@
 diff -Naur a/v4l/scripts/make_kconfig.pl b/v4l/scripts/make_kconfig.pl
---- a/v4l/scripts/make_kconfig.pl	2019-09-18 16:13:59.136331111 +0300
-+++ b/v4l/scripts/make_kconfig.pl	2019-09-18 16:19:44.222336595 +0300
+--- a/v4l/scripts/make_kconfig.pl	2021-04-24 20:42:53.000000000 +0300
++++ b/v4l/scripts/make_kconfig.pl	2021-05-03 19:18:33.312320679 +0300
 @@ -626,6 +626,10 @@
  close OUT;
  

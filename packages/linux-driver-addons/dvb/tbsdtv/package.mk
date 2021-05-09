@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tbsdtv"
@@ -20,9 +21,9 @@ PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
 
 PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
 
-if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
-  PKG_PATCH_DIRS="disable-pci"
-fi
+#if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
+#  PKG_PATCH_DIRS="disable-pci"
+#fi
 
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
@@ -53,3 +54,6 @@ make_target() {
 makeinstall_target() {
   install_driver_addon_files "${PKG_BUILD}/v4l/"
 }
+
+
+

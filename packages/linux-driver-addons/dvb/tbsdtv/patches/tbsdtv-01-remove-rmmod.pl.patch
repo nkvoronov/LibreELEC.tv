@@ -1,6 +1,6 @@
 diff -Naur a/v4l/Makefile b/v4l/Makefile
---- a/v4l/Makefile	2019-09-18 16:13:59.124331040 +0300
-+++ b/v4l/Makefile	2019-09-18 16:16:42.021287092 +0300
+--- a/v4l/Makefile	2021-04-24 20:42:53.000000000 +0300
++++ b/v4l/Makefile	2021-05-03 19:56:46.115075218 +0300
 @@ -51,7 +51,7 @@
  	@echo Kernel build directory is $(OUTDIR)
  	$(MAKE) -C ../linux apply_patches

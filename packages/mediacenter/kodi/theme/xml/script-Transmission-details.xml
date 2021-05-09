@@ -71,7 +71,7 @@
 				<aligny>center</aligny>
 			</control>
 			<control type="image">
-				<description>separator</description>
+				<description>Separator Image</description>
 				<left>0</left>
 				<top>145</top>
 				<width>1370</width>
