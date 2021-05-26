@@ -4,7 +4,7 @@
 PKG_NAME="mariadb"
 PKG_VERSION="10.5.10"
 PKG_REV="220"
-#PKG_SHA256="40ab19aeb8de141fdc188cf2251213c9e7351bee4d0cd29db704fae68d1068cf"
+PKG_SHA256="a5ff32f9fcaaf26bf5cba94accc7b246d2d5eb75710d027e40122df6bac0babb"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
 PKG_URL="https://downloads.mariadb.org/interstitial/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
