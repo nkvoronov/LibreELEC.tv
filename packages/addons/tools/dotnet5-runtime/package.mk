@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="dotnet5-runtime"
-PKG_VERSION="5.0.5"
-PKG_REV="113"
+PKG_VERSION="5.0.6"
+PKG_REV="114"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://dotnet.github.io/"
@@ -22,15 +22,15 @@ PKG_MAINTAINER="Anton Voyl (awiouy)"
 case "${ARCH}" in
   "aarch64")
     #PKG_SHA256="ef11a880d59b19f1df355b3c9c8b35ea1aa37e72d179850051cad963cb72358f"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/3acd1792-c80d-4336-8ffc-552776a1297c/08af3aa6f51d6e8670bb422b6bec5541/aspnetcore-runtime-5.0.5-linux-arm64.tar.gz"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/6b735496-0974-4873-ab92-edc2caa05f99/7fecb279d8abbb8f78bff5474cb2a32c/aspnetcore-runtime-5.0.6-linux-arm64.tar.gz"
     ;;
   "arm")
     #PKG_SHA256="29c6aa914739dce59e04d1fc7dceb33e97dfec6624ec3c297a8375f66aece092"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/254a9fbb-e834-470c-af08-294c274a349f/ee755caf0b8a801cf30dcdc0c9e4273d/aspnetcore-runtime-5.0.5-linux-arm.tar.gz"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/9d2abf34-b484-46ab-8e3b-504b0057827b/7266d743d6441c1f80510a50c17491dc/aspnetcore-runtime-5.0.6-linux-arm.tar.gz"
     ;;
   "x86_64")
-    PKG_SHA256="a6db0176d2a8453bdfcb7da6e6d57300a7000eceffbaec74965ef98aacd8b316"
-    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/827b12a8-8dea-43da-92a2-2d24c4936236/d2d61b3ed4b5ba3f682de3e04fc4d243/aspnetcore-runtime-5.0.5-linux-x64.tar.gz"
+    PKG_SHA256="9ab1493fb64ebe485e8d61e2010d3b46c7ee03aa8e2414931795100eb6086171"
+    PKG_URL="https://download.visualstudio.microsoft.com/download/pr/4a7f1f6c-6777-42c4-9793-581bba4b632e/e03e6237a8f49f60014d459f0f758923/aspnetcore-runtime-5.0.6-linux-x64.tar.gz"
     ;;
 esac
 PKG_SOURCE_NAME="aspnetcore-runtime_${PKG_VERSION}_${ARCH}.tar.gz"
