@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2019-01-09 19:48:05.224475525 +0200
-+++ b/Makefile.ffmpeg	2019-01-20 17:26:48.477962832 +0200
+--- a/Makefile.ffmpeg	2021-06-13 18:16:26.650278261 +0300
++++ b/Makefile.ffmpeg	2021-06-13 19:36:19.844658488 +0300
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
@@ -11,7 +11,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  unexport CFLAGS
  unexport LDFLAGS
  
-@@ -181,7 +184,7 @@
+@@ -186,7 +189,7 @@
  
  $(LIB_ROOT)/$(NASM)/.tvh_build: \
  		$(LIB_ROOT)/$(NASM)/.tvh_download
@@ -20,7 +20,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--libdir=/$(EPREFIX0)/lib
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(NASM) install
-@@ -276,6 +279,7 @@
+@@ -280,6 +283,7 @@
  	cd $(LIB_ROOT)/$(LIBX265)/build/linux && cmake -G "Unix Makefiles" \
  		-DCMAKE_INSTALL_PREFIX="/ffmpeg" \
  		-DENABLE_SHARED:BOOL=OFF \
@@ -28,7 +28,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		../../source
  	DESTDIR=$(EBUILDIR) \
  		$(MAKE) -C $(LIB_ROOT)/$(LIBX265)/build/linux install
-@@ -313,7 +317,7 @@
+@@ -317,7 +321,7 @@
  ifeq (yes,$(CONFIG_LIBVPX_STATIC))
  
  ifneq (,$(FFMPEG_TARGET))
@@ -37,7 +37,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  endif
  
  $(LIB_ROOT)/$(LIBVPX)/.tvh_download:
-@@ -325,7 +329,7 @@
+@@ -329,7 +333,7 @@
  		$(LIB_ROOT)/$(NASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
@@ -46,30 +46,20 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
  		--disable-docs \
-@@ -404,7 +408,8 @@
+@@ -408,7 +412,8 @@
  	cd $(LIB_ROOT)/$(LIBTHEORA) && \
  		$(CONFIGURE_PI) \
  		--libdir=/$(EPREFIX0)/lib \
 -		--with-ogg=$(EPREFIX) \
 +		OGG_CFLAGS=-I$(EPREFIX)/include \
-+		OGG_LIBS=-L$(EPREFIX)/lib \
++		OGG_LIBS=-L$(EPREFIX)/lib
  		--disable-examples \
  		--disable-spec \
  		$(LIBTHEORA_HOST)
-@@ -452,7 +457,8 @@
- 	cd $(LIB_ROOT)/$(LIBVORBIS) && \
- 		$(CONFIGURE_PI) \
- 		--libdir=/$(EPREFIX0)/lib \
--		--with-ogg=$(EPREFIX)
-+		OGG_CFLAGS=-I$(EPREFIX)/include \
-+		OGG_LIBS=-L$(EPREFIX)/lib
- 	DESTDIR=$(EBUILDIR) \
- 		$(MAKE) -C $(LIB_ROOT)/$(LIBVORBIS) install
- 	@touch $@
-@@ -676,10 +682,12 @@
+@@ -687,10 +692,12 @@
  		$(LIB_ROOT)/$(FFNVCODEC)/.tvh_build \
  		$(LIB_ROOT)/$(FFMPEG)/.tvh_download
- 	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE) \
+ 	cd $(LIB_ROOT)/$(FFMPEG) && $(CONFIGURE_FFMPEG) \
 +		--cc=$(FFMPEG_HOST)-gcc \
 +		--cxx=$(FFMPEG_HOST)-g++ \
  		--disable-all \
