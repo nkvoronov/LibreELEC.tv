@@ -1,7 +1,7 @@
 diff -Naur a/configure b/configure
---- a/configure	2018-12-13 12:00:43.128517692 +0200
-+++ b/configure	2019-01-20 17:33:36.284432976 +0200
-@@ -411,7 +411,7 @@
+--- a/configure	2021-06-13 18:16:26.678278454 +0300
++++ b/configure	2021-06-13 19:23:31.322569610 +0300
+@@ -419,7 +419,7 @@
  else
  
    if enabled_or_auto hdhomerun_client; then
@@ -11,8 +11,8 @@ diff -Naur a/configure b/configure
        LDFLAGS="$LDFLAGS -lhdhomerun"
      fi
 diff -Naur a/src/input/mpegts/tvhdhomerun/tvhdhomerun.c b/src/input/mpegts/tvhdhomerun/tvhdhomerun.c
---- a/src/input/mpegts/tvhdhomerun/tvhdhomerun.c	2018-12-31 17:56:32.366727670 +0200
-+++ b/src/input/mpegts/tvhdhomerun/tvhdhomerun.c	2019-01-20 17:36:40.557536090 +0200
+--- a/src/input/mpegts/tvhdhomerun/tvhdhomerun.c	2021-06-06 16:33:40.742983764 +0300
++++ b/src/input/mpegts/tvhdhomerun/tvhdhomerun.c	2021-06-13 19:24:59.631243024 +0300
 @@ -17,7 +17,7 @@
   *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
@@ -23,8 +23,8 @@ diff -Naur a/src/input/mpegts/tvhdhomerun/tvhdhomerun.c b/src/input/mpegts/tvhdh
  #include "tvheadend.h"
  #include "input.h"
 diff -Naur a/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c b/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c
---- a/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c	2018-12-05 22:08:40.671471772 +0200
-+++ b/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c	2019-01-20 17:37:06.781692648 +0200
+--- a/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c	2021-06-06 16:33:40.742983764 +0300
++++ b/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c	2021-06-13 19:25:36.951527315 +0300
 @@ -17,7 +17,7 @@
   *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
