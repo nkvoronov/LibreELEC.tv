@@ -2,9 +2,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc3"
-PKG_VERSION="3.0.12"
-PKG_SHA256="eff458f38a92126094f44f2263c2bf2c7cdef271b48192d0fe7b1726388cf879"
-PKG_REV="81"
+PKG_VERSION="3.0.15"
+PKG_SHA256="7b9635061ae14dfdf71623a7fd479b4f0d6929de75ff3c23d39b6b4b65b31b56"
+PKG_REV="83"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -234,7 +234,7 @@ addon() {
     cp -P $(get_install_dir libdca)/usr/lib/libdca.so.0.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libdca.so.0
     cp -P $(get_install_dir libmad)/usr/lib/libmad.so.0.2.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmad.so.0
     cp -P $(get_install_dir libmtp)/usr/lib/libmtp.so.9.4.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmtp.so.9
-    cp -P $(get_install_dir mpg123)/usr/lib/libmpg123.so.0.45.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmpg123.so.0
+    cp -P $(get_install_dir mpg123)/usr/lib/libmpg123.so.0.46.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libmpg123.so.0
     cp -P $(get_install_dir libsamplerate)/usr/lib/libsamplerate.so.0.1.8 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libsamplerate.so.0
     cp -P $(get_install_dir libtheora)/usr/lib/libtheora.so.0.3.10 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtheora.so.0
     cp -P $(get_install_dir libtheora)/usr/lib/libtheoradec.so.1.1.4 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtheoradec.so.1
