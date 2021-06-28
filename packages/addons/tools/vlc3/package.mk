@@ -2,9 +2,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc3"
-PKG_VERSION="3.0.15"
-PKG_SHA256="7b9635061ae14dfdf71623a7fd479b4f0d6929de75ff3c23d39b6b4b65b31b56"
-PKG_REV="83"
+PKG_VERSION="3.0.16"
+PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
+PKG_REV="84"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
