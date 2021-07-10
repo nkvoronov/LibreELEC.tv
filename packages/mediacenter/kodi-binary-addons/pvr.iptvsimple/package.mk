@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="pvr.iptvsimple"
-PKG_VERSION="7.6.5-Matrix"
-PKG_SHA256="2b46ab509e26fb4a60759e78f9f13808f5bb2c67a03a62c58ebcadb31c26e6e1"
+PKG_VERSION="7.6.7-Matrix"
+PKG_SHA256="86ea2dba6a99dec2b1968e1e73139b7d96cb0dd7c0ffd01bda414a6be0cf3050"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
