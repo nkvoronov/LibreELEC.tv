@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.16"
 PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
-PKG_REV="84"
+PKG_REV="85"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -244,7 +244,7 @@ addon() {
     cp -P $(get_install_dir fluidsynth)/usr/lib/libfluidsynth.so.1.5.2 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libfluidsynth.so.1
     cp -P $(get_install_dir libshout)/usr/lib/libshout.so.3.2.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libshout.so.3
     cp -P $(get_install_dir libdvbpsi)/usr/lib/libdvbpsi.so.10.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libdvbpsi.so.10
-    cp -P $(get_install_dir x265)/usr/local/lib/libx265.so.192 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libx265.so.192
+    cp -P $(get_install_dir x265)/usr/local/lib/libx265.so.199 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libx265.so.199
     cp -P $(get_install_dir libgoom2)/usr/lib/libgoom2.so.0.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgoom2.so.0
     cp -P $(get_install_dir gnutls)/usr/lib/libgnutls.so.30.29.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgnutls.so.30
     cp -P $(get_install_dir nettle)/usr/lib/libnettle.so.8.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libnettle.so.8
