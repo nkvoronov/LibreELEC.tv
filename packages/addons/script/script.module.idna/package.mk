@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.idna"
 PKG_VERSION="2.10.0+matrix.1"
-#PKG_SHA256="ee4b1d334432f44b793f6bb8b85fa46e84dbfe4b6bc1201f2d2bca21027cbb00"
+PKG_SHA256="018ac22f4246ee9ef248f58663cc629a641462355081133bef056c4f22dd6e74"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
