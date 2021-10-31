@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.dateutil"
 PKG_VERSION="2.8.1+matrix.1"
-#PKG_SHA256="6d3c1c1be42d4eedf0a8abaa6a21ef092c7a132bcc30afcd1913352654be33ed"
+PKG_SHA256="a0638397b0fb3a328d0f5641cc582077b654b06a981c42fedea8e153681a3d18"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

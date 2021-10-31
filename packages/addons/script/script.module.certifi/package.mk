@@ -16,5 +16,8 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/README.rst
+
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 }

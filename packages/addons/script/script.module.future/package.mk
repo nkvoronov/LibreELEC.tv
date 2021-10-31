@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.future"
 PKG_VERSION="0.18.2+matrix.1"
-#PKG_SHA256="6d3c1c1be42d4eedf0a8abaa6a21ef092c7a132bcc30afcd1913352654be33ed"
+PKG_SHA256="ed490c3edcf1da02aebc4b37211fab11430d68cfee1761d133c8339e6bc35f2f"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
@@ -16,7 +16,7 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.txt
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 }

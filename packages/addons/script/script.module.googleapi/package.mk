@@ -18,6 +18,7 @@ post_install() {
 
   rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/README.md
   rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.txt
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/changelog.txt
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 }

@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.dropbox"
 PKG_VERSION="9.4.0+matrix.1"
-#PKG_SHA256="6d3c1c1be42d4eedf0a8abaa6a21ef092c7a132bcc30afcd1913352654be33ed"
+PKG_SHA256="ea4d9816d882e060b80f37b1d4e12f3ab5bd41c44159c040c9918a08c40e3f73"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
@@ -16,7 +16,7 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.txt
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 }

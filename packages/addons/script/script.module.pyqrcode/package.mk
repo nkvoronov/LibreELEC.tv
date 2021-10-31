@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.pyqrcode"
 PKG_VERSION="1.2.1+matrix.4"
-#PKG_SHA256="6d3c1c1be42d4eedf0a8abaa6a21ef092c7a132bcc30afcd1913352654be33ed"
+PKG_SHA256="94f57be69d4fdebc6541d54f67e008532b3583bdc6f9ded3506a7a607c459f4d"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
@@ -16,7 +16,7 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.md
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 }
