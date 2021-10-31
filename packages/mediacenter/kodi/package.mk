@@ -338,6 +338,7 @@ post_makeinstall_target() {
 
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.libreelec.devupdate" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.beautifulsoup4" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.soupsieve" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.requests" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.urllib3" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.chardet" ${ADDON_MANIFEST}
@@ -351,6 +352,10 @@ post_makeinstall_target() {
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.yaml" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.googleapi" ${ADDON_MANIFEST}
     xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.six" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.dateutil" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.dropbox" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.future" ${ADDON_MANIFEST}
+    xmlstarlet ed -L --subnode "/addons" -t elem -n "addon" -v "script.module.pyqrcode" ${ADDON_MANIFEST}
   fi
 
   # more binaddons cross compile badness meh

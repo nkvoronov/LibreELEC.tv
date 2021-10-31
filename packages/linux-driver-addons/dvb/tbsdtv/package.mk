@@ -5,7 +5,7 @@
 PKG_NAME="tbsdtv"
 PKG_VERSION="20210725"
 PKG_SHA256="972c3edb6be67151475360272c825cc8d2ec705d4d6b18519fdff3731579e728"
-#PKG_VERSION="792e22bb59ff3b3c254f0b1b065dce09a3d09214"
+#PKG_VERSION="945eea79087069a56c4989288c935a2602b3fd92"
 #PKG_SHA256="d0b03eca4293254e0f86568f2ae62bb59146d2323f202d5959f3f2f2cfb8850d"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
@@ -63,5 +63,6 @@ makeinstall_target() {
   install_driver_addon_files "${PKG_BUILD}/"
 }
 
-
-
+#makeinstall_target() {
+#  install_driver_addon_files "${PKG_BUILD}/v4l/"
+#}
