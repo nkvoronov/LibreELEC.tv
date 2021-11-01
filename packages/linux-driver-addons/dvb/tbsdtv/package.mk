@@ -3,12 +3,20 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tbsdtv"
-PKG_VERSION="945eea7"
-PKG_GIT_CLONE_BRANCH="extra"
+
+if [ "${TBSDTV_EXT}" = "yes" ]; then
+   PKG_VERSION="20211001"
+   PKG_SHA256="adae4ff6e9f73d7c52fdc7ee24d96e3f9b63d9a931ec8ce86b4d75a80d106415"
+   PKG_URL="https://www.dropbox.com/s/rd8podbplwida1i/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+else
+   PKG_VERSION="945eea7"
+   PKG_GIT_CLONE_BRANCH="extra"
+   PKG_URL="https://github.com/tbsdtv/media_build.git"
+   PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
+fi
+
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
-PKG_URL="https://github.com/tbsdtv/media_build.git"
-PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="TBSDTV linux open source drivers"
 PKG_TOOLCHAIN="manual"
@@ -20,11 +28,26 @@ PKG_ADDON_NAME="TBSDTV open source drivers"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
 
+if [ "${TBSDTV_EXT}" = "yes" ]; then
+
+make_target() {
+  :
+}
+
+else
+
 PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
 
 if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
   PKG_PATCH_DIRS="disable-pci"
 fi
+
+post_unpack() {
+  for patch in `ls ${PKG_DIR}/patches.upstream/*.patch`; do
+      cat $patch | patch -d \
+      `echo ${BUILD}/${PKG_NAME}-${PKG_VERSION} | cut -f1 -d\ ` -p1
+  done
+}
 
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
@@ -48,6 +71,8 @@ make_target() {
   # add menuconfig to edit .config
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path)
 }
+
+fi
 
 makeinstall_target() {
   install_driver_addon_files "${PKG_BUILD}/v4l/"
