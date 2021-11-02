@@ -1,7 +1,7 @@
 diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
---- a/resources/lib/modules/updates.py	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/lib/modules/updates.py	2021-04-06 19:13:00.000000000 +0300
-@@ -46,25 +46,57 @@
+--- a/resources/lib/modules/updates.py	2021-08-09 12:13:50.000000000 +0300
++++ b/resources/lib/modules/updates.py	2021-11-01 23:53:28.000000000 +0200
+@@ -44,25 +44,57 @@
                      'value': 'auto',
                      'action': 'set_auto_update',
                      'type': 'multivalue',
@@ -62,7 +62,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
                  'ShowCustomChannels': {
                      'name': 32016,
-@@ -76,7 +108,7 @@
+@@ -74,7 +106,7 @@
                          'value': ['manual'],
                      },
                      'InfoText': 761,
@@ -71,7 +71,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
                  'CustomChannel1': {
                      'name': 32017,
-@@ -88,7 +120,7 @@
+@@ -86,7 +118,7 @@
                          'value': ['1'],
                      },
                      'InfoText': 762,
@@ -80,7 +80,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
                  'CustomChannel2': {
                      'name': 32018,
-@@ -100,7 +132,7 @@
+@@ -98,7 +130,7 @@
                          'value': ['1'],
                      },
                      'InfoText': 762,
@@ -89,7 +89,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
                  'CustomChannel3': {
                      'name': 32019,
-@@ -112,7 +144,7 @@
+@@ -110,7 +142,7 @@
                          'value': ['1'],
                      },
                      'InfoText': 762,
@@ -98,7 +98,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
                  'Channel': {
                      'name': 32015,
-@@ -125,7 +157,7 @@
+@@ -123,7 +155,7 @@
                      },
                      'values': [],
                      'InfoText': 760,
@@ -107,7 +107,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
                  'Build': {
                      'name': 32020,
-@@ -137,7 +169,7 @@
+@@ -135,7 +167,7 @@
                          'value': ['manual'],
                      },
                      'InfoText': 770,
@@ -116,7 +116,7 @@ diff -Naur a/resources/lib/modules/updates.py b/resources/lib/modules/updates.py
                  },
              },
          },
-@@ -193,6 +225,16 @@
+@@ -191,6 +223,16 @@
      def exit(self):
          pass
  

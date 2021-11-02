@@ -1,6 +1,6 @@
 diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
---- a/resources/lib/defaults.py	2021-03-10 05:37:21.000000000 +0200
-+++ b/resources/lib/defaults.py	2021-04-08 16:40:00.000000000 +0300
+--- a/resources/lib/defaults.py	2021-08-09 12:13:50.000000000 +0300
++++ b/resources/lib/defaults.py	2021-11-01 23:53:28.000000000 +0200
 @@ -57,6 +57,36 @@
      'D_SSH_DISABLE_PW_AUTH': '0',
      'AVAHI_DAEMON': '/usr/sbin/avahi-daemon',
@@ -38,7 +38,7 @@ diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
      }
  
  system = {
-@@ -92,6 +122,8 @@
+@@ -93,6 +123,8 @@
      'RPI_FLASHING_TRIGGER': '/storage/.rpi_flash_firmware',
      }
  
@@ -46,8 +46,8 @@ diff -Naur a/resources/lib/defaults.py b/resources/lib/defaults.py
 +
  about = {'ENABLED': True}
  
- xdbus = {'ENABLED': True}
-@@ -104,4 +136,8 @@
+ _services = {
+@@ -103,4 +135,8 @@
      'obexd': ['obex.service'],
      'crond': ['cron.service'],
      'iptables': ['iptables.service'],
