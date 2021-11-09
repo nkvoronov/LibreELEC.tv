@@ -5,7 +5,7 @@
 PKG_NAME="visualization.projectm"
 PKG_VERSION="19.0.0-Matrix"
 PKG_SHA256="0fc728a75e65e58089b5ef5ec86b82fdbe3ddc00496a3995625abf5b43e9204f"
-PKG_REV="4"
+PKG_REV="1"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/visualization.projectm"
