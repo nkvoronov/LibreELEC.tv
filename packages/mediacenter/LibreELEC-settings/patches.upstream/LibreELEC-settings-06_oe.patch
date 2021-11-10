@@ -1,6 +1,6 @@
 diff -Naur a/resources/lib/oe.py b/resources/lib/oe.py
---- a/resources/lib/oe.py	2021-08-09 12:13:50.000000000 +0300
-+++ b/resources/lib/oe.py	2021-11-01 23:53:28.000000000 +0200
+--- a/resources/lib/oe.py	2021-10-14 06:24:06.000000000 +0300
++++ b/resources/lib/oe.py	2021-11-10 21:35:22.102957378 +0200
 @@ -21,6 +21,7 @@
  import defaults
  import shutil

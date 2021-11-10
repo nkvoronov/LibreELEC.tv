@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.16"
 PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
-PKG_REV="85"
+PKG_REV="86"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -241,24 +241,24 @@ addon() {
     cp -P $(get_install_dir libtheora)/usr/lib/libtheoraenc.so.1.1.2 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libtheoraenc.so.1
     cp -P $(get_install_dir zvbi)/usr/lib/libzvbi.so.0.13.2 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libzvbi.so.0
     cp -P $(get_install_dir faad2)/usr/lib/libfaad.so.2.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libfaad.so.2
-    cp -P $(get_install_dir fluidsynth)/usr/lib/libfluidsynth.so.1.5.2 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libfluidsynth.so.1
+    cp -P $(get_install_dir fluidsynth)/usr/lib/libfluidsynth.so.3.0.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libfluidsynth.so.3
     cp -P $(get_install_dir libshout)/usr/lib/libshout.so.3.2.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libshout.so.3
     cp -P $(get_install_dir libdvbpsi)/usr/lib/libdvbpsi.so.10.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libdvbpsi.so.10
-    cp -P $(get_install_dir x265)/usr/local/lib/libx265.so.199 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libx265.so.199
+    cp -P $(get_install_dir x265)/usr/lib/libx265.so.199 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libx265.so.199
     cp -P $(get_install_dir libgoom2)/usr/lib/libgoom2.so.0.0.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgoom2.so.0
     cp -P $(get_install_dir gnutls)/usr/lib/libgnutls.so.30.29.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgnutls.so.30
     cp -P $(get_install_dir nettle)/usr/lib/libnettle.so.8.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libnettle.so.8
     cp -P $(get_install_dir nettle)/usr/lib/libhogweed.so.6.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libhogweed.so.6
     cp -P $(get_install_dir libidn2)/usr/lib/libidn2.so.0.3.7 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libidn2.so.0
     cp -P $(get_install_dir gmp)/usr/lib/libgmp.so.10.4.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgmp.so.10
-    cp -P $(get_install_dir libXft)/usr/lib/libXft.so.2.3.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libXft.so.2
+    cp -P $(get_install_dir libXft)/usr/lib/libXft.so.2.3.4 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libXft.so.2
     cp -P $(get_install_dir cairo)/usr/lib/libcairo.so.2.11704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libcairo.so.2
     cp -P $(get_install_dir cairo)/usr/lib/libcairo-script-interpreter.so.2.11704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libcairo-script-interpreter.so.2
     cp -P $(get_install_dir pangox)/usr/lib/libpango-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpango-1.0.so.0
     cp -P $(get_install_dir pangox)/usr/lib/libpangoft2-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpangoft2-1.0.so.0
     cp -P $(get_install_dir pangox)/usr/lib/libpangocairo-1.0.so.0.4200.1 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libpangocairo-1.0.so.0
-    cp -P $(get_install_dir harfbuzz)/usr/lib/libharfbuzz.so.0.20704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libharfbuzz.so.0
-    cp -P $(get_install_dir harfbuzz)/usr/lib/libharfbuzz-subset.so.0.20704.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libharfbuzz-subset.so.0
+    cp -P $(get_install_dir harfbuzz)/usr/lib/libharfbuzz.so.0.20900.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libharfbuzz.so.0
+    cp -P $(get_install_dir harfbuzz)/usr/lib/libharfbuzz-subset.so.0.20900.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libharfbuzz-subset.so.0
     cp -PR $(get_install_dir gdk-pixbufx)/usr/lib/gdk-pixbuf-2.0 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib
     cp -P $(get_install_dir gdk-pixbufx)/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgdk_pixbuf-2.0.so.0
     cp -P $(get_install_dir gdk-pixbufx)/usr/lib/libgdk_pixbuf-2.0.so.0.3600.12 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libgdk_pixbuf-2.0.so.0
