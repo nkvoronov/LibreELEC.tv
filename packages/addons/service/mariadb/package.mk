@@ -4,7 +4,7 @@
 PKG_NAME="mariadb"
 PKG_VERSION="10.6.5"
 PKG_REV="223"
-#PKG_SHA256="75bf9b147a95d38160d01a73b098d50a1960563b46d16a235971fff64d99643c"
+PKG_SHA256="e0be040428d9a42a8bb4bd221b567ff2522cd6fa8906386273da4f03c5c20a8f"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
 PKG_URL="https://rsync.osuosl.org/pub/mariadb/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
