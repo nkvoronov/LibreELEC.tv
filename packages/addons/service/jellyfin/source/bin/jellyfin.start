@@ -13,4 +13,4 @@ export LD_LIBRARY_PATH=$ADDON_DIR/lib
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
 nice -n "$jellyfin_nice" \
-dotnet $ADDON_DIR/jellyfin/jellyfin.dll --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache --configdir $ADDON_HOME/config --logdir $ADDON_HOME/log
+dotnet $ADDON_DIR/jellyfin/jellyfin.dll --datadir $ADDON_HOME --cachedir $ADDON_HOME/cache --configdir $ADDON_HOME/config --logdir $ADDON_HOME/log $ADDON_DIR/bin/ffmpeg
