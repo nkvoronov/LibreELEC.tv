@@ -5,9 +5,9 @@
 PKG_NAME="tbsdtv"
 
 if [ "${TBSDTV_EXT}" = "yes" ]; then
-   PKG_VERSION="20211204"
-   PKG_SHA256="8091bc05e07c224d0803b1e477cf5e6257bf867bdd579883f434c41d4d94fa77"
-   PKG_URL="https://www.dropbox.com/s/mywf7a9pudb7xsk/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+   PKG_VERSION="20211219"
+   PKG_SHA256="148edd75fcd94967c89b7058b443a86003c42526ac8bd796026973f00dc547b8"
+   PKG_URL="https://www.dropbox.com/s/3njnfg8u4xlclxv/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 else
    PKG_VERSION="945eea7"
    PKG_GIT_CLONE_BRANCH="extra"
