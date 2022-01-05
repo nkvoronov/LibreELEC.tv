@@ -2,8 +2,8 @@
 # Copyright (C) 2020-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vfs.sacd"
-PKG_VERSION="2.0.0-Matrix"
-PKG_SHA256="acf71cd462cf34921573a1047504926f43d7867c939702f97527712de0baf2fd"
+PKG_VERSION="19.0.0-Matrix"
+PKG_SHA256="9f9eb39f4f1b31cc8aa1f51db0ae4d82f5ae7f108b2433732b213f66f213b9af"
 PKG_REV="2"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
