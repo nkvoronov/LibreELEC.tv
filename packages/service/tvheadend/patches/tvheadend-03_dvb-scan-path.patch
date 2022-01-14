@@ -1,6 +1,6 @@
 diff -Naur a/src/input/mpegts/scanfile.c b/src/input/mpegts/scanfile.c
---- a/src/input/mpegts/scanfile.c	2021-06-06 16:33:40.686983259 +0300
-+++ b/src/input/mpegts/scanfile.c	2021-06-13 19:28:05.764659444 +0300
+--- a/src/input/mpegts/scanfile.c	2021-11-19 09:59:45.785008086 +0200
++++ b/src/input/mpegts/scanfile.c	2022-01-14 16:13:40.009700499 +0200
 @@ -921,7 +921,7 @@
  #elif defined(PLATFORM_FREEBSD)
      path = "/usr/local/share/dtv-scan-tables";
