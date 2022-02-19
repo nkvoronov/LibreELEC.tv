@@ -1,6 +1,6 @@
 diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
---- a/Makefile.ffmpeg	2022-01-12 16:29:53.141263734 +0200
-+++ b/Makefile.ffmpeg	2022-01-14 16:06:18.498073292 +0200
+--- a/Makefile.ffmpeg	2022-02-18 16:15:54.241344513 +0200
++++ b/Makefile.ffmpeg	2022-02-19 13:28:01.751514485 +0200
 @@ -24,6 +24,9 @@
  FFMPEG_TARGET := x86-linux-gcc
  endif
@@ -42,7 +42,7 @@ diff -Naur a/Makefile.ffmpeg b/Makefile.ffmpeg
  		$(LIB_ROOT)/$(NASM)/.tvh_build \
  		$(LIB_ROOT)/$(LIBVPX)/.tvh_download
  	cd $(LIB_ROOT)/$(LIBVPX) && \
--		ASFLAGS="--defsym ENABLE_PIC=1 --defsym PIC=1" $(CONFIGURE) \
+-		$(CONFIGURE) \
 +		ASFLAGS="-DENABLE_PIC=1 -DPIC=1" CROSS=$(FFMPEG_TARGET)- $(CONFIGURE) \
  		--extra-cflags="$(CFLAGS_PI)" \
  		--disable-examples \
