@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="repository.yellowdragon"
-PKG_VERSION="19.3"
+PKG_VERSION="19.4"
 PKG_VERSION_NAME="matrix"
 PKG_VERSION_NAME1="Matrix"
 PKG_ARCH="any"
