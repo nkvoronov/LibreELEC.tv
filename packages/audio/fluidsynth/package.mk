@@ -20,6 +20,7 @@ fi
 
 PKG_CMAKE_OPTS_TARGET="${SHARED} \
                        -DLIB_SUFFIX= \
-                       -Denable-readline=0 \
+                       -Denable-libsndfile=1 \
+                       -Denable-pkgconfig=1 \
                        -Denable-pulseaudio=0 \
-                       -Denable-libsndfile=0"
+                       -Denable-readline=0"
