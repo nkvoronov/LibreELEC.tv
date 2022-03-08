@@ -13,13 +13,7 @@ PKG_LONGDESC="libtiff is a library for reading and writing TIFF files."
 PKG_BUILD_FLAGS="+pic"
 PKG_TOOLCHAIN="configure"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-                           --disable-shared \
-                           --disable-mdi \
-                           --disable-jbig \
-                           --disable-lzma \
-                           --disable-zstd \
-                           --disable-webp \
+PKG_CONFIGURE_OPTS_TARGET="--disable-mdi \
                            --enable-cxx \
                            --with-jpeg-lib-dir=${SYSROOT_PREFIX}/usr/lib \
                            --with-jpeg-include-dir=${SYSROOT_PREFIX}/usr/include \
