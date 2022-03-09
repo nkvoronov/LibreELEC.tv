@@ -9,3 +9,4 @@ PKG_SITE="http://www.littlecms.com"
 PKG_URL="${SOURCEFORGE_SRC}/lcms/lcms/${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain tiff"
 PKG_LONGDESC="An small-footprint color management engine, with special focus on accuracy and performance."
+

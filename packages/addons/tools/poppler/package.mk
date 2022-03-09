@@ -67,3 +67,4 @@ addon() {
     cp -PR $(get_build_dir poppler-data)/unicodeMap ${ADDON_BUILD}/${PKG_ADDON_ID}/share/poppler
     cp -PR $(get_build_dir poppler-data)/cMap ${ADDON_BUILD}/${PKG_ADDON_ID}/share/poppler
 }
+

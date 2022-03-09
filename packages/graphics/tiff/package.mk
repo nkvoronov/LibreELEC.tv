@@ -22,3 +22,4 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-mdi \
 post_makeinstall_target() {
   rm -rf ${INSTALL}/usr/bin
 }
+
