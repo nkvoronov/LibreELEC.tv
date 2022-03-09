@@ -1,6 +1,6 @@
 diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/language/resource.language.en_gb/strings.po
---- a/resources/language/resource.language.en_gb/strings.po	2021-10-14 06:24:06.000000000 +0300
-+++ b/resources/language/resource.language.en_gb/strings.po	2021-11-10 21:07:19.938683193 +0200
+--- a/resources/language/resource.language.en_gb/strings.po	2022-02-13 16:24:28.000000000 +0200
++++ b/resources/language/resource.language.en_gb/strings.po	2022-03-09 18:06:42.657002488 +0200
 @@ -104,6 +104,10 @@
  msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr ""
@@ -27,15 +27,6 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr ""
-@@ -805,7 +817,7 @@
- msgstr ""
- 
- msgctxt "#32311"
--msgid "Sharing and Remote Access"
-+msgid "Services"
- msgstr ""
- 
- msgctxt "#32312"
 @@ -1083,3 +1095,322 @@
  msgctxt "#32416"
  msgid "Reboot to apply changes."
@@ -360,10 +351,10 @@ diff -Naur a/resources/language/resource.language.en_gb/strings.po b/resources/l
 +msgid "Driver changed, reboot required!"
 +msgstr ""
 diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/language/resource.language.ru_ru/strings.po
---- a/resources/language/resource.language.ru_ru/strings.po	2021-10-14 06:24:06.000000000 +0300
-+++ b/resources/language/resource.language.ru_ru/strings.po	2021-11-10 21:17:25.462038421 +0200
-@@ -138,6 +138,10 @@
- "is available"
+--- a/resources/language/resource.language.ru_ru/strings.po	2022-02-13 16:24:28.000000000 +0200
++++ b/resources/language/resource.language.ru_ru/strings.po	2022-03-09 18:06:58.565047734 +0200
+@@ -118,6 +118,10 @@
+ msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
  msgstr "Включите, если хотите, чтобы на экране появлялись уведомления о доступности нового ПО для обновления"
  
 +msgctxt "#717"
@@ -371,9 +362,9 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +msgstr "Если у Вас небольшой LCD или VFD дисплей, подключенный к системе @DISTRONAME@ - Вы можете выбрать правильный драйвер дисплея"
 +
  msgctxt "#718"
- msgid ""
- "Send boot config files from /flash, kodi.log, kernel log and Samba configs "
-@@ -380,6 +384,14 @@
+ msgid "Send boot config files from /flash, kodi.log, kernel log and Samba configs to http://ix.io, and display the short URL"
+ msgstr "Отправьте файлы конфигурации загрузки из /flash, kodi.log, kernel log и конфигураций Samba на http://ix.io и отобразите короткий URL"
+@@ -322,6 +326,14 @@
  msgid "Updates"
  msgstr "Oбновления"
  
@@ -388,7 +379,7 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
  msgctxt "#32009"
  msgid "Keyboard"
  msgstr "Клавиатура"
-@@ -688,7 +700,7 @@
+@@ -624,7 +636,7 @@
  
  msgctxt "#32196"
  msgid "About"
@@ -397,7 +388,7 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
  
  msgctxt "#32198"
  msgid "SSID"
-@@ -909,8 +921,8 @@
+@@ -827,8 +839,8 @@
  msgstr "Язык:"
  
  msgctxt "#32311"
@@ -407,56 +398,11 @@ diff -Naur a/resources/language/resource.language.ru_ru/strings.po b/resources/l
 +msgstr "Службы"
  
  msgctxt "#32312"
- msgid ""
-@@ -1185,38 +1197,359 @@
- 
- msgctxt "#32401"
- msgid "Syncing Disks..."
--msgstr ""
-+msgstr "Синхронизация дисков ..."
- 
- msgctxt "#32402"
- msgid "Backup is incomplete. An error occurred. See Kodi log for details."
--msgstr ""
-+msgstr "Резервное копирование не завершено. Произошла ошибка. См. Подробности в журнале Kodi."
- 
- msgctxt "#32410"
- msgid "Logging"
--msgstr ""
-+msgstr "Логирование"
- 
- msgctxt "#32411"
- msgid "Use Persistent Logs"
--msgstr ""
-+msgstr "Использовать постоянные журналы"
- 
- msgctxt "#32412"
- msgid ""
- "Use Persistent Journal and Log files instead of default volatile ones. "
- "Reboot to apply changes."
- msgstr ""
-+"Используйте файлы постоянного журнала вместо изменяемых файлов журнала по умолчанию. "
-+"Перезагрузите, чтобы применить изменения."
- 
- msgctxt "#32413"
- msgid "Journal Size"
--msgstr ""
-+msgstr "Размер журнала"
- 
- msgctxt "#32414"
- msgid "Set max. size of persistent journal. Reboot to apply changes."
--msgstr ""
-+msgstr "Установите макс. размер постоянного журнала. Перезагрузите, чтобы применить изменения."
- 
- msgctxt "#32415"
- msgid "Disable journald Rate Limit"
--msgstr ""
-+msgstr "Отключить ограничение журнала"
- 
+ msgid "@DISTRONAME@ also supports SSH for remote access. This is for advanced users who wish to interact with @DISTRONAME@'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
+@@ -1105,3 +1117,322 @@
  msgctxt "#32416"
  msgid "Reboot to apply changes."
--msgstr ""
-+msgstr "Перезагрузите, чтобы применить изменения."
+ msgstr "Перезагрузите для применения изменений."
 +
 +msgctxt "#32420"
 +msgid "Enable LCD"
