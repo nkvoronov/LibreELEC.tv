@@ -82,6 +82,7 @@ configure_package() {
   fi
 
   if [ "${KODI_DVDCSS_SUPPORT}" = yes ]; then
+    PKG_DEPENDS_TARGET+=" kodi-libdvdcss"
     KODI_DVDCSS="-DENABLE_DVDCSS=ON \
                  -DLIBDVDCSS_URL=${SOURCES}/kodi-libdvdcss/kodi-libdvdcss-$(get_pkg_version kodi-libdvdcss).tar.gz"
   else
@@ -182,6 +183,8 @@ configure_package() {
       PKG_APPLIANCE_XML="${PKG_DIR}/config/appliance-gbm.xml"
     fi
   fi
+
+  PKG_DEPENDS_TARGET+=" kodi-libdvdnav"
 
   KODI_LIBDVD="${KODI_DVDCSS} \
                -DLIBDVDNAV_URL=${SOURCES}/kodi-libdvdnav/kodi-libdvdnav-$(get_pkg_version kodi-libdvdnav).tar.gz \
