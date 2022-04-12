@@ -4,7 +4,7 @@
 PKG_NAME="jellyfin-ffmpeg"
 PKG_VERSION="10.7.7"
 PKG_SHA256="5c3097455325a6d999c8d58fa479d1d7749a90c71e3e96728e97ddf942c086a4"
-PKG_REV="141"
+PKG_REV="142"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
