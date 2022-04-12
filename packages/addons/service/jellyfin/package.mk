@@ -3,7 +3,7 @@
 
 PKG_NAME="jellyfin"
 PKG_VERSION="10.7.7"
-PKG_REV="143"
+PKG_REV="144"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
