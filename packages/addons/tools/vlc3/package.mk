@@ -4,7 +4,7 @@
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.16"
 PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
-PKG_REV="187"
+PKG_REV="188"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -176,7 +176,7 @@ addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/vlc/plugins
     cp -R $(get_install_dir vlc3)/usr/lib/vlc/plugins/* ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/vlc/plugins
 
-    cp -P $(get_build_dir lua)/src/liblua.so.5.4.3 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/liblua.so.5.4
+    cp -P $(get_build_dir lua)/src/liblua.so.5.4.4 ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/liblua.so.5.4
 
     cp -P $(get_build_dir qt5)/qtbase/lib/libQt5Concurrent.so.${QT5VER} ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libQt5Concurrent.so.5
     cp -P $(get_build_dir qt5)/qtbase/lib/libQt5Core.so.${QT5VER} ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/libQt5Core.so.5

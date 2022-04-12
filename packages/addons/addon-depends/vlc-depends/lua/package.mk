@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="lua"
-PKG_VERSION="5.4.3"
-PKG_SHA256="f8612276169e3bfcbcfb8f226195bfc6e466fe13042f1076cbde92b7ec96bbfb"
+PKG_VERSION="5.4.4"
+PKG_SHA256="164c7849653b80ae67bec4b7473b884bf5cc8d2dca05653475ec2ed27b9ebf61"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.lua.org/"
 PKG_URL="http://www.lua.org/ftp/${PKG_NAME}-${PKG_VERSION}.tar.gz"
@@ -13,7 +13,7 @@ PKG_LONGDESC="Lua is a powerful light-weight programming language designed for e
 _MAJORVER=${PKG_VERSION%.*}
 
 make_target() {
-  make MYCFLAGS="${CFLAGS} -fPIC -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2" MYLDFLAGS="${LDFLAGS}" linux-readline
+  make MYCFLAGS="${CFLAGS} -fPIC" MYLDFLAGS="${LDFLAGS}" linux-readline
 }
 
 makeinstall_target() {
@@ -30,7 +30,7 @@ makeinstall_target() {
 
   mkdir -p ${SYSROOT_PREFIX}/usr/lib/pkgconfig
     cp -P ${PKG_DIR}/config/lua.pc ${SYSROOT_PREFIX}/usr/lib/pkgconfig/lua${_MAJORVER}.pc
-  ln -sf ${SYSROOT_PREFIX}/usr/lib/pkgconfig/lua${_MAJORVER}.pc ${SYSROOT_PREFIX}/usr/lib/pkgconfig/lua.pc  
+  ln -sf ${SYSROOT_PREFIX}/usr/lib/pkgconfig/lua${_MAJORVER}.pc ${SYSROOT_PREFIX}/usr/lib/pkgconfig/lua.pc
 }
 
 post_install() {
