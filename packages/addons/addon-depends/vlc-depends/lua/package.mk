@@ -13,6 +13,7 @@ PKG_LONGDESC="Lua is a powerful light-weight programming language designed for e
 _MAJORVER=${PKG_VERSION%.*}
 
 make_target() {
+  CFLAGS="${CFLAGS} -I$(get_build_dir redline)/.INSTALL_PKG/usr/include"
   make MYCFLAGS="${CFLAGS} -fPIC" MYLDFLAGS="${LDFLAGS}" linux-readline
 }
 

@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-2.0
+# Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
+
+PKG_NAME="jellyfin-web"
+PKG_VERSION="10.7.7"
+PKG_PVERSION="1"
+PKG_DVERSION="all"
+PKG_SHA256="ca06cc1be55cb0393de9cd002e5cd422b7746c68341125b8f4c18907c59647c8"
+PKG_REV="1"
+PKG_ARCH="any"
+PKG_LICENSE="GPL"
+PKG_SITE="https://jellyfin.github.io/"
+PKG_URL="https://repo.jellyfin.org/releases/server/ubuntu/stable/web/${PKG_NAME}_${PKG_VERSION}-${PKG_PVERSION}_${PKG_DVERSION}.deb"
+PKG_DEPENDS_TARGET="toolchain"
+PKG_SECTION="tools"
+PKG_SHORTDESC="Jellyfin Web"
+PKG_LONGDESC="Jellyfin Web"
+PKG_TOOLCHAIN="manual"
+
