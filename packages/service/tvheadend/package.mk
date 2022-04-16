@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tvheadend"
-PKG_VERSION="58df4bf51"
-PKG_VERSION_NUMBER="4.3.2018"
+PKG_VERSION="26713c1e4"
+PKG_VERSION_NUMBER="4.3.2023"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
 PKG_URL="https://github.com/tvheadend/tvheadend.git"
