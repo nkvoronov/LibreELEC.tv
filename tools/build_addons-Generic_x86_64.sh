@@ -11,7 +11,7 @@ PROJECT=Generic ARCH=x86_64 ./scripts/create_addon dvb-tools
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon acestream-engine
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon docker
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon jellyfin
-PROJECT=Generic ARCH=x86_64 ./scripts/create_addon jellyfin-ffmpeg
+PROJECT=Generic ARCH=x86_64 ./scripts/create_addon ffmpeg-tools
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon dotnet-runtime
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon mariadb
 PROJECT=Generic ARCH=x86_64 ./scripts/create_addon vlc3
