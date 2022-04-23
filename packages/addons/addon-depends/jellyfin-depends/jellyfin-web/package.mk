@@ -11,25 +11,24 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="Jellyfin Web"
 PKG_LONGDESC="Jellyfin Web"
+  PKG_TOOLCHAIN="manual"
 
-PKG_DEB="yes"
+PKG_DEB="no"
 
 if [ "${PKG_DEB}" = "yes" ]; then
   PKG_PVERSION="1"
   PKG_DVERSION="all"
   PKG_SHA256="ca06cc1be55cb0393de9cd002e5cd422b7746c68341125b8f4c18907c59647c8"
   PKG_URL="https://repo.jellyfin.org/releases/server/ubuntu/stable/web/${PKG_NAME}_${PKG_VERSION}-${PKG_PVERSION}_${PKG_DVERSION}.deb"
-  PKG_TOOLCHAIN="manual"
 else
   PKG_SHA256="67b237b05bbc463828229971ce509d860b9d69cfee6aef4ba57b0c15d844bd78"
   PKG_URL="https://github.com/jellyfin/jellyfin-web/archive/v${PKG_VERSION}.tar.gz"
-  PKG_DEPENDS_TARGET+=" yarn"
-  PKG_TOOLCHAIN="manual"
 fi
 
 make_target() {
   if [ "${PKG_DEB}" = "no" ]; then
     cd ${PKG_BUILD}
+    # external yarn !
     yarn install
   fi
 }
