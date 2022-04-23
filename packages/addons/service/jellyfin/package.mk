@@ -3,7 +3,7 @@
 
 PKG_NAME="jellyfin"
 PKG_VERSION="10.7.7"
-PKG_REV="147"
+PKG_REV="148"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
@@ -17,6 +17,7 @@ PKG_TOOLCHAIN="manual"
 
 PKG_DOTNET=""
 PKG_DEB="no"
+PKG_DEB_WEB="yes"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Jellyfin Server"
@@ -33,6 +34,12 @@ addon() {
 
   if [ "${PKG_DEB}" = "yes" ]; then
     cp -PR $(get_build_dir jellyfin-server)/usr/lib/jellyfin/bin/* ${ADDON_BUILD}/${PKG_ADDON_ID}/jellyfin
+  else
+    cp -PR $(get_build_dir jellyfin-server)/release/* ${ADDON_BUILD}/${PKG_ADDON_ID}/jellyfin
+  fi
+  if [ "${PKG_DEB_WEB}" = "yes" ]; then
     cp -PR $(get_build_dir jellyfin-web)/usr/share/jellyfin/web/* ${ADDON_BUILD}/${PKG_ADDON_ID}/web
+  else
+    cp -PR $(get_build_dir jellyfin-server)/dist/* ${ADDON_BUILD}/${PKG_ADDON_ID}/web
   fi
 }

@@ -3,7 +3,7 @@
 
 PKG_NAME="yarn"
 PKG_VERSION="1.22.18"
-#PKG_SHA256="fe35e5f710ea933b118f710e2ce4403ac076fe69926b570333867d4de082a51c"
+PKG_SHA256="816e5c073b3d35936a398d1fe769ebbcd517298e3510b649e8fc67cd3a62e113"
 PKG_LICENSE="BSD"
 PKG_SITE="https://classic.yarnpkg.com"
 PKG_URL="https://github.com/yarnpkg/yarn/releases/download/v${PKG_VERSION}/yarn-v${PKG_VERSION}.tar.gz"

@@ -12,7 +12,7 @@ PKG_SECTION="tools"
 PKG_SHORTDESC="Jellyfin Web"
 PKG_LONGDESC="Jellyfin Web"
 
-PKG_DEB="no"
+PKG_DEB="yes"
 
 if [ "${PKG_DEB}" = "yes" ]; then
   PKG_PVERSION="1"
@@ -26,4 +26,11 @@ else
   PKG_DEPENDS_TARGET+=" yarn"
   PKG_TOOLCHAIN="manual"
 fi
+
+make_target() {
+  if [ "${PKG_DEB}" = "no" ]; then
+    cd ${PKG_BUILD}
+    yarn install
+  fi
+}
 

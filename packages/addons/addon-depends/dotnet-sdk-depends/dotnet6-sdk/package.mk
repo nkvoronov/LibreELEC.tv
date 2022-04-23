@@ -24,3 +24,4 @@ case "${ARCH}" in
     ;;
 esac
 PKG_SOURCE_NAME="dotnet6-sdk_${PKG_VERSION}_${ARCH}.tar.gz"
+

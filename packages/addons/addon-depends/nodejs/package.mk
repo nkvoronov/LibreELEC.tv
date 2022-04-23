@@ -3,7 +3,7 @@
 
 PKG_NAME="nodejs"
 PKG_VERSION="18.0.0"
-#PKG_SHA256="fe35e5f710ea933b118f710e2ce4403ac076fe69926b570333867d4de082a51c"
+PKG_SHA256="00c50016496baa72dae1e6f6d6a77e1d4fff30f21060285bf64836a9fc2ea2ba"
 PKG_LICENSE="MIT"
 PKG_SITE="https://nodejs.org"
 PKG_URL="https://github.com/nodejs/node/archive/v${PKG_VERSION}/nodejs-${PKG_VERSION}.tar.gz"
