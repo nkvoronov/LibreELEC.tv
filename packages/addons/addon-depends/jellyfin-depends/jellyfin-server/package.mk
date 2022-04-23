@@ -27,7 +27,7 @@ else
 fi
 
 PKG_DOTNET_BIN=$(get_build_dir ${PKG_DOTNET})/dotnet
-DOTNETRUNTIME="linux-x64"
+DOTNETRUNTIME="debian-x64"
 
 make_target() {
   if [ "${PKG_DEB}" = "no" ]; then

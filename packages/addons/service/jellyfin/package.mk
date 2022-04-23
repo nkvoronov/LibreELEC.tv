@@ -3,7 +3,7 @@
 
 PKG_NAME="jellyfin"
 PKG_VERSION="10.7.7"
-PKG_REV="148"
+PKG_REV="149"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
@@ -24,9 +24,7 @@ PKG_ADDON_NAME="Jellyfin Server"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_REQUIRES="tools.ffmpeg-tools:10.0.0.0 tools.dotnet-runtime${PKG_DOTNET}:10.0.0.0"
 
-if [ "${PKG_DEB}" = "yes" ]; then
-  PKG_BUILD_FLAGS="-strip"
-fi
+PKG_BUILD_FLAGS="-strip"
 
 addon() {
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/jellyfin
