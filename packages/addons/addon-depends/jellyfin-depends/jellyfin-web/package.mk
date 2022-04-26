@@ -11,7 +11,7 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="tools"
 PKG_SHORTDESC="Jellyfin Web"
 PKG_LONGDESC="Jellyfin Web"
-  PKG_TOOLCHAIN="manual"
+PKG_TOOLCHAIN="manual"
 
 PKG_DEB="no"
 
@@ -23,13 +23,15 @@ if [ "${PKG_DEB}" = "yes" ]; then
 else
   PKG_SHA256="67b237b05bbc463828229971ce509d860b9d69cfee6aef4ba57b0c15d844bd78"
   PKG_URL="https://github.com/jellyfin/jellyfin-web/archive/v${PKG_VERSION}.tar.gz"
+  PKG_DEPENDS_TARGET+=" yarn"
 fi
+
+PKG_YARN_BIN=$(get_build_dir yarn)/bin/yarn
 
 make_target() {
   if [ "${PKG_DEB}" = "no" ]; then
     cd ${PKG_BUILD}
-    # external yarn !
-    yarn install
+    ${PKG_YARN_BIN} install
   fi
 }
 
