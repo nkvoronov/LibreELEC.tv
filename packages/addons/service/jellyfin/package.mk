@@ -2,8 +2,8 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin"
-PKG_VERSION="10.7.7"
-PKG_REV="150"
+PKG_VERSION="10.8.0"
+PKG_REV="151"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
@@ -15,9 +15,9 @@ PKG_LONGDESC="Jellyfin Server (${PKG_VERSION}) is the Free Software Media System
 There are no strings attached, no premium licenses or features, and no hidden agendas."
 PKG_TOOLCHAIN="manual"
 
-PKG_DOTNET=""
+PKG_DOTNET="6"
 PKG_DEB="no"
-PKG_DEB_WEB="no"
+PKG_DEB_WEB="yes"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Jellyfin Server"
