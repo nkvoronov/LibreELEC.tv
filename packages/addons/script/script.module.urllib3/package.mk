@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="script.module.urllib3"
-PKG_VERSION="1.26.4+matrix.1"
-PKG_SHA256="b6ddd1c822b95c52ffd8a7e04f7585fd5da6ee0c7671385c0197d357025a409a"
+PKG_VERSION="1.26.9+matrix.1"
+PKG_SHA256="9fa89df02245ce50df6058b3b3e53c1d6353f1aa252ff613f042da71d8a075f6"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="http://mirrors.kodi.tv/addons/matrix/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
@@ -16,9 +16,8 @@ post_install() {
   mkdir -p ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
     cp -PR ${PKG_BUILD}/* ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}
 
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/CHANGES.rst
   rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/LICENSE.txt
-  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/README.rst
+  rm ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/README.md
 
   python_compile ${INSTALL}/usr/share/kodi/addons/${PKG_NAME}/lib/
 }
