@@ -2,8 +2,8 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin"
-PKG_VERSION="10.8.1"
-PKG_REV="152"
+PKG_VERSION="10.8.3"
+PKG_REV="153"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
