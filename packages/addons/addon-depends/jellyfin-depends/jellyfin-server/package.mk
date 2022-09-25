@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin-server"
-PKG_VERSION="10.8.4"
+PKG_VERSION="10.8.5"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -13,15 +13,15 @@ PKG_LONGDESC="Jellyfin Server"
 PKG_TOOLCHAIN="manual"
 
 PKG_DOTNET="dotnet6-sdk"
-PKG_DEB="yes"
+PKG_DEB="no"
 
 if [ "${PKG_DEB}" = "yes" ]; then
   PKG_PVERSION="1"
   PKG_DVERSION="amd64"
-  PKG_SHA256="4974ce343fcc5960ec8f5f41d4d435e95c095ef00dcfd392573568dfe3ffc25a"
+  PKG_SHA256="896b547430db30f6afefcc9bd8d713b34bbc6a06879d3eae790457e0718c68f3"
   PKG_URL="https://repo.jellyfin.org/releases/server/ubuntu/stable/server/${PKG_NAME}_${PKG_VERSION}-${PKG_PVERSION}_${PKG_DVERSION}.deb"
 else
-  PKG_SHA256="4e9394c2b30b84e4f897885ea6034e9cdf8aa84b53c821e30a0c3a887a073ef1"
+  PKG_SHA256="8bc8247ac37cd91b24b07e49847aeb446ff059f12ca586e6eafe44019279d86e"
   PKG_URL="https://github.com/jellyfin/jellyfin/archive/v${PKG_VERSION}.tar.gz"
   PKG_DEPENDS_TARGET+=" ${PKG_DOTNET}"
 fi

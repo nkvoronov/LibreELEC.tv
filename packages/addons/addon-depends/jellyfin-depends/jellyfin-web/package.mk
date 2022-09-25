@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin-web"
-PKG_VERSION="10.8.4"
+PKG_VERSION="10.8.5"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -18,7 +18,7 @@ PKG_DEB="yes"
 if [ "${PKG_DEB}" = "yes" ]; then
   PKG_PVERSION="1"
   PKG_DVERSION="all"
-  PKG_SHA256="a94b019da4d7b1ab32831e4ddb76a3cda7aa2543253d1c2c8b5d3192a1c659f6"
+  PKG_SHA256="e5cc02247b8d2a1c112c50f1a14f90d8bc114feaf45b150e7443de6934a39124"
   PKG_URL="https://repo.jellyfin.org/releases/server/ubuntu/stable/web/${PKG_NAME}_${PKG_VERSION}-${PKG_PVERSION}_${PKG_DVERSION}.deb"
 else
   #PKG_SHA256="66304b68c7360718d614cb650d580cfd7026e37734ff2f2ec27d185cb0c8358b"
