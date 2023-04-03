@@ -53,6 +53,11 @@ if [ -f "${DISTRO_DIR}/${DISTRO}/options" ]; then
   . "${DISTRO_DIR}/${DISTRO}/options"
 fi
 
+# read DISTRO custom options if available
+if [ -f "${DISTRO_DIR}/${DISTRO}/options_custom" ]; then
+  . "${DISTRO_DIR}/${DISTRO}/options_custom"
+fi
+
 # read PROJECT options
 if [ -f "${PROJECT_DIR}/${PROJECT}/options" ]; then
   . "${PROJECT_DIR}/${PROJECT}/options"
