@@ -115,7 +115,7 @@ index abfb9911..8aff1cff 100644
  endif
  
 +if HAVE_PYTHON
- dist_bin_SCRIPTS        += pronto2lirc irdb-get irtext2udp
+ dist_bin_SCRIPTS        += pronto2lirc irdb-get irtext2udp lirc-postinstall
  dist_sbin_SCRIPTS       = lircd-setup
  dist_noinst_SCRIPTS     = make_rel_symlink.py check_configs.py
 @@ -121,6 +126,7 @@ install-data-hook:

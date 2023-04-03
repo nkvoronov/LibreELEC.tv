@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-dosbox"
-PKG_VERSION="aa71b67d54eaaf9e41cdd3cb5153d9cff0ad116e"
-PKG_SHA256="5ed77ba6cc864ede7d2bdd51f36dc4b8f0adf77f7058fc3c7f8413f689222854"
+PKG_VERSION="b7b24262c282c0caef2368c87323ff8c381b3102"
+PKG_SHA256="83d8b06eebc67f85ff7505271330b1f1c8ef6c4233ef85d070b0789eab83c33d"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/dosbox-libretro"
 PKG_URL="https://github.com/libretro/dosbox-libretro/archive/${PKG_VERSION}.tar.gz"
@@ -14,6 +14,10 @@ PKG_BUILD_FLAGS="+pic"
 PKG_LIBNAME="dosbox_libretro.so"
 PKG_LIBPATH="${PKG_LIBNAME}"
 PKG_LIBVAR="DOSBOX_LIB"
+
+pre_make_target() {
+  export CXXFLAGS="${CXXFLAGS} -std=gnu++11"
+}
 
 make_target() {
   make -f Makefile.libretro

@@ -3,14 +3,15 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libdvdread"
-PKG_VERSION="6.1.1"
-PKG_SHA256="3e357309a17c5be3731385b9eabda6b7e3fa010f46022a06f104553bf8e21796"
+PKG_VERSION="6.1.3-Next-Nexus-Alpha2-2"
+PKG_SHA256="719130091e3adc9725ba72df808f24a14737a009dca5a4c38c601c0c76449b62"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/libdvdread"
-PKG_URL="https://download.videolan.org/videolan/${PKG_NAME}/${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
-PKG_SOURCE_DIR="${PKG_NAME}-${PKG_VERSION}"
-PKG_DEPENDS_TARGET="toolchain glibc libdvdcss"
+PKG_URL="https://github.com/xbmc/libdvdread/archive/${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="libdvdread is a library which provides a simple foundation for reading DVDs."
-PKG_TOOLCHAIN="autotools"
+PKG_TOOLCHAIN="manual"
 
-PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr"
+if [ "${KODI_DVDCSS_SUPPORT}" = yes ]; then
+  PKG_DEPENDS_TARGET+=" libdvdcss"
+fi

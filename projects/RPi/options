@@ -33,7 +33,6 @@
         elif [ "$DEVICE" = "RPi4" ]; then
           TARGET_FPU="neon-fp-armv8"
         fi
-        TARGET_FEATURES="32bit"
         ;;
     esac
 
@@ -67,20 +66,20 @@
 # setup project defaults
 ################################################################################
 
-  # build and install ALSA Audio support (yes / no)
-    ALSA_SUPPORT="yes"
-
   # OpenGL(X) implementation to use (no / mesa)
     OPENGL="no"
 
   # OpenGL-ES implementation to use (no / bcm2835-driver / mesa)
     OPENGLES="mesa"
 
-  # Displayserver to use (x11 / no)
+  # Vulkan implementation to use (vulkan-loader / no)
+    VULKAN="no"
+
+  # Displayserver to use (wl / no)
     DISPLAYSERVER="no"
 
-  # Windowmanager to use (fluxbox / none)
-    WINDOWMANAGER="none"
+  # Windowmanager to use (weston / no)
+    WINDOWMANAGER="no"
 
   # Xorg Graphic drivers to use (all / vc4 / none)
   # Space separated list is supported,
@@ -107,8 +106,12 @@
   # additional drivers to install:
   # for a list of additional drivers see packages/linux-drivers
   # Space separated list is supported,
-  # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
-    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS rpi-cirrus-config bcm2835-driver"
+  # e.g. ADDITIONAL_DRIVERS+=" DRIVER1 DRIVER2"
+    ADDITIONAL_DRIVERS+=" bcm2835-driver"
+
+    if [ "${ALSA_SUPPORT}" = "yes" ]; then
+      ADDITIONAL_DRIVERS+=" rpi-cirrus-config"
+    fi
 
   # build and install driver addons (yes / no)
     DRIVER_ADDONS_SUPPORT="no"

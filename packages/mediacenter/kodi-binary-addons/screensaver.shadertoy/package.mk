@@ -3,9 +3,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="screensaver.shadertoy"
-PKG_VERSION="19.0.1-Matrix"
-PKG_SHA256="7f23e0578b6df6b9b943ec075761341de5baca917e104d96a6724c4a167fa930"
-PKG_REV="1"
+PKG_VERSION="20.2.0-Nexus"
+PKG_SHA256="91500d2c4eb97390d77fbaf5700ee472c41afa30cb76c6ecbe7e2683a14795fc"
+PKG_REV="2"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/screensaver.shadertoy"

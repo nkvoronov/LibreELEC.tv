@@ -42,17 +42,17 @@
 # setup project defaults
 ################################################################################
 
-  # build and install ALSA Audio support (yes / no)
-    ALSA_SUPPORT="yes"
-
   # OpenGL(X) implementation to use (no / mesa)
     OPENGL="no"
 
-  # Displayserver to use (x11 / no)
+  # Vulkan implementation to use (vulkan-loader / no)
+    VULKAN="no"
+
+  # Displayserver to use (wl / no)
     DISPLAYSERVER="no"
 
-  # Windowmanager to use (fluxbox / none)
-    WINDOWMANAGER="none"
+  # Windowmanager to use (weston / no)
+    WINDOWMANAGER="no"
 
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
@@ -64,14 +64,14 @@
 
   # additional packages to install:
   # Space separated list is supported,
-  # e.g. ADDITIONAL_PACKAGES="PACKAGE1 PACKAGE2"
-    ADDITIONAL_PACKAGES="dtc"
+  # e.g. ADDITIONAL_PACKAGES+=" PACKAGE1 PACKAGE2"
+    ADDITIONAL_PACKAGES+=" dtc emmctool"
 
   # additional drivers to install:
   # for a list of additional drivers see packages/linux-drivers
   # Space separated list is supported,
-  # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
-    ADDITIONAL_DRIVERS=""
+  # e.g. ADDITIONAL_DRIVERS+=" DRIVER1 DRIVER2"
+    ADDITIONAL_DRIVERS+=""
 
   # build and install driver addons (yes / no)
     DRIVER_ADDONS_SUPPORT="no"

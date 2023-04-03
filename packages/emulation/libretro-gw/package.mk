@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-gw"
-PKG_VERSION="7b3e374a1067a80324f1e4905136bae357ec18da"
-PKG_SHA256="719a8c98a7257462d697e714d94533fa715efe776209d37cabc1146e0d04faa1"
+PKG_VERSION="19a1cb3105ca4a82139fb4994e7995fd956f6f8d"
+PKG_SHA256="26ec953669e2fc817c448797d43b0434340c3a9ee43ea02569a5a83eb39ffccb"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/libretro/gw-libretro"
 PKG_URL="https://github.com/libretro/gw-libretro/archive/${PKG_VERSION}.tar.gz"

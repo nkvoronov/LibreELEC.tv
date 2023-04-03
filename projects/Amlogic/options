@@ -40,17 +40,17 @@
 # setup project defaults
 ################################################################################
 
-  # build and install ALSA Audio support (yes / no)
-    ALSA_SUPPORT="yes"
-
   # OpenGL(X) implementation to use (no / mesa)
     OPENGL="no"
 
-  # Displayserver to use (x11 / no)
+  # Vulkan implementation to use (vulkan-loader / no)
+    VULKAN="no"
+
+  # Displayserver to use (wl / no)
     DISPLAYSERVER="no"
 
-  # Windowmanager to use (fluxbox / none)
-    WINDOWMANAGER="none"
+  # Windowmanager to use (weston / no)
+    WINDOWMANAGER="no"
 
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
@@ -63,8 +63,8 @@
   # additional drivers to install:
   # for a list of additional drivers see packages/linux-drivers
   # Space separated list is supported,
-  # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
-    ADDITIONAL_DRIVERS=""
+  # e.g. ADDITIONAL_DRIVERS+=" DRIVER1 DRIVER2"
+    ADDITIONAL_DRIVERS+=""
 
   # build and install driver addons (yes / no)
     DRIVER_ADDONS_SUPPORT="no"
@@ -75,7 +75,7 @@
     DRIVER_ADDONS="crazycat dvb-latest"
 
   # additional packages to install:
-    ADDITIONAL_PACKAGES="dtc ethmactool"
+    ADDITIONAL_PACKAGES+=" dtc ethmactool emmctool flashrom pciutils"
 
   # use the kernel CEC framework for libcec (yes / no)
     CEC_FRAMEWORK_SUPPORT="yes"

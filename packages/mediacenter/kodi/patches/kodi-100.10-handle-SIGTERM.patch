@@ -1,6 +1,6 @@
-From a4632124ca32374fd1ab728f30be9aaa79186ba5 Mon Sep 17 00:00:00 2001
+From de3a1d59836496b786ce31e9f2ce77c0c9db545b Mon Sep 17 00:00:00 2001
 From: MilhouseVH <milhouseVH.github@nmacleod.com>
-Date: Tue, 19 Mar 2019 18:06:56 +0000
+Date: Sun, 3 Apr 2022 11:31:07 +0200
 Subject: [PATCH] handle SIGTERM
 
 0. CApplication::Stop cant be trusted. (deadlocks crashes and boo)
@@ -15,22 +15,20 @@ so, when shutdown/reboot is requested:
 6. addons / pvrmanager / cec / everything else.. are free to deadlock / crash now, we dont care
 7. KILL
 ---
- xbmc/Application.cpp                          | 23 ++++++++++++++-----
- xbmc/Application.h                            |  1 +
- xbmc/XBApplicationEx.cpp                      |  1 +
- xbmc/XBApplicationEx.h                        |  1 +
+ xbmc/application/Application.cpp              | 24 ++++++++++++++-----
+ xbmc/application/Application.h                |  2 ++
  .../powermanagement/LogindUPowerSyscall.cpp   |  2 --
- 5 files changed, 20 insertions(+), 8 deletions(-)
+ 3 files changed, 20 insertions(+), 8 deletions(-)
 
---- a/xbmc/Application.cpp
-+++ b/xbmc/Application.cpp
-@@ -2118,12 +2118,12 @@ void CApplication::OnApplicationMessage(
+--- a/xbmc/application/Application.cpp
++++ b/xbmc/application/Application.cpp
+@@ -1481,12 +1481,12 @@ void CApplication::OnApplicationMessage(
    switch (msg)
    {
    case TMSG_POWERDOWN:
--    Stop(EXITCODE_POWERDOWN);
-+    SetExitCode(EXITCODE_POWERDOWN);
-     CServiceBroker::GetPowerManager().Powerdown();
+-    if (Stop(EXITCODE_POWERDOWN))
++    if (SetExitCode(EXITCODE_POWERDOWN))
+       CServiceBroker::GetPowerManager().Powerdown();
      break;
  
    case TMSG_QUIT:
@@ -39,13 +37,13 @@ so, when shutdown/reboot is requested:
      break;
  
    case TMSG_SHUTDOWN:
-@@ -2144,12 +2144,13 @@ void CApplication::OnApplicationMessage(
+@@ -1507,12 +1507,13 @@ void CApplication::OnApplicationMessage(
  
    case TMSG_RESTART:
    case TMSG_RESET:
--    Stop(EXITCODE_REBOOT);
-+    SetExitCode(EXITCODE_REBOOT);
-     CServiceBroker::GetPowerManager().Reboot();
+-    if (Stop(EXITCODE_REBOOT))
++    if (SetExitCode(EXITCODE_REBOOT))
+       CServiceBroker::GetPowerManager().Reboot();
      break;
  
    case TMSG_RESTARTAPP:
@@ -54,25 +52,7 @@ so, when shutdown/reboot is requested:
      Stop(EXITCODE_RESTARTAPP);
  #endif
      break;
-@@ -2635,6 +2636,17 @@ bool CApplication::Cleanup()
-   }
- }
- 
-+void CApplication::SetExitCode(int exitCode)
-+{
-+  if (!m_ExitCodeSet)
-+  {
-+    CLog::Log(LOGINFO, "Saving exitCode %d", exitCode);
-+    // save it for CEC
-+    m_ExitCode = exitCode;
-+    m_ExitCodeSet = true;
-+  }
-+}
-+
- void CApplication::Stop(int exitCode)
- {
-   CLog::Log(LOGINFO, "Stopping player");
-@@ -2661,7 +2673,7 @@ void CApplication::Stop(int exitCode)
+@@ -2083,7 +2084,7 @@ bool CApplication::Stop(int exitCode)
      m_frameMoveGuard.unlock();
  
      CVariant vExitCode(CVariant::VariantTypeObject);
@@ -81,56 +61,63 @@ so, when shutdown/reboot is requested:
      CServiceBroker::GetAnnouncementManager()->Announce(ANNOUNCEMENT::System, "OnQuit", vExitCode);
  
      // Abort any active screensaver
-@@ -2693,7 +2705,6 @@ void CApplication::Stop(int exitCode)
+@@ -2115,7 +2116,6 @@ bool CApplication::Stop(int exitCode)
      // Needs cleaning up
-     CApplicationMessenger::GetInstance().Stop();
+     CServiceBroker::GetAppMessenger()->Stop();
      m_AppFocused = false;
 -    m_ExitCode = exitCode;
      CLog::Log(LOGINFO, "Stopping all");
  
      // cancel any jobs from the jobmanager
-@@ -4344,7 +4355,7 @@ void CApplication::ProcessSlow()
+@@ -2658,6 +2658,18 @@ void CApplication::StopPlaying()
+   }
+ }
+ 
++bool CApplication::SetExitCode(int exitCode)
++{
++  if (!m_ExitCodeSet)
++  {
++    CLog::Log(LOGINFO, "Saving exitCode {}", exitCode);
++    // save it for CEC
++    m_ExitCode = exitCode;
++    m_ExitCodeSet = true;
++  }
++  return true;
++}
++
+ bool CApplication::OnMessage(CGUIMessage& message)
+ {
+   switch (message.GetMessage())
+@@ -3178,7 +3190,7 @@ void CApplication::ProcessSlow()
    if (CPlatformPosix::TestQuitFlag())
    {
      CLog::Log(LOGINFO, "Quitting due to POSIX signal");
--    CApplicationMessenger::GetInstance().PostMsg(TMSG_QUIT);
-+    CApplicationMessenger::GetInstance().PostMsg(TMSG_RESTARTAPP);
+-    CServiceBroker::GetAppMessenger()->PostMsg(TMSG_QUIT);
++    CServiceBroker::GetAppMessenger()->PostMsg(TMSG_RESTARTAPP);
    }
  #endif
  
---- a/xbmc/Application.h
-+++ b/xbmc/Application.h
-@@ -156,6 +156,7 @@ public:
-   bool StartServer(enum ESERVERS eServer, bool bStart, bool bWait = false);
+--- a/xbmc/application/Application.h
++++ b/xbmc/application/Application.h
+@@ -113,6 +113,7 @@ public:
+   bool CreateGUI();
+   bool InitWindow(RESOLUTION res = RES_INVALID);
  
-   bool IsCurrentThread() const;
-+  void SetExitCode(int exitCode);
-   void Stop(int exitCode);
-   void UnloadSkin();
-   bool LoadCustomWindows();
---- a/xbmc/XBApplicationEx.cpp
-+++ b/xbmc/XBApplicationEx.cpp
-@@ -23,6 +23,7 @@ CXBApplicationEx::CXBApplicationEx()
-   m_bStop = false;
-   m_AppFocused = true;
-   m_ExitCode = EXITCODE_QUIT;
-+  m_ExitCodeSet = false;
-   m_renderGUI = false;
- }
++  bool SetExitCode(int exitCode);
+   bool Stop(int exitCode);
+   const std::string& CurrentFile();
+   CFileItem& CurrentFileItem();
+@@ -251,6 +252,7 @@ private:
+   unsigned int m_ProcessedExternalCalls = 0;      /*!< counts calls which are processed during one "door open" cycle in FrameMove */
+   unsigned int m_ProcessedExternalDecay = 0;      /*!< counts to close door after a few frames of no python activity */
+   int m_ExitCode{EXITCODE_QUIT};
++  bool m_ExitCodeSet = false;
+ };
  
---- a/xbmc/XBApplicationEx.h
-+++ b/xbmc/XBApplicationEx.h
-@@ -29,6 +29,7 @@ public:
-   // Variables for timing
-   bool m_bStop;
-   int  m_ExitCode;
-+  bool m_ExitCodeSet;
-   bool m_AppFocused;
-   bool m_renderGUI;
- 
+ XBMC_GLOBAL_REF(CApplication,g_application);
 --- a/xbmc/platform/linux/powermanagement/LogindUPowerSyscall.cpp
 +++ b/xbmc/platform/linux/powermanagement/LogindUPowerSyscall.cpp
-@@ -78,8 +78,6 @@ CLogindUPowerSyscall::~CLogindUPowerSysc
+@@ -79,8 +79,6 @@ CLogindUPowerSyscall::~CLogindUPowerSysc
  
  bool CLogindUPowerSyscall::Powerdown()
  {

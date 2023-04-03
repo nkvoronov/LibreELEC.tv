@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libretro-mgba"
-PKG_VERSION="70ed83cf849ddd620d9ad66e0fc46980184dda89"
-PKG_SHA256="5737a0803ffe3254043e764a7ac6ffb7dd20386d8421c33598d6223ac1214b9b"
+PKG_VERSION="a69c3434afe8b26cb8f9463077794edfa7d5efad"
+PKG_SHA256="e166ad04c46b631f9001fff6155dbde956b57983fdcb4e50d8bbb57980b99840"
 PKG_LICENSE="MPL 2.0"
 PKG_SITE="https://github.com/libretro/mgba"
 PKG_URL="https://github.com/libretro/mgba/archive/${PKG_VERSION}.tar.gz"

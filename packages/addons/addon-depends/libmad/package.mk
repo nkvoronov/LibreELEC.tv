@@ -12,10 +12,7 @@ PKG_LONGDESC="A high-quality MPEG audio decoder."
 PKG_TOOLCHAIN="autotools"
 
 # package specific configure options
-if [ "${CUSTOM_SUPPORT}" = "no" -a "${ENABLE_SHARED}" = "no" ]; then
-  PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
-fi
-
+PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
 if [ "${TARGET_ARCH}" = "x86_64" ]; then
   PKG_CONFIGURE_OPTS_TARGET+=" --enable-accuracy --enable-fpm=64bit"
 fi

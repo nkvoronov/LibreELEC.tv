@@ -3,8 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="visualization.projectm"
-PKG_VERSION="19.0.2-Matrix"
-PKG_SHA256="47a8104dbbc317cc8f1043edccd8bc6a16ef27edf93d28449422b71e83e0296e"
+PKG_VERSION="20.2.0-Nexus"
+PKG_SHA256="42599b0093ebc6730c3190ce28036a87042814af830441f3cb28ef11676277ae"
 PKG_REV="1"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"

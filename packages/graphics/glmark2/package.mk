@@ -2,19 +2,31 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="glmark2"
-PKG_VERSION="2021.02"
-PKG_SHA256="bebadb78c13aea5e88ed892e5563101ccb745b75f1dc86a8fc7229f00d78cbf1"
-PKG_LICENSE="GPLv3"
+PKG_VERSION="2023.01"
+PKG_SHA256="8fece3fc323b643644a525be163dc4931a4189971eda1de8ad4c1712c5db3d67"
+PKG_LICENSE="GPL-3.0-or-later"
 PKG_SITE="https://github.com/glmark2/glmark2"
 PKG_URL="https://github.com/glmark2/glmark2/archive/${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_DEPENDS_TARGET="toolchain libjpeg-turbo libpng"
 PKG_LONGDESC="glmark2 is an OpenGL 2.0 and ES 2.0 benchmark"
 
-if [ "${OPENGLES_SUPPORT}" = "yes" ]; then
-  PKG_DEPENDS_TARGET+=" ${OPENGLES}"
-  PKG_MESON_OPTS_TARGET="-Dflavors=drm-glesv2"
-elif [ "${OPENGL_SUPPORT}" = "yes" ]; then
+if [ "${OPENGL_SUPPORT}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGL}"
-  PKG_MESON_OPTS_TARGET="-Dflavors=drm-gl"
+elif [ "${OPENGLES_SUPPORT}" = "yes" ]; then
+  PKG_DEPENDS_TARGET+=" ${OPENGLES}"
 fi
 
+case ${DISPLAYSERVER} in
+  wl)
+    PKG_DEPENDS_TARGET+=" wayland wayland-protocols"
+    PKG_MESON_OPTS_TARGET="-Dflavors=wayland-glesv2"
+    ;;
+  x11)
+    PKG_DEPENDS_TARGET+=" libX11"
+    PKG_MESON_OPTS_TARGET="-Dflavors=x11-gl"
+    ;;
+  *)
+    PKG_DEPENDS_TARGET+=" systemd libdrm"
+    PKG_MESON_OPTS_TARGET="-Dflavors=drm-glesv2"
+    ;;
+esac

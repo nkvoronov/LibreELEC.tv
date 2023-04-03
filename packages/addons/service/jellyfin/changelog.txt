@@ -1,11 +1,1 @@
-150
-- Update build web 10.7.7
-
-149
-- Update build server 10.7.7
-
-140
-- Update to deb version 10.7.7
-
-100
-- Initial addon
+initial release

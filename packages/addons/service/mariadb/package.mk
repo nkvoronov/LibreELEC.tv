@@ -2,14 +2,14 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mariadb"
-PKG_VERSION="10.9.3"
-PKG_REV="226"
-PKG_SHA256="9a1e229972fcccc8270e633f68d3fb824da151dcf4f53da1df8d947aca876bee"
+PKG_VERSION="10.11.2"
+PKG_REV="0"
+PKG_SHA256="1c89dee0caed0f68bc2a1d203eb98a123150e6a179f6ee0f1fc0ba3f08dc71dc"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
-PKG_URL="https://rsync.osuosl.org/pub/mariadb/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_HOST="toolchain:host ncurses:host"
-PKG_DEPENDS_TARGET="toolchain binutils bzip2 libaio libxml2 lzo ncurses openssl systemd zlib mariadb:host"
+PKG_URL="https://downloads.mariadb.com/MariaDB/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_HOST="toolchain:host ncurses:host openssl:host"
+PKG_DEPENDS_TARGET="toolchain binutils boost bzip2 libaio libfmt libxml2 lz4 lzo ncurses openssl pcre2 systemd zlib mariadb:host"
 PKG_SHORTDESC="MariaDB is a community-developed fork of the MySQL."
 PKG_LONGDESC="MariaDB (${PKG_VERSION}) is a fast SQL database server and a drop-in replacement for MySQL."
 PKG_TOOLCHAIN="cmake"
@@ -25,8 +25,7 @@ configure_package() {
     -DCMAKE_INSTALL_MESSAGE=NEVER \
     -DSTACK_DIRECTION=-1 \
     -DHAVE_IB_GCC_ATOMIC_BUILTINS=1 \
-    -DCMAKE_CROSSCOMPILING=OFF \
-    import_executables"
+    -DCMAKE_CROSSCOMPILING=OFF"
 
   PKG_CMAKE_OPTS_TARGET=" \
     -DCMAKE_INSTALL_MESSAGE=NEVER \
@@ -42,7 +41,8 @@ configure_package() {
     -DWITH_SSL=system \
     -DWITH_SSL=${SYSROOT_PREFIX}/usr \
     -DWITH_JEMALLOC=OFF \
-    -DWITH_PCRE=bundled \
+    -DWITHOUT_TOKUDB=1 \
+    -DWITH_PCRE=system \
     -DWITH_ZLIB=bundled \
     -DWITH_EDITLINE=bundled \
     -DWITH_LIBEVENT=bundled \
@@ -60,7 +60,13 @@ configure_package() {
     -DENABLE_STATIC_LIBS=OFF \
     -DMYSQL_UNIX_ADDR=/var/run/mysqld/mysqld.sock \
     -DWITH_SAFEMALLOC=OFF \
-    -DWITHOUT_AUTH_EXAMPLES=ON"
+    -DWITHOUT_AUTH_EXAMPLES=ON \
+    -DLSTAT_FOLLOWS_SLASHED_SYMLINK_EXITCODE=0 \
+    -DLSTAT_FOLLOWS_SLASHED_SYMLINK_EXITCODE__TRYRUN_OUTPUT='' \
+    -DMASK_LONGDOUBLE_EXITCODE=0 \
+    -DMASK_LONGDOUBLE_EXITCODE__TRYRUN_OUTPUT='' \
+    -DSTAT_EMPTY_STRING_BUG_EXITCODE=0 \
+    -DSTAT_EMPTY_STRING_BUG_EXITCODE__TRYRUN_OUTPUT=''"
 }
 
 make_host() {
@@ -68,7 +74,7 @@ make_host() {
 }
 
 makeinstall_host() {
-  :
+  cp -a strings/uca-dump ${TOOLCHAIN}/bin
 }
 
 post_makeinstall_target() {
@@ -82,8 +88,8 @@ addon() {
   mkdir -p ${ADDON}/bin
   mkdir -p ${ADDON}/config
 
-  cp ${MARIADB}/bin/mysql \
-     ${MARIADB}/bin/mysqld \
+  cp ${MARIADB}/bin/mariadbd \
+     ${MARIADB}/bin/mysql \
      ${MARIADB}/bin/mysqladmin \
      ${MARIADB}/bin/mysqldump \
      ${MARIADB}/bin/mysql_secure_installation \
