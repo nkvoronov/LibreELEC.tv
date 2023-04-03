@@ -10,41 +10,41 @@
   GIT_DEP=28850
 
 # Custom packages
-  CUSTOM_SUPPORT="yes"
+  CUSTOM_SUPPORT="no"
 
 # Custom patch LibreELEC-settings
-  CUSTOM_LIBREELEC_SETTING="yes"
+  CUSTOM_LIBREELEC_SETTING="no"
 
 # Custom source
   DISTRO_CUSTOM_SRC=""
 
 # Locales
-  LOCALES_SUPPORT="yes"
+  LOCALES_SUPPORT="no"
 
 # Libxcb extention
-  LIBXCB_EXT="yes"
+  LIBXCB_EXT="no"
 
 # Enable shared build
-  ENABLE_SHARED="yes"
+  ENABLE_SHARED="no"
 
 # KODI addons
-  KODI_REPOSITORY_YELLOWDRAGON="yes"
+  KODI_REPOSITORY_YELLOWDRAGON="no"
 
 # Services
-  LCDPROC_SERVICE="yes"
-  TRANSMISSION_SERVICE="yes"
-  OSCAM_SERVICE="yes"
+  LCDPROC_SERVICE="no"
+  TRANSMISSION_SERVICE="no"
+  OSCAM_SERVICE="no"
 
 # TV Services
-  TVHEADEND_SERVICE="yes"
+  TVHEADEND_SERVICE="no"
 
 # Tools
-  SYS_TOOLS_ENABLED="yes"
-  DVB_TOOLS_ENABLED="yes"
+  SYS_TOOLS_ENABLED="no"
+  DVB_TOOLS_ENABLED="no"
 
 # Docker Fix
-  DOCKER_FIX="yes"
-  DOCKER_STABLE="yes"
+  DOCKER_FIX="no"
+  DOCKER_STABLE="no"
 
 # TBS
-  TBSDTV_EXT="yes"
+  TBSDTV_EXT="no"
