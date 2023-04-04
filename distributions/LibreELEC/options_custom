@@ -10,7 +10,7 @@
   GIT_DEP=28850
 
 # Custom packages
-  CUSTOM_SUPPORT="no"
+  CUSTOM_SUPPORT="yes"
 
 # Custom patch LibreELEC-settings
   CUSTOM_LIBREELEC_SETTING="no"
