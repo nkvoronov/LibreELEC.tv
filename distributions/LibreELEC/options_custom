@@ -31,8 +31,8 @@
   KODI_REPOSITORY_YELLOWDRAGON="no"
 
 # Services
-  LCDPROC_SERVICE="no"
-  TRANSMISSION_SERVICE="no"
+  LCDPROC_SERVICE="yes"
+  TRANSMISSION_SERVICE="yes"
   OSCAM_SERVICE="no"
 
 # TV Services
@@ -43,8 +43,8 @@
   DVB_TOOLS_ENABLED="no"
 
 # Docker Fix
-  DOCKER_FIX="no"
-  DOCKER_STABLE="no"
+  DOCKER_FIX="yes"
+  DOCKER_STABLE="yes"
 
 # TBS
   TBSDTV_EXT="no"

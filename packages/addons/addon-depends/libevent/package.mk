@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libevent"
-PKG_VERSION="2.1.11"
-PKG_SHA256="a65bac6202ea8c5609fd5c7e480e6d25de467ea1917c08290c521752f147283d"
+PKG_VERSION="2.1.12"
+PKG_SHA256="92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb"
 PKG_LICENSE="BSD"
 PKG_SITE="http://libevent.org/"
 PKG_URL="https://github.com/libevent/libevent/releases/download/release-${PKG_VERSION}-stable/${PKG_NAME}-${PKG_VERSION}-stable.tar.gz"
