@@ -19,13 +19,13 @@
   DISTRO_CUSTOM_SRC=""
 
 # Locales
-  LOCALES_SUPPORT="no"
+  LOCALES_SUPPORT="yes"
 
 # Libxcb extention
   LIBXCB_EXT="no"
 
 # Enable shared build
-  ENABLE_SHARED="no"
+  ENABLE_SHARED="yes"
 
 # KODI addons
   KODI_REPOSITORY_YELLOWDRAGON="no"
