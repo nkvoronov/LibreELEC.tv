@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="media_tree_tbsdtv"
-PKG_VERSION="50b5a6d"
+PKG_VERSION="bae9b1a1ff179bfbdbfb2aba5d246812dc65dc80"
 PKG_GIT_CLONE_BRANCH="latest"
 PKG_SITE="https://github.com/tbsdtv/linux_media.git"
 PKG_URL="https://github.com/tbsdtv/linux_media.git"

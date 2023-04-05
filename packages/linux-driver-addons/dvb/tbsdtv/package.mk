@@ -9,7 +9,7 @@ if [ "${TBSDTV_EXT}" = "yes" ]; then
    PKG_SHA256="a920bd4bdc703be7497bd4d8a2ad6c98c2934ccb5c7a621a0806641157c41528"
    PKG_URL="https://www.dropbox.com/s/x32ptinhb9codqo/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 else
-   PKG_VERSION="945eea7"
+   PKG_VERSION="4fd76794ab87353ed38e0e3291c9610c4876c841"
    PKG_GIT_CLONE_BRANCH="extra"
    PKG_URL="https://github.com/tbsdtv/media_build.git"
    PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
@@ -61,6 +61,11 @@ make_target() {
 
   # make config all
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
+
+  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
+  # Disable RC/IR support
+  # sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
+  # sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
 
   # hack to workaround media_build bug
   if [ "${PROJECT}" = Rockchip ]; then
