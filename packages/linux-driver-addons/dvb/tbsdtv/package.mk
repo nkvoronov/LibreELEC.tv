@@ -5,9 +5,9 @@
 PKG_NAME="tbsdtv"
 
 if [ "${TBSDTV_EXT}" = "yes" ]; then
-   PKG_VERSION="20220920"
-   PKG_SHA256="a920bd4bdc703be7497bd4d8a2ad6c98c2934ccb5c7a621a0806641157c41528"
-   PKG_URL="https://www.dropbox.com/s/x32ptinhb9codqo/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+   PKG_VERSION="20230405"
+   #PKG_SHA256="a920bd4bdc703be7497bd4d8a2ad6c98c2934ccb5c7a621a0806641157c41528"
+   PKG_URL="https://www.dropbox.com/s/1tr6oqqa1c0b2a8/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 else
    PKG_VERSION="4fd76794ab87353ed38e0e3291c9610c4876c841"
    PKG_GIT_CLONE_BRANCH="extra"
@@ -36,19 +36,6 @@ make_target() {
 
 else
 
-PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
-
-if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
-  PKG_PATCH_DIRS="disable-pci"
-fi
-
-post_unpack() {
-  for patch in `ls ${PKG_DIR}/patches.upstream/*.patch`; do
-      cat $patch | patch -d \
-      `echo ${BUILD}/${PKG_NAME}-${PKG_VERSION} | cut -f1 -d\ ` -p1
-  done
-}
-
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
   export LDFLAGS=""
@@ -60,12 +47,13 @@ make_target() {
   make dir DIR=./media
 
   # make config all
-  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
+  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
 
-  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
+  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
+
   # Disable RC/IR support
-  # sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
-  # sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
+  sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
+  sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
 
   # hack to workaround media_build bug
   if [ "${PROJECT}" = Rockchip ]; then
