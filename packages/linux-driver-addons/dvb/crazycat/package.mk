@@ -24,16 +24,20 @@ pre_make_target() {
 }
 
 make_target() {
-  cp -RP $(get_build_dir media_tree_cc)/* ${PKG_BUILD}/linux
+  # cp -RP $(get_build_dir media_tree_cc)/* ${PKG_BUILD}/linux
+
+  mkdir -p ${PKG_BUILD}/media
+  cp -RP $(get_build_dir media_tree_cc)/* ${PKG_BUILD}/media
+  make dir DIR=./media
 
   # make config all
-  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
+  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
 
-  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
+  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
 
   # Disable RC/IR support
-  # sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
-  # sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
+  sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
+  sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
 
   # hack to workaround media_build bug
   if [ "${PROJECT}" = Rockchip ]; then
