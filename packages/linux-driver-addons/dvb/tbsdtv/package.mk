@@ -3,18 +3,10 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="tbsdtv"
-
-if [ "${TBSDTV_EXT}" = "yes" ]; then
-   PKG_VERSION="20230405"
-   #PKG_SHA256="a920bd4bdc703be7497bd4d8a2ad6c98c2934ccb5c7a621a0806641157c41528"
-   PKG_URL="https://www.dropbox.com/s/1tr6oqqa1c0b2a8/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-else
-   PKG_VERSION="4fd76794ab87353ed38e0e3291c9610c4876c841"
-   PKG_GIT_CLONE_BRANCH="extra"
-   PKG_URL="https://github.com/tbsdtv/media_build.git"
-   PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
-fi
-
+PKG_VERSION="4fd76794ab87353ed38e0e3291c9610c4876c841"
+PKG_GIT_CLONE_BRANCH="extra"
+PKG_URL="https://github.com/tbsdtv/media_build.git"
+PKG_DEPENDS_UNPACK="media_tree_tbsdtv"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/tbsdtv/media_build.git"
 PKG_SECTION="driver.dvb"
@@ -27,14 +19,6 @@ PKG_ADDON_IS_STANDALONE="yes"
 PKG_ADDON_NAME="TBSDTV open source drivers"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
-
-if [ "${TBSDTV_EXT}" = "yes" ]; then
-
-make_target() {
-  :
-}
-
-else
 
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
@@ -64,8 +48,6 @@ make_target() {
   # add menuconfig to edit .config
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path)
 }
-
-fi
 
 makeinstall_target() {
   install_driver_addon_files "${PKG_BUILD}/v4l/"

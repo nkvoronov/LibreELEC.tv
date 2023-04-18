@@ -22,6 +22,5 @@ show_distro_config_custom() {
     config_message+="\n - DVB tools:\t\t\t\t ${DVB_TOOLS_ENABLED}"
     config_message+="\n - Docker Fix:\t\t\t\t ${DOCKER_FIX}"
     config_message+="\n - Docker Stable:\t\t\t ${DOCKER_STABLE}"
-    config_message+="\n - TBS DTV Ext:\t\t\t\t ${TBSDTV_EXT}"
   fi
 }

@@ -1,0 +1,12 @@
+diff -Naur a/v4l/Makefile b/v4l/Makefile
+--- a/v4l/Makefile	2021-04-24 20:42:53.000000000 +0300
++++ b/v4l/Makefile	2021-05-03 19:56:46.115075218 +0300
+@@ -51,7 +51,7 @@
+ 	@echo Kernel build directory is $(OUTDIR)
+ 	$(MAKE) -C ../linux apply_patches
+ 	$(MAKE) -C $(OUTDIR) M=$(PWD) $(MYCFLAGS) modules
+-	./scripts/rmmod.pl check
++#	./scripts/rmmod.pl check
+ #	$(MAKE) checkpatch
+ 
+ mismatch:: prepare firmware

@@ -2,11 +2,11 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="crazycat"
-PKG_VERSION="10.0-cc"
-PKG_SHA256="66c298f178cac3bd5c2182cd42122c603bd9ae6e3abadc2ccc8be75112bd196e"
+PKG_VERSION="f65244270ec7050c07e797a1a065059a664000ff"
+PKG_GIT_CLONE_BRANCH="extra"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/crazycat69/media_build"
-PKG_URL="https://github.com/LibreELEC/media_build/archive/${PKG_VERSION}.tar.gz"
+PKG_SITE="https://github.com/crazycat69/media_build.git"
+PKG_URL="https://github.com/crazycat69/media_build.git"
 PKG_DEPENDS_UNPACK="media_tree_cc"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="DVB driver for TBS cards with CrazyCats additions"
@@ -18,12 +18,6 @@ PKG_ADDON_NAME="DVB drivers for TBS"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
 
-PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
-
-if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
-  PKG_PATCH_DIRS="disable-pci"
-fi
-
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
   export LDFLAGS=""
@@ -34,6 +28,12 @@ make_target() {
 
   # make config all
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
+
+  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
+
+  # Disable RC/IR support
+  # sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
+  # sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
 
   # hack to workaround media_build bug
   if [ "${PROJECT}" = Rockchip ]; then
