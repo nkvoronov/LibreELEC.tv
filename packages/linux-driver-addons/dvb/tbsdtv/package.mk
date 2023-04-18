@@ -35,7 +35,7 @@ make_target() {
   # make config
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) ${TBSDTV_CONFIG}
 
-  if [ " ${TBSDTV_CONFIG}" = stagingconfig ]; then
+  if [ "${TBSDTV_CONFIG}" = stagingconfig ]; then
     # Disable RC/IR support
     sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
     sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
