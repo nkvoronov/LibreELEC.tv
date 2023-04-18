@@ -2,11 +2,10 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="dvb-latest"
-PKG_VERSION="10.0-latest"
-PKG_SHA256="50ed45ec6eeac0c8d537f8de3e7e82ef1f37b2f91552cdd99fbda05e5646f351"
+PKG_VERSION="0fe857b86addf382f6fd383948bd7736a3201403"
 PKG_LICENSE="GPL"
-PKG_SITE="http://git.linuxtv.org/media_build.git"
-PKG_URL="https://github.com/LibreELEC/media_build/archive/${PKG_VERSION}.tar.gz"
+PKG_SITE="https://git.linuxtv.org/media_build.git"
+PKG_URL="https://git.linuxtv.org/media_build.git"
 PKG_DEPENDS_UNPACK="media_tree"
 PKG_SECTION="driver.dvb"
 PKG_LONGDESC="DVB drivers from the latest kernel (media_build)"
@@ -18,11 +17,7 @@ PKG_ADDON_NAME="DVB drivers from the latest kernel"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
 
-PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
-
-if ! grep -q ^CONFIG_USB_PCI= ${PKG_KERNEL_CFG_FILE}; then
-  PKG_PATCH_DIRS="disable-pci"
-fi
+DVB_CONFIG="allyesconfig"
 
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
@@ -30,10 +25,18 @@ pre_make_target() {
 }
 
 make_target() {
-  cp -RP $(get_build_dir media_tree)/* ${PKG_BUILD}/linux
+  mkdir -p ${PKG_BUILD}/media
+  cp -RP $(get_build_dir media_tree)/* ${PKG_BUILD}/media
+  make dir DIR=./media
 
-  # make config all
-  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
+  # make config
+  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) ${DVB_CONFIG}
+
+  if [ " ${DVB_CONFIG}" = stagingconfig ]; then
+    # Disable RC/IR support
+    sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
+    sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
+  fi
 
   kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path)
 }

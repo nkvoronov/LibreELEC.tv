@@ -20,6 +20,8 @@ PKG_ADDON_NAME="TBSDTV open source drivers"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_VERSION="${ADDON_VERSION}.${PKG_REV}"
 
+TBSDTV_CONFIG="stagingconfig"
+
 pre_make_target() {
   export KERNEL_VER=$(get_module_dir)
   export LDFLAGS=""
@@ -30,14 +32,14 @@ make_target() {
   cp -RP $(get_build_dir media_tree_tbsdtv)/* ${PKG_BUILD}/media
   make dir DIR=./media
 
-  # make config all
-  # kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) allyesconfig
+  # make config
+  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) ${TBSDTV_CONFIG}
 
-  kernel_make VER=${KERNEL_VER} SRCDIR=$(kernel_path) stagingconfig
-
-  # Disable RC/IR support
-  sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
-  sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
+  if [ " ${TBSDTV_CONFIG}" = stagingconfig ]; then
+    # Disable RC/IR support
+    sed -i -r 's/(^CONFIG.*_RC.*=)./\1n/g' v4l/.config
+    sed -i -r 's/(^CONFIG.*_IR.*=)./\1n/g' v4l/.config
+  fi
 
   # hack to workaround media_build bug
   if [ "${PROJECT}" = Rockchip ]; then
