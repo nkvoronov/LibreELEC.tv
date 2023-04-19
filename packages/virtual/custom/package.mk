@@ -41,10 +41,3 @@ fi
 if [ "${DVB_TOOLS_ENABLED}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" tools-dvb"
 fi
-
-post_install() {
-  if [ "${DOCKER_FIX}" = "yes" ]; then
-    ln -sf /storage/.kodi/userdata/addon_data/service.system.docker/config ${INSTALL}/etc/docker
-  fi
-}
-
