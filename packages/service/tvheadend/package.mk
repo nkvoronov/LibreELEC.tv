@@ -30,14 +30,16 @@ PKG_TVH_TRANSCODING="\
   --enable-libx265"
 
 # hw specific transcoding options
-if [ "$TARGET_ARCH" = x86_64 ]; then
-  PKG_DEPENDS_TARGET="${PKG_DEPENDS_TARGET} libva"
+if [ "${TARGET_ARCH}" = "x86_64" ]; then
+  PKG_DEPENDS_TARGET+=" libva"
+  # specific transcoding options
   PKG_TVH_TRANSCODING="${PKG_TVH_TRANSCODING} \
-    --enable-vaapi"
-fi
-
-# specific transcoding options
-if [[ "$TARGET_ARCH" != "x86_64" ]]; then
+    --enable-vaapi \
+    --enable-libvpx \
+    --enable-libx265"
+else
+  # for != "x86_64" targets
+  # specific transcoding options
   PKG_TVH_TRANSCODING="${PKG_TVH_TRANSCODING} \
     --disable-libvpx \
     --disable-libx265"
@@ -96,6 +98,11 @@ pre_configure_target() {
 
 post_make_target() {
   $CC -O -fbuiltin -fomit-frame-pointer -fPIC -shared -o capmt_ca.so src/extra/capmt_ca.c -ldl
+}
+
+post_makeinstall_target() {
+  mkdir -p ${INSTALL}/usr/lib
+  cp -p capmt_ca.so ${INSTALL}/usr/lib
 }
 
 post_install() {
