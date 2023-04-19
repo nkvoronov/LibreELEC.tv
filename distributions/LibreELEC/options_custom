@@ -33,7 +33,7 @@
 # Services
   LCDPROC_SERVICE="yes"
   TRANSMISSION_SERVICE="yes"
-  OSCAM_SERVICE="no"
+  OSCAM_SERVICE="yes"
 
 # TV Services
   TVHEADEND_SERVICE="no"

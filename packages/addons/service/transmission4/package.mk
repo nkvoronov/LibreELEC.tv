@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2023-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="transmission3"
-PKG_VERSION="3.00"
-PKG_REV="11"
+PKG_NAME="transmission4"
+PKG_VERSION="4.02"
+PKG_REV="12"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.transmissionbt.com/"
