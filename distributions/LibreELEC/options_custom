@@ -22,7 +22,7 @@
   LOCALES_SUPPORT="yes"
 
 # Libxcb extention
-  LIBXCB_EXT="no"
+  LIBXCB_EXT="yes"
 
 # Enable shared build
   ENABLE_SHARED="yes"
