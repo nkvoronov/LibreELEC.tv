@@ -2,7 +2,7 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="repository.yellowdragon.libreelec"
-PKG_VERSION="10.0.0"
+PKG_VERSION="11.0.0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"

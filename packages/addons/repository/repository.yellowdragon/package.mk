@@ -2,9 +2,9 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="repository.yellowdragon"
-PKG_VERSION="19.4"
-PKG_VERSION_NAME="matrix"
-PKG_VERSION_NAME1="Matrix"
+PKG_VERSION="20.1"
+PKG_VERSION_NAME="nexus"
+PKG_VERSION_NAME1="Nexus"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
