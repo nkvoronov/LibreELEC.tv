@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.certifi"
 PKG_VERSION="2022.9.24"
-#PKG_SHA256="eeaf9cada0d6fc8458c0c4a2aa8132045eff3a700ece442d7c96f7703260d8f3"
+PKG_SHA256="48f70d0ec82e551e9c32eff97ef15efb9087cc9245e66cc1a5523e8545c961b1"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://ftp.up.pt/pub/kodi/addons/nexus/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

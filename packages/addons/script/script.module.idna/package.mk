@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.idna"
 PKG_VERSION="3.4.0"
-#PKG_SHA256="3da9d09fa6ee7646e1a036774444d06a92ac9a0ca3692c8d138fcb1100208d4a"
+PKG_SHA256="9614730331631bf5afd65af1c0c815208c6e6611335bfdb62c71ec0bdd1cc72d"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://ftp.up.pt/pub/kodi/addons/nexus/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"

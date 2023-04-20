@@ -3,7 +3,7 @@
 
 PKG_NAME="script.module.urllib3"
 PKG_VERSION="1.26.13+matrix.1"
-#PKG_SHA256="9fa89df02245ce50df6058b3b3e53c1d6353f1aa252ff613f042da71d8a075f6"
+PKG_SHA256="53ec907c6ae7cebc0ed5be2269d2bedb21fd2e5eb829c3fbb96dd9e7e8f3839c"
 PKG_LICENSE="GPL"
 PKG_SITE="https://kodi.tv/"
 PKG_URL="https://ftp.up.pt/pub/kodi/addons/nexus/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.zip"
