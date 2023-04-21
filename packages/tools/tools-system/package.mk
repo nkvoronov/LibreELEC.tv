@@ -319,9 +319,9 @@ post_install() {
     mkdir -p ${INSTALL}/etc
     cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/etc/* ${INSTALL}/etc
     mkdir -p ${INSTALL}/usr/share/mc
-    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/data/mc/* ${INSTALL}/usr/share/mc
+    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/share/mc/* ${INSTALL}/usr/share/mc
     mkdir -p ${INSTALL}/usr/lib/mc
-    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/mclib/* ${INSTALL}/usr/lib/mc
+    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/lib/mc/* ${INSTALL}/usr/lib/mc
     mkdir -p ${INSTALL}/usr/share/mc/bin
     ln -s /usr/lib/mc/mc-wrapper.csh ${INSTALL}/usr/share/mc/bin/mc-wrapper.csh
     ln -s /usr/lib/mc/mc-wrapper.sh ${INSTALL}/usr/share/mc/bin/mc-wrapper.sh
@@ -394,7 +394,7 @@ post_install() {
   # vim
   if [ "${ENABLE_VIM}" = "yes" ]; then
     cp -P $(get_install_dir vim)/usr/bin/vim ${INSTALL}/usr/bin
-    mkdir -p ${INSTALL}/usr/share/vim
-    cp -Pa $(get_install_dir vim)/storage/.kodi/addons/tools.system-tools/share/* ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share
+    mkdir -p ${INSTALL}/usr/share
+    cp -Pa $(get_install_dir vim)/storage/.kodi/addons/tools.system-tools/share/* ${INSTALL}/usr/share
   fi
 }
