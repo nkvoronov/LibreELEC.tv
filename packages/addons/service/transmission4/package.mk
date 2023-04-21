@@ -29,7 +29,6 @@ addon() {
     cp ${TRANSMISSION_DIR}/usr/bin/transmission-show ${ADDON_BUILD}/${PKG_ADDON_ID}/bin
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/web
-    cp -R ${TRANSMISSION_DIR}/usr/share/transmission/web/* ${ADDON_BUILD}/${PKG_ADDON_ID}/web
-    find ${ADDON_BUILD}/${PKG_ADDON_ID}/web -name "Makefile*" -exec rm -rf {} ";"
-    rm -rf ${ADDON_BUILD}/${PKG_ADDON_ID}/web/LICENSE
+    cp -pR $(get_build_dir transmission)/web/* ${ADDON_BUILD}/${PKG_ADDON_ID}/web
+    rm -rf ${ADDON_BUILD}/${PKG_ADDON_ID}/web/CMakeLists.txt
 }

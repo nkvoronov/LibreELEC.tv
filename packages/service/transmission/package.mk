@@ -34,9 +34,8 @@ post_install() {
     cp -P ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin
 
   mkdir -p ${INSTALL}/usr/share/transmission/web
-    cp -R ${PKG_BUILD}/web/* ${INSTALL}/usr/share/transmission/web
-    find ${INSTALL}/usr/share/transmission/web -name "Makefile*" -exec rm -rf {} ";"
-    rm -rf ${INSTALL}/usr/share/transmission/web/LICENSE
+    cp -pR ${PKG_BUILD}/web/* ${INSTALL}/usr/share/transmission/web
+    rm -rf ${INSTALL}/usr/share/transmission/web/CMakeLists.txt
 
   enable_service transmission.service
 }

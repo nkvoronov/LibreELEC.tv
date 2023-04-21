@@ -13,8 +13,7 @@ PKG_LONGDESC="Middleware to access a smart card using SCard API (PC/SC)."
 PKG_CONFIGURE_OPTS_TARGET="--disable-shared \
             --enable-static \
             --disable-libudev \
-            --enable-libusb \
-            --enable-usbdropdir=/storage/.kodi/addons/service.pcscd/drivers"
+            --enable-libusb
 
 post_configure_target() {
   libtool_remove_rpath libtool

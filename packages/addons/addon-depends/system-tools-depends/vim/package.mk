@@ -21,7 +21,7 @@ PKG_CONFIGURE_OPTS_TARGET="vim_cv_getcwd_broken=no \
                            vim_cv_tty_mode=0620 \
                            ac_cv_sizeof_int=4 \
                            ac_cv_small_wchar_t=no \
-                           --datarootdir=/storage/.kodi/addons/virtual.system-tools/data \
+                           --datarootdir=/storage/.kodi/addons/tools.system-tools/share \
                            --disable-canberra \
                            --disable-nls \
                            --enable-selinux=no \
@@ -48,8 +48,11 @@ pre_makeinstall_target() {
 
 post_makeinstall_target() {
   (
-  cd ${INSTALL}/storage/.kodi/addons/virtual.system-tools/data/vim
+  cd ${INSTALL}/storage/.kodi/addons/tools.system-tools/share/vim
   rm -r doc tutor gvimrc_example.vim
   mv vimrc_example.vim vimrc
   )
+  rm -rf ${INSTALL}/storage/.kodi/addons/tools.system-tools/share/applications
+  rm -rf ${INSTALL}/storage/.kodi/addons/tools.system-tools/share/icons
+  rm -rf ${INSTALL}/storage/.kodi/addons/tools.system-tools/share/man
 }

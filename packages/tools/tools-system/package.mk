@@ -191,6 +191,7 @@ post_install() {
   # 7-zip
   if [ "${ENABLE_7ZIP}" = "yes" ]; then
     cp -P $(get_install_dir 7-zip)/usr/bin/7zz ${INSTALL}/usr/bin
+    cp -P ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin
   fi
 
   # autossh
@@ -258,7 +259,7 @@ post_install() {
   # hddtemp
   if [ "${ENABLE_HDDTEMP}" = "yes" ]; then
     cp -P $(get_install_dir hddtemp)/usr/sbin/hddtemp ${INSTALL}/usr/bin
-    mkdir -p $INSTALL/etc
+    mkdir -p ${INSTALL}/etc
     cp -P $(get_install_dir hddtemp)/usr/share/misc/hddtemp.db ${INSTALL}/etc
   fi
 
@@ -315,18 +316,19 @@ post_install() {
   # mc
   if [ "${ENABLE_MC}" = "yes" ]; then
     cp -PR  $(get_install_dir mc)/usr/bin/* ${INSTALL}/usr/bin/
+    mkdir -p ${INSTALL}/etc
+    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/etc/* ${INSTALL}/etc
+    mkdir -p ${INSTALL}/usr/share/mc
+    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/data/mc/* ${INSTALL}/usr/share/mc
+    mkdir -p ${INSTALL}/usr/lib/mc
+    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/mclib/* ${INSTALL}/usr/lib/mc
     mkdir -p ${INSTALL}/usr/share/mc/bin
-    ln -s /usr/libexec/mc/mc-wrapper.csh ${INSTALL}/usr/share/mc/bin/mc-wrapper.csh
-    ln -s /usr/libexec/mc/mc-wrapper.sh ${INSTALL}/usr/share/mc/bin/mc-wrapper.sh
-    ln -s /usr/libexec/mc/mc.csh ${INSTALL}/usr/share/mc/bin/mc.csh
-    ln -s /usr/libexec/mc/mc.sh ${INSTALL}/usr/share/mc/bin/mc.sh
+    ln -s /usr/lib/mc/mc-wrapper.csh ${INSTALL}/usr/share/mc/bin/mc-wrapper.csh
+    ln -s /usr/lib/mc/mc-wrapper.sh ${INSTALL}/usr/share/mc/bin/mc-wrapper.sh
+    ln -s /usr/lib/mc/mc.csh ${INSTALL}/usr/share/mc/bin/mc.csh
+    ln -s /usr/lib/mc/mc.sh ${INSTALL}/usr/share/mc/bin/mc.sh
     mkdir -p ${INSTALL}/usr/share/locale
-    for fgmo in `ls $(get_build_dir mc)/po/*.gmo`;do
-      fname=`basename ${fgmo} .gmo`
-      mkdir -p ${INSTALL}/usr/share/locale/${fname}
-      mkdir -p ${INSTALL}/usr/share/locale/${fname}/LC_MESSAGES
-      cp -p ${fgmo} ${INSTALL}/usr/share/locale/${fname}/LC_MESSAGES/mc.mo
-    done
+    cp -Pa $(get_install_dir mc)/storage/.kodi/addons/tools.system-tools/share/locale/* ${INSTALL}/usr/share/locale
   fi
 
   # mmc-utils
@@ -375,7 +377,7 @@ post_install() {
   fi
 
   # strace-ng
-  if [ "${ENABLE_STRACE_NG}" = "yes" ]; then    
+  if [ "${ENABLE_STRACE_NG}" = "yes" ]; then
     cp -P $(get_install_dir stress-ng)/usr/bin/stress-ng ${INSTALL}/usr/bin
   fi
 
@@ -392,5 +394,7 @@ post_install() {
   # vim
   if [ "${ENABLE_VIM}" = "yes" ]; then
     cp -P $(get_install_dir vim)/usr/bin/vim ${INSTALL}/usr/bin
+    mkdir -p ${INSTALL}/usr/share/vim
+    cp -Pa $(get_install_dir vim)/storage/.kodi/addons/tools.system-tools/share/* ${ADDON_BUILD}/${PKG_ADDON_ID}/usr/share
   fi
 }

@@ -12,7 +12,7 @@ PKG_LONGDESC="A utility that gives you the temperature of your hard drive by rea
 PKG_BUILD_FLAGS="-sysroot"
 PKG_TOOLCHAIN="autotools"
 
-PKG_CONFIGURE_OPTS_TARGET="--with-db-path=/storage/.kodi/addons/virtual.system-tools/data/hddtemp.db"
+PKG_CONFIGURE_OPTS_TARGET="--with-db-path=/storage/.kodi/addons/tools.system-tools/etc/hddtemp.db"
 
 post_makeinstall_target() {
   mkdir -p ${INSTALL}/usr/share/misc

@@ -3,7 +3,7 @@
 
 PKG_NAME="lcdd"
 PKG_VERSION="0.5dev+2020-07-21"
-PKG_REV="112"
+PKG_REV="113"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://lcdproc.org/"
@@ -39,3 +39,4 @@ addon() {
   cp -PR ${PKG_DIR}/resources ${ADDON_BUILD}/${PKG_ADDON_ID}
   sed -e "s/@DRIVERS@/$drivers/" \
       -i ${ADDON_BUILD}/${PKG_ADDON_ID}/resources/settings.xml
+}

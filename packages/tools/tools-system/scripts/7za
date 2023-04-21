@@ -1,0 +1,3 @@
+#!/bin/sh
+file=/usr/bin/7zz
+exec ${file} "$@"

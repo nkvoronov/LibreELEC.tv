@@ -3,15 +3,16 @@
 
 PKG_NAME="dvb-tools"
 PKG_VERSION="1.0"
-PKG_REV="0"
+PKG_REV="112"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SECTION="virtual"
+PKG_SECTION="tools"
 PKG_SHORTDESC="DVB-Tools: is a bundle of dvb tools and programs"
 PKG_LONGDESC="This bundle currently includes blindscan-s2, dvb-apps, dvblast, dvbsnoop, mumudvb, szap-s2, tune-s2, t2scan and w_scan."
+PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="DVB Tools"
