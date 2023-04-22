@@ -3,8 +3,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="qtbase"
-PKG_VERSION="5.14.0"
-PKG_SHA256="4ef921c0f208a1624439801da8b3f4344a3793b660ce1095f2b7f5c4246b9463"
+PKG_VERSION="5.15.9"
+#PKG_SHA256="4ef921c0f208a1624439801da8b3f4344a3793b660ce1095f2b7f5c4246b9463"
 PKG_LICENSE="GPL"
 PKG_SITE="http://qt-project.org"
 PKG_URL="http://download.qt.io/archive/qt/${PKG_VERSION%.*}/${PKG_VERSION}/submodules/${PKG_NAME}-everywhere-src-${PKG_VERSION}.tar.xz"
@@ -93,7 +93,6 @@ load(qt_config)
 EOF
 
   cat >"${QMAKE_CONF_DIR}/qplatformdefs.h" <<EOF
-#include "../../linux-g++/qplatformdefs.h"
 EOF
 
   unset CC CXX LD RANLIB AR AS CPPFLAGS CFLAGS LDFLAGS CXXFLAGS

@@ -2,9 +2,9 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="vlc3"
-PKG_VERSION="3.0.16"
-PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
-PKG_REV="190"
+PKG_VERSION="3.0.18"
+#PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
+PKG_REV="191"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
@@ -23,7 +23,7 @@ PKG_ADDON_NAME="Vlc Player 3"
 PKG_ADDON_TYPE="xbmc.python.script"
 
 VLC_PREFIX="/storage/.kodi/addons/tools.vlc3"
-QT5VER="5.15.2"
+QT5VER="5.15.9"
 
 PKG_CONFIGURE_OPTS_TARGET="\
               --prefix=${VLC_PREFIX} \
