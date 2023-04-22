@@ -1,6 +1,0 @@
-102
-- Add .NET Runtime 6.0.4
-- Add ASP.NET Core Runtime 6.0.4
-
-100
-- Initial release
