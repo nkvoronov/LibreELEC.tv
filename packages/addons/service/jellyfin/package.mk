@@ -2,8 +2,8 @@
 # Copyright (C) 2021-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="jellyfin"
-PKG_VERSION="10.8.5"
-PKG_REV="156"
+PKG_VERSION="10.8.9"
+PKG_REV="157"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://jellyfin.github.io/"
@@ -22,7 +22,7 @@ PKG_DEB_WEB="yes"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Jellyfin Server"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REQUIRES="tools.ffmpeg-tools:10.0.0.0 tools.dotnet-runtime${PKG_DOTNET}:10.0.0.0"
+PKG_ADDON_REQUIRES="tools.ffmpeg-tools:11.0.0.0 tools.dotnet-runtime${PKG_DOTNET}:11.0.0.0"
 
 PKG_BUILD_FLAGS="-strip"
 

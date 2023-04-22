@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
-PKG_NAME="dotnet-runtime"
-PKG_REV="0"
+PKG_NAME="dotnet-runtime-legacy"
+PKG_REV="124"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://dotnet.microsoft.com/"
@@ -13,7 +13,7 @@ PKG_LONGDESC="ASP.NET Core Runtimes ($(get_pkg_version dotnet3-runtime)) and ($(
 PKG_TOOLCHAIN="manual"
 
 PKG_IS_ADDON="yes"
-PKG_ADDON_NAME="ASP.Net Core Runtimes 5"
+PKG_ADDON_NAME="ASP.Net Core Runtimes Legacy"
 PKG_ADDON_PROJECTS="any !RPi1"
 PKG_ADDON_TYPE="xbmc.python.script"
 PKG_MAINTAINER="Anton Voyl (awiouy)"
