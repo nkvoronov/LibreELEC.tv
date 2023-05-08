@@ -3,16 +3,77 @@
 
 PKG_NAME="vlc3"
 PKG_VERSION="3.0.18"
-#PKG_SHA256="ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
-PKG_REV="191"
+PKG_SHA256="57094439c365d8aa8b9b41fa3080cc0eef2befe6025bb5cef722accc625aedec"
+PKG_REV="192"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.videolan.org"
 PKG_URL="http://download.videolan.org/vlc/${PKG_VERSION}/vlc-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain a52dec libdvbpsi libxpm libdca lua libmatroska taglib libmatroska ffmpegx faad2 libmad libmpeg2 xcb-util-keysyms libtar libXinerama libarchive qt5 \
-fribidi harfbuzz fontconfig libxml2 liblivemedia libbluray flac libdc1394 libavc1394 librsvg libgme twolame avahi systemd libmtp libupnp libdvdcss samba fluidsynth \
-libssh2 mesa libnfs mpg123 libdvdread libdvdnav libogg libshout libmodplug libvpx libvorbis speex opus libtheora libpng libjpeg-turbo x265 x264 zvbi libass SDL_image pulseaudio \
-alsa-lib libsamplerate lirc chromaprint ncursesw libgoom2 gnutls"
+PKG_DEPENDS_TARGET="toolchain \
+                    a52dec \
+                    libdvbpsi \
+                    libxpm libdca \
+                    lua \
+                    libmatroska \
+                    taglib \
+                    libmatroska \
+                    ffmpegx \
+                    faad2 \
+                    libmad \
+                    libmpeg2 \
+                    xcb-util-keysyms \
+                    libtar \
+                    libXinerama \
+                    libarchive \
+                    qt5 \
+                    fribidi \
+                    harfbuzz \
+                    fontconfig \
+                    libxml2 \
+                    liblivemedia \
+                    libbluray \
+                    flac \
+                    libdc1394 \
+                    libavc1394 \
+                    librsvg \
+                    libgme \
+                    twolame \
+                    avahi \
+                    systemd \
+                    libmtp \
+                    libupnp \
+                    libdvdcss \
+                    samba \
+                    fluidsynth \
+                    libssh2 \
+                    mesa \
+                    libnfs \
+                    mpg123 \
+                    libdvdread \
+                    libdvdnav \
+                    libogg \
+                    libshout \
+                    libmodplug \
+                    libvpx \
+                    libvorbis \
+                    speex \
+                    opus \
+                    libtheora \
+                    libpng \
+                    libjpeg-turbo \
+                    x265 \
+                    x264 \
+                    zvbi \
+                    libass \
+                    SDL_image \
+                    pulseaudio \
+                    alsa-lib \
+                    libsamplerate \
+                    lirc \
+                    chromaprint \
+                    ncursesw \
+                    libgoom2 \
+                    gnutls"
 PKG_SECTION="tools"
 PKG_SHORTDESC="VLC (Version: ${PKG_VERSION}): is VideoLAN multimedia player and streamer"
 PKG_LONGDESC="VLC (Version: ${PKG_VERSION}): is the VideoLAN project's media player. It plays MPEG, MPEG2, MPEG4, DivX, MOV, WMV, QuickTime, mp3, Ogg/Vorbis files, DVDs, VCDs, and multimedia streams from various network sources."

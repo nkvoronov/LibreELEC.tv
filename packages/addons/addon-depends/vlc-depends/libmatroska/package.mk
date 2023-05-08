@@ -2,11 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libmatroska"
-PKG_VERSION="1.6.3"
-PKG_SHA256="daf91a63f58dd157ca340c457871e66260cb9c3333fefb008b318befbb0e081a"
+PKG_VERSION="f5315fddda2d434e47035c038549a808d8b8eac7"
+PKG_GIT_CLONE_BRANCH="v1.x"
+PKG_VERSION_NUMBER="1.7.1"
 PKG_LICENSE="LGPL"
-PKG_SITE="http://www.matroska.org"
-PKG_URL="https://dl.matroska.org/downloads/${PKG_NAME}/${PKG_NAME}-${PKG_VERSION}.tar.xz"
+PKG_SITE="https://github.com/Matroska-Org/libmatroska"
+PKG_URL="https://github.com/Matroska-Org/libmatroska.git"
 PKG_DEPENDS_TARGET="toolchain libebml"
 PKG_LONGDESC="Matroska is aiming to become the standard of Multimedia Container Formats one day. It is based on EBML (Extensible Binary Meta Language), a kind of binary version of XML. This way the significant advantages in terms of future format extensibility are gained without breaking file support in old parsers."
 PKG_TOOLCHAIN="cmake"
