@@ -2,8 +2,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="liblivemedia"
-PKG_VERSION="2019.11.06"
-PKG_SHA256="a512071d1c6dd2caf16ecec0aa2c24f0b1cc4fe789e96adc927ee1fe29be493a"
+PKG_VERSION="2023.01.19"
+PKG_SHA256="a7c64913f7f7007c5fdc29ea811e3ca781f262271b3e42afdd4bc1041d86fa99"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.live555.com/liveMedia"
 PKG_URL="https://download.videolan.org/pub/contrib/live555/live.${PKG_VERSION}.tar.gz"
@@ -33,7 +33,7 @@ includedir=${prefix}/include
 
 Name: live555
 Description: multimedia RTSP streaming library
-Version: 2015.06.24
+Version: 2023.01.19
 Cflags: -I${includedir}/liveMedia -I${includedir}/groupsock -I${includedir}/BasicUsageEnvironment -I${includedir}/UsageEnvironment
 Libs: -L${libdir} -lliveMedia -lgroupsock -lBasicUsageEnvironment -lUsageEnvironment
 EOF

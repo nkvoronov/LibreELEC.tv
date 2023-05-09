@@ -2,8 +2,8 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="xcb-util-wm"
-PKG_VERSION="0.4.1"
-PKG_SHA256="038b39c4bdc04a792d62d163ba7908f4bb3373057208c07110be73c1b04b8334"
+PKG_VERSION="0.4.2"
+PKG_SHA256="dcecaaa535802fd57c84cceeff50c64efe7f2326bf752e16d2b77945649c8cd7"
 PKG_LICENSE="GPL"
 PKG_SITE="http://xcb.freedesktop.org"
 PKG_URL="http://xcb.freedesktop.org/dist/$PKG_NAME-$PKG_VERSION.tar.gz"

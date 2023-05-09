@@ -114,8 +114,9 @@ configure_package() {
   fi
 
   if [ "${KODI_DVDCSS_SUPPORT}" = yes ]; then
+    PKG_DEPENDS_TARGET+=" kodi-libdvdcss"
     KODI_DVDCSS="-DENABLE_DVDCSS=ON \
-                 -DLIBDVDCSS_URL=${SOURCES}/libdvdcss/libdvdcss-$(get_pkg_version libdvdcss).tar.gz"
+                 -DLIBDVDCSS_URL=${SOURCES}/kodi-libdvdcss/kodi-libdvdcss-$(get_pkg_version kodi-libdvdcss).tar.gz"
   else
     KODI_DVDCSS="-DENABLE_DVDCSS=OFF"
   fi
@@ -230,9 +231,11 @@ configure_package() {
     PKG_PATCH_DIRS+=" drmprime-filter"
   fi
 
+  PKG_DEPENDS_TARGET+=" kodi-libdvdnav kodi-libdvdread"
+
   KODI_LIBDVD="${KODI_DVDCSS} \
-               -DLIBDVDNAV_URL=${SOURCES}/libdvdnav/libdvdnav-$(get_pkg_version libdvdnav).tar.gz \
-               -DLIBDVDREAD_URL=${SOURCES}/libdvdread/libdvdread-$(get_pkg_version libdvdread).tar.gz"
+               -DLIBDVDNAV_URL=${SOURCES}/kodi-libdvdnav/kodi-libdvdnav-$(get_pkg_version kodi-libdvdnav).tar.gz \
+               -DLIBDVDREAD_URL=${SOURCES}/kodi-libdvdread/kodi-libdvdread-$(get_pkg_version kodi-libdvdread).tar.gz"
 
   PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=${TOOLCHAIN} \
                          -DWITH_TEXTUREPACKER=${TOOLCHAIN}/bin/TexturePacker \

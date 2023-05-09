@@ -12,15 +12,16 @@ PKG_URL="http://download.videolan.org/vlc/${PKG_VERSION}/vlc-${PKG_VERSION}.tar.
 PKG_DEPENDS_TARGET="toolchain \
                     a52dec \
                     libdvbpsi \
-                    libxpm libdca \
+                    libxpm \
+                    libdca \
                     lua \
                     libmatroska \
                     taglib \
-                    libmatroska \
                     ffmpegx \
                     faad2 \
                     libmad \
                     libmpeg2 \
+                    libmicrodns \
                     xcb-util-keysyms \
                     libtar \
                     libXinerama \
@@ -70,7 +71,6 @@ PKG_DEPENDS_TARGET="toolchain \
                     alsa-lib \
                     libsamplerate \
                     lirc \
-                    chromaprint \
                     ncursesw \
                     libgoom2 \
                     gnutls"
@@ -85,6 +85,14 @@ PKG_ADDON_TYPE="xbmc.python.script"
 
 VLC_PREFIX="/storage/.kodi/addons/tools.vlc3"
 QT5VER="5.15.9"
+
+
+if [ "${VDPAU_SUPPORT}" = "yes" -a "${DISPLAYSERVER}" = "x11" ]; then
+  PKG_DEPENDS_TARGET+=" libvdpau"
+  VLC_VDPAU="--enable-vdpau"
+else
+  VLC_VDPAU="--disable-vdpau"
+fi
 
 PKG_CONFIGURE_OPTS_TARGET="\
               --prefix=${VLC_PREFIX} \
@@ -141,15 +149,15 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-libass \
               --disable-kate \
               --disable-tiger \
-              --enable-vdpau \
+              ${VLC_VDPAU} \
               --disable-wayland \
               --enable-sdl-image \
               --enable-freetype \
               --enable-fribidi \
               --enable-harfbuzz \
               --enable-fontconfig \
-              --enable-svg \
-              --enable-svgdec \
+              --disable-svg \
+              --disable-svgdec \
               --disable-aa \
               --disable-caca \
               --enable-pulse \
@@ -157,7 +165,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --disable-jack \
               --enable-samplerate \
               --enable-soxr \
-              --enable-chromaprint \
+              --disable-chromaprint \
               --disable-chromecast \
               --enable-qt \
               --enable-skins2 \
@@ -169,7 +177,7 @@ PKG_CONFIGURE_OPTS_TARGET="\
               --enable-avahi \
               --enable-mtp \
               --enable-upnp \
-              --disable-microdns \
+              --enable-microdns \
               --enable-libxml2 \
               --disable-libgcrypt \
               --enable-gnutls \
@@ -209,6 +217,14 @@ pre_configure_target() {
   PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:$(get_install_dir gnutls)/usr/lib/pkgconfig"
   CFLAGS="${CFLAGS} -I$(get_install_dir gnutls)/usr/include"
   LDFLAGS="${LDFLAGS} -L$(get_install_dir gnutls)/usr/lib"
+
+  PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:$(get_install_dir mpg123)/usr/lib/pkgconfig"
+  CFLAGS="${CFLAGS} -I$(get_install_dir mpg123)/usr/include"
+  LDFLAGS="${LDFLAGS} -L$(get_install_dir mpg123)/usr/lib"
+
+  #PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:$(get_install_dir librsvg)/usr/lib/pkgconfig"
+  #CFLAGS="${CFLAGS} -I$(get_install_dir librsvg)/usr/include"
+  #LDFLAGS="${LDFLAGS} -L$(get_install_dir librsvg)/usr/lib"
 }
 
 addon() {
@@ -335,7 +351,7 @@ addon() {
 
   mkdir -p ${ADDON_BUILD}/${PKG_ADDON_ID}/share/locale
     cp -R $(get_install_dir vlc3)${VLC_PREFIX}/share/locale/* ${ADDON_BUILD}/${PKG_ADDON_ID}/share/locale/
-    
+
   rm -rf `find ${ADDON_BUILD}/${PKG_ADDON_ID}/lib/vlc/plugins/ -name "*.la"`
 
 }

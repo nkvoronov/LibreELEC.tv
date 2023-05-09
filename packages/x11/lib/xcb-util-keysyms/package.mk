@@ -2,8 +2,8 @@
 # Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
 
 PKG_NAME="xcb-util-keysyms"
-PKG_VERSION="0.4.0"
-PKG_SHA256="0807cf078fbe38489a41d755095c58239e1b67299f14460dec2ec811e96caa96"
+PKG_VERSION="0.4.1"
+PKG_SHA256="1fa21c0cea3060caee7612b6577c1730da470b88cbdf846fa4e3e0ff78948e54"
 PKG_LICENSE="GPL"
 PKG_SITE="http://xcb.freedesktop.org"
 PKG_URL="http://xcb.freedesktop.org/dist/$PKG_NAME-$PKG_VERSION.tar.gz"
